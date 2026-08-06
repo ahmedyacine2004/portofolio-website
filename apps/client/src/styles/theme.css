@@ -1,0 +1,136 @@
+/* ==========================================================================
+   Tailwind Theme Tokens
+   ========================================================================== */
+
+@theme {
+  /* --------------------------------------------------------------------------
+     Backgrounds
+     -------------------------------------------------------------------------- */
+
+  --color-background: var(--color-bg-primary);
+  --color-background-secondary: var(--color-bg-secondary);
+  --color-background-tertiary: var(--color-bg-tertiary);
+
+  /* --------------------------------------------------------------------------
+     Text
+     -------------------------------------------------------------------------- */
+
+  --color-foreground: var(--color-text-primary);
+  --color-foreground-secondary: var(--color-text-secondary);
+  --color-foreground-tertiary: var(--color-text-tertiary);
+  --color-foreground-disabled: var(--color-text-disabled);
+  --color-foreground-inverse: var(--color-text-inverse);
+
+  /* --------------------------------------------------------------------------
+     Surfaces
+     -------------------------------------------------------------------------- */
+
+  --color-card: var(--color-surface);
+  --color-card-secondary: var(--color-surface-secondary);
+
+  --color-surface-brand: var(--color-surface-brand);
+  --color-surface-success: var(--color-surface-success);
+  --color-surface-warning: var(--color-surface-warning);
+  --color-surface-danger: var(--color-surface-danger);
+
+  /* --------------------------------------------------------------------------
+     Borders
+     -------------------------------------------------------------------------- */
+
+  --color-border: var(--color-border);
+  --color-border-light: var(--color-border-light);
+  --color-border-strong: var(--color-border-strong);
+
+  /* --------------------------------------------------------------------------
+     Brand
+     -------------------------------------------------------------------------- */
+
+  --color-brand: var(--color-brand);
+  --color-brand-dark: var(--color-brand-dark);
+  --color-brand-light: var(--color-brand-light);
+  --color-brand-darkest: var(--color-brand-darkest);
+
+  /* --------------------------------------------------------------------------
+     Status
+     -------------------------------------------------------------------------- */
+
+  --color-success: var(--color-success);
+  --color-success-dark: var(--color-success-dark);
+  --color-success-light: var(--color-success-light);
+
+  --color-warning: var(--color-warning);
+  --color-warning-dark: var(--color-warning-dark);
+  --color-warning-light: var(--color-warning-light);
+
+  --color-danger: var(--color-danger);
+  --color-danger-dark: var(--color-danger-dark);
+  --color-danger-light: var(--color-danger-light);
+
+  --color-info: var(--color-info);
+  --color-info-dark: var(--color-info-dark);
+
+  /* --------------------------------------------------------------------------
+     Accent
+     -------------------------------------------------------------------------- */
+
+  --color-purple: var(--color-purple);
+  --color-purple-dark: var(--color-purple-dark);
+  --color-purple-light: var(--color-purple-light);
+
+  --color-yellow: var(--color-yellow);
+  --color-yellow-light: var(--color-yellow-light);
+
+  --color-pink: var(--color-pink);
+
+  --color-earth-brown: var(--color-earth-brown);
+  --color-earth-khaki: var(--color-earth-khaki);
+
+  --color-overlay: var(--color-overlay);
+
+  /* --------------------------------------------------------------------------
+     Typography
+     -------------------------------------------------------------------------- */
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  /* --------------------------------------------------------------------------
+     Radius
+     -------------------------------------------------------------------------- */
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* --------------------------------------------------------------------------
+     Shadows
+     -------------------------------------------------------------------------- */
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  /* --------------------------------------------------------------------------
+     Spacing
+     -------------------------------------------------------------------------- */
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+
+  /* --------------------------------------------------------------------------
+     Layout
+     -------------------------------------------------------------------------- */
+
+  --container-7xl: var(--container);
+}
