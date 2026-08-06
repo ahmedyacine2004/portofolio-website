@@ -1,29 +1,40 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { useTheme } from '@/hooks/use-theme';
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        type="button"
+        aria-label="Theme"
+        className="flex h-12 w-12 items-center justify-center rounded-full border"
+        style={{
+          background: 'var(--color-surface)',
+          borderColor: 'var(--color-border)',
+        }}
+      />
+    );
+  }
+
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="
-        flex
-        h-12
-        w-12
-        items-center
-        justify-center
-        rounded-full
-        border
-        transition-all
-        duration-300
-        hover:scale-105
-      "
+      className="flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 hover:scale-105"
       style={{
         background: 'var(--color-surface)',
         color: 'var(--color-text-primary)',
