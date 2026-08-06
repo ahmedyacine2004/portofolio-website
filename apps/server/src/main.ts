@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
+import { setupSwagger } from './common/swagger/swagger.config';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -22,6 +23,8 @@ async function bootstrap(): Promise<void> {
   );
 
   app.useGlobalFilters(new GlobalExceptionFilter());
+
+  setupSwagger(app);
 
   await app.listen(port);
 
