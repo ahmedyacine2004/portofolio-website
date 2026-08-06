@@ -7,6 +7,7 @@ import {
   jwtConfig,
   validationSchema,
 } from './config';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import {
       load: [appConfig, databaseConfig, jwtConfig],
       validationSchema,
     }),
+    DatabaseModule,
   ],
 })
 export class AppModule {}
