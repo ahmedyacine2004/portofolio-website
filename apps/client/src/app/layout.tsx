@@ -4,6 +4,10 @@ import { ThemeProvider } from '@/providers/theme-provider';
 import { beni, geistMono, inter } from '@/styles/fonts';
 
 import '@/styles/globals.css';
+import { Geist } from 'next/font/google';
+import { cn } from '@/lib/utils';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -19,7 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       data-theme="dark"
-      className={`${inter.variable} ${beni.variable} ${geistMono.variable}`}
+      className={cn(inter.variable, beni.variable, geistMono.variable, 'font-sans', geist.variable)}
       suppressHydrationWarning
     >
       <body>

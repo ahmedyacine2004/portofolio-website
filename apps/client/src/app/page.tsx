@@ -1,3 +1,6 @@
+import { ArrowRight, Download } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export default function Home() {
@@ -11,7 +14,7 @@ export default function Home() {
       <div className="container mx-auto flex h-full max-w-7xl flex-col gap-6 px-8 py-5">
         {/* Badge */}
         <span className="w-fit rounded-full border border-border bg-surface-brand px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-brand backdrop-blur">
-          Typography Showcase
+          Typography & Component Showcase
         </span>
 
         {/* Hero */}
@@ -27,25 +30,51 @@ export default function Home() {
           </h1>
 
           <p className="max-w-2xl text-base leading-6 text-foreground-tertiary">
-            A showcase of the typography system that will power my portfolio. Clean interfaces,
-            modern architecture, and thoughtful design.
+            A showcase of the typography system, design tokens, theme engine, and shadcn/ui
+            components that will power this portfolio.
           </p>
         </section>
 
-        {/* Font Cards */}
+        {/* Showcase Cards */}
         <section className="grid flex-1 gap-5 lg:grid-cols-3">
-          {/* Inter */}
+          {/* shadcn/ui Button */}
           <article className="rounded-3xl border border-border bg-card p-5 shadow-md backdrop-blur-xl transition-all duration-300 hover:-translate-y-1">
             <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-brand">
-              Primary Font
+              shadcn/ui
             </span>
 
-            <h2 className="mt-3 text-xl font-semibold">Inter</h2>
+            <h2 className="mt-3 text-xl font-semibold">Button Component</h2>
 
             <p className="mt-3 text-sm leading-6 text-foreground-tertiary">
-              Elegant, readable, and optimized for modern interfaces. Used across navigation,
-              buttons, forms, and every UI component.
+              Beautifully designed. Accessible. Fully customizable. Open source. Built to work
+              seamlessly with Tailwind CSS.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button>Default</Button>
+
+              <Button variant="secondary">Secondary</Button>
+
+              <Button variant="outline">Outline</Button>
+
+              <Button variant="ghost">Ghost</Button>
+
+              <Button variant="destructive">Delete</Button>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Button size="sm">Small</Button>
+
+              <Button>
+                <ArrowRight className="mr-2 h-4 w-4" />
+                Continue
+              </Button>
+
+              <Button size="lg">
+                <Download className="mr-2 h-4 w-4" />
+                Resume
+              </Button>
+            </div>
           </article>
 
           {/* Beni */}
@@ -75,6 +104,7 @@ export default function Home() {
   backend: "NestJS",
   database: "MongoDB",
   language: "TypeScript",
+  ui: "shadcn/ui",
   status: "Building..."
 };`}
             </pre>

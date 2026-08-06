@@ -3,17 +3,17 @@
    ========================================================================== */
 
 @theme {
-  /* --------------------------------------------------------------------------
-     Backgrounds
-     -------------------------------------------------------------------------- */
+  /* ==========================================================================
+     Background
+     ========================================================================== */
 
   --color-background: var(--color-bg-primary);
   --color-background-secondary: var(--color-bg-secondary);
   --color-background-tertiary: var(--color-bg-tertiary);
 
-  /* --------------------------------------------------------------------------
-     Text
-     -------------------------------------------------------------------------- */
+  /* ==========================================================================
+     Foreground
+     ========================================================================== */
 
   --color-foreground: var(--color-text-primary);
   --color-foreground-secondary: var(--color-text-secondary);
@@ -21,42 +21,70 @@
   --color-foreground-disabled: var(--color-text-disabled);
   --color-foreground-inverse: var(--color-text-inverse);
 
-  /* --------------------------------------------------------------------------
-     Surfaces
-     -------------------------------------------------------------------------- */
+  /* ==========================================================================
+     Surface
+     ========================================================================== */
 
   --color-card: var(--color-surface);
   --color-card-secondary: var(--color-surface-secondary);
+  --color-card-foreground: var(--color-text-primary);
+
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-text-primary);
 
   --color-surface-brand: var(--color-surface-brand);
   --color-surface-success: var(--color-surface-success);
   --color-surface-warning: var(--color-surface-warning);
   --color-surface-danger: var(--color-surface-danger);
 
-  /* --------------------------------------------------------------------------
-     Borders
-     -------------------------------------------------------------------------- */
+  /* ==========================================================================
+     Border
+     ========================================================================== */
 
   --color-border: var(--color-border);
   --color-border-light: var(--color-border-light);
   --color-border-strong: var(--color-border-strong);
 
-  /* --------------------------------------------------------------------------
+  --color-input: var(--color-border);
+  --color-ring: var(--color-brand);
+
+  /* ==========================================================================
      Brand
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --color-brand: var(--color-brand);
   --color-brand-dark: var(--color-brand-dark);
   --color-brand-light: var(--color-brand-light);
   --color-brand-darkest: var(--color-brand-darkest);
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================================
+     Semantic (shadcn)
+     ========================================================================== */
+
+  --color-primary: var(--color-brand);
+  --color-primary-foreground: var(--color-text-inverse);
+
+  --color-secondary: var(--color-bg-secondary);
+  --color-secondary-foreground: var(--color-text-primary);
+
+  --color-muted: var(--color-surface-secondary);
+  --color-muted-foreground: var(--color-text-tertiary);
+
+  --color-accent: var(--color-surface-brand);
+  --color-accent-foreground: var(--color-brand);
+
+  --color-destructive: var(--color-danger);
+  --color-destructive-foreground: var(--color-text-inverse);
+
+  /* ==========================================================================
      Status
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --color-success: var(--color-success);
   --color-success-dark: var(--color-success-dark);
   --color-success-light: var(--color-success-light);
+  --color-success-darkest: var(--color-success-darkest);
+  --color-success-teal: var(--color-success-teal);
 
   --color-warning: var(--color-warning);
   --color-warning-dark: var(--color-warning-dark);
@@ -65,13 +93,14 @@
   --color-danger: var(--color-danger);
   --color-danger-dark: var(--color-danger-dark);
   --color-danger-light: var(--color-danger-light);
+  --color-danger-darkest: var(--color-danger-darkest);
 
   --color-info: var(--color-info);
   --color-info-dark: var(--color-info-dark);
 
-  /* --------------------------------------------------------------------------
-     Accent
-     -------------------------------------------------------------------------- */
+  /* ==========================================================================
+     Accent Colors
+     ========================================================================== */
 
   --color-purple: var(--color-purple);
   --color-purple-dark: var(--color-purple-dark);
@@ -87,17 +116,17 @@
 
   --color-overlay: var(--color-overlay);
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================================
      Typography
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================================
      Radius
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --radius-xs: var(--radius-xs);
   --radius-sm: var(--radius-sm);
@@ -105,17 +134,21 @@
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
 
-  /* --------------------------------------------------------------------------
+  /* shadcn compatibility */
+
+  --radius: var(--radius-md);
+
+  /* ==========================================================================
      Shadows
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================================
      Spacing
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
@@ -128,9 +161,9 @@
   --spacing-12: var(--space-12);
   --spacing-16: var(--space-16);
 
-  /* --------------------------------------------------------------------------
+  /* ==========================================================================
      Layout
-     -------------------------------------------------------------------------- */
+     ========================================================================== */
 
   --container-7xl: var(--container);
 }
