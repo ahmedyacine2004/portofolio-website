@@ -1,69 +1,105 @@
-import Image from 'next/image';
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-25"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{' '}
-            <code className="rounded bg-black/6 px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/8">
-              page.tsx
-            </code>{' '}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{' '}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{' '}
-            or the{' '}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{' '}
-            center.
+    <main className="h-screen overflow-hidden bg-[#09090B] text-white">
+      <div className="mx-auto flex h-full max-w-7xl flex-col gap-6 px-8 py-5">
+        {/* Badge */}
+        <span className="w-fit rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-zinc-400 backdrop-blur">
+          Typography Showcase
+        </span>
+
+        {/* Hero */}
+        <section className="space-y-3">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-cyan-400">
+            Full Stack Developer
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-39.5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1
+            className="max-w-5xl text-5xl leading-[0.9] md:text-7xl"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
-            <Image
-              className="dark:invert h-3.5 w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/8 px-5 transition-colors hover:border-transparent hover:bg-black/4 dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-39.5"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Crafting
+            <br />
+            Digital
+            <span className="text-cyan-400"> Experiences.</span>
+          </h1>
+
+          <p className="max-w-2xl text-base leading-6 text-zinc-400">
+            A showcase of the typography system that will power my portfolio. Clean interfaces,
+            modern architecture, and thoughtful design.
+          </p>
+        </section>
+
+        {/* Font Cards */}
+        <section className="grid flex-1 gap-5 lg:grid-cols-3">
+          {/* Inter */}
+          <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition duration-300 hover:border-cyan-400/40 hover:bg-white/[0.05]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-cyan-400">
+              Primary Font
+            </span>
+
+            <h2 className="mt-3 text-xl font-semibold">Inter</h2>
+
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Elegant, readable, and optimized for modern interfaces. Used across navigation,
+              buttons, forms, and every UI component.
+            </p>
+          </article>
+
+          {/* Beni */}
+          <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl transition duration-300 hover:border-purple-400/40 hover:bg-white/[0.05]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-purple-400">
+              Display Font
+            </span>
+
+            <h2
+              className="mt-3 text-3xl leading-none"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Beni
+            </h2>
+
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Reserved for impactful moments like hero titles and section headings to create
+              personality and strong visual identity.
+            </p>
+          </article>
+
+          {/* Geist Mono */}
+          <article className="rounded-3xl border border-white/10 bg-[#0F172A] p-5 transition duration-300 hover:border-emerald-400/40">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-emerald-400">
+              Developer Font
+            </span>
+
+            <pre
+              className="mt-3 overflow-auto text-xs leading-6 text-zinc-300"
+              style={{ fontFamily: 'var(--font-mono)' }}
+            >
+              {`const portfolio = {
+  developer: "Ahmed",
+  frontend: "Next.js",
+  backend: "NestJS",
+  database: "MongoDB",
+  language: "TypeScript",
+  status: "Building..."
+};`}
+            </pre>
+          </article>
+        </section>
+
+        {/* Philosophy */}
+        <section className="rounded-[2rem] border border-white/10 bg-gradient-to-r from-cyan-500/10 via-transparent to-purple-500/10 p-5 backdrop-blur-xl">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">Philosophy</p>
+
+          <h2 className="mt-2 text-3xl leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
+            Beautiful interfaces begin with thoughtful typography.
+          </h2>
+
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-400">
+            Typography is more than choosing fonts—it establishes hierarchy, guides attention, and
+            shapes the personality of every digital experience.
+          </p>
+        </section>
+      </div>
+    </main>
   );
 }
