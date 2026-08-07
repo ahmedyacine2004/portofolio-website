@@ -3,9 +3,10 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from '@/providers/theme-provider';
 import { beni, geistMono, inter } from '@/styles/fonts';
 
+import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import { Geist } from 'next/font/google';
-import { cn } from '@/lib/utils';
+import { QueryProvider } from '@/providers/query-provider';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
