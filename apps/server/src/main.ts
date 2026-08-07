@@ -85,6 +85,6 @@ async function bootstrap(): Promise<void> {
 
   await app.listen(port);
 
-  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`🚀 Server running on http://localhost:${port}/api`);
 }
 void bootstrap();

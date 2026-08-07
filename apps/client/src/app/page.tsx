@@ -1,7 +1,7 @@
 import { ArrowRight, Download } from 'lucide-react';
-
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { ApiShowcase } from '@/components/home/api-showcase';
 
 export default function Home() {
   return (
@@ -13,6 +13,9 @@ export default function Home() {
 
       <div className="container mx-auto flex h-full max-w-7xl flex-col gap-6 px-8 py-5">
         {/* Badge */}
+
+        <ApiShowcase />
+
         <span className="w-fit rounded-full border border-border bg-surface-brand px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] text-brand backdrop-blur">
           Typography & Component Showcase
         </span>
