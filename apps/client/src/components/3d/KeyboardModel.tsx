@@ -108,7 +108,7 @@ export default function KeyboardModel() {
     }
   };
 
-  const handleKeyInteraction = (object: THREE.Object3D | null, pressed = false) => {
+  const handleKeyInteraction = (object: THREE.Object3D | null, isHoveredKey = false) => {
     if (!object?.isMesh) return;
 
     const mesh = object as THREE.Mesh;
@@ -116,19 +116,14 @@ export default function KeyboardModel() {
 
     if (!material || !('emissive' in material)) return;
 
-    if (pressed) {
-      mesh.position.z = -0.012;
+    if (isHoveredKey) {
+      mesh.position.z = -0.006;
       material.emissive.setHex(0x3b82f6);
-      material.emissiveIntensity = 0.8;
-
-      window.setTimeout(() => {
-        mesh.position.z = 0;
-        material.emissive.setHex(0x000000);
-        material.emissiveIntensity = 0;
-      }, 180);
+      material.emissiveIntensity = 0.45;
     } else {
-      material.emissive.setHex(0x1f2937);
-      material.emissiveIntensity = 0.18;
+      mesh.position.z = 0;
+      material.emissive.setHex(0x000000);
+      material.emissiveIntensity = 0;
     }
   };
 
@@ -142,19 +137,13 @@ export default function KeyboardModel() {
           onPointerOver={(event) => {
             event.stopPropagation();
             setIsHovered(true);
+            handleKeyInteraction(event.object, true);
           }}
           onPointerOut={(event) => {
             event.stopPropagation();
             setIsHovered(false);
-            resetKeyMaterial(event.object);
-          }}
-          onClick={(event) => {
-            event.stopPropagation();
-            handleKeyInteraction(event.object, true);
-          }}
-          onPointerMove={(event) => {
-            event.stopPropagation();
             handleKeyInteraction(event.object, false);
+            resetKeyMaterial(event.object);
           }}
         />
       </Float>
