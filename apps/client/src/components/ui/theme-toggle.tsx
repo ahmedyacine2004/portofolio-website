@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
@@ -8,40 +7,39 @@ import { useTheme } from '@/hooks/use-theme';
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    const frame = requestAnimationFrame(() => {
+      setMounted(true);
+    });
 
-  if (!mounted) {
-    return (
-      <button
-        type="button"
-        aria-label="Theme"
-        className="flex h-12 w-12 items-center justify-center rounded-full border"
-        style={{
-          background: 'var(--color-surface)',
-          borderColor: 'var(--color-border)',
-        }}
-      />
-    );
-  }
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 hover:scale-105"
-      style={{
-        background: 'var(--color-surface)',
-        color: 'var(--color-text-primary)',
-        borderColor: 'var(--color-border)',
-      }}
+      className="
+        flex size-8 items-center justify-center
+        rounded-sm
+        bg-brand-dark text-primary-foreground
+        shadow-sm
+        transition-all duration-200
+        hover:bg-primary/80
+      "
     >
-      {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {mounted ? (
+        theme === 'dark' ? (
+          <Sun className="size-[18px]" strokeWidth={1.8} />
+        ) : (
+          <Moon className="size-[18px]" strokeWidth={1.8} />
+        )
+      ) : (
+        <Moon className="size-[18px]" strokeWidth={1.8} />
+      )}
     </button>
   );
 }

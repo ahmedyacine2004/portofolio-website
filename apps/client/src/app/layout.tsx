@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 
+import { QueryProvider } from '@/providers/query-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
-import { beni, geistMono, inter } from '@/styles/fonts';
+
+import { AppShell } from '@/components/layout/app-shell';
 
 import { cn } from '@/lib/utils';
-import '@/styles/globals.css';
-import { Geist } from 'next/font/google';
-import { QueryProvider } from '@/providers/query-provider';
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+import { beni, geistMono, inter } from '@/styles/fonts';
+
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -24,12 +25,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       data-theme="dark"
-      className={cn(inter.variable, beni.variable, geistMono.variable, 'font-sans', geist.variable)}
+      className={cn(inter.variable, beni.variable, geistMono.variable, 'font-sans')}
       suppressHydrationWarning
     >
       <body>
         <ThemeProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <AppShell>{children}</AppShell>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
