@@ -12,7 +12,7 @@ type AppShellProps = {
 
 export function AppShell({ children }: AppShellProps) {
   return (
-    <div className="flex min-h-screen flex-col px-4 py-3">
+    <div className="flex h-screen bg-transparent flex-col px-4 py-1">
       {/* Header */}
       <Header />
 
@@ -21,10 +21,11 @@ export function AppShell({ children }: AppShellProps) {
         {/* Main navigation */}
         <aside className="shrink-0">
           <Sidebar />
+          {/* Secondary side bar here*/}
         </aside>
 
         {/* Page */}
-        <main className="min-w-0 flex-1 overflow-auto rounded-sm r shadow-md bg-background">
+        <main className="min-w-0 flex-1 rounded-sm bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           {children}
         </main>
       </div>

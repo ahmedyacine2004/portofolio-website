@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import {
@@ -15,10 +16,12 @@ import {
   Speaker,
   Sun,
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useTheme } from '../../hooks/use-theme';
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +34,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
 import figmaIcon from '@/assets/icons/figma.svg';
 import githubIcon from '@/assets/icons/github.svg';
+import githubIconDark from '@/assets/icons/githubdarkTheme.svg';
 import nestIcon from '@/assets/icons/nestjs.svg';
 import nextIcon from '@/assets/icons/nextjs.svg';
 import reactIcon from '@/assets/icons/react.svg';
@@ -100,6 +104,12 @@ export function StatusBar() {
     pageNavigation[pathname as keyof typeof pageNavigation] ?? pageNavigation['/'];
   const CurrentIcon = currentPage.icon;
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -113,7 +123,16 @@ export function StatusBar() {
   }, []);
 
   return (
-    <div className="flex h-full w-full items-center justify-between rounded-xs bg-background px-3 py-1 shadow-xs">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="flex h-full w-full items-center justify-between rounded-xs bg-background px-3 py-1 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+    >
       {/* ================================================================
           LEFT SIDE
           Current page + GitHub | Technologies
@@ -134,7 +153,7 @@ export function StatusBar() {
           className="ml-3 flex shrink-0 items-center gap-1.5 text-[10px] leading-none text-foreground-secondary transition-colors hover:text-foreground"
         >
           <Image
-            src={githubIcon}
+            src={mounted && theme === 'dark' ? githubIconDark : githubIcon}
             alt=""
             width={TECHNOLOGY_ICON_SIZE}
             height={TECHNOLOGY_ICON_SIZE}
@@ -311,6 +330,6 @@ export function StatusBar() {
           {time} GMT+1
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 }

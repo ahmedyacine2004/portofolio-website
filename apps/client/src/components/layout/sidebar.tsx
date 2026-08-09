@@ -10,6 +10,7 @@ import {
   Settings,
   ShieldCheck,
 } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -63,7 +64,16 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-full w-full flex-col rounded-sm bg-card py-2 px-2 shadow-sm">
+    <motion.aside
+      initial={{ opacity: 0, x: -24 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.1,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="flex h-full w-full flex-col rounded-sm bg-background py-2 px-2 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+    >
       {/* Main navigation */}
       <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">
         {mainNavigation.map((item) => {
@@ -82,7 +92,7 @@ export function Sidebar() {
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
                   ? 'bg-primary text-primary-foreground shadow-[0_0_18px_var(--color-brand)]'
-                  : 'bg-background text-foreground hover:bg-muted shadow-md',
+                  : 'bg-background text-foreground hover:bg-muted shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]',
               ].join(' ')}
             >
               <Icon className="size-5" strokeWidth={1.8} />
@@ -104,10 +114,10 @@ export function Sidebar() {
               aria-label={item.label}
               aria-current={isActive ? 'page' : undefined}
               className={[
-                'flex size-[46px] shadow-md shrink-0 items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'flex size-[46px] shrink-0 items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
                   ? 'bg-primary text-primary-foreground shadow-[0_0_18px_var(--color-brand)]'
-                  : 'bg-background text-foreground hover:bg-muted',
+                  : 'bg-background text-foreground hover:bg-muted shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]',
               ].join(' ')}
             >
               <Icon className="size-5" strokeWidth={1.8} />
@@ -115,6 +125,6 @@ export function Sidebar() {
           );
         })}
       </nav>
-    </aside>
+    </motion.aside>
   );
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
+import { motion } from 'motion/react';
 import { HeaderActionButtons } from './header-action-buttons';
 import { HeaderNavigation } from './header-navigation';
 import { HeaderSearch } from './header-search';
@@ -21,7 +22,15 @@ const navigation = [
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between rounded-sm bg-background px-4 py-2 shadow-sm">
+    <motion.header
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="flex items-center justify-between rounded-sm bg-background px-4 py-2 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+    >
       {/* ================================================================
           LEFT SIDE
           Logo + Navigation + Arrows
@@ -76,9 +85,8 @@ export function Header() {
 
       <div className="flex shrink-0 items-center gap-1.5">
         <HeaderActionButtons />
-
         <ThemeToggle />
       </div>
-    </header>
+    </motion.header>
   );
 }
