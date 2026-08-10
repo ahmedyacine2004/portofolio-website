@@ -1,7 +1,5 @@
 import type { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {
-  staticDirs: ['src/assets/3d'],
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

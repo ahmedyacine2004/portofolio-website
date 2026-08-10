@@ -1,5 +1,7 @@
 'use client';
 
+import { useAboutTabsStore } from '@/stores/about-tabs.store';
+import { ABOUT_ROOT_FILE, findAboutFileByHref } from '@/lib/utils/about-files';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
@@ -103,10 +105,20 @@ const rootFiles: FileItem[] = [
 function FileLink({ file }: { file: FileItem }) {
   const pathname = usePathname();
   const isActive = pathname === file.href;
+  const openTab = useAboutTabsStore((state) => state.openTab);
+
+  const handleClick = () => {
+    const regFile = findAboutFileByHref(file.href);
+
+    if (regFile) {
+      openTab(regFile);
+    }
+  };
 
   return (
     <Link
       href={file.href}
+      onClick={handleClick}
       className={`flex items-center gap-1 px-2 py-[3px] transition-colors hover:bg-muted ${
         isActive ? 'bg-primary/20 text-primary font-medium' : 'text-foreground'
       }`}
@@ -185,6 +197,7 @@ function SectionBlock({ section }: { section: Section }) {
 export function AboutSecondarySidebar() {
   const pathname = usePathname();
   const isRootAboutActive = pathname === '/about';
+  const openTab = useAboutTabsStore((state) => state.openTab);
 
   return (
     <aside className="flex h-full w-[180px] flex-col rounded-[8px] bg-background px-2 py-3 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
@@ -196,6 +209,7 @@ export function AboutSecondarySidebar() {
       {/* Default About Page */}
       <Link
         href="/about"
+        onClick={() => openTab(ABOUT_ROOT_FILE)}
         aria-current="page"
         className={`mb-1 flex items-center gap-1 rounded-[2px] px-2 py-2 transition-colors ${
           isRootAboutActive

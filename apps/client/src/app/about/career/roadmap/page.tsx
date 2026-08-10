@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CodeEditor } from '@/components/about/code-editor';
 import { roadmapMmd } from '@/lib/utils/roadmap';
-import MermaidIcon from '@/assets/icons/mermaid.svg';
+import MarkdownIcon from '@/assets/icons/markdown.svg';
 
 export default function RoadmapPage() {
   return (
@@ -10,7 +10,7 @@ export default function RoadmapPage() {
       breadcrumb="about > career > roadmap.mmd"
       language="Markdown"
       content={roadmapMmd}
-      fileIcon={<Image src={MermaidIcon} alt="Mermaid icon" className="size-3" />}
+      fileIcon={<Image src={MarkdownIcon} alt="Markdown icon" className="size-3" />}
     />
   );
 }

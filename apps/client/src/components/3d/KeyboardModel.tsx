@@ -1,7 +1,7 @@
 'use client';
 
 import { Float, useGLTF } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -25,105 +25,99 @@ export default function KeyboardModel() {
   const clonedScene = useMemo(() => scene.clone(), [scene]);
 
   useEffect(() => {
-    const canvas = gl.domElement;
-
-    const handleWheel = (event: WheelEvent) => {
-      event.preventDefault();
-      const direction = event.deltaY > 0 ? 1.03 : 1 / 1.03;
-      camera.position.z = THREE.MathUtils.clamp(camera.position.z * direction, 1.45, 2.55);
-    };
-
-    const handlePointerDown = (event: PointerEvent) => {
+    const handlePointerDown = (e: PointerEvent) => {
       dragStateRef.current.active = true;
-      dragStateRef.current.startX = event.clientX;
-      dragStateRef.current.startY = event.clientY;
+      dragStateRef.current.startX = e.clientX;
+      dragStateRef.current.startY = e.clientY;
       dragStateRef.current.startRotationX = dragStateRef.current.targetRotationX;
       dragStateRef.current.startRotationY = dragStateRef.current.targetRotationY;
-      canvas.style.cursor = 'grabbing';
     };
 
-    const handlePointerMove = (event: PointerEvent) => {
+    const handlePointerMove = (e: PointerEvent) => {
       if (!dragStateRef.current.active) return;
+      const deltaX = e.clientX - dragStateRef.current.startX;
+      const deltaY = e.clientY - dragStateRef.current.startY;
 
-      const deltaX = event.clientX - dragStateRef.current.startX;
-      const deltaY = event.clientY - dragStateRef.current.startY;
-
-      dragStateRef.current.targetRotationX = dragStateRef.current.startRotationX + deltaY * 0.005;
-      dragStateRef.current.targetRotationY = dragStateRef.current.startRotationY + deltaX * 0.005;
+      dragStateRef.current.targetRotationY = dragStateRef.current.startRotationY + deltaX * 0.008;
+      dragStateRef.current.targetRotationX = Math.max(
+        -Math.PI / 4,
+        Math.min(Math.PI / 4, dragStateRef.current.startRotationX + deltaY * 0.008),
+      );
     };
 
     const handlePointerUp = () => {
       dragStateRef.current.active = false;
-      canvas.style.cursor = 'grab';
     };
 
-    canvas.addEventListener('wheel', handleWheel, { passive: false });
+    const canvas = gl.domElement;
     canvas.addEventListener('pointerdown', handlePointerDown);
-    canvas.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointermove', handlePointerMove);
     window.addEventListener('pointerup', handlePointerUp);
 
     return () => {
-      canvas.removeEventListener('wheel', handleWheel);
       canvas.removeEventListener('pointerdown', handlePointerDown);
-      canvas.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerup', handlePointerUp);
     };
-  }, [camera, gl]);
+  }, [gl]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (!groupRef.current) return;
 
-    const targetY = Math.sin(state.clock.elapsedTime * 0.4) * 0.04;
-    const rotationX = dragStateRef.current.active
-      ? dragStateRef.current.targetRotationX
-      : pointer.y * 0.2;
-    const rotationY = dragStateRef.current.active
-      ? dragStateRef.current.targetRotationY
-      : pointer.x * 0.2;
-    const hoverFactor = isHovered ? 0.16 : 0;
+    const idleRotationY = pointer.x * 0.12;
+    const idleRotationX = -pointer.y * 0.08;
+
+    const baseRotationX = 0.55;
+    const baseRotationY = -0.38;
+
+    const targetRotX = baseRotationX + idleRotationX + dragStateRef.current.targetRotationX;
+    const targetRotY = baseRotationY + idleRotationY + dragStateRef.current.targetRotationY;
 
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,
-      rotationX + hoverFactor * 0.4,
-      0.12,
+      targetRotX,
+      0.08,
     );
     groupRef.current.rotation.y = THREE.MathUtils.lerp(
       groupRef.current.rotation.y,
-      rotationY,
-      0.12,
+      targetRotY,
+      0.08,
     );
+
+    const targetY = isHovered ? 0.14 : 0.08;
     groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, targetY, 0.08);
     camera.lookAt(0, 0.1, 0);
   });
 
   const resetKeyMaterial = (object: THREE.Object3D | null) => {
-    if (!object?.isMesh) return;
+    if (!object || !(object instanceof THREE.Mesh)) return;
 
-    const mesh = object as THREE.Mesh;
-    const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+    const material = Array.isArray(object.material) ? object.material[0] : object.material;
 
     if (material && 'emissive' in material) {
-      material.emissive.setHex(0x000000);
-      material.emissiveIntensity = 0;
+      const stdMat = material as THREE.MeshStandardMaterial;
+      stdMat.emissive.setHex(0x000000);
+      stdMat.emissiveIntensity = 0;
     }
   };
 
   const handleKeyInteraction = (object: THREE.Object3D | null, isHoveredKey = false) => {
-    if (!object?.isMesh) return;
+    if (!object || !(object instanceof THREE.Mesh)) return;
 
-    const mesh = object as THREE.Mesh;
-    const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+    const material = Array.isArray(object.material) ? object.material[0] : object.material;
 
     if (!material || !('emissive' in material)) return;
 
+    const stdMat = material as THREE.MeshStandardMaterial;
+
     if (isHoveredKey) {
-      mesh.position.z = -0.006;
-      material.emissive.setHex(0x3b82f6);
-      material.emissiveIntensity = 0.45;
+      object.position.z = -0.006;
+      stdMat.emissive.setHex(0x3b82f6);
+      stdMat.emissiveIntensity = 0.45;
     } else {
-      mesh.position.z = 0;
-      material.emissive.setHex(0x000000);
-      material.emissiveIntensity = 0;
+      object.position.z = 0;
+      stdMat.emissive.setHex(0x000000);
+      stdMat.emissiveIntensity = 0;
     }
   };
 
@@ -134,12 +128,12 @@ export default function KeyboardModel() {
           object={clonedScene}
           scale={2.1}
           position={[0, 0.08, 0]}
-          onPointerOver={(event) => {
+          onPointerOver={(event: ThreeEvent<PointerEvent>) => {
             event.stopPropagation();
             setIsHovered(true);
             handleKeyInteraction(event.object, true);
           }}
-          onPointerOut={(event) => {
+          onPointerOut={(event: ThreeEvent<PointerEvent>) => {
             event.stopPropagation();
             setIsHovered(false);
             handleKeyInteraction(event.object, false);

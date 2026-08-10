@@ -1,8 +1,10 @@
 'use client';
 
+import { AboutTabBar } from './about-tab-bar';
+import { CodePreviewModal } from './code-preview-modal';
 import { useTheme } from '@/hooks/use-theme';
-import { AlertTriangle, Eye, GitBranch, X, XCircle } from 'lucide-react';
-import { ReactNode, useMemo } from 'react';
+import { AlertTriangle, Eye, GitBranch, XCircle } from 'lucide-react';
+import { ReactNode, useMemo, useState } from 'react';
 
 type CodeEditorProps = {
   fileName: string;
@@ -206,6 +208,7 @@ export function CodeEditor({
   errorCount = 0,
   warningCount = 0,
 }: CodeEditorProps) {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const lines = useMemo(() => content.split('\n'), [content]);
 
   const { theme } = useTheme();
@@ -214,25 +217,18 @@ export function CodeEditor({
   return (
     <div className="flex h-full min-h-0 flex-col bg-background rounded-sm">
       {/* Editor toolbar */}
-      <div className="flex shrink-0 items-center justify-between px-2 py-1">
-        {/* File tab */}
-        <div className="flex h-7 items-center gap-2 rounded-[3px] bg-primary/10 px-2.5">
-          {fileIcon && (
-            <span className="flex size-3.5 items-center justify-center shrink-0">{fileIcon}</span>
-          )}
-          <span className="text-[9px] font-medium leading-none text-primary">{fileName}</span>
-          <X className="ml-3 size-2.5 text-primary" strokeWidth={2} aria-hidden="true" />
-        </div>
-
-        {/* Preview */}
-        <button
-          type="button"
-          className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
-        >
-          <span>Preview Code</span>
-          <Eye className="size-3" strokeWidth={2} aria-hidden="true" />
-        </button>
-      </div>
+      <AboutTabBar
+        actionButton={
+          <button
+            type="button"
+            onClick={() => setIsPreviewOpen(true)}
+            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer"
+          >
+            <span>Preview Code</span>
+            <Eye className="size-3" strokeWidth={2} aria-hidden="true" />
+          </button>
+        }
+      />
 
       {/* Breadcrumb */}
       <div className="mx-1 flex h-9 shrink-0 items-center rounded-t-[4px] bg-[#06243a] px-2.5">
@@ -304,6 +300,17 @@ export function CodeEditor({
           </span>
         </div>
       </div>
+
+      {/* Interactive Code Preview Modal */}
+      <CodePreviewModal
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+        fileName={fileName}
+        language={language}
+        content={content}
+        fileIcon={fileIcon}
+        breadcrumb={breadcrumb}
+      />
     </div>
   );
 }

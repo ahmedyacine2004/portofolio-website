@@ -1,5 +1,6 @@
 'use client';
 
+import { AboutTabBar } from './about-tab-bar';
 import { useTheme } from '@/hooks/use-theme';
 import {
   AlertCircle,
@@ -188,24 +189,18 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
       }`}
     >
       {/* Editor toolbar */}
-      <div className="flex shrink-0 items-center justify-between px-2 py-1">
-        {/* File tab */}
-        <div className="flex h-7 items-center gap-2 rounded-[3px] bg-primary/10 px-2.5">
-          <span className="text-[8px] text-primary">📄</span>
-          <span className="text-[9px] font-medium leading-none text-primary">{fileName}</span>
-          <X className="ml-3 size-2.5 text-primary" strokeWidth={2} aria-hidden="true" />
-        </div>
-
-        {/* Action Button */}
-        <button
-          type="button"
-          onClick={handleFullscreen}
-          className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
-        >
-          <span>Expand PDF</span>
-          <Maximize2 className="size-3" strokeWidth={2} aria-hidden="true" />
-        </button>
-      </div>
+      <AboutTabBar
+        actionButton={
+          <button
+            type="button"
+            onClick={handleFullscreen}
+            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
+          >
+            <span>Expand PDF</span>
+            <Maximize2 className="size-3" strokeWidth={2} aria-hidden="true" />
+          </button>
+        }
+      />
 
       {/* Breadcrumb */}
       <div className="mx-1 flex h-9 shrink-0 items-center rounded-t-[4px] bg-[#06243a] px-2.5">

@@ -1,3 +1,6 @@
+'use client';
+
+import { AboutTabBar } from '@/components/about/about-tab-bar';
 import avatar from '@/assets/images/avatar.jpg';
 import {
   BookOpen,
@@ -101,7 +104,8 @@ const interests = [
 
 export default function AboutPage() {
   return (
-    <div className="flex h-full min-h-0 flex-col gap-2 p-3">
+    <div className="flex h-full min-h-0 flex-col gap-1 p-2">
+      <AboutTabBar />
       {/* Top */}
       <section className="grid min-h-0 flex-[1.15] grid-cols-[1.2fr_0.9fr_0.9fr] gap-2">
         {/* Introduction */}
@@ -115,14 +119,14 @@ export default function AboutPage() {
               Or, as I like to put it, a Jack of All Trades
             </p>
 
-            <p className="mt-3 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
+            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               From architecting scalable web applications and crafting intuitive user interfaces to
               designing compelling brand identities, I enjoy turning ideas into polished digital
               experiences. I bridge development and design, combining technical precision with
               creativity to build products that are not only functional, but memorable.
             </p>
 
-            <p className="mt-2.5 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
+            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               Welcome to my workspace. Feel free to explore the repository and discover the
               projects, technologies, and experiences that define my journey.
             </p>
@@ -179,7 +183,7 @@ export default function AboutPage() {
               return (
                 <div
                   key={service.title}
-                  className="flex min-h-[47px] items-center gap-2 rounded-xs bg-background px-2 py-1.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+                  className="flex min-h-[45px] items-center gap-2 rounded-xs bg-background px-2 py-0 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
                 >
                   <div
                     className={`flex size-7 shrink-0 items-center justify-center rounded-xs text-white ${service.className}`}
@@ -232,7 +236,7 @@ export default function AboutPage() {
         {/* Right */}
         <div className="flex min-h-0 flex-col gap-2">
           {/* Tech Arsenal */}
-          <div className="rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+          <div className="rounded-sm bg-background p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
             <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               Tech arsenal
             </h2>
@@ -246,8 +250,8 @@ export default function AboutPage() {
                   <Image
                     src={technology}
                     alt=""
-                    width={16}
-                    height={16}
+                    width={12}
+                    height={12}
                     className="size-6 object-contain"
                     aria-hidden="true"
                   />
