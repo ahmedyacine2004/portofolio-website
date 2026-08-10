@@ -49,8 +49,8 @@ const mainNavigation = [
 
 const bottomNavigation = [
   {
-    label: 'Messages',
-    href: '/messages',
+    label: 'AI assisstant',
+    href: '/ai-assistant',
     icon: MessageCircle,
   },
   {
@@ -72,7 +72,7 @@ export function Sidebar() {
         delay: 0.1,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="flex h-full w-full flex-col rounded-sm bg-background py-2 px-2 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+      className="flex h-full flex-col rounded-sm bg-background py-2 px-2 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
     >
       {/* Main navigation */}
       <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">

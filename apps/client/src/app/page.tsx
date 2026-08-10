@@ -8,7 +8,7 @@ import { Code } from 'lucide-react';
 export default function Home() {
   return (
     <div className="h-full w-full">
-      <div className="flex h-full w-full gap-1 p-2 px-6 overflow-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)] rounded-sm">
+      <div className="flex h-full w-full gap-1 p-2 px-6 overflow-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
         {/* Main Content - Left Side */}
         <motion.div
           className="flex min-w-0 w-[55%] flex-col"

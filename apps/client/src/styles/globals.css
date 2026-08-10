@@ -54,9 +54,7 @@
     color: var(--color-foreground);
     font-weight: 400;
   }
-
-  p,
-  span,
+  /* AFTER: Remove 'span' so it inherits properly from parent containers */
   label,
   button,
   input,
@@ -159,7 +157,9 @@
   .font-beni {
     font-family: var(--font-display), system-ui, sans-serif;
   }
-
+  .font-mono {
+    font-family: var(--font-mono), system-ui, sans-serif;
+  }
   .transition-theme {
     transition:
       background-color var(--duration-normal) var(--ease-standard),
