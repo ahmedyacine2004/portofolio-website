@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   BookOpen,
@@ -38,7 +40,7 @@ interface PageConfig {
   icon: LucideIcon;
 }
 
-// 1. Page configurations for each Project Type (max 5 pages)
+// 1. Page configurations for each Project Type
 const PROJECT_TYPE_PAGES: Record<string, PageConfig[]> = {
   'web-dev': [
     { name: 'Project Details', icon: FileText },
@@ -66,7 +68,7 @@ const PROJECT_TYPE_PAGES: Record<string, PageConfig[]> = {
   ],
 };
 
-// Override map for items inside "Featured Projects" to inherit their core project type
+// Override map for items inside "Featured Projects" to inherit their core project category
 const FEATURED_ITEM_TYPE_MAP: Record<string, string> = {
   CONSULTIFY: 'web-dev',
   'Portfolio Workspace': 'web-dev',
@@ -118,20 +120,37 @@ const CATEGORIES: CategoryItem[] = [
   },
 ];
 
+// Helper to convert names into URL-safe slugs (e.g. "Project Details" -> "project-details")
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
 export function ProjectsSecondarySidebar() {
+  const pathname = usePathname();
   const [openSection, setOpenSection] = useState<string | null>('featured');
 
   const toggleSection = (id: string) => {
     setOpenSection((prev) => (prev === id ? null : id));
   };
 
-  // Helper to determine page icons for a given item
   const getPagesForItem = (categoryId: string, itemName: string): PageConfig[] => {
     if (categoryId === 'featured') {
       const type = FEATURED_ITEM_TYPE_MAP[itemName] || 'web-dev';
       return PROJECT_TYPE_PAGES[type] || PROJECT_TYPE_PAGES['web-dev'];
     }
     return PROJECT_TYPE_PAGES[categoryId] || PROJECT_TYPE_PAGES['web-dev'];
+  };
+
+  const getCategorySlug = (categoryId: string, itemName: string): string => {
+    if (categoryId === 'featured') {
+      return FEATURED_ITEM_TYPE_MAP[itemName] || 'web-dev';
+    }
+    return categoryId;
   };
 
   return (
@@ -188,33 +207,54 @@ export function ProjectsSecondarySidebar() {
                     <div className="space-y-0.5 px-1 py-1">
                       {category.items.map((item) => {
                         const pages = getPagesForItem(category.id, item);
+                        const categorySlug = getCategorySlug(category.id, item);
+                        const projectSlug = slugify(item);
+
+                        // Default link for clicking the item name points to the first sub-page
+                        const firstPageSlug = slugify(pages[0].name);
+                        const defaultHref = `/projects/${categorySlug}/${projectSlug}/${firstPageSlug}`;
+                        const isProjectActive = pathname.startsWith(
+                          `/projects/${categorySlug}/${projectSlug}`,
+                        );
 
                         return (
                           <div
                             key={item}
-                            className="group flex w-full items-center justify-between rounded-[3px] px-1.5 py-1 transition-colors hover:bg-[var(--color-brand)] hover:text-white"
+                            className={`group flex w-full items-center justify-between rounded-[3px] px-1.5 py-1 transition-colors ${
+                              isProjectActive
+                                ? 'bg-[var(--color-brand)] text-white'
+                                : 'hover:bg-[var(--color-brand)] hover:text-white'
+                            }`}
                           >
-                            {/* Project Name */}
-                            <span className="truncate text-[8px] font-medium text-[var(--color-text-secondary)] group-hover:font-semibold group-hover:text-white">
+                            {/* Project Name (Navigates to primary sub-page) */}
+                            <Link
+                              href={defaultHref}
+                              className="truncate text-[8px] font-medium text-[var(--color-text-secondary)] group-hover:font-semibold group-hover:text-white"
+                            >
                               {item}
-                            </span>
+                            </Link>
 
-                            {/* Page Icons (Displayed on Hover) */}
+                            {/* Page Sub-Route Link Icons */}
                             <div className="hidden shrink-0 items-center gap-0.5 group-hover:flex">
                               {pages.map((page) => {
                                 const PageIcon = page.icon;
+                                const pageSlug = slugify(page.name);
+                                const href = `/projects/${categorySlug}/${projectSlug}/${pageSlug}`;
+                                const isPageActive = pathname === href;
+
                                 return (
-                                  <button
+                                  <Link
                                     key={page.name}
+                                    href={href}
                                     title={page.name}
-                                    className="flex size-3.5 items-center justify-center rounded-[2px] bg-white/20 transition-colors hover:bg-white/40"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      // Handle page navigation here
-                                    }}
+                                    className={`flex size-3.5 items-center justify-center rounded-[2px] transition-colors ${
+                                      isPageActive
+                                        ? 'bg-white text-[var(--color-brand-dark)]'
+                                        : 'bg-white/20 hover:bg-white/40 text-white'
+                                    }`}
                                   >
-                                    <PageIcon className="size-2.5 text-white" />
-                                  </button>
+                                    <PageIcon className="size-2.5" />
+                                  </Link>
                                 );
                               })}
                             </div>
@@ -253,7 +293,6 @@ export function ProjectsSecondarySidebar() {
         </h3>
 
         <div className="space-y-0.5 text-[8px] font-medium text-[var(--color-text-secondary)]">
-          {/* v3.2 */}
           <div className="flex items-center justify-between py-0.5">
             <span>v3.2</span>
             <div className="flex items-center gap-1">
@@ -264,13 +303,11 @@ export function ProjectsSecondarySidebar() {
             </div>
           </div>
 
-          {/* v2.5 */}
           <div className="flex items-center justify-between py-0.5">
             <span>v2.5</span>
             <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />
           </div>
 
-          {/* v1.0 */}
           <div className="flex items-center justify-between py-0.5">
             <span>v1.0</span>
             <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />

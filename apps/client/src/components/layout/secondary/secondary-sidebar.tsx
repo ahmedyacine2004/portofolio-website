@@ -16,23 +16,25 @@ export function SecondarySidebar() {
     return <AboutSecondarySidebar />;
   }
 
-  switch (pathname) {
-    case '/projects':
-      return <ProjectsSecondarySidebar />;
-
-    case '/services':
-      return <ServicesSecondarySidebar />;
-
-    case '/experience':
-      return <ExperienceSecondarySidebar />;
-
-    case '/contact':
-      return <ContactSecondarySidebar />;
-
-    case '/settings':
-      return <SettingsSecondarySidebar />;
-
-    default:
-      return null;
+  if (pathname.startsWith('/projects')) {
+    return <ProjectsSecondarySidebar />;
   }
+
+  if (pathname.startsWith('/services')) {
+    return <ServicesSecondarySidebar />;
+  }
+
+  if (pathname.startsWith('/experience')) {
+    return <ExperienceSecondarySidebar />;
+  }
+
+  if (pathname.startsWith('/contact')) {
+    return <ContactSecondarySidebar />;
+  }
+
+  if (pathname.startsWith('/settings')) {
+    return <SettingsSecondarySidebar />;
+  }
+
+  return null;
 }
