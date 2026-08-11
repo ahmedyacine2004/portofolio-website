@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -120,7 +121,7 @@ const CATEGORIES: CategoryItem[] = [
   },
 ];
 
-// Helper to convert names into URL-safe slugs (e.g. "Project Details" -> "project-details")
+// Helper to convert names into URL-safe slugs
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -130,9 +131,46 @@ function slugify(text: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+// Helper to identify which category accordion should be open based on the current URL
+function getActiveCategoryId(pathname: string): string {
+  if (!pathname) return 'featured';
+
+  const segments = pathname.split('/');
+  const categorySlugInUrl = segments[2];
+
+  if (categorySlugInUrl) {
+    const directMatch = CATEGORIES.find(
+      (cat) => cat.id !== 'featured' && cat.id === categorySlugInUrl,
+    );
+    if (directMatch) return directMatch.id;
+  }
+
+  for (const category of CATEGORIES) {
+    for (const item of category.items) {
+      const categorySlug =
+        category.id === 'featured' ? FEATURED_ITEM_TYPE_MAP[item] || 'web-dev' : category.id;
+      const projectSlug = slugify(item);
+
+      if (pathname.startsWith(`/projects/${categorySlug}/${projectSlug}`)) {
+        return category.id;
+      }
+    }
+  }
+
+  return 'featured';
+}
+
 export function ProjectsSecondarySidebar() {
   const pathname = usePathname();
-  const [openSection, setOpenSection] = useState<string | null>('featured');
+
+  const [openSection, setOpenSection] = useState<string | null>(() =>
+    getActiveCategoryId(pathname),
+  );
+
+  useEffect(() => {
+    const activeCategoryId = getActiveCategoryId(pathname);
+    setOpenSection(activeCategoryId);
+  }, [pathname]);
 
   const toggleSection = (id: string) => {
     setOpenSection((prev) => (prev === id ? null : id));
@@ -160,13 +198,18 @@ export function ProjectsSecondarySidebar() {
         Project Hub
       </h2>
 
-      {/* Project Workspace Banner */}
-      <div className="flex items-center gap-1.5 rounded-[4px] border-l-2 border-[var(--color-purple)] bg-[var(--color-surface-brand)] px-2 py-1.5">
+      {/* Project Workspace Banner (Clickable -> Navigates to /projects) */}
+      <Link
+        href="/projects"
+        className={`flex items-center gap-1.5 rounded-[4px] border-l-2 border-[var(--color-purple)] bg-[var(--color-surface-brand)] px-2 py-1.5 transition-colors hover:opacity-80 ${
+          pathname === '/projects' ? 'ring-1 ring-[var(--color-purple)]' : ''
+        }`}
+      >
         <Hexagon className="size-3.5 shrink-0 stroke-[2] text-[var(--color-purple)]" />
         <span className="truncate text-[9px] font-semibold text-[var(--color-text-primary)]">
           Project Workspace
         </span>
-      </div>
+      </Link>
 
       {/* Accordion Container */}
       <div className="flex flex-col gap-0 overflow-hidden rounded-[4px] bg-[var(--color-bg-secondary)] shadow-gray-300 dark:shadow-[0_0_2px_rgba(255,255,255,0.015)]">
@@ -210,7 +253,6 @@ export function ProjectsSecondarySidebar() {
                         const categorySlug = getCategorySlug(category.id, item);
                         const projectSlug = slugify(item);
 
-                        // Default link for clicking the item name points to the first sub-page
                         const firstPageSlug = slugify(pages[0].name);
                         const defaultHref = `/projects/${categorySlug}/${projectSlug}/${firstPageSlug}`;
                         const isProjectActive = pathname.startsWith(
@@ -226,7 +268,6 @@ export function ProjectsSecondarySidebar() {
                                 : 'hover:bg-[var(--color-brand)] hover:text-white'
                             }`}
                           >
-                            {/* Project Name (Navigates to primary sub-page) */}
                             <Link
                               href={defaultHref}
                               className="truncate text-[8px] font-medium text-[var(--color-text-secondary)] group-hover:font-semibold group-hover:text-white"
@@ -234,7 +275,6 @@ export function ProjectsSecondarySidebar() {
                               {item}
                             </Link>
 
-                            {/* Page Sub-Route Link Icons */}
                             <div className="hidden shrink-0 items-center gap-0.5 group-hover:flex">
                               {pages.map((page) => {
                                 const PageIcon = page.icon;
