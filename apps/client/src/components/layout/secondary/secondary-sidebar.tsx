@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation';
 
 import { AboutSecondarySidebar } from './about-secondary-sidebar';
-import { ContactSecondarySidebar } from './contact-secondary-sidebar';
 import { ExperienceSecondarySidebar } from './experience-secondary-sidebar';
 import { ProjectsSecondarySidebar } from './projects-secondary-sidebar';
 import { SkillsSecondarySidebar } from './skills-secondary-sidebar';
@@ -26,10 +25,6 @@ export function SecondarySidebar() {
 
   if (pathname.startsWith('/experience')) {
     return <ExperienceSecondarySidebar />;
-  }
-
-  if (pathname.startsWith('/contact')) {
-    return <ContactSecondarySidebar />;
   }
 
   if (pathname.startsWith('/settings')) {

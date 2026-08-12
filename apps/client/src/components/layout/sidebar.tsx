@@ -9,11 +9,13 @@ import {
   MessageCircle,
   Settings,
   ShieldCheck,
+  GraduationCap,
 } from 'lucide-react';
+
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
+<GraduationCap />;
 const mainNavigation = [
   {
     label: 'Home',
@@ -39,6 +41,11 @@ const mainNavigation = [
     label: 'Experience',
     href: '/experience',
     icon: ShieldCheck,
+  },
+  {
+    label: 'Certifications',
+    href: '/certification',
+    icon: GraduationCap,
   },
   {
     label: 'Contact',
@@ -87,7 +94,7 @@ export function Sidebar() {
               aria-label={item.label}
               aria-current={isActive ? 'page' : undefined}
               className={[
-                'flex size-[46px] shrink-0 items-center justify-center rounded-xs',
+                'flex size-[40px] shrink-0 items-center justify-center rounded-xs',
                 'transition-colors duration-200',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
@@ -114,7 +121,7 @@ export function Sidebar() {
               aria-label={item.label}
               aria-current={isActive ? 'page' : undefined}
               className={[
-                'flex size-[46px] shrink-0 items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'flex size-[40px] shrink-0 items-center justify-center rounded-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 isActive
                   ? 'bg-primary text-primary-foreground shadow-[0_0_18px_var(--color-brand)]'
                   : 'bg-background text-foreground hover:bg-muted shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]',
