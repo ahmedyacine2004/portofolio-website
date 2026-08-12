@@ -2,16 +2,53 @@
 
 import { Float, useGLTF } from '@react-three/drei';
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const keyboardModelUrl = '/3d/keyboard.glb';
+
+useGLTF.preload(keyboardModelUrl);
+
+/**
+ * Deep-clone a scene and fix all MeshStandardMaterial properties so the model
+ * looks correct from the very first frame — no need for a post-render useEffect.
+ */
+function cloneSceneWithFixedMaterials(source: THREE.Group): THREE.Group {
+  const clone = source.clone();
+
+  clone.traverse((child) => {
+    if (!(child instanceof THREE.Mesh)) return;
+
+    const fixMat = (mat: THREE.Material): THREE.Material => {
+      const m = mat.clone() as THREE.MeshStandardMaterial;
+      if (m instanceof THREE.MeshStandardMaterial) {
+        // Prevent the HDRI from acting as a perfect mirror
+        m.roughness = Math.max(m.roughness, 0.42);
+        // Keep metallic highlights but not overbearing
+        if (m.metalness > 0.85) m.metalness = 0.72;
+        // Cap env-map contribution so the "world" isn't clearly visible in reflections
+        m.envMapIntensity = Math.min(m.envMapIntensity ?? 1, 0.55);
+        m.needsUpdate = true;
+      }
+      return m;
+    };
+
+    if (Array.isArray(child.material)) {
+      child.material = child.material.map(fixMat);
+    } else {
+      child.material = fixMat(child.material);
+    }
+  });
+
+  return clone;
+}
 
 export default function KeyboardModel() {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(keyboardModelUrl);
   const { camera, pointer, gl } = useThree();
   const [isHovered, setIsHovered] = useState(false);
+
   const dragStateRef = useRef({
     active: false,
     startX: 0,
@@ -22,7 +59,8 @@ export default function KeyboardModel() {
     targetRotationY: 0,
   });
 
-  const clonedScene = useMemo(() => scene.clone(), [scene]);
+  // Deep-clone includes material cloning — properties are set before first render
+  const clonedScene = useMemo(() => cloneSceneWithFixedMaterials(scene as THREE.Group), [scene]);
 
   useEffect(() => {
     const handlePointerDown = (e: PointerEvent) => {
@@ -40,8 +78,8 @@ export default function KeyboardModel() {
 
       dragStateRef.current.targetRotationY = dragStateRef.current.startRotationY + deltaX * 0.008;
       dragStateRef.current.targetRotationX = Math.max(
-        -Math.PI / 4,
-        Math.min(Math.PI / 4, dragStateRef.current.startRotationX + deltaY * 0.008),
+        -Math.PI / 6,
+        Math.min(Math.PI / 6, dragStateRef.current.startRotationX + deltaY * 0.008),
       );
     };
 
@@ -91,9 +129,7 @@ export default function KeyboardModel() {
 
   const resetKeyMaterial = (object: THREE.Object3D | null) => {
     if (!object || !(object instanceof THREE.Mesh)) return;
-
     const material = Array.isArray(object.material) ? object.material[0] : object.material;
-
     if (material && 'emissive' in material) {
       const stdMat = material as THREE.MeshStandardMaterial;
       stdMat.emissive.setHex(0x000000);
@@ -103,9 +139,7 @@ export default function KeyboardModel() {
 
   const handleKeyInteraction = (object: THREE.Object3D | null, isHoveredKey = false) => {
     if (!object || !(object instanceof THREE.Mesh)) return;
-
     const material = Array.isArray(object.material) ? object.material[0] : object.material;
-
     if (!material || !('emissive' in material)) return;
 
     const stdMat = material as THREE.MeshStandardMaterial;
@@ -144,5 +178,3 @@ export default function KeyboardModel() {
     </group>
   );
 }
-
-useGLTF.preload(keyboardModelUrl);

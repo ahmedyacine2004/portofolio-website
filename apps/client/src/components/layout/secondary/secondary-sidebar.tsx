@@ -6,7 +6,6 @@ import { AboutSecondarySidebar } from './about-secondary-sidebar';
 import { ExperienceSecondarySidebar } from './experience-secondary-sidebar';
 import { ProjectsSecondarySidebar } from './projects-secondary-sidebar';
 import { SkillsSecondarySidebar } from './skills-secondary-sidebar';
-import { SettingsSecondarySidebar } from './settings-secondary-sidebar';
 
 export function SecondarySidebar() {
   const pathname = usePathname();
@@ -25,10 +24,6 @@ export function SecondarySidebar() {
 
   if (pathname.startsWith('/experience')) {
     return <ExperienceSecondarySidebar />;
-  }
-
-  if (pathname.startsWith('/settings')) {
-    return <SettingsSecondarySidebar />;
   }
 
   return null;

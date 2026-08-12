@@ -1,24 +1,26 @@
 /* eslint-disable react-hooks/set-state-in-effect */
-// ==========================================
-// FILE 3: src/components/3d/ContactScene.tsx
-// ==========================================
 'use client';
 
 import { Environment } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import dynamic from 'next/dynamic';
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 import { useTheme } from '@/hooks/use-theme';
 
-const ContactModel = dynamic(() => import('./ContactModel'), {
-  ssr: false,
-});
+// Preload the GLB immediately when this module loads (before ContactModel is
+// even imported), so the network request is already in-flight or cached by
+// the time the Canvas + Suspense resolves the component.
+useGLTF.preload('/3d/contact.glb');
+
+// Use React.lazy instead of next/dynamic so Suspense inside <Canvas> works
+// correctly with @react-three/fiber's own suspense handling.
+const ContactModel = lazy(() => import('./ContactModel'));
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const FINAL_POSITION = new THREE.Vector3(0, 1.2, 14);
-const INTRO_DURATION = 3.2; // seconds
+const INTRO_DURATION = 2.5; // seconds
 
 const ZOOM_MIN = 4;
 const ZOOM_MAX = 28;
@@ -74,8 +76,6 @@ function CameraRig() {
 }
 
 // ─── "See Magic" orbit + zoom controller ─────────────────────────────────────
-// Phase 1 (t 0 → 0.45): full 360° orbit, zoom in toward model
-// Phase 2 (t 0.45 → 1.0): continue orbit back, ease out to default position
 function MagicController({ onComplete }: { onComplete: () => void }) {
   const { camera } = useThree();
   const onCompleteRef = useRef(onComplete);
@@ -87,22 +87,16 @@ function MagicController({ onComplete }: { onComplete: () => void }) {
     magicSignal.elapsed += delta;
     const t = Math.min(magicSignal.elapsed / MAGIC_DURATION, 1);
 
-    // Full 360° sweep
     const angle = t * Math.PI * 2;
-
-    // Distance: zoom in during first half, back out in second half (sine bell)
-    const zoomBell = Math.sin(t * Math.PI); // 0→1→0
+    const zoomBell = Math.sin(t * Math.PI);
     const closestDist = 6;
     const dist = THREE.MathUtils.lerp(magicSignal.startDist, closestDist, zoomBell);
-
-    // Height: dip slightly at the close point for drama
     const y = FINAL_POSITION.y + zoomBell * -1.2;
 
     camera.position.set(Math.sin(angle) * dist, y, Math.cos(angle) * dist);
     camera.lookAt(0, -0.2, 0);
 
     if (t >= 1) {
-      // Snap back to default and release
       camera.position.copy(FINAL_POSITION);
       camera.lookAt(0, -0.2, 0);
       magicSignal.active = false;
@@ -138,12 +132,10 @@ function ZoomController() {
   }, [gl]);
 
   useFrame(() => {
-    // Don't fight the magic controller
     if (!introCompleteFlag.value || magicSignal.active) return;
 
     const currentDist = camera.position.length();
 
-    // Sync target to where magic left us
     if (Math.abs(currentDist - targetDistanceRef.current) > 3) {
       targetDistanceRef.current = currentDist;
     }
@@ -155,6 +147,15 @@ function ZoomController() {
   });
 
   return null;
+}
+
+// ─── Inner canvas content (separate component so Suspense is inside R3F) ─────
+function SceneContent() {
+  return (
+    <Suspense fallback={null}>
+      <ContactModel />
+    </Suspense>
+  );
 }
 
 // ─── Scene ────────────────────────────────────────────────────────────────────
@@ -262,7 +263,6 @@ export function ContactScene() {
               : 'hover:bg-white/25 hover:scale-105 hover:shadow-purple-500/30 hover:shadow-xl active:scale-95',
           ].join(' ')}
         >
-          {/* Animated sparkle icon */}
           <span
             className={[
               'text-sm transition-transform duration-300',
@@ -275,7 +275,6 @@ export function ContactScene() {
 
           <span>{isMagicPlaying ? 'Playing…' : 'See Magic'}</span>
 
-          {/* Progress bar at the bottom of the button */}
           {isMagicPlaying && (
             <span className="absolute bottom-0 left-0 h-[2px] rounded-full bg-purple-400/80 animate-[magic-progress_7s_linear_forwards]" />
           )}
@@ -308,39 +307,31 @@ export function ContactScene() {
         }
       `}</style>
 
-      <Suspense
-        fallback={
-          <div className="flex h-full items-center justify-center text-xs font-semibold text-purple-900 dark:text-purple-200">
-            Loading scene…
-          </div>
-        }
+      <Canvas
+        key={key}
+        camera={{ fov: 52, near: 0.1, far: 200 }}
+        dpr={[1, 1.5]}
+        gl={{
+          powerPreference: 'high-performance',
+          antialias: false,
+          failIfMajorPerformanceCaveat: false,
+        }}
+        onCreated={handleCreated}
       >
-        <Canvas
-          key={key}
-          camera={{ fov: 52, near: 0.1, far: 200 }}
-          dpr={[1, 1.5]}
-          gl={{
-            powerPreference: 'high-performance',
-            antialias: false,
-            failIfMajorPerformanceCaveat: false,
-          }}
-          onCreated={handleCreated}
-        >
-          <CameraRig />
-          <MagicController onComplete={handleMagicComplete} />
-          <ZoomController />
+        <CameraRig />
+        <MagicController onComplete={handleMagicComplete} />
+        <ZoomController />
 
-          <color attach="background" args={[isDark ? '#1C1226' : '#BAA3CE']} />
+        <color attach="background" args={[isDark ? '#1C1226' : '#BAA3CE']} />
 
-          <Environment preset="studio" environmentIntensity={isDark ? 0.7 : 1.1} />
-          <ambientLight intensity={isDark ? 0.6 : 0.85} color="#E8D5FF" />
-          <directionalLight position={[4, 5, 3]} intensity={isDark ? 1.4 : 1.8} color="#FFFFFF" />
-          <directionalLight position={[-4, 2, -2]} intensity={isDark ? 0.5 : 0.7} color="#C49BFF" />
-          <pointLight position={[0, -1, 2]} intensity={isDark ? 0.4 : 0.6} color="#DDAAFF" />
+        <Environment preset="studio" environmentIntensity={isDark ? 0.7 : 1.1} />
+        <ambientLight intensity={isDark ? 0.6 : 0.85} color="#E8D5FF" />
+        <directionalLight position={[4, 5, 3]} intensity={isDark ? 1.4 : 1.8} color="#FFFFFF" />
+        <directionalLight position={[-4, 2, -2]} intensity={isDark ? 0.5 : 0.7} color="#C49BFF" />
+        <pointLight position={[0, -1, 2]} intensity={isDark ? 0.4 : 0.6} color="#DDAAFF" />
 
-          <ContactModel />
-        </Canvas>
-      </Suspense>
+        <SceneContent />
+      </Canvas>
     </div>
   );
 }
