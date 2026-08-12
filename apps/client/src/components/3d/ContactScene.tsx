@@ -79,7 +79,9 @@ function CameraRig() {
 function MagicController({ onComplete }: { onComplete: () => void }) {
   const { camera } = useThree();
   const onCompleteRef = useRef(onComplete);
-  onCompleteRef.current = onComplete;
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useFrame((_state, delta) => {
     if (!magicSignal.active) return;
