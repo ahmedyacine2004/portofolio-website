@@ -3,16 +3,17 @@
 // ==========================================
 'use client';
 
-import { Float, useGLTF } from '@react-three/drei';
+import { Float, useAnimations, useGLTF } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const contactModelUrl = '/3d/contact.glb';
 
 export default function ContactModel() {
   const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF(contactModelUrl);
+  const { scene, animations } = useGLTF(contactModelUrl);
+  const { actions, mixer } = useAnimations(animations, groupRef);
   const { pointer, gl } = useThree();
 
   const dragStateRef = useRef({
@@ -25,7 +26,56 @@ export default function ContactModel() {
     targetRotationY: 0,
   });
 
-  const clonedScene = useMemo(() => scene.clone(), [scene]);
+  // Play all animations embedded in the GLB (includes camera animations from Blender)
+  useEffect(() => {
+    if (!actions) return;
+
+    const actionNames = Object.keys(actions);
+    if (actionNames.length === 0) return;
+
+    actionNames.forEach((name) => {
+      const action = actions[name];
+      if (!action) return;
+      action.reset();
+      action.setLoop(THREE.LoopRepeat, Infinity);
+      action.clampWhenFinished = false;
+      action.play();
+    });
+
+    return () => {
+      actionNames.forEach((name) => {
+        actions[name]?.stop();
+      });
+    };
+  }, [actions]);
+
+  // Advance the animation mixer each frame
+  useFrame((_state, delta) => {
+    mixer.update(delta);
+
+    if (!groupRef.current) return;
+
+    // Subtle pointer parallax on top of the running animation
+    const idleRotationY = pointer.x * 0.08;
+    const idleRotationX = -pointer.y * 0.05;
+
+    const baseRotationX = 0.05;
+    const baseRotationY = -0.25;
+
+    const targetRotX = baseRotationX + idleRotationX + dragStateRef.current.targetRotationX;
+    const targetRotY = baseRotationY + idleRotationY + dragStateRef.current.targetRotationY;
+
+    groupRef.current.rotation.x = THREE.MathUtils.lerp(
+      groupRef.current.rotation.x,
+      targetRotX,
+      0.06,
+    );
+    groupRef.current.rotation.y = THREE.MathUtils.lerp(
+      groupRef.current.rotation.y,
+      targetRotY,
+      0.06,
+    );
+  });
 
   useEffect(() => {
     const handlePointerDown = (e: PointerEvent) => {
@@ -64,35 +114,10 @@ export default function ContactModel() {
     };
   }, [gl]);
 
-  useFrame(() => {
-    if (!groupRef.current) return;
-
-    // Subtle pointer parallax
-    const idleRotationY = pointer.x * 0.08;
-    const idleRotationX = -pointer.y * 0.05;
-
-    const baseRotationX = 0.05;
-    const baseRotationY = -0.25;
-
-    const targetRotX = baseRotationX + idleRotationX + dragStateRef.current.targetRotationX;
-    const targetRotY = baseRotationY + idleRotationY + dragStateRef.current.targetRotationY;
-
-    groupRef.current.rotation.x = THREE.MathUtils.lerp(
-      groupRef.current.rotation.x,
-      targetRotX,
-      0.06,
-    );
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      groupRef.current.rotation.y,
-      targetRotY,
-      0.06,
-    );
-  });
-
   return (
-    <group ref={groupRef} position={[0, -0.4, 0]}>
+    <group ref={groupRef} position={[0, -1.3, 0]}>
       <Float speed={0.8} rotationIntensity={0.04} floatIntensity={0.05}>
-        <primitive object={clonedScene} scale={1.35} />
+        <primitive object={scene} scale={1.35} />
       </Float>
     </group>
   );
