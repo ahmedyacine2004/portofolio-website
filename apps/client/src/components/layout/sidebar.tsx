@@ -31,8 +31,8 @@ const mainNavigation = [
     icon: FolderKanban,
   },
   {
-    label: 'Services',
-    href: '/services',
+    label: 'Skills',
+    href: '/skills',
     icon: BriefcaseBusiness,
   },
   {

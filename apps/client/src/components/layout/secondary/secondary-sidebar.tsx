@@ -6,7 +6,7 @@ import { AboutSecondarySidebar } from './about-secondary-sidebar';
 import { ContactSecondarySidebar } from './contact-secondary-sidebar';
 import { ExperienceSecondarySidebar } from './experience-secondary-sidebar';
 import { ProjectsSecondarySidebar } from './projects-secondary-sidebar';
-import { ServicesSecondarySidebar } from './services-secondary-sidebar';
+import { SkillsSecondarySidebar } from './skills-secondary-sidebar';
 import { SettingsSecondarySidebar } from './settings-secondary-sidebar';
 
 export function SecondarySidebar() {
@@ -20,8 +20,8 @@ export function SecondarySidebar() {
     return <ProjectsSecondarySidebar />;
   }
 
-  if (pathname.startsWith('/services')) {
-    return <ServicesSecondarySidebar />;
+  if (pathname.startsWith('/skills')) {
+    return <SkillsSecondarySidebar />;
   }
 
   if (pathname.startsWith('/experience')) {
