@@ -10,6 +10,7 @@ import { SecondarySidebar } from './secondary/secondary-sidebar';
 import { Sidebar } from './sidebar';
 import { StatusBar } from './status-bar';
 import { LoadingPage } from '../loading/loading-page';
+import { TerminalModal } from '../terminal/terminal-modal';
 
 type AppShellProps = {
   children: ReactNode;
@@ -95,6 +96,9 @@ export function AppShell({ children }: AppShellProps) {
           <StatusBar />
         </footer>
       </div>
+
+      {/* Terminal Modal */}
+      <TerminalModal />
     </>
   );
 }

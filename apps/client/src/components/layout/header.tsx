@@ -10,6 +10,8 @@ import { HeaderActionButtons } from './header-action-buttons';
 import { HeaderNavigation } from './header-navigation';
 import { HeaderSearch } from './header-search';
 
+import { useTerminalStore } from '@/stores/terminal.store';
+
 const navigation = [
   'Portfolio',
   'Projects',
@@ -21,6 +23,23 @@ const navigation = [
 ];
 
 export function Header() {
+  const toggleTerminal = useTerminalStore((s) => s.toggle);
+
+  const getHref = (item: string) => {
+    switch (item) {
+      case 'Portfolio':
+        return '/';
+      case 'Projects':
+        return '/projects';
+      case 'Services':
+        return '/services';
+      case 'Contact':
+        return '/contact';
+      default:
+        return '#';
+    }
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -24 }}
@@ -53,15 +72,30 @@ export function Header() {
         <div className="flex min-w-0 items-center gap-2">
           {/* Main navigation */}
           <nav className="flex items-center gap-2">
-            {navigation.map((item) => (
-              <Link
-                key={item}
-                href="#"
-                className="whitespace-nowrap text-[10px] text-foreground-secondary transition-colors hover:text-foreground"
-              >
-                {item}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              if (item === 'Terminal') {
+                return (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={toggleTerminal}
+                    className="whitespace-nowrap text-[10px] text-foreground-secondary transition-colors hover:text-foreground cursor-pointer"
+                  >
+                    {item}
+                  </button>
+                );
+              }
+
+              return (
+                <Link
+                  key={item}
+                  href={getHref(item)}
+                  className="whitespace-nowrap text-[10px] text-foreground-secondary transition-colors hover:text-foreground"
+                >
+                  {item}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Browser-style navigation */}
