@@ -11,6 +11,7 @@ import { Sidebar } from './sidebar';
 import { StatusBar } from './status-bar';
 import { LoadingPage } from '../loading/loading-page';
 import { TerminalModal } from '../terminal/terminal-modal';
+import { CommandPaletteModal } from '../command-palette/command-palette-modal';
 
 type AppShellProps = {
   children: ReactNode;
@@ -99,6 +100,9 @@ export function AppShell({ children }: AppShellProps) {
 
       {/* Terminal Modal */}
       <TerminalModal />
+
+      {/* Command Palette Modal */}
+      <CommandPaletteModal />
     </>
   );
 }
