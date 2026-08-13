@@ -1,270 +1,384 @@
 'use client';
 
-import { ContactScene } from '@/components/3d/ContactScene';
+import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ChevronRight, Mail, MessageSquare, PenTool, Send, User } from 'lucide-react';
-import React, { useState } from 'react';
+import {
+  ArrowRight,
+  BookOpen,
+  Bookmark,
+  Briefcase,
+  ChevronRight,
+  Clock,
+  Code2,
+  Flag,
+  GraduationCap,
+  Heart,
+  LayoutGrid,
+  MapPin,
+  Play,
+  Quote,
+  Sliders,
+  Zap,
+} from 'lucide-react';
 
-const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    {...props}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
-  </svg>
-);
+interface CareerMilestone {
+  id: string;
+  title: string;
+  year: string;
+  icon: React.ElementType;
+}
 
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    {...props}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const CONTACT_METHODS = [
+const CAREER_MILESTONES: CareerMilestone[] = [
   {
-    id: 'email',
-    label: 'Email',
-    value: 'ahmedyassine.dev@gmail.com',
-    icon: Mail,
-    href: 'mailto:ahmedyassine.dev@gmail.com',
+    id: '1',
+    title: 'Education Started',
+    year: '2019',
+    icon: Play,
   },
   {
-    id: 'linkedin',
-    label: 'Linkedin',
-    value: 'linkedin.com/in/ahmedyassine',
-    icon: LinkedinIcon,
-    href: 'https://linkedin.com/in/ahmedyassine',
+    id: '2',
+    title: 'First Coding Journey',
+    year: '2020',
+    icon: Code2,
   },
   {
-    id: 'github',
-    label: 'GitHub',
-    value: 'github.com/ahmedyassine',
-    icon: GithubIcon,
-    href: 'https://github.com/ahmedyassine',
+    id: '3',
+    title: 'First Internship',
+    year: '2022',
+    icon: Briefcase,
+  },
+  {
+    id: '4',
+    title: 'Key Achievements',
+    year: '2023',
+    icon: Flag,
+  },
+  {
+    id: '5',
+    title: 'Building Impact',
+    year: '2024',
+    icon: Heart,
+  },
+  {
+    id: '6',
+    title: 'Future Goals',
+    year: '2025',
+    icon: Bookmark,
   },
 ];
 
-export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+interface OverviewCard {
+  title: string;
+  description: string;
+  badge: string;
+  href: string;
+  icon: React.ElementType;
+  accentClass: string;
+  iconBgClass: string;
+  textColorClass: string;
+}
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+const OVERVIEW_CARDS: OverviewCard[] = [
+  {
+    title: 'Education',
+    description: 'Academic background & learning journey',
+    badge: '2 degrees',
+    href: '/experience/education',
+    icon: BookOpen,
+    accentClass: 'border-t-emerald-500 hover:border-emerald-600',
+    iconBgClass: 'bg-emerald-500 text-white',
+    textColorClass: 'text-emerald-600 dark:text-emerald-400',
+  },
+  {
+    title: 'Internships',
+    description: 'Hands-on experience & real-world exposure',
+    badge: '2 Internships',
+    href: '/experience/internships',
+    icon: Briefcase,
+    accentClass: 'border-t-sky-500 hover:border-sky-600',
+    iconBgClass: 'bg-sky-500 text-white',
+    textColorClass: 'text-sky-600 dark:text-sky-400',
+  },
+  {
+    title: 'Achievements',
+    description: 'Recognitions & accomplishments',
+    badge: '8 Achievements',
+    href: '/experience/achievements',
+    icon: Flag,
+    accentClass: 'border-t-violet-600 hover:border-violet-700',
+    iconBgClass: 'bg-violet-600 text-white',
+    textColorClass: 'text-violet-600 dark:text-violet-400',
+  },
+  {
+    title: 'Milestones',
+    description: 'Key moments in my journey',
+    badge: '12 Milestones',
+    href: '/experience/education',
+    icon: MapPin,
+    accentClass: 'border-t-orange-500 hover:border-orange-600',
+    iconBgClass: 'bg-orange-500 text-white',
+    textColorClass: 'text-orange-600 dark:text-orange-400',
+  },
+  {
+    title: 'Future Goals',
+    description: "What's next & my vision",
+    badge: '5 Goals',
+    href: '/experience/consultify',
+    icon: Sliders,
+    accentClass: 'border-t-primary hover:border-primary/80',
+    iconBgClass: 'bg-primary text-primary-foreground',
+    textColorClass: 'text-primary',
+  },
+];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form Submitted:', formData);
-  };
+interface MetricSnapshot {
+  id: string;
+  value: string;
+  label: string;
+  icon: React.ElementType;
+  badgeBg: string;
+}
 
+const METRIC_SNAPSHOTS: MetricSnapshot[] = [
+  {
+    id: 'years',
+    value: '5+',
+    label: 'Years of Journey',
+    icon: Clock,
+    badgeBg: 'bg-sky-500 text-white',
+  },
+  {
+    id: 'degrees',
+    value: '2',
+    label: 'Degrees Earned',
+    icon: GraduationCap,
+    badgeBg: 'bg-emerald-500 text-white',
+  },
+  {
+    id: 'internships',
+    value: '2',
+    label: 'Internships Completed',
+    icon: Briefcase,
+    badgeBg: 'bg-violet-600 text-white',
+  },
+  {
+    id: 'achievements',
+    value: '8',
+    label: 'Key Achievements',
+    icon: LayoutGrid,
+    badgeBg: 'bg-orange-500 text-white',
+  },
+  {
+    id: 'milestones',
+    value: '12',
+    label: 'Milestones Reached',
+    icon: MapPin,
+    badgeBg: 'bg-rose-500 text-white',
+  },
+];
+
+const REGISTERED_MODULES: string[] = [
+  'Started my coding journey with curiosity and passion.',
+  'Built strong foundations in Computer Science.',
+  'Gained real-world experience through internships.',
+  'Achieved recognition for consistent performance.',
+  'Continuously learning and building meaningful solutions.',
+];
+
+export default function ExperienceWorkspacePage() {
   return (
-    /* MAIN CONTAINER: Explicit Light Mode (bg-slate-100, text-slate-900) vs Dark Mode (dark:bg-slate-950, dark:text-white) */
-    <div className="flex h-full w-full overflow-hidden bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-white p-3 sm:p-5 font-inter select-none rounded-[8px]">
-      {/* INNER CARD: Pure White in Light Mode (bg-white), Dark Slate in Dark Mode (dark:bg-slate-900) */}
-      <div className="flex h-full w-full gap-5 overflow-hidden rounded-[8px] bg-white dark:bg-slate-900 p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xs">
-        {/* ================= LEFT COLUMN: CONTACT FORM ================= */}
+    <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-4 md:p-6 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
+      {/* Top Header */}
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
+            Experience Workspace
+          </h1>
+          <p className="text-xs font-semibold text-primary">
+            My professional journey, education, internships and achievements.
+          </p>
+        </div>
+
+        {/* Top Right Quote Card */}
         <motion.div
-          className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-y-auto pr-1"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0, x: -20 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: { staggerChildren: 0.1, duration: 0.5, ease: 'easeOut' },
-            },
-          }}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="flex items-center gap-3 rounded-xs bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] max-w-xs shrink-0 border border-border/50"
         >
-          {/* Header Section */}
-          <section className="space-y-1.5 shrink-0">
-            <motion.p
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="text-xs font-bold text-blue-600 dark:text-blue-400 tracking-tight"
-            >
-              &#47;&#47; Let&#47;s build something amazing together
-            </motion.p>
+          <div className="flex size-7 shrink-0 items-center justify-center rounded-xs bg-primary text-primary-foreground">
+            <Quote className="size-3.5 fill-current" />
+          </div>
+          <p className="text-[11px] font-medium leading-tight text-muted-foreground">
+            Every milestone is a step towards building impact through code.
+          </p>
+        </motion.div>
+      </header>
 
-            <motion.h1
-              variants={{
-                hidden: { opacity: 0, y: 12 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase"
-            >
-              CONTACT <span className="text-blue-600 dark:text-blue-500">ME</span>
-            </motion.h1>
+      {/* Section 1: Career Milestones */}
+      <section className="rounded-sm bg-background p-4 md:p-5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-4 border border-border/40">
+        <h2 className="text-sm font-bold text-foreground">Career Milestones</h2>
 
-            <motion.p
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1 },
-              }}
-              className="max-w-[480px] text-xs font-normal leading-relaxed text-slate-600 dark:text-slate-400"
-            >
-              I&apos;m always open to discussing new opportunities, collaborative projects, or just
-              having a chat about technology.
-            </motion.p>
-          </section>
+        <div className="flex flex-nowrap items-center justify-between overflow-x-auto py-2 px-1 scrollbar-none gap-2 sm:gap-4">
+          {CAREER_MILESTONES.map((milestone, index) => {
+            const Icon = milestone.icon;
+            const isLast = index === CAREER_MILESTONES.length - 1;
 
-          {/* Social Contact Cards */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 15 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="my-3 shrink-0 flex items-center gap-3 overflow-x-auto py-1 scrollbar-none"
-          >
-            {CONTACT_METHODS.map((item) => {
-              const Icon = item.icon;
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-1 min-w-[160px] h-[60px] items-center gap-3 rounded-[8px] bg-slate-50 dark:bg-slate-800 p-2.5 border border-slate-200 dark:border-slate-700/80 shadow-2xs hover:border-blue-500 dark:hover:border-blue-400 hover:bg-white dark:hover:bg-slate-800 transition-all group shrink-0"
+            return (
+              <React.Fragment key={milestone.id}>
+                <motion.div
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.08, duration: 0.4 }}
+                  className="flex flex-col items-center text-center shrink-0 group cursor-pointer"
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-[8px] bg-blue-100/80 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform">
-                    <Icon className="size-4" />
+                  <div className="flex size-13 sm:size-15 items-center justify-center rounded-full bg-sky-50 text-sky-600 dark:bg-slate-900 dark:text-sky-400 border border-sky-100 dark:border-slate-800 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] group-hover:scale-105 group-hover:border-sky-500 transition-transform">
+                    <Icon className="size-5 sm:size-6" />
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
-                      {item.label}
-                    </h2>
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate leading-tight mt-0.5">
-                      {item.value}
+                  <h3 className="mt-2.5 text-xs font-bold text-foreground max-w-[100px] leading-tight">
+                    {milestone.title}
+                  </h3>
+                  <span className="mt-0.5 text-[11px] font-medium text-muted-foreground">
+                    {milestone.year}
+                  </span>
+                </motion.div>
+
+                {!isLast && (
+                  <ChevronRight className="size-4 shrink-0 text-muted-foreground/50 self-center" />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Section 2: Experience Overview */}
+      <section className="space-y-3">
+        <h2 className="text-sm font-bold text-foreground">Experience Overview</h2>
+
+        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
+          {OVERVIEW_CARDS.map((card, index) => {
+            const Icon = card.icon;
+
+            return (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + index * 0.06, duration: 0.4 }}
+                className={`flex flex-col justify-between rounded-sm bg-background p-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] border-t-4 transition-all hover:shadow-md border-x border-b border-border/40 ${card.accentClass}`}
+              >
+                <div>
+                  <div
+                    className={`flex size-8 items-center justify-center rounded-xs ${card.iconBgClass}`}
+                  >
+                    <Icon className="size-4" strokeWidth={1.8} />
+                  </div>
+
+                  <h3 className="mt-3 text-sm font-bold text-foreground">{card.title}</h3>
+                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+                    {card.description}
+                  </p>
+                </div>
+
+                <div className="mt-5 border-t border-border/40 pt-2.5">
+                  <Link
+                    href={card.href}
+                    className={`flex items-center justify-between text-[11px] font-bold ${card.textColorClass} transition-colors group`}
+                  >
+                    <span>{card.badge}</span>
+                    <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Section 3: Experience Snapshot & Registered Modules */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+        {/* Left Column: Experience Snapshot */}
+        <div className="lg:col-span-7 space-y-3">
+          <h2 className="text-sm font-bold text-foreground">Experience Snapshot</h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+            {METRIC_SNAPSHOTS.map((snapshot, index) => {
+              const Icon = snapshot.icon;
+
+              return (
+                <motion.div
+                  key={snapshot.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.35 + index * 0.05, duration: 0.35 }}
+                  className="flex flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] min-h-[130px] border border-border/40"
+                >
+                  <div
+                    className={`flex size-7 items-center justify-center rounded-xs ${snapshot.badgeBg}`}
+                  >
+                    <Icon className="size-3.5" strokeWidth={1.8} />
+                  </div>
+
+                  <div className="mt-3">
+                    <span className="text-xl sm:text-2xl font-black leading-none tracking-tight text-foreground">
+                      {snapshot.value}
+                    </span>
+                    <p className="mt-1 text-[10px] font-medium leading-tight text-muted-foreground">
+                      {snapshot.label}
                     </p>
                   </div>
-                </a>
+                </motion.div>
               );
             })}
+          </div>
+        </div>
 
-            {/* Scroll/More Button */}
-            <button
-              aria-label="More contact options"
-              className="flex size-[60px] shrink-0 items-center justify-center rounded-[8px] bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 shadow-2xs hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </motion.div>
+        {/* Right Column: Registered Modules */}
+        <div className="lg:col-span-5 space-y-3">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-bold text-foreground">Registered Modules</h2>
+          </div>
 
-          {/* Form Container */}
-          <motion.form
-            onSubmit={handleSubmit}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="flex flex-1 flex-col justify-between rounded-[8px] bg-slate-50 dark:bg-slate-800/40 p-4 sm:p-5 border border-slate-200 dark:border-slate-700/60 shadow-2xs space-y-3"
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+            className="rounded-sm bg-background p-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] border border-border/40 h-[calc(100%-1.75rem)] flex flex-col justify-between"
           >
-            <h2 className="text-xs font-bold text-slate-900 dark:text-white tracking-tight uppercase">
-              Send me a message
-            </h2>
-
-            <div className="space-y-3 flex-1 flex flex-col justify-center">
-              {/* Row 1: Name & Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="relative flex items-center">
-                  <User className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full rounded-[8px] bg-white dark:bg-slate-900 pl-10 pr-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 shadow-2xs transition-all"
-                  />
-                </div>
-
-                <div className="relative flex items-center">
-                  <Mail className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full rounded-[8px] bg-white dark:bg-slate-900 pl-10 pr-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 shadow-2xs transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Row 2: Subject */}
-              <div className="relative flex items-center">
-                <PenTool className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full rounded-[8px] bg-white dark:bg-slate-900 pl-10 pr-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 shadow-2xs transition-all"
-                />
-              </div>
-
-              {/* Row 3: Message Textarea */}
-              <div className="relative flex-1 min-h-[100px]">
-                <MessageSquare className="absolute left-3.5 top-3 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
-                <textarea
-                  name="message"
-                  required
-                  rows={4}
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full h-full resize-none rounded-[8px] bg-white dark:bg-slate-900 pl-10 pr-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-500/20 shadow-2xs transition-all"
-                />
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full rounded-[8px] bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white py-3 text-xs font-bold flex items-center justify-center gap-2 shadow-2xs transition-all cursor-pointer"
-            >
-              <Send className="size-4" />
-              <span>Send Message</span>
-            </button>
-          </motion.form>
-        </motion.div>
-
-        {/* ================= RIGHT COLUMN: 3D MODEL CANVAS ================= */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="hidden lg:flex h-full w-[42%] flex-col overflow-hidden rounded-[8px] bg-slate-100 dark:bg-[#20152D] border border-slate-200 dark:border-slate-800 shadow-inner"
-        >
-          <ContactScene />
-        </motion.div>
+            <ol className="space-y-2.5">
+              {REGISTERED_MODULES.map((moduleText, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start gap-2.5 text-[11px] font-medium leading-snug text-foreground"
+                >
+                  <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-primary-foreground mt-0.5">
+                    {idx + 1}
+                  </span>
+                  <span className="text-muted-foreground">{moduleText}</span>
+                </li>
+              ))}
+            </ol>
+          </motion.div>
+        </div>
       </div>
+
+      {/* Bottom Tip Banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+        className="flex items-center gap-3 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] border border-border/40 text-[11px] text-foreground"
+      >
+        <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-50 text-sky-600 dark:bg-slate-900 dark:text-sky-400 border border-sky-100 dark:border-slate-800">
+          <Zap className="size-3.5 fill-current" />
+        </div>
+        <p className="leading-snug">
+          <span className="font-bold text-primary">Tip</span> Select a section from the sidebar to
+          explore more details about my experience.
+        </p>
+      </motion.div>
     </div>
   );
 }
