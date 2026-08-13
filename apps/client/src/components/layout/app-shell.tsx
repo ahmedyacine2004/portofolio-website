@@ -12,6 +12,9 @@ import { StatusBar } from './status-bar';
 import { LoadingPage } from '../loading/loading-page';
 import { TerminalModal } from '../terminal/terminal-modal';
 import { CommandPaletteModal } from '../command-palette/command-palette-modal';
+import { DownloadManager } from './download-manager';
+import { NotificationsPanel } from './notifications-panel';
+import { ImageViewerModal } from '../about/image-viewer-modal';
 
 type AppShellProps = {
   children: ReactNode;
@@ -103,6 +106,15 @@ export function AppShell({ children }: AppShellProps) {
 
       {/* Command Palette Modal */}
       <CommandPaletteModal />
+
+      {/* Download Manager Floating Panel */}
+      <DownloadManager />
+
+      {/* Notifications Panel Popover */}
+      <NotificationsPanel />
+
+      {/* Image Preview Viewer Modal */}
+      <ImageViewerModal />
     </>
   );
 }

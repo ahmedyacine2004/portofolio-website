@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
@@ -10,35 +11,27 @@ import { HeaderActionButtons } from './header-action-buttons';
 import { HeaderNavigation } from './header-navigation';
 import { HeaderSearch } from './header-search';
 
+import { useCommandPaletteStore } from '@/stores/command-palette.store';
 import { useTerminalStore } from '@/stores/terminal.store';
 
-const navigation = [
-  'Portfolio',
-  'Projects',
-  'Services',
-  'Resources',
-  'Tool',
-  'Terminal',
-  'Contact',
-];
+type NavItem =
+  | { label: string; href: string; action?: never }
+  | { label: string; action: () => void; href?: never };
 
 export function Header() {
+  const pathname = usePathname();
   const toggleTerminal = useTerminalStore((s) => s.toggle);
+  const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle);
 
-  const getHref = (item: string) => {
-    switch (item) {
-      case 'Portfolio':
-        return '/';
-      case 'Projects':
-        return '/projects';
-      case 'Services':
-        return '/services';
-      case 'Contact':
-        return '/contact';
-      default:
-        return '#';
-    }
-  };
+  const navigation: NavItem[] = [
+    { label: 'About', href: '/about' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Skills', href: '/skills' },
+    { label: 'Experience', href: '/experience' },
+    { label: 'Certifications', href: '/certification' },
+    { label: 'Terminal', action: toggleTerminal },
+    { label: 'Contact', href: '/contact' },
+  ];
 
   return (
     <motion.header
@@ -71,28 +64,35 @@ export function Header() {
         {/* Navigation + arrows */}
         <div className="flex min-w-0 items-center gap-2">
           {/* Main navigation */}
-          <nav className="flex items-center gap-2">
+          <nav className="flex items-center gap-2" aria-label="Main navigation">
             {navigation.map((item) => {
-              if (item === 'Terminal') {
+              if (item.action) {
                 return (
                   <button
-                    key={item}
+                    key={item.label}
                     type="button"
-                    onClick={toggleTerminal}
+                    onClick={item.action}
                     className="whitespace-nowrap text-[10px] text-foreground-secondary transition-colors hover:text-foreground cursor-pointer"
                   >
-                    {item}
+                    {item.label}
                   </button>
                 );
               }
 
+              const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+
               return (
                 <Link
-                  key={item}
-                  href={getHref(item)}
-                  className="whitespace-nowrap text-[10px] text-foreground-secondary transition-colors hover:text-foreground"
+                  key={item.label}
+                  href={item.href}
+                  className={[
+                    'whitespace-nowrap text-[10px] transition-colors',
+                    isActive
+                      ? 'text-foreground font-medium'
+                      : 'text-foreground-secondary hover:text-foreground',
+                  ].join(' ')}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               );
             })}
@@ -105,7 +105,7 @@ export function Header() {
 
       {/* ================================================================
           CENTER
-          Search
+          Search / Command Palette trigger
           ================================================================ */}
 
       <div className="mx-6 flex min-w-0 flex-1 justify-center">

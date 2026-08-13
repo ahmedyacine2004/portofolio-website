@@ -90,7 +90,7 @@ export function CodePreviewModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 12 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative flex h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-xl border border-border bg-background shadow-2xl dark:shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="relative flex h-[85vh] w-full max-w-4xl flex-col overflow-hidden rounded-[8px] border border-border bg-background shadow-2xl"
           >
             {/* Modal Header */}
             <div className="flex shrink-0 items-center justify-between border-b border-border bg-muted/30 px-4 py-2.5">
@@ -113,11 +113,11 @@ export function CodePreviewModal({
               </div>
 
               {/* Center Tab Controls */}
-              <div className="flex items-center gap-1 rounded-lg bg-background p-1 border border-border shadow-xs">
+              <div className="flex items-center gap-1 rounded-[8px] bg-background p-1 border border-border shadow-xs">
                 <button
                   type="button"
                   onClick={() => setActiveTab('visual')}
-                  className={`flex items-center gap-1.5 rounded-md px-3 py-1 text-[10px] font-medium transition-all ${
+                  className={`flex items-center gap-1.5 rounded-[8px] px-3 py-1 text-[10px] font-medium transition-all ${
                     activeTab === 'visual'
                       ? 'bg-primary text-primary-foreground shadow-sm'
                       : 'text-muted-foreground hover:text-foreground'
@@ -129,7 +129,7 @@ export function CodePreviewModal({
                 <button
                   type="button"
                   onClick={() => setActiveTab('code')}
-                  className={`flex items-center gap-1.5 rounded-md px-3 py-1 text-[10px] font-medium transition-all ${
+                  className={`flex items-center gap-1.5 rounded-[8px] px-3 py-1 text-[10px] font-medium transition-all ${
                     activeTab === 'code'
                       ? 'bg-primary text-primary-foreground shadow-sm'
                       : 'text-muted-foreground hover:text-foreground'
@@ -145,7 +145,7 @@ export function CodePreviewModal({
                 <button
                   type="button"
                   onClick={handleCopy}
-                  className="flex items-center gap-1.5 rounded-md bg-muted px-2.5 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground"
+                  className="flex items-center gap-1.5 rounded-[8px] bg-muted px-2.5 py-1 text-[10px] font-medium text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground"
                 >
                   {copied ? (
                     <>
@@ -163,7 +163,7 @@ export function CodePreviewModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="flex size-7 items-center justify-center rounded-[8px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   aria-label="Close modal"
                 >
                   <X className="size-4" />
@@ -276,7 +276,7 @@ function MarkdownVisualRenderer({ content, fileName }: { content: string; fileNa
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       {/* Header Banner */}
-      <div className="rounded-lg bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 border border-primary/20">
+      <div className="rounded-[8px] bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 border border-primary/20">
         <div className="flex items-center gap-2 text-xs font-semibold text-primary uppercase tracking-wider mb-1">
           <FileText className="size-3.5" />
           <span>Documentation Preview</span>
@@ -285,7 +285,7 @@ function MarkdownVisualRenderer({ content, fileName }: { content: string; fileNa
       </div>
 
       {/* Formatted Content Card */}
-      <div className="rounded-lg border border-border bg-card p-6 shadow-sm space-y-4">
+      <div className="rounded-[8px] border border-border bg-card p-6 shadow-sm space-y-4">
         {lines.map((line, idx) => {
           const trimmed = line.trim();
           if (!trimmed) return <div key={idx} className="h-2" />;
@@ -365,7 +365,7 @@ function ProfileConfigVisualRenderer({ fileName, content }: { fileName: string; 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       {/* Profile Overview Card */}
-      <div className="relative overflow-hidden rounded-xl border border-border bg-gradient-to-br from-background via-muted/20 to-primary/5 p-6 shadow-md">
+      <div className="relative overflow-hidden rounded-[8px] border border-border bg-gradient-to-br from-background via-muted/20 to-primary/5 p-6 shadow-md">
         <div className="flex flex-col sm:flex-row items-center gap-5">
           <div className="relative size-20 shrink-0 overflow-hidden rounded-full border-2 border-primary p-1 bg-background shadow-lg">
             <div className="flex size-full items-center justify-center rounded-full bg-primary/10 text-primary font-bold text-xl">
@@ -392,7 +392,7 @@ function ProfileConfigVisualRenderer({ fileName, content }: { fileName: string; 
             (tech) => (
               <span
                 key={tech}
-                className="rounded-md bg-muted px-2.5 py-1 text-[9.5px] font-medium text-foreground"
+                className="rounded-[8px] bg-muted px-2.5 py-1 text-[9.5px] font-medium text-foreground"
               >
                 {tech}
               </span>
@@ -403,7 +403,7 @@ function ProfileConfigVisualRenderer({ fileName, content }: { fileName: string; 
 
       {/* Feature Details Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div className="rounded-lg border border-border bg-card p-4">
+        <div className="rounded-[8px] border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-primary font-semibold text-xs mb-2">
             <Zap className="size-4" />
             <span>Identity & Mission</span>
@@ -414,7 +414,7 @@ function ProfileConfigVisualRenderer({ fileName, content }: { fileName: string; 
           </p>
         </div>
 
-        <div className="rounded-lg border border-border bg-card p-4">
+        <div className="rounded-[8px] border border-border bg-card p-4">
           <div className="flex items-center gap-2 text-primary font-semibold text-xs mb-2">
             <Globe className="size-4" />
             <span>Connect & Links</span>
@@ -454,7 +454,7 @@ function JsonVisualRenderer({ content, fileName }: { content: string; fileName: 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       {/* Top Banner */}
-      <div className="flex items-center justify-between rounded-lg border border-border bg-muted/30 p-4">
+      <div className="flex items-center justify-between rounded-[8px] border border-border bg-muted/30 p-4">
         <div className="flex items-center gap-2">
           <Layers className="size-4 text-primary" />
           <span className="text-xs font-semibold text-foreground">{fileName}</span>
@@ -471,7 +471,7 @@ function JsonVisualRenderer({ content, fileName }: { content: string; fileName: 
           const isObject = typeof value === 'object' && value !== null && !isArray;
 
           return (
-            <div key={key} className="rounded-lg border border-border bg-card p-3 shadow-xs">
+            <div key={key} className="rounded-[8px] border border-border bg-card p-3 shadow-xs">
               <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
                 {key}
               </span>
@@ -482,7 +482,7 @@ function JsonVisualRenderer({ content, fileName }: { content: string; fileName: 
                     {(value as unknown[]).map((item, idx) => (
                       <span
                         key={idx}
-                        className="rounded-sm bg-primary/10 px-2 py-0.5 text-[9px] font-medium text-primary"
+                        className="rounded-[8px] bg-primary/10 px-2 py-0.5 text-[9px] font-medium text-primary"
                       >
                         {typeof item === 'object' ? JSON.stringify(item) : String(item)}
                       </span>
@@ -533,7 +533,7 @@ function StructuredDataVisualRenderer({
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       {/* Header */}
-      <div className="flex items-center gap-2 rounded-lg border border-border bg-primary/5 p-4 text-primary">
+      <div className="flex items-center gap-2 rounded-[8px] border border-border bg-primary/5 p-4 text-primary">
         <Terminal className="size-4" />
         <span className="text-xs font-semibold">{fileName} — Data Showcase</span>
       </div>
@@ -543,7 +543,7 @@ function StructuredDataVisualRenderer({
         {lines.map((line, index) => (
           <div
             key={index}
-            className="flex items-center justify-between rounded-md border border-border bg-card px-4 py-2.5 text-xs transition-colors hover:border-primary/50"
+            className="flex items-center justify-between rounded-[8px] border border-border bg-card px-4 py-2.5 text-xs transition-colors hover:border-primary/50"
           >
             <div className="flex items-center gap-2">
               <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[9px] font-bold text-primary">
@@ -576,7 +576,7 @@ function ConfigLicenseVisualRenderer({ fileName, content }: { fileName: string; 
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
+      <div className="rounded-[8px] border border-border bg-card p-6 shadow-sm">
         <div className="flex items-center gap-2 text-primary font-bold text-sm mb-3">
           <ShieldCheck className="size-5" />
           <span>{fileName}</span>
@@ -619,7 +619,7 @@ function GenericVisualRenderer({
 }) {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
-      <div className="rounded-lg border border-border bg-card p-6">
+      <div className="rounded-[8px] border border-border bg-card p-6">
         <h3 className="text-sm font-bold text-foreground mb-2">{fileName}</h3>
         <p className="text-xs text-muted-foreground mb-4">Formatted Live View ({language})</p>
         <div className="rounded bg-muted/50 p-4 font-mono text-xs whitespace-pre-wrap leading-relaxed">
@@ -644,7 +644,7 @@ function CodeViewRenderer({ content }: { content: string }) {
   const lines = useMemo(() => content.split('\n'), [content]);
 
   return (
-    <div className="rounded-lg border border-border bg-[#1e1e1e] p-4 text-white font-mono text-[11px] leading-relaxed overflow-x-auto shadow-inner">
+    <div className="rounded-[8px] border border-border bg-[#1e1e1e] p-4 text-white font-mono text-[11px] leading-relaxed overflow-x-auto shadow-inner">
       {lines.map((line, idx) => (
         <div key={idx} className="flex hover:bg-white/5 px-2 py-0.5 rounded">
           <span className="w-8 shrink-0 select-none text-right pr-3 text-[#6e7681] text-[10px]">

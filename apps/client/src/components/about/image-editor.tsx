@@ -14,6 +14,7 @@ import reactIcon from '@/assets/icons/react.svg';
 import typescriptIconV2 from '@/assets/icons/typescript-1.svg';
 import typescriptIcon from '@/assets/icons/typescript.svg';
 import { useTheme } from '@/hooks/use-theme';
+import { useImageViewerStore } from '@/stores/image-viewer.store';
 
 type ImageEditorProps = {
   fileName: string;
@@ -85,6 +86,7 @@ export function ImageEditor({
 }: ImageEditorProps) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const openViewer = useImageViewerStore((s) => s.openViewer);
 
   return (
     <div
@@ -97,7 +99,8 @@ export function ImageEditor({
         actionButton={
           <button
             type="button"
-            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
+            onClick={() => openViewer()}
+            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer"
           >
             <span>Expand Image</span>
 
@@ -112,7 +115,9 @@ export function ImageEditor({
       </div>
 
       {/* Image area */}
-      <div className="relative min-h-0 flex-1 overflow-hidden bg-background">
+      <div
+        className={`relative min-h-0 flex-1 overflow-hidden ${isDark ? 'bg-[#1e1e1e]' : 'bg-white'}`}
+      >
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Avatar composition */}
           <div className="relative size-[390px] shrink-0">
@@ -120,7 +125,7 @@ export function ImageEditor({
             {floatingIcons.map((icon, index) => (
               <motion.div
                 key={`${icon.alt}-${index}`}
-                className={`absolute z-20 flex size-8 items-center justify-center rounded-full bg-background shadow-md ${icon.position}`}
+                className={`absolute z-20 flex size-8 items-center justify-center rounded-full shadow-md ${isDark ? 'bg-[#2d2d2d]' : 'bg-white'} ${icon.position}`}
                 animate={{
                   x: [0, 6, -5, 0],
                   y: [0, -6, 5, 0],
@@ -146,7 +151,7 @@ export function ImageEditor({
 
             {/* Circular avatar */}
             <motion.div
-              className="absolute left-1/2 top-1/2 aspect-square w-[400px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-background shadow-lg"
+              className={`absolute left-1/2 top-1/2 aspect-square w-[400px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full shadow-lg ${isDark ? 'bg-[#1e1e1e]' : 'bg-white'}`}
               animate={{
                 rotate: [0, 2, -2, 0],
                 scale: [1, 1.015, 1, 1.015, 1],
