@@ -1,8 +1,7 @@
 'use client';
 
-import { AboutTabBar } from './about-tab-bar';
-import Image from 'next/image';
 import DocxIcon from '@/assets/icons/docx.svg';
+import { useDownload } from '@/hooks/use-download';
 import { useTheme } from '@/hooks/use-theme';
 import {
   AlertTriangle,
@@ -17,7 +16,9 @@ import {
   X,
   XCircle,
 } from 'lucide-react';
+import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AboutTabBar } from './about-tab-bar';
 
 type DocxReaderProps = {
   fileName?: string;
@@ -40,6 +41,7 @@ export function DocxReader({
 }: DocxReaderProps) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const { download } = useDownload();
 
   const [docxBuffer, setDocxBuffer] = useState<ArrayBuffer | null>(null);
   const [zoom, setZoom] = useState(100);
@@ -144,15 +146,15 @@ export function DocxReader({
   }, []);
 
   const handleDownload = useCallback(() => {
-    const link = document.createElement('a');
-    link.href = file;
-    link.download = fileName;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }, [file, fileName]);
+    download({
+      fileName: fileName,
+      url: file,
+      fileType: 'doc',
+      onError: (error) => {
+        console.error('Download failed:', error);
+      },
+    });
+  }, [file, fileName, download]);
 
   const handlePrint = useCallback(() => {
     window.print();

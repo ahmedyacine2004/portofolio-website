@@ -1,20 +1,21 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
 
+import { ImageViewerModal } from '../about/image-viewer-modal';
+import { CommandPaletteModal } from '../command-palette/command-palette-modal';
+import { LoadingPage } from '../loading/loading-page';
+import { TerminalModal } from '../terminal/terminal-modal';
+import { DownloadManager } from './download-manager';
 import { Header } from './header';
+import { NotificationsPanel } from './notifications-panel';
 import { SecondarySidebar } from './secondary/secondary-sidebar';
 import { Sidebar } from './sidebar';
 import { StatusBar } from './status-bar';
-import { LoadingPage } from '../loading/loading-page';
-import { TerminalModal } from '../terminal/terminal-modal';
-import { CommandPaletteModal } from '../command-palette/command-palette-modal';
-import { DownloadManager } from './download-manager';
-import { NotificationsPanel } from './notifications-panel';
-import { ImageViewerModal } from '../about/image-viewer-modal';
+import { VisitorInfoPanel } from './visitor-info-panel';
 
 type AppShellProps = {
   children: ReactNode;
@@ -112,6 +113,9 @@ export function AppShell({ children }: AppShellProps) {
 
       {/* Notifications Panel Popover */}
       <NotificationsPanel />
+
+      {/* Visitor info panel */}
+      <VisitorInfoPanel />
 
       {/* Image Preview Viewer Modal */}
       <ImageViewerModal />

@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useDownload } from '@/hooks/use-download';
+import { useTheme } from '@/hooks/use-theme';
+import { useImageViewerStore } from '@/stores/image-viewer.store';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ChevronLeft,
@@ -14,10 +16,7 @@ import {
   RotateCcw,
   X,
 } from 'lucide-react';
-import Image from 'next/image';
-import { useDownloadManagerStore } from '@/stores/download-manager.store';
-import { useImageViewerStore } from '@/stores/image-viewer.store';
-import { useTheme } from '@/hooks/use-theme';
+import { useCallback, useEffect, useRef } from 'react';
 
 export function ImageViewerModal() {
   const isOpen = useImageViewerStore((s) => s.isOpen);
@@ -37,7 +36,7 @@ export function ImageViewerModal() {
   const toggleFullscreen = useImageViewerStore((s) => s.toggleFullscreen);
   const toggleInfo = useImageViewerStore((s) => s.toggleInfo);
 
-  const addDownload = useDownloadManagerStore((s) => s.addDownload);
+  const { download } = useDownload();
 
   const { theme } = useTheme();
   const isDark = theme === 'dark';
@@ -69,17 +68,19 @@ export function ImageViewerModal() {
     }
   }, [currentIndex]);
 
-  const handleDownload = () => {
+  const handleDownload = useCallback(() => {
     if (!activeImage) return;
 
-    addDownload({
+    download({
       fileName: activeImage.name,
+      url: typeof activeImage.src === 'string' ? activeImage.src : activeImage.src.src,
       fileSize: activeImage.size,
       fileType: activeImage.type.toLowerCase() === 'png' ? 'png' : 'jpg',
-      status: 'completed',
-      progress: 100,
+      onError: (error) => {
+        console.error('Image download failed:', error);
+      },
     });
-  };
+  }, [activeImage, download]);
 
   if (!isOpen || !activeImage) return null;
 

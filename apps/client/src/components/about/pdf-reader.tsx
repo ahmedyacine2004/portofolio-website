@@ -1,6 +1,6 @@
 'use client';
 
-import { AboutTabBar } from './about-tab-bar';
+import { useDownload } from '@/hooks/use-download';
 import { useTheme } from '@/hooks/use-theme';
 import {
   AlertCircle,
@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { AboutTabBar } from './about-tab-bar';
 
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -35,6 +36,7 @@ const ZOOM_STEP = 10;
 export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderProps) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const { download } = useDownload();
 
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [numPages, setNumPages] = useState(0);
@@ -140,15 +142,15 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
   }, [zoom]);
 
   const handleDownload = useCallback(() => {
-    const link = document.createElement('a');
-    link.href = file;
-    link.download = fileName;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-  }, [file, fileName]);
+    download({
+      fileName: fileName,
+      url: file,
+      fileType: 'pdf',
+      onError: (error) => {
+        console.error('Download failed:', error);
+      },
+    });
+  }, [file, fileName, download]);
 
   const handlePrint = useCallback(() => {
     const printWindow = window.open(file, '_blank');

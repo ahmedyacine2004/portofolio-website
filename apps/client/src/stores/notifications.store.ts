@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { portfolioNotifications, type PortfolioNotification } from '@/data/notifications';
+
 export type NotificationCategory = 'Messages' | 'System' | 'Updates';
 
 export type NotificationItem = {
@@ -29,105 +31,119 @@ type NotificationsStore = {
   addNotification: (notification: Omit<NotificationItem, 'id' | 'read'>) => void;
 };
 
-const initialNotifications: NotificationItem[] = [
-  {
-    id: 'notif-1',
-    title: 'Message',
-    description: 'Your message already sent',
-    timestamp: '2m ago',
-    category: 'Messages',
-    read: false,
-    dateGroup: 'Today',
-    iconType: 'message',
-  },
-  {
-    id: 'notif-2',
-    title: 'CV Downloaded',
-    description: 'CV Download Completed',
-    timestamp: '15m ago',
-    category: 'System',
-    read: false,
-    dateGroup: 'Today',
-    iconType: 'download',
-  },
-  {
-    id: 'notif-3',
-    title: 'AI conversation',
-    description: 'AI response is ready',
-    timestamp: '1h ago',
-    category: 'Messages',
-    read: false,
-    dateGroup: 'Today',
-    iconType: 'ai',
-  },
-  {
-    id: 'notif-4',
-    title: 'Email',
-    description: 'You are already subscribed to our newsletter',
-    timestamp: '3h ago',
-    category: 'Updates',
-    read: false,
-    dateGroup: 'Today',
-    iconType: 'email',
-  },
-  {
-    id: 'notif-5',
-    title: 'Project updated',
-    description: 'CONSTRUCTIFY case study updated',
-    timestamp: 'Yesterday, 8:45 PM',
-    category: 'Updates',
-    read: true,
-    dateGroup: 'Yesterday',
-    iconType: 'update',
-  },
-  {
-    id: 'notif-6',
-    title: 'New Certificate added',
-    description: 'Interactive AI Certificates',
-    timestamp: 'Yesterday, 3:20 PM',
-    category: 'Updates',
-    read: true,
-    dateGroup: 'Yesterday',
-    iconType: 'certificate',
-  },
-  {
-    id: 'notif-7',
-    title: 'Deployment successful',
-    description: 'The portfolio was deployed successfully',
-    timestamp: 'May 25, 9:15 AM',
-    category: 'System',
-    read: true,
-    dateGroup: 'Older',
-    iconType: 'deployment',
-  },
-  {
-    id: 'notif-8',
-    title: 'Security scan completed',
-    description: 'No vulnerabilities found in your project',
-    timestamp: 'Mar 21, 10:10 AM',
-    category: 'System',
-    read: true,
-    dateGroup: 'Older',
-    iconType: 'security',
-  },
-];
+const STORAGE_KEY = 'portfolio-read-notifications';
+
+const getNotificationCategory = (type: PortfolioNotification['type']): NotificationCategory => {
+  switch (type) {
+    case 'feature':
+    case 'project':
+    case 'update':
+      return 'Updates';
+    case 'announcement':
+    case 'resume':
+      return 'System';
+    default:
+      return 'Updates';
+  }
+};
+
+const getIconType = (type: PortfolioNotification['type']): NotificationItem['iconType'] => {
+  switch (type) {
+    case 'project':
+      return 'update';
+    case 'update':
+      return 'update';
+    case 'announcement':
+      return 'email';
+    case 'feature':
+      return 'ai';
+    case 'resume':
+      return 'certificate';
+    default:
+      return 'security';
+  }
+};
+
+const getDateGroup = (dateIso: string): NotificationItem['dateGroup'] => {
+  const differenceMs = Date.now() - new Date(dateIso).getTime();
+  const days = Math.floor(differenceMs / (1000 * 60 * 60 * 24));
+
+  if (days <= 0) return 'Today';
+  if (days === 1) return 'Yesterday';
+  return 'Older';
+};
+
+const getTimestampLabel = (dateIso: string): string => {
+  const date = new Date(dateIso);
+  const now = new Date();
+  const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+
+  if (diffDays === 0) return 'Today';
+  if (diffDays === 1) return 'Yesterday';
+
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+  }).format(date);
+};
+
+const readNotificationIds = (): Set<string> => {
+  if (typeof window === 'undefined') return new Set();
+
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    if (!saved) return new Set();
+
+    const parsed = JSON.parse(saved) as string[];
+    return new Set(Array.isArray(parsed) ? parsed : []);
+  } catch {
+    return new Set();
+  }
+};
+
+const buildNotifications = (): NotificationItem[] =>
+  portfolioNotifications.map((notification) => {
+    const readSet = readNotificationIds();
+    return {
+      id: notification.id,
+      title: notification.title,
+      description: notification.message,
+      timestamp: getTimestampLabel(notification.date),
+      category: getNotificationCategory(notification.type),
+      read: readSet.has(notification.id),
+      dateGroup: getDateGroup(notification.date),
+      iconType: getIconType(notification.type),
+      link: notification.link,
+    };
+  });
 
 export const useNotificationsStore = create<NotificationsStore>((set) => ({
   isOpen: false,
   activeTab: 'All',
-  notifications: initialNotifications,
+  notifications: buildNotifications(),
 
   setOpen: (open) => set({ isOpen: open }),
   toggleOpen: () => set((state) => ({ isOpen: !state.isOpen })),
   setActiveTab: (tab) => set({ activeTab: tab }),
 
   markAsRead: (id) => {
+    if (typeof window !== 'undefined') {
+      const current = readNotificationIds();
+      current.add(id);
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...current]));
+    }
+
     set((state) => ({
       notifications: state.notifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
     }));
   },
 
   markAllAsRead: () => {
+    if (typeof window !== 'undefined') {
+      const ids = (useNotificationsStore.getState().notifications ?? []).map((n) => n.id);
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+    }
+
     set((state) => ({
       notifications: state.notifications.map((n) => ({ ...n, read: true })),
     }));

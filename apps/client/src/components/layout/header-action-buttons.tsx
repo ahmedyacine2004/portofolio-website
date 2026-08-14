@@ -1,9 +1,13 @@
 'use client';
 
 import { Bell, Command, FileText, Languages, MessageCircle, UserCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
 import { useCommandPaletteStore } from '@/stores/command-palette.store';
 import { useDownloadManagerStore } from '@/stores/download-manager.store';
+import { useLanguageStore } from '@/stores/language.store';
 import { useNotificationsStore } from '@/stores/notifications.store';
+import { useVisitorInfoStore } from '@/stores/visitor-info.store';
 
 const actionButtonClass =
   'relative flex size-8 items-center justify-center rounded-sm bg-brand-dark text-primary-foreground transition-colors hover:bg-primary/80 cursor-pointer';
@@ -38,6 +42,7 @@ function HeaderActionButton({ label, onClick, badge, children }: HeaderActionBut
 }
 
 export function HeaderActionButtons() {
+  const router = useRouter();
   const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle);
   const toggleDownloads = useDownloadManagerStore((s) => s.toggleOpen);
   const downloadsCount = useDownloadManagerStore((s) => s.items.length);
@@ -47,17 +52,24 @@ export function HeaderActionButtons() {
     (s) => s.notifications.filter((n) => !n.read).length,
   );
 
+  const locale = useLanguageStore((s) => s.locale);
+  const setLocale = useLanguageStore((s) => s.setLocale);
+  const toggleVisitorInfo = useVisitorInfoStore((s) => s.toggle);
+
   return (
     <div className="flex shrink-0 items-center gap-1.5">
       <HeaderActionButton label="Command Palette (⌘K)" onClick={toggleCommandPalette}>
         <Command className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="Language">
+      <HeaderActionButton
+        label={locale === 'en' ? 'Switch to French' : 'Switch to English'}
+        onClick={() => setLocale(locale === 'en' ? 'fr' : 'en')}
+      >
         <Languages className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="Messages">
+      <HeaderActionButton label="AI Assistant" onClick={() => router.push('/ai-assistant')}>
         <MessageCircle className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
@@ -73,7 +85,7 @@ export function HeaderActionButtons() {
         <Bell className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="Profile">
+      <HeaderActionButton label="Visitor Info" onClick={toggleVisitorInfo}>
         <UserCircle className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
     </div>

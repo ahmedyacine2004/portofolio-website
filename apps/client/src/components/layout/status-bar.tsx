@@ -23,6 +23,8 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useTheme } from '../../hooks/use-theme';
 
+import { useLanguageStore } from '@/stores/language.store';
+
 /*
 |--------------------------------------------------------------------------
 | Custom SVG Icons
@@ -97,7 +99,8 @@ function getClientTime() {
 
 export function StatusBar() {
   const pathname = usePathname();
-  const [language, setLanguage] = useState<'EN' | 'FR'>('EN');
+  const locale = useLanguageStore((s) => s.locale);
+  const setLocale = useLanguageStore((s) => s.setLocale);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const time = useSyncExternalStore(subscribeToClock, getClientTime, getServerTime);
   const currentPage =
@@ -256,7 +259,7 @@ export function StatusBar() {
             onClick={() => setLanguageMenuOpen((prev) => !prev)}
           >
             <Globe className="size-3" strokeWidth={1.8} aria-hidden="true" />
-            <span>{language}</span>
+            <span>{locale === 'en' ? 'EN' : 'FR'}</span>
             <ChevronDown
               className={`size-3 transition-transform ${languageMenuOpen ? 'rotate-180' : ''}`}
               strokeWidth={1.8}
@@ -269,7 +272,7 @@ export function StatusBar() {
               <button
                 type="button"
                 onClick={() => {
-                  setLanguage('EN');
+                  setLocale('en');
                   setLanguageMenuOpen(false);
                 }}
                 className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"
@@ -279,7 +282,7 @@ export function StatusBar() {
               <button
                 type="button"
                 onClick={() => {
-                  setLanguage('FR');
+                  setLocale('fr');
                   setLanguageMenuOpen(false);
                 }}
                 className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"

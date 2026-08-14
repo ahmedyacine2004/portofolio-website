@@ -1,7 +1,21 @@
+import { useDownload } from '@/hooks/use-download';
 import { BriefcaseBusiness, Code2, FileText, Sparkles, Zap } from 'lucide-react';
 import Link from 'next/link';
 
 export function HomeCards() {
+  const { download } = useDownload();
+
+  const handleDownloadResume = () => {
+    download({
+      fileName: 'Ahmed-Yassine-Abbane-Resume.pdf',
+      url: '/documents/estin.pdf',
+      fileType: 'pdf',
+      onError: (error) => {
+        console.error('Resume download failed:', error);
+      },
+    });
+  };
+
   return (
     <div className="mt-2 grid w-fit grid-cols-2 items-start gap-1">
       {/* Quick Actions */}
@@ -16,10 +30,15 @@ export function HomeCards() {
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
           <Link href="/about">About Me</Link>
-          <Link href="#">Download Resume</Link>
+          <button
+            onClick={handleDownloadResume}
+            className="text-left hover:text-primary transition-colors"
+          >
+            Download Resume
+          </button>
           <Link href="/projects">View Projects</Link>
           <Link href="/contact">Contact Me</Link>
-          <Link href="#">Ask AI Assistant</Link>
+          <Link href="/ai-assistant">Ask AI Assistant</Link>
         </div>
       </div>
 
