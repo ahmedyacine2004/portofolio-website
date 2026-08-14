@@ -22,6 +22,8 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { useTranslation } from '@/hooks/use-translation';
+
 // Import Icons from src/assets/icons
 import awsIcon from '@/assets/icons/aws.svg';
 import googleIcon from '@/assets/icons/google.svg';
@@ -321,33 +323,36 @@ const CERTIFICATIONS: Certification[] = [
 ];
 
 export default function CertificationsPage() {
+  const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<string>('aws-dev-assoc');
   const [activeTab, setActiveTab] = useState<'All' | 'Provider' | 'Skill'>('All');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const selectedCert = CERTIFICATIONS.find((item) => item.id === selectedId) || CERTIFICATIONS[0];
+  const selectedCert = CERTIFICATIONS.find((c) => c.id === selectedId) || CERTIFICATIONS[0];
 
-  const filteredCertifications = CERTIFICATIONS.filter((cert) => {
-    return (
-      cert.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      cert.provider.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+  const filteredCertifications = CERTIFICATIONS.filter((item) => {
+    const matchesSearch =
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.skills.some((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    return matchesSearch;
   });
 
   return (
-    <div className="flex h-full max-h-screen w-full flex-col overflow-y-auto rounded-[8px] bg-background p-3.5 sm:p-4 text-[var(--color-text-primary)] font-inter select-none shadow-md shadow-gray-300 dark:shadow-none">
-      {/* PAGE HEADER */}
-      <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 mb-3.5 shrink-0">
+    <div className="flex h-full w-full flex-col gap-3 p-3 overflow-y-auto">
+      {/* HEADER SECTION */}
+      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/40 pb-2.5">
         <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-md bg-blue-600 text-white shadow-xs">
+          <div className="flex size-9 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20">
             <Award className="size-5" />
           </div>
           <div>
-            <h1 className="text-lg font-bold tracking-tight text-[var(--color-text-primary)] leading-none">
-              Certifications
+            <h1 className="text-base font-bold tracking-tight text-[var(--color-text-primary)] leading-tight">
+              {t('certificationsPage.title')}
             </h1>
-            <p className="text-[10.5px] font-medium text-[var(--color-text-tertiary)] mt-1">
-              Professional Certifications & Verified Skills
+            <p className="text-[11px] text-[var(--color-text-secondary)] mt-0.5">
+              {t('certificationsPage.subtitle')}
             </p>
           </div>
         </div>
@@ -355,7 +360,9 @@ export default function CertificationsPage() {
         {/* Counter Pill */}
         <div className="flex items-center gap-1.5 rounded-full bg-[var(--color-bg-secondary)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)] w-fit shadow-xs shadow-gray-300 dark:shadow-none">
           <span className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
-          <span>{CERTIFICATIONS.length} Achievements</span>
+          <span>
+            {CERTIFICATIONS.length} {t('certificationsPage.achievementsCount')}
+          </span>
         </div>
       </header>
 
@@ -375,7 +382,11 @@ export default function CertificationsPage() {
                     : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]'
                 }`}
               >
-                {tab === 'All' ? 'All Certificates' : `By ${tab}`}
+                {tab === 'All'
+                  ? t('certificationsPage.allCertificates')
+                  : tab === 'Provider'
+                    ? t('certificationsPage.byProvider')
+                    : t('certificationsPage.bySkill')}
               </button>
             ))}
           </div>
@@ -386,7 +397,7 @@ export default function CertificationsPage() {
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3 text-[var(--color-text-tertiary)]" />
               <input
                 type="text"
-                placeholder="Search certificates..."
+                placeholder={t('certificationsPage.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full rounded-[6px] bg-[var(--color-bg-secondary)] pl-7 pr-2.5 py-1 text-[10.5px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none focus:outline-none focus:ring-1 focus:ring-blue-500/50"
@@ -415,7 +426,6 @@ export default function CertificationsPage() {
                       : 'bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)]'
                   }`}
                 >
-                  {/* Provider Logo - Fixed with white background so AWS & dark icons contrast sharply in dark mode */}
                   <div className="flex size-8 shrink-0 items-center justify-center rounded-[4px] bg-white p-1 shadow-xs shadow-gray-300 dark:shadow-none">
                     <Image
                       src={item.logo}
@@ -453,7 +463,7 @@ export default function CertificationsPage() {
 
           {/* Load More Button */}
           <button className="w-full shrink-0 rounded-[6px] bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] text-blue-500 py-1.5 text-[10px] font-semibold flex items-center justify-center gap-1 shadow-xs shadow-gray-300 dark:shadow-none transition-colors">
-            <span>Load More Certificates</span>
+            <span>{t('certificationsPage.loadMore')}</span>
             <ChevronDown className="size-3" />
           </button>
         </div>
@@ -464,7 +474,7 @@ export default function CertificationsPage() {
           <div className="flex items-center justify-between text-[10px]">
             <span className="inline-flex items-center gap-1 font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full shadow-xs shadow-emerald-500/10">
               <CheckCircle2 className="size-3" />
-              <span>Verified Certificate</span>
+              <span>{t('certificationsPage.verifiedCertificate')}</span>
             </span>
             <span className="text-[var(--color-text-tertiary)] font-medium">
               ID:{' '}
@@ -476,7 +486,6 @@ export default function CertificationsPage() {
 
           {/* Banner */}
           <div className="flex items-start gap-3 pb-3">
-            {/* Logo Container with high contrast white bg for dark mode */}
             <div className="flex size-11 shrink-0 items-center justify-center rounded-[6px] bg-white p-1.5 shadow-xs shadow-gray-300 dark:shadow-none">
               <Image
                 src={selectedCert.logo}
@@ -494,11 +503,15 @@ export default function CertificationsPage() {
                 {selectedCert.provider}
               </p>
               <div className="flex flex-wrap items-center gap-1.5 text-[9px] text-[var(--color-text-tertiary)] mt-1.5">
-                <span>Issued {selectedCert.issuedDate}</span>
+                <span>
+                  {t('certificationsPage.issued')} {selectedCert.issuedDate}
+                </span>
                 {selectedCert.expiryDate && (
                   <>
                     <span>•</span>
-                    <span>Expires {selectedCert.expiryDate}</span>
+                    <span>
+                      {t('certificationsPage.expires')} {selectedCert.expiryDate}
+                    </span>
                   </>
                 )}
                 <span>•</span>
@@ -512,7 +525,7 @@ export default function CertificationsPage() {
           {/* About */}
           <div className="space-y-1">
             <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
-              About This Certification
+              {t('certificationsPage.aboutHeading')}
             </h3>
             <p className="text-[11px] font-normal leading-relaxed text-[var(--color-text-secondary)]">
               {selectedCert.about}
@@ -522,7 +535,7 @@ export default function CertificationsPage() {
           {/* Skills */}
           <div className="space-y-1.5">
             <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
-              Skills Validated
+              {t('certificationsPage.skillsValidated')}
             </h3>
             <div className="flex flex-wrap gap-1">
               {selectedCert.skills.map((skill) => (
@@ -539,7 +552,7 @@ export default function CertificationsPage() {
           {/* Key Topics */}
           <div className="space-y-2 pt-2">
             <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
-              Key Topics
+              {t('certificationsPage.keyTopics')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {selectedCert.keyTopics.map((topic) => {
@@ -587,7 +600,7 @@ export default function CertificationsPage() {
             {/* Credential Info */}
             <div className="space-y-1.5">
               <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
-                Credential Information
+                {t('certificationsPage.credentialInfo')}
               </h3>
 
               <div className="space-y-1.5 text-[10px]">
@@ -610,7 +623,7 @@ export default function CertificationsPage() {
                     rel="noreferrer"
                     className="text-blue-500 font-semibold hover:underline flex items-center gap-0.5 text-[9.5px]"
                   >
-                    <span>Verify</span>
+                    <span>{t('certificationsPage.verify')}</span>
                     <ArrowUpRight className="size-2.5" />
                   </a>
                 </div>
@@ -647,7 +660,7 @@ export default function CertificationsPage() {
             {/* Related Projects */}
             <div className="space-y-1.5 pt-2">
               <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
-                Related Projects
+                {t('certificationsPage.relatedProjects')}
               </h3>
 
               <div className="space-y-1">
@@ -672,7 +685,7 @@ export default function CertificationsPage() {
               href="/projects"
               className="w-full rounded-[6px] bg-background hover:bg-[var(--color-bg-tertiary)] text-blue-500 py-1.5 text-[10px] font-semibold flex items-center justify-center gap-1 shadow-xs shadow-gray-300 dark:shadow-none transition-colors"
             >
-              <span>View all projects</span>
+              <span>{t('certificationsPage.viewAllProjects')}</span>
               <ChevronDown className="size-3" />
             </Link>
           </div>

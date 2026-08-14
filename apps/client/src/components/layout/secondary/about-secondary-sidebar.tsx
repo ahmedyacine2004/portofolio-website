@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { useTranslation } from '@/hooks/use-translation';
+
 // --- Icons ---
 import aboutIcon from '@/assets/icons/about.svg';
 import careerIcon from '@/assets/icons/career.svg';
@@ -137,6 +139,7 @@ function FileLink({ file }: { file: FileItem }) {
 }
 
 function SectionBlock({ section }: { section: Section }) {
+  const { t } = useTranslation();
   const pathname = usePathname();
   // Automatically open the folder if one of its files is currently active
   const isChildActive = section.files.some((file) => pathname === file.href);
@@ -159,7 +162,7 @@ function SectionBlock({ section }: { section: Section }) {
             aria-hidden="true"
           />
           <span className="text-[9px] font-semibold leading-none text-foreground">
-            {section.label}
+            {t(`aboutSidebar.${section.label}`, section.label)}
           </span>
         </div>
 
@@ -195,6 +198,7 @@ function SectionBlock({ section }: { section: Section }) {
 }
 
 export function AboutSecondarySidebar() {
+  const { t } = useTranslation();
   const pathname = usePathname();
   const isRootAboutActive = pathname === '/about';
   const openTab = useAboutTabsStore((state) => state.openTab);
@@ -203,7 +207,7 @@ export function AboutSecondarySidebar() {
     <aside className="flex h-full w-[180px] flex-col rounded-[8px] bg-background px-2 py-3 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* Title */}
       <h2 className="mb-1 px-0.5 text-[12px] font-inter font-semibold uppercase leading-none text-foreground">
-        About
+        {t('aboutSidebar.title')}
       </h2>
 
       {/* Default About Page */}
@@ -225,7 +229,7 @@ export function AboutSecondarySidebar() {
           className="size-[11px] shrink-0 object-contain"
           aria-hidden="true"
         />
-        <span className="text-[9px] font-semibold leading-none">about</span>
+        <span className="text-[9px] font-semibold leading-none">{t('aboutSidebar.about')}</span>
       </Link>
 
       {/* Folder sections */}

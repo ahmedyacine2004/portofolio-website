@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useTranslation } from '@/hooks/use-translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   BookOpen,
@@ -27,6 +25,9 @@ import {
   Tag,
   Workflow,
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 interface CategoryItem {
   id: string;
@@ -74,6 +75,7 @@ const FEATURED_ITEM_TYPE_MAP: Record<string, string> = {
   CONSULTIFY: 'web-dev',
   'Portfolio Workspace': 'web-dev',
   'E-commerce Website': 'web-dev',
+  ShopSphere: 'web-dev',
 };
 
 const CATEGORIES: CategoryItem[] = [
@@ -82,7 +84,7 @@ const CATEGORIES: CategoryItem[] = [
     title: 'Featured Projects',
     count: 3,
     icon: Star,
-    items: ['CONSULTIFY', 'Portfolio Workspace', 'E-commerce Website'],
+    items: ['CONSULTIFY', 'Portfolio Workspace', 'ShopSphere'],
   },
   {
     id: 'web-dev',
@@ -162,6 +164,7 @@ function getActiveCategoryId(pathname: string): string {
 
 export function ProjectsSecondarySidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const [openSection, setOpenSection] = useState<string | null>(() =>
     getActiveCategoryId(pathname),
@@ -195,49 +198,58 @@ export function ProjectsSecondarySidebar() {
     <aside className="flex h-full w-[180px] select-none flex-col gap-1 overflow-y-auto rounded-[8px] bg-background px-2 py-3 text-[var(--color-text-primary)] shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* Title */}
       <h2 className="mb-1 px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground">
-        Project Hub
+        {t('projectsSidebar.projectHub')}
       </h2>
 
-      {/* Project Workspace Banner (Clickable -> Navigates to /projects) */}
-      <Link
-        href="/projects"
-        className={`flex items-center gap-1.5 rounded-[4px] border-l-2 border-[var(--color-purple)] bg-[var(--color-surface-brand)] px-2 py-1.5 transition-colors hover:opacity-80 ${
-          pathname === '/projects' ? 'ring-1 ring-[var(--color-purple)]' : ''
-        }`}
-      >
-        <Hexagon className="size-3.5 shrink-0 stroke-[2] text-[var(--color-purple)]" />
-        <span className="truncate text-[9px] font-semibold text-[var(--color-text-primary)]">
-          Project Workspace
-        </span>
-      </Link>
-
-      {/* Accordion Container */}
-      <div className="flex flex-col gap-0 overflow-hidden rounded-[4px] bg-[var(--color-bg-secondary)] shadow-gray-300 dark:shadow-[0_0_2px_rgba(255,255,255,0.015)]">
+      {/* Accordion Categories List */}
+      <div className="space-y-1">
         {CATEGORIES.map((category) => {
-          const CategoryIcon = category.icon;
           const isOpen = openSection === category.id;
+          const Icon = category.icon;
+          const categoryTitle =
+            category.id === 'featured'
+              ? t('projectsDetails.categories.featured')
+              : category.id === 'web-dev'
+                ? t('projectsDetails.categories.web-dev')
+                : category.id === 'ui-ux'
+                  ? t('projectsDetails.categories.ui-ux')
+                  : category.id === 'graphic-design'
+                    ? t('projectsDetails.categories.graphic-design')
+                    : category.id === 'branding'
+                      ? t('projectsDetails.categories.branding')
+                      : category.title;
 
           return (
-            <div key={category.id} className="bg-[var(--color-bg-secondary)]">
+            <div
+              key={category.id}
+              className="overflow-hidden rounded-[4px] border border-[var(--color-border-light)]"
+            >
               {/* Category Header */}
               <button
+                type="button"
                 onClick={() => toggleSection(category.id)}
-                className="flex w-full items-center justify-between px-2 py-1 text-left transition-colors hover:bg-[var(--color-bg-tertiary)]"
+                className="flex w-full items-center justify-between bg-card px-2 py-1.5 text-left transition-colors hover:bg-[var(--color-surface)]"
               >
-                <div className="flex min-w-0 items-center gap-1.5 text-[var(--color-text-primary)]">
-                  <CategoryIcon className="size-3 shrink-0 text-[var(--color-brand)]" />
-                  <span className="truncate text-[9px] font-semibold">
-                    {category.title} ({category.count})
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <Icon className="size-3 text-[var(--color-brand)] shrink-0" />
+                  <span className="font-inter text-[9px] font-semibold text-[var(--color-text-primary)] truncate">
+                    {categoryTitle}
                   </span>
                 </div>
-                <ChevronDown
-                  className={`size-3 shrink-0 text-[var(--color-text-tertiary)] transition-transform duration-200 ${
-                    isOpen ? 'rotate-180' : ''
-                  }`}
-                />
+
+                <div className="flex items-center gap-1 shrink-0">
+                  <span className="rounded-[2px] bg-[var(--color-brand)] px-1 py-0.2 text-[8px] font-semibold text-white">
+                    {category.count}
+                  </span>
+                  {isOpen ? (
+                    <ChevronDown className="size-3 text-[var(--color-text-tertiary)]" />
+                  ) : (
+                    <ChevronRight className="size-3 text-[var(--color-text-tertiary)]" />
+                  )}
+                </div>
               </button>
 
-              {/* Accordion Content */}
+              {/* Projects Submenu Accordion Body */}
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
@@ -282,11 +294,16 @@ export function ProjectsSecondarySidebar() {
                                 const href = `/projects/${categorySlug}/${projectSlug}/${pageSlug}`;
                                 const isPageActive = pathname === href;
 
+                                // Convert page name to translation key (camelCase)
+                                const pageKey = page.name
+                                  .replace(/\s+/g, '')
+                                  .replace(/^./, (c) => c.toLowerCase());
+
                                 return (
                                   <Link
                                     key={page.name}
                                     href={href}
-                                    title={page.name}
+                                    title={t(`projectsDetails.pageTypes.${pageKey}`, page.name)}
                                     className={`flex size-3.5 items-center justify-center rounded-[2px] transition-colors ${
                                       isPageActive
                                         ? 'bg-white text-[var(--color-brand-dark)]'
@@ -314,22 +331,25 @@ export function ProjectsSecondarySidebar() {
       <div className="flex flex-col gap-1.5 rounded-[4px] bg-[var(--color-brand-dark)] p-2 text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)]">
         <div>
           <h3 className="font-inter text-[9px] font-semibold text-[var(--color-surface)]">
-            Project Overview
+            {t('projectsSidebar.projectOverview')}
           </h3>
           <p className="mt-0.5 text-[8px] leading-tight text-[var(--color-surface-secondary)] opacity-90">
-            Pls choose a project to get the overview insights
+            {t('projectsSidebar.overviewInsights')}
           </p>
         </div>
-        <button className="flex items-center justify-between rounded-[4px] bg-[var(--color-surface)] px-2 py-1 text-[8px] font-semibold text-[var(--color-brand-dark)] shadow-[var(--shadow-sm)] transition-opacity hover:opacity-95">
-          <span>Open Case Study</span>
+        <Link
+          href="/projects/web-dev/consultify/project-details"
+          className="flex items-center justify-between rounded-[4px] bg-[var(--color-surface)] px-2 py-1 text-[8px] font-semibold text-[var(--color-brand-dark)] shadow-[var(--shadow-sm)] transition-opacity hover:opacity-95"
+        >
+          <span>{t('projectsSidebar.openCaseStudy')}</span>
           <ExternalLink className="size-2.5 shrink-0 text-[var(--color-brand-dark)]" />
-        </button>
+        </Link>
       </div>
 
       {/* Version History Card */}
       <div className="flex flex-col gap-1 rounded-[4px] bg-[var(--color-bg-secondary)] p-2">
         <h3 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-          Version History
+          {t('projectsSidebar.versionHistory')}
         </h3>
 
         <div className="space-y-0.5 text-[8px] font-medium text-[var(--color-text-secondary)]">
@@ -337,7 +357,7 @@ export function ProjectsSecondarySidebar() {
             <span>v3.2</span>
             <div className="flex items-center gap-1">
               <span className="rounded-[2px] bg-[var(--color-success-light)] px-1 py-0.2 text-[7px] font-semibold text-white">
-                Latest
+                {t('projectsSidebar.latest')}
               </span>
               <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />
             </div>

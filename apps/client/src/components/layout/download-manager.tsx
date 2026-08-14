@@ -124,24 +124,28 @@ export function DownloadManager() {
                       <div className="mt-0.5 flex items-center gap-1">
                         {item.status === 'completed' && (
                           <span className="text-[8px] font-semibold text-emerald-600 dark:text-emerald-400">
-                            Completed
+                            {t('downloadManager.completed')}
                           </span>
                         )}
                         {item.status === 'downloading' && (
                           <span className="text-[8px] font-medium text-primary">
-                            Downloading {item.progress}%
+                            {t('downloadManager.downloading')} {item.progress}%
                           </span>
                         )}
                         {item.status === 'queued' && (
                           <span className="text-[8px] font-medium text-amber-600 dark:text-amber-400">
-                            Queued
+                            {t('downloadManager.queued')}
                           </span>
                         )}
                         {item.status === 'cancelled' && (
-                          <span className="text-[8px] font-medium text-destructive">Cancelled</span>
+                          <span className="text-[8px] font-medium text-destructive">
+                            {t('downloadManager.cancelled')}
+                          </span>
                         )}
                         {item.status === 'failed' && (
-                          <span className="text-[8px] font-medium text-destructive">Failed</span>
+                          <span className="text-[8px] font-medium text-destructive">
+                            {t('downloadManager.failed')}
+                          </span>
                         )}
                       </div>
 
@@ -180,7 +184,7 @@ export function DownloadManager() {
                             }
                           }}
                           className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                          title="Open file"
+                          title={t('downloadManager.openFile')}
                         >
                           <FolderOpen className="size-3" />
                         </button>
@@ -190,7 +194,7 @@ export function DownloadManager() {
                           type="button"
                           onClick={() => retryDownload(item.id)}
                           className="flex size-5 items-center justify-center rounded-xs text-destructive transition-colors hover:bg-destructive/10"
-                          title="Retry download"
+                          title={t('downloadManager.retryDownload')}
                         >
                           <RotateCw className="size-3" />
                         </button>
@@ -200,7 +204,7 @@ export function DownloadManager() {
                           type="button"
                           onClick={() => cancelDownload(item.id)}
                           className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                          title="Cancel download"
+                          title={t('downloadManager.cancelDownload')}
                         >
                           <X className="size-3" />
                         </button>
@@ -210,7 +214,7 @@ export function DownloadManager() {
                           type="button"
                           onClick={() => removeDownload(item.id)}
                           className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                          title="Remove from list"
+                          title={t('downloadManager.removeFromList')}
                         >
                           <X className="size-3" />
                         </button>
@@ -228,7 +232,9 @@ export function DownloadManager() {
                   {activeDownloads.length > 0 && (
                     <>
                       <span className="flex size-1.5 rounded-full bg-primary animate-pulse" />
-                      <span>{activeDownloads.length} active</span>
+                      <span>
+                        {t('downloadManager.activeCount', `${activeDownloads.length} active`)}
+                      </span>
                     </>
                   )}
                 </div>
@@ -239,7 +245,7 @@ export function DownloadManager() {
                     onClick={clearCompleted}
                     className="font-semibold text-primary transition-colors hover:underline"
                   >
-                    Clear completed
+                    {t('downloadManager.clearCompleted')}
                   </button>
                 )}
               </div>

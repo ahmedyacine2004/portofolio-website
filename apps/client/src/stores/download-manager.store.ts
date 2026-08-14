@@ -115,10 +115,10 @@ export const useDownloadManagerStore = create<DownloadManagerStore>((set, get) =
     });
   },
 
-  updateDownloadProgress: (id) => {
+  updateDownloadProgress: (id, progress) => {
     set((state) => {
-      const updatedItems = state.items.map((item) =>
-        item.id === id ? { ...item, status: 'downloading' } : item,
+      const updatedItems: DownloadItem[] = state.items.map((item) =>
+        item.id === id ? { ...item, status: 'downloading' as const, progress } : item,
       );
       return { items: updatedItems };
     });
@@ -126,11 +126,11 @@ export const useDownloadManagerStore = create<DownloadManagerStore>((set, get) =
 
   completeDownload: (id) => {
     set((state) => {
-      const updatedItems = state.items.map((item) =>
+      const updatedItems: DownloadItem[] = state.items.map((item) =>
         item.id === id
           ? {
               ...item,
-              status: 'completed',
+              status: 'completed' as const,
               progress: 100,
               completionTime: Date.now(),
             }
@@ -143,11 +143,11 @@ export const useDownloadManagerStore = create<DownloadManagerStore>((set, get) =
 
   failDownload: (id, error) => {
     set((state) => {
-      const updatedItems = state.items.map((item) =>
+      const updatedItems: DownloadItem[] = state.items.map((item) =>
         item.id === id
           ? {
               ...item,
-              status: 'failed',
+              status: 'failed' as const,
               error,
               completionTime: Date.now(),
             }
@@ -160,11 +160,11 @@ export const useDownloadManagerStore = create<DownloadManagerStore>((set, get) =
 
   cancelDownload: (id) => {
     set((state) => {
-      const updatedItems = state.items.map((item) =>
+      const updatedItems: DownloadItem[] = state.items.map((item) =>
         item.id === id
           ? {
               ...item,
-              status: 'cancelled',
+              status: 'cancelled' as const,
               completionTime: Date.now(),
             }
           : item,
@@ -192,16 +192,17 @@ export const useDownloadManagerStore = create<DownloadManagerStore>((set, get) =
 
   retryDownload: (id) => {
     set((state) => {
-      const updatedItems = state.items.map((item) =>
+      const updatedItems: DownloadItem[] = state.items.map((item) =>
         item.id === id
           ? {
               ...item,
-              status: 'queued',
+              status: 'queued' as const,
               progress: 0,
               error: undefined,
             }
           : item,
       );
+      saveDownloadsToStorage(updatedItems);
       return { items: updatedItems };
     });
   },

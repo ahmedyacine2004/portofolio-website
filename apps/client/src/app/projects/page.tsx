@@ -1,5 +1,6 @@
 'use client';
 
+import { useDownload } from '@/hooks/use-download';
 import { useTranslation } from '@/hooks/use-translation';
 import {
   Archive,
@@ -16,12 +17,26 @@ import {
   Terminal,
   TrendingUp,
 } from 'lucide-react';
+import Link from 'next/link';
 
 import Image from 'next/image';
 import folderImg from '../../assets/images/folder.png';
 
 export default function ProjectsPage() {
   const { t } = useTranslation();
+  const { download } = useDownload();
+
+  const handleDownloadResume = () => {
+    download({
+      fileName: 'Ahmed-Yassine-Abbane-Resume.pdf',
+      url: '/documents/estin.pdf',
+      fileType: 'pdf',
+      onError: (error) => {
+        console.error('Resume download failed:', error);
+      },
+    });
+  };
+
   return (
     <div className="flex w-full flex-col gap-1.5 p-2 overflow-y-auto">
       {/* Top Grid: Workspace Info & Status */}
@@ -38,10 +53,13 @@ export default function ProjectsPage() {
             <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
               {t('projects.description')}
             </p>
-            <button className="mt-1 flex w-fit items-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] px-4 py-2 text-[10px] font-medium text-[var(--color-text-inverse)] transition-colors hover:opacity-90">
+            <Link
+              href="/projects/web-dev/consultify/project-details"
+              className="mt-1 flex w-fit items-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] px-4 py-2 text-[10px] font-medium text-[var(--color-text-inverse)] transition-colors hover:opacity-90"
+            >
               {t('projects.browseFeatured')}
               <ExternalLink className="size-3" />
-            </button>
+            </Link>
           </div>
 
           {/* Folder Image */}
@@ -102,9 +120,9 @@ export default function ProjectsPage() {
           </div>
 
           <div className="mt-1 flex items-center gap-1 text-[7px] font-semibold text-[var(--color-text-tertiary)] border-t border-[var(--color-border-light)] pt-1">
-            <span className="text-[var(--color-text-primary)]">Last Update</span>
+            <span className="text-[var(--color-text-primary)]">{t('projects.lastUpdate')}</span>
             <span className="size-1 rounded-full bg-[var(--color-success)]"></span>
-            <span>Today 09:45 AM</span>
+            <span>{t('projects.todayTime')}</span>
           </div>
         </div>
       </div>
@@ -112,44 +130,47 @@ export default function ProjectsPage() {
       {/* Recent Activity Section */}
       <div className="flex flex-col gap-1">
         <h3 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
-          Recent Activity
+          {t('projects.recentActivity')}
         </h3>
         <div className="rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-2 shadow-[var(--shadow-sm)]">
           <ul className="space-y-1">
             <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
               <div className="flex items-center gap-1.5">
                 <span className="size-1 rounded-full bg-[var(--color-purple)]"></span>
-                <span>CONSULTIFY repository updated</span>
+                <span>{t('projects.consultifyUpdated')}</span>
               </div>
-              <span className="text-[var(--color-text-tertiary)]">15m ago</span>
+              <span className="text-[var(--color-text-tertiary)]">{t('projects.time15mAgo')}</span>
             </li>
             <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
               <div className="flex items-center gap-1.5">
                 <span className="size-1 rounded-full bg-[var(--color-success)]"></span>
-                <span>CONSULTIFY repository updated</span>
+                <span>{t('projects.consultifyUpdated')}</span>
               </div>
-              <span className="text-[var(--color-text-tertiary)]">15m ago</span>
+              <span className="text-[var(--color-text-tertiary)]">{t('projects.time15mAgo')}</span>
             </li>
             <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
               <div className="flex items-center gap-1.5">
                 <span className="size-1 rounded-full bg-[var(--color-warning)]"></span>
-                <span>TaskFlow documentation added</span>
+                <span>{t('projects.taskflowDocAdded')}</span>
               </div>
-              <span className="text-[var(--color-text-tertiary)]">1h ago</span>
+              <span className="text-[var(--color-text-tertiary)]">{t('projects.time1hAgo')}</span>
             </li>
             <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
               <div className="flex items-center gap-1.5">
                 <span className="size-1 rounded-full bg-[var(--color-brand)]"></span>
-                <span>New project initialized</span>
+                <span>{t('projects.newProjectInit')}</span>
               </div>
-              <span className="text-[var(--color-text-tertiary)]">3h ago</span>
+              <span className="text-[var(--color-text-tertiary)]">{t('projects.time3hAgo')}</span>
             </li>
           </ul>
           <div className="mt-1 flex justify-end">
-            <button className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80">
-              View All activity
+            <Link
+              href="/projects"
+              className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80"
+            >
+              {t('projects.viewAllActivity')}
               <ArrowUpRight className="size-2" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -158,12 +179,15 @@ export default function ProjectsPage() {
       <div className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
           <h3 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
-            Featured Projects
+            {t('projects.featuredProjects')}
           </h3>
-          <button className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80">
-            View All Projects
+          <Link
+            href="/projects"
+            className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80"
+          >
+            {t('projects.viewAllProjects')}
             <ArrowUpRight className="size-2" />
-          </button>
+          </Link>
         </div>
 
         <div className="flex flex-col gap-1.5">
@@ -178,17 +202,20 @@ export default function ProjectsPage() {
                   CONSULTIFY
                 </h4>
                 <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
-                  <span>Full Stack</span>
+                  <span>{t('projects.fullStack')}</span>
                   <span className="rounded-[2px] bg-[var(--color-purple)]/10 px-1 py-0.5 font-semibold text-[var(--color-purple)]">
-                    Enterprise
+                    {t('projects.enterprise')}
                   </span>
                 </div>
               </div>
             </div>
-            <button className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90">
-              View Project
+            <Link
+              href="/projects/web-dev/consultify/project-details"
+              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
+            >
+              {t('projects.viewProject')}
               <ExternalLink className="size-2" />
-            </button>
+            </Link>
           </div>
 
           {/* Project Card 2 */}
@@ -199,20 +226,23 @@ export default function ProjectsPage() {
               </div>
               <div>
                 <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-                  Portfolio v1
+                  Portfolio Workspace
                 </h4>
                 <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
-                  <span>React</span>
+                  <span>React / Next.js</span>
                   <span className="rounded-[2px] bg-[var(--color-brand)]/10 px-1 py-0.5 font-semibold text-[var(--color-brand)]">
-                    Live
+                    {t('projects.live')}
                   </span>
                 </div>
               </div>
             </div>
-            <button className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90">
-              View Project
+            <Link
+              href="/projects/web-dev/portfolio-workspace/project-details"
+              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
+            >
+              {t('projects.viewProject')}
               <ExternalLink className="size-2" />
-            </button>
+            </Link>
           </div>
 
           {/* Project Card 3 */}
@@ -223,20 +253,23 @@ export default function ProjectsPage() {
               </div>
               <div>
                 <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-                  E-commerce website
+                  ShopSphere
                 </h4>
                 <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
                   <span>MERN STACK</span>
                   <span className="rounded-[2px] bg-[var(--color-warning)]/10 px-1 py-0.5 font-semibold text-[var(--color-warning)]">
-                    In progress
+                    {t('projects.inProgress')}
                   </span>
                 </div>
               </div>
             </div>
-            <button className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90">
-              View Project
+            <Link
+              href="/projects/web-dev/shopsphere/project-details"
+              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
+            >
+              {t('projects.viewProject')}
               <ExternalLink className="size-2" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -244,24 +277,38 @@ export default function ProjectsPage() {
       {/* Quick Actions Section */}
       <div className="flex flex-col gap-1">
         <h3 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
-          Quick Actions -CONSULTIFY-
+          {t('projects.quickActions')}
         </h3>
         <div className="grid grid-cols-1 gap-1.5 md:grid-cols-2">
-          <button className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90">
+          <Link
+            href="/projects/web-dev/consultify/project-details"
+            className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90"
+          >
             <Folder className="size-2.5" />
-            Open Featured Project
-          </button>
-          <button className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90">
+            {t('projects.openFeatured')}
+          </Link>
+          <a
+            href="https://consultify.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90"
+          >
             <ArrowUpRight className="size-2.5" />
-            Visit Live Demo
-          </button>
-          <button className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90">
+            {t('projects.visitLiveDemo')}
+          </a>
+          <Link
+            href="/projects/web-dev/consultify/repository"
+            className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90"
+          >
             <Terminal className="size-2.5" />
-            Browse All Repositories
-          </button>
-          <button className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90">
+            {t('projects.browseAllRepos')}
+          </Link>
+          <button
+            onClick={handleDownloadResume}
+            className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90"
+          >
             <Download className="size-2.5" />
-            Download Resume
+            {t('projects.downloadResume')}
           </button>
         </div>
       </div>

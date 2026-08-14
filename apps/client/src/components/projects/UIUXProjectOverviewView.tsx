@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
+import type { UIUXProjectOverviewData } from '@/data/projects/neobank-mobile';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   ArrowUpRight,
   CheckCircle2,
@@ -17,7 +17,7 @@ import {
   Zap,
   type LucideIcon,
 } from 'lucide-react';
-import type { UIUXProjectOverviewData } from '@/data/projects/neobank-mobile';
+import Image from 'next/image';
 
 const FEATURE_ICON_MAP: Record<string, LucideIcon> = {
   TrendingUp,
@@ -33,6 +33,8 @@ interface UIUXProjectOverviewViewProps {
 }
 
 export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
       {/* --- HERO BANNER --- */}

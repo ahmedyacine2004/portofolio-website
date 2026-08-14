@@ -1,6 +1,7 @@
 'use client';
 
 import type { WebProjectDetails } from '@/data/projects/consultify';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   ArrowUpRight,
   Bell,
@@ -44,6 +45,8 @@ interface WebProjectDetailsViewProps {
 }
 
 export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
+  const { t } = useTranslation();
+
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
       {/* --- HERO SECTION --- */}
@@ -59,7 +62,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                 </div>
                 <div className="flex flex-col">
                   <span className="font-inter text-[10px] font-semibold uppercase leading-none text-muted-foreground">
-                    Project Identity
+                    {t('projectsDetails.commonLabels.projectIdentity')}
                   </span>
                   <h1 className="font-inter text-xl font-bold tracking-tight">
                     {data.projectName}
@@ -89,7 +92,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-[4px] bg-primary px-3 py-1.5 text-[10px] font-medium text-primary-foreground shadow-xs shadow-gray-300 transition-opacity hover:opacity-90 dark:shadow-none"
             >
-              <span>Visit Live Demo</span>
+              <span>{t('projectsDetails.commonLabels.visitLiveDemo')}</span>
               <ArrowUpRight className="size-3" />
             </a>
             <a
@@ -99,7 +102,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               className="flex items-center gap-1.5 rounded-[4px] bg-background px-3 py-1.5 text-[10px] font-medium shadow-xs shadow-gray-300 transition-all hover:bg-accent dark:shadow-none"
             >
               <GitBranch className="size-3" />
-              <span>View Repository</span>
+              <span>{t('projectsDetails.commonLabels.viewRepository')}</span>
             </a>
           </div>
         </div>
@@ -112,7 +115,9 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               <div className="flex size-6 items-center justify-center rounded-[4px] bg-purple-500/10 text-purple-600 dark:text-purple-400">
                 <MapPin className="size-3.5" />
               </div>
-              <h3 className="font-inter mt-2 text-[10px] font-bold">Core Objective</h3>
+              <h3 className="font-inter mt-2 text-[10px] font-bold">
+                {t('projectsDetails.commonLabels.coreObjective')}
+              </h3>
               <p className="mt-1 text-[9px] leading-tight text-muted-foreground">
                 {data.coreObjective}
               </p>
@@ -122,7 +127,9 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               <div className="flex size-6 items-center justify-center rounded-[4px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                 <User className="size-3.5" />
               </div>
-              <h3 className="font-inter mt-2 text-[10px] font-bold">Target Audience</h3>
+              <h3 className="font-inter mt-2 text-[10px] font-bold">
+                {t('projectsDetails.commonLabels.targetAudience')}
+              </h3>
               <ul className="mt-1 space-y-0.5 text-[9px] text-muted-foreground">
                 {data.targetAudience.map((item) => (
                   <li key={item} className="flex items-center gap-1">
@@ -140,7 +147,9 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               <div className="flex size-6 items-center justify-center rounded-[4px] bg-blue-500/10 text-blue-600 dark:text-blue-400">
                 <Rocket className="size-3.5" />
               </div>
-              <h3 className="font-inter text-[10px] font-bold">Current Phase</h3>
+              <h3 className="font-inter text-[10px] font-bold">
+                {t('projectsDetails.commonLabels.currentPhase')}
+              </h3>
             </div>
             <ul className="mt-2 grid grid-cols-3 gap-1 text-[9px] text-muted-foreground">
               {data.currentPhase.map((phase) => (
@@ -159,7 +168,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
         <div className="mb-3 flex items-center gap-2">
           <Grid className="size-3.5 text-primary" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            System Modules
+            {t('projectsDetails.commonLabels.systemModules')}
           </h2>
         </div>
 
@@ -208,7 +217,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
           <div className="mb-4 flex items-center gap-2">
             <GitFork className="size-3.5 text-primary" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Architecture Snapshot
+              {t('projectsDetails.commonLabels.architectureSnapshot')}
             </h2>
           </div>
 
@@ -241,7 +250,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
           <div className="mb-3 flex items-center gap-2">
             <Grid className="size-3.5 text-primary" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Engineering Highlights
+              {t('projectsDetails.commonLabels.engineeringHighlights')}
             </h2>
           </div>
 

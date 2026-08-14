@@ -70,6 +70,22 @@
       "continuousLearning": "Apprentissage continu",
       "continuousLearningDesc": "Toujours explorer de nouvelles technologies et améliorer mes compétences"
     },
+    "stats": {
+      "experience": "Expérience",
+      "experienceValue": "2+ Ans",
+      "projectsCompleted": "Projets Réalisés",
+      "projectsValue": "15+",
+      "education": "Formation",
+      "educationValue": "2 Diplômes",
+      "linesOfCode": "Lignes de code",
+      "linesValue": "50k+"
+    },
+    "headings": {
+      "whatToDo": "Ce que je fais",
+      "myJourney": "Mon parcours",
+      "techArsenal": "Arsenal technique",
+      "beyondCode": "Au-delà du code"
+    },
     "interests": [
       "Design UI/UX",
       "Design graphique",
@@ -87,7 +103,29 @@
     "projects": "Projets",
     "completed": "Terminés",
     "active": "Actifs",
-    "archived": "Archivés"
+    "archived": "Archivés",
+    "lastUpdate": "Dernière mise à jour",
+    "todayTime": "Aujourd'hui 09:45",
+    "recentActivity": "Activité récente",
+    "consultifyUpdated": "Dépôt CONSULTIFY mis à jour",
+    "taskflowDocAdded": "Documentation TaskFlow ajoutée",
+    "newProjectInit": "Nouveau projet initialisé",
+    "time15mAgo": "Il y a 15m",
+    "time1hAgo": "Il y a 1h",
+    "time3hAgo": "Il y a 3h",
+    "viewAllActivity": "Voir toute l'activité",
+    "featuredProjects": "Projets en vedette",
+    "viewAllProjects": "Voir tous les projets",
+    "viewProject": "Voir le projet",
+    "quickActions": "Actions rapides -CONSULTIFY-",
+    "openFeatured": "Ouvrir le projet en vedette",
+    "visitLiveDemo": "Visiter la démo en direct",
+    "browseAllRepos": "Parcourir tous les dépôts",
+    "downloadResume": "Télécharger le CV",
+    "fullStack": "Full Stack",
+    "enterprise": "Entreprise",
+    "live": "En ligne",
+    "inProgress": "En cours"
   },
   "skills": {
     "frontend": "Frontend",
@@ -436,5 +474,248 @@
       "messageMinLength": "Le message doit contenir au moins 10 caractères",
       "messageMaxLength": "Le message doit contenir moins de 2000 caractères"
     }
+  },
+  "projectsDetails": {
+    "categories": {
+      "featured": "Projets en Vedette",
+      "web-dev": "Développement Web",
+      "ui-ux": "Design UI/UX",
+      "graphic-design": "Design Graphique",
+      "branding": "Branding"
+    },
+    "pageTypes": {
+      "projectDetails": "Détails du Projet",
+      "gallery": "Galerie",
+      "techStack": "Pile Technologique",
+      "demo": "Démo",
+      "repository": "Référentiel",
+      "overview": "Aperçu",
+      "userFlow": "Flux Utilisateur",
+      "wireframes": "Wireframes",
+      "prototype": "Prototype",
+      "visualAssets": "Ressources Visuelles",
+      "brandKit": "Kit de Marque",
+      "guidelines": "Directives",
+      "colorPalette": "Palette de Couleurs",
+      "mockups": "Maquettes"
+    },
+    "webDev": {
+      "portfolioWorkspace": {
+        "name": "Espace de Travail Portfolio",
+        "description": "Plateforme portfolio moderne v3.0",
+        "projectDetails": "Détails du Projet",
+        "gallery": "Galerie",
+        "techStack": "Pile Technologique",
+        "demo": "Démo",
+        "repository": "Référentiel"
+      },
+      "taskflowDashboard": {
+        "name": "Tableau de Bord TaskFlow",
+        "description": "Gestion avancée des tâches et collaboration d'équipe",
+        "projectDetails": "Détails du Projet",
+        "gallery": "Galerie",
+        "techStack": "Pile Technologique",
+        "demo": "Démo",
+        "repository": "Référentiel"
+      },
+      "shopsphere": {
+        "name": "ShopSphere",
+        "description": "Plateforme e-commerce avec fonctionnalités avancées",
+        "projectDetails": "Détails du Projet",
+        "gallery": "Galerie",
+        "techStack": "Pile Technologique",
+        "demo": "Démo",
+        "repository": "Référentiel"
+      }
+    },
+    "uiUx": {
+      "insightAnalytics": {
+        "name": "Insight Analytics",
+        "description": "Conception de tableau de bord d'analyse de données",
+        "overview": "Aperçu",
+        "userFlow": "Flux Utilisateur",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "healthsync": {
+        "name": "HealthSync",
+        "description": "Conception UI/UX d'application santé",
+        "overview": "Aperçu",
+        "userFlow": "Flux Utilisateur",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "travelmate": {
+        "name": "TravelMate",
+        "description": "Conception d'interface d'application de voyage",
+        "overview": "Aperçu",
+        "userFlow": "Flux Utilisateur",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "learnhubLms": {
+        "name": "LearnHub LMS",
+        "description": "Conception de système de gestion de l'apprentissage",
+        "overview": "Aperçu",
+        "userFlow": "Flux Utilisateur",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "designSystem": {
+        "name": "Système de Design",
+        "description": "Système de design complet et bibliothèque de composants",
+        "overview": "Aperçu",
+        "userFlow": "Flux Utilisateur",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      }
+    },
+    "graphicDesign": {
+      "socialCampaign2025": {
+        "name": "Campagne Social 2025",
+        "description": "Campagne visuelle de médias sociaux multi-plateforme",
+        "overview": "Aperçu",
+        "visualAssets": "Ressources Visuelles",
+        "brandKit": "Kit de Marque"
+      },
+      "eventVisualIdentity": {
+        "name": "Identité Visuelle d'Événement",
+        "description": "Identité de marque et identité visuelle complètes d'événement",
+        "overview": "Aperçu",
+        "visualAssets": "Ressources Visuelles",
+        "brandKit": "Kit de Marque"
+      }
+    },
+    "branding": {
+      "novaCoffee": {
+        "name": "Nova Coffee",
+        "description": "Refonte de marque de café moderne",
+        "overview": "Aperçu",
+        "guidelines": "Directives",
+        "colorPalette": "Palette de Couleurs",
+        "mockups": "Maquettes"
+      },
+      "greenleafMarket": {
+        "name": "GreenLeaf Market",
+        "description": "Identité de marque de marché biologique",
+        "overview": "Aperçu",
+        "guidelines": "Directives",
+        "colorPalette": "Palette de Couleurs",
+        "mockups": "Maquettes"
+      }
+    },
+    "commonLabels": {
+      "viewProject": "Afficher le Projet",
+      "downloadPDF": "Télécharger PDF",
+      "visitLive": "Visiter la Démo en Direct",
+      "viewRepository": "Afficher le Référentiel",
+      "caseStudy": "Étude de Cas",
+      "briefing": "Résumé",
+      "challenge": "Défi",
+      "solution": "Solution",
+      "results": "Résultats",
+      "designProcess": "Processus de Conception",
+      "keyFeatures": "Fonctionnalités Clés",
+      "technologies": "Technologies",
+      "timeline": "Chronologie",
+      "projectIdentity": "Identité du Projet",
+      "visitLiveDemo": "Visiter la Démo en Direct",
+      "coreObjective": "Objectif Principal",
+      "targetAudience": "Public Cible",
+      "currentPhase": "Phase Actuelle",
+      "systemModules": "Modules Système",
+      "architectureSnapshot": "Snapshot d'Architecture",
+      "engineeringHighlights": "Points Forts Techniques",
+      "overview": "Aperçu",
+      "userFlow": "Flux Utilisateur",
+      "wireframes": "Wireframes",
+      "prototype": "Prototype",
+      "visualAssets": "Ressources Visuelles",
+      "brandKit": "Kit de Marque",
+      "guidelines": "Directives",
+      "colorPalette": "Palette de Couleurs",
+      "mockups": "Maquettes"
+    }
+  },
+  "projectsSidebar": {
+    "projectHub": "Hub Projets",
+    "projectWorkspace": "Espace de travail projet",
+    "projectOverview": "Aperçu du Projet",
+    "overviewInsights": "Sélectionnez un projet pour voir ses détails",
+    "openCaseStudy": "Ouvrir l'Étude de Cas",
+    "versionHistory": "Historique des Versions",
+    "latest": "Dernier"
+  },
+  "skillsSidebar": {
+    "toolkitTitle": "Boîte à Outils",
+    "searchPlaceholder": "Rechercher des technologies ...",
+    "recentlyUsed": "Récemment utilisé",
+    "categories": "Catégories",
+    "levels": {
+      "Expert": "Expert",
+      "Advanced": "Avancé",
+      "Intermediate": "Intermédiaire",
+      "Beginner": "Débutant"
+    }
+  },
+  "experienceSidebar": {
+    "title": "Historique d'Activité",
+    "actions": "Actions",
+    "educationTimeline": "Chronologie de formation",
+    "internships": "Stages",
+    "achievements": "Réalisations"
+  },
+  "aboutSidebar": {
+    "title": "À propos",
+    "about": "à propos",
+    "profile": "profil",
+    "education": "éducation",
+    "career": "carrière",
+    "personal": "personnel"
+  },
+  "aiAssistantSidebar": {
+    "title": "Assistant IA",
+    "subtitle": "IA du Portfolio",
+    "newConversation": "Nouvelle conversation",
+    "conversations": "Conversations",
+    "aboutAhmed": "À propos d'Ahmed",
+    "projects": "Projets",
+    "technicalSkills": "Compétences techniques",
+    "conversationHistory": "Historique des conversations",
+    "prompt": "Posez-moi une question sur le travail, les projets ou les compétences d'Ahmed."
+  },
+  "visitorInfo": {
+    "title": "Infos du Visiteur",
+    "loading": "Chargement des infos visiteur…",
+    "ip": "Adresse IP",
+    "location": "Emplacement",
+    "device": "Appareil",
+    "deviceName": "Nom de l'appareil",
+    "os": "Système d'exploitation",
+    "browser": "Navigateur",
+    "screen": "Écran",
+    "language": "Langue",
+    "timezone": "Fuseau horaire",
+    "unavailable": "Indisponible"
+  },
+  "certificationsPage": {
+    "title": "Certifications",
+    "subtitle": "Certifications Professionnelles & Compétences Vérifiées",
+    "achievementsCount": "Réalisations",
+    "allCertificates": "Tous les certificats",
+    "byProvider": "Par organisme",
+    "bySkill": "Par compétence",
+    "searchPlaceholder": "Rechercher des certificats...",
+    "loadMore": "Charger plus de certificats",
+    "verifiedCertificate": "Certificat Vérifié",
+    "aboutHeading": "À propos de cette certification",
+    "skillsValidated": "Compétences validées",
+    "keyTopics": "Sujets clés",
+    "credentialInfo": "Informations sur le diplôme",
+    "verify": "Vérifier",
+    "relatedProjects": "Projets associés",
+    "viewAllProjects": "Voir tous les projets",
+    "issued": "Délivré le",
+    "expires": "Expire le"
   }
 }

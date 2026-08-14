@@ -23,6 +23,8 @@ import {
   FileCode2,
 } from 'lucide-react';
 
+import { useTranslation } from '@/hooks/use-translation';
+
 interface SkillItem {
   name: string;
   level: 'Expert' | 'Advanced' | 'Intermediate' | 'Beginner';
@@ -136,6 +138,7 @@ function FileCodeIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function SkillsSecondarySidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [openSection, setOpenSection] = useState<string | null>('frontend');
 
@@ -173,7 +176,7 @@ export function SkillsSecondarySidebar() {
       {/* Clickable Sidebar Header Title -> Navigates to /skills */}
       <Link href="/skills" className="group mb-0.5 inline-block">
         <h2 className="px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground transition-opacity group-hover:opacity-80">
-          Developer Toolkit
+          {t('skillsSidebar.toolkitTitle')}
         </h2>
       </Link>
 
@@ -183,7 +186,7 @@ export function SkillsSecondarySidebar() {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search technologies ..."
+          placeholder={t('skillsSidebar.searchPlaceholder')}
           className="w-full rounded-[4px] border border-border/60 bg-[var(--color-bg-secondary)] py-1 pl-2 pr-6 text-[8px] font-medium text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] focus:border-[var(--color-brand)] focus:outline-none"
         />
         <Search className="absolute right-1.5 top-1/2 size-2.5 -translate-y-1/2 text-[var(--color-text-tertiary)]" />
@@ -195,6 +198,7 @@ export function SkillsSecondarySidebar() {
           const categorySlug = slugify(category.title);
           const isOpen = searchQuery ? true : openSection === category.id;
           const isCategoryActive = pathname === `/skills/${categorySlug}`;
+          const categoryTitle = t(`skills.${category.id}`, category.title);
 
           return (
             <div
@@ -218,14 +222,14 @@ export function SkillsSecondarySidebar() {
                   )}
 
                   <span className="truncate">
-                    {category.title} ({category.skills.length})
+                    {categoryTitle} ({category.skills.length})
                   </span>
                 </Link>
 
                 <button
                   onClick={() => toggleSection(category.id)}
                   className="p-0.5 text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]"
-                  aria-label={`Toggle ${category.title}`}
+                  aria-label={`Toggle ${categoryTitle}`}
                 >
                   <ChevronDown
                     className={`size-3 shrink-0 transition-transform duration-200 ${
@@ -251,6 +255,7 @@ export function SkillsSecondarySidebar() {
                         const skillHref = `/skills/${categorySlug}/${skillSlug}`;
                         const isSkillActive = pathname === skillHref;
                         const ItemIcon = skill.icon || Code2;
+                        const levelLabel = t(`skillsSidebar.levels.${skill.level}`, skill.level);
 
                         return (
                           <Link
@@ -287,7 +292,7 @@ export function SkillsSecondarySidebar() {
                                   : 'bg-muted/80 text-muted-foreground border-border/40'
                               }`}
                             >
-                              {skill.level}
+                              {levelLabel}
                             </span>
                           </Link>
                         );
@@ -304,7 +309,7 @@ export function SkillsSecondarySidebar() {
       {/* Bottom Recently Used Card */}
       <div className="mt-auto flex flex-col gap-1 rounded-[6px] bg-blue-600 dark:bg-blue-700 p-2 text-white shadow-sm">
         <h3 className="font-inter text-[9px] font-bold tracking-tight">
-          Recently Used ({RECENTLY_USED.length})
+          {t('skillsSidebar.recentlyUsed')} ({RECENTLY_USED.length})
         </h3>
 
         <div className="flex flex-col gap-0.5 pt-0.5">

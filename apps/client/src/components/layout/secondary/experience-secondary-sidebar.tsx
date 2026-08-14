@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
+import { useTranslation } from '@/hooks/use-translation';
+
 interface ActivityItem {
   id: string;
   title: string;
@@ -75,6 +77,7 @@ const ACTIONS: ActionItem[] = [
 export function ExperienceSecondarySidebar() {
   const [openYears, setOpenYears] = useState<string[]>(['2026', '2025', '2024']);
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const toggleYear = (year: string) => {
     setOpenYears((prev) =>
@@ -82,12 +85,18 @@ export function ExperienceSecondarySidebar() {
     );
   };
 
+  const actions = [
+    { name: t('experienceSidebar.educationTimeline'), href: '/experience/education', icon: Clock },
+    { name: t('experienceSidebar.internships'), href: '/experience/internships', icon: Briefcase },
+    { name: t('experienceSidebar.achievements'), href: '/experience/achievements', icon: MapPin },
+  ];
+
   return (
     <aside className="flex h-full w-[180px] select-none flex-col gap-1 overflow-y-auto rounded-[8px] bg-background px-2 py-3 text-[var(--color-text-primary)] shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter">
       {/* Clickable Sidebar Header Title */}
       <Link href="/experience" className="group mb-0.5 inline-block">
         <h2 className="px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground transition-opacity group-hover:opacity-80">
-          Activity History
+          {t('experienceSidebar.title')}
         </h2>
       </Link>
 
@@ -167,12 +176,12 @@ export function ExperienceSecondarySidebar() {
         {/* Actions Banner Header */}
         <div className="flex items-center gap-1 bg-[var(--color-bg-tertiary)] px-2 py-1 text-[9px] font-bold text-[var(--color-text-primary)] border-b border-border/30">
           <Zap className="size-2.5 text-blue-500 fill-blue-500 shrink-0" />
-          <span>Actions</span>
+          <span>{t('experienceSidebar.actions')}</span>
         </div>
 
         {/* Actions List */}
         <div className="divide-y divide-border/20">
-          {ACTIONS.map((action) => {
+          {actions.map((action) => {
             const Icon = action.icon;
             const isActive = pathname === action.href;
 

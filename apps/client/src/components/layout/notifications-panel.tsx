@@ -153,6 +153,7 @@ export function NotificationsPanel() {
           <button
             type="button"
             onClick={markAllAsRead}
+            title={t('notificationsPanel.markAllRead', 'Mark all as read')}
             className="flex items-center gap-1 text-[8px] font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
             <CheckCheck className="size-3" />
@@ -201,7 +202,11 @@ export function NotificationsPanel() {
               <div key={groupTitle} className="space-y-1">
                 {/* Group Title Header */}
                 <div className="px-2 pt-1 text-[8px] font-semibold text-muted-foreground uppercase tracking-wider">
-                  {groupTitle}
+                  {groupTitle === 'Today'
+                    ? t('notificationsPanel.dateGroups.today', 'Today')
+                    : groupTitle === 'Yesterday'
+                      ? t('notificationsPanel.dateGroups.yesterday', 'Yesterday')
+                      : t('notificationsPanel.dateGroups.older', 'Older')}
                 </div>
 
                 {/* Items in Group */}

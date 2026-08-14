@@ -70,6 +70,22 @@
       "continuousLearning": "Continuous Learning",
       "continuousLearningDesc": "Always exploring new technologies and improving my skills"
     },
+    "stats": {
+      "experience": "Experience",
+      "experienceValue": "2+ Years",
+      "projectsCompleted": "Projects Completed",
+      "projectsValue": "15+",
+      "education": "Education",
+      "educationValue": "2 Degrees",
+      "linesOfCode": "Lines of code",
+      "linesValue": "50k+"
+    },
+    "headings": {
+      "whatToDo": "What to Do",
+      "myJourney": "My journey",
+      "techArsenal": "Tech arsenal",
+      "beyondCode": "Beyond Code"
+    },
     "interests": [
       "UI/UX design",
       "Graphic Design",
@@ -87,7 +103,29 @@
     "projects": "Projects",
     "completed": "Completed",
     "active": "Active",
-    "archived": "Archived"
+    "archived": "Archived",
+    "lastUpdate": "Last Update",
+    "todayTime": "Today 09:45 AM",
+    "recentActivity": "Recent Activity",
+    "consultifyUpdated": "CONSULTIFY repository updated",
+    "taskflowDocAdded": "TaskFlow documentation added",
+    "newProjectInit": "New project initialized",
+    "time15mAgo": "15m ago",
+    "time1hAgo": "1h ago",
+    "time3hAgo": "3h ago",
+    "viewAllActivity": "View All activity",
+    "featuredProjects": "Featured Projects",
+    "viewAllProjects": "View All Projects",
+    "viewProject": "View Project",
+    "quickActions": "Quick Actions -CONSULTIFY-",
+    "openFeatured": "Open Featured Project",
+    "visitLiveDemo": "Visit Live Demo",
+    "browseAllRepos": "Browse All Repositories",
+    "downloadResume": "Download Resume",
+    "fullStack": "Full Stack",
+    "enterprise": "Enterprise",
+    "live": "Live",
+    "inProgress": "In progress"
   },
   "skills": {
     "frontend": "Frontend",
@@ -436,5 +474,248 @@
       "messageMinLength": "Message must be at least 10 characters",
       "messageMaxLength": "Message must be less than 2000 characters"
     }
+  },
+  "projectsDetails": {
+    "categories": {
+      "featured": "Featured Projects",
+      "web-dev": "Web Development",
+      "ui-ux": "UI/UX Design",
+      "graphic-design": "Graphic Design",
+      "branding": "Branding"
+    },
+    "pageTypes": {
+      "projectDetails": "Project Details",
+      "gallery": "Gallery",
+      "techStack": "Tech Stack",
+      "demo": "Demo",
+      "repository": "Repository",
+      "overview": "Overview",
+      "userFlow": "User Flow",
+      "wireframes": "Wireframes",
+      "prototype": "Prototype",
+      "visualAssets": "Visual Assets",
+      "brandKit": "Brand Kit",
+      "guidelines": "Guidelines",
+      "colorPalette": "Color Palette",
+      "mockups": "Mockups"
+    },
+    "webDev": {
+      "portfolioWorkspace": {
+        "name": "Portfolio Workspace",
+        "description": "Modern portfolio platform v3.0",
+        "projectDetails": "Project Details",
+        "gallery": "Gallery",
+        "techStack": "Tech Stack",
+        "demo": "Demo",
+        "repository": "Repository"
+      },
+      "taskflowDashboard": {
+        "name": "TaskFlow Dashboard",
+        "description": "Advanced task management and team collaboration",
+        "projectDetails": "Project Details",
+        "gallery": "Gallery",
+        "techStack": "Tech Stack",
+        "demo": "Demo",
+        "repository": "Repository"
+      },
+      "shopsphere": {
+        "name": "ShopSphere",
+        "description": "E-commerce platform with advanced features",
+        "projectDetails": "Project Details",
+        "gallery": "Gallery",
+        "techStack": "Tech Stack",
+        "demo": "Demo",
+        "repository": "Repository"
+      }
+    },
+    "uiUx": {
+      "insightAnalytics": {
+        "name": "Insight Analytics",
+        "description": "Data analytics dashboard design",
+        "overview": "Overview",
+        "userFlow": "User Flow",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "healthsync": {
+        "name": "HealthSync",
+        "description": "Healthcare app UI/UX design",
+        "overview": "Overview",
+        "userFlow": "User Flow",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "travelmate": {
+        "name": "TravelMate",
+        "description": "Travel companion app interface design",
+        "overview": "Overview",
+        "userFlow": "User Flow",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "learnhubLms": {
+        "name": "LearnHub LMS",
+        "description": "Learning management system design",
+        "overview": "Overview",
+        "userFlow": "User Flow",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      },
+      "designSystem": {
+        "name": "Design System",
+        "description": "Comprehensive design system and component library",
+        "overview": "Overview",
+        "userFlow": "User Flow",
+        "wireframes": "Wireframes",
+        "prototype": "Prototype"
+      }
+    },
+    "graphicDesign": {
+      "socialCampaign2025": {
+        "name": "Social Campaign 2025",
+        "description": "Multi-platform social media visual campaign",
+        "overview": "Overview",
+        "visualAssets": "Visual Assets",
+        "brandKit": "Brand Kit"
+      },
+      "eventVisualIdentity": {
+        "name": "Event Visual Identity",
+        "description": "Complete event branding and visual identity",
+        "overview": "Overview",
+        "visualAssets": "Visual Assets",
+        "brandKit": "Brand Kit"
+      }
+    },
+    "branding": {
+      "novaCoffee": {
+        "name": "Nova Coffee",
+        "description": "Modern coffee brand rebrand",
+        "overview": "Overview",
+        "guidelines": "Guidelines",
+        "colorPalette": "Color Palette",
+        "mockups": "Mockups"
+      },
+      "greenleafMarket": {
+        "name": "GreenLeaf Market",
+        "description": "Organic market brand identity",
+        "overview": "Overview",
+        "guidelines": "Guidelines",
+        "colorPalette": "Color Palette",
+        "mockups": "Mockups"
+      }
+    },
+    "commonLabels": {
+      "viewProject": "View Project",
+      "downloadPDF": "Download PDF",
+      "visitLive": "Visit Live Demo",
+      "viewRepository": "View Repository",
+      "caseStudy": "Case Study",
+      "briefing": "Briefing",
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results",
+      "designProcess": "Design Process",
+      "keyFeatures": "Key Features",
+      "technologies": "Technologies",
+      "timeline": "Timeline",
+      "projectIdentity": "Project Identity",
+      "visitLiveDemo": "Visit Live Demo",
+      "coreObjective": "Core Objective",
+      "targetAudience": "Target Audience",
+      "currentPhase": "Current Phase",
+      "systemModules": "System Modules",
+      "architectureSnapshot": "Architecture Snapshot",
+      "engineeringHighlights": "Engineering Highlights",
+      "overview": "Overview",
+      "userFlow": "User Flow",
+      "wireframes": "Wireframes",
+      "prototype": "Prototype",
+      "visualAssets": "Visual Assets",
+      "brandKit": "Brand Kit",
+      "guidelines": "Guidelines",
+      "colorPalette": "Color Palette",
+      "mockups": "Mockups"
+    }
+  },
+  "projectsSidebar": {
+    "projectHub": "Project Hub",
+    "projectWorkspace": "Project Workspace",
+    "projectOverview": "Project Overview",
+    "overviewInsights": "Select a project to inspect its details",
+    "openCaseStudy": "Open Case Study",
+    "versionHistory": "Version History",
+    "latest": "Latest"
+  },
+  "skillsSidebar": {
+    "toolkitTitle": "Developer Toolkit",
+    "searchPlaceholder": "Search technologies ...",
+    "recentlyUsed": "Recently Used",
+    "categories": "Categories",
+    "levels": {
+      "Expert": "Expert",
+      "Advanced": "Advanced",
+      "Intermediate": "Intermediate",
+      "Beginner": "Beginner"
+    }
+  },
+  "experienceSidebar": {
+    "title": "Activity History",
+    "actions": "Actions",
+    "educationTimeline": "Education Timeline",
+    "internships": "Internships",
+    "achievements": "Achievements"
+  },
+  "aboutSidebar": {
+    "title": "About",
+    "about": "about",
+    "profile": "profile",
+    "education": "education",
+    "career": "career",
+    "personal": "personal"
+  },
+  "aiAssistantSidebar": {
+    "title": "AI Assistant",
+    "subtitle": "Portfolio AI",
+    "newConversation": "New Conversation",
+    "conversations": "Conversations",
+    "aboutAhmed": "About Ahmed",
+    "projects": "Projects",
+    "technicalSkills": "Technical Skills",
+    "conversationHistory": "Conversation History",
+    "prompt": "Ask me anything about Ahmed's work, projects, skills or experience."
+  },
+  "visitorInfo": {
+    "title": "Visitor Info",
+    "loading": "Loading visitor info…",
+    "ip": "IP Address",
+    "location": "Location",
+    "device": "Device",
+    "deviceName": "Device Name",
+    "os": "OS",
+    "browser": "Browser",
+    "screen": "Screen",
+    "language": "Language",
+    "timezone": "Timezone",
+    "unavailable": "Unavailable"
+  },
+  "certificationsPage": {
+    "title": "Certifications",
+    "subtitle": "Professional Certifications & Verified Skills",
+    "achievementsCount": "Achievements",
+    "allCertificates": "All Certificates",
+    "byProvider": "By Provider",
+    "bySkill": "By Skill",
+    "searchPlaceholder": "Search certificates...",
+    "loadMore": "Load More Certificates",
+    "verifiedCertificate": "Verified Certificate",
+    "aboutHeading": "About This Certification",
+    "skillsValidated": "Skills Validated",
+    "keyTopics": "Key Topics",
+    "credentialInfo": "Credential Information",
+    "verify": "Verify",
+    "relatedProjects": "Related Projects",
+    "viewAllProjects": "View all projects",
+    "issued": "Issued",
+    "expires": "Expires"
   }
 }

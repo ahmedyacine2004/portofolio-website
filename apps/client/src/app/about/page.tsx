@@ -106,17 +106,23 @@ export default function AboutPage() {
 
   const interests = useMemo(
     () =>
-      tArray('about.interests').map((label: string) => {
-        // Map interests to their corresponding icons
+      tArray('about.interests').map((label: string, index: number) => {
+        const iconList = [Palette, PenTool, Camera, Gamepad2, BookOpen, Laptop];
         const iconMap: { [key: string]: typeof Palette } = {
           'UI/UX design': Palette,
+          'Design UI/UX': Palette,
           'Graphic Design': PenTool,
+          'Design graphique': PenTool,
           Photography: Camera,
+          Photographie: Camera,
           Gaming: Gamepad2,
+          'Jeux vidéo': Gamepad2,
           Reading: BookOpen,
+          Lecture: BookOpen,
           'Tech Enthusiast': Laptop,
+          'Passionné de technologie': Laptop,
         };
-        return { label, icon: iconMap[label] || Palette };
+        return { label, icon: iconMap[label] || iconList[index] || Palette };
       }),
     [tArray],
   );
@@ -164,18 +170,33 @@ export default function AboutPage() {
 
         {/* Stats */}
         <div className="flex rounded sm min-h-0 flex-col gap-1 px-2 py-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-          <StatCard icon={UserRound} label="Experience" value="2+ Years" color="bg-sky-500" />
+          <StatCard
+            icon={UserRound}
+            label={t('about.stats.experience')}
+            value={t('about.stats.experienceValue')}
+            color="bg-sky-500"
+          />
 
           <StatCard
             icon={BriefcaseBusiness}
-            label="Projects Completed"
-            value="15+"
+            label={t('about.stats.projectsCompleted')}
+            value={t('about.stats.projectsValue')}
             color="bg-violet-600"
           />
 
-          <StatCard icon={BookOpen} label="Experience" value="2+ Years" color="bg-sky-500" />
+          <StatCard
+            icon={BookOpen}
+            label={t('about.stats.education')}
+            value={t('about.stats.educationValue')}
+            color="bg-sky-500"
+          />
 
-          <StatCard icon={Code2} label="Lines of code" value="50k+" color="bg-violet-600" />
+          <StatCard
+            icon={Code2}
+            label={t('about.stats.linesOfCode')}
+            value={t('about.stats.linesValue')}
+            color="bg-violet-600"
+          />
         </div>
       </section>
 
@@ -184,7 +205,7 @@ export default function AboutPage() {
         {/* What to Do */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
-            What to Do
+            {t('about.headings.whatToDo')}
           </h2>
 
           <div className="flex flex-col gap-1.5">
@@ -220,7 +241,7 @@ export default function AboutPage() {
         {/* My Journey */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <h2 className="font-inter mb-3 text-[14px] font-bold leading-none tracking-[-0.02em]">
-            My journey
+            {t('about.headings.myJourney')}
           </h2>
 
           <div className="relative">
@@ -249,7 +270,7 @@ export default function AboutPage() {
           {/* Tech Arsenal */}
           <div className="rounded-sm bg-background p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
             <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
-              Tech arsenal
+              {t('about.headings.techArsenal')}
             </h2>
 
             <div className="grid grid-cols-5 gap-1">
@@ -274,7 +295,7 @@ export default function AboutPage() {
           {/* Beyond Code */}
           <div className="min-h-0 flex-1 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
             <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
-              Beyond Code
+              {t('about.headings.beyondCode')}
             </h2>
 
             <div className="flex flex-wrap gap-1.5">

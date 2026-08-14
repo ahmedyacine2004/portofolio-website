@@ -13,7 +13,15 @@ import {
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { useVisitorInfoStore } from '@/stores/visitor-info.store';
+
+type IPData = {
+  ip?: string;
+  city?: string;
+  country_name?: string;
+  timezone?: string;
+};
 
 type VisitorInfo = {
   ip: string;
@@ -101,6 +109,7 @@ function formatScreen(): string {
 }
 
 export function VisitorInfoPanel() {
+  const { t } = useTranslation();
   const isOpen = useVisitorInfoStore((s) => s.isOpen);
   const close = useVisitorInfoStore((s) => s.close);
   const [isLoading, setIsLoading] = useState(false);
@@ -113,25 +122,36 @@ export function VisitorInfoPanel() {
       setIsLoading(true);
 
       try {
-        const locationResponse = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+        const response = await fetch('https://ipapi.co/json/');
+        if (!response.ok) throw new Error('Failed to fetch visitor data');
 
-        let locationText = 'Unavailable';
-        if (locationResponse.ok) {
-          const place = (await locationResponse.json()) as {
-            ip?: string;
-            city?: string;
-            country_name?: string;
-            country?: string;
-          };
+        const data = (await response.json()) as IPData;
 
-          locationText = [place.city, place.country_name || place.country]
-            .filter(Boolean)
-            .join(', ');
-          if (!locationText) locationText = 'Unavailable';
+        setVisitorInfo({
+          ip: data.ip || 'Unavailable',
+          location:
+            data.city && data.country_name
+              ? `${data.city}, ${data.country_name}`
+              : data.country_name || 'Unavailable',
+          deviceType: detectDeviceType(),
+          deviceName: getDeviceName(),
+          os: detectOS(),
+          browser: detectBrowser(),
+          screen: formatScreen(),
+          language: navigator.language || 'Unavailable',
+          timezone:
+            data.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unavailable',
+        });
+      } catch {
+        try {
+          const fallbackResponse = await fetch('https://api.ipify.org?format=json');
+          if (!fallbackResponse.ok) throw new Error('Failed fallback IP request');
+
+          const fallbackData = (await fallbackResponse.json()) as { ip?: string };
 
           setVisitorInfo({
-            ip: place.ip ?? 'Unavailable',
-            location: locationText,
+            ip: fallbackData.ip || 'Unavailable',
+            location: 'Unavailable',
             deviceType: detectDeviceType(),
             deviceName: getDeviceName(),
             os: detectOS(),
@@ -140,7 +160,7 @@ export function VisitorInfoPanel() {
             language: navigator.language || 'Unavailable',
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unavailable',
           });
-        } else {
+        } catch {
           setVisitorInfo({
             ip: 'Unavailable',
             location: 'Unavailable',
@@ -153,18 +173,6 @@ export function VisitorInfoPanel() {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unavailable',
           });
         }
-      } catch {
-        setVisitorInfo({
-          ip: 'Unavailable',
-          location: 'Unavailable',
-          deviceType: detectDeviceType(),
-          deviceName: getDeviceName(),
-          os: detectOS(),
-          browser: detectBrowser(),
-          screen: formatScreen(),
-          language: navigator.language || 'Unavailable',
-          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unavailable',
-        });
       } finally {
         setIsLoading(false);
       }
@@ -175,17 +183,17 @@ export function VisitorInfoPanel() {
 
   const infoRows = useMemo(
     () => [
-      { label: 'IP Address', value: visitorInfo.ip, icon: Globe },
-      { label: 'Location', value: visitorInfo.location, icon: MapPin },
-      { label: 'Device', value: visitorInfo.deviceType, icon: Monitor },
-      { label: 'Device Name', value: visitorInfo.deviceName, icon: Cpu },
-      { label: 'OS', value: visitorInfo.os, icon: UserCircle },
-      { label: 'Browser', value: visitorInfo.browser, icon: MonitorSmartphone },
-      { label: 'Screen', value: visitorInfo.screen, icon: MousePointer2 },
-      { label: 'Language', value: visitorInfo.language, icon: Sparkles },
-      { label: 'Timezone', value: visitorInfo.timezone, icon: Info },
+      { label: t('visitorInfo.ip'), value: visitorInfo.ip, icon: Globe },
+      { label: t('visitorInfo.location'), value: visitorInfo.location, icon: MapPin },
+      { label: t('visitorInfo.device'), value: visitorInfo.deviceType, icon: Monitor },
+      { label: t('visitorInfo.deviceName'), value: visitorInfo.deviceName, icon: Cpu },
+      { label: t('visitorInfo.os'), value: visitorInfo.os, icon: UserCircle },
+      { label: t('visitorInfo.browser'), value: visitorInfo.browser, icon: MonitorSmartphone },
+      { label: t('visitorInfo.screen'), value: visitorInfo.screen, icon: MousePointer2 },
+      { label: t('visitorInfo.language'), value: visitorInfo.language, icon: Sparkles },
+      { label: t('visitorInfo.timezone'), value: visitorInfo.timezone, icon: Info },
     ],
-    [visitorInfo],
+    [visitorInfo, t],
   );
 
   return (
@@ -201,7 +209,9 @@ export function VisitorInfoPanel() {
           <div className="flex items-center justify-between border-b border-border/60 bg-muted/40 px-3.5 py-2.5">
             <div className="flex items-center gap-2">
               <UserCircle className="size-3.5 text-primary" />
-              <span className="text-[11px] font-bold text-foreground">Visitor Info</span>
+              <span className="text-[11px] font-bold text-foreground">
+                {t('visitorInfo.title')}
+              </span>
             </div>
 
             <button
@@ -217,7 +227,7 @@ export function VisitorInfoPanel() {
           <div className="max-h-[420px] overflow-y-auto p-3">
             {isLoading ? (
               <div className="flex items-center justify-center py-8 text-[10px] text-muted-foreground">
-                Loading visitor info…
+                {t('visitorInfo.loading')}
               </div>
             ) : (
               <div className="space-y-2.5">

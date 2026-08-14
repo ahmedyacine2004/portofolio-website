@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 
+import { useLanguageStore } from '@/stores/language.store';
+
 import { ImageViewerModal } from '../about/image-viewer-modal';
 import { CommandPaletteModal } from '../command-palette/command-palette-modal';
 import { LoadingPage } from '../loading/loading-page';
@@ -24,6 +26,11 @@ type AppShellProps = {
 export function AppShell({ children }: AppShellProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
+  const hydrateLocale = useLanguageStore((state) => state.hydrateLocale);
+
+  useEffect(() => {
+    hydrateLocale();
+  }, [hydrateLocale]);
 
   useEffect(() => {
     // Timer for initial website load (4.5s)
