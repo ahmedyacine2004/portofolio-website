@@ -1,13 +1,28 @@
 'use client';
 
 import { ContactScene } from '@/components/3d/ContactScene';
+import { env } from '@/lib/env';
+import { submitContactForm } from '@/services/web3forms.service';
 import { motion } from 'framer-motion';
-import { ChevronRight, Mail, MessageSquare, PenTool, Send, User } from 'lucide-react';
+import {
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Mail,
+  MessageSquare,
+  PenTool,
+  Send,
+  User,
+  X,
+} from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
+import FacebookIcon from '@/assets/icons/facebook.svg';
 import GithubIcon from '@/assets/icons/GithubIcon.svg';
+import InstagramIcon from '@/assets/icons/instagram.svg';
 import LinkedinIcon from '@/assets/icons/LinkedinIcon.svg';
+import TiktokIcon from '@/assets/icons/Tiktok.svg';
 
 const CONTACT_METHODS = [
   {
@@ -15,25 +30,50 @@ const CONTACT_METHODS = [
     label: 'Email',
     value: 'ahmedyassine.dev@gmail.com',
     icon: Mail,
-    href: 'mailto:ahmedyassine.dev@gmail.com',
+    href: 'mailto:ahmedyacineabbane@gmail.com',
   },
   {
     id: 'linkedin',
     label: 'Linkedin',
-    value: 'linkedin.com/in/ahmedyassine',
+    value: 'linkedin.com/in/abbane-ahmed-yassine',
     icon: LinkedinIcon,
-    href: 'https://linkedin.com/in/ahmedyassine',
+    href: 'https://www.linkedin.com/in/abbane-ahmed-yassine/',
   },
   {
     id: 'github',
     label: 'GitHub',
-    value: 'github.com/ahmedyassine',
+    value: 'github.com/ahmedyacine2004',
     icon: GithubIcon,
-    href: 'https://github.com/ahmedyassine',
+    href: 'https://github.com/ahmedyacine2004',
+  },
+  {
+    id: 'facebook',
+    label: 'Facebook',
+    value: 'facebook.com/ahmedyassineabbane',
+    icon: FacebookIcon,
+    href: 'https://facebook.com/ahmedyassineabbane',
+  },
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    value: 'instagram.com/ahmedyassine2004',
+    icon: InstagramIcon,
+    href: 'https://instagram.com/ahmedyassine2004',
+  },
+  {
+    id: 'tiktok',
+    label: 'TikTok',
+    value: 'tiktok.com/@ahmedyassine2004',
+    icon: TiktokIcon,
+    href: 'https://tiktok.com/@ahmedyassine2004',
   },
 ];
 
 export default function ContactPage() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [slideOffset, setSlideOffset] = useState(0);
+  const [maxSlideOffset, setMaxSlideOffset] = useState(0);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -41,23 +81,163 @@ export default function ContactPage() {
     message: '',
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const updateMaxOffset = () => {
+      const track = carouselRef.current;
+      if (!track) return;
+
+      const cards = Array.from(track.querySelectorAll<HTMLElement>('[data-social-card]'));
+      if (cards.length === 0) return;
+
+      const gap = 8;
+      const totalWidth =
+        cards.reduce((sum, card) => sum + card.offsetWidth, 0) + gap * (cards.length - 1);
+      const visibleWidth = track.parentElement?.clientWidth ?? totalWidth;
+      setMaxSlideOffset(Math.max(0, totalWidth - visibleWidth + 12));
+    };
+
+    updateMaxOffset();
+    window.addEventListener('resize', updateMaxOffset);
+
+    return () => window.removeEventListener('resize', updateMaxOffset);
+  }, []);
+
+  const scrollSocialCarousel = useCallback(
+    (direction: 'prev' | 'next') => {
+      const track = carouselRef.current;
+      if (!track) return;
+
+      const firstCard = track.querySelector<HTMLElement>('[data-social-card]');
+      if (!firstCard) return;
+
+      const step = firstCard.offsetWidth + 8;
+      setSlideOffset((prevOffset) => {
+        const nextOffset = direction === 'next' ? prevOffset + step : prevOffset - step;
+        return Math.min(Math.max(nextOffset, 0), maxSlideOffset);
+      });
+    },
+    [maxSlideOffset],
+  );
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[name]) {
+      setValidationErrors((prev) => {
+        const updated = { ...prev };
+        delete updated[name];
+        return updated;
+      });
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form Submitted:', formData);
-  };
+  const validateForm = useCallback((): boolean => {
+    const errors: Record<string, string> = {};
+
+    // Validate name
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters';
+    } else if (formData.name.length > 100) {
+      errors.name = 'Name must be less than 100 characters';
+    }
+
+    // Validate email
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+    }
+
+    // Validate subject
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+    } else if (formData.subject.trim().length < 3) {
+      errors.subject = 'Subject must be at least 3 characters';
+    } else if (formData.subject.length > 150) {
+      errors.subject = 'Subject must be less than 150 characters';
+    }
+
+    // Validate message
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+    } else if (formData.message.length > 2000) {
+      errors.message = 'Message must be less than 2000 characters';
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  }, [formData]);
+
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+
+      // Clear previous messages
+      setSuccessMessage(null);
+      setErrorMessage(null);
+
+      // Validate form
+      if (!validateForm()) {
+        setErrorMessage('Please fix the errors above');
+        return;
+      }
+
+      // Prevent duplicate submissions
+      if (isLoading) {
+        return;
+      }
+
+      setIsLoading(true);
+
+      try {
+        await submitContactForm(formData, env.web3FormsAccessKey, 'ahmedyacineabbane@gmail.com');
+
+        // Success
+        setSuccessMessage('Message sent successfully! I will get back to you soon.');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+        setValidationErrors({});
+
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 5000);
+      } catch (error) {
+        const errorMsg =
+          error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+        setErrorMessage(errorMsg);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [formData, isLoading, validateForm],
+  );
 
   return (
     /* MAIN CONTAINER */
-    <div className="font-inter flex h-full w-full bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] p-3 sm:p-5 select-none rounded-[8px] shadow-md shadow-gray-300 dark:shadow-[0_0_10px_rgba(255,255,255,0.08)]">
+    <div className="flex h-full w-full bg-background text-foreground p-2 select-none rounded-sm shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* INNER CARD */}
-      <div className="font-inter flex h-full w-full gap-5 rounded-[8px] bg-[var(--color-bg-secondary)] p-4 sm:p-6 shadow-sm shadow-gray-300 dark:shadow-[0_0_8px_rgba(255,255,255,0.08)] overflow-hidden">
+      <div className="flex h-full w-full gap-2 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
         {/* ================= LEFT COLUMN: CONTACT FORM (SCROLLABLE) ================= */}
         <motion.div
-          className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-y-auto p-2 space-y-4 scrollbar-none"
+          className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-y-auto p-3 space-y-4 scrollbar-none"
           initial="hidden"
           animate="visible"
           variants={{
@@ -76,7 +256,7 @@ export default function ContactPage() {
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0 },
               }}
-              className="font-inter text-xs font-bold text-blue-600 dark:text-blue-400 tracking-tight"
+              className="font-inter text-[8px] font-semibold text-primary tracking-tight"
             >
               &#47;&#47; Let&#47;s build something amazing together
             </motion.p>
@@ -88,7 +268,7 @@ export default function ContactPage() {
               }}
               className="font-inter text-3xl sm:text-4xl font-black tracking-tight text-foreground uppercase"
             >
-              CONTACT <span className="font-inter text-blue-600 dark:text-blue-500">ME</span>
+              CONTACT <span className="font-inter text-primary">ME</span>
             </motion.h1>
 
             <motion.p
@@ -103,58 +283,82 @@ export default function ContactPage() {
             </motion.p>
           </section>
 
-          {/* Social Contact Cards */}
+          {/* Social Contact Cards - Carousel */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="shrink-0 flex items-center gap-3 overflow-x-auto p-2 scrollbar-none"
+            className="shrink-0"
           >
-            {CONTACT_METHODS.map((item) => {
-              const isStaticSvg = typeof item.icon === 'object' && 'src' in item.icon;
-              const Icon = item.icon;
+            <div className="relative overflow-visible px-3 py-1">
+              <button
+                type="button"
+                onClick={() => scrollSocialCarousel('prev')}
+                aria-label="Previous social links"
+                className="absolute left-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm border border-border bg-background text-primary shadow-gray-300 transition-transform hover:scale-[1.02] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+              >
+                <ChevronLeft className="size-4" />
+              </button>
 
-              return (
-                <a
-                  key={item.id}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-1 min-w-[160px] h-[60px] items-center gap-3 rounded-[8px] bg-[var(--color-bg-primary)] p-2.5 shadow-sm shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.08)] hover:shadow-md hover:shadow-gray-300 dark:hover:shadow-[0_0_10px_rgba(255,255,255,0.15)] transition-all group shrink-0"
+              <button
+                type="button"
+                onClick={() => scrollSocialCarousel('next')}
+                aria-label="Next social links"
+                className="absolute right-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm border border-border bg-background text-primary shadow-gray-300 transition-transform hover:scale-[1.02] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+              >
+                <ChevronRight className="size-4" />
+              </button>
+
+              <div className="pl-10 pr-10">
+                <div
+                  ref={carouselRef}
+                  className="flex items-center gap-2 transition-transform duration-300 ease-out"
+                  style={{ transform: `translateX(-${slideOffset}px)` }}
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-[8px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform">
-                    {isStaticSvg ? (
-                      <Image
-                        src={item.icon}
-                        alt={item.label}
-                        width={16}
-                        height={16}
-                        className="size-4"
-                      />
-                    ) : (
-                      <Icon className="size-4" />
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="font-inter text-xs font-bold text-foreground leading-tight">
-                      {item.label}
-                    </h2>
-                    <p className="font-inter text-[10px] text-muted-foreground truncate leading-tight mt-0.5">
-                      {item.value}
-                    </p>
-                  </div>
-                </a>
-              );
-            })}
+                  {CONTACT_METHODS.map((item) => {
+                    const isStaticSvg = typeof item.icon === 'object' && 'src' in item.icon;
+                    const Icon = item.icon;
 
-            {/* Scroll/More Button */}
-            <button
-              aria-label="More contact options"
-              className="flex size-[60px] shrink-0 items-center justify-center rounded-[8px] bg-[var(--color-bg-primary)] text-foreground shadow-sm shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.08)] hover:bg-muted transition-colors"
-            >
-              <ChevronRight className="size-5 text-muted-foreground" />
-            </button>
+                    return (
+                      <a
+                        key={item.id}
+                        data-social-card
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex h-[60px] min-w-[160px] shrink-0 items-center gap-3 rounded-sm bg-background p-2.5 shadow-gray-300 transition-all group hover:shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] dark:hover:shadow-[0_0_8px_rgba(255,255,255,0.025)]"
+                      >
+                        <div
+                          className="flex size-9 shrink-0 items-center justify-center rounded-sm bg-white text-primary shadow-gray-300 transition-transform group-hover:scale-105 dark:bg-[#0f172a] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+                          style={{ backgroundColor: '#ffffff' }}
+                        >
+                          {isStaticSvg ? (
+                            <Image
+                              src={item.icon}
+                              alt={item.label}
+                              width={16}
+                              height={16}
+                              className="size-4"
+                            />
+                          ) : (
+                            <Icon className="size-4" />
+                          )}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h2 className="font-inter text-xs font-bold text-foreground leading-tight">
+                            {item.label}
+                          </h2>
+                          <p className="font-inter mt-0.5 text-[10px] leading-tight text-muted-foreground truncate">
+                            {item.value}
+                          </p>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {/* Form Container */}
@@ -164,17 +368,43 @@ export default function ContactPage() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="flex flex-1 flex-col justify-between rounded-[8px] bg-[var(--color-bg-primary)] p-4 sm:p-5 shadow-sm shadow-gray-300 dark:shadow-[0_0_8px_rgba(255,255,255,0.08)] space-y-3"
+            className="flex flex-1 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-3"
           >
             <h2 className="font-inter text-xs font-bold text-foreground tracking-tight uppercase">
               Send me a message
             </h2>
 
+            {/* Success Message */}
+            {successMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="flex items-center gap-2.5 rounded-sm bg-green-500/10 border border-green-500/30 p-3 text-xs text-green-700 dark:text-green-400"
+              >
+                <Check className="size-4 flex-shrink-0" />
+                <span>{successMessage}</span>
+              </motion.div>
+            )}
+
+            {/* Error Message */}
+            {errorMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="flex items-center gap-2.5 rounded-sm bg-red-500/10 border border-red-500/30 p-3 text-xs text-red-700 dark:text-red-400"
+              >
+                <X className="size-4 flex-shrink-0" />
+                <span>{errorMessage}</span>
+              </motion.div>
+            )}
+
             <div className="space-y-3 flex-1 flex flex-col justify-center">
               {/* Row 1: Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="relative flex items-center">
-                  <User className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
+                  <User className="absolute left-3.5 size-4 text-primary pointer-events-none" />
                   <input
                     type="text"
                     name="name"
@@ -182,12 +412,13 @@ export default function ContactPage() {
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="font-inter w-full rounded-[8px] bg-[var(--color-bg-secondary)] pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.08)] transition-all"
+                    disabled={isLoading}
+                    className="font-inter w-full rounded-sm bg-background pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.008)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
                 <div className="relative flex items-center">
-                  <Mail className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
+                  <Mail className="absolute left-3.5 size-4 text-primary pointer-events-none" />
                   <input
                     type="email"
                     name="email"
@@ -195,14 +426,31 @@ export default function ContactPage() {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="font-inter w-full rounded-[8px] bg-[var(--color-bg-secondary)] pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.08)] transition-all"
+                    disabled={isLoading}
+                    className="font-inter w-full rounded-sm bg-background pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.008)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>
 
+              {/* Validation Errors - Row 1 */}
+              {(validationErrors.name || validationErrors.email) && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {validationErrors.name && (
+                    <p className="text-xs text-red-600 dark:text-red-400">
+                      {validationErrors.name}
+                    </p>
+                  )}
+                  {validationErrors.email && (
+                    <p className="text-xs text-red-600 dark:text-red-400">
+                      {validationErrors.email}
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* Row 2: Subject */}
               <div className="relative flex items-center">
-                <PenTool className="absolute left-3.5 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
+                <PenTool className="absolute left-3.5 size-4 text-primary pointer-events-none" />
                 <input
                   type="text"
                   name="subject"
@@ -210,13 +458,19 @@ export default function ContactPage() {
                   placeholder="Subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="font-inter w-full rounded-[8px] bg-[var(--color-bg-secondary)] pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.08)] transition-all"
+                  disabled={isLoading}
+                  className="font-inter w-full rounded-sm bg-background pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.008)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
 
+              {/* Validation Error - Subject */}
+              {validationErrors.subject && (
+                <p className="text-xs text-red-600 dark:text-red-400">{validationErrors.subject}</p>
+              )}
+
               {/* Row 3: Message Textarea */}
               <div className="relative flex-1 min-h-[100px]">
-                <MessageSquare className="absolute left-3.5 top-3 size-4 text-blue-600 dark:text-blue-400 pointer-events-none" />
+                <MessageSquare className="absolute left-3.5 top-3 size-4 text-primary pointer-events-none" />
                 <textarea
                   name="message"
                   required
@@ -224,18 +478,34 @@ export default function ContactPage() {
                   placeholder="Your Message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="font-inter w-full h-full resize-none rounded-[8px] bg-[var(--color-bg-secondary)] pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/30 shadow-xs shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.08)] transition-all"
+                  disabled={isLoading}
+                  className="font-inter w-full h-full resize-none rounded-sm bg-background pl-10 pr-4 py-2.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.008)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
+
+              {/* Validation Error - Message */}
+              {validationErrors.message && (
+                <p className="text-xs text-red-600 dark:text-red-400">{validationErrors.message}</p>
+              )}
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="font-inter w-full rounded-[8px] bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white py-3 text-xs font-bold flex items-center justify-center gap-2 shadow-sm shadow-blue-500/20 transition-all cursor-pointer"
+              disabled={isLoading}
+              className="font-inter w-full rounded-sm bg-primary hover:bg-primary/90 active:scale-[0.99] text-primary-foreground py-3 text-xs font-bold flex items-center justify-center gap-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] transition-all cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-primary"
             >
-              <Send className="size-4" />
-              <span className="font-inter">Send Message</span>
+              {isLoading ? (
+                <>
+                  <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  <span className="font-inter">Sending...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="size-4" />
+                  <span className="font-inter">Send Message</span>
+                </>
+              )}
             </button>
           </motion.form>
         </motion.div>
@@ -245,7 +515,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="hidden lg:flex h-full w-[42%] flex-col overflow-hidden rounded-[8px] bg-[var(--color-bg-primary)] shadow-sm shadow-gray-300 dark:shadow-[0_0_8px_rgba(255,255,255,0.08)]"
+          className="hidden lg:flex h-full flex-1 flex-col overflow-hidden rounded-sm bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
         >
           <ContactScene />
         </motion.div>
