@@ -1,8 +1,10 @@
 import { useDownload } from '@/hooks/use-download';
+import { useTranslation } from '@/hooks/use-translation';
 import { BriefcaseBusiness, Code2, FileText, Sparkles, Zap } from 'lucide-react';
 import Link from 'next/link';
 
 export function HomeCards() {
+  const { t } = useTranslation();
   const { download } = useDownload();
 
   const handleDownloadResume = () => {
@@ -25,20 +27,22 @@ export function HomeCards() {
             <Zap className="size-3" strokeWidth={2} />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">Quick Actions</h2>
+          <h2 className="font-sans text-[10px] font-semibold leading-none">
+            {t('homeCards.quickActions')}
+          </h2>
         </div>
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
-          <Link href="/about">About Me</Link>
+          <Link href="/about">{t('homeCards.aboutMe')}</Link>
           <button
             onClick={handleDownloadResume}
             className="text-left hover:text-primary transition-colors"
           >
-            Download Resume
+            {t('homeCards.downloadResume')}
           </button>
-          <Link href="/projects">View Projects</Link>
-          <Link href="/contact">Contact Me</Link>
-          <Link href="/ai-assistant">Ask AI Assistant</Link>
+          <Link href="/projects">{t('homeCards.viewProjects')}</Link>
+          <Link href="/contact">{t('homeCards.contactMe')}</Link>
+          <Link href="/ai-assistant">{t('homeCards.askAI')}</Link>
         </div>
       </div>
 
@@ -49,18 +53,20 @@ export function HomeCards() {
             <Sparkles className="size-3" strokeWidth={2} />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">Featured Projects</h2>
+          <h2 className="font-sans text-[10px] font-semibold leading-none">
+            {t('homeCards.featuredProjects')}
+          </h2>
         </div>
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
-          <span>CONSULTIFY</span>
-          <span>Portfolio Website</span>
-          <span>Brand Identity</span>
-          <span>Mobile UI Kit</span>
+          <span>{t('homeCards.consultify')}</span>
+          <span>{t('homeCards.portfolio')}</span>
+          <span>{t('homeCards.brandIdentity')}</span>
+          <span>{t('homeCards.mobileUIKit')}</span>
         </div>
 
         <Link href="/projects" className="mt-1.5 block text-[8px] font-semibold text-primary">
-          View All Projects
+          {t('homeCards.viewAllProjects')}
         </Link>
       </div>
 
@@ -71,7 +77,9 @@ export function HomeCards() {
             <Code2 className="size-3" strokeWidth={2} />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">Skills</h2>
+          <h2 className="font-sans text-[10px] font-semibold leading-none">
+            {t('homeCards.skills')}
+          </h2>
         </div>
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
@@ -85,7 +93,7 @@ export function HomeCards() {
         </div>
 
         <Link href="/skills" className="mt-1.5 block text-[8px] font-semibold text-primary">
-          View All Skills
+          {t('homeCards.viewAllSkills')}
         </Link>
       </div>
 
@@ -96,15 +104,17 @@ export function HomeCards() {
             <BriefcaseBusiness className="size-3" strokeWidth={2} />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">Current Status</h2>
+          <h2 className="font-sans text-[10px] font-semibold leading-none">
+            {t('homeCards.currentStatus')}
+          </h2>
         </div>
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
-          <span>Available for Work</span>
-          <span>Tebessa, Tebessa, Algeria</span>
-          <span>ESTIN Student</span>
-          <span>Building CONSULTIFY</span>
-          <span>Coffee Powered</span>
+          <span>{t('homeCards.availableForWork')}</span>
+          <span>{t('homeCards.location')}</span>
+          <span>{t('homeCards.estinStudent')}</span>
+          <span>{t('homeCards.buildingConsultify')}</span>
+          <span>{t('homeCards.coffeePowered')}</span>
         </div>
       </div>
 
@@ -115,14 +125,16 @@ export function HomeCards() {
             <FileText className="size-3" strokeWidth={2} />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">Latest Activity</h2>
+          <h2 className="font-sans text-[10px] font-semibold leading-none">
+            {t('homeCards.latestActivity')}
+          </h2>
         </div>
 
         <div className="flex flex-col gap-1 text-[8px] leading-tight">
-          <span>New Project Published</span>
-          <span>Portfolio Updated</span>
-          <span>Resume Updated</span>
-          <span>Open for Freelance Opportunities</span>
+          <span>{t('homeCards.newProjectPublished')}</span>
+          <span>{t('homeCards.portfolioUpdated')}</span>
+          <span>{t('homeCards.resumeUpdated')}</span>
+          <span>{t('homeCards.openForFreelance')}</span>
         </div>
       </div>
     </div>

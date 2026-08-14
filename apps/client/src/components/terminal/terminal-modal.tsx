@@ -17,6 +17,7 @@ import {
   SquareTerminal,
 } from 'lucide-react';
 import { useTerminalStore } from '@/stores/terminal.store';
+import { useTranslation } from '@/hooks/use-translation';
 
 /*
 |--------------------------------------------------------------------------
@@ -37,50 +38,49 @@ interface TerminalLine {
 |--------------------------------------------------------------------------
 */
 
-const COMMANDS: Record<string, TerminalLine[]> = {
+const getCommands = (t: any): Record<string, TerminalLine[]> => ({
   dev: [
-    { id: 1, type: 'output', content: 'Starting Portfolio Workspace...' },
+    { id: 1, type: 'output', content: t('terminal.startingPortfolio') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'success', content: '✔ Initializing VS Code Environment' },
-    { id: 4, type: 'success', content: '✔ Loading Components' },
-    { id: 5, type: 'success', content: '✔ Connecting AI Assistant' },
-    { id: 6, type: 'success', content: '✔ Workspace Ready' },
+    { id: 3, type: 'success', content: t('terminal.initializingVSCode') },
+    { id: 4, type: 'success', content: t('terminal.loadingComponents') },
+    { id: 5, type: 'success', content: t('terminal.connectingAI') },
+    { id: 6, type: 'success', content: t('terminal.workspaceReady') },
     { id: 7, type: 'blank', content: '' },
-    { id: 8, type: 'info', content: 'Opening Home Page...' },
+    { id: 8, type: 'info', content: t('terminal.openingHome') },
   ],
   start: [
-    { id: 1, type: 'output', content: 'Portfolio Workspace v3.0' },
+    { id: 1, type: 'output', content: t('terminal.portfolioVersion') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'info', content: 'Welcome back.' },
+    { id: 3, type: 'info', content: t('terminal.welcomeBack') },
     { id: 4, type: 'blank', content: '' },
-    { id: 5, type: 'output', content: 'Type "portfolio help"' },
-    { id: 6, type: 'output', content: 'to explore available commands.' },
+    { id: 5, type: 'output', content: t('terminal.exploreCommands') },
   ],
   about: [
-    { id: 1, type: 'info', content: 'Opening About Workspace...' },
+    { id: 1, type: 'info', content: t('terminal.openingAbout') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'output', content: 'Loaded' },
+    { id: 3, type: 'output', content: t('terminal.loaded') },
     { id: 4, type: 'blank', content: '' },
-    { id: 5, type: 'success', content: '✓ Developer Profile' },
-    { id: 6, type: 'success', content: '✓ Metadata' },
-    { id: 7, type: 'success', content: '✓ Social Links' },
+    { id: 5, type: 'success', content: t('terminal.developerProfile') },
+    { id: 6, type: 'success', content: t('terminal.metadata') },
+    { id: 7, type: 'success', content: t('terminal.socialLinks') },
     { id: 8, type: 'blank', content: '' },
     { id: 9, type: 'output', content: 'Ready.' },
   ],
   projects: [
-    { id: 1, type: 'info', content: 'Opening Projects Workspace...' },
+    { id: 1, type: 'info', content: t('terminal.openingProjects') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'output', content: 'Projects Found: 18' },
+    { id: 3, type: 'output', content: t('terminal.projectsFound') },
     { id: 4, type: 'blank', content: '' },
-    { id: 5, type: 'section', content: 'Featured' },
-    { id: 6, type: 'item', content: '• CONSULTIFY' },
-    { id: 7, type: 'item', content: '• Portfolio Workspace' },
-    { id: 8, type: 'item', content: '• AI Recommendation Engine' },
+    { id: 5, type: 'section', content: t('terminal.featured') },
+    { id: 6, type: 'item', content: t('terminal.consultify') },
+    { id: 7, type: 'item', content: t('terminal.portfolio') },
+    { id: 8, type: 'item', content: t('terminal.aiRecommendation') },
     { id: 9, type: 'blank', content: '' },
-    { id: 10, type: 'output', content: 'Select a project to continue.' },
+    { id: 10, type: 'output', content: t('terminal.selectProject') },
   ],
   skills: [
-    { id: 1, type: 'info', content: 'Opening Skills Workspace...' },
+    { id: 1, type: 'info', content: t('terminal.openingSkills') },
     { id: 2, type: 'blank', content: '' },
     { id: 3, type: 'section', content: 'Categories' },
     { id: 4, type: 'blank', content: '' },
@@ -93,7 +93,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { id: 11, type: 'output', content: '32 Technologies Indexed.' },
   ],
   experience: [
-    { id: 1, type: 'info', content: 'Opening Experience Workspace...' },
+    { id: 1, type: 'info', content: t('terminal.openingExperience') },
     { id: 2, type: 'blank', content: '' },
     { id: 3, type: 'output', content: 'Career Timeline Loaded' },
     { id: 4, type: 'blank', content: '' },
@@ -159,7 +159,7 @@ const COMMANDS: Record<string, TerminalLine[]> = {
     { id: 15, type: 'blank', content: '' },
     { id: 16, type: 'output', content: 'Type a command to continue.' },
   ],
-};
+});
 
 function getSearchResults(query: string): TerminalLine[] {
   const q = query.toLowerCase();
@@ -247,7 +247,9 @@ interface HistoryBlock {
 */
 
 export function TerminalModal() {
+  const { t } = useTranslation();
   const { isOpen, close } = useTerminalStore();
+  const COMMANDS = getCommands(t);
   const [history, setHistory] = useState<HistoryBlock[]>([]);
   const [input, setInput] = useState('');
   const [cmdHistory, setCmdHistory] = useState<string[]>([]);

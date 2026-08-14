@@ -23,6 +23,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useTheme } from '../../hooks/use-theme';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { useLanguageStore } from '@/stores/language.store';
 
 /*
@@ -49,15 +50,15 @@ import reactIcon from '@/assets/icons/react.svg';
 
 const TECHNOLOGY_ICON_SIZE = 12;
 
-const pageNavigation = {
-  '/': { label: 'Home', icon: Home },
-  '/about': { label: 'About', icon: CircleAlert },
-  '/projects': { label: 'Projects', icon: FolderKanban },
-  '/services': { label: 'Services', icon: BriefcaseBusiness },
-  '/experience': { label: 'Experience', icon: ShieldCheck },
-  '/contact': { label: 'Contact', icon: Mail },
-  '/messages': { label: 'Messages', icon: MessageCircle },
-  '/settings': { label: 'Settings', icon: Settings },
+const basePageNavigation = {
+  '/': { icon: Home, translationKey: 'navigation.home' },
+  '/about': { icon: CircleAlert, translationKey: 'navigation.about' },
+  '/projects': { icon: FolderKanban, translationKey: 'navigation.projects' },
+  '/services': { icon: BriefcaseBusiness, translationKey: 'navigation.projects' },
+  '/experience': { icon: ShieldCheck, translationKey: 'navigation.experience' },
+  '/contact': { icon: Mail, translationKey: 'navigation.contact' },
+  '/messages': { icon: MessageCircle, translationKey: 'navigation.contact' },
+  '/settings': { icon: Settings, translationKey: 'navigation.settings' },
 };
 
 /*
@@ -101,11 +102,13 @@ export function StatusBar() {
   const pathname = usePathname();
   const locale = useLanguageStore((s) => s.locale);
   const setLocale = useLanguageStore((s) => s.setLocale);
+  const { t } = useTranslation();
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const time = useSyncExternalStore(subscribeToClock, getClientTime, getServerTime);
-  const currentPage =
-    pageNavigation[pathname as keyof typeof pageNavigation] ?? pageNavigation['/'];
-  const CurrentIcon = currentPage.icon;
+  const currentPageConfig =
+    basePageNavigation[pathname as keyof typeof basePageNavigation] ?? basePageNavigation['/'];
+  const CurrentIcon = currentPageConfig.icon;
+  const currentPageLabel = t(currentPageConfig.translationKey);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -146,7 +149,7 @@ export function StatusBar() {
         <div className="flex shrink-0 items-center gap-1.5 rounded-xs bg-background-secondary px-2 py-1 text-[10px] leading-none text-brand transition-colors hover:text-foreground">
           <CurrentIcon className="size-3" strokeWidth={1.8} aria-hidden="true" />
 
-          <span>{currentPage.label}</span>
+          <span>{currentPageLabel}</span>
         </div>
 
         {/* GitHub */}
@@ -238,7 +241,7 @@ export function StatusBar() {
           ================================================================ */}
 
       <div className="absolute left-1/2 hidden -translate-x-1/2 text-[10px] text-foreground-secondary md:block">
-        Open to opportunities.
+        {t('statusBar.openToOpportunities')}
       </div>
 
       {/* ================================================================
@@ -277,7 +280,7 @@ export function StatusBar() {
                 }}
                 className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"
               >
-                <span>English</span>
+                <span>{t('statusBar.english')}</span>
               </button>
               <button
                 type="button"
@@ -287,7 +290,7 @@ export function StatusBar() {
                 }}
                 className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"
               >
-                <span>Français</span>
+                <span>{t('statusBar.french')}</span>
               </button>
             </div>
           )}
@@ -299,7 +302,7 @@ export function StatusBar() {
           className="flex items-center gap-1.5 text-[10px] leading-none transition-colors hover:text-foreground"
         >
           <Sun className="size-3" strokeWidth={1.8} aria-hidden="true" />
-          <span>Light</span>
+          <span>{t('statusBar.light')}</span>
         </button>
 
         {/* Volume */}
@@ -308,24 +311,24 @@ export function StatusBar() {
           className="flex items-center gap-1.5 text-[10px] leading-none transition-colors hover:text-foreground"
         >
           <Speaker className="size-3" strokeWidth={1.8} aria-hidden="true" />
-          <span>Sound</span>
+          <span>{t('statusBar.sound')}</span>
         </button>
 
         {/* Quality */}
         <span className="whitespace-nowrap text-[10px] font-medium text-foreground">
-          High Quality
+          {t('statusBar.highQuality')}
         </span>
 
         {/* Performance */}
         <span className="flex items-center gap-1 text-[10px] font-medium text-foreground">
           <Bolt className="size-3" strokeWidth={2} aria-hidden="true" />
-          <span>Performance</span>
+          <span>{t('statusBar.performance')}</span>
         </span>
 
         {/* Availability */}
         <span className="flex items-center gap-1 text-[10px] font-medium text-foreground">
           <span className="size-1.5 rounded-full bg-success" />
-          <span>Available</span>
+          <span>{t('statusBar.available')}</span>
         </span>
 
         {/* Real Time */}

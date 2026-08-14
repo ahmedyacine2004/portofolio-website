@@ -5,6 +5,7 @@ import {
   type NotificationCategory,
   type NotificationItem,
 } from '@/stores/notifications.store';
+import { useTranslation } from '@/hooks/use-translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Award,
@@ -22,6 +23,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
 export function NotificationsPanel() {
+  const { t } = useTranslation();
   const router = useRouter();
   const isOpen = useNotificationsStore((s) => s.isOpen);
   const activeTab = useNotificationsStore((s) => s.activeTab);
@@ -125,10 +127,10 @@ export function NotificationsPanel() {
   };
 
   const tabs: Array<{ id: 'All' | NotificationCategory; label: string }> = [
-    { id: 'All', label: 'All' },
-    { id: 'Messages', label: 'Messages' },
-    { id: 'System', label: 'System' },
-    { id: 'Updates', label: 'Updates' },
+    { id: 'All', label: t('notifications.all') },
+    { id: 'Messages', label: t('notifications.messages') },
+    { id: 'System', label: t('notifications.system') },
+    { id: 'Updates', label: t('notifications.updates') },
   ];
 
   return (
@@ -145,7 +147,7 @@ export function NotificationsPanel() {
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
           <div className="flex items-center gap-2">
             <Bell className="size-3.5 text-primary" />
-            <span className="text-[9px] font-bold text-foreground">What's New</span>
+            <span className="text-[9px] font-bold text-foreground">{t('notifications.title')}</span>
           </div>
 
           <button
@@ -192,7 +194,7 @@ export function NotificationsPanel() {
         <div className="max-h-[320px] overflow-y-auto p-2 space-y-2">
           {filteredNotifications.length === 0 ? (
             <div className="py-6 text-center text-[9px] text-muted-foreground">
-              No updates in this category.
+              {t('notifications.noUpdates')}
             </div>
           ) : (
             Object.entries(groups).map(([groupTitle, items]) => (

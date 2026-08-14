@@ -1,7 +1,8 @@
 'use client';
 
-import { AboutTabBar } from '@/components/about/about-tab-bar';
 import avatar from '@/assets/images/avatar.jpg';
+import { AboutTabBar } from '@/components/about/about-tab-bar';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   BookOpen,
   BriefcaseBusiness,
@@ -15,6 +16,7 @@ import {
   Puzzle,
   UserRound,
 } from 'lucide-react';
+import { useMemo } from 'react';
 
 import dockerbIcon from '@/assets/icons/docker.svg';
 import gitIcon from '@/assets/icons/git.svg';
@@ -43,66 +45,81 @@ const technologies = [
   gitIcon,
 ];
 
-const journey = [
-  {
-    year: '2022',
-    text: 'Just Started My coding Journey',
-  },
-  {
-    year: '2023',
-    text: 'Built my first full stack application',
-  },
-  {
-    year: '2024',
-    text: 'Joined Internships and real-world projects',
-  },
-  {
-    year: '2025',
-    text: 'Founded CONSULTIFY and building projects',
-  },
-  {
-    year: '2026+',
-    text: 'Continuing To learn build an impact',
-  },
-];
-
-const services = [
-  {
-    title: 'Web development',
-    description: 'Building responsive and performant web applications',
-    icon: UserRound,
-    className: 'bg-sky-500',
-  },
-  {
-    title: 'UI/UX design',
-    description: 'Designing intuitive interfaces and seamless user experiences',
-    icon: Palette,
-    className: 'bg-violet-600',
-  },
-  {
-    title: 'Problem Solving',
-    description: 'Turning ideas into real solutions with clean and efficient code',
-    icon: Puzzle,
-    className: 'bg-emerald-500',
-  },
-  {
-    title: 'Continuous Learning',
-    description: 'Always exploring new technologies and improving my skills',
-    icon: Play,
-    className: 'bg-orange-500',
-  },
-];
-
-const interests = [
-  { label: 'UI/UX design', icon: Palette },
-  { label: 'Graphic Design', icon: PenTool },
-  { label: 'Photography', icon: Camera },
-  { label: 'Gaming', icon: Gamepad2 },
-  { label: 'Reading', icon: BookOpen },
-  { label: 'Tech Enthusiast', icon: Laptop },
-];
-
 export default function AboutPage() {
+  const { t, tArray } = useTranslation();
+
+  const journey = useMemo(
+    () => [
+      {
+        year: '2022',
+        text: t('about.timeline.2022'),
+      },
+      {
+        year: '2023',
+        text: t('about.timeline.2023'),
+      },
+      {
+        year: '2024',
+        text: t('about.timeline.2024'),
+      },
+      {
+        year: '2025',
+        text: t('about.timeline.2025'),
+      },
+      {
+        year: '2026+',
+        text: t('about.timeline.2026'),
+      },
+    ],
+    [t],
+  );
+
+  const services = useMemo(
+    () => [
+      {
+        title: t('about.services.webDevelopment'),
+        description: t('about.services.webDevelopmentDesc'),
+        icon: UserRound,
+        className: 'bg-sky-500',
+      },
+      {
+        title: t('about.services.uiux'),
+        description: t('about.services.uiuxDesc'),
+        icon: Palette,
+        className: 'bg-violet-600',
+      },
+      {
+        title: t('about.services.problemSolving'),
+        description: t('about.services.problemSolvingDesc'),
+        icon: Puzzle,
+        className: 'bg-emerald-500',
+      },
+      {
+        title: t('about.services.continuousLearning'),
+        description: t('about.services.continuousLearningDesc'),
+        icon: Play,
+        className: 'bg-orange-500',
+      },
+    ],
+    [t],
+  );
+
+  const interests = useMemo(
+    () =>
+      tArray('about.interests').map((label: string) => {
+        // Map interests to their corresponding icons
+        const iconMap: { [key: string]: typeof Palette } = {
+          'UI/UX design': Palette,
+          'Graphic Design': PenTool,
+          Photography: Camera,
+          Gaming: Gamepad2,
+          Reading: BookOpen,
+          'Tech Enthusiast': Laptop,
+        };
+        return { label, icon: iconMap[label] || Palette };
+      }),
+    [tArray],
+  );
   return (
     <div className="flex h-full min-h-0 flex-col gap-1 p-2">
       <AboutTabBar />
@@ -111,24 +128,18 @@ export default function AboutPage() {
         {/* Introduction */}
         <div className="flex min-h-0 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div>
-            <p className="mb-1.5 text-[8px] font-semibold text-primary">Hey there !</p>
+            <p className="mb-1.5 text-[8px] font-semibold text-primary">{t('about.greeting')}</p>
 
-            <h1 className="text-[60px] font-bold leading-[0.7]">I&apos;m Ahmed Yassine Abbane</h1>
+            <h1 className="text-[60px] font-bold leading-[0.7]">{t('about.heading')}</h1>
 
-            <p className="mt-0.5 text-[9px] font-semibold leading-tight">
-              Or, as I like to put it, a Jack of All Trades
+            <p className="mt-0.5 text-[9px] font-semibold leading-tight">{t('about.subheading')}</p>
+
+            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
+              {t('about.introduction')}
             </p>
 
             <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
-              From architecting scalable web applications and crafting intuitive user interfaces to
-              designing compelling brand identities, I enjoy turning ideas into polished digital
-              experiences. I bridge development and design, combining technical precision with
-              creativity to build products that are not only functional, but memorable.
-            </p>
-
-            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
-              Welcome to my workspace. Feel free to explore the repository and discover the
-              projects, technologies, and experiences that define my journey.
+              {t('about.welcomeMessage')}
             </p>
           </div>
 
@@ -136,7 +147,7 @@ export default function AboutPage() {
             href="/contact"
             className="mt-2 flex h-7 items-center justify-center rounded-xs bg-primary text-[8px] font-semibold text-primary-foreground"
           >
-            Let&apos;s Connect
+            {t('about.letsConnect')}
           </Link>
         </div>
 

@@ -1,39 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useTranslation } from '@/hooks/use-translation';
 import { motion } from 'framer-motion';
 import {
+  ArrowRight,
   Briefcase,
   Check,
-  History,
   FolderKanban,
+  History,
   LayoutGrid,
   Quote,
-  ArrowRight,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { LottiePlayer } from './lottie-player';
 
-const logSteps = [
-  { id: '01', text: 'Loading environment variables', duration: '120ms' },
-  { id: '02', text: 'Connecting to database', duration: '120ms' },
-  { id: '03', text: 'Initializing core modules', duration: '245ms' },
-  { id: '04', text: 'Loading user preferences', duration: '312ms' },
-  { id: '05', text: 'Fetching portfolio data', duration: '95ms' },
-  { id: '06', text: 'Optimizing assets', duration: '428ms' },
-  { id: '07', text: 'Waiting for response', duration: '20ms' },
-  { id: '08', text: 'Finalizing experience', duration: '89ms' },
+const getLogSteps = (t: any) => [
+  { id: '01', text: t('loading.loadingEnv'), duration: '120ms' },
+  { id: '02', text: t('loading.connectingDB'), duration: '120ms' },
+  { id: '03', text: t('loading.initializingModules'), duration: '245ms' },
+  { id: '04', text: t('loading.loadingPreferences'), duration: '312ms' },
+  { id: '05', text: t('loading.fetchingData'), duration: '95ms' },
+  { id: '06', text: t('loading.optimizingAssets'), duration: '428ms' },
+  { id: '07', text: t('loading.waitingResponse'), duration: '20ms' },
+  { id: '08', text: t('loading.finalizingExperience'), duration: '89ms' },
 ];
 
-// Colors pulled directly from variables.css semantic tokens
-const metricCards = [
+const getMetricCards = (t: any) => [
   {
     id: 'memory',
-    title: 'Memory Usage',
+    title: t('loading.memoryUsage'),
     value: '62%',
-    sublabel: '1.2 GB / 2 GB',
+    sublabel: t('loading.memoryValue'),
     percentage: 62,
     icon: History,
-    // surface-brand: #ebdffd light / rgb(117 72 253 / 15%) dark
     cardClass: 'bg-surface-brand border-purple-200 dark:border-purple-900/30',
     iconClass: 'bg-purple-200/60 dark:bg-purple-900/40 text-purple-700 dark:text-purple-400',
     barClass: 'bg-purple-dark dark:bg-purple',
@@ -41,12 +40,11 @@ const metricCards = [
   },
   {
     id: 'assets',
-    title: 'Assets Loaded',
+    title: t('loading.assetsLoaded'),
     value: '81%',
-    sublabel: '324 / 400',
+    sublabel: t('loading.assetsValue'),
     percentage: 81,
     icon: FolderKanban,
-    // surface-success: #eaf8ef light / rgb(36 202 116 / 14%) dark
     cardClass: 'bg-surface-success border-green-200 dark:border-success-darkest/30',
     iconClass: 'bg-green-200/60 dark:bg-success-darkest/20 text-success-dark dark:text-success',
     barClass: 'bg-success-dark dark:bg-success',
@@ -54,12 +52,11 @@ const metricCards = [
   },
   {
     id: 'components',
-    title: 'Components',
+    title: t('loading.components'),
     value: '43%',
-    sublabel: '860 / 2,000',
+    sublabel: t('loading.componentsValue'),
     percentage: 43,
     icon: Briefcase,
-    // brand surface: #f0f6fe light / dark secondary
     cardClass: 'bg-background-secondary border-brand-light/30 dark:border-brand-dark/20',
     iconClass: 'bg-brand/10 dark:bg-brand-dark/20 text-brand-dark dark:text-brand-light',
     barClass: 'bg-brand dark:bg-brand-light',
@@ -67,12 +64,11 @@ const metricCards = [
   },
   {
     id: 'requests',
-    title: 'Requests',
+    title: t('loading.requests'),
     value: '92%',
-    sublabel: '46 / 50',
+    sublabel: t('loading.requestsValue'),
     percentage: 92,
     icon: LayoutGrid,
-    // surface-warning: #fef9e9 light / rgb(255 153 0 / 14%) dark
     cardClass: 'bg-surface-warning border-yellow-200 dark:border-warning/20',
     iconClass: 'bg-yellow-200/60 dark:bg-warning/10 text-warning-dark dark:text-warning-light',
     barClass: 'bg-warning-dark dark:bg-warning-light',
@@ -86,6 +82,9 @@ interface LoadingPageProps {
 }
 
 export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPageProps) {
+  const { t } = useTranslation();
+  const logSteps = getLogSteps(t);
+  const metricCards = getMetricCards(t);
   const [completedStepIndex, setCompletedStepIndex] = useState(
     isAnimatedSequence ? 0 : logSteps.length,
   );
@@ -113,7 +112,7 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
           onClick={onSkip}
           className="absolute top-3 right-3 z-20 flex items-center gap-1 rounded-xs border border-border bg-card/90 px-2 py-1 text-[10px] font-medium text-foreground-secondary transition-colors hover:bg-muted hover:text-foreground shadow-xs"
         >
-          <span>Skip</span>
+          <span>{t('loading.skip')}</span>
           <ArrowRight className="size-2.5" />
         </button>
       )}
@@ -196,7 +195,7 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
             <div>
               <div className="inline-flex items-center gap-1 rounded-xs bg-surface-brand px-1.5 py-0.5 text-[9px] font-semibold text-brand-dark dark:text-brand">
                 <Quote className="size-2.5" />
-                <span>Developer Wisdom</span>
+                <span>{t('loading.developerWisdom')}</span>
               </div>
 
               <blockquote className="mt-2 text-xs font-bold text-foreground leading-snug tracking-tight">

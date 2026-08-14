@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import {
   Code2,
   Compass,
@@ -10,23 +9,20 @@ import {
   FileText,
   Folder,
   Infinity as InfinityIcon,
-  Moon,
-  Plus,
-  Search,
   Sparkles,
   SquareTerminal,
   Sun,
   Tag,
   Terminal,
   X,
-  CheckCircle2,
-  AlertCircle,
 } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
+import { useTheme } from '@/hooks/use-theme';
+import { useTranslation } from '@/hooks/use-translation';
 import { useCommandPaletteStore } from '@/stores/command-palette.store';
 import { useTerminalStore } from '@/stores/terminal.store';
-import { useTheme } from '@/hooks/use-theme';
 
 /*
 |--------------------------------------------------------------------------
@@ -66,58 +62,58 @@ interface TerminalOutputLine {
 |--------------------------------------------------------------------------
 */
 
-const CLI_COMMAND_OUTPUTS: Record<string, TerminalOutputLine[]> = {
+const getCliCommandOutputs = (t: any): Record<string, TerminalOutputLine[]> => ({
   dev: [
-    { id: 1, type: 'output', content: 'Starting Portfolio Workspace...' },
+    { id: 1, type: 'output', content: t('commandPalette.startingPortfolio') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'success', content: '✔ Initializing VS Code Environment' },
-    { id: 4, type: 'success', content: '✔ Loading Components' },
-    { id: 5, type: 'success', content: '✔ Connecting AI Assistant' },
-    { id: 6, type: 'success', content: '✔ Workspace Ready' },
+    { id: 3, type: 'success', content: t('commandPalette.initializingVSCode') },
+    { id: 4, type: 'success', content: t('commandPalette.loadingComponents') },
+    { id: 5, type: 'success', content: t('commandPalette.connectingAI') },
+    { id: 6, type: 'success', content: t('commandPalette.workspaceReady') },
     { id: 7, type: 'blank', content: '' },
-    { id: 8, type: 'info', content: 'Opening Home Page...' },
+    { id: 8, type: 'info', content: t('commandPalette.openingHome') },
   ],
   start: [
-    { id: 1, type: 'output', content: 'Portfolio Workspace v3.0' },
+    { id: 1, type: 'output', content: t('commandPalette.portfolioVersion') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'info', content: 'Welcome back.' },
+    { id: 3, type: 'info', content: t('commandPalette.welcomeBack') },
     { id: 4, type: 'blank', content: '' },
-    { id: 5, type: 'output', content: 'Type "portfolio help" to explore available commands.' },
+    { id: 5, type: 'output', content: t('commandPalette.exploreCommands') },
   ],
   about: [
-    { id: 1, type: 'info', content: 'Opening About Workspace...' },
+    { id: 1, type: 'info', content: t('commandPalette.openingAbout') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'success', content: '✓ Developer Profile' },
-    { id: 4, type: 'success', content: '✓ Metadata' },
-    { id: 5, type: 'success', content: '✓ Social Links' },
+    { id: 3, type: 'success', content: t('commandPalette.developerProfile') },
+    { id: 4, type: 'success', content: t('commandPalette.metadata') },
+    { id: 5, type: 'success', content: t('commandPalette.socialLinks') },
     { id: 6, type: 'blank', content: '' },
-    { id: 7, type: 'output', content: 'Ready.' },
+    { id: 7, type: 'output', content: t('commandPalette.ready') },
   ],
   projects: [
-    { id: 1, type: 'info', content: 'Opening Projects Workspace...' },
+    { id: 1, type: 'info', content: t('commandPalette.openingProjects') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'output', content: 'Projects Found: 18' },
-    { id: 4, type: 'section', content: 'Featured:' },
-    { id: 5, type: 'item', content: '• CONSULTIFY – AI Powered Consultant Platform' },
-    { id: 6, type: 'item', content: '• Portfolio Workspace v3.0' },
-    { id: 7, type: 'item', content: '• Neobank Mobile App' },
-    { id: 8, type: 'item', content: '• Lumina Studio' },
+    { id: 3, type: 'output', content: t('commandPalette.projectsFound') },
+    { id: 4, type: 'section', content: t('commandPalette.featured') },
+    { id: 5, type: 'item', content: t('commandPalette.consultify') },
+    { id: 6, type: 'item', content: t('commandPalette.portfolio') },
+    { id: 7, type: 'item', content: t('commandPalette.neobank') },
+    { id: 8, type: 'item', content: t('commandPalette.lumina') },
   ],
   skills: [
-    { id: 1, type: 'info', content: 'Opening Skills Workspace...' },
+    { id: 1, type: 'info', content: t('commandPalette.openingSkills') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'section', content: 'Indexed Tech Stack:' },
-    { id: 4, type: 'item', content: 'Frontend: React, Next.js, TypeScript, Tailwind CSS, Motion' },
-    { id: 5, type: 'item', content: 'Backend: NestJS, Node.js, Express, REST APIs' },
-    { id: 6, type: 'item', content: 'Databases: MongoDB, Mongoose, PostgreSQL, Redis' },
-    { id: 7, type: 'item', content: 'DevOps: Docker, Git, CI/CD, Vercel' },
+    { id: 3, type: 'section', content: t('commandPalette.indexedTechStack') },
+    { id: 4, type: 'item', content: t('commandPalette.skillsFrontend') },
+    { id: 5, type: 'item', content: t('commandPalette.skillsBackend') },
+    { id: 6, type: 'item', content: t('commandPalette.skillsDatabases') },
+    { id: 7, type: 'item', content: t('commandPalette.skillsDevOps') },
   ],
   experience: [
-    { id: 1, type: 'info', content: 'Opening Experience Workspace...' },
+    { id: 1, type: 'info', content: t('commandPalette.openingExperience') },
     { id: 2, type: 'blank', content: '' },
-    { id: 3, type: 'item', content: 'Full-Stack Software Engineer (Present)' },
-    { id: 4, type: 'item', content: 'Frontend Engineer Intern' },
-    { id: 5, type: 'item', content: 'Open Source Contributor' },
+    { id: 3, type: 'item', content: t('commandPalette.fullStackEngineer') },
+    { id: 4, type: 'item', content: t('commandPalette.frontendIntern') },
+    { id: 5, type: 'item', content: t('commandPalette.openSourceContributor') },
   ],
   help: [
     { id: 1, type: 'output', content: 'Portfolio CLI v3.0 — Available Commands:' },
@@ -131,7 +127,7 @@ const CLI_COMMAND_OUTPUTS: Record<string, TerminalOutputLine[]> = {
     { id: 9, type: 'item', content: 'terminal         Toggle bottom terminal modal' },
     { id: 10, type: 'item', content: 'clear            Clear output log' },
   ],
-};
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -139,12 +135,12 @@ const CLI_COMMAND_OUTPUTS: Record<string, TerminalOutputLine[]> = {
 |--------------------------------------------------------------------------
 */
 
-const COMMAND_ITEMS: CommandItem[] = [
+const getCommandItems = (t: any): CommandItem[] => [
   // Navigation
   {
     id: 'nav-home',
-    title: 'Go to Home / Portfolio',
-    subtitle: 'Navigate to main portfolio landing workspace',
+    title: t('commandPalette.goToHome'),
+    subtitle: t('commandPalette.goToHomeDesc'),
     category: 'Navigation',
     Icon: Compass,
     shortcut: '↵',
@@ -156,8 +152,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'nav-projects',
-    title: 'Go to Projects',
-    subtitle: 'Browse all full-stack applications & case studies',
+    title: t('commandPalette.goToProjects'),
+    subtitle: t('commandPalette.goToProjectsDesc'),
     category: 'Navigation',
     Icon: Folder,
     shortcut: '⌘P',
@@ -169,8 +165,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'nav-services',
-    title: 'Go to Services',
-    subtitle: 'Explore services, architecture & offerings',
+    title: t('commandPalette.goToServices'),
+    subtitle: t('commandPalette.goToServicesDesc'),
     category: 'Navigation',
     Icon: InfinityIcon,
     shortcut: '⌘S',
@@ -182,8 +178,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'nav-contact',
-    title: 'Go to Contact',
-    subtitle: 'Get in touch or start a new project',
+    title: t('commandPalette.goToContact'),
+    subtitle: t('commandPalette.goToContactDesc'),
     category: 'Navigation',
     Icon: FileText,
     shortcut: '⌘C',
@@ -197,8 +193,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   // Terminal Commands
   {
     id: 'cmd-dev',
-    title: 'dev',
-    subtitle: 'Run dev workspace initialization sequence',
+    title: t('commandPalette.dev'),
+    subtitle: t('commandPalette.devDesc'),
     category: 'Terminal Commands',
     Icon: Terminal,
     shortcut: '⌘1',
@@ -207,8 +203,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'cmd-help',
-    title: 'portfolio help',
-    subtitle: 'Display all available CLI commands & descriptions',
+    title: t('commandPalette.portfolioHelp'),
+    subtitle: t('commandPalette.portfolioHelpDesc'),
     category: 'Terminal Commands',
     Icon: SquareTerminal,
     shortcut: '⌘H',
@@ -217,8 +213,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'cmd-projects',
-    title: 'projects',
-    subtitle: 'Execute CLI command to index projects',
+    title: t('commandPalette.projectsCmd'),
+    subtitle: t('commandPalette.projectsCmdDesc'),
     category: 'Terminal Commands',
     Icon: Code2,
     shortcut: '⌘2',
@@ -227,8 +223,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'cmd-skills',
-    title: 'skills',
-    subtitle: 'Index tech stack technologies via terminal',
+    title: t('commandPalette.skillsCmd'),
+    subtitle: t('commandPalette.skillsCmdDesc'),
     category: 'Terminal Commands',
     Icon: Tag,
     shortcut: '⌘3',
@@ -237,8 +233,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'cmd-experience',
-    title: 'experience',
-    subtitle: 'Load experience timeline & milestones',
+    title: t('commandPalette.experienceCmd'),
+    subtitle: t('commandPalette.experienceCmdDesc'),
     category: 'Terminal Commands',
     Icon: Sparkles,
     shortcut: '⌘4',
@@ -247,8 +243,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'cmd-toggle-terminal',
-    title: 'Open Terminal Drawer',
-    subtitle: 'Toggle bottom interactive terminal shell window',
+    title: t('commandPalette.openTerminal'),
+    subtitle: t('commandPalette.openTerminalDesc'),
     category: 'Terminal Commands',
     Icon: Terminal,
     shortcut: '⌘`',
@@ -262,8 +258,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   // Quick Actions & System
   {
     id: 'act-toggle-theme',
-    title: 'Toggle Color Theme',
-    subtitle: 'Switch between Dark and Light mode themes',
+    title: t('commandPalette.toggleTheme'),
+    subtitle: t('commandPalette.toggleThemeDesc'),
     category: 'Quick Actions',
     Icon: Sun,
     shortcut: '⌘L',
@@ -272,8 +268,8 @@ const COMMAND_ITEMS: CommandItem[] = [
   },
   {
     id: 'act-ai-chat',
-    title: 'Ask AI Assistant',
-    subtitle: 'Launch AI assistant in terminal shell',
+    title: t('commandPalette.askAssistant'),
+    subtitle: t('commandPalette.askAssistantDesc'),
     category: 'Quick Actions',
     Icon: Sparkles,
     shortcut: '⌘I',
@@ -292,6 +288,7 @@ const COMMAND_ITEMS: CommandItem[] = [
 */
 
 export function CommandPaletteModal() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { isOpen, close, toggle } = useCommandPaletteStore();
   const openTerminal = useTerminalStore((s) => s.open);
@@ -306,6 +303,10 @@ export function CommandPaletteModal() {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+
+  // Generate command items using translations
+  const COMMAND_ITEMS = useMemo(() => getCommandItems(t), [t]);
+  const CLI_COMMAND_OUTPUTS = useMemo(() => getCliCommandOutputs(t), [t]);
 
   // Global keybinding: Cmd+K / Ctrl+K to toggle open/close
   useEffect(() => {

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useTranslation } from '@/hooks/use-translation';
 
 import { motion } from 'motion/react';
 import { HeaderActionButtons } from './header-action-buttons';
@@ -22,15 +23,16 @@ export function Header() {
   const pathname = usePathname();
   const toggleTerminal = useTerminalStore((s) => s.toggle);
   const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle);
+  const { t } = useTranslation();
 
   const navigation: NavItem[] = [
-    { label: 'About', href: '/about' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Skills', href: '/skills' },
-    { label: 'Experience', href: '/experience' },
-    { label: 'Certifications', href: '/certification' },
-    { label: 'Terminal', action: toggleTerminal },
-    { label: 'Contact', href: '/contact' },
+    { label: t('navigation.about'), href: '/about' },
+    { label: t('navigation.projects'), href: '/projects' },
+    { label: t('navigation.skills'), href: '/skills' },
+    { label: t('navigation.experience'), href: '/experience' },
+    { label: t('navigation.certifications'), href: '/certification' },
+    { label: t('navigation.terminal'), action: toggleTerminal },
+    { label: t('navigation.contact'), href: '/contact' },
   ];
 
   return (

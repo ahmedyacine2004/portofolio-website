@@ -23,6 +23,7 @@ import GithubIcon from '@/assets/icons/GithubIcon.svg';
 import InstagramIcon from '@/assets/icons/instagram.svg';
 import LinkedinIcon from '@/assets/icons/LinkedinIcon.svg';
 import TiktokIcon from '@/assets/icons/Tiktok.svg';
+import { useTranslation } from '@/hooks/use-translation';
 
 const CONTACT_METHODS = [
   {
@@ -70,6 +71,7 @@ const CONTACT_METHODS = [
 ];
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [slideOffset, setSlideOffset] = useState(0);
   const [maxSlideOffset, setMaxSlideOffset] = useState(0);
@@ -142,44 +144,44 @@ export default function ContactPage() {
 
     // Validate name
     if (!formData.name.trim()) {
-      errors.name = 'Name is required';
+      errors.name = t('contactPage.validationErrors.nameRequired');
     } else if (formData.name.trim().length < 2) {
-      errors.name = 'Name must be at least 2 characters';
+      errors.name = t('contactPage.validationErrors.nameMinLength');
     } else if (formData.name.length > 100) {
-      errors.name = 'Name must be less than 100 characters';
+      errors.name = t('contactPage.validationErrors.nameMaxLength');
     }
 
     // Validate email
     if (!formData.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = t('contactPage.validationErrors.emailRequired');
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        errors.email = 'Please enter a valid email address';
+        errors.email = t('contactPage.validationErrors.emailInvalid');
       }
     }
 
     // Validate subject
     if (!formData.subject.trim()) {
-      errors.subject = 'Subject is required';
+      errors.subject = t('contactPage.validationErrors.subjectRequired');
     } else if (formData.subject.trim().length < 3) {
-      errors.subject = 'Subject must be at least 3 characters';
+      errors.subject = t('contactPage.validationErrors.subjectMinLength');
     } else if (formData.subject.length > 150) {
-      errors.subject = 'Subject must be less than 150 characters';
+      errors.subject = t('contactPage.validationErrors.subjectMaxLength');
     }
 
     // Validate message
     if (!formData.message.trim()) {
-      errors.message = 'Message is required';
+      errors.message = t('contactPage.validationErrors.messageRequired');
     } else if (formData.message.trim().length < 10) {
-      errors.message = 'Message must be at least 10 characters';
+      errors.message = t('contactPage.validationErrors.messageMinLength');
     } else if (formData.message.length > 2000) {
-      errors.message = 'Message must be less than 2000 characters';
+      errors.message = t('contactPage.validationErrors.messageMaxLength');
     }
 
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
-  }, [formData]);
+  }, [formData, t]);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -191,7 +193,7 @@ export default function ContactPage() {
 
       // Validate form
       if (!validateForm()) {
-        setErrorMessage('Please fix the errors above');
+        setErrorMessage(t('contactPage.errorMessage'));
         return;
       }
 
@@ -206,7 +208,7 @@ export default function ContactPage() {
         await submitContactForm(formData, env.web3FormsAccessKey, 'ahmedyacineabbane@gmail.com');
 
         // Success
-        setSuccessMessage('Message sent successfully! I will get back to you soon.');
+        setSuccessMessage(t('contactPage.successMessage'));
         setFormData({
           name: '',
           email: '',
@@ -258,7 +260,7 @@ export default function ContactPage() {
               }}
               className="font-inter text-[8px] font-semibold text-primary tracking-tight"
             >
-              &#47;&#47; Let&#47;s build something amazing together
+              {t('contactPage.tagline')}
             </motion.p>
 
             <motion.h1
@@ -268,7 +270,7 @@ export default function ContactPage() {
               }}
               className="font-inter text-3xl sm:text-4xl font-black tracking-tight text-foreground uppercase"
             >
-              CONTACT <span className="font-inter text-primary">ME</span>
+              {t('contactPage.heading')}
             </motion.h1>
 
             <motion.p
@@ -278,8 +280,7 @@ export default function ContactPage() {
               }}
               className="font-inter max-w-[480px] text-xs font-normal leading-relaxed text-muted-foreground"
             >
-              I&apos;m always open to discussing new opportunities, collaborative projects, or just
-              having a chat about technology.
+              {t('contactPage.description')}
             </motion.p>
           </section>
 
@@ -371,7 +372,7 @@ export default function ContactPage() {
             className="flex flex-1 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-3"
           >
             <h2 className="font-inter text-xs font-bold text-foreground tracking-tight uppercase">
-              Send me a message
+              {t('contactPage.formHeading')}
             </h2>
 
             {/* Success Message */}
@@ -409,7 +410,7 @@ export default function ContactPage() {
                     type="text"
                     name="name"
                     required
-                    placeholder="Your Name"
+                    placeholder={t('contactPage.namePlaceholder')}
                     value={formData.name}
                     onChange={handleChange}
                     disabled={isLoading}
@@ -423,7 +424,7 @@ export default function ContactPage() {
                     type="email"
                     name="email"
                     required
-                    placeholder="Your Email"
+                    placeholder={t('contactPage.emailPlaceholder')}
                     value={formData.email}
                     onChange={handleChange}
                     disabled={isLoading}
@@ -455,7 +456,7 @@ export default function ContactPage() {
                   type="text"
                   name="subject"
                   required
-                  placeholder="Subject"
+                  placeholder={t('contactPage.subjectPlaceholder')}
                   value={formData.subject}
                   onChange={handleChange}
                   disabled={isLoading}
@@ -475,7 +476,7 @@ export default function ContactPage() {
                   name="message"
                   required
                   rows={4}
-                  placeholder="Your Message"
+                  placeholder={t('contactPage.messagePlaceholder')}
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isLoading}
@@ -498,12 +499,12 @@ export default function ContactPage() {
               {isLoading ? (
                 <>
                   <span className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  <span className="font-inter">Sending...</span>
+                  <span className="font-inter">{t('contactPage.sendingButton')}</span>
                 </>
               ) : (
                 <>
                   <Send className="size-4" />
-                  <span className="font-inter">Send Message</span>
+                  <span className="font-inter">{t('contactPage.sendButton')}</span>
                 </>
               )}
             </button>

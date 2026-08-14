@@ -4,8 +4,10 @@ import type { ContactFormValues } from '@/schemas';
 
 import { Button } from '@/components/ui/button';
 import { useContactForm } from '@/hooks/use-contact-form';
+import { useTranslation } from '@/hooks/use-translation';
 
 export function ContactForm() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -21,13 +23,13 @@ export function ContactForm() {
       {/* Name */}
       <div className="space-y-2">
         <label htmlFor="name" className="text-sm font-medium">
-          Name
+          {t('contactForm.name')}
         </label>
 
         <input
           id="name"
           type="text"
-          placeholder="Your name"
+          placeholder={t('contactForm.namePlaceholder')}
           {...register('name')}
           className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
@@ -38,13 +40,13 @@ export function ContactForm() {
       {/* Email */}
       <div className="space-y-2">
         <label htmlFor="email" className="text-sm font-medium">
-          Email
+          {t('contactForm.email')}
         </label>
 
         <input
           id="email"
           type="email"
-          placeholder="you@example.com"
+          placeholder={t('contactForm.emailPlaceholder')}
           {...register('email')}
           className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
@@ -55,13 +57,13 @@ export function ContactForm() {
       {/* Subject */}
       <div className="space-y-2">
         <label htmlFor="subject" className="text-sm font-medium">
-          Subject
+          {t('contactForm.subject')}
         </label>
 
         <input
           id="subject"
           type="text"
-          placeholder="Project inquiry"
+          placeholder={t('contactForm.subjectPlaceholder')}
           {...register('subject')}
           className="w-full rounded-xl border border-border bg-background px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
@@ -72,13 +74,13 @@ export function ContactForm() {
       {/* Message */}
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium">
-          Message
+          {t('contactForm.message')}
         </label>
 
         <textarea
           id="message"
           rows={5}
-          placeholder="Tell me about your project..."
+          placeholder={t('contactForm.messagePlaceholder')}
           {...register('message')}
           className="w-full resize-none rounded-xl border border-border bg-background px-4 py-3 outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"
         />
@@ -88,7 +90,7 @@ export function ContactForm() {
 
       {/* Submit */}
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {isSubmitting ? t('contactForm.sendingButton') : t('contactForm.sendButton')}
       </Button>
     </form>
   );

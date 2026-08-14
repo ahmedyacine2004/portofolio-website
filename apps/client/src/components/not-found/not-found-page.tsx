@@ -1,29 +1,35 @@
 'use client';
 
-import Link from 'next/link';
+import { useTranslation } from '@/hooks/use-translation';
 import { motion } from 'framer-motion';
-import { Home, FolderOpen, ArrowLeft, Search, Zap } from 'lucide-react';
+import { ArrowLeft, FolderOpen, Home, Search, Zap } from 'lucide-react';
+import Link from 'next/link';
 import { Lottie404Player } from './lottie-404-player';
 
-const suggestions = [
-  {
-    id: 'suggestion-home',
-    icon: Home,
-    label: 'Return to homepage only',
-  },
-  {
-    id: 'suggestion-back',
-    icon: ArrowLeft,
-    label: 'Go back to your previous page or location',
-  },
-  {
-    id: 'suggestion-url',
-    icon: Search,
-    label: 'Check the URL for typos',
-  },
-];
+function NotFoundSuggestions() {
+  const { t } = useTranslation();
+  return [
+    {
+      id: 'suggestion-home',
+      icon: Home,
+      label: t('notFound.returnHome'),
+    },
+    {
+      id: 'suggestion-back',
+      icon: ArrowLeft,
+      label: t('notFound.goBack'),
+    },
+    {
+      id: 'suggestion-url',
+      icon: Search,
+      label: t('notFound.checkUrl'),
+    },
+  ];
+}
 
 export function NotFoundPage() {
+  const { t } = useTranslation();
+  const suggestions = NotFoundSuggestions();
   return (
     <div className="flex h-full w-full items-center justify-center p-4">
       {/* Centered card wrapper — ~60% of viewport width */}
@@ -57,7 +63,7 @@ export function NotFoundPage() {
           >
             <span className="inline-flex items-center gap-1 rounded-[2px] bg-surface-brand px-2 py-0.5 text-[8px] font-semibold text-primary">
               <Zap className="size-2" />
-              OOPS! SOMETHING WENT WRONG
+              {t('notFound.badge')}
             </span>
           </motion.div>
 
@@ -74,7 +80,7 @@ export function NotFoundPage() {
             className="font-beni text-[64px] leading-[0.85] tracking-tight text-primary mt-2 select-none"
             aria-label="404"
           >
-            404
+            {t('notFound.code')}
           </motion.p>
 
           {/* Heading + copy */}
@@ -86,14 +92,10 @@ export function NotFoundPage() {
             className="mt-3 flex flex-col gap-1"
           >
             <h1 className="font-inter text-[15px] font-bold leading-none text-foreground">
-              Page Not Found
+              {t('notFound.title')}
             </h1>
             <p className="max-w-[220px] text-[8px] leading-relaxed text-foreground-secondary">
-              You may have lost this page,
-              <br />
-              but if you have found Allah,
-              <br />
-              nothing else truly matters.
+              {t('notFound.description')}
             </p>
           </motion.div>
 
@@ -106,7 +108,7 @@ export function NotFoundPage() {
             className="mt-4 flex flex-col gap-1"
           >
             <p className="text-[8px] font-semibold uppercase tracking-wider text-foreground-tertiary mb-0.5">
-              Try one of these
+              {t('notFound.tryOne')}
             </p>
             {suggestions.map((item, idx) => {
               const Icon = item.icon;
@@ -144,7 +146,7 @@ export function NotFoundPage() {
               className="inline-flex items-center gap-1.5 rounded-xs bg-primary px-3 py-1.5 text-[8px] font-semibold text-white transition-opacity hover:opacity-90"
             >
               <Home className="size-2.5" />
-              Go To Home
+              {t('notFound.goToHome')}
             </Link>
             <Link
               href="/projects"
@@ -153,7 +155,7 @@ export function NotFoundPage() {
                          shadow-gray-300 dark:shadow-[0_0_4px_rgba(255,255,255,0.04)]"
             >
               <FolderOpen className="size-2.5" />
-              Explore Projects
+              {t('notFound.exploreProjects')}
             </Link>
           </motion.div>
         </motion.div>

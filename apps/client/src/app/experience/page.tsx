@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -21,6 +19,9 @@ import {
   Sliders,
   Zap,
 } from 'lucide-react';
+import Link from 'next/link';
+import React, { useMemo } from 'react';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface CareerMilestone {
   id: string;
@@ -29,7 +30,26 @@ interface CareerMilestone {
   icon: React.ElementType;
 }
 
-const CAREER_MILESTONES: CareerMilestone[] = [
+interface OverviewCard {
+  title: string;
+  description: string;
+  badge: string;
+  href: string;
+  icon: React.ElementType;
+  accentClass: string;
+  iconBgClass: string;
+  textColorClass: string;
+}
+
+interface MetricSnapshot {
+  id: string;
+  value: string;
+  label: string;
+  icon: React.ElementType;
+  badgeBg: string;
+}
+
+const CAREER_MILESTONES_DATA: CareerMilestone[] = [
   {
     id: '1',
     title: 'Education Started',
@@ -68,18 +88,7 @@ const CAREER_MILESTONES: CareerMilestone[] = [
   },
 ];
 
-interface OverviewCard {
-  title: string;
-  description: string;
-  badge: string;
-  href: string;
-  icon: React.ElementType;
-  accentClass: string;
-  iconBgClass: string;
-  textColorClass: string;
-}
-
-const OVERVIEW_CARDS: OverviewCard[] = [
+const OVERVIEW_CARDS_DATA: OverviewCard[] = [
   {
     title: 'Education',
     description: 'Academic background & learning journey',
@@ -132,15 +141,7 @@ const OVERVIEW_CARDS: OverviewCard[] = [
   },
 ];
 
-interface MetricSnapshot {
-  id: string;
-  value: string;
-  label: string;
-  icon: React.ElementType;
-  badgeBg: string;
-}
-
-const METRIC_SNAPSHOTS: MetricSnapshot[] = [
+const METRIC_SNAPSHOTS_DATA: MetricSnapshot[] = [
   {
     id: 'years',
     value: '5+',
@@ -187,17 +188,155 @@ const REGISTERED_MODULES: string[] = [
 ];
 
 export default function ExperienceWorkspacePage() {
+  const { t } = useTranslation();
+
+  const careerMilestones = useMemo(
+    () => [
+      {
+        id: '1',
+        title: t('experiencePage.educationStarted'),
+        year: '2019',
+        icon: Play,
+      },
+      {
+        id: '2',
+        title: t('experiencePage.firstCodingJourney'),
+        year: '2020',
+        icon: Code2,
+      },
+      {
+        id: '3',
+        title: t('experiencePage.firstInternship'),
+        year: '2022',
+        icon: Briefcase,
+      },
+      {
+        id: '4',
+        title: t('experiencePage.keyAchievements'),
+        year: '2023',
+        icon: Flag,
+      },
+      {
+        id: '5',
+        title: t('experiencePage.buildingImpact'),
+        year: '2024',
+        icon: Heart,
+      },
+      {
+        id: '6',
+        title: t('experiencePage.futureGoals'),
+        year: '2025',
+        icon: Bookmark,
+      },
+    ],
+    [t],
+  );
+
+  const overviewCards = useMemo(
+    () => [
+      {
+        title: t('experiencePage.education'),
+        description: t('experiencePage.educationDesc'),
+        badge: t('experience.educationBadge'),
+        href: '/experience/education',
+        icon: BookOpen,
+        accentClass: 'border-t-emerald-500 hover:border-emerald-600',
+        iconBgClass: 'bg-emerald-500 text-white',
+        textColorClass: 'text-emerald-600 dark:text-emerald-400',
+      },
+      {
+        title: t('experiencePage.internships'),
+        description: t('experiencePage.internshipsDesc'),
+        badge: t('experience.internshipsBadge'),
+        href: '/experience/internships',
+        icon: Briefcase,
+        accentClass: 'border-t-sky-500 hover:border-sky-600',
+        iconBgClass: 'bg-sky-500 text-white',
+        textColorClass: 'text-sky-600 dark:text-sky-400',
+      },
+      {
+        title: t('experiencePage.achievements'),
+        description: t('experiencePage.achievementsDesc'),
+        badge: t('experiencePage.achievementsBadge'),
+        href: '/experience/achievements',
+        icon: Flag,
+        accentClass: 'border-t-violet-600 hover:border-violet-700',
+        iconBgClass: 'bg-violet-600 text-white',
+        textColorClass: 'text-violet-600 dark:text-violet-400',
+      },
+      {
+        title: t('experiencePage.milestones'),
+        description: 'Key moments in my journey',
+        badge: t('experiencePage.milestonesBadge'),
+        href: '/experience/education',
+        icon: MapPin,
+        accentClass: 'border-t-orange-500 hover:border-orange-600',
+        iconBgClass: 'bg-orange-500 text-white',
+        textColorClass: 'text-orange-600 dark:text-orange-400',
+      },
+      {
+        title: t('experiencePage.futureGoals'),
+        description: t('experiencePage.futureGoalsDesc'),
+        badge: t('experiencePage.goalsBadge'),
+        href: '/experience/consultify',
+        icon: Sliders,
+        accentClass: 'border-t-primary hover:border-primary/80',
+        iconBgClass: 'bg-primary text-primary-foreground',
+        textColorClass: 'text-primary',
+      },
+    ],
+    [t],
+  );
+
+  const metricSnapshots = useMemo(
+    () => [
+      {
+        id: 'years',
+        value: t('experiencePage.yearsValue'),
+        label: t('experiencePage.yearsOfJourney'),
+        icon: Clock,
+        badgeBg: 'bg-sky-500 text-white',
+      },
+      {
+        id: 'degrees',
+        value: t('experiencePage.degreesValue'),
+        label: t('experiencePage.degreesEarned'),
+        icon: GraduationCap,
+        badgeBg: 'bg-emerald-500 text-white',
+      },
+      {
+        id: 'internships',
+        value: '2',
+        label: t('experiencePage.internshipsCompleted'),
+        icon: Briefcase,
+        badgeBg: 'bg-violet-600 text-white',
+      },
+      {
+        id: 'achievements',
+        value: t('experiencePage.achievementsValue'),
+        label: t('experiencePage.keyAchievementsMetric'),
+        icon: LayoutGrid,
+        badgeBg: 'bg-orange-500 text-white',
+      },
+      {
+        id: 'milestones',
+        value: t('experiencePage.milestonesValue'),
+        label: t('experiencePage.milestonesReached'),
+        icon: MapPin,
+        badgeBg: 'bg-rose-500 text-white',
+      },
+    ],
+    [t],
+  );
   return (
     <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-4 md:p-6 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
       {/* Top Header */}
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
           <h1 className="text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-            Experience Workspace
+            {t('experiencePage.title')}
           </h1>
-          <p className="text-xs font-semibold text-primary">
-            My professional journey, education, internships and achievements.
-          </p>
+          <p className="text-xs font-semibold text-primary">{t('experiencePage.yourJourney')}</p>
         </div>
 
         {/* Top Right Quote Card */}
@@ -218,12 +357,12 @@ export default function ExperienceWorkspacePage() {
 
       {/* Section 1: Career Milestones */}
       <section className="rounded-sm bg-background p-4 md:p-5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-4 border border-border/40">
-        <h2 className="text-sm font-bold text-foreground">Career Milestones</h2>
+        <h2 className="text-sm font-bold text-foreground">{t('experiencePage.milestones')}</h2>
 
         <div className="flex flex-nowrap items-center justify-between overflow-x-auto py-2 px-1 scrollbar-none gap-2 sm:gap-4">
-          {CAREER_MILESTONES.map((milestone, index) => {
+          {careerMilestones.map((milestone, index) => {
             const Icon = milestone.icon;
-            const isLast = index === CAREER_MILESTONES.length - 1;
+            const isLast = index === careerMilestones.length - 1;
 
             return (
               <React.Fragment key={milestone.id}>
@@ -258,7 +397,7 @@ export default function ExperienceWorkspacePage() {
         <h2 className="text-sm font-bold text-foreground">Experience Overview</h2>
 
         <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
-          {OVERVIEW_CARDS.map((card, index) => {
+          {overviewCards.map((card, index) => {
             const Icon = card.icon;
 
             return (
@@ -304,7 +443,7 @@ export default function ExperienceWorkspacePage() {
           <h2 className="text-sm font-bold text-foreground">Experience Snapshot</h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-            {METRIC_SNAPSHOTS.map((snapshot, index) => {
+            {metricSnapshots.map((snapshot, index) => {
               const Icon = snapshot.icon;
 
               return (

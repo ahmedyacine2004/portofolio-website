@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import {
   Archive,
   ArrowUpRight,
@@ -20,6 +21,7 @@ import Image from 'next/image';
 import folderImg from '../../assets/images/folder.png';
 
 export default function ProjectsPage() {
+  const { t } = useTranslation();
   return (
     <div className="flex w-full flex-col gap-1.5 p-2 overflow-y-auto">
       {/* Top Grid: Workspace Info & Status */}
@@ -30,16 +32,14 @@ export default function ProjectsPage() {
             <div className="flex items-center gap-1.5 mb-1">
               <Folder className="size-6 fill-[var(--color-brand)] text-[var(--color-brand)]" />
               <h1 className="font-inter text-[25px] font-bold text-[var(--color-text-primary)]">
-                Project Workspace
+                {t('projects.projectWorkspace')}
               </h1>
             </div>
             <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
-              Select a project from the Source Control panel
-              <br />
-              to inspect its repository.
+              {t('projects.description')}
             </p>
             <button className="mt-1 flex w-fit items-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] px-4 py-2 text-[10px] font-medium text-[var(--color-text-inverse)] transition-colors hover:opacity-90">
-              Browse Featured Projects
+              {t('projects.browseFeatured')}
               <ExternalLink className="size-3" />
             </button>
           </div>
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
                 <TrendingUp className="size-3" />
               </div>
               <h2 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
-                Workspace Status
+                {t('projects.workspaceStatus')}
               </h2>
             </div>
             <button className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]">
@@ -74,28 +74,28 @@ export default function ProjectsPage() {
             <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <Folder className="size-2.5 text-[var(--color-purple)]" />
-                <span>Projects</span>
+                <span>{t('projects.projects')}</span>
               </div>
               <span className="font-bold text-[var(--color-text-primary)]">12</span>
             </div>
             <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <CheckCircle2 className="size-2.5 text-[var(--color-purple)]" />
-                <span>Completed</span>
+                <span>{t('projects.completed')}</span>
               </div>
               <span className="font-bold text-[var(--color-text-primary)]">10</span>
             </div>
             <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <Clock className="size-2.5 text-[var(--color-purple)]" />
-                <span>Active</span>
+                <span>{t('projects.active')}</span>
               </div>
               <span className="font-bold text-[var(--color-text-primary)]">02</span>
             </div>
             <div className="flex items-center justify-between py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <Archive className="size-2.5 text-[var(--color-purple)]" />
-                <span>Archived</span>
+                <span>{t('projects.archived')}</span>
               </div>
               <span className="font-bold text-[var(--color-text-primary)]">01</span>
             </div>

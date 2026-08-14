@@ -2,10 +2,13 @@
 
 import { KeyboardScene } from '@/components/3d/KeyboardScene';
 import { HomeCards } from '@/components/home/home-cards';
+import { useTranslation } from '@/hooks/use-translation';
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <div className="h-full w-full">
       <div className="flex h-full w-full gap-1 p-2 px-6 overflow-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
@@ -31,7 +34,7 @@ export default function Home() {
               }}
               className="text-[9px] font-semibold leading-none text-primary bg-surface-brand inline px-4 py-1 rounded-[2px]"
             >
-              Salutations
+              {t('homepage.salutations')}
             </motion.p>
             <div className="flex flex-col gap-1">
               <motion.p
@@ -41,7 +44,7 @@ export default function Home() {
                 }}
                 className="text-[9px] font-semibold leading-none text-primary mt-1"
               >
-                Workspace Initialized
+                {t('homepage.workspaceInitialized')}
               </motion.p>
 
               {/* NAME — intentionally NOT reduced */}
@@ -67,9 +70,9 @@ export default function Home() {
                 }}
                 className="max-w-[400px] text-[9px] leading-[1] text-foreground"
               >
-                Full Stack Web Developer & Graphic Designer
+                {t('homepage.tagline')}
                 <br />
-                Building digital experiences through code & design.
+                {t('homepage.subtitle')}
               </motion.p>
             </div>
           </section>
@@ -107,9 +110,7 @@ export default function Home() {
           }}
           className="fixed bottom-11.5 left-[50%] translate-x-[-50%] z-10 bg-background rounded-[8px] shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
         >
-          <h2 className="font-inter text-sm font-bold mx-6 my-3">
-            Welcome to the Developer Environment
-          </h2>
+          <h2 className="font-inter text-sm font-bold mx-6 my-3">{t('homepage.welcomeTitle')}</h2>
           <div className="relative">
             <div className="fixed -top-9 z-20 p-3 left-[50%] translate-x-[-50%] bg-brand-dark rounded-sm shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
               <Code className="size-5" color="#FFFFFF" strokeWidth={1.8} />

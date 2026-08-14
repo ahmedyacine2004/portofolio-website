@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { motion } from 'framer-motion';
 import {
   Award,
@@ -20,95 +21,108 @@ import {
   Zap,
 } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import RobotImage from '@/assets/images/robot.png';
 
-const SUGGESTION_CARDS = [
-  {
-    id: 'summarize',
-    title: 'Summarize',
-    subtitle: 'My experience',
-    icon: MessageSquare,
-  },
-  {
-    id: 'tell-me',
-    title: 'Tell me about',
-    subtitle: 'My projects',
-    icon: MessageSquare,
-  },
-  {
-    id: 'generate',
-    title: 'Generate',
-    subtitle: 'Cover letter',
-    icon: MessageSquare,
-  },
-];
-
-const CAPABILITIES = [
-  {
-    title: 'Portfolio Q&A',
-    description: 'Ask anything about your background',
-    icon: Brain,
-  },
-  {
-    title: 'Project Explainer',
-    description: 'Detailed insights about your projects',
-    icon: Code2,
-  },
-  {
-    title: 'Skills Analyzer',
-    description: 'Analyze and showcase your stack',
-    icon: Sparkles,
-  },
-  {
-    title: 'Resume Reviewer',
-    description: 'Get feedback on your resume',
-    icon: FileText,
-  },
-  {
-    title: 'Career Guidance',
-    description: 'Personalized career advice',
-    icon: UserCheck,
-  },
-];
-
-const QUICK_ACTIONS = [
-  { label: 'Summarize My Background', icon: Briefcase },
-  { label: 'List My Technical Skills', icon: Code2 },
-  { label: 'Show My Achievements', icon: Award },
-  { label: 'Generate Cover Letter', icon: FileText },
-];
-
-const EXPERIENCE_ITEMS = [
-  {
-    role: 'CONSULTLY - Startup Founder',
-    description:
-      'Founded and led CONSULTLY, an AI-powered consultation platform. Handled product strategy, development, and marketing end-to-end.',
-    period: 'Jan 2025 - Present',
-  },
-  {
-    role: 'Full Stack Developer Intern - CodSoft',
-    description:
-      'Developed responsive web applications using React, Node.js, and MongoDB. Collaborated with remote teams and improved application performance.',
-    period: 'Jan 2025 - Mar 2025',
-  },
-  {
-    role: 'Frontend Developer Intern - TechVerse Solutions',
-    description:
-      'Built modern UI components and improved user experience. Worked with HTML, CSS, JavaScript, and React.',
-    period: 'Jul 2024 - Sep 2024',
-  },
-  {
-    role: 'Software Development Intern - DevBridge',
-    description:
-      'Contributed to real-world projects and learned agile development practices. Gained experience in debugging, testing, and version control.',
-    period: 'May 2024 - Jul 2024',
-  },
-];
-
 export default function AIAssistantPage() {
+  const { t } = useTranslation();
   const [inputMessage, setInputMessage] = useState('');
+
+  const suggestionCards = useMemo(
+    () => [
+      {
+        id: 'summarize',
+        title: 'Summarize',
+        subtitle: 'My experience',
+        icon: MessageSquare,
+      },
+      {
+        id: 'tell-me',
+        title: 'Tell me about',
+        subtitle: 'My projects',
+        icon: MessageSquare,
+      },
+      {
+        id: 'generate',
+        title: 'Generate',
+        subtitle: 'Cover letter',
+        icon: MessageSquare,
+      },
+    ],
+    [],
+  );
+
+  const capabilities = useMemo(
+    () => [
+      {
+        title: 'Portfolio Q&A',
+        description: 'Ask anything about your background',
+        icon: Brain,
+      },
+      {
+        title: 'Project Explainer',
+        description: 'Detailed insights about your projects',
+        icon: Code2,
+      },
+      {
+        title: 'Skills Analyzer',
+        description: 'Analyze and showcase your stack',
+        icon: Sparkles,
+      },
+      {
+        title: 'Resume Reviewer',
+        description: 'Get feedback on your resume',
+        icon: FileText,
+      },
+      {
+        title: 'Career Guidance',
+        description: 'Personalized career advice',
+        icon: UserCheck,
+      },
+    ],
+    [],
+  );
+
+  const quickActions = useMemo(
+    () => [
+      { label: 'Summarize My Background', icon: Briefcase },
+      { label: 'List My Technical Skills', icon: Code2 },
+      { label: 'Show My Achievements', icon: Award },
+      { label: 'Generate Cover Letter', icon: FileText },
+    ],
+    [],
+  );
+
+  const experienceItems = useMemo(
+    () => [
+      {
+        role: 'CONSULTLY - Startup Founder',
+        description:
+          'Founded and led CONSULTLY, an AI-powered consultation platform. Handled product strategy, development, and marketing end-to-end.',
+        period: 'Jan 2025 - Present',
+      },
+      {
+        role: 'Full Stack Developer Intern - CodSoft',
+        description:
+          'Developed responsive web applications using React, Node.js, and MongoDB. Collaborated with remote teams and improved application performance.',
+        period: 'Jan 2025 - Mar 2025',
+      },
+      {
+        role: 'Frontend Developer Intern - TechVerse Solutions',
+        description:
+          'Built modern UI components and improved user experience. Worked with HTML, CSS, JavaScript, and React.',
+        period: 'Jul 2024 - Sep 2024',
+      },
+      {
+        role: 'Software Development Intern - DevBridge',
+        description:
+          'Contributed to real-world projects and learned agile development practices. Gained experience in debugging, testing, and version control.',
+        period: 'May 2024 - Jul 2024',
+      },
+    ],
+    [],
+  );
 
   return (
     <div className="font-inter flex h-full w-full max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
@@ -165,7 +179,7 @@ export default function AIAssistantPage() {
             transition={{ duration: 0.3, delay: 0.05 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 shrink-0 p-0.5"
           >
-            {SUGGESTION_CARDS.map((card) => {
+            {suggestionCards.map((card) => {
               const Icon = card.icon;
               return (
                 <button
@@ -218,7 +232,7 @@ export default function AIAssistantPage() {
                     </h3>
 
                     <div className="space-y-1.5">
-                      {EXPERIENCE_ITEMS.map((item, idx) => (
+                      {experienceItems.map((item, idx) => (
                         <div
                           key={idx}
                           className="flex items-start gap-2 p-2 rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
@@ -309,7 +323,7 @@ export default function AIAssistantPage() {
             </h2>
 
             <div className="space-y-1.5">
-              {CAPABILITIES.map((cap, idx) => {
+              {capabilities.map((cap, idx) => {
                 const Icon = cap.icon;
                 return (
                   <button
@@ -343,7 +357,7 @@ export default function AIAssistantPage() {
             </h2>
 
             <div className="space-y-1.5">
-              {QUICK_ACTIONS.map((action, idx) => {
+              {quickActions.map((action, idx) => {
                 const Icon = action.icon;
                 return (
                   <button

@@ -3,6 +3,7 @@
 import { Bell, Command, FileText, Languages, MessageCircle, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { useCommandPaletteStore } from '@/stores/command-palette.store';
 import { useDownloadManagerStore } from '@/stores/download-manager.store';
 import { useLanguageStore } from '@/stores/language.store';
@@ -55,37 +56,45 @@ export function HeaderActionButtons() {
   const locale = useLanguageStore((s) => s.locale);
   const setLocale = useLanguageStore((s) => s.setLocale);
   const toggleVisitorInfo = useVisitorInfoStore((s) => s.toggle);
+  const { t } = useTranslation();
 
   return (
     <div className="flex shrink-0 items-center gap-1.5">
-      <HeaderActionButton label="Command Palette (⌘K)" onClick={toggleCommandPalette}>
+      <HeaderActionButton label={t('header.commandPalette')} onClick={toggleCommandPalette}>
         <Command className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
       <HeaderActionButton
-        label={locale === 'en' ? 'Switch to French' : 'Switch to English'}
+        label={locale === 'en' ? t('header.switchToFrench') : t('header.switchToEnglish')}
         onClick={() => setLocale(locale === 'en' ? 'fr' : 'en')}
       >
         <Languages className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="AI Assistant" onClick={() => router.push('/ai-assistant')}>
+      <HeaderActionButton
+        label={t('header.aiAssistant')}
+        onClick={() => router.push('/ai-assistant')}
+      >
         <MessageCircle className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="Download Manager" onClick={toggleDownloads} badge={downloadsCount}>
+      <HeaderActionButton
+        label={t('header.downloadManager')}
+        onClick={toggleDownloads}
+        badge={downloadsCount}
+      >
         <FileText className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
       <HeaderActionButton
-        label="Notifications"
+        label={t('header.notifications')}
         onClick={toggleNotifications}
         badge={unreadNotifsCount}
       >
         <Bell className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
 
-      <HeaderActionButton label="Visitor Info" onClick={toggleVisitorInfo}>
+      <HeaderActionButton label={t('header.visitorInfo')} onClick={toggleVisitorInfo}>
         <UserCircle className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>
     </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { useDownloadManagerStore, type DownloadItem } from '@/stores/download-manager.store';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 export function DownloadManager() {
+  const { t } = useTranslation();
   const isOpen = useDownloadManagerStore((s) => s.isOpen);
   const isMinimized = useDownloadManagerStore((s) => s.isMinimized);
   const items = useDownloadManagerStore((s) => s.items);
@@ -60,7 +62,9 @@ export function DownloadManager() {
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
           <div className="flex items-center gap-2">
             <Download className="size-3.5 text-primary" />
-            <span className="text-[9px] font-bold text-foreground">Downloads</span>
+            <span className="text-[9px] font-bold text-foreground">
+              {t('downloadManager.title')}
+            </span>
           </div>
 
           <div className="flex items-center gap-1">
@@ -68,7 +72,7 @@ export function DownloadManager() {
               type="button"
               onClick={toggleMinimize}
               className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              aria-label={isMinimized ? 'Expand Downloads' : 'Minimize Downloads'}
+              aria-label={isMinimized ? t('downloadManager.expand') : t('downloadManager.minimize')}
             >
               <Minus className="size-3" />
             </button>
@@ -76,7 +80,7 @@ export function DownloadManager() {
               type="button"
               onClick={() => setOpen(false)}
               className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              aria-label="Close Downloads"
+              aria-label={t('downloadManager.close')}
             >
               <X className="size-3" />
             </button>
@@ -90,7 +94,7 @@ export function DownloadManager() {
             <div className="max-h-[280px] overflow-y-auto p-2 space-y-2">
               {items.length === 0 ? (
                 <div className="py-6 text-center text-[9px] text-muted-foreground">
-                  No downloads yet.
+                  {t('downloadManager.noDownloads')}
                 </div>
               ) : (
                 items.map((item) => (

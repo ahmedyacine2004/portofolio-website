@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Cpu, Heart, Layers, LayoutGrid, Plus, Zap } from 'lucide-react';
+import Link from 'next/link';
+import React, { useMemo } from 'react';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface WorkspaceCategory {
   title: string;
@@ -129,20 +130,41 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
 }
 
 export default function SkillsPage() {
+  const { t } = useTranslation();
+
+  const summaryItems = useMemo(
+    () => [
+      { label: t('skills.totalTechnologies'), value: '32', icon: Layers },
+      { label: t('skills.primaryStack'), value: t('skills.primaryStackValue'), icon: Cpu },
+      { label: t('skills.currentFavorite'), value: t('skills.currentFavoriteValue'), icon: Heart },
+      { label: t('skills.latestAdded'), value: t('skills.latestAddedValue'), icon: Plus },
+    ],
+    [t],
+  );
+
+  const techDistribution = useMemo(
+    () => [
+      { label: t('skills.frontend'), percentage: 25, colorClass: 'bg-blue-600' },
+      { label: t('skills.backend'), percentage: 25, colorClass: 'bg-purple-600' },
+      { label: t('skills.databases'), percentage: 15, colorClass: 'bg-amber-400' },
+      { label: t('skills.design'), percentage: 20, colorClass: 'bg-orange-500' },
+      { label: t('skills.devops'), percentage: 10, colorClass: 'bg-emerald-500' },
+      { label: t('skills.others'), percentage: 5, colorClass: 'bg-stone-600' },
+    ],
+    [t],
+  );
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] border border-border/50 bg-background p-4 md:p-6 space-y-6 text-foreground shadow-sm">
       {/* Page Header */}
       <header className="space-y-1">
         <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-          Technology Workspace
+          {t('skillsPage.title')}
         </h1>
         <div className="space-y-0.5">
           <p className="font-inter text-xs font-semibold text-blue-600 dark:text-blue-400">
-            Development Environments
+            {t('skillsPage.subtitle')}
           </p>
-          <p className="font-inter text-xs text-muted-foreground">
-            Select an environment to inspect its workspace.
-          </p>
+          <p className="font-inter text-xs text-muted-foreground">{t('skillsPage.description')}</p>
         </div>
       </header>
 
@@ -173,7 +195,7 @@ export default function SkillsPage() {
                 href={`/skills/${category.slug}`}
                 className="inline-flex items-center gap-1 font-inter text-[11px] font-semibold text-foreground transition-colors hover:text-blue-600 dark:hover:text-blue-400"
               >
-                Explore <ArrowRight className="size-3" />
+                {t('skillsPage.explore')} <ArrowRight className="size-3" />
               </Link>
             </div>
           </TiltCard>
@@ -188,11 +210,13 @@ export default function SkillsPage() {
             <div className="flex size-7 items-center justify-center rounded-[6px] bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400">
               <LayoutGrid className="size-3.5" />
             </div>
-            <h3 className="font-inter text-xs font-bold text-card-foreground">Workspace Summary</h3>
+            <h3 className="font-inter text-xs font-bold text-card-foreground">
+              {t('skillsPage.workspaceSummary')}
+            </h3>
           </div>
 
           <div className="space-y-2.5">
-            {SUMMARY_ITEMS.map((item) => {
+            {summaryItems.map((item) => {
               const Icon = item.icon;
               return (
                 <div
@@ -216,11 +240,13 @@ export default function SkillsPage() {
             <div className="flex size-7 items-center justify-center rounded-[6px] bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
               <Plus className="size-3.5" />
             </div>
-            <h3 className="font-inter text-xs font-bold text-card-foreground">Tech Distribution</h3>
+            <h3 className="font-inter text-xs font-bold text-card-foreground">
+              {t('skillsPage.techDistribution')}
+            </h3>
           </div>
 
           <div className="space-y-2">
-            {TECH_DISTRIBUTION.map((dist) => (
+            {techDistribution.map((dist) => (
               <div
                 key={dist.label}
                 className="grid grid-cols-12 items-center font-inter text-[10.5px]"
@@ -253,8 +279,7 @@ export default function SkillsPage() {
           <Zap className="size-3.5 fill-current" />
         </div>
         <p className="leading-snug">
-          <span className="font-bold">Tip</span> Open any environment from the sidebar to inspect
-          experience, projects, architecture, best practices, and implementation details.
+          <span className="font-bold">{t('skillsPage.tip')}</span> {t('skillsPage.tipText')}
         </p>
       </div>
     </div>
