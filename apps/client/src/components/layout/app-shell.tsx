@@ -43,6 +43,11 @@ export function AppShell({ children }: AppShellProps) {
   }, []);
 
   const showLoading = isLoading && pathname !== '/loading';
+  const hasSecondarySidebar =
+    pathname.startsWith('/about') ||
+    pathname.startsWith('/projects') ||
+    pathname.startsWith('/skills') ||
+    pathname.startsWith('/experience');
 
   return (
     <>
@@ -61,37 +66,39 @@ export function AppShell({ children }: AppShellProps) {
         )}
       </AnimatePresence>
 
-      <div className="flex h-screen bg-transparent flex-col px-4 py-1">
+      <div className="flex h-screen bg-transparent flex-col px-2 py-1 md:px-4 md:py-1">
         {/* Header */}
         <Header />
 
         {/* Main workspace */}
-        <div className="flex min-h-0 flex-1 gap-[6px] py-[6px]">
+        <div className="flex min-h-0 flex-1 gap-[6px] py-[6px] pb-14 md:pb-[6px]">
           {/* Main navigation */}
-          <aside className="flex flex-row gap-[6px] shrink-0">
+          <aside className="hidden md:flex flex-row gap-[6px] shrink-0">
             <Sidebar />
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={pathname}
-                initial={{ width: 0, opacity: 0 }}
-                animate={{ width: 'auto', opacity: 1 }}
-                exit={{ width: 0, opacity: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 320,
-                  damping: 32,
-                  opacity: { duration: 0.2 },
-                }}
-                className="flex shrink-0"
-              >
-                <SecondarySidebar />
-              </motion.div>
-            </AnimatePresence>
+            {hasSecondarySidebar && (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={pathname}
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: 'auto', opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 320,
+                    damping: 32,
+                    opacity: { duration: 0.2 },
+                  }}
+                  className="flex shrink-0"
+                >
+                  <SecondarySidebar />
+                </motion.div>
+              </AnimatePresence>
+            )}
           </aside>
 
           {/* Page Area */}
-          <main className="relative min-w-0 flex-1 overflow-hidden rounded-[8px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+          <main className="relative min-w-0 flex-1 overflow-hidden rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
             <motion.div
               key={pathname}
               initial={{ opacity: 0 }}
@@ -108,6 +115,10 @@ export function AppShell({ children }: AppShellProps) {
         <footer className="shrink-0">
           <StatusBar />
         </footer>
+      </div>
+
+      <div className="md:hidden">
+        <Sidebar />
       </div>
 
       {/* Terminal Modal */}

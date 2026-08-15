@@ -3,6 +3,7 @@ import { create } from 'zustand';
 type AudioStore = {
   isPlaying: boolean;
   audioRef: HTMLAudioElement | null;
+  hydrate: () => void;
   setAudioRef: (ref: HTMLAudioElement | null) => void;
   togglePlayback: () => void;
   play: () => void;
@@ -10,10 +11,10 @@ type AudioStore = {
 };
 
 const getStoredPlaybackState = (): boolean => {
-  if (typeof window === 'undefined') return true;
+  if (typeof window === 'undefined') return false;
 
   const stored = window.localStorage.getItem('portfolio-music-playing');
-  return stored !== 'false'; // Default to true (playing)
+  return stored === null ? false : stored === 'true';
 };
 
 const savePlaybackState = (isPlaying: boolean) => {
@@ -22,8 +23,21 @@ const savePlaybackState = (isPlaying: boolean) => {
 };
 
 export const useAudioStore = create<AudioStore>((set, get) => ({
-  isPlaying: getStoredPlaybackState(),
+  isPlaying: false,
   audioRef: null,
+
+  hydrate: () => {
+    const nextState = getStoredPlaybackState();
+    set({ isPlaying: nextState });
+
+    const { audioRef } = get();
+    if (audioRef && nextState && audioRef.paused) {
+      audioRef.play().catch(() => {
+        set({ isPlaying: false });
+        savePlaybackState(false);
+      });
+    }
+  },
 
   setAudioRef: (ref) => {
     set({ audioRef: ref });

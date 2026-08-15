@@ -3,7 +3,11 @@ import { useTranslation } from '@/hooks/use-translation';
 import { BriefcaseBusiness, Code2, FileText, Sparkles, Zap } from 'lucide-react';
 import Link from 'next/link';
 
-export function HomeCards() {
+interface HomeCardsProps {
+  variant?: 'desktop' | 'tablet' | 'mobile';
+}
+
+export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
   const { t } = useTranslation();
   const { download } = useDownload();
 
@@ -19,20 +23,65 @@ export function HomeCards() {
   };
 
   return (
-    <div className="mt-2 grid w-fit grid-cols-2 items-start gap-1">
+    <div
+      className={`mt-2 grid w-fit items-start gap-1 ${
+        variant === 'desktop'
+          ? 'grid-cols-2'
+          : variant === 'tablet'
+            ? 'grid-cols-1 md:grid-cols-2 w-full'
+            : 'grid-cols-1 w-full'
+      }`}
+    >
       {/* Quick Actions */}
-      <div className="h-full w-full min-w-[230px] rounded-xs bg-background p-2 px-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-        <div className="mb-1.5 flex items-center gap-1.5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-white">
-            <Zap className="size-3" strokeWidth={2} />
+      <div
+        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+          variant === 'desktop'
+            ? 'min-w-[230px] p-2 px-4'
+            : variant === 'tablet'
+              ? 'p-2 px-3'
+              : 'p-1.5 px-2.5'
+        }`}
+      >
+        <div
+          className={`flex items-center gap-1.5 mb-1.5 ${
+            variant === 'desktop' ? '' : variant === 'tablet' ? 'mb-1' : 'mb-0.5'
+          }`}
+        >
+          <div
+            className={`flex shrink-0 items-center justify-center rounded-full bg-primary text-white ${
+              variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
+            }`}
+          >
+            <Zap
+              className={`${
+                variant === 'desktop' ? 'size-3' : variant === 'tablet' ? 'size-2.5' : 'size-2'
+              }`}
+              strokeWidth={2}
+            />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">
+          <h2
+            className={`font-sans font-semibold leading-none ${
+              variant === 'desktop'
+                ? 'text-[10px]'
+                : variant === 'tablet'
+                  ? 'text-[9px]'
+                  : 'text-[8px]'
+            }`}
+          >
             {t('homeCards.quickActions')}
           </h2>
         </div>
 
-        <div className="flex flex-col gap-1 text-[8px] leading-tight">
+        <div
+          className={`flex flex-col gap-1 ${
+            variant === 'desktop'
+              ? 'text-[8px]'
+              : variant === 'tablet'
+                ? 'text-[7.5px]'
+                : 'text-[7px]'
+          } leading-tight`}
+        >
           <Link href="/about">{t('homeCards.aboutMe')}</Link>
           <button
             onClick={handleDownloadResume}
@@ -47,42 +96,125 @@ export function HomeCards() {
       </div>
 
       {/* Featured Projects */}
-      <div className="h-full w-full min-w-[230px] rounded-xs bg-background p-2 px-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-        <div className="mb-1.5 flex items-center gap-1.5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">
-            <Sparkles className="size-3" strokeWidth={2} />
+      <div
+        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+          variant === 'desktop'
+            ? 'min-w-[230px] p-2 px-4'
+            : variant === 'tablet'
+              ? 'p-2 px-3'
+              : 'p-1.5 px-2.5'
+        }`}
+      >
+        <div
+          className={`flex items-center gap-1.5 mb-1.5 ${
+            variant === 'desktop' ? '' : variant === 'tablet' ? 'mb-1' : 'mb-0.5'
+          }`}
+        >
+          <div
+            className={`flex shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white ${
+              variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
+            }`}
+          >
+            <Sparkles
+              className={`${
+                variant === 'desktop' ? 'size-3' : variant === 'tablet' ? 'size-2.5' : 'size-2'
+              }`}
+              strokeWidth={2}
+            />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">
+          <h2
+            className={`font-sans font-semibold leading-none ${
+              variant === 'desktop'
+                ? 'text-[10px]'
+                : variant === 'tablet'
+                  ? 'text-[9px]'
+                  : 'text-[8px]'
+            }`}
+          >
             {t('homeCards.featuredProjects')}
           </h2>
         </div>
 
-        <div className="flex flex-col gap-1 text-[8px] leading-tight">
+        <div
+          className={`flex flex-col gap-1 ${
+            variant === 'desktop'
+              ? 'text-[8px]'
+              : variant === 'tablet'
+                ? 'text-[7.5px]'
+                : 'text-[7px]'
+          } leading-tight`}
+        >
           <span>{t('homeCards.consultify')}</span>
           <span>{t('homeCards.portfolio')}</span>
           <span>{t('homeCards.brandIdentity')}</span>
           <span>{t('homeCards.mobileUIKit')}</span>
         </div>
 
-        <Link href="/projects" className="mt-1.5 block text-[8px] font-semibold text-primary">
+        <Link
+          href="/projects"
+          className={`block font-semibold text-primary ${
+            variant === 'desktop'
+              ? 'text-[8px] mt-1.5'
+              : variant === 'tablet'
+                ? 'text-[7.5px] mt-1'
+                : 'text-[7px] mt-1'
+          }`}
+        >
           {t('homeCards.viewAllProjects')}
         </Link>
       </div>
 
       {/* Skills */}
-      <div className="h-full w-full min-w-[230px] rounded-xs bg-background p-2 px-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-        <div className="mb-1.5 flex items-center gap-1.5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-violet-600 text-white">
-            <Code2 className="size-3" strokeWidth={2} />
+      <div
+        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+          variant === 'desktop'
+            ? 'min-w-[230px] p-2 px-4'
+            : variant === 'tablet'
+              ? 'p-2 px-3'
+              : 'p-1.5 px-2.5'
+        }`}
+      >
+        <div
+          className={`flex items-center gap-1.5 mb-1.5 ${
+            variant === 'desktop' ? '' : variant === 'tablet' ? 'mb-1' : 'mb-0.5'
+          }`}
+        >
+          <div
+            className={`flex shrink-0 items-center justify-center rounded-full bg-violet-600 text-white ${
+              variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
+            }`}
+          >
+            <Code2
+              className={`${
+                variant === 'desktop' ? 'size-3' : variant === 'tablet' ? 'size-2.5' : 'size-2'
+              }`}
+              strokeWidth={2}
+            />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">
+          <h2
+            className={`font-sans font-semibold leading-none ${
+              variant === 'desktop'
+                ? 'text-[10px]'
+                : variant === 'tablet'
+                  ? 'text-[9px]'
+                  : 'text-[8px]'
+            }`}
+          >
             {t('homeCards.skills')}
           </h2>
         </div>
 
-        <div className="flex flex-col gap-1 text-[8px] leading-tight">
+        <div
+          className={`flex flex-col gap-1 ${
+            variant === 'desktop'
+              ? 'text-[8px]'
+              : variant === 'tablet'
+                ? 'text-[7.5px]'
+                : 'text-[7px]'
+          } leading-tight`}
+        >
           <span>React</span>
           <span>Next.js</span>
           <span>Node.js</span>
@@ -92,24 +224,70 @@ export function HomeCards() {
           <span>Adobe Creative Suite</span>
         </div>
 
-        <Link href="/skills" className="mt-1.5 block text-[8px] font-semibold text-primary">
+        <Link
+          href="/skills"
+          className={`block font-semibold text-primary ${
+            variant === 'desktop'
+              ? 'text-[8px] mt-1.5'
+              : variant === 'tablet'
+                ? 'text-[7.5px] mt-1'
+                : 'text-[7px] mt-1'
+          }`}
+        >
           {t('homeCards.viewAllSkills')}
         </Link>
       </div>
 
       {/* Current Status */}
-      <div className="h-full w-full min-w-[230px] rounded-xs bg-background p-2 px-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-        <div className="mb-1.5 flex items-center gap-1.5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
-            <BriefcaseBusiness className="size-3" strokeWidth={2} />
+      <div
+        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+          variant === 'desktop'
+            ? 'min-w-[230px] p-2 px-4'
+            : variant === 'tablet'
+              ? 'p-2 px-3'
+              : 'p-1.5 px-2.5'
+        }`}
+      >
+        <div
+          className={`flex items-center gap-1.5 mb-1.5 ${
+            variant === 'desktop' ? '' : variant === 'tablet' ? 'mb-1' : 'mb-0.5'
+          }`}
+        >
+          <div
+            className={`flex shrink-0 items-center justify-center rounded-full bg-orange-500 text-white ${
+              variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
+            }`}
+          >
+            <BriefcaseBusiness
+              className={`${
+                variant === 'desktop' ? 'size-3' : variant === 'tablet' ? 'size-2.5' : 'size-2'
+              }`}
+              strokeWidth={2}
+            />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">
+          <h2
+            className={`font-sans font-semibold leading-none ${
+              variant === 'desktop'
+                ? 'text-[10px]'
+                : variant === 'tablet'
+                  ? 'text-[9px]'
+                  : 'text-[8px]'
+            }`}
+          >
             {t('homeCards.currentStatus')}
           </h2>
         </div>
 
-        <div className="flex flex-col gap-1 text-[8px] leading-tight">
+        <div
+          className={`flex flex-col gap-1 ${
+            variant === 'desktop'
+              ? 'text-[8px]'
+              : variant === 'tablet'
+                ? 'text-[7.5px]'
+                : 'text-[7px]'
+          } leading-tight`}
+        >
           <span>{t('homeCards.availableForWork')}</span>
           <span>{t('homeCards.location')}</span>
           <span>{t('homeCards.estinStudent')}</span>
@@ -119,18 +297,55 @@ export function HomeCards() {
       </div>
 
       {/* Latest Activity */}
-      <div className="h-full w-full min-w-[230px] rounded-xs bg-background p-2 px-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-        <div className="mb-1.5 flex items-center gap-1.5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-700 text-white">
-            <FileText className="size-3" strokeWidth={2} />
+      <div
+        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+          variant === 'desktop'
+            ? 'min-w-[230px] p-2 px-4'
+            : variant === 'tablet'
+              ? 'p-2 px-3'
+              : 'p-1.5 px-2.5'
+        }`}
+      >
+        <div
+          className={`flex items-center gap-1.5 mb-1.5 ${
+            variant === 'desktop' ? '' : variant === 'tablet' ? 'mb-1' : 'mb-0.5'
+          }`}
+        >
+          <div
+            className={`flex shrink-0 items-center justify-center rounded-full bg-blue-700 text-white ${
+              variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
+            }`}
+          >
+            <FileText
+              className={`${
+                variant === 'desktop' ? 'size-3' : variant === 'tablet' ? 'size-2.5' : 'size-2'
+              }`}
+              strokeWidth={2}
+            />
           </div>
 
-          <h2 className="font-sans text-[10px] font-semibold leading-none">
+          <h2
+            className={`font-sans font-semibold leading-none ${
+              variant === 'desktop'
+                ? 'text-[10px]'
+                : variant === 'tablet'
+                  ? 'text-[9px]'
+                  : 'text-[8px]'
+            }`}
+          >
             {t('homeCards.latestActivity')}
           </h2>
         </div>
 
-        <div className="flex flex-col gap-1 text-[8px] leading-tight">
+        <div
+          className={`flex flex-col gap-1 ${
+            variant === 'desktop'
+              ? 'text-[8px]'
+              : variant === 'tablet'
+                ? 'text-[7.5px]'
+                : 'text-[7px]'
+          } leading-tight`}
+        >
           <span>{t('homeCards.newProjectPublished')}</span>
           <span>{t('homeCards.portfolioUpdated')}</span>
           <span>{t('homeCards.resumeUpdated')}</span>
