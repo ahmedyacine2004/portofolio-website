@@ -434,7 +434,10 @@
     "english": "English",
     "french": "Français",
     "light": "Clair",
+    "dark": "Sombre",
     "sound": "Son",
+    "soundOn": "Musique On",
+    "soundOff": "Musique Off",
     "highQuality": "Haute qualité",
     "performance": "Performance",
     "available": "Disponible"

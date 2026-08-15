@@ -4,7 +4,6 @@
 import {
   Bolt,
   BriefcaseBusiness,
-  ChevronDown,
   CircleAlert,
   FolderKanban,
   Globe,
@@ -12,19 +11,22 @@ import {
   LayoutDashboard,
   Mail,
   MessageCircle,
+  Moon,
   Settings,
   ShieldCheck,
-  Speaker,
   Sun,
+  Volume2,
+  VolumeX,
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { useTheme } from '../../hooks/use-theme';
 
 import { useTranslation } from '@/hooks/use-translation';
+import { useAudioStore } from '@/stores/audio.store';
 import { useLanguageStore } from '@/stores/language.store';
 
 /*
@@ -103,31 +105,18 @@ function getClientTime() {
 export function StatusBar() {
   const pathname = usePathname();
   const locale = useLanguageStore((s) => s.locale);
-  const setLocale = useLanguageStore((s) => s.setLocale);
   const { t } = useTranslation();
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const time = useSyncExternalStore(subscribeToClock, getClientTime, getServerTime);
   const currentPageConfig =
     basePageNavigation[pathname as keyof typeof basePageNavigation] ?? basePageNavigation['/'];
   const CurrentIcon = currentPageConfig.icon;
   const currentPageLabel = t(currentPageConfig.translationKey);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const { isPlaying, togglePlayback } = useAudioStore();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const handleDocumentClick = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setLanguageMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleDocumentClick);
-    return () => document.removeEventListener('mousedown', handleDocumentClick);
   }, []);
 
   return (
@@ -250,70 +239,50 @@ export function StatusBar() {
           RIGHT SIDE
           ================================================================ */}
 
-      <div
-        className="relative flex shrink-0 items-center gap-2 text-[11px] text-foreground-secondary"
-        ref={menuRef}
-      >
+      <div className="relative flex shrink-0 items-center gap-2 text-[11px] text-foreground-secondary">
         {/* Language */}
         <div className="relative">
-          <button
-            type="button"
-            aria-haspopup="true"
-            aria-expanded={languageMenuOpen}
-            className="flex items-center gap-1 text-[10px] leading-none transition-colors hover:text-foreground"
-            onClick={() => setLanguageMenuOpen((prev) => !prev)}
-          >
+          <div className="flex items-center gap-1 text-[10px] leading-none text-foreground-secondary cursor-not-allowed opacity-75">
             <Globe className="size-3" strokeWidth={1.8} aria-hidden="true" />
             <span>{locale === 'en' ? 'EN' : 'FR'}</span>
-            <ChevronDown
-              className={`size-3 transition-transform ${languageMenuOpen ? 'rotate-180' : ''}`}
-              strokeWidth={1.8}
-              aria-hidden="true"
-            />
-          </button>
-
-          {languageMenuOpen && (
-            <div className="absolute right-0 bottom-full mb-2 w-28 rounded-sm border border-border bg-card p-2 shadow-md">
-              <button
-                type="button"
-                onClick={() => {
-                  setLocale('en');
-                  setLanguageMenuOpen(false);
-                }}
-                className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"
-              >
-                <span>{t('statusBar.english')}</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setLocale('fr');
-                  setLanguageMenuOpen(false);
-                }}
-                className="flex w-full items-center justify-between rounded-sm px-2 py-1 text-left text-[10px] transition-colors hover:bg-muted"
-              >
-                <span>{t('statusBar.french')}</span>
-              </button>
-            </div>
-          )}
+          </div>
         </div>
 
         {/* Theme */}
-        <button
-          type="button"
-          className="flex items-center gap-1.5 text-[10px] leading-none transition-colors hover:text-foreground"
-        >
-          <Sun className="size-3" strokeWidth={1.8} aria-hidden="true" />
-          <span>{t('statusBar.light')}</span>
-        </button>
+        {mounted ? (
+          <button
+            type="button"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="flex items-center gap-1.5 text-[10px] leading-none transition-colors hover:text-foreground"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          >
+            {theme === 'dark' ? (
+              <Sun className="size-3" strokeWidth={1.8} aria-hidden="true" />
+            ) : (
+              <Moon className="size-3" strokeWidth={1.8} aria-hidden="true" />
+            )}
+            <span>{theme === 'light' ? t('statusBar.light') : t('statusBar.dark')}</span>
+          </button>
+        ) : (
+          <div className="flex items-center gap-1.5 text-[10px] leading-none text-foreground-secondary cursor-not-allowed opacity-75">
+            <Sun className="size-3" strokeWidth={1.8} aria-hidden="true" />
+            <span>{t('statusBar.light')}</span>
+          </div>
+        )}
 
         {/* Volume */}
         <button
           type="button"
+          onClick={() => togglePlayback()}
           className="flex items-center gap-1.5 text-[10px] leading-none transition-colors hover:text-foreground"
+          aria-label={`${isPlaying ? 'Mute' : 'Unmute'} music`}
         >
-          <Speaker className="size-3" strokeWidth={1.8} aria-hidden="true" />
-          <span>{t('statusBar.sound')}</span>
+          {isPlaying ? (
+            <Volume2 className="size-3" strokeWidth={1.8} aria-hidden="true" />
+          ) : (
+            <VolumeX className="size-3" strokeWidth={1.8} aria-hidden="true" />
+          )}
+          <span>{isPlaying ? t('statusBar.soundOn') : t('statusBar.soundOff')}</span>
         </button>
 
         {/* Quality */}

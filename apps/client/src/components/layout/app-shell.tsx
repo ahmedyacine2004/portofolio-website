@@ -11,6 +11,7 @@ import { ImageViewerModal } from '../about/image-viewer-modal';
 import { CommandPaletteModal } from '../command-palette/command-palette-modal';
 import { LoadingPage } from '../loading/loading-page';
 import { TerminalModal } from '../terminal/terminal-modal';
+import { AudioPlayer } from './audio-player';
 import { DownloadManager } from './download-manager';
 import { Header } from './header';
 import { NotificationsPanel } from './notifications-panel';
@@ -126,6 +127,9 @@ export function AppShell({ children }: AppShellProps) {
 
       {/* Image Preview Viewer Modal */}
       <ImageViewerModal />
+
+      {/* Background Audio Player */}
+      <AudioPlayer />
     </>
   );
 }
