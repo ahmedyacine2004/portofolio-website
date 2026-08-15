@@ -129,43 +129,36 @@ export default function AboutPage() {
   return (
     <div className="flex h-full min-h-0 flex-col gap-1 p-2">
       <AboutTabBar />
-
-      {/* Top Section - Responsive Grid */}
-      <section className="grid min-h-0 flex-[1.15] gap-2 lg:grid-cols-[1.2fr_0.9fr_0.9fr] md:grid-cols-2 grid-cols-1">
+      {/* Top */}
+      <section className="grid min-h-0 flex-[1.15] grid-cols-[1.2fr_0.9fr_0.9fr] gap-2">
         {/* Introduction */}
         <div className="flex min-h-0 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div>
-            <p className="mb-1.5 text-[8px] font-semibold text-primary md:text-[7px] sm:text-[6.5px]">
-              {t('about.greeting')}
-            </p>
+            <p className="mb-1.5 text-[8px] font-semibold text-primary">{t('about.greeting')}</p>
 
-            <h1 className="text-[60px] font-bold leading-[0.7] md:text-[40px] sm:text-[32px]">
-              {t('about.heading')}
-            </h1>
+            <h1 className="text-[60px] font-bold leading-[0.7]">{t('about.heading')}</h1>
 
-            <p className="mt-0.5 text-[9px] font-semibold leading-tight md:text-[8px] sm:text-[7px]">
-              {t('about.subheading')}
-            </p>
+            <p className="mt-0.5 text-[9px] font-semibold leading-tight">{t('about.subheading')}</p>
 
-            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground md:text-[7px] sm:text-[6.5px]">
+            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               {t('about.introduction')}
             </p>
 
-            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground md:text-[7px] sm:text-[6.5px]">
+            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               {t('about.welcomeMessage')}
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="mt-2 flex h-7 items-center justify-center rounded-xs bg-primary text-[8px] font-semibold text-primary-foreground md:h-6 md:text-[7px] sm:h-5 sm:text-[6px]"
+            className="mt-2 flex h-7 items-center justify-center rounded-xs bg-primary text-[8px] font-semibold text-primary-foreground"
           >
             {t('about.letsConnect')}
           </Link>
         </div>
 
-        {/* Avatar - Hidden on mobile, visible on tablet+ */}
-        <div className="relative hidden md:block min-h-0 overflow-hidden rounded-sm bg-sky-50 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] dark:bg-slate-900">
+        {/* Avatar */}
+        <div className="relative min-h-0 overflow-hidden rounded-sm bg-sky-50 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] dark:bg-slate-900">
           <Image
             src={avatar}
             alt="Ahmed Yassine Abbane"
@@ -175,8 +168,8 @@ export default function AboutPage() {
           />
         </div>
 
-        {/* Stats - Responsive grid */}
-        <div className="flex rounded-sm min-h-0 flex-col gap-1 px-2 py-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] md:col-span-1 sm:grid sm:grid-cols-2 sm:gap-1">
+        {/* Stats */}
+        <div className="flex rounded sm min-h-0 flex-col gap-1 px-2 py-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <StatCard
             icon={UserRound}
             label={t('about.stats.experience')}
@@ -207,11 +200,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Bottom Section - Responsive Grid */}
-      <section className="grid min-h-0 flex-[1.15] gap-2 lg:grid-cols-[1fr_0.9fr_0.95fr] md:grid-cols-1 grid-cols-1">
+      {/* Bottom */}
+      <section className="grid min-h-0 flex-[1.15] grid-cols-[1fr_0.9fr_0.95fr] gap-2">
         {/* What to Do */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-          <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em] md:text-[12px] sm:text-[11px]">
+          <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
             {t('about.headings.whatToDo')}
           </h2>
 
@@ -222,20 +215,20 @@ export default function AboutPage() {
               return (
                 <div
                   key={service.title}
-                  className="flex min-h-[45px] items-center gap-2 rounded-xs bg-background px-2 py-0 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] md:min-h-[40px]"
+                  className="flex min-h-[45px] items-center gap-2 rounded-xs bg-background px-2 py-0 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
                 >
                   <div
-                    className={`flex size-7 shrink-0 items-center justify-center rounded-xs text-white ${service.className} md:size-6`}
+                    className={`flex size-7 shrink-0 items-center justify-center rounded-xs text-white ${service.className}`}
                   >
-                    <Icon className="size-3.5 md:size-3" strokeWidth={1.8} />
+                    <Icon className="size-3.5" strokeWidth={1.8} />
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="font-inter text-[9px] font-semibold leading-none md:text-[8px] sm:text-[7px]">
+                    <h3 className="font-inter text-[9px] font-semibold leading-none">
                       {service.title}
                     </h3>
 
-                    <p className="mt-0.5 text-[6.5px] leading-[1.25] text-muted-foreground md:text-[6px]">
+                    <p className="mt-0.5 text-[6.5px] leading-[1.25] text-muted-foreground">
                       {service.description}
                     </p>
                   </div>
@@ -247,7 +240,7 @@ export default function AboutPage() {
 
         {/* My Journey */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-          <h2 className="font-inter mb-3 text-[14px] font-bold leading-none tracking-[-0.02em] md:text-[12px] sm:text-[11px]">
+          <h2 className="font-inter mb-3 text-[14px] font-bold leading-none tracking-[-0.02em]">
             {t('about.headings.myJourney')}
           </h2>
 
@@ -260,11 +253,11 @@ export default function AboutPage() {
                   <div className="relative z-10 mt-0.5 size-2 shrink-0 rounded-full bg-primary ring-2 ring-background" />
 
                   <div className="min-w-0">
-                    <p className="text-[8px] font-semibold leading-none text-primary md:text-[7px]">
+                    <p className="text-[8px] font-semibold leading-none text-primary">
                       {item.year}
                     </p>
 
-                    <p className="mt-1 text-[7px] leading-[1.25] md:text-[6.5px]">{item.text}</p>
+                    <p className="mt-1 text-[7px] leading-[1.25]">{item.text}</p>
                   </div>
                 </div>
               ))}
@@ -272,26 +265,26 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Right Section - Tech & Interests */}
-        <div className="flex min-h-0 flex-col gap-2 md:flex-row md:gap-2">
+        {/* Right */}
+        <div className="flex min-h-0 flex-col gap-2">
           {/* Tech Arsenal */}
-          <div className="md:flex-1 rounded-sm bg-background p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em] md:text-[12px] sm:text-[11px]">
+          <div className="rounded-sm bg-background p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               {t('about.headings.techArsenal')}
             </h2>
 
-            <div className="grid grid-cols-5 gap-1 md:grid-cols-4 sm:grid-cols-5">
+            <div className="grid grid-cols-5 gap-1">
               {technologies.map((technology, index) => (
                 <div
                   key={index}
-                  className="flex size-11 items-center justify-center rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] md:size-9 sm:size-8"
+                  className="flex size-11 items-center justify-center rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
                 >
                   <Image
                     src={technology}
                     alt=""
                     width={12}
                     height={12}
-                    className="size-6 object-contain md:size-5 sm:size-4"
+                    className="size-6 object-contain"
                     aria-hidden="true"
                   />
                 </div>
@@ -300,8 +293,8 @@ export default function AboutPage() {
           </div>
 
           {/* Beyond Code */}
-          <div className="md:flex-1 min-h-0 flex-1 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em] md:text-[12px] sm:text-[11px]">
+          <div className="min-h-0 flex-1 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               {t('about.headings.beyondCode')}
             </h2>
 
@@ -312,13 +305,11 @@ export default function AboutPage() {
                 return (
                   <div
                     key={interest.label}
-                    className="flex items-center gap-1.5 rounded-xs bg-background px-2 py-1.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] md:px-1.5 md:py-1 md:text-[6.5px]"
+                    className="flex items-center gap-1.5 rounded-xs bg-background px-2 py-1.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
                   >
-                    <Icon className="size-3 text-primary md:size-2.5" strokeWidth={1.8} />
+                    <Icon className="size-3 text-primary" strokeWidth={1.8} />
 
-                    <span className="text-[7px] font-medium md:text-[6.5px] sm:text-[6px]">
-                      {interest.label}
-                    </span>
+                    <span className="text-[7px] font-medium">{interest.label}</span>
                   </div>
                 );
               })}
