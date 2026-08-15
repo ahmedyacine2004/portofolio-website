@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import type { FlowNodeType, UIUXUserFlowData } from '@/data/projects/neobank-mobile';
 import {
   AlertCircle,
   ArrowRight,
@@ -8,16 +8,10 @@ import {
   Clock,
   CornerDownRight,
   GitBranch,
-  GitCommit,
-  Layers,
-  ShieldCheck,
-  Smartphone,
   Sparkles,
-  Users,
   Workflow,
-  type LucideIcon,
 } from 'lucide-react';
-import type { UIUXUserFlowData, FlowNodeType } from '@/data/projects/neobank-mobile';
+import { useState } from 'react';
 
 interface UIUXProjectUserFlowViewProps {
   data: UIUXUserFlowData;
@@ -196,7 +190,7 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
 
         <div className="relative flex flex-col gap-4 pt-2">
           {activeFlow.steps.map((step, index) => {
-            const nodeStyle = NODE_TYPE_STYLES[step.nodeType];
+            const nodeStyle = NODE_TYPE_STYLES[step.nodeType ?? 'screen'];
             const isLast = index === activeFlow.steps.length - 1;
 
             return (

@@ -1,3 +1,18 @@
-Unsafe call of a type that could not be resolved.eslint@typescript-eslint/no-unsafe-call
-Unsafe member access .forRootAsync on a type that cannot be resolved.eslint@typescript-eslint/no-unsafe-member-access
-(method) MongooseModule.forRootAsync(options: MongooseModuleAsyncOptions): DynamicModule
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**'],
+  },
+  {
+    rules: {
+      '@typescript-eslint/interface-name-prefix': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+);

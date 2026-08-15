@@ -9,6 +9,7 @@ import {
   FolderKanban,
   Globe,
   Home,
+  LayoutDashboard,
   Mail,
   MessageCircle,
   Settings,
@@ -52,6 +53,7 @@ const TECHNOLOGY_ICON_SIZE = 12;
 
 const basePageNavigation = {
   '/': { icon: Home, translationKey: 'navigation.home' },
+  '/dashboard': { icon: LayoutDashboard, translationKey: 'navigation.dashboard' },
   '/about': { icon: CircleAlert, translationKey: 'navigation.about' },
   '/projects': { icon: FolderKanban, translationKey: 'navigation.projects' },
   '/services': { icon: BriefcaseBusiness, translationKey: 'navigation.projects' },

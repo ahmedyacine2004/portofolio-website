@@ -12,6 +12,7 @@ import { HeaderActionButtons } from './header-action-buttons';
 import { HeaderNavigation } from './header-navigation';
 import { HeaderSearch } from './header-search';
 
+import { useAdminAuthStore } from '@/stores/admin-auth.store';
 import { useCommandPaletteStore } from '@/stores/command-palette.store';
 import { useTerminalStore } from '@/stores/terminal.store';
 
@@ -23,9 +24,11 @@ export function Header() {
   const pathname = usePathname();
   const toggleTerminal = useTerminalStore((s) => s.toggle);
   const toggleCommandPalette = useCommandPaletteStore((s) => s.toggle);
+  const isAuthenticated = useAdminAuthStore((state) => state.isAuthenticated);
   const { t } = useTranslation();
 
   const navigation: NavItem[] = [
+    ...(isAuthenticated ? [{ label: t('navigation.dashboard'), href: '/dashboard' }] : []),
     { label: t('navigation.about'), href: '/about' },
     { label: t('navigation.projects'), href: '/projects' },
     { label: t('navigation.skills'), href: '/skills' },

@@ -1,3 +1,4 @@
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 
 import { ValidationPipe } from '@nestjs/common';
@@ -10,6 +11,8 @@ import { setupSwagger } from './common/swagger/swagger.config';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
+
+  app.use(cookieParser());
 
   const configService = app.get(ConfigService);
 

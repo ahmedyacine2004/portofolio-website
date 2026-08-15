@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import type { UIUXPrototypeData } from '@/data/projects/neobank-mobile';
 import {
   CheckCircle2,
   ExternalLink,
@@ -9,11 +9,9 @@ import {
   MousePointer,
   Play,
   RefreshCw,
-  Smartphone,
-  Sparkles,
   Zap,
 } from 'lucide-react';
-import type { UIUXPrototypeData } from '@/data/projects/neobank-mobile';
+import { useState } from 'react';
 
 interface UIUXProjectPrototypeViewProps {
   data: UIUXPrototypeData;
@@ -27,6 +25,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
   ]);
 
   const currentScreen = data.screens.find((s) => s.id === currentScreenId) || data.screens[0];
+  const currentHotspots = currentScreen?.hotspots ?? [];
 
   const handleHotspotClick = (targetId: string, label: string, actionType: string) => {
     setCurrentScreenId(targetId);
@@ -211,22 +210,31 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
 
               {/* Interactive Hotspots Layer */}
               {showHotspots &&
-                currentScreen.hotspots.map((hs) => (
-                  <button
-                    key={hs.id}
-                    onClick={() => handleHotspotClick(hs.targetScreenId, hs.label, hs.actionType)}
-                    style={{
-                      left: `${hs.position.xPercentage}%`,
-                      top: `${hs.position.yPercentage}%`,
-                      width: `${hs.position.widthPercentage}%`,
-                      height: `${hs.position.heightPercentage}%`,
-                    }}
-                    className="absolute z-40 flex items-center justify-center rounded-[6px] border border-purple-400/80 bg-purple-500/30 font-inter text-[8px] font-black text-white shadow-xs backdrop-blur-[1px] animate-pulse hover:bg-purple-600/60 transition-all"
-                  >
-                    <MousePointer className="mr-0.5 size-2.5" />
-                    {hs.label}
-                  </button>
-                ))}
+                currentHotspots.map((hs) => {
+                  const position = hs.position ?? {
+                    xPercentage: 20,
+                    yPercentage: 20,
+                    widthPercentage: 25,
+                    heightPercentage: 8,
+                  };
+
+                  return (
+                    <button
+                      key={hs.id}
+                      onClick={() => handleHotspotClick(hs.targetScreenId, hs.label, hs.actionType)}
+                      style={{
+                        left: `${position.xPercentage}%`,
+                        top: `${position.yPercentage}%`,
+                        width: `${position.widthPercentage}%`,
+                        height: `${position.heightPercentage}%`,
+                      }}
+                      className="absolute z-40 flex items-center justify-center rounded-[6px] border border-purple-400/80 bg-purple-500/30 font-inter text-[8px] font-black text-white shadow-xs backdrop-blur-[1px] animate-pulse hover:bg-purple-600/60 transition-all"
+                    >
+                      <MousePointer className="mr-0.5 size-2.5" />
+                      {hs.label}
+                    </button>
+                  );
+                })}
 
               {/* Home Indicator Bar */}
               <div className="mx-auto h-1 w-16 rounded-full bg-foreground/20" />

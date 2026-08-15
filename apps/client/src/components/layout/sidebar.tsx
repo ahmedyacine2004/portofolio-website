@@ -4,23 +4,31 @@ import {
   BriefcaseBusiness,
   CircleAlert,
   FolderKanban,
+  GraduationCap,
   House,
+  LayoutDashboard,
   Mail,
   MessageCircle,
   Settings,
   ShieldCheck,
-  GraduationCap,
 } from 'lucide-react';
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-<GraduationCap />;
+
+import { useAdminAuthStore } from '@/stores/admin-auth.store';
+
 const mainNavigation = [
   {
     label: 'Home',
     href: '/',
     icon: House,
+  },
+  {
+    label: 'Dashboard',
+    href: '/dashboard',
+    icon: LayoutDashboard,
   },
   {
     label: 'About',
@@ -69,6 +77,15 @@ const bottomNavigation = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const isAuthenticated = useAdminAuthStore((state) => state.isAuthenticated);
+
+  const visibleMainNavigation = mainNavigation.filter((item) => {
+    if (item.href !== '/dashboard') {
+      return true;
+    }
+
+    return isAuthenticated;
+  });
 
   return (
     <motion.aside
@@ -83,7 +100,7 @@ export function Sidebar() {
     >
       {/* Main navigation */}
       <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">
-        {mainNavigation.map((item) => {
+        {visibleMainNavigation.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
 

@@ -1,9 +1,6 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Boxes,
@@ -11,6 +8,7 @@ import {
   Code2,
   Cpu,
   Database,
+  FileCode2,
   Globe,
   Layers,
   Layout,
@@ -20,8 +18,10 @@ import {
   Server,
   Terminal,
   Wrench,
-  FileCode2,
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 import { useTranslation } from '@/hooks/use-translation';
 
@@ -105,9 +105,22 @@ const RECENTLY_USED = [
 ];
 
 function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
+  const explicitMap: Record<string, string> = {
+    'tailwind css': 'tailwind-css',
+    'html & css': 'html-css',
+    'express.js': 'expressjs',
+    'spring boot': 'spring-boot',
+    'docker & kubernetes': 'docker-kubernetes',
+    'after effects': 'after-effects',
+    'git hub': 'github',
+    render: 'render',
+  };
+
+  const normalized = text.toLowerCase().trim();
+  const mapped = explicitMap[normalized];
+  if (mapped) return mapped;
+
+  return normalized
     .replace(/\.js/g, 'js')
     .replace(/[^\w\s-]/g, '')
     .replace(/[\s_-]+/g, '-')

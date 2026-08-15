@@ -1,5 +1,5 @@
-import type { StaticImageData } from 'next/image';
 import neobankHeroImg from '@/assets/images/neobank-mobile-hero.png';
+import type { StaticImageData } from 'next/image';
 
 // --- UI / UX PROJECT DATA TYPES ---
 
@@ -60,7 +60,7 @@ export interface UserFlowStep {
   screenName: string;
   userAction: string;
   systemResponse: string;
-  nodeType: FlowNodeType;
+  nodeType?: FlowNodeType;
   isKeyMilestone?: boolean;
   decisionOptions?: {
     label: string;

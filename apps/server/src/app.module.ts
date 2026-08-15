@@ -10,6 +10,8 @@ import {
   validationSchema,
 } from './config';
 import { DatabaseModule } from './database/database.module';
+import { AdminAuthModule } from './modules/admin-auth/admin-auth.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { DatabaseModule } from './database/database.module';
       validationSchema,
     }),
     DatabaseModule,
+    DashboardModule,
+    AdminAuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

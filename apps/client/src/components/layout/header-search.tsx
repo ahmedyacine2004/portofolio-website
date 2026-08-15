@@ -9,6 +9,7 @@ import {
   FileText,
   Folder,
   Infinity as InfinityIcon,
+  LayoutDashboard,
   Search,
   Tag,
   Terminal,
@@ -39,6 +40,17 @@ const TABS = ['All', 'Projects', 'Files', 'Code', 'Folders', 'Tags', 'Commands']
 // ─── Search Items Data & Actions ──────────────────────────────────────────────
 
 const ALL_SEARCH_ITEMS: SearchResultItem[] = [
+  {
+    id: 'r0',
+    title: 'System Dashboard & Metrics',
+    subtitle: 'High-level portfolio overview, real-time telemetry, & goals',
+    Icon: LayoutDashboard,
+    typeLabel: 'System',
+    shortcut: '⌘0',
+    category: 'Top Results',
+    tab: 'Commands',
+    action: (router) => router.push('/dashboard'),
+  },
   {
     id: 'r1',
     title: 'CONSULIFY - AI Powered Consultant Matching Platform',

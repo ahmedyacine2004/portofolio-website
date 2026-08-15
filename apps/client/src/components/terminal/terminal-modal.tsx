@@ -1,23 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import {
-  X,
-  Plus,
-  Columns2,
-  History,
-  Sparkles,
-  MoreHorizontal,
-  ChevronDown,
-  Terminal,
-  AlertCircle,
-  CheckCircle2,
-  Circle,
-  SquareTerminal,
-} from 'lucide-react';
-import { useTerminalStore } from '@/stores/terminal.store';
 import { useTranslation } from '@/hooks/use-translation';
+import { useAdminAuthStore } from '@/stores/admin-auth.store';
+import { useTerminalStore } from '@/stores/terminal.store';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Columns2, History, MoreHorizontal, Plus, Sparkles, SquareTerminal, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 /*
 |--------------------------------------------------------------------------
@@ -164,8 +153,11 @@ const getCommands = (t: any): Record<string, TerminalLine[]> => ({
     { id: 12, type: 'item', content: 'contact' },
     { id: 13, type: 'item', content: 'search <query>' },
     { id: 14, type: 'item', content: 'chat' },
-    { id: 15, type: 'blank', content: '' },
-    { id: 16, type: 'output', content: 'Type a command to continue.' },
+    { id: 15, type: 'item', content: 'login <username> <password>' },
+    { id: 16, type: 'item', content: 'logout' },
+    { id: 17, type: 'item', content: 'dashboard' },
+    { id: 18, type: 'blank', content: '' },
+    { id: 19, type: 'output', content: 'Type a command to continue.' },
   ],
 });
 
@@ -256,7 +248,11 @@ interface HistoryBlock {
 
 export function TerminalModal() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { isOpen, close } = useTerminalStore();
+  const login = useAdminAuthStore((state) => state.login);
+  const logout = useAdminAuthStore((state) => state.logout);
+  const isAuthenticated = useAdminAuthStore((state) => state.isAuthenticated);
   const COMMANDS = getCommands(t);
   const [history, setHistory] = useState<HistoryBlock[]>([]);
   const [input, setInput] = useState('');
@@ -287,7 +283,7 @@ export function TerminalModal() {
     return () => window.removeEventListener('keydown', handler);
   }, [close]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const raw = input.trim();
     if (!raw) return;
@@ -301,9 +297,47 @@ export function TerminalModal() {
 
     if (cmd === 'clear') {
       setHistory([]);
+      setBlockCounter(0);
       setInput('');
       setCmdHistoryIdx(-1);
       return;
+    } else if (cmd === 'login') {
+      const [username, password] = arg.split(/\s+/).filter(Boolean);
+      const success = await login(username ?? '', password ?? '');
+      outputLines = success
+        ? [
+            { id: 1, type: 'success', content: 'Admin access granted by the server.' },
+            { id: 2, type: 'output', content: 'Dashboard is now unlocked for this session.' },
+          ]
+        : [
+            { id: 1, type: 'error', content: 'Authentication failed.' },
+            {
+              id: 2,
+              type: 'output',
+              content: 'Use the admin username and password configured on the server.',
+            },
+          ];
+
+      if (success) {
+        router.push('/dashboard');
+        close();
+      }
+    } else if (cmd === 'logout') {
+      await logout();
+      outputLines = [
+        { id: 1, type: 'info', content: 'Admin session closed.' },
+        { id: 2, type: 'output', content: 'Dashboard access has been revoked.' },
+      ];
+    } else if (cmd === 'dashboard') {
+      outputLines = isAuthenticated
+        ? [
+            { id: 1, type: 'success', content: 'Dashboard access is enabled.' },
+            { id: 2, type: 'output', content: 'Open /dashboard to view the admin panel.' },
+          ]
+        : [
+            { id: 1, type: 'error', content: 'Dashboard is restricted to admins only.' },
+            { id: 2, type: 'output', content: 'Run: portfolio login <username> <password>' },
+          ];
     } else if (cmd === 'search' && arg) {
       outputLines = getSearchResults(arg);
     } else if (COMMANDS[cmd]) {
@@ -315,8 +349,9 @@ export function TerminalModal() {
       ];
     }
 
-    setBlockCounter((prev) => prev + 1);
-    setHistory((prev) => [...prev, { id: blockCounter + 1, command: fullCmd, lines: outputLines }]);
+    const nextBlockId = blockCounter + 1;
+    setBlockCounter(nextBlockId);
+    setHistory((prev) => [...prev, { id: nextBlockId, command: fullCmd, lines: outputLines }]);
     setCmdHistory((prev) => [raw, ...prev]);
     setCmdHistoryIdx(-1);
     setInput('');
