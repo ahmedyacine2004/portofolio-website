@@ -121,7 +121,7 @@ export default function Home() {
       </div>
 
       {/* Tablet Layout */}
-      <div className="hidden md:flex lg:hidden h-full w-full flex-col gap-1 p-2 px-4 overflow-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
+      <div className="hidden md:flex lg:hidden h-full w-full flex-col gap-1 p-2 px-4 overflow-x-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
         {/* Main Content */}
         <motion.div
           className="flex flex-1 min-w-0 flex-col overflow-y-auto"
@@ -142,17 +142,17 @@ export default function Home() {
                 hidden: { opacity: 0, y: 15 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
               }}
-              className="text-[8px] font-semibold leading-none text-primary bg-surface-brand inline px-3 py-0.5 rounded-[2px]"
+              className="text-[11px] font-semibold leading-none text-primary bg-surface-brand inline px-3 py-1 rounded-[2px]"
             >
               {t('homepage.salutations')}
             </motion.p>
-            <div className="flex flex-col gap-1 mt-2">
+            <div className="mt-3 flex flex-col gap-2">
               <motion.p
                 variants={{
                   hidden: { opacity: 0, x: -15 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
                 }}
-                className="text-[8px] font-semibold leading-none text-primary"
+                className="text-[11px] font-semibold leading-none text-primary"
               >
                 {t('homepage.workspaceInitialized')}
               </motion.p>
@@ -167,7 +167,7 @@ export default function Home() {
                     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
                   },
                 }}
-                className="text-[32px] uppercase leading-[0.65]"
+                className="text-[68px] uppercase leading-[0.72]"
               >
                 <span className="font-beni block text-foreground">AHMED YASSINE</span>
                 <span className="font-beni block text-primary">ABBANE</span>
@@ -178,7 +178,7 @@ export default function Home() {
                   hidden: { opacity: 0 },
                   visible: { opacity: 1, transition: { duration: 0.8, delay: 0.4 } },
                 }}
-                className="max-w-full text-[8px] leading-[1.1] text-foreground"
+                className="max-w-full text-[11px] leading-[1.3] text-foreground"
               >
                 {t('homepage.tagline')}
                 <br />
@@ -193,7 +193,7 @@ export default function Home() {
               hidden: { opacity: 0, y: 25 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
             }}
-            className="py-4"
+            className="px-1 py-4"
           >
             <HomeCards variant="tablet" />
           </motion.div>
@@ -204,7 +204,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="flex h-32 w-full flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
+          className="flex h-44 w-full flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
         >
           <div className="h-full w-full">
             <KeyboardScene />
@@ -213,7 +213,7 @@ export default function Home() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden flex h-full w-full flex-col gap-1 p-2 overflow-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
+      <div className="md:hidden flex h-full w-full flex-col gap-1 p-2 overflow-x-hidden shadow-2xl dark:shadow-[0_0_12px_rgba(255,255,255,0.2),0_1px_2px_rgba(0,0,0,0.05)]">
         {/* Main Content */}
         <motion.div
           className="flex flex-1 min-w-0 flex-col overflow-y-auto"
@@ -234,17 +234,17 @@ export default function Home() {
                 hidden: { opacity: 0, y: 12 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
               }}
-              className="text-[7px] font-semibold leading-none text-primary bg-surface-brand inline px-2.5 py-0.5 rounded-[2px]"
+              className="text-[9px] font-semibold leading-none text-primary bg-surface-brand inline px-2.5 py-1 rounded-[2px]"
             >
               {t('homepage.salutations')}
             </motion.p>
-            <div className="flex flex-col gap-1 mt-2">
+            <div className="mt-3 flex flex-col gap-2">
               <motion.p
                 variants={{
                   hidden: { opacity: 0, x: -12 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
                 }}
-                className="text-[7px] font-semibold leading-none text-primary"
+                className="text-[9px] font-semibold leading-none text-primary"
               >
                 {t('homepage.workspaceInitialized')}
               </motion.p>
@@ -259,7 +259,7 @@ export default function Home() {
                     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
                   },
                 }}
-                className="text-[22px] uppercase leading-[0.65]"
+                className="text-[52px] uppercase leading-[0.72]"
               >
                 <span className="font-beni block text-foreground">AHMED</span>
                 <span className="font-beni block text-foreground">YASSINE</span>
@@ -271,7 +271,7 @@ export default function Home() {
                   hidden: { opacity: 0 },
                   visible: { opacity: 1, transition: { duration: 0.8, delay: 0.4 } },
                 }}
-                className="max-w-full text-[7px] leading-[1.2] text-foreground mt-1.5"
+                className="mt-1 max-w-full text-[9px] leading-[1.3] text-foreground"
               >
                 {t('homepage.tagline')}
                 <br />
@@ -286,7 +286,7 @@ export default function Home() {
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
             }}
-            className="py-3"
+            className="px-1 py-3"
           >
             <HomeCards variant="mobile" />
           </motion.div>
@@ -297,7 +297,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="flex h-24 w-full flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
+          className="flex h-32 w-full flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
         >
           <div className="h-full w-full">
             <KeyboardScene />

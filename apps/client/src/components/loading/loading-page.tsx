@@ -118,27 +118,27 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
       )}
 
       {/* Main Centered Container */}
-      <div className="w-full max-w-2xl flex flex-col items-center gap-2.5 md:gap-3">
+      <div className="w-full max-w-2xl flex flex-col items-center gap-1.5 md:gap-2 lg:gap-3">
         {/* Lottie Hero */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="flex flex-col items-center justify-center py-1"
+          className="flex flex-col items-center justify-center py-0.5 md:py-1 lg:py-1"
         >
           <LottiePlayer />
         </motion.div>
 
         {/* System Logs + Developer Wisdom */}
-        <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-2 md:gap-2.5">
+        <div className="grid w-full grid-cols-1 md:grid-cols-2 gap-x-1.5 gap-y-1.5 md:gap-x-2.5 md:gap-y-2.5">
           {/* Terminal Logs Card */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.06 }}
-            className="flex flex-col justify-center rounded-xs border border-border bg-card p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+            className="flex flex-col justify-center rounded-[4px] border border-border bg-card p-1 md:p-1.5 lg:rounded-xs lg:p-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
           >
-            <div className="flex flex-col gap-1 font-mono text-[9px] md:text-[10px]">
+            <div className="flex flex-col gap-0 md:gap-0.5 lg:gap-1 font-mono text-[8px] md:text-[9px] lg:text-[10px]">
               {logSteps.map((step, idx) => {
                 const isDone = idx < completedStepIndex;
                 const isCurrent = idx === completedStepIndex;
@@ -152,7 +152,7 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
                     className="flex items-center justify-between"
                   >
                     <div className="flex items-center gap-2 min-w-0">
-                      <span className="text-[9px] text-foreground-disabled select-none shrink-0">
+                      <span className="text-[8px] lg:text-[9px] text-foreground-disabled select-none shrink-0">
                         {step.id}
                       </span>
                       {isDone ? (
@@ -176,7 +176,7 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
                         {step.text}
                       </span>
                     </div>
-                    <span className="text-[9px] text-foreground-disabled select-none shrink-0 ml-1.5">
+                    <span className="text-[8px] lg:text-[9px] text-foreground-disabled select-none shrink-0 ml-1.5">
                       {step.duration}
                     </span>
                   </motion.div>
@@ -190,20 +190,22 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.12 }}
-            className="flex flex-col justify-between rounded-xs border border-brand/20 dark:border-brand-dark/20 bg-background-secondary p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
+            className="flex flex-col justify-between rounded-[4px] border border-brand/20 dark:border-brand-dark/20 bg-background-secondary p-1.5 md:p-2 lg:rounded-xs lg:p-3 shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
           >
             <div>
-              <div className="inline-flex items-center gap-1 rounded-xs bg-surface-brand px-1.5 py-0.5 text-[9px] font-semibold text-brand-dark dark:text-brand">
+              <div className="inline-flex items-center gap-1 rounded-xs bg-surface-brand px-1.5 py-0.5 text-[8px] lg:text-[9px] font-semibold text-brand-dark dark:text-brand">
                 <Quote className="size-2.5" />
                 <span>{t('loading.developerWisdom')}</span>
               </div>
 
-              <blockquote className="mt-2 text-xs font-bold text-foreground leading-snug tracking-tight">
+              <blockquote className="mt-1 text-[10px] md:text-[11px] lg:mt-2 lg:text-xs font-bold text-foreground leading-snug tracking-tight">
                 &ldquo;Code is like humor. When you have to explain it, it&apos;s bad.&rdquo;
               </blockquote>
             </div>
 
-            <div className="mt-2 text-[9px] font-medium text-foreground-tertiary">- Cory House</div>
+            <div className="mt-1 text-[8px] lg:mt-2 lg:text-[9px] font-medium text-foreground-tertiary">
+              - Cory House
+            </div>
           </motion.div>
         </div>
 
@@ -212,7 +214,7 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.18 }}
-          className="grid w-full grid-cols-2 sm:grid-cols-4 gap-2"
+          className="grid w-full grid-cols-2 sm:grid-cols-4 gap-x-1.5 gap-y-1 md:gap-x-2 md:gap-y-1.5"
         >
           {metricCards.map((card, idx) => {
             const Icon = card.icon;
@@ -222,29 +224,29 @@ export function LoadingPage({ onSkip, isAnimatedSequence = true }: LoadingPagePr
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 + idx * 0.03 }}
-                className={`flex flex-col justify-between rounded-xs border p-2.5 shadow-xs ${card.cardClass}`}
+                className={`flex flex-col justify-between rounded-[4px] border p-1 md:p-1.5 lg:rounded-xs lg:p-2.5 shadow-xs ${card.cardClass}`}
               >
                 <div>
-                  <div className={`mb-1.5 inline-flex p-1 rounded-xs ${card.iconClass}`}>
-                    <Icon className="size-3" strokeWidth={2} />
+                  <div className={`mb-1 inline-flex p-0.5 md:p-1 rounded-xs ${card.iconClass}`}>
+                    <Icon className="size-2.5 md:size-3" strokeWidth={2} />
                   </div>
 
                   <div
-                    className={`text-lg md:text-xl font-extrabold tracking-tight leading-none ${card.valueClass}`}
+                    className={`text-base md:text-lg lg:text-xl font-extrabold tracking-tight leading-none ${card.valueClass}`}
                   >
                     {card.value}
                   </div>
 
-                  <div className="mt-1 text-[9px] font-medium text-foreground-tertiary">
+                  <div className="mt-0.5 text-[8px] md:text-[9px] font-medium text-foreground-tertiary">
                     {card.title}
                   </div>
-                  <div className="text-[9px] font-semibold text-foreground-secondary">
+                  <div className="text-[8px] md:text-[9px] font-semibold text-foreground-secondary">
                     {card.sublabel}
                   </div>
                 </div>
 
                 {/* Progress Bar */}
-                <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-foreground/10">
+                <div className="mt-1 h-0.5 md:h-1 w-full overflow-hidden rounded-full bg-foreground/10">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${card.percentage}%` }}

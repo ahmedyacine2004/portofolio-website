@@ -125,6 +125,27 @@
   background: var(--color-primary);
 }
 
+@media (max-width: 1023px) {
+  html,
+  body,
+  #__next,
+  main,
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #__next::-webkit-scrollbar,
+  main::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+
 /* ==========================================================================
    Utility Layer
    ========================================================================== */

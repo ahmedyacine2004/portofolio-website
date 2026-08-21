@@ -1,10 +1,10 @@
 'use client';
 
+import { useAboutTabsStore } from '@/stores/about-tabs.store';
+import { X } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
-import { X } from 'lucide-react';
-import { useAboutTabsStore } from '@/stores/about-tabs.store';
 
 type AboutTabBarProps = {
   actionButton?: ReactNode;
@@ -23,9 +23,9 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
   }, [pathname, setActiveHref]);
 
   return (
-    <div className="flex shrink-0 items-center justify-between gap-2 px-2">
+    <div className="flex shrink-0 items-center justify-between gap-2">
       {/* Scrollable Tabs List */}
-      <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto scrollbar-none py-0.5">
+      <div className="flex min-w-0 flex-1 touch-pan-x items-center gap-1 overflow-x-auto scrollbar-none py-0.5">
         {openTabs.map((tab) => {
           const isActive =
             pathname === tab.href || (activeHref === tab.href && pathname === tab.href);
@@ -45,7 +45,7 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
                   router.push(tab.href);
                 }
               }}
-              className={`group flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-[3px] px-2.5 transition-all select-none ${
+              className={`group flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-[3px] px-2.5 transition-all select-none max-lg:gap-1 max-lg:px-1.5 ${
                 isActive
                   ? 'bg-primary/10 text-primary font-medium shadow-2xs'
                   : 'text-muted-foreground hover:bg-muted/70 hover:text-foreground'
@@ -62,7 +62,9 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
               />
 
               {/* Label */}
-              <span className="text-[9px] leading-none whitespace-nowrap">{tab.label}</span>
+              <span className="text-[9px] leading-none whitespace-nowrap max-lg:hidden">
+                {tab.label}
+              </span>
 
               {/* Close Button */}
               <button
@@ -72,7 +74,7 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
                   e.stopPropagation();
                   closeTab(tab.href, router.push);
                 }}
-                className={`ml-1 flex size-3.5 items-center justify-center rounded-xs transition-colors ${
+                className={`ml-1 flex size-3.5 items-center justify-center rounded-xs transition-colors max-lg:ml-0 ${
                   isActive
                     ? 'text-primary hover:bg-primary/20'
                     : 'text-muted-foreground opacity-60 hover:opacity-100 hover:bg-muted-foreground/20 hover:text-foreground'

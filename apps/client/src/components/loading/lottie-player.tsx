@@ -1,8 +1,8 @@
 'use client';
 
+import { useTheme } from '@/hooks/use-theme';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { useTheme } from '@/hooks/use-theme';
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
@@ -59,7 +59,7 @@ export function LottiePlayer({ className }: LottiePlayerProps) {
 
   return (
     <div className={`flex items-center justify-center ${className || ''}`}>
-      <div className="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px]">
+      <div className="w-full max-w-[220px] sm:max-w-[250px] md:max-w-[290px] lg:max-w-[360px]">
         <Lottie animationData={animationData} loop={true} autoplay={true} />
       </div>
     </div>

@@ -177,7 +177,7 @@ export default function AboutPage() {
             type="button"
             onClick={() => setIsFilesOpen(true)}
             aria-label="Open files"
-            className="-mr-2 flex h-7 shrink-0 items-center gap-1.5 rounded-xs bg-background px-2 text-[9px] font-semibold shadow-gray-300 transition-colors hover:bg-muted dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:hidden"
+            className="flex h-7 shrink-0 items-center gap-1.5 rounded-xs bg-background px-2 text-[9px] font-semibold shadow-gray-300 transition-colors hover:bg-muted dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:hidden"
           >
             <FolderTree className="size-3.5" strokeWidth={1.8} />
             <span>Files</span>

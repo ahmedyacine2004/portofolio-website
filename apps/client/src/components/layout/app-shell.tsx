@@ -1,9 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { AlertTriangle, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useLanguageStore } from '@/stores/language.store';
 
@@ -27,7 +28,21 @@ type AppShellProps = {
 export function AppShell({ children }: AppShellProps) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
+  const hasShownMobileWarning = useRef(false);
   const hydrateLocale = useLanguageStore((state) => state.hydrateLocale);
+
+  useEffect(() => {
+    if (
+      !isLoading &&
+      pathname === '/' &&
+      !hasShownMobileWarning.current &&
+      window.matchMedia('(max-width: 1023px)').matches
+    ) {
+      hasShownMobileWarning.current = true;
+      setShowMobileWarning(true);
+    }
+  }, [isLoading, pathname]);
 
   useEffect(() => {
     hydrateLocale();
@@ -120,6 +135,51 @@ export function AppShell({ children }: AppShellProps) {
       <div className="md:hidden">
         <Sidebar />
       </div>
+
+      <AnimatePresence>
+        {showMobileWarning && (
+          <motion.div
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 p-4 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="presentation"
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="mobile-warning-title"
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 8 }}
+              className="relative w-full max-w-sm rounded-md border-2 border-destructive bg-background p-5 shadow-2xl"
+            >
+              <button
+                type="button"
+                onClick={() => setShowMobileWarning(false)}
+                aria-label="Close warning"
+                className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-sm text-destructive transition-colors hover:bg-destructive/10"
+              >
+                <X className="size-4" strokeWidth={2.5} />
+              </button>
+
+              <div className="flex flex-col items-center gap-1 text-center">
+                <div className="flex size-11 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+                  <AlertTriangle className="size-6" strokeWidth={2.2} />
+                </div>
+                <h2 id="mobile-warning-title" className="text-4xl font-bold text-destructive">
+                  Warning
+                </h2>
+                <p className="text-[11px] font-normal leading-tight text-foreground">
+                  This portfolio was designed for the desktop experience, which is the original and
+                  fully intended way to explore it. Mobile and tablet layouts are provided for
+                  convenience but may not represent the complete experience.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Terminal Modal */}
       <TerminalModal />
