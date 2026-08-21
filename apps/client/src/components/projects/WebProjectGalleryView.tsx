@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useState } from 'react';
 import {
   ArrowUpRight,
   Calendar,
@@ -13,7 +12,9 @@ import {
   Monitor,
   Sparkles,
 } from 'lucide-react';
+import { useState } from 'react';
 import { Carousel3D, type GalleryItem } from '../3d/Carousel3D';
+import { WebProjectPageTabs } from './WebProjectPageTabs';
 
 export interface WebProjectGalleryData {
   projectName: string;
@@ -40,6 +41,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <WebProjectPageTabs />
       {/* --- HERO SECTION --- */}
       <div className="flex flex-col items-start justify-between gap-4 rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)] md:flex-row md:items-center">
         {/* Left Info */}

@@ -13,6 +13,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import Image from 'next/image';
+import { WebProjectPageTabs } from './WebProjectPageTabs';
 
 interface WebProjectDemoViewProps {
   data: WebProjectDemoData;
@@ -21,6 +22,7 @@ interface WebProjectDemoViewProps {
 export function WebProjectDemoView({ data }: WebProjectDemoViewProps) {
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <WebProjectPageTabs />
       {/* --- HERO BANNER --- */}
       <div className="relative flex min-h-[140px] items-center justify-between overflow-hidden rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         {/* Left Banner Title */}

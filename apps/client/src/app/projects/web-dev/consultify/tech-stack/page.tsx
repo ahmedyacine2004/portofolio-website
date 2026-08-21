@@ -8,9 +8,5 @@ export const metadata = {
 };
 
 export default function ConsultifyTechStackPage() {
-  return (
-    <main className="h-full w-full p-2">
-      <WebProjectTechStackView data={CONSULTIFY_TECH_STACK_DATA} />
-    </main>
-  );
+  return <WebProjectTechStackView data={CONSULTIFY_TECH_STACK_DATA} />;
 }

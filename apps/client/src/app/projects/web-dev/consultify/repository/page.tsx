@@ -8,9 +8,5 @@ export const metadata = {
 };
 
 export default function ConsultifyRepositoryPage() {
-  return (
-    <main className="h-full w-full p-2">
-      <WebProjectRepositoryView data={CONSULTIFY_REPOSITORY_DATA} />
-    </main>
-  );
+  return <WebProjectRepositoryView data={CONSULTIFY_REPOSITORY_DATA} />;
 }

@@ -8,9 +8,5 @@ export const metadata = {
 };
 
 export default function ConsultifyDemoPage() {
-  return (
-    <main className="h-full w-full p-2">
-      <WebProjectDemoView data={CONSULTIFY_DEMO_DATA} />
-    </main>
-  );
+  return <WebProjectDemoView data={CONSULTIFY_DEMO_DATA} />;
 }

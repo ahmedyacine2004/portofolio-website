@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import type { WebProjectTechStackData } from '@/data/projects/consultify';
 import {
   Activity,
   ChevronRight,
@@ -18,7 +18,7 @@ import {
   Zap,
   type LucideIcon,
 } from 'lucide-react';
-import type { WebProjectTechStackData } from '@/data/projects/consultify';
+import { WebProjectPageTabs } from './WebProjectPageTabs';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Code2,
@@ -42,6 +42,7 @@ interface WebProjectTechStackViewProps {
 export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) {
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <WebProjectPageTabs />
       {/* --- HERO / ENVIRONMENT HEADER --- */}
       <div className="flex flex-col gap-4 rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         {/* Top Title Bar */}

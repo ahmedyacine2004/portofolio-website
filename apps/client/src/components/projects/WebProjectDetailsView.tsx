@@ -26,6 +26,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import React from 'react';
+import { WebProjectPageTabs } from './WebProjectPageTabs';
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Shield,
@@ -49,12 +50,13 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <WebProjectPageTabs />
       {/* --- HERO SECTION --- */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         {/* Left Hero Main Card */}
         <div className="flex flex-col justify-between rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)] lg:col-span-7">
           <div>
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-start justify-between gap-4 max-md:flex-col">
               {/* Folder Icon + Title Section */}
               <div className="flex items-center gap-2.5">
                 <div className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-primary/10 text-primary">
@@ -72,7 +74,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
 
               {/* Project Image - Uncropped */}
               {data.imageUrl && (
-                <div className="flex h-20 w-32 shrink-0 items-center justify-center overflow-hidden rounded-[6px]">
+                <div className="flex h-20 w-32 shrink-0 items-center justify-center overflow-hidden rounded-[6px] max-md:h-16 max-md:w-24 max-md:self-center">
                   <img
                     src={data.imageUrl}
                     alt={`${data.projectName} Preview`}
@@ -85,12 +87,12 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
             <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">{data.tagline}</p>
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-2">
+          <div className="mt-6 flex flex-wrap items-center gap-2 max-md:flex-col max-md:items-stretch">
             <a
               href={data.liveDemoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-[4px] bg-primary px-3 py-1.5 text-[10px] font-medium text-primary-foreground shadow-xs shadow-gray-300 transition-opacity hover:opacity-90 dark:shadow-none"
+              className="flex items-center justify-center gap-1.5 rounded-[4px] bg-primary px-3 py-1.5 text-[10px] font-medium text-primary-foreground shadow-xs shadow-gray-300 transition-opacity hover:opacity-90 max-md:w-full dark:shadow-none"
             >
               <span>{t('projectsDetails.commonLabels.visitLiveDemo')}</span>
               <ArrowUpRight className="size-3" />
@@ -99,7 +101,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               href={data.repositoryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-[4px] bg-background px-3 py-1.5 text-[10px] font-medium shadow-xs shadow-gray-300 transition-all hover:bg-accent dark:shadow-none"
+              className="flex items-center justify-center gap-1.5 rounded-[4px] bg-background px-3 py-1.5 text-[10px] font-medium shadow-xs shadow-gray-300 transition-all hover:bg-accent max-md:w-full dark:shadow-none"
             >
               <GitBranch className="size-3" />
               <span>{t('projectsDetails.commonLabels.viewRepository')}</span>
