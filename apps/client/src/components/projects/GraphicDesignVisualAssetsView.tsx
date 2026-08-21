@@ -1,25 +1,18 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
 import {
   Box,
   Copy,
   Download,
-  ExternalLink,
   Eye,
-  FileCode,
-  Filter,
   Grid,
   Image as ImageIcon,
-  Layers,
   List,
-  Maximize2,
-  Palette,
   Search,
   Sparkles,
-  Tag,
   X,
 } from 'lucide-react';
+import { useMemo, useState } from 'react';
 interface VisualAssetItem {
   id: string;
   title: string;

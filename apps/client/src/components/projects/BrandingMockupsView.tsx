@@ -1,20 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
 import {
   Box,
+  Check,
   Download,
+  Filter,
   FolderDown,
   Layers,
   Maximize2,
-  Monitor,
-  Shirt,
   Sparkles,
-  Tag,
-  Check,
-  ExternalLink,
-  Filter,
 } from 'lucide-react';
+import { useState } from 'react';
 interface BrandingMockupItem {
   id: string;
   title: string;

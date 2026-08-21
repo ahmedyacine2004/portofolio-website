@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import type { UIUXWireframesData } from '@/data/projects/neobank-mobile';
 import {
   CheckCircle2,
   Compass,
@@ -9,14 +9,11 @@ import {
   Info,
   Layers,
   Layout,
-  Maximize2,
   Ruler,
   Smartphone,
-  Sparkles,
   Type,
-  type LucideIcon,
 } from 'lucide-react';
-import type { UIUXWireframesData } from '@/data/projects/neobank-mobile';
+import { useState } from 'react';
 
 interface UIUXProjectWireframesViewProps {
   data: UIUXWireframesData;

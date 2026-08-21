@@ -1,22 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
+import type { GraphicDesignBrandKitData } from '@/data/projects/apex-brand-kit';
 import {
   BookOpen,
   Check,
   CheckCircle2,
   Copy,
   Download,
-  FileText,
-  Layers,
   Palette,
   ShieldCheck,
-  Sparkles,
   Type,
   Volume2,
   XCircle,
 } from 'lucide-react';
-import type { ColorSwatch, GraphicDesignBrandKitData } from '@/data/projects/apex-brand-kit';
+import { useState } from 'react';
 
 interface GraphicDesignBrandKitViewProps {
   data: GraphicDesignBrandKitData;
