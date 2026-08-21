@@ -1,4 +1,3 @@
-import React from 'react';
 import { WebProjectRepositoryView } from '@/components/projects/WebProjectRepositoryView';
 import { CONSULTIFY_REPOSITORY_DATA } from '@/data/projects/consultify';
 

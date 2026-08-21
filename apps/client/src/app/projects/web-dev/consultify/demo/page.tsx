@@ -1,4 +1,3 @@
-import React from 'react';
 import { WebProjectDemoView } from '@/components/projects/WebProjectDemoView';
 import { CONSULTIFY_DEMO_DATA } from '@/data/projects/consultify';
 
