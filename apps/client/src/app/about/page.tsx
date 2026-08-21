@@ -158,7 +158,7 @@ export default function AboutPage() {
                   type="button"
                   onClick={() => setIsFilesOpen(false)}
                   aria-label="Close files"
-                  className="flex size-7 items-center justify-center rounded-full bg-background-secondary text-foreground hover:bg-muted"
+                  className="flex size-7 items-center justify-center text-foreground"
                 >
                   <X className="size-3.5" strokeWidth={2} />
                 </button>

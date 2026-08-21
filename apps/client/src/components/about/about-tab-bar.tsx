@@ -4,7 +4,7 @@ import { useAboutTabsStore } from '@/stores/about-tabs.store';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 
 type AboutTabBarProps = {
   actionButton?: ReactNode;
@@ -13,6 +13,7 @@ type AboutTabBarProps = {
 export function AboutTabBar({ actionButton }: AboutTabBarProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const tabsListRef = useRef<HTMLDivElement>(null);
 
   const { openTabs, activeHref, setActiveHref, closeTab } = useAboutTabsStore();
 
@@ -22,10 +23,19 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
     }
   }, [pathname, setActiveHref]);
 
+  useEffect(() => {
+    const activeTab = tabsListRef.current?.querySelector<HTMLElement>('[aria-current="page"]');
+
+    activeTab?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }, [pathname, openTabs.length]);
+
   return (
     <div className="flex shrink-0 items-center justify-between gap-2">
       {/* Scrollable Tabs List */}
-      <div className="flex min-w-0 flex-1 touch-pan-x items-center gap-1 overflow-x-auto scrollbar-none py-0.5">
+      <div
+        ref={tabsListRef}
+        className="flex min-w-0 flex-1 touch-pan-x items-center gap-1 overflow-x-auto scrollbar-none py-0.5"
+      >
         {openTabs.map((tab) => {
           const isActive =
             pathname === tab.href || (activeHref === tab.href && pathname === tab.href);
@@ -39,6 +49,7 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
                 }
               }}
               role="button"
+              aria-current={isActive ? 'page' : undefined}
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {

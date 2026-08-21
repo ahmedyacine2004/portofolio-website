@@ -192,6 +192,10 @@ export function Header() {
           />
         </Link>
 
+        <span className="truncate px-2 text-center text-[10px] font-bold uppercase text-foreground">
+          {pathname.split('/')[1] || 'Home'}
+        </span>
+
         {/* Compact navigation - icon only */}
         <nav className="flex items-center gap-1 flex-1" aria-label="Main navigation">
           {navigation.slice(0, 4).map((item) => {
@@ -243,7 +247,7 @@ export function Header() {
         </Link>
 
         {/* Center - current page or minimal info */}
-        <span className="text-[8px] text-foreground-secondary flex-1 text-center truncate px-2">
+        <span className="flex-1 truncate px-2 text-center text-[10px] font-bold uppercase text-foreground">
           {pathname.split('/')[1] || 'Home'}
         </span>
 
@@ -253,7 +257,7 @@ export function Header() {
             type="button"
             onClick={() => setIsMobileMenuOpen((open) => !open)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            className="flex size-7 items-center justify-center rounded-full bg-background-secondary text-foreground transition-colors hover:bg-muted"
+            className="flex size-7 items-center justify-center text-foreground transition-colors"
           >
             {isMobileMenuOpen ? (
               <X className="size-3.5" strokeWidth={2} />
@@ -285,7 +289,7 @@ export function Header() {
                 type="button"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Close menu"
-                className="flex size-7 items-center justify-center rounded-full bg-background-secondary text-foreground"
+                className="flex size-7 items-center justify-center text-foreground"
               >
                 <X className="size-3.5" strokeWidth={2} />
               </button>

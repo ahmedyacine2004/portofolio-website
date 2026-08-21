@@ -1,9 +1,9 @@
 'use client';
 
-import { AboutTabBar } from './about-tab-bar';
 import { motion } from 'framer-motion';
-import { AlertTriangle, Bell, GitBranch, Maximize2, X, XCircle } from 'lucide-react';
+import { AlertTriangle, Bell, GitBranch, Maximize2, XCircle } from 'lucide-react';
 import Image, { type StaticImageData } from 'next/image';
+import { AboutTabBar } from './about-tab-bar';
 
 import databaseIcon from '@/assets/icons/database.svg';
 import imageIcon from '@/assets/icons/image.svg';
@@ -95,19 +95,21 @@ export function ImageEditor({
       }`}
     >
       {/* Editor toolbar */}
-      <AboutTabBar
-        actionButton={
-          <button
-            type="button"
-            onClick={() => openViewer()}
-            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer"
-          >
-            <span>Expand Image</span>
+      <div className="px-2 pt-2">
+        <AboutTabBar
+          actionButton={
+            <button
+              type="button"
+              onClick={() => openViewer()}
+              className="flex h-6 items-center gap-1 rounded-[4px] bg-primary px-2 text-[7px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer lg:h-7 lg:gap-2 lg:rounded-[5px] lg:px-4 lg:text-[8px]"
+            >
+              <span>Expand Image</span>
 
-            <Maximize2 className="size-3" strokeWidth={2} aria-hidden="true" />
-          </button>
-        }
-      />
+              <Maximize2 className="size-3" strokeWidth={2} aria-hidden="true" />
+            </button>
+          }
+        />
+      </div>
 
       {/* Breadcrumb */}
       <div className="mx-1 flex h-9 shrink-0 items-center rounded-t-[4px] bg-[#06243a] px-2.5">

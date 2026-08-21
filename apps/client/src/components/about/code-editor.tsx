@@ -1,10 +1,10 @@
 'use client';
 
-import { AboutTabBar } from './about-tab-bar';
-import { CodePreviewModal } from './code-preview-modal';
 import { useTheme } from '@/hooks/use-theme';
 import { AlertTriangle, Eye, GitBranch, XCircle } from 'lucide-react';
 import { ReactNode, useMemo, useState } from 'react';
+import { AboutTabBar } from './about-tab-bar';
+import { CodePreviewModal } from './code-preview-modal';
 
 type CodeEditorProps = {
   fileName: string;
@@ -217,18 +217,20 @@ export function CodeEditor({
   return (
     <div className="flex h-full min-h-0 flex-col bg-background rounded-sm">
       {/* Editor toolbar */}
-      <AboutTabBar
-        actionButton={
-          <button
-            type="button"
-            onClick={() => setIsPreviewOpen(true)}
-            className="flex h-7 items-center gap-2 rounded-[5px] bg-primary px-4 text-[8px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer"
-          >
-            <span>Preview Code</span>
-            <Eye className="size-3" strokeWidth={2} aria-hidden="true" />
-          </button>
-        }
-      />
+      <div className="px-2 pt-2">
+        <AboutTabBar
+          actionButton={
+            <button
+              type="button"
+              onClick={() => setIsPreviewOpen(true)}
+              className="flex h-6 items-center gap-1 rounded-[4px] bg-primary px-2 text-[7px] font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90 cursor-pointer lg:h-7 lg:gap-2 lg:rounded-[5px] lg:px-4 lg:text-[8px]"
+            >
+              <span>Preview Code</span>
+              <Eye className="size-3" strokeWidth={2} aria-hidden="true" />
+            </button>
+          }
+        />
+      </div>
 
       {/* Breadcrumb */}
       <div className="mx-1 flex h-9 shrink-0 items-center rounded-t-[4px] bg-[#06243a] px-2.5">
@@ -243,7 +245,7 @@ export function CodeEditor({
             : 'min-h-0 flex-1 overflow-auto bg-white'
         }
       >
-        <div className="min-w-max py-1">
+        <div className="min-w-0 py-1 lg:min-w-max">
           {lines.map((line, index) => (
             <div
               key={`${index}-${line}`}
@@ -255,7 +257,7 @@ export function CodeEditor({
               </div>
 
               {/* Code */}
-              <div className="whitespace-pre pr-6">
+              <div className="whitespace-pre-wrap break-words pr-2 lg:whitespace-pre lg:break-normal lg:pr-6">
                 <TokenizedLine line={line} isDark={isDark} />
               </div>
             </div>
@@ -269,7 +271,7 @@ export function CodeEditor({
           isDark ? 'bg-[#252526] text-[#cccccc]' : 'bg-[#eef4fb] text-[#172033]'
         }`}
       >
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <span className="flex items-center gap-1">
             <GitBranch className="size-2.5" strokeWidth={1.8} aria-hidden="true" />
             Main
@@ -286,10 +288,10 @@ export function CodeEditor({
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span>Ln 1, Col 1</span>
-          <span>Spaces: 2</span>
-          <span>UTF-8</span>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="hidden sm:inline">Ln 1, Col 1</span>
+          <span className="hidden sm:inline">Spaces: 2</span>
+          <span className="hidden sm:inline">UTF-8</span>
 
           {/* Language Type with SVG icon */}
           <span className="flex items-center gap-1">

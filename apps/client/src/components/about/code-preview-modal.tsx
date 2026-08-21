@@ -1,26 +1,20 @@
 'use client';
 
-import { useEffect, useState, useMemo, type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Check,
   Code2,
   Copy,
-  ExternalLink,
-  Eye,
   FileText,
   Globe,
   Layers,
+  ShieldCheck,
   Sparkles,
-  User,
+  Terminal,
   X,
   Zap,
-  ShieldCheck,
-  Calendar,
-  Award,
-  Terminal,
 } from 'lucide-react';
-import Image from 'next/image';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 
 type CodePreviewModalProps = {
   isOpen: boolean;
@@ -644,13 +638,15 @@ function CodeViewRenderer({ content }: { content: string }) {
   const lines = useMemo(() => content.split('\n'), [content]);
 
   return (
-    <div className="rounded-[8px] border border-border bg-[#1e1e1e] p-4 text-white font-mono text-[11px] leading-relaxed overflow-x-auto shadow-inner">
+    <div className="rounded-[8px] border border-border bg-[#1e1e1e] p-2 text-white font-mono text-[8px] leading-tight overflow-x-hidden shadow-inner lg:p-4 lg:text-[11px] lg:leading-relaxed lg:overflow-x-auto">
       {lines.map((line, idx) => (
-        <div key={idx} className="flex hover:bg-white/5 px-2 py-0.5 rounded">
-          <span className="w-8 shrink-0 select-none text-right pr-3 text-[#6e7681] text-[10px]">
+        <div key={idx} className="flex min-w-0 hover:bg-white/5 px-1 py-0.5 rounded lg:px-2">
+          <span className="w-6 shrink-0 select-none text-right pr-1 text-[#6e7681] text-[8px] lg:w-8 lg:pr-3 lg:text-[10px]">
             {idx + 1}
           </span>
-          <span className="whitespace-pre text-[#d4d4d4]">{line || ' '}</span>
+          <span className="min-w-0 whitespace-pre-wrap break-words text-[#d4d4d4] lg:whitespace-pre lg:break-normal">
+            {line || ' '}
+          </span>
         </div>
       ))}
     </div>
