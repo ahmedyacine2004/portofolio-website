@@ -1,7 +1,7 @@
 'use client';
 
-import { useAboutTabsStore } from '@/stores/about-tabs.store';
 import { ABOUT_ROOT_FILE, findAboutFileByHref } from '@/lib/utils/about-files';
+import { useAboutTabsStore } from '@/stores/about-tabs.store';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';

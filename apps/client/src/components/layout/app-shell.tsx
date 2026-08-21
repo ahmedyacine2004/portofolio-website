@@ -89,7 +89,7 @@ export function AppShell({ children }: AppShellProps) {
                     damping: 32,
                     opacity: { duration: 0.2 },
                   }}
-                  className="flex shrink-0"
+                  className="hidden shrink-0 lg:flex"
                 >
                   <SecondarySidebar />
                 </motion.div>
@@ -98,7 +98,7 @@ export function AppShell({ children }: AppShellProps) {
           </aside>
 
           {/* Page Area */}
-          <main className="relative min-w-0 flex-1 overflow-hidden rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+          <main className="relative min-w-0 flex-1 overflow-x-hidden overflow-y-auto rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:rounded-[8px] lg:overflow-hidden">
             <motion.div
               key={pathname}
               initial={{ opacity: 0 }}

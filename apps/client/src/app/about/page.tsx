@@ -2,12 +2,15 @@
 
 import avatar from '@/assets/images/avatar.jpg';
 import { AboutTabBar } from '@/components/about/about-tab-bar';
+import { AboutSecondarySidebar } from '@/components/layout/secondary/about-secondary-sidebar';
 import { useTranslation } from '@/hooks/use-translation';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   BookOpen,
   BriefcaseBusiness,
   Camera,
   Code2,
+  FolderTree,
   Gamepad2,
   Laptop,
   Palette,
@@ -15,8 +18,9 @@ import {
   Play,
   Puzzle,
   UserRound,
+  X,
 } from 'lucide-react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import dockerbIcon from '@/assets/icons/docker.svg';
 import gitIcon from '@/assets/icons/git.svg';
@@ -47,6 +51,7 @@ const technologies = [
 
 export default function AboutPage() {
   const { t, tArray } = useTranslation();
+  const [isFilesOpen, setIsFilesOpen] = useState(false);
 
   const journey = useMemo(
     () => [
@@ -127,10 +132,60 @@ export default function AboutPage() {
     [tArray],
   );
   return (
-    <div className="flex h-full min-h-0 flex-col gap-1 p-2">
-      <AboutTabBar />
+    <div className="flex min-h-full min-w-0 flex-col gap-1 overflow-x-hidden p-2 lg:h-full lg:min-h-0">
+      <AnimatePresence>
+        {isFilesOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/30 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsFilesOpen(false)}
+          >
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+              className="h-full w-[82%] max-w-[340px] overflow-y-auto bg-background p-3 shadow-2xl md:w-[360px]"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground-secondary">
+                  Files
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsFilesOpen(false)}
+                  aria-label="Close files"
+                  className="flex size-7 items-center justify-center rounded-full bg-background-secondary text-foreground hover:bg-muted"
+                >
+                  <X className="size-3.5" strokeWidth={2} />
+                </button>
+              </div>
+              <div className="[&_aside]:!h-auto [&_aside]:!w-full [&_aside]:!rounded-[4px] [&_aside]:!p-0 [&_aside]:!shadow-none">
+                <AboutSecondarySidebar />
+              </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AboutTabBar
+        actionButton={
+          <button
+            type="button"
+            onClick={() => setIsFilesOpen(true)}
+            aria-label="Open files"
+            className="-mr-2 flex h-7 shrink-0 items-center gap-1.5 rounded-xs bg-background px-2 text-[9px] font-semibold shadow-gray-300 transition-colors hover:bg-muted dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:hidden"
+          >
+            <FolderTree className="size-3.5" strokeWidth={1.8} />
+            <span>Files</span>
+          </button>
+        }
+      />
       {/* Top */}
-      <section className="grid min-h-0 flex-[1.15] grid-cols-[1.2fr_0.9fr_0.9fr] gap-2">
+      <section className="grid min-h-0 flex-none grid-cols-1 gap-2 lg:flex-[1.15] lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
         {/* Introduction */}
         <div className="flex min-h-0 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div>
@@ -201,7 +256,7 @@ export default function AboutPage() {
       </section>
 
       {/* Bottom */}
-      <section className="grid min-h-0 flex-[1.15] grid-cols-[1fr_0.9fr_0.95fr] gap-2">
+      <section className="grid min-h-0 flex-none grid-cols-1 gap-2 lg:flex-[1.15] lg:grid-cols-[1fr_0.9fr_0.95fr]">
         {/* What to Do */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
@@ -277,14 +332,14 @@ export default function AboutPage() {
               {technologies.map((technology, index) => (
                 <div
                   key={index}
-                  className="flex size-11 items-center justify-center rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+                  className="flex size-10 items-center justify-center rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] md:size-11"
                 >
                   <Image
                     src={technology}
                     alt=""
                     width={12}
                     height={12}
-                    className="size-6 object-contain"
+                    className="size-5 object-contain md:size-6"
                     aria-hidden="true"
                   />
                 </div>
@@ -293,7 +348,7 @@ export default function AboutPage() {
           </div>
 
           {/* Beyond Code */}
-          <div className="min-h-0 flex-1 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+          <div className="min-h-0 flex-none rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:flex-1">
             <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               {t('about.headings.beyondCode')}
             </h2>
