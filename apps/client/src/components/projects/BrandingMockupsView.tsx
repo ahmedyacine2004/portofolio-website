@@ -15,7 +15,29 @@ import {
   ExternalLink,
   Filter,
 } from 'lucide-react';
-import type { BrandingMockupsData } from '@/data/projects/lumina-studio';
+interface BrandingMockupItem {
+  id: string;
+  title: string;
+  category: string;
+  aspectRatio: string;
+  dimensions: string;
+  format: string;
+  description: string;
+  previewGradient: string;
+  downloadSize: string;
+  tags: string[];
+}
+
+interface BrandingMockupsData {
+  projectName: string;
+  category: string;
+  version: string;
+  updatedDate: string;
+  downloadKitSize: string;
+  totalMockupsCount: number;
+  categories: Array<{ id: string; label: string; count: number }>;
+  items: BrandingMockupItem[];
+}
 
 interface BrandingMockupsViewProps {
   data: BrandingMockupsData;

@@ -1,5 +1,4 @@
-import { GraphicDesignBrandKitView } from '@/components/projects/GraphicDesignBrandKitView';
-import type { GraphicDesignBrandKitData } from '@/data/projects/apex-brand-kit';
+import { BrandingMockupsView } from '@/components/projects/BrandingMockupsView';
 import { EVENT_VISUAL_IDENTITY_BRAND_KIT_DATA } from '@/data/projects/event-visual-identity';
 
 export const metadata = {
@@ -11,9 +10,7 @@ export const metadata = {
 export default function EventVisualIdentityBrandKitPage() {
   return (
     <main className="h-full w-full p-2">
-      <GraphicDesignBrandKitView
-        data={EVENT_VISUAL_IDENTITY_BRAND_KIT_DATA as unknown as GraphicDesignBrandKitData}
-      />
+      <BrandingMockupsView data={EVENT_VISUAL_IDENTITY_BRAND_KIT_DATA} />
     </main>
   );
 }

@@ -20,18 +20,59 @@ import {
   Tag,
   X,
 } from 'lucide-react';
-import type {
-  GraphicDesignVisualAssetsData,
-  VisualAssetCategory,
-  VisualAssetItem,
-} from '@/data/projects/apex-brand-kit';
+interface VisualAssetItem {
+  id: string;
+  title: string;
+  category: string;
+  format: string;
+  dimensions: string;
+  fileSize: string;
+  description: string;
+  tags: string[];
+  accentColor: string;
+}
+
+interface StandardVisualAssetsData {
+  projectName: string;
+  category: string;
+  totalAssetCount: number;
+  totalStorageSize: string;
+  categories: string[];
+  assets: VisualAssetItem[];
+}
+
+interface CampaignVisualAssetsData {
+  projectName: string;
+  category: string;
+  assetCount: number;
+  totalFileSize: string;
+  filterCategories: string[];
+  assets: Array<Omit<VisualAssetItem, 'tags' | 'accentColor'> & { resolution: string }>;
+}
+
+type GraphicDesignVisualAssetsData = StandardVisualAssetsData | CampaignVisualAssetsData;
 
 interface GraphicDesignVisualAssetsViewProps {
   data: GraphicDesignVisualAssetsData;
 }
 
 export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAssetsViewProps) {
-  const [selectedCategory, setSelectedCategory] = useState<VisualAssetCategory>('All');
+  const normalizedData: StandardVisualAssetsData =
+    'totalAssetCount' in data
+      ? data
+      : {
+          projectName: data.projectName,
+          category: data.category,
+          totalAssetCount: data.assetCount,
+          totalStorageSize: data.totalFileSize,
+          categories: data.filterCategories,
+          assets: data.assets.map((asset) => ({
+            ...asset,
+            tags: [asset.resolution],
+            accentColor: 'from-indigo-500 to-cyan-500',
+          })),
+        };
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeAsset, setActiveAsset] = useState<VisualAssetItem | null>(null);
@@ -39,7 +80,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
 
   // Filter Assets
   const filteredAssets = useMemo(() => {
-    return data.assets.filter((asset) => {
+    return normalizedData.assets.filter((asset) => {
       const matchesCategory = selectedCategory === 'All' || asset.category === selectedCategory;
       const matchesSearch =
         asset.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -47,7 +88,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
         asset.format.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [data.assets, selectedCategory, searchQuery]);
+  }, [normalizedData.assets, selectedCategory, searchQuery]);
 
   const handleCopyLink = (id: string) => {
     setCopiedId(id);
@@ -79,13 +120,13 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
         <div className="z-10 hidden sm:flex items-center gap-3">
           <div className="flex flex-col items-end border-r border-border/60 pr-3">
             <span className="font-inter text-base font-black text-indigo-600 dark:text-indigo-400">
-              {data.totalAssetCount} Assets
+              {normalizedData.totalAssetCount} Assets
             </span>
             <span className="text-[9px] font-bold text-muted-foreground">Total In Package</span>
           </div>
           <div className="flex flex-col items-end">
             <span className="font-inter text-base font-black text-emerald-600 dark:text-emerald-400">
-              {data.totalStorageSize}
+              {normalizedData.totalStorageSize}
             </span>
             <span className="text-[9px] font-bold text-muted-foreground">Archive Size</span>
           </div>
@@ -151,7 +192,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
 
         {/* Category Pills */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-0.5 pt-1">
-          {data.categories.map((cat) => (
+          {(normalizedData.categories ?? []).map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}

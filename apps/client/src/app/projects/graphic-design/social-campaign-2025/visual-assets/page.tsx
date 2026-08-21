@@ -1,5 +1,4 @@
 import { GraphicDesignVisualAssetsView } from '@/components/projects/GraphicDesignVisualAssetsView';
-import type { GraphicDesignVisualAssetsData } from '@/data/projects/apex-brand-kit';
 import { SOCIAL_CAMPAIGN_2025_VISUAL_ASSETS_DATA } from '@/data/projects/social-campaign-2025';
 
 export const metadata = {
@@ -10,9 +9,7 @@ export const metadata = {
 export default function SocialCampaign2025VisualAssetsPage() {
   return (
     <main className="h-full w-full p-2">
-      <GraphicDesignVisualAssetsView
-        data={SOCIAL_CAMPAIGN_2025_VISUAL_ASSETS_DATA as unknown as GraphicDesignVisualAssetsData}
-      />
+      <GraphicDesignVisualAssetsView data={SOCIAL_CAMPAIGN_2025_VISUAL_ASSETS_DATA} />
     </main>
   );
 }

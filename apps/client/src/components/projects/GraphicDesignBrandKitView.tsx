@@ -85,7 +85,7 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {data.colors.map((color) => (
+          {(data.colors ?? []).map((color) => (
             <div
               key={color.hex}
               onClick={() => handleCopyHex(color.hex)}
@@ -152,7 +152,7 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
         </div>
 
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-          {data.typography.map((font) => (
+          {(data.typography ?? []).map((font) => (
             <div
               key={font.fontName}
               className="flex flex-col justify-between rounded-[8px] border border-border/50 bg-background p-3.5 shadow-xs"

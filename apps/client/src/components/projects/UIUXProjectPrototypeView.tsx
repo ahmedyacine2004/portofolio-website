@@ -261,7 +261,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
             </div>
 
             <div className="space-y-2">
-              {currentScreen.microInteractions.map((item, idx) => (
+              {(currentScreen.microInteractions ?? []).map((item, idx) => (
                 <div
                   key={idx}
                   className="flex flex-col gap-1 rounded-[6px] bg-background/80 p-2.5 shadow-xs"

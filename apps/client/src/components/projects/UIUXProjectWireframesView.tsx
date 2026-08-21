@@ -183,7 +183,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             {/* Wireframe Mockup Content Skeleton */}
             <div className="relative flex w-full flex-1 flex-col gap-2.5 py-3">
               {/* Wireframe Annotations Overlays */}
-              {activeScreen.annotations.map((ann) => {
+              {(activeScreen.annotations ?? []).map((ann) => {
                 const isSelected = ann.id === selectedAnnotationId;
                 return (
                   <button
@@ -261,7 +261,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             </div>
 
             <div className="space-y-2.5">
-              {activeScreen.annotations.map((ann) => {
+              {(activeScreen.annotations ?? []).map((ann) => {
                 const isSelected = ann.id === selectedAnnotationId;
                 return (
                   <div
