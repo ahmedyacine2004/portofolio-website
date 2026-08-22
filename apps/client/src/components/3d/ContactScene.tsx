@@ -326,7 +326,6 @@ export function ContactScene() {
 
         <color attach="background" args={[isDark ? '#1C1226' : '#BAA3CE']} />
 
-        <Environment preset="studio" environmentIntensity={isDark ? 0.7 : 1.1} />
         <ambientLight intensity={isDark ? 0.6 : 0.85} color="#E8D5FF" />
         <directionalLight position={[4, 5, 3]} intensity={isDark ? 1.4 : 1.8} color="#FFFFFF" />
         <directionalLight position={[-4, 2, -2]} intensity={isDark ? 0.5 : 0.7} color="#C49BFF" />
