@@ -227,7 +227,7 @@ export function ContactScene() {
   }, []);
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full min-h-0 w-full min-w-0 flex-1 overflow-hidden">
       {/* WebGL context lost overlay */}
       {contextLost && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-black/50 text-white">
@@ -310,6 +310,7 @@ export function ContactScene() {
 
       <Canvas
         key={key}
+        className="absolute inset-0"
         camera={{ fov: 52, near: 0.1, far: 200 }}
         dpr={[1, 1.5]}
         gl={{

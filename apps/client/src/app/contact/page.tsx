@@ -234,9 +234,9 @@ export default function ContactPage() {
 
   return (
     /* MAIN CONTAINER */
-    <div className="flex h-full w-full bg-background text-foreground p-2 select-none rounded-sm shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+    <div className="flex h-full min-h-0 w-full bg-background text-foreground p-2 select-none rounded-sm shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* INNER CARD */}
-      <div className="flex h-full w-full gap-2 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+      <div className="flex h-full min-h-0 w-full gap-2 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
         {/* ================= LEFT COLUMN: CONTACT FORM (SCROLLABLE) ================= */}
         <motion.div
           className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-y-auto p-3 space-y-4 scrollbar-none"
@@ -516,7 +516,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          className="hidden lg:flex h-full flex-1 flex-col overflow-hidden rounded-sm bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+          className="hidden lg:flex h-full min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-sm bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
         >
           <ContactScene />
         </motion.div>
