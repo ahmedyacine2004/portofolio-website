@@ -81,7 +81,7 @@ export function AppShell({ children }: AppShellProps) {
         )}
       </AnimatePresence>
 
-      <div className="flex h-screen bg-transparent flex-col px-2 py-1 md:px-4 md:py-1">
+      <div className="flex h-dvh bg-transparent flex-col px-2 py-1 md:h-screen md:px-4 md:py-1">
         {/* Header */}
         <Header />
 
