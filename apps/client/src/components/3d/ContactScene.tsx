@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { Environment } from '@react-three/drei';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -326,10 +325,17 @@ export function ContactScene() {
 
         <color attach="background" args={[isDark ? '#1C1226' : '#BAA3CE']} />
 
-        <ambientLight intensity={isDark ? 0.6 : 0.85} color="#E8D5FF" />
-        <directionalLight position={[4, 5, 3]} intensity={isDark ? 1.4 : 1.8} color="#FFFFFF" />
-        <directionalLight position={[-4, 2, -2]} intensity={isDark ? 0.5 : 0.7} color="#C49BFF" />
-        <pointLight position={[0, -1, 2]} intensity={isDark ? 0.4 : 0.6} color="#DDAAFF" />
+        <hemisphereLight
+          args={[
+            isDark ? '#DCC7FF' : '#FFFFFF',
+            isDark ? '#180D28' : '#6E587D',
+            isDark ? 1.1 : 1.5,
+          ]}
+        />
+        <ambientLight intensity={isDark ? 0.85 : 1.1} color="#E8D5FF" />
+        <directionalLight position={[4, 6, 5]} intensity={isDark ? 2.2 : 2.6} color="#FFFFFF" />
+        <directionalLight position={[-4, 3, 1]} intensity={isDark ? 1 : 1.2} color="#C49BFF" />
+        <pointLight position={[0, 1, 3]} intensity={isDark ? 0.8 : 1} color="#DDAAFF" />
 
         <SceneContent />
       </Canvas>

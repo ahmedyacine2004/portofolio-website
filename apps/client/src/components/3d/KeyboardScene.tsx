@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { Environment, MeshReflectorMaterial, useGLTF } from '@react-three/drei';
+import { MeshReflectorMaterial, useGLTF } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -23,9 +23,6 @@ interface SceneContentProps {
 function SceneContent({ isDark }: SceneContentProps) {
   return (
     <Suspense fallback={null}>
-      {/* Environment map provides light reflections - inside Suspense so theme preset changes suspend gracefully */}
-      <Environment preset={isDark ? 'night' : 'city'} environmentIntensity={isDark ? 0.4 : 0.6} />
-
       {/* 3D Keyboard Model */}
       <KeyboardModel />
     </Suspense>
