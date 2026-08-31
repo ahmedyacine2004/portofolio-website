@@ -317,7 +317,7 @@ export default function SettingsPage() {
     );
 
   return (
-    <div className="font-inter flex h-full w-full max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
+    <div className="font-inter flex h-full w-full lg:max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0 pb-3 border-b border-border/40">
         <div>
@@ -515,7 +515,7 @@ export default function SettingsPage() {
         </div>
 
         {/* ================= RIGHT SIDEBAR ================= */}
-        <div className="w-full lg:w-[320px] shrink-0 flex flex-col justify-between h-full overflow-y-auto scrollbar-none rounded-sm bg-background p-3.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] border border-border/20 space-y-3.5 m-0.5">
+        <div className="hidden lg:flex w-full lg:w-[320px] shrink-0 flex flex-col justify-between h-full overflow-y-auto scrollbar-none rounded-sm bg-background p-3.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] border border-border/20 space-y-3.5 m-0.5">
           {/* Workspace Preview Section */}
           <div className="space-y-2">
             <div className="flex items-center gap-1.5">

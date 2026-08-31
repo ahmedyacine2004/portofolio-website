@@ -376,6 +376,13 @@ export function Header() {
                 >
                   AI Assistant
                 </Link>
+                <Link
+                  href="/settings"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block rounded-[4px] px-2 py-2 text-[10px] text-foreground-secondary transition-colors hover:bg-muted hover:text-foreground"
+                >
+                  Settings
+                </Link>
               </div>
 
               {/* Tools */}

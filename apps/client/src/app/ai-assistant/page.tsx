@@ -125,10 +125,10 @@ export default function AIAssistantPage() {
   );
 
   return (
-    <div className="font-inter flex h-full w-full max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
+    <div className="font-inter flex h-full w-full flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:max-h-[620px] lg:overflow-hidden scrollbar-none sm:p-3.5">
       <div className="font-inter flex flex-col lg:flex-row gap-3.5 w-full h-full p-1">
         {/* ================= LEFT MAIN CONTENT ================= */}
-        <div className="flex-1 min-w-0 flex flex-col h-full gap-3 p-1">
+        <div className="flex-1 min-w-0 flex flex-col h-full gap-3 px-1">
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -177,12 +177,13 @@ export default function AIAssistantPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.05 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 shrink-0 p-0.5"
+            className="grid grid-cols-3 gap-2.5 shrink-0 p-0.5"
           >
             {suggestionCards.map((card) => {
               const Icon = card.icon;
               return (
                 <button
+                  suppressHydrationWarning
                   key={card.id}
                   className="flex items-center gap-2.5 p-2.5 rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] hover:shadow-md transition-all group cursor-pointer text-left"
                 >
@@ -210,7 +211,7 @@ export default function AIAssistantPage() {
             className="flex-1 min-h-[260px] flex flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
           >
             {/* Scrollable Message History */}
-            <div className="flex-1 overflow-y-auto space-y-3 p-1.5 scrollbar-none max-h-[220px]">
+            <div className="flex-1 overflow-y-auto space-y-3 p-1.5 scrollbar-none lg:max-h-[220px]">
               {/* User Message Bubble */}
               <div className="flex flex-col items-end gap-0.5">
                 <div className="font-inter rounded-xs bg-primary text-primary-foreground px-3 py-1.5 text-[11px] font-medium max-w-xs shadow-xs">
@@ -262,10 +263,16 @@ export default function AIAssistantPage() {
                   <div className="flex items-center justify-between px-1">
                     <span className="font-inter text-[9px] text-muted-foreground">10:00 AM</span>
                     <div className="flex items-center gap-1.5 text-muted-foreground">
-                      <button className="hover:text-foreground transition-colors cursor-pointer">
+                      <button
+                        suppressHydrationWarning
+                        className="hover:text-foreground transition-colors cursor-pointer"
+                      >
                         <ThumbsUp className="size-3" />
                       </button>
-                      <button className="hover:text-foreground transition-colors cursor-pointer">
+                      <button
+                        suppressHydrationWarning
+                        className="hover:text-foreground transition-colors cursor-pointer"
+                      >
                         <ThumbsDown className="size-3" />
                       </button>
                     </div>
@@ -278,6 +285,7 @@ export default function AIAssistantPage() {
             <div className="pt-2 shrink-0 p-0.5">
               <div className="rounded-xs bg-muted/40 p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-1.5">
                 <input
+                  suppressHydrationWarning
                   type="text"
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
@@ -287,20 +295,32 @@ export default function AIAssistantPage() {
 
                 <div className="flex items-center justify-between flex-wrap gap-1.5 pt-1.5">
                   <div className="flex items-center gap-1 flex-wrap">
-                    <button className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] cursor-pointer">
+                    <button
+                      suppressHydrationWarning
+                      className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] cursor-pointer"
+                    >
                       Portfolio Context
                     </button>
-                    <button className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] flex items-center gap-1 cursor-pointer">
+                    <button
+                      suppressHydrationWarning
+                      className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] flex items-center gap-1 cursor-pointer"
+                    >
                       <Globe className="size-2.5 text-muted-foreground" />
                       <span>Web Search</span>
                     </button>
-                    <button className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] flex items-center gap-1 cursor-pointer">
+                    <button
+                      suppressHydrationWarning
+                      className="font-inter px-2 py-0.5 rounded-xs bg-background text-[9px] font-medium text-foreground hover:bg-muted transition-colors shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] flex items-center gap-1 cursor-pointer"
+                    >
                       <Code2 className="size-2.5 text-muted-foreground" />
                       <span>Code Insights</span>
                     </button>
                   </div>
 
-                  <button className="size-7 rounded-xs bg-primary text-primary-foreground hover:opacity-90 active:scale-95 flex items-center justify-center transition-all cursor-pointer shadow-xs">
+                  <button
+                    suppressHydrationWarning
+                    className="size-7 rounded-xs bg-primary text-primary-foreground hover:opacity-90 active:scale-95 flex items-center justify-center transition-all cursor-pointer shadow-xs"
+                  >
                     <Send className="size-3.5" />
                   </button>
                 </div>
@@ -314,7 +334,7 @@ export default function AIAssistantPage() {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
-          className="w-full lg:w-[280px] shrink-0 flex flex-col justify-between h-full overflow-y-auto scrollbar-none rounded-sm bg-background p-3.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-3"
+          className="hidden lg:flex w-full lg:w-[280px] shrink-0 flex-col justify-between h-full overflow-y-auto scrollbar-none rounded-sm bg-background p-3.5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-3"
         >
           {/* Assistant Capabilities */}
           <div className="space-y-1.5 p-0.5">
