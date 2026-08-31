@@ -340,25 +340,28 @@ export default function CertificationsPage() {
   });
 
   return (
-    <div suppressHydrationWarning className="flex h-full w-full flex-col gap-3 p-3 overflow-y-auto">
+    <div
+      suppressHydrationWarning
+      className="flex w-full flex-col gap-3 p-3 lg:h-full lg:overflow-y-auto lg:gap-3 lg:p-3"
+    >
       {/* HEADER SECTION */}
-      <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/40 pb-2.5">
+      <header className="flex flex-col gap-2 border-b border-border/40 pb-3 sm:flex-row sm:items-center sm:justify-between lg:gap-2 lg:pb-2.5">
         <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20">
-            <Award className="size-5" />
+          <div className="flex size-8 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20 lg:size-9">
+            <Award className="size-4 lg:size-5" />
           </div>
           <div>
-            <h1 className="text-base font-bold tracking-tight text-[var(--color-text-primary)] leading-tight">
+            <h1 className="text-sm font-bold tracking-tight text-[var(--color-text-primary)] leading-tight lg:text-base">
               {t('certificationsPage.title')}
             </h1>
-            <p className="text-[11px] text-[var(--color-text-secondary)] mt-0.5">
+            <p className="mt-0.5 text-[10px] text-[var(--color-text-secondary)] lg:text-[11px]">
               {t('certificationsPage.subtitle')}
             </p>
           </div>
         </div>
 
         {/* Counter Pill */}
-        <div className="flex items-center gap-1.5 rounded-full bg-[var(--color-bg-secondary)] px-2.5 py-0.5 text-[10px] font-semibold text-[var(--color-text-secondary)] w-fit shadow-xs shadow-gray-300 dark:shadow-none">
+        <div className="flex w-fit items-center gap-1.5 rounded-full bg-[var(--color-bg-secondary)] px-2 py-0.5 text-[9px] font-semibold text-[var(--color-text-secondary)] shadow-xs shadow-gray-300 dark:shadow-none lg:px-2.5 lg:text-[10px]">
           <span className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
           <span>
             {CERTIFICATIONS.length} {t('certificationsPage.achievementsCount')}
@@ -367,13 +370,14 @@ export default function CertificationsPage() {
       </header>
 
       {/* MAIN CONTENT GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 min-h-0 flex-1">
+      <div className="grid grid-cols-1 gap-3 lg:min-h-0 lg:flex-1 lg:grid-cols-12 lg:gap-3">
         {/* ================= LEFT COLUMN: LIST & SEARCH ================= */}
-        <div className="lg:col-span-4 flex flex-col gap-2.5 overflow-hidden">
+        <div className="order-2 flex flex-col gap-3 overflow-visible lg:order-none lg:col-span-4 lg:gap-2.5 lg:overflow-hidden">
           {/* Tabs */}
-          <div className="grid grid-cols-3 gap-1 rounded-[6px] bg-[var(--color-bg-secondary)] p-1 text-[10px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none">
+          <div className="grid grid-cols-3 gap-1 rounded-[6px] bg-[var(--color-bg-secondary)] p-1 text-[9px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]">
             {(['All', 'Provider', 'Skill'] as const).map((tab) => (
               <button
+                suppressHydrationWarning
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`rounded-[4px] py-1 transition-colors text-center ${
@@ -396,37 +400,39 @@ export default function CertificationsPage() {
             <div className="relative flex-1">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3 text-[var(--color-text-tertiary)]" />
               <input
+                suppressHydrationWarning
                 type="text"
                 placeholder={t('certificationsPage.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-[6px] bg-[var(--color-bg-secondary)] pl-7 pr-2.5 py-1 text-[10.5px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none focus:outline-none focus:ring-1 focus:ring-blue-500/50"
+                className="w-full rounded-[6px] bg-[var(--color-bg-secondary)] pl-7 pr-2.5 py-1.5 text-[9.5px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none focus:outline-none focus:ring-1 focus:ring-blue-500/50 lg:py-1 lg:text-[10.5px]"
               />
             </div>
             <button
               aria-label="Filter"
-              className="flex size-7 shrink-0 items-center justify-center rounded-[6px] bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none transition-colors"
+              className="flex size-7 shrink-0 items-center justify-center rounded-[6px] bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none"
             >
               <Filter className="size-3" />
             </button>
           </div>
 
-          {/* Certificates Scrollable List */}
-          <div className="flex-1 overflow-y-auto space-y-1.5 pr-0.5">
+          {/* Certificates List */}
+          <div className="space-y-2 overflow-visible lg:flex-1 lg:overflow-y-auto lg:px-1 lg:py-1">
             {filteredCertifications.map((item) => {
               const isSelected = selectedId === item.id;
 
               return (
                 <button
+                  suppressHydrationWarning
                   key={item.id}
                   onClick={() => setSelectedId(item.id)}
-                  className={`w-full text-left rounded-[6px] p-2.5 transition-all flex items-start gap-2.5 relative shadow-xs shadow-gray-300 dark:shadow-none ${
+                  className={`relative flex w-full items-start gap-2 rounded-[6px] p-2 text-left transition-all lg:gap-2.5 lg:p-2.5 ${
                     isSelected
-                      ? 'bg-blue-500/10 text-[var(--color-text-primary)] ring-1 ring-blue-500'
-                      : 'bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                      ? 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] shadow-[0_0_3px_var(--color-brand)] dark:shadow-none dark:[filter:drop-shadow(0_0_3px_var(--color-brand))]'
+                      : 'bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none'
                   }`}
                 >
-                  <div className="flex size-8 shrink-0 items-center justify-center rounded-[4px] bg-white p-1 shadow-xs shadow-gray-300 dark:shadow-none">
+                  <div className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-white p-1 shadow-xs shadow-gray-300 dark:shadow-none lg:size-8">
                     <Image
                       src={item.logo}
                       alt={item.provider}
@@ -437,19 +443,19 @@ export default function CertificationsPage() {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <h2 className="text-[10px] font-bold text-[var(--color-text-secondary)] truncate leading-tight">
+                    <h2 className="truncate text-[9px] font-bold leading-tight text-[var(--color-text-secondary)] lg:text-[10px]">
                       {item.provider}
                     </h2>
-                    <p className="text-[11px] font-semibold text-[var(--color-text-primary)] leading-snug truncate">
+                    <p className="truncate text-[10px] font-semibold leading-snug text-[var(--color-text-primary)] lg:text-[11px]">
                       {item.title}
                     </p>
-                    <div className="flex items-center justify-between mt-1 text-[9px] text-[var(--color-text-tertiary)]">
+                    <div className="mt-1 flex items-center justify-between gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
                       <span>{item.issuedDate}</span>
                       <span
-                        className={`font-bold px-1.5 py-0.2 rounded text-[8px] ${
+                        className={`rounded px-1.5 py-0.2 text-[7px] font-bold lg:text-[8px] ${
                           item.status === 'Verified'
-                            ? 'text-emerald-500 bg-emerald-500/10'
-                            : 'text-purple-500 bg-purple-500/10'
+                            ? 'bg-emerald-500/10 text-emerald-500'
+                            : 'bg-purple-500/10 text-purple-500'
                         }`}
                       >
                         {item.status}
@@ -462,21 +468,24 @@ export default function CertificationsPage() {
           </div>
 
           {/* Load More Button */}
-          <button className="w-full shrink-0 rounded-[6px] bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] text-blue-500 py-1.5 text-[10px] font-semibold flex items-center justify-center gap-1 shadow-xs shadow-gray-300 dark:shadow-none transition-colors">
+          <button
+            suppressHydrationWarning
+            className="w-full shrink-0 rounded-[6px] bg-[var(--color-bg-secondary)] py-1.5 text-[9px] font-semibold text-blue-500 transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]"
+          >
             <span>{t('certificationsPage.loadMore')}</span>
-            <ChevronDown className="size-3" />
+            <ChevronDown className="ml-1 inline size-3" />
           </button>
         </div>
 
         {/* ================= MIDDLE COLUMN: DETAILS ================= */}
-        <div className="lg:col-span-5 flex flex-col gap-3 overflow-y-auto rounded-[6px] bg-[var(--color-bg-secondary)] p-3.5 shadow-md shadow-gray-300 dark:shadow-none">
+        <div className="order-1 flex flex-col gap-3 overflow-visible rounded-[6px] bg-[var(--color-bg-secondary)] p-3 shadow-md shadow-gray-300 dark:shadow-none lg:order-none lg:col-span-5 lg:gap-3 lg:overflow-y-auto lg:p-3.5">
           {/* Header Status & ID */}
-          <div className="flex items-center justify-between text-[10px]">
-            <span className="inline-flex items-center gap-1 font-bold text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full shadow-xs shadow-emerald-500/10">
+          <div className="flex flex-col gap-1 text-[9px] lg:flex-row lg:items-center lg:justify-between lg:text-[10px]">
+            <span className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 font-bold text-emerald-500 shadow-xs shadow-emerald-500/10">
               <CheckCircle2 className="size-3" />
               <span>{t('certificationsPage.verifiedCertificate')}</span>
             </span>
-            <span className="text-[var(--color-text-tertiary)] font-medium">
+            <span className="font-medium text-[var(--color-text-tertiary)]">
               ID:{' '}
               <span className="font-mono text-[var(--color-text-secondary)]">
                 {selectedCert.credentialId}
@@ -485,8 +494,8 @@ export default function CertificationsPage() {
           </div>
 
           {/* Banner */}
-          <div className="flex items-start gap-3 pb-3">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-[6px] bg-white p-1.5 shadow-xs shadow-gray-300 dark:shadow-none">
+          <div className="flex items-start gap-2.5 pb-2 lg:gap-3 lg:pb-3">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-[6px] bg-white p-1.5 shadow-xs shadow-gray-300 dark:shadow-none lg:size-11">
               <Image
                 src={selectedCert.logo}
                 alt={selectedCert.provider}
@@ -496,13 +505,13 @@ export default function CertificationsPage() {
               />
             </div>
             <div className="min-w-0 flex-1">
-              <h2 className="text-sm font-bold text-[var(--color-text-primary)] leading-tight">
+              <h2 className="text-xs font-bold leading-tight text-[var(--color-text-primary)] lg:text-sm">
                 {selectedCert.title}
               </h2>
-              <p className="text-[11px] font-medium text-[var(--color-text-secondary)] mt-0.5">
+              <p className="mt-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] lg:text-[11px]">
                 {selectedCert.provider}
               </p>
-              <div className="flex flex-wrap items-center gap-1.5 text-[9px] text-[var(--color-text-tertiary)] mt-1.5">
+              <div className="mt-1.5 flex flex-wrap items-center gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:gap-1.5 lg:text-[9px]">
                 <span>
                   {t('certificationsPage.issued')} {selectedCert.issuedDate}
                 </span>
@@ -524,24 +533,24 @@ export default function CertificationsPage() {
 
           {/* About */}
           <div className="space-y-1">
-            <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
+            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.aboutHeading')}
             </h3>
-            <p className="text-[11px] font-normal leading-relaxed text-[var(--color-text-secondary)]">
+            <p className="text-[10px] font-normal leading-relaxed text-[var(--color-text-secondary)] lg:text-[11px]">
               {selectedCert.about}
             </p>
           </div>
 
           {/* Skills */}
           <div className="space-y-1.5">
-            <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
+            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.skillsValidated')}
             </h3>
             <div className="flex flex-wrap gap-1">
               {selectedCert.skills.map((skill) => (
                 <span
                   key={skill.name}
-                  className={`text-[9px] font-bold px-2 py-0.5 rounded-[4px] shadow-xs shadow-gray-300 dark:shadow-none ${skill.color}`}
+                  className={`rounded-[4px] px-1.5 py-0.5 text-[8px] font-bold shadow-xs shadow-gray-300 dark:shadow-none lg:px-2 lg:text-[9px] ${skill.color}`}
                 >
                   {skill.name}
                 </span>
@@ -550,28 +559,28 @@ export default function CertificationsPage() {
           </div>
 
           {/* Key Topics */}
-          <div className="space-y-2 pt-2">
-            <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
+          <div className="space-y-2 pt-1 lg:pt-2">
+            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.keyTopics')}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {selectedCert.keyTopics.map((topic) => {
                 const TopicIcon = topic.icon;
                 return (
                   <div
                     key={topic.title}
-                    className="flex items-center gap-2.5 rounded-[6px] bg-background p-2 shadow-xs shadow-gray-300 dark:shadow-none"
+                    className="flex items-center gap-2 rounded-[6px] bg-background p-2 shadow-xs shadow-gray-300 dark:shadow-none"
                   >
                     <div
-                      className={`flex size-7 shrink-0 items-center justify-center rounded-[4px] ${topic.iconBg}`}
+                      className={`flex size-6 shrink-0 items-center justify-center rounded-[4px] ${topic.iconBg} lg:size-7`}
                     >
-                      <TopicIcon className="size-3.5" />
+                      <TopicIcon className="size-3 lg:size-3.5" />
                     </div>
                     <div className="min-w-0">
-                      <h4 className="text-[10.5px] font-semibold text-[var(--color-text-primary)] truncate">
+                      <h4 className="truncate text-[9.5px] font-semibold text-[var(--color-text-primary)] lg:text-[10.5px]">
                         {topic.title}
                       </h4>
-                      <p className="text-[9px] text-[var(--color-text-tertiary)] truncate mt-0.5">
+                      <p className="mt-0.5 truncate text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
                         {topic.subtitle}
                       </p>
                     </div>
@@ -583,32 +592,32 @@ export default function CertificationsPage() {
         </div>
 
         {/* ================= RIGHT COLUMN: CREDENTIAL & PROJECTS ================= */}
-        <div className="lg:col-span-3 flex flex-col gap-3 overflow-y-auto">
+        <div className="order-3 flex flex-col gap-3 overflow-visible lg:order-none lg:col-span-3 lg:gap-3 lg:overflow-y-auto">
           {/* Certificate Image Card */}
-          <div className="rounded-[6px] bg-[var(--color-bg-secondary)] p-3 space-y-3 shadow-md shadow-gray-300 dark:shadow-none">
+          <div className="space-y-2.5 rounded-[6px] bg-[var(--color-bg-secondary)] p-2.5 shadow-md shadow-gray-300 dark:shadow-none lg:space-y-3 lg:p-3">
             <div className="overflow-hidden rounded-[6px] bg-background shadow-sm shadow-gray-300 dark:shadow-none">
               <Image
                 src={selectedCert.certImage}
                 alt={selectedCert.title}
                 width={360}
                 height={240}
-                className="w-full h-auto object-cover"
+                className="h-auto w-full object-cover"
                 priority
               />
             </div>
 
             {/* Credential Info */}
             <div className="space-y-1.5">
-              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
+              <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
                 {t('certificationsPage.credentialInfo')}
               </h3>
 
-              <div className="space-y-1.5 text-[10px]">
+              <div className="space-y-1 text-[9px] lg:space-y-1.5 lg:text-[10px]">
                 <div className="flex items-center justify-between py-0.5">
                   <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
                     <User className="size-3" /> ID
                   </span>
-                  <span className="font-mono font-bold text-[var(--color-text-primary)] text-[9.5px]">
+                  <span className="font-mono text-[8.5px] font-bold text-[var(--color-text-primary)] lg:text-[9.5px]">
                     {selectedCert.credentialId}
                   </span>
                 </div>
@@ -621,7 +630,7 @@ export default function CertificationsPage() {
                     href={selectedCert.verificationUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-500 font-semibold hover:underline flex items-center gap-0.5 text-[9.5px]"
+                    className="flex items-center gap-0.5 text-[8.5px] font-semibold text-blue-500 hover:underline lg:text-[9.5px]"
                   >
                     <span>{t('certificationsPage.verify')}</span>
                     <ArrowUpRight className="size-2.5" />
@@ -632,7 +641,7 @@ export default function CertificationsPage() {
                   <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
                     <Building2 className="size-3" /> Provider
                   </span>
-                  <span className="font-semibold text-[var(--color-text-primary)] text-[9.5px]">
+                  <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
                     {selectedCert.provider}
                   </span>
                 </div>
@@ -641,7 +650,7 @@ export default function CertificationsPage() {
                   <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
                     <FileBadge className="size-3" /> Type
                   </span>
-                  <span className="font-semibold text-[var(--color-text-primary)] text-[9.5px]">
+                  <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
                     {selectedCert.credentialType}
                   </span>
                 </div>
@@ -650,7 +659,7 @@ export default function CertificationsPage() {
                   <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
                     <ShieldCheck className="size-3" /> Status
                   </span>
-                  <span className="text-[8px] font-bold px-1.5 py-0.2 rounded text-emerald-500 bg-emerald-500/10">
+                  <span className="rounded bg-emerald-500/10 px-1.5 py-0.2 text-[7px] font-bold text-emerald-500 lg:text-[8px]">
                     {selectedCert.activeStatus}
                   </span>
                 </div>
@@ -658,8 +667,8 @@ export default function CertificationsPage() {
             </div>
 
             {/* Related Projects */}
-            <div className="space-y-1.5 pt-2">
-              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-primary)]">
+            <div className="space-y-1.5 pt-1 lg:pt-2">
+              <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
                 {t('certificationsPage.relatedProjects')}
               </h3>
 
@@ -669,10 +678,10 @@ export default function CertificationsPage() {
                     key={proj.title}
                     className="flex items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-xs shadow-gray-300 dark:shadow-none"
                   >
-                    <span className="text-[9.5px] font-semibold text-[var(--color-text-primary)] truncate">
+                    <span className="truncate text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
                       {proj.title}
                     </span>
-                    <span className="text-[8px] font-semibold text-[var(--color-text-tertiary)] bg-[var(--color-bg-tertiary)] px-1 py-0.2 rounded">
+                    <span className="rounded bg-[var(--color-bg-tertiary)] px-1 py-0.2 text-[7px] font-semibold text-[var(--color-text-tertiary)] lg:text-[8px]">
                       {proj.tech}
                     </span>
                   </div>
@@ -683,7 +692,7 @@ export default function CertificationsPage() {
             {/* View All Projects Button */}
             <Link
               href="/projects"
-              className="w-full rounded-[6px] bg-background hover:bg-[var(--color-bg-tertiary)] text-blue-500 py-1.5 text-[10px] font-semibold flex items-center justify-center gap-1 shadow-xs shadow-gray-300 dark:shadow-none transition-colors"
+              className="flex w-full items-center justify-center gap-1 rounded-[6px] bg-background py-1.5 text-[9px] font-semibold text-blue-500 transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]"
             >
               <span>{t('certificationsPage.viewAllProjects')}</span>
               <ChevronDown className="size-3" />
