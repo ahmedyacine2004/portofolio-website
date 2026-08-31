@@ -113,8 +113,10 @@ export default function ProjectsPage() {
           </div>
 
           <div className="relative z-10 order-1 max-w-full space-y-1 lg:order-none lg:max-w-xs">
-            <div className="flex items-center gap-1.5 mb-1">
-              <Folder className="size-6 fill-[var(--color-brand)] text-[var(--color-brand)]" />
+            <div className="flex items-center gap-2.5 mb-1">
+              <div className="flex size-8 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20 lg:size-9">
+                <Folder className="size-4 lg:size-5" />
+              </div>
               <h1 className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none">
                 {t('projects.projectWorkspace')}
               </h1>

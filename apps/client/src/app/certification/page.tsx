@@ -350,11 +350,11 @@ export default function CertificationsPage() {
           <div className="flex size-8 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20 lg:size-9">
             <Award className="size-4 lg:size-5" />
           </div>
-          <div>
-            <h1 className="text-sm font-bold tracking-tight text-[var(--color-text-primary)] leading-tight lg:text-base">
+          <div className="space-y-0.5">
+            <h1 className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none">
               {t('certificationsPage.title')}
             </h1>
-            <p className="mt-0.5 text-[10px] text-[var(--color-text-secondary)] lg:text-[11px]">
+            <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
               {t('certificationsPage.subtitle')}
             </p>
           </div>

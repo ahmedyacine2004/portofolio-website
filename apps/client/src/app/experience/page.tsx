@@ -333,7 +333,7 @@ export default function ExperienceWorkspacePage() {
     [t],
   );
   return (
-    <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-4 md:p-6 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
+    <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-3 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
       <div className="flex items-center justify-between lg:hidden">
         <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
           {t('experiencePage.title')}
@@ -389,11 +389,18 @@ export default function ExperienceWorkspacePage() {
 
       {/* Top Header */}
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="space-y-1">
-          <h1 className="text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-            {t('experiencePage.title')}
-          </h1>
-          <p className="text-xs font-semibold text-primary">{t('experiencePage.yourJourney')}</p>
+        <div className="flex items-center gap-2.5">
+          <div className="flex size-8 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20 lg:size-9">
+            <Briefcase className="size-4 lg:size-5" />
+          </div>
+          <div className="space-y-0.5">
+            <h1 className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none">
+              {t('experiencePage.title')}
+            </h1>
+            <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
+              {t('experiencePage.yourJourney')}
+            </p>
+          </div>
         </div>
 
         {/* Top Right Quote Card */}

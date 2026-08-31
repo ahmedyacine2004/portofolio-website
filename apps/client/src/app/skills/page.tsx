@@ -157,7 +157,7 @@ export default function SkillsPage() {
     [t],
   );
   return (
-    <div className="h-full w-full overflow-y-auto rounded-[8px] border border-border/50 bg-background p-4 md:p-6 space-y-6 text-foreground shadow-sm">
+    <div className="h-full w-full overflow-y-auto rounded-[8px] border border-border/50 bg-background p-3 space-y-6 text-foreground shadow-sm">
       <div className="flex items-center justify-between lg:hidden">
         <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
           {t('skillsPage.title')}
@@ -212,15 +212,17 @@ export default function SkillsPage() {
       </AnimatePresence>
 
       {/* Page Header */}
-      <header className="space-y-1">
-        <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-          {t('skillsPage.title')}
-        </h1>
+      <header className="flex items-center gap-2.5">
+        <div className="flex size-8 items-center justify-center rounded-[6px] bg-blue-500 text-white shadow-sm shadow-blue-500/20 lg:size-9">
+          <Cpu className="size-4 lg:size-5" />
+        </div>
         <div className="space-y-0.5">
-          <p className="font-inter text-xs font-semibold text-blue-600 dark:text-blue-400">
-            {t('skillsPage.subtitle')}
+          <h1 className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none">
+            {t('skillsPage.title')}
+          </h1>
+          <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
+            {t('skillsPage.description')}
           </p>
-          <p className="font-inter text-xs text-muted-foreground">{t('skillsPage.description')}</p>
         </div>
       </header>
 
