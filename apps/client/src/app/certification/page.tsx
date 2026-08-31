@@ -340,7 +340,7 @@ export default function CertificationsPage() {
   });
 
   return (
-    <div className="flex h-full w-full flex-col gap-3 p-3 overflow-y-auto">
+    <div suppressHydrationWarning className="flex h-full w-full flex-col gap-3 p-3 overflow-y-auto">
       {/* HEADER SECTION */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-border/40 pb-2.5">
         <div className="flex items-center gap-2.5">
