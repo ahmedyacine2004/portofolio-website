@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
   BookOpen,
@@ -17,10 +17,13 @@ import {
   Play,
   Quote,
   Sliders,
+  X,
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+
+import { ExperienceSecondarySidebar } from '@/components/layout/secondary/experience-secondary-sidebar';
 import { useTranslation } from '@/hooks/use-translation';
 
 interface CareerMilestone {
@@ -189,6 +192,7 @@ const REGISTERED_MODULES: string[] = [
 
 export default function ExperienceWorkspacePage() {
   const { t } = useTranslation();
+  const [isExperienceSidebarOpen, setIsExperienceSidebarOpen] = useState(false);
 
   const careerMilestones = useMemo(
     () => [
@@ -330,6 +334,59 @@ export default function ExperienceWorkspacePage() {
   );
   return (
     <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-4 md:p-6 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
+      <div className="flex items-center justify-between lg:hidden">
+        <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
+          {t('experiencePage.title')}
+        </span>
+        <button
+          type="button"
+          onClick={() => setIsExperienceSidebarOpen(true)}
+          aria-label="Open experience navigation"
+          className="flex h-7 shrink-0 items-center gap-1.5 rounded-xs bg-background px-2 text-[9px] font-semibold text-[var(--color-text-primary)] shadow-gray-300 transition-colors hover:bg-muted dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        >
+          <LayoutGrid className="size-3.5" strokeWidth={1.8} />
+          <span>Experience</span>
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isExperienceSidebarOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/30 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsExperienceSidebarOpen(false)}
+          >
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+              className="h-full w-[82%] max-w-[340px] overflow-y-auto bg-background p-3 shadow-2xl md:w-[360px]"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground-secondary">
+                  Experience
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsExperienceSidebarOpen(false)}
+                  aria-label="Close experience navigation"
+                  className="flex size-7 items-center justify-center text-foreground"
+                >
+                  <X className="size-3.5" strokeWidth={2} />
+                </button>
+              </div>
+              <div className="[&_aside]:!h-auto [&_aside]:!w-full [&_aside]:!rounded-[4px] [&_aside]:!p-0 [&_aside]:!shadow-none">
+                <ExperienceSecondarySidebar />
+              </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Top Header */}
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
