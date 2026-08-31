@@ -2,7 +2,7 @@
 
 import { Float, useGLTF } from '@react-three/drei';
 import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
-import { useMemo, useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 const keyboardModelUrl = '/3d/keyboard.glb';
