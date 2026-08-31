@@ -1,9 +1,11 @@
 'use client';
 
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowRight, Cpu, Heart, Layers, LayoutGrid, Plus, Zap } from 'lucide-react';
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ArrowRight, Cpu, Heart, Layers, LayoutGrid, Plus, X, Zap } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
+
+import { SkillsSecondarySidebar } from '@/components/layout/secondary/skills-secondary-sidebar';
 import { useTranslation } from '@/hooks/use-translation';
 
 interface WorkspaceCategory {
@@ -131,6 +133,7 @@ function TiltCard({ children, className = '' }: { children: React.ReactNode; cla
 
 export default function SkillsPage() {
   const { t } = useTranslation();
+  const [isSkillsSidebarOpen, setIsSkillsSidebarOpen] = useState(false);
 
   const summaryItems = useMemo(
     () => [
@@ -155,6 +158,59 @@ export default function SkillsPage() {
   );
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] border border-border/50 bg-background p-4 md:p-6 space-y-6 text-foreground shadow-sm">
+      <div className="flex items-center justify-between lg:hidden">
+        <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
+          {t('skillsPage.title')}
+        </span>
+        <button
+          type="button"
+          onClick={() => setIsSkillsSidebarOpen(true)}
+          aria-label="Open skills navigation"
+          className="flex h-7 shrink-0 items-center gap-1.5 rounded-xs bg-background px-2 text-[9px] font-semibold text-[var(--color-text-primary)] shadow-gray-300 transition-colors hover:bg-muted dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        >
+          <LayoutGrid className="size-3.5" strokeWidth={1.8} />
+          <span>Skills</span>
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isSkillsSidebarOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/30 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsSkillsSidebarOpen(false)}
+          >
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+              className="h-full w-[82%] max-w-[340px] overflow-y-auto bg-background p-3 shadow-2xl md:w-[360px]"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground-secondary">
+                  Skills
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setIsSkillsSidebarOpen(false)}
+                  aria-label="Close skills navigation"
+                  className="flex size-7 items-center justify-center text-foreground"
+                >
+                  <X className="size-3.5" strokeWidth={2} />
+                </button>
+              </div>
+              <div className="[&_aside]:!h-auto [&_aside]:!w-full [&_aside]:!rounded-[4px] [&_aside]:!p-0 [&_aside]:!shadow-none">
+                <SkillsSecondarySidebar />
+              </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Page Header */}
       <header className="space-y-1">
         <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">

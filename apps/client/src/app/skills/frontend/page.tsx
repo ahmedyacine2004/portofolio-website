@@ -1,52 +1,32 @@
 'use client';
 
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowRight,
   Atom,
   Boxes,
   CheckCircle2,
-  Clock,
-  Code,
   Code2,
   Cpu,
   ExternalLink,
-  Eye,
   FileCode2,
-  Fingerprint,
-  FolderGit2,
   Gauge,
   Globe,
-  HardDrive,
-  KeyRound,
   Layers,
-  Layers3,
   Layout,
-  Lock,
   LucideIcon,
   Monitor,
   MousePointerClick,
-  Network,
-  Play,
-  Radio,
   RefreshCw,
-  Search,
-  Server,
-  ServerCog,
-  Shield,
-  ShieldAlert,
   ShieldCheck,
-  Smartphone,
   Sparkles,
-  TableProperties,
   Terminal,
-  TrendingUp,
   Workflow,
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -87,6 +67,20 @@ function pointsToSmoothPath(points: number[], width = 100): string {
   return d;
 }
 
+function getStableSparklinePoints(
+  baseline: number,
+  variance: number,
+  pointCount: number,
+  isFlat: boolean,
+) {
+  return Array.from({ length: pointCount }, (_, index) => {
+    if (isFlat) return baseline;
+
+    const wave = Math.sin(index * 0.85 + baseline) * (variance * 0.45);
+    return Math.max(4, Math.min(26, baseline + wave));
+  });
+}
+
 interface LiveMetricRowProps {
   label: string;
   type: 'fps' | 'lcp' | 'cls' | 'inp' | 'dom';
@@ -108,9 +102,7 @@ function LiveMetricRow({
   const isFlat = type === 'cls';
 
   const [points, setPoints] = useState<number[]>(() =>
-    Array.from({ length: pointCount }, () =>
-      isFlat ? baseline : Math.max(4, Math.min(26, baseline + (Math.random() - 0.5) * variance)),
-    ),
+    getStableSparklinePoints(baseline, variance, pointCount, isFlat),
   );
 
   const [displayVal, setDisplayVal] = useState<string>('0');
