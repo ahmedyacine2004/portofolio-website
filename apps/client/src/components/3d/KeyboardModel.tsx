@@ -43,7 +43,7 @@ function cloneSceneWithFixedMaterials(source: THREE.Group): THREE.Group {
   return clone;
 }
 
-export default function KeyboardModel() {
+export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier?: number }) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF(keyboardModelUrl);
   const { camera, pointer, gl } = useThree();
@@ -160,7 +160,7 @@ export default function KeyboardModel() {
       <Float speed={1.05} rotationIntensity={0.08} floatIntensity={0.06}>
         <primitive
           object={clonedScene}
-          scale={2.1}
+          scale={2.1 * scaleMultiplier}
           position={[0, 0.08, 0]}
           onPointerOver={(event: ThreeEvent<PointerEvent>) => {
             event.stopPropagation();

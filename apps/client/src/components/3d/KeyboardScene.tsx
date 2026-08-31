@@ -18,18 +18,19 @@ const KeyboardModel = lazy(() => import('./KeyboardModel'));
 
 interface SceneContentProps {
   isDark: boolean;
+  mobile?: boolean;
 }
 
-function SceneContent({ isDark }: SceneContentProps) {
+function SceneContent({ isDark, mobile = false }: SceneContentProps) {
   return (
     <Suspense fallback={null}>
       {/* 3D Keyboard Model */}
-      <KeyboardModel />
+      <KeyboardModel scaleMultiplier={mobile ? 1.275 : 1} />
     </Suspense>
   );
 }
 
-export function KeyboardScene() {
+export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [canRender, setCanRender] = useState(false);
@@ -146,7 +147,7 @@ export function KeyboardScene() {
             )}
 
             {/* Inner Scene Content (Environment + Model) with internal Suspense */}
-            <SceneContent isDark={isDark} />
+            <SceneContent isDark={isDark} mobile={mobile} />
 
             {/* Floor plane positioned lower at y = -3.2 so rotation tilt never collides */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.2, 0]}>
