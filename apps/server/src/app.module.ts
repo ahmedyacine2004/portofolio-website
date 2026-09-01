@@ -11,6 +11,7 @@ import {
 } from './config';
 import { DatabaseModule } from './database/database.module';
 import { AdminAuthModule } from './modules/admin-auth/admin-auth.module';
+import { AIAssistantModule } from './modules/ai-assistant/ai-assistant.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @Module({
@@ -25,6 +26,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     }),
     DatabaseModule,
     DashboardModule,
+    AIAssistantModule,
     AdminAuthModule,
   ],
   controllers: [AppController],
