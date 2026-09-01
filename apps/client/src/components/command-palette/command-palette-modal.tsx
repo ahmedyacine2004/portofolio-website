@@ -151,6 +151,19 @@ const getCommandItems = (t: any): CommandItem[] => [
     },
   },
   {
+    id: 'nav-about',
+    title: 'About',
+    subtitle: 'Open the about profile page',
+    category: 'Navigation',
+    Icon: Folder,
+    shortcut: '⌘A',
+    badge: 'Page',
+    action: ({ router, close }) => {
+      router.push('/about');
+      close();
+    },
+  },
+  {
     id: 'nav-projects',
     title: t('commandPalette.goToProjects'),
     subtitle: t('commandPalette.goToProjectsDesc'),
@@ -164,15 +177,28 @@ const getCommandItems = (t: any): CommandItem[] => [
     },
   },
   {
-    id: 'nav-services',
-    title: t('commandPalette.goToServices'),
-    subtitle: t('commandPalette.goToServicesDesc'),
+    id: 'nav-skills',
+    title: 'Skills',
+    subtitle: 'Open the skills and capabilities overview',
     category: 'Navigation',
     Icon: InfinityIcon,
     shortcut: '⌘S',
     badge: 'Page',
     action: ({ router, close }) => {
-      router.push('/services');
+      router.push('/skills');
+      close();
+    },
+  },
+  {
+    id: 'nav-services',
+    title: t('commandPalette.goToServices'),
+    subtitle: t('commandPalette.goToServicesDesc'),
+    category: 'Navigation',
+    Icon: InfinityIcon,
+    shortcut: '⌘V',
+    badge: 'Page',
+    action: ({ router, close }) => {
+      router.push('/skills');
       close();
     },
   },
@@ -186,6 +212,19 @@ const getCommandItems = (t: any): CommandItem[] => [
     badge: 'Page',
     action: ({ router, close }) => {
       router.push('/contact');
+      close();
+    },
+  },
+  {
+    id: 'nav-settings',
+    title: 'Settings',
+    subtitle: 'Open the settings panel',
+    category: 'Navigation',
+    Icon: Folder,
+    shortcut: '⌘G',
+    badge: 'Page',
+    action: ({ router, close }) => {
+      router.push('/settings');
       close();
     },
   },
