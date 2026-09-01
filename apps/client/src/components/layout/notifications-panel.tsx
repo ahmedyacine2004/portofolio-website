@@ -1,11 +1,11 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import {
   useNotificationsStore,
   type NotificationCategory,
   type NotificationItem,
 } from '@/stores/notifications.store';
-import { useTranslation } from '@/hooks/use-translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Award,
@@ -141,7 +141,7 @@ export function NotificationsPanel() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.98 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="fixed top-12 right-6 z-50 w-full max-w-[340px] overflow-hidden rounded-sm border border-border bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        className="fixed top-12 right-6 z-50 w-full max-w-[340px] overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-3 py-2">

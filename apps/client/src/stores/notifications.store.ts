@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 import { portfolioNotifications, type PortfolioNotification } from '@/data/notifications';
 
@@ -94,8 +95,21 @@ const readNotificationIds = (): Set<string> => {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     if (!saved) return new Set();
 
-    const parsed = JSON.parse(saved) as string[];
-    return new Set(Array.isArray(parsed) ? parsed : []);
+    const parsed = JSON.parse(saved) as string[] | { notifications?: NotificationItem[] };
+
+    if (Array.isArray(parsed)) {
+      return new Set(parsed);
+    }
+
+    if (parsed && Array.isArray(parsed.notifications)) {
+      return new Set(
+        parsed.notifications
+          .filter((notification) => notification && notification.read)
+          .map((notification) => notification.id),
+      );
+    }
+
+    return new Set();
   } catch {
     return new Set();
   }
@@ -117,52 +131,63 @@ const buildNotifications = (): NotificationItem[] =>
     };
   });
 
-export const useNotificationsStore = create<NotificationsStore>((set) => ({
-  isOpen: false,
-  activeTab: 'All',
-  notifications: buildNotifications(),
+const persistReadIds = (notifications: NotificationItem[]) => {
+  if (typeof window === 'undefined') return;
 
-  setOpen: (open) => set({ isOpen: open }),
-  toggleOpen: () => set((state) => ({ isOpen: !state.isOpen })),
-  setActiveTab: (tab) => set({ activeTab: tab }),
+  const readIds = notifications.filter((notification) => notification.read).map((n) => n.id);
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ notifications }));
+  window.localStorage.setItem('portfolio-read-notifications-legacy', JSON.stringify(readIds));
+};
 
-  markAsRead: (id) => {
-    if (typeof window !== 'undefined') {
-      const current = readNotificationIds();
-      current.add(id);
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify([...current]));
-    }
+export const useNotificationsStore = create<NotificationsStore>()(
+  persist(
+    (set) => ({
+      isOpen: false,
+      activeTab: 'All',
+      notifications: buildNotifications(),
 
-    set((state) => ({
-      notifications: state.notifications.map((n) => (n.id === id ? { ...n, read: true } : n)),
-    }));
-  },
+      setOpen: (open) => set({ isOpen: open }),
+      toggleOpen: () => set((state) => ({ isOpen: !state.isOpen })),
+      setActiveTab: (tab) => set({ activeTab: tab }),
 
-  markAllAsRead: () => {
-    if (typeof window !== 'undefined') {
-      const ids = (useNotificationsStore.getState().notifications ?? []).map((n) => n.id);
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-    }
+      markAsRead: (id) =>
+        set((state) => {
+          const nextNotifications = state.notifications.map((n) =>
+            n.id === id ? { ...n, read: true } : n,
+          );
+          persistReadIds(nextNotifications);
+          return { notifications: nextNotifications };
+        }),
 
-    set((state) => ({
-      notifications: state.notifications.map((n) => ({ ...n, read: true })),
-    }));
-  },
+      markAllAsRead: () =>
+        set((state) => {
+          const nextNotifications = state.notifications.map((n) => ({ ...n, read: true }));
+          persistReadIds(nextNotifications);
+          return { notifications: nextNotifications };
+        }),
 
-  removeNotification: (id) => {
-    set((state) => ({
-      notifications: state.notifications.filter((n) => n.id !== id),
-    }));
-  },
+      removeNotification: (id) =>
+        set((state) => {
+          const nextNotifications = state.notifications.filter((n) => n.id !== id);
+          persistReadIds(nextNotifications);
+          return { notifications: nextNotifications };
+        }),
 
-  addNotification: (notification) => {
-    const newNotif: NotificationItem = {
-      ...notification,
-      id: `notif-${Date.now()}`,
-      read: false,
-    };
-    set((state) => ({
-      notifications: [newNotif, ...state.notifications],
-    }));
-  },
-}));
+      addNotification: (notification) =>
+        set((state) => {
+          const newNotif: NotificationItem = {
+            ...notification,
+            id: `notif-${Date.now()}`,
+            read: false,
+          };
+          const nextNotifications = [newNotif, ...state.notifications];
+          persistReadIds(nextNotifications);
+          return { notifications: nextNotifications };
+        }),
+    }),
+    {
+      name: STORAGE_KEY,
+      partialize: (state) => ({ notifications: state.notifications }),
+    },
+  ),
+);

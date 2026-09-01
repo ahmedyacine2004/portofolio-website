@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { MeshReflectorMaterial, useGLTF } from '@react-three/drei';
+import { MeshReflectorMaterial, Stars, useGLTF } from '@react-three/drei';
 import { Canvas, type RootState, useThree } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -210,13 +210,25 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
 
             <pointLight position={[0, 1.5, 2]} intensity={isDark ? 0.8 : 0.6} />
 
-            {/* Blue glow underneath the keyboard — dark mode only */}
+            {isDark && (
+              <Stars
+                radius={100}
+                depth={50}
+                count={4000}
+                factor={5.5}
+                saturation={0}
+                fade
+                speed={1.8}
+              />
+            )}
+
+            {/* Ground light under the keyboard — dark mode only */}
             {isDark && (
               <pointLight
-                position={[0, -2, 0.35]}
-                color="#1687ff"
-                intensity={20}
-                distance={3}
+                position={[0, -0.6, 0.35]}
+                color="#7bb8ff"
+                intensity={35}
+                distance={24}
                 decay={2}
               />
             )}

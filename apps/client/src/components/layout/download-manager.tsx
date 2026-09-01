@@ -56,7 +56,7 @@ export function DownloadManager() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.95 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="fixed bottom-10 right-6 z-50 w-full max-w-[360px] overflow-hidden rounded-sm border border-border bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        className="fixed bottom-10 right-6 z-50 w-full max-w-[360px] overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
