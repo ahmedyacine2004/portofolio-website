@@ -115,9 +115,9 @@ export default function ContactModel() {
   }, [gl]);
 
   return (
-    <group ref={groupRef} position={[0, -1.3, 0]}>
+    <group ref={groupRef} position={[0, -2.2, 0]}>
       <Float speed={0.8} rotationIntensity={0.04} floatIntensity={0.05}>
-        <primitive object={scene} scale={1.35} />
+        <primitive object={scene} scale={1.5} />
       </Float>
     </group>
   );

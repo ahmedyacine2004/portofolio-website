@@ -122,7 +122,7 @@ export function ImageViewerModal() {
             <div className="flex items-center gap-3 min-w-0">
               <div className="min-w-0">
                 <h3
-                  className={`truncate text-xs font-bold leading-tight ${isDark ? 'text-white' : 'text-foreground'}`}
+                  className={`truncate font-inter text-xs font-bold leading-tight ${isDark ? 'text-white' : 'text-foreground'}`}
                 >
                   {activeImage.name}
                 </h3>
@@ -276,18 +276,18 @@ export function ImageViewerModal() {
           </div>
 
           {/* Main Content Area */}
-          <div className="relative min-h-0 flex-1 overflow-hidden bg-black/40 flex items-center justify-center p-4">
+          <div className="relative min-h-0 flex-1 overflow-auto bg-black/40 flex items-center justify-center p-4">
             {/* Image Preview Canvas */}
             <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
               <motion.div
                 animate={{ scale: zoomScale }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="relative max-h-full max-w-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+                className="relative flex max-h-full max-w-full items-center justify-center cursor-grab active:cursor-grabbing"
               >
                 <img
                   src={currentSrc}
                   alt={activeImage.alt}
-                  className="max-h-[60vh] max-w-[80vw] object-contain rounded-[8px] shadow-2xl"
+                  className="h-auto max-h-[calc(100vh-220px)] w-auto max-w-[80vw] object-contain rounded-[8px] shadow-2xl"
                 />
               </motion.div>
 
@@ -381,13 +381,17 @@ export function ImageViewerModal() {
                     key={img.id}
                     type="button"
                     onClick={() => setIndex(idx)}
-                    className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-[8px] border-2 transition-all ${
+                    className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-[8px] border-2 bg-muted transition-all ${
                       isActive
                         ? 'border-blue-500 ring-2 ring-blue-500/50 scale-105 shadow-lg'
                         : 'border-transparent opacity-60 hover:opacity-100 hover:scale-102'
                     }`}
                   >
-                    <img src={thumbSrc} alt={img.alt} className="h-full w-full object-cover" />
+                    <img
+                      src={thumbSrc}
+                      alt={img.alt}
+                      className="h-full w-full rounded-[6px] object-contain p-0.5"
+                    />
                   </button>
                 );
               })}

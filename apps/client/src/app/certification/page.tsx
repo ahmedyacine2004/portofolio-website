@@ -443,7 +443,7 @@ export default function CertificationsPage() {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <h2 className="truncate text-[9px] font-bold leading-tight text-[var(--color-text-secondary)] lg:text-[10px]">
+                    <h2 className="font-inter truncate text-[9px] font-bold leading-tight text-[var(--color-text-secondary)] lg:text-[10px]">
                       {item.provider}
                     </h2>
                     <p className="truncate text-[10px] font-semibold leading-snug text-[var(--color-text-primary)] lg:text-[11px]">
@@ -505,7 +505,7 @@ export default function CertificationsPage() {
               />
             </div>
             <div className="min-w-0 flex-1">
-              <h2 className="text-xs font-bold leading-tight text-[var(--color-text-primary)] lg:text-sm">
+              <h2 className="font-inter text-xs font-bold leading-tight text-[var(--color-text-primary)] lg:text-sm">
                 {selectedCert.title}
               </h2>
               <p className="mt-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] lg:text-[11px]">
@@ -533,7 +533,7 @@ export default function CertificationsPage() {
 
           {/* About */}
           <div className="space-y-1">
-            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.aboutHeading')}
             </h3>
             <p className="text-[10px] font-normal leading-relaxed text-[var(--color-text-secondary)] lg:text-[11px]">
@@ -543,7 +543,7 @@ export default function CertificationsPage() {
 
           {/* Skills */}
           <div className="space-y-1.5">
-            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.skillsValidated')}
             </h3>
             <div className="flex flex-wrap gap-1">
@@ -560,7 +560,7 @@ export default function CertificationsPage() {
 
           {/* Key Topics */}
           <div className="space-y-2 pt-1 lg:pt-2">
-            <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
               {t('certificationsPage.keyTopics')}
             </h3>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -608,7 +608,7 @@ export default function CertificationsPage() {
 
             {/* Credential Info */}
             <div className="space-y-1.5">
-              <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+              <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
                 {t('certificationsPage.credentialInfo')}
               </h3>
 
@@ -668,7 +668,7 @@ export default function CertificationsPage() {
 
             {/* Related Projects */}
             <div className="space-y-1.5 pt-1 lg:pt-2">
-              <h3 className="text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+              <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
                 {t('certificationsPage.relatedProjects')}
               </h3>
 

@@ -333,7 +333,10 @@ export default function ExperienceWorkspacePage() {
     [t],
   );
   return (
-    <div className="h-full w-full overflow-y-auto rounded-sm bg-background p-3 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none">
+    <div
+      className="h-full w-full overflow-y-auto rounded-sm bg-background p-3 space-y-6 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-inter select-none"
+      style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+    >
       <div className="flex items-center justify-between lg:hidden">
         <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
           {t('experiencePage.title')}
@@ -394,7 +397,10 @@ export default function ExperienceWorkspacePage() {
             <Briefcase className="size-4 lg:size-5" />
           </div>
           <div className="space-y-0.5">
-            <h1 className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none">
+            <h1
+              className="font-inter text-[25px] font-bold leading-tight text-[var(--color-text-primary)] max-md:text-[20px] max-md:leading-none"
+              style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+            >
               {t('experiencePage.title')}
             </h1>
             <p className="text-[9px] leading-tight text-[var(--color-text-secondary)]">
@@ -421,7 +427,12 @@ export default function ExperienceWorkspacePage() {
 
       {/* Section 1: Career Milestones */}
       <section className="rounded-sm bg-background p-4 md:p-5 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] space-y-4 border border-border/40">
-        <h2 className="text-sm font-bold text-foreground">{t('experiencePage.milestones')}</h2>
+        <h2
+          className="text-sm font-bold text-foreground"
+          style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+        >
+          {t('experiencePage.milestones')}
+        </h2>
 
         <div className="flex flex-nowrap items-center justify-between overflow-x-auto py-2 px-1 scrollbar-none gap-2 sm:gap-4">
           {careerMilestones.map((milestone, index) => {
@@ -439,7 +450,10 @@ export default function ExperienceWorkspacePage() {
                   <div className="flex size-13 sm:size-15 items-center justify-center rounded-full bg-sky-50 text-sky-600 dark:bg-slate-900 dark:text-sky-400 border border-sky-100 dark:border-slate-800 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] group-hover:scale-105 group-hover:border-sky-500 transition-transform">
                     <Icon className="size-5 sm:size-6" />
                   </div>
-                  <h3 className="mt-2.5 text-xs font-bold text-foreground max-w-[100px] leading-tight">
+                  <h3
+                    className="mt-2.5 text-xs font-bold text-foreground max-w-[100px] leading-tight"
+                    style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+                  >
                     {milestone.title}
                   </h3>
                   <span className="mt-0.5 text-[11px] font-medium text-muted-foreground">
@@ -458,7 +472,12 @@ export default function ExperienceWorkspacePage() {
 
       {/* Section 2: Experience Overview */}
       <section className="space-y-3">
-        <h2 className="text-sm font-bold text-foreground">Experience Overview</h2>
+        <h2
+          className="text-sm font-bold text-foreground"
+          style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+        >
+          Experience Overview
+        </h2>
 
         <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
           {overviewCards.map((card, index) => {
@@ -479,7 +498,12 @@ export default function ExperienceWorkspacePage() {
                     <Icon className="size-4" strokeWidth={1.8} />
                   </div>
 
-                  <h3 className="mt-3 text-sm font-bold text-foreground">{card.title}</h3>
+                  <h3
+                    className="mt-3 text-sm font-bold text-foreground"
+                    style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+                  >
+                    {card.title}
+                  </h3>
                   <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                     {card.description}
                   </p>
@@ -504,7 +528,12 @@ export default function ExperienceWorkspacePage() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
         {/* Left Column: Experience Snapshot */}
         <div className="lg:col-span-7 space-y-3">
-          <h2 className="text-sm font-bold text-foreground">Experience Snapshot</h2>
+          <h2
+            className="text-sm font-bold text-foreground"
+            style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+          >
+            Experience Snapshot
+          </h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
             {metricSnapshots.map((snapshot, index) => {
@@ -541,7 +570,12 @@ export default function ExperienceWorkspacePage() {
         {/* Right Column: Registered Modules */}
         <div className="lg:col-span-5 space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-foreground">Registered Modules</h2>
+            <h2
+              className="text-sm font-bold text-foreground"
+              style={{ fontFamily: 'var(--font-inter), sans-serif' }}
+            >
+              Registered Modules
+            </h2>
           </div>
 
           <motion.div

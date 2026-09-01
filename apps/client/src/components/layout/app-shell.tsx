@@ -113,13 +113,13 @@ export function AppShell({ children }: AppShellProps) {
           </aside>
 
           {/* Page Area */}
-          <main className="relative min-w-0 flex-1 overflow-x-hidden overflow-y-auto rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:rounded-[8px] lg:overflow-hidden">
+          <main className="relative h-full min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:rounded-[8px] lg:overflow-hidden">
             <motion.div
               key={pathname}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="h-full w-full"
+              className="h-full min-h-0 w-full"
             >
               {children}
             </motion.div>

@@ -94,9 +94,9 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="flex h-full w-[45%] flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+          className="relative flex h-full min-h-0 w-[45%] flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
         >
-          <div className="h-full w-full flex-1 ">
+          <div className="h-full w-full min-h-0 min-w-0 flex-1">
             <KeyboardScene />
           </div>
         </motion.div>
@@ -204,9 +204,9 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="flex h-44 w-full flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
+          className="relative flex h-44 w-full min-h-0 min-w-0 flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
         >
-          <div className="h-full w-full">
+          <div className="h-full w-full min-h-0 min-w-0">
             <KeyboardScene />
           </div>
         </motion.div>

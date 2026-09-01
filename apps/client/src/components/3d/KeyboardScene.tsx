@@ -2,9 +2,8 @@
 'use client';
 
 import { MeshReflectorMaterial, useGLTF } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, type RootState, useThree } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
 
 import { useTheme } from '@/hooks/use-theme';
 
@@ -30,6 +29,54 @@ function SceneContent({ isDark, mobile = false }: SceneContentProps) {
   );
 }
 
+function ResizeCanvasToParent() {
+  const { camera, gl } = useThree();
+
+  useEffect(() => {
+    const parent = gl.domElement.parentElement;
+    if (!parent) return;
+
+    const syncSize = () => {
+      const rect = parent.getBoundingClientRect();
+      const width = Math.max(rect.width, 1);
+      const height = Math.max(rect.height, 1);
+
+      if ('aspect' in camera) {
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      gl.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      gl.setSize(width, height, false);
+    };
+
+    const refresh = () => {
+      requestAnimationFrame(syncSize);
+    };
+
+    refresh();
+
+    const observer = new ResizeObserver(refresh);
+    observer.observe(parent);
+
+    const scrollContainer = parent.closest('main');
+    if (scrollContainer instanceof HTMLElement) {
+      scrollContainer.addEventListener('scroll', refresh, { passive: true });
+    }
+    window.addEventListener('resize', refresh);
+
+    return () => {
+      observer.disconnect();
+      if (scrollContainer instanceof HTMLElement) {
+        scrollContainer.removeEventListener('scroll', refresh);
+      }
+      window.removeEventListener('resize', refresh);
+    };
+  }, [camera, gl]);
+
+  return null;
+}
+
 export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -40,7 +87,6 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
 
   useEffect(() => {
     setMounted(true);
-    // Short delay after client mount so GLTF preload cache is ready before Canvas mounts
     const timer = setTimeout(() => setCanRender(true), 100);
     return () => clearTimeout(timer);
   }, []);
@@ -53,8 +99,28 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
 
   const isDark = mounted && theme === 'dark';
 
-  const handleCreated = useCallback(({ gl }: { gl: THREE.WebGLRenderer }) => {
+  const handleCreated = useCallback(({ gl, camera, size }: RootState) => {
     const canvas = gl.domElement;
+    const parent = canvas.parentElement;
+    const width = parent ? parent.clientWidth || size.width : size.width;
+    const height = parent ? parent.clientHeight || size.height : size.height;
+
+    if (width > 0 && height > 0) {
+      if ('aspect' in camera) {
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+      gl.setSize(width, height, false);
+    }
+
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    canvas.style.maxWidth = 'none';
+    canvas.style.maxHeight = 'none';
+    canvas.style.objectFit = 'fill';
+    canvas.style.aspectRatio = 'auto';
+
     const onContextLost = (e: Event) => {
       e.preventDefault();
       setContextLost(true);
@@ -76,8 +142,8 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
   return (
     <div
       className={[
-        'relative h-full w-full overflow-hidden rounded-xs',
-        isDark ? 'bg-black' : 'bg-background/20',
+        'relative h-full w-full min-h-0 min-w-0 overflow-hidden rounded-xs',
+        isDark ? 'bg-black' : 'bg-white',
       ].join(' ')}
     >
       {/* WebGL Context Lost Overlay */}
@@ -110,6 +176,14 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
         >
           <Canvas
             key={key}
+            className="absolute inset-0 h-full w-full"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              display: 'block',
+            }}
             camera={{
               position: [0, 2.5, 14],
               fov: 40,
@@ -122,6 +196,7 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             }}
             onCreated={handleCreated}
           >
+            <ResizeCanvasToParent />
             <color attach="background" args={[isDark ? '#000000' : '#ffffff']} />
 
             {/* Fog fades the floor edge into the background so plane boundary is invisible */}
@@ -149,21 +224,21 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             {/* Inner Scene Content (Environment + Model) with internal Suspense */}
             <SceneContent isDark={isDark} mobile={mobile} />
 
-            {/* Floor plane positioned lower at y = -3.2 so rotation tilt never collides */}
+            {/* Keep the old camera framing and make the floor fill the full viewport corners */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.2, 0]}>
-              <planeGeometry args={[2000, 2000]} />
+              <planeGeometry args={[5000, 5000]} />
               <MeshReflectorMaterial
                 blur={[400, 100]}
                 resolution={512}
                 mirror={0.35}
                 mixBlur={1}
                 mixStrength={0.6}
-                roughness={0.85}
+                roughness={0}
                 depthScale={1}
                 minDepthThreshold={0.4}
                 maxDepthThreshold={1}
                 metalness={0.05}
-                color={isDark ? '#080808' : '#ececec'}
+                color={isDark ? '#080808' : '#6ea8ff'}
               />
             </mesh>
           </Canvas>

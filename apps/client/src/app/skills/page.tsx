@@ -263,9 +263,9 @@ export default function SkillsPage() {
       {/* Bottom Insights Section */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Workspace Summary Card */}
-        <div className="rounded-[8px] border border-border/70 bg-card p-4 shadow-xs">
+        <div className="rounded-sm border border-border/40 bg-background p-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div className="mb-4 flex items-center gap-2">
-            <div className="flex size-7 items-center justify-center rounded-[6px] bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400">
+            <div className="flex size-7 items-center justify-center rounded-[6px] border border-sky-100 bg-sky-50 text-sky-600 dark:border-slate-800 dark:bg-slate-900 dark:text-sky-400">
               <LayoutGrid className="size-3.5" />
             </div>
             <h3 className="font-inter text-xs font-bold text-card-foreground">
@@ -293,9 +293,9 @@ export default function SkillsPage() {
         </div>
 
         {/* Tech Distribution Card */}
-        <div className="rounded-[8px] border border-border/70 bg-card p-4 shadow-xs">
+        <div className="rounded-sm border border-border/40 bg-background p-4 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div className="mb-4 flex items-center gap-2">
-            <div className="flex size-7 items-center justify-center rounded-[6px] bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
+            <div className="flex size-7 items-center justify-center rounded-[6px] border border-sky-100 bg-sky-50 text-sky-600 dark:border-slate-800 dark:bg-slate-900 dark:text-sky-400">
               <Plus className="size-3.5" />
             </div>
             <h3 className="font-inter text-xs font-bold text-card-foreground">
@@ -332,12 +332,13 @@ export default function SkillsPage() {
       </div>
 
       {/* Bottom Tip Banner */}
-      <div className="flex items-center gap-3 rounded-[8px] border border-blue-100 bg-blue-50/70 p-3 font-inter text-[11px] text-blue-900 dark:border-blue-900/40 dark:bg-blue-950/20 dark:text-blue-200">
-        <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
+      <div className="flex items-center gap-3 rounded-sm border border-border/40 bg-background p-3 text-[11px] text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+        <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-sky-100 bg-sky-50 text-sky-600 dark:border-slate-800 dark:bg-slate-900 dark:text-sky-400">
           <Zap className="size-3.5 fill-current" />
         </div>
         <p className="leading-snug">
-          <span className="font-bold">{t('skillsPage.tip')}</span> {t('skillsPage.tipText')}
+          <span className="font-bold text-primary">{t('skillsPage.tip')}</span>{' '}
+          {t('skillsPage.tipText')}
         </p>
       </div>
     </div>

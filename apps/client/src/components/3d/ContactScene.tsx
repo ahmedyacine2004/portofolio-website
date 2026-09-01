@@ -18,12 +18,12 @@ useGLTF.preload('/3d/contact.glb');
 const ContactModel = lazy(() => import('./ContactModel'));
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-const FINAL_POSITION = new THREE.Vector3(0, 1.2, 14);
+const FINAL_POSITION = new THREE.Vector3(0, -0.65, 15.5);
 const INTRO_DURATION = 2.5; // seconds
 
-const ZOOM_MIN = 4;
+const ZOOM_MIN = 10;
 const ZOOM_MAX = 28;
-const ZOOM_SPEED = 1.5;
+const ZOOM_SPEED = 1;
 const ZOOM_LERP = 0.1;
 
 const MAGIC_DURATION = 7; // full orbit + zoom-in + return
@@ -57,8 +57,8 @@ function CameraRig() {
 
     const startAngle = Math.PI / 3;
     const angle = startAngle * (1 - eased);
-    const radius = THREE.MathUtils.lerp(20, FINAL_POSITION.z, eased);
-    const y = THREE.MathUtils.lerp(5, FINAL_POSITION.y, eased);
+    const radius = THREE.MathUtils.lerp(24, FINAL_POSITION.z, eased);
+    const y = THREE.MathUtils.lerp(6.2, FINAL_POSITION.y, eased);
 
     camera.position.set(Math.sin(angle) * radius, y, Math.cos(angle) * radius);
     camera.lookAt(0, -0.2, 0);
@@ -90,9 +90,9 @@ function MagicController({ onComplete }: { onComplete: () => void }) {
 
     const angle = t * Math.PI * 2;
     const zoomBell = Math.sin(t * Math.PI);
-    const closestDist = 6;
+    const closestDist = 9;
     const dist = THREE.MathUtils.lerp(magicSignal.startDist, closestDist, zoomBell);
-    const y = FINAL_POSITION.y + zoomBell * -1.2;
+    const y = FINAL_POSITION.y + zoomBell * -0.5;
 
     camera.position.set(Math.sin(angle) * dist, y, Math.cos(angle) * dist);
     camera.lookAt(0, -0.2, 0);
@@ -159,6 +159,54 @@ function SceneContent() {
   );
 }
 
+function ResizeCanvasToParent() {
+  const { camera, gl } = useThree();
+
+  useEffect(() => {
+    const parent = gl.domElement.parentElement;
+    if (!parent) return;
+
+    const syncSize = () => {
+      const rect = parent.getBoundingClientRect();
+      const width = Math.max(rect.width, 1);
+      const height = Math.max(rect.height, 1);
+
+      if ('aspect' in camera) {
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      }
+
+      gl.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      gl.setSize(width, height, false);
+    };
+
+    const refresh = () => {
+      requestAnimationFrame(syncSize);
+    };
+
+    refresh();
+
+    const observer = new ResizeObserver(refresh);
+    observer.observe(parent);
+
+    const scrollContainer = parent.closest('main');
+    if (scrollContainer instanceof HTMLElement) {
+      scrollContainer.addEventListener('scroll', refresh, { passive: true });
+    }
+    window.addEventListener('resize', refresh);
+
+    return () => {
+      observer.disconnect();
+      if (scrollContainer instanceof HTMLElement) {
+        scrollContainer.removeEventListener('scroll', refresh);
+      }
+      window.removeEventListener('resize', refresh);
+    };
+  }, [camera, gl]);
+
+  return null;
+}
+
 // ─── Scene ────────────────────────────────────────────────────────────────────
 export function ContactScene() {
   const { theme } = useTheme();
@@ -196,6 +244,22 @@ export function ContactScene() {
 
   const handleCreated = useCallback(({ gl }: { gl: THREE.WebGLRenderer }) => {
     const canvas = gl.domElement;
+    const parent = canvas.parentElement;
+
+    if (parent) {
+      parent.style.position = 'relative';
+      parent.style.width = '100%';
+      parent.style.height = '100%';
+    }
+
+    canvas.style.position = 'absolute';
+    canvas.style.inset = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
+    canvas.style.maxWidth = 'none';
+    canvas.style.maxHeight = 'none';
+
     const onContextLost = (e: Event) => {
       e.preventDefault();
       setContextLost(true);
@@ -255,7 +319,7 @@ export function ContactScene() {
           disabled={isMagicPlaying}
           aria-label="Trigger magic camera animation"
           className={[
-            'group relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold',
+            'group relative isolate overflow-hidden rounded-full px-4 py-2 text-xs font-semibold',
             'bg-white/15 text-white backdrop-blur-md border border-white/25',
             'shadow-lg shadow-black/20 cursor-pointer',
             'transition-all duration-300 select-none',
@@ -265,20 +329,31 @@ export function ContactScene() {
           ].join(' ')}
         >
           <span
-            className={[
-              'text-sm transition-transform duration-300',
-              isMagicPlaying ? 'animate-spin' : 'group-hover:rotate-12',
-            ].join(' ')}
             aria-hidden="true"
-          >
-            ✨
+            className={[
+              'absolute inset-0 rounded-full',
+              'bg-[linear-gradient(180deg,rgba(255,255,255,0.28),rgba(168,85,247,0.95),rgba(91,33,182,0.96))]',
+              isMagicPlaying
+                ? 'animate-[magic-liquid_7s_linear_forwards]'
+                : 'translate-y-full opacity-0',
+            ].join(' ')}
+          />
+
+          <span className="absolute inset-x-[-12%] bottom-[-10%] h-16 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.9),rgba(255,255,255,0.18)_30%,rgba(255,255,255,0)_70%)] opacity-90 animate-[magic-wave_1.8s_ease-in-out_infinite]" />
+
+          <span className="relative z-10 flex items-center gap-2">
+            <span
+              className={[
+                'text-sm transition-transform duration-300',
+                isMagicPlaying ? 'animate-spin' : 'group-hover:rotate-12',
+              ].join(' ')}
+              aria-hidden="true"
+            >
+              ✨
+            </span>
+
+            <span>{isMagicPlaying ? 'Playing…' : 'See Magic'}</span>
           </span>
-
-          <span>{isMagicPlaying ? 'Playing…' : 'See Magic'}</span>
-
-          {isMagicPlaying && (
-            <span className="absolute bottom-0 left-0 h-[2px] rounded-full bg-purple-400/80 animate-[magic-progress_7s_linear_forwards]" />
-          )}
         </button>
       </div>
 
@@ -302,15 +377,44 @@ export function ContactScene() {
       </div>
 
       <style>{`
-        @keyframes magic-progress {
-          from { width: 0% }
-          to   { width: 100% }
+        @keyframes magic-liquid {
+          0% {
+            transform: translateY(100%) scaleY(0.7);
+            opacity: 0.2;
+          }
+          18% {
+            opacity: 0.75;
+          }
+          45% {
+            transform: translateY(35%) scaleY(1.08);
+            opacity: 0.92;
+          }
+          100% {
+            transform: translateY(0%) scaleY(1.12);
+            opacity: 1;
+          }
+        }
+
+        @keyframes magic-wave {
+          0% {
+            transform: translateX(-22%) scaleX(0.9);
+            opacity: 0.3;
+          }
+          50% {
+            transform: translateX(8%) scaleX(1.1);
+            opacity: 0.95;
+          }
+          100% {
+            transform: translateX(-22%) scaleX(0.9);
+            opacity: 0.3;
+          }
         }
       `}</style>
 
       <Canvas
         key={key}
         className="absolute inset-0"
+        style={{ width: '100%', height: '100%', display: 'block' }}
         camera={{ fov: 52, near: 0.1, far: 200 }}
         dpr={[1, 1.5]}
         gl={{
@@ -320,6 +424,7 @@ export function ContactScene() {
         }}
         onCreated={handleCreated}
       >
+        <ResizeCanvasToParent />
         <CameraRig />
         <MagicController onComplete={handleMagicComplete} />
         <ZoomController />

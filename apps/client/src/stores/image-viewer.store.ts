@@ -1,6 +1,10 @@
-import { create } from 'zustand';
+import Image01 from '@/assets/images/avatarV2.png';
+import Image02 from '@/assets/images/image02.jpg';
+import Image03 from '@/assets/images/image03.jpg';
+import Image04 from '@/assets/images/image04.jpg';
+import Image05 from '@/assets/images/image05.jpg';
 import type { StaticImageData } from 'next/image';
-import avatarImg from '@/assets/images/avatarV2.png';
+import { create } from 'zustand';
 
 export type ImageMedia = {
   id: string;
@@ -38,7 +42,7 @@ export const DEFAULT_GALLERY_IMAGES: ImageMedia[] = [
   {
     id: 'img-1',
     name: 'avatar.png',
-    src: avatarImg,
+    src: Image01,
     size: '2.4 MB',
     dimensions: '1920x1080',
     type: 'PNG',
@@ -47,7 +51,7 @@ export const DEFAULT_GALLERY_IMAGES: ImageMedia[] = [
   {
     id: 'img-2',
     name: 'team_meeting.jpg',
-    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+    src: Image02,
     size: '3.1 MB',
     dimensions: '2400x1600',
     type: 'JPG',
@@ -56,7 +60,7 @@ export const DEFAULT_GALLERY_IMAGES: ImageMedia[] = [
   {
     id: 'img-3',
     name: 'hackathon_group.jpg',
-    src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+    src: Image03,
     size: '1.8 MB',
     dimensions: '1920x1280',
     type: 'JPG',
@@ -65,7 +69,7 @@ export const DEFAULT_GALLERY_IMAGES: ImageMedia[] = [
   {
     id: 'img-4',
     name: 'tech_workshop.jpg',
-    src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80',
+    src: Image04,
     size: '2.9 MB',
     dimensions: '2048x1365',
     type: 'JPG',
@@ -74,7 +78,7 @@ export const DEFAULT_GALLERY_IMAGES: ImageMedia[] = [
   {
     id: 'img-5',
     name: 'presentation_slide.jpg',
-    src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=80',
+    src: Image05,
     size: '4.5 MB',
     dimensions: '3840x2160',
     type: 'JPG',

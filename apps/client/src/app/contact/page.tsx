@@ -29,7 +29,7 @@ const CONTACT_METHODS = [
   {
     id: 'email',
     label: 'Email',
-    value: 'ahmedyassine.dev@gmail.com',
+    value: 'ahmedyacineabbane@gmail.com',
     icon: Mail,
     href: 'mailto:ahmedyacineabbane@gmail.com',
   },
@@ -50,23 +50,23 @@ const CONTACT_METHODS = [
   {
     id: 'facebook',
     label: 'Facebook',
-    value: 'facebook.com/ahmedyassineabbane',
+    value: 'facebook.com/ahmed.yassine.abbane',
     icon: FacebookIcon,
-    href: 'https://facebook.com/ahmedyassineabbane',
+    href: 'https://www.facebook.com/ahmed.yassine.abbane',
   },
   {
     id: 'instagram',
     label: 'Instagram',
-    value: 'instagram.com/ahmedyassine2004',
+    value: 'instagram.com/iam_lhamdane',
     icon: InstagramIcon,
-    href: 'https://instagram.com/ahmedyassine2004',
+    href: 'https://www.instagram.com/iam_lhamdane/',
   },
   {
     id: 'tiktok',
     label: 'TikTok',
-    value: 'tiktok.com/@ahmedyassine2004',
+    value: 'tiktok.com/@iam_lhamdane',
     icon: TiktokIcon,
-    href: 'https://tiktok.com/@ahmedyassine2004',
+    href: 'https://www.tiktok.com/@iam_lhamdane',
   },
 ];
 
@@ -239,7 +239,7 @@ export default function ContactPage() {
       <div className="flex h-full min-h-0 w-full gap-2 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
         {/* ================= LEFT COLUMN: CONTACT FORM (SCROLLABLE) ================= */}
         <motion.div
-          className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-y-auto p-3 space-y-4 scrollbar-none"
+          className="flex min-w-0 w-full lg:w-[58%] flex-col justify-between overflow-x-hidden overflow-y-visible p-3 space-y-4 scrollbar-none"
           initial="hidden"
           animate="visible"
           variants={{
@@ -290,14 +290,14 @@ export default function ContactPage() {
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0 },
             }}
-            className="shrink-0"
+            className="shrink-0 overflow-visible"
           >
-            <div className="relative overflow-visible px-3 py-1">
+            <div className="relative overflow-visible px-3 py-2">
               <button
                 type="button"
                 onClick={() => scrollSocialCarousel('prev')}
                 aria-label="Previous social links"
-                className="absolute left-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm border border-border bg-background text-primary shadow-gray-300 transition-transform hover:scale-[1.02] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+                className="absolute left-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm bg-background text-primary shadow-gray-300 transition-all hover:scale-[1.02] hover:shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] dark:hover:shadow-[0_0_8px_rgba(255,255,255,0.025)]"
               >
                 <ChevronLeft className="size-4" />
               </button>
@@ -306,12 +306,12 @@ export default function ContactPage() {
                 type="button"
                 onClick={() => scrollSocialCarousel('next')}
                 aria-label="Next social links"
-                className="absolute right-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm border border-border bg-background text-primary shadow-gray-300 transition-transform hover:scale-[1.02] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+                className="absolute right-0 top-1/2 z-20 flex h-[60px] w-10 -translate-y-1/2 items-center justify-center rounded-sm bg-background text-primary shadow-gray-300 transition-all hover:scale-[1.02] hover:shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] dark:hover:shadow-[0_0_8px_rgba(255,255,255,0.025)]"
               >
                 <ChevronRight className="size-4" />
               </button>
 
-              <div className="pl-10 pr-10">
+              <div className="mx-[-6px] overflow-x-hidden py-1 pl-10 pr-10">
                 <div
                   ref={carouselRef}
                   className="flex items-center gap-2 transition-transform duration-300 ease-out"
