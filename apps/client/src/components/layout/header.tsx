@@ -253,18 +253,26 @@ export function Header() {
 
         {/* Right side */}
         <div className="flex shrink-0 items-center gap-1">
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen((open) => !open)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            className="flex size-7 items-center justify-center text-foreground transition-colors"
-          >
-            {isMobileMenuOpen ? (
-              <X className="size-3.5" strokeWidth={2} />
-            ) : (
-              <Menu className="size-3.5" strokeWidth={2} />
+          <div className="relative">
+            {unreadNotifsCount > 0 && (
+              <span className="absolute -right-1 -top-1.5 z-10 flex min-h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[7px] font-bold leading-none text-primary-foreground shadow-xs">
+                {unreadNotifsCount > 9 ? '9+' : unreadNotifsCount}
+              </span>
             )}
-          </button>
+
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              className="relative flex size-7 items-center justify-center text-foreground transition-colors"
+            >
+              {isMobileMenuOpen ? (
+                <X className="size-3.5" strokeWidth={2} />
+              ) : (
+                <Menu className="size-3.5" strokeWidth={2} />
+              )}
+            </button>
+          </div>
         </div>
       </motion.header>
 

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTheme } from '@/hooks/use-theme';
 import { useTranslation } from '@/hooks/use-translation';
 import { useAdminAuthStore } from '@/stores/admin-auth.store';
 import { useTerminalStore } from '@/stores/terminal.store';
@@ -253,6 +254,7 @@ export function TerminalModal() {
   const login = useAdminAuthStore((state) => state.login);
   const logout = useAdminAuthStore((state) => state.logout);
   const isAuthenticated = useAdminAuthStore((state) => state.isAuthenticated);
+  const { theme, toggleTheme } = useTheme();
   const COMMANDS = getCommands(t);
   const [history, setHistory] = useState<HistoryBlock[]>([]);
   const [input, setInput] = useState('');
@@ -261,6 +263,15 @@ export function TerminalModal() {
   const [blockCounter, setBlockCounter] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const routeCommand = (path: string, successText: string) => {
+    router.push(path);
+    close();
+    return [
+      { id: 1, type: 'success' as const, content: successText },
+      { id: 2, type: 'output' as const, content: `Opening ${path}` },
+    ];
+  };
 
   // Focus input when modal opens
   useEffect(() => {
@@ -300,8 +311,11 @@ export function TerminalModal() {
       setBlockCounter(0);
       setInput('');
       setCmdHistoryIdx(-1);
+      setCmdHistory([]);
       return;
-    } else if (cmd === 'login') {
+    }
+
+    if (cmd === 'login') {
       const [username, password] = arg.split(/\s+/).filter(Boolean);
       const success = await login(username ?? '', password ?? '');
       outputLines = success
@@ -329,17 +343,63 @@ export function TerminalModal() {
         { id: 2, type: 'output', content: 'Dashboard access has been revoked.' },
       ];
     } else if (cmd === 'dashboard') {
-      outputLines = isAuthenticated
-        ? [
-            { id: 1, type: 'success', content: 'Dashboard access is enabled.' },
-            { id: 2, type: 'output', content: 'Open /dashboard to view the admin panel.' },
-          ]
-        : [
-            { id: 1, type: 'error', content: 'Dashboard is restricted to admins only.' },
-            { id: 2, type: 'output', content: 'Run: portfolio login <username> <password>' },
-          ];
+      if (isAuthenticated) {
+        router.push('/dashboard');
+        close();
+        outputLines = [
+          { id: 1, type: 'success', content: 'Dashboard access is enabled.' },
+          { id: 2, type: 'output', content: 'Opening /dashboard...' },
+        ];
+      } else {
+        outputLines = [
+          { id: 1, type: 'error', content: 'Dashboard is restricted to admins only.' },
+          { id: 2, type: 'output', content: 'Run: portfolio login <username> <password>' },
+        ];
+      }
+    } else if (['home', 'start', 'index', 'landing'].includes(cmd)) {
+      outputLines = routeCommand('/', 'Landing page loaded.');
+    } else if (cmd === 'about') {
+      outputLines = routeCommand('/about', 'About page opened.');
+    } else if (cmd === 'projects') {
+      outputLines = routeCommand('/projects', 'Projects workspace opened.');
+    } else if (cmd === 'skills') {
+      outputLines = routeCommand('/skills', 'Skills overview opened.');
+    } else if (cmd === 'experience') {
+      outputLines = routeCommand('/experience', 'Experience timeline opened.');
+    } else if (cmd === 'certifications' || cmd === 'certification') {
+      outputLines = routeCommand('/certification', 'Certification catalog opened.');
+    } else if (cmd === 'contact') {
+      outputLines = routeCommand('/contact', 'Contact page opened.');
+    } else if (cmd === 'assistant' || cmd === 'chat' || cmd === 'ai') {
+      outputLines = routeCommand('/ai-assistant', 'AI assistant opened.');
+    } else if (cmd === 'settings') {
+      outputLines = routeCommand('/settings', 'Settings panel opened.');
+    } else if (cmd === 'theme') {
+      toggleTheme();
+      outputLines = [
+        {
+          id: 1,
+          type: 'success',
+          content: `Theme switched to ${theme === 'dark' ? 'light' : 'dark'} mode.`,
+        },
+        { id: 2, type: 'output', content: 'UI preferences updated immediately.' },
+      ];
+    } else if (cmd === 'history') {
+      outputLines = [
+        { id: 1, type: 'section', content: 'Command History' },
+        ...cmdHistory.slice(0, 8).map((item, index) => ({
+          id: index + 2,
+          type: 'item' as const,
+          content: `${index + 1}. ${item}`,
+        })),
+        ...(cmdHistory.length === 0
+          ? [{ id: 2, type: 'output' as const, content: 'No commands in this session yet.' }]
+          : []),
+      ];
     } else if (cmd === 'search' && arg) {
       outputLines = getSearchResults(arg);
+    } else if (cmd === 'help' || cmd === 'portfolio') {
+      outputLines = COMMANDS.help;
     } else if (COMMANDS[cmd]) {
       outputLines = COMMANDS[cmd];
     } else {
@@ -428,6 +488,9 @@ export function TerminalModal() {
                   onClick={() => {
                     setHistory([]);
                     setInput('');
+                    setCmdHistory([]);
+                    setBlockCounter(0);
+                    setCmdHistoryIdx(-1);
                   }}
                   className="flex items-center gap-1 rounded-sm px-2 py-1 transition-colors hover:bg-muted hover:text-foreground"
                 >
@@ -437,6 +500,23 @@ export function TerminalModal() {
                 <button
                   type="button"
                   title="Split"
+                  onClick={() => {
+                    setHistory((prev) => [
+                      ...prev,
+                      {
+                        id: Date.now(),
+                        command: 'split',
+                        lines: [
+                          { id: 1, type: 'info', content: 'Single-pane terminal mode is active.' },
+                          {
+                            id: 2,
+                            type: 'output',
+                            content: 'Use other commands to navigate the portfolio.',
+                          },
+                        ],
+                      },
+                    ]);
+                  }}
                   className="flex items-center gap-1 rounded-sm px-2 py-1 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Columns2 className="size-3.5" strokeWidth={1.8} />
@@ -445,6 +525,26 @@ export function TerminalModal() {
                 <button
                   type="button"
                   title="History"
+                  onClick={() => {
+                    setHistory((prev) => [
+                      ...prev,
+                      {
+                        id: Date.now(),
+                        command: 'history',
+                        lines: [
+                          { id: 1, type: 'section', content: 'Recent Commands' },
+                          ...cmdHistory.slice(0, 8).map((entry, index) => ({
+                            id: index + 2,
+                            type: 'item' as const,
+                            content: `${index + 1}. ${entry}`,
+                          })),
+                          ...(cmdHistory.length === 0
+                            ? [{ id: 2, type: 'output' as const, content: 'No commands yet.' }]
+                            : []),
+                        ],
+                      },
+                    ]);
+                  }}
                   className="flex items-center gap-1 rounded-sm px-2 py-1 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <History className="size-3.5" strokeWidth={1.8} />
@@ -453,6 +553,10 @@ export function TerminalModal() {
                 <button
                   type="button"
                   title="AI"
+                  onClick={() => {
+                    router.push('/ai-assistant');
+                    close();
+                  }}
                   className="flex items-center gap-1 rounded-sm px-2 py-1 transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Sparkles className="size-3.5" strokeWidth={1.8} />
