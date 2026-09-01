@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
+import type { LucideIcon } from 'lucide-react';
 import {
   Code2,
-  CornerDownLeft,
   FileText,
   Folder,
   Infinity as InfinityIcon,
@@ -15,8 +15,8 @@ import {
   Terminal,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import type { LucideIcon } from 'lucide-react';
 
+import { ABOUT_FILES_REGISTRY } from '@/lib/utils/about-files';
 import { useTerminalStore } from '@/stores/terminal.store';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -28,9 +28,59 @@ interface SearchResultItem {
   Icon: LucideIcon;
   typeLabel: string;
   shortcut: string;
-  category: 'Top Results' | 'Commands';
+  category: 'Top Results' | 'Commands' | 'Searchable';
   tab: string; // Belongs to which tab ('Projects', 'Files', 'Code', 'Folders', 'Tags', 'Commands')
   action: (router: ReturnType<typeof useRouter>, openTerminal: () => void) => void;
+}
+
+function normalizeSearchText(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/\.(jsx|tsx|ts|js|json|yaml|yml|toml|md|csv|xml|pdf|docx|png|svg|env)$/gi, '')
+    .replace(/[^a-z0-9\s-_./]/g, ' ')
+    .replace(/[._/-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function matchesSearchQuery(item: SearchResultItem, rawQuery: string): boolean {
+  if (!rawQuery.trim()) return true;
+
+  const q = rawQuery.trim().toLowerCase();
+  const queryVariants = new Set<string>([
+    q,
+    normalizeSearchText(q),
+    q.replace(/\.(jsx|tsx)/gi, '.ts'),
+    q.replace(/\.(jsx|tsx)/gi, '.js'),
+    q.replace(/\.(ts|js)/gi, '.jsx'),
+    q.replace(/\.(ts|js)/gi, '.tsx'),
+  ]);
+
+  const haystacks = [
+    item.title,
+    item.subtitle,
+    item.typeLabel,
+    normalizeSearchText(item.title),
+    normalizeSearchText(item.subtitle),
+    item.title.replace(/\.[A-Za-z0-9]+$/g, ''),
+    item.subtitle.replace(/^\//, '').replace(/\//g, ' '),
+  ];
+
+  for (const variant of queryVariants) {
+    if (!variant) continue;
+    for (const haystack of haystacks) {
+      const normalizedHaystack = normalizeSearchText(haystack);
+      if (
+        haystack.toLowerCase().includes(variant) ||
+        normalizedHaystack.includes(variant) ||
+        normalizedHaystack.includes(normalizeSearchText(variant))
+      ) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }
 
 // ─── Filter Tabs ──────────────────────────────────────────────────────────────
@@ -39,118 +89,196 @@ const TABS = ['All', 'Projects', 'Files', 'Code', 'Folders', 'Tags', 'Commands']
 
 // ─── Search Items Data & Actions ──────────────────────────────────────────────
 
-const ALL_SEARCH_ITEMS: SearchResultItem[] = [
+const ABOUT_SEARCH_ITEMS: SearchResultItem[] = ABOUT_FILES_REGISTRY.map((file, index) => ({
+  id: `about-${file.id}`,
+  title: file.label,
+  subtitle: file.href,
+  Icon:
+    file.href.includes('.json') || file.href.includes('.yaml') || file.href.includes('.toml')
+      ? FileText
+      : file.href.includes('.png') ||
+          file.href.includes('.pdf') ||
+          file.href.includes('.docx') ||
+          file.href.includes('.xml') ||
+          file.href.includes('.csv')
+        ? FileText
+        : Folder,
+  typeLabel: file.label.includes('.') ? 'File' : 'Page',
+  shortcut: `⌘${index + 1}`,
+  category: 'Searchable',
+  tab: file.label.includes('.') ? 'Files' : 'Folders',
+  action: (router) => router.push(file.href),
+}));
+
+const SECONDARY_PAGE_ITEMS: SearchResultItem[] = [
   {
-    id: 'r0',
-    title: 'System Dashboard & Metrics',
-    subtitle: 'High-level portfolio overview, real-time telemetry, & goals',
+    id: 'page-dashboard',
+    title: 'Dashboard',
+    subtitle: '/dashboard',
     Icon: LayoutDashboard,
     typeLabel: 'System',
     shortcut: '⌘0',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Commands',
     action: (router) => router.push('/dashboard'),
   },
   {
-    id: 'r1',
-    title: 'CONSULIFY - AI Powered Consultant Matching Platform',
-    subtitle: 'Featured Project · React, Next.js, Node.js, MongoDB',
+    id: 'page-projects',
+    title: 'Projects',
+    subtitle: '/projects',
     Icon: InfinityIcon,
     typeLabel: 'Project',
     shortcut: '⌘1',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Projects',
     action: (router) => router.push('/projects'),
   },
   {
-    id: 'r2',
-    title: 'CONSULIFY Case Study',
-    subtitle: 'projects/consulify/case-study.md',
+    id: 'page-skills',
+    title: 'Skills',
+    subtitle: '/skills',
     Icon: FileText,
-    typeLabel: 'File',
+    typeLabel: 'Skill',
     shortcut: '⌘2',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Files',
-    action: (router) => router.push('/projects'),
+    action: (router) => router.push('/skills'),
   },
   {
-    id: 'r3',
-    title: 'consulify-service.ts',
-    subtitle: 'projects/consulify/src/services/',
+    id: 'page-experience',
+    title: 'Experience',
+    subtitle: '/experience',
     Icon: Code2,
-    typeLabel: 'Code',
+    typeLabel: 'Career',
     shortcut: '⌘3',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Code',
-    action: (router) => router.push('/projects'),
+    action: (router) => router.push('/experience'),
   },
   {
-    id: 'r4',
-    title: 'consulify',
-    subtitle: 'projects/consulify/',
+    id: 'page-about',
+    title: 'About',
+    subtitle: '/about',
     Icon: Folder,
-    typeLabel: 'Folder',
+    typeLabel: 'Profile',
     shortcut: '⌘4',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Folders',
-    action: (router) => router.push('/projects'),
+    action: (router) => router.push('/about'),
   },
   {
-    id: 'r5',
-    title: 'Consulify',
-    subtitle: '#projects · #consultant-matching · #ai',
+    id: 'page-ai-assistant',
+    title: 'AI Assistant',
+    subtitle: '/ai-assistant',
     Icon: Tag,
-    typeLabel: 'Tag',
+    typeLabel: 'Tool',
     shortcut: '⌘5',
-    category: 'Top Results',
+    category: 'Searchable',
     tab: 'Tags',
-    action: (router) => router.push('/projects'),
+    action: (router) => router.push('/ai-assistant'),
   },
   {
-    id: 'c1',
-    title: 'Go to Project: CONSULIFY',
-    subtitle: 'Navigate to project page',
+    id: 'page-contact',
+    title: 'Contact',
+    subtitle: '/contact',
+    Icon: Tag,
+    typeLabel: 'Connect',
+    shortcut: '⌘6',
+    category: 'Searchable',
+    tab: 'Commands',
+    action: (router) => router.push('/contact'),
+  },
+  {
+    id: 'page-certification',
+    title: 'Certification',
+    subtitle: '/certification',
+    Icon: FileText,
+    typeLabel: 'Badge',
+    shortcut: '⌘7',
+    category: 'Searchable',
+    tab: 'Files',
+    action: (router) => router.push('/certification'),
+  },
+  {
+    id: 'page-settings',
+    title: 'Open Settings',
+    subtitle: '/settings',
     Icon: Terminal,
-    typeLabel: 'File',
-    shortcut: '⌘G',
+    typeLabel: 'System',
+    shortcut: '⌘S',
     category: 'Commands',
     tab: 'Commands',
-    action: (router) => router.push('/projects'),
+    action: (router) => router.push('/settings'),
   },
   {
-    id: 'c2',
-    title: 'Search in CONSULIFY',
-    subtitle: 'Full-text search in projects',
+    id: 'page-terminal',
+    title: 'Open Terminal',
+    subtitle: 'Toggle terminal',
     Icon: Terminal,
-    typeLabel: 'Code',
-    shortcut: '⌘F',
-    category: 'Commands',
-    tab: 'Commands',
-    action: (router) => router.push('/projects'),
-  },
-  {
-    id: 'c3',
-    title: 'Open in Terminal',
-    subtitle: 'Toggle interactive terminal window',
-    Icon: Terminal,
-    typeLabel: 'Folder',
+    typeLabel: 'Command',
     shortcut: '⌘T',
     category: 'Commands',
     tab: 'Commands',
     action: (_, openTerminal) => openTerminal(),
   },
   {
-    id: 'c4',
-    title: 'Deploy CONSULIFY',
-    subtitle: 'Trigger deployment pipeline',
+    id: 'page-home',
+    title: 'Go to Home',
+    subtitle: '/',
     Icon: Terminal,
-    typeLabel: 'Tag',
-    shortcut: '⌘D',
+    typeLabel: 'Home',
+    shortcut: '⌘H',
     category: 'Commands',
     tab: 'Commands',
-    action: (router) => router.push('/services'),
+    action: (router) => router.push('/'),
+  },
+  {
+    id: 'page-experience-education',
+    title: 'Education Timeline',
+    subtitle: '/experience/education',
+    Icon: FileText,
+    typeLabel: 'Page',
+    shortcut: '⌘E',
+    category: 'Searchable',
+    tab: 'Files',
+    action: (router) => router.push('/experience/education'),
+  },
+  {
+    id: 'page-experience-internships',
+    title: 'Internships',
+    subtitle: '/experience/internships',
+    Icon: FileText,
+    typeLabel: 'Page',
+    shortcut: '⌘I',
+    category: 'Searchable',
+    tab: 'Files',
+    action: (router) => router.push('/experience/internships'),
+  },
+  {
+    id: 'page-skills-frontend',
+    title: 'Frontend Skills',
+    subtitle: '/skills/frontend',
+    Icon: Code2,
+    typeLabel: 'Page',
+    shortcut: '⌘F',
+    category: 'Searchable',
+    tab: 'Files',
+    action: (router) => router.push('/skills/frontend'),
+  },
+  {
+    id: 'page-skills-backend',
+    title: 'Backend Skills',
+    subtitle: '/skills/backend',
+    Icon: Code2,
+    typeLabel: 'Page',
+    shortcut: '⌘B',
+    category: 'Searchable',
+    tab: 'Files',
+    action: (router) => router.push('/skills/backend'),
   },
 ];
+
+const ALL_SEARCH_ITEMS: SearchResultItem[] = [...ABOUT_SEARCH_ITEMS, ...SECONDARY_PAGE_ITEMS];
 
 // ─── Result Row Component ─────────────────────────────────────────────────────
 
@@ -218,22 +346,15 @@ export function HeaderSearch() {
   // Filter items based on activeTab and query
   const filteredItems = useMemo(() => {
     return ALL_SEARCH_ITEMS.filter((item) => {
-      // Tab filter
       if (activeTab !== 'All' && item.tab !== activeTab) {
         return false;
       }
-      // Query filter
-      if (!query.trim()) return true;
-      const q = query.toLowerCase();
-      return (
-        item.title.toLowerCase().includes(q) ||
-        item.subtitle.toLowerCase().includes(q) ||
-        item.typeLabel.toLowerCase().includes(q)
-      );
+
+      return matchesSearchQuery(item, query);
     });
   }, [activeTab, query]);
 
-  // Group filtered items into Top Results vs Commands
+  // Group filtered items into Top Results, Commands, and Searchable items
   const topResults = useMemo(
     () => filteredItems.filter((i) => i.category === 'Top Results'),
     [filteredItems],
@@ -241,6 +362,11 @@ export function HeaderSearch() {
 
   const commandResults = useMemo(
     () => filteredItems.filter((i) => i.category === 'Commands'),
+    [filteredItems],
+  );
+
+  const searchableResults = useMemo(
+    () => filteredItems.filter((i) => i.category === 'Searchable'),
     [filteredItems],
   );
 
@@ -427,6 +553,34 @@ export function HeaderSearch() {
                       </p>
                       <div className="space-y-0.5">
                         {commandResults.map((item) => {
+                          const globalIdx = filteredItems.findIndex((i) => i.id === item.id);
+                          return (
+                            <ResultRow
+                              key={item.id}
+                              item={item}
+                              isSelected={globalIdx === selectedIndex}
+                              onSelect={() => handleSelectItem(item)}
+                              onHover={() => setSelectedIndex(globalIdx)}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {(commandResults.length > 0 || topResults.length > 0) &&
+                    searchableResults.length > 0 && (
+                      <div className="my-1.5 border-t border-border" />
+                    )}
+
+                  {/* Searchable */}
+                  {searchableResults.length > 0 && (
+                    <div>
+                      <p className="mb-1 px-1.5 text-[9.5px] font-semibold text-foreground">
+                        Searchable
+                      </p>
+                      <div className="space-y-0.5">
+                        {searchableResults.map((item) => {
                           const globalIdx = filteredItems.findIndex((i) => i.id === item.id);
                           return (
                             <ResultRow
