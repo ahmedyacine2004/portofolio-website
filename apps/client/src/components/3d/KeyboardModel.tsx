@@ -48,6 +48,10 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
   const { scene } = useGLTF(keyboardModelUrl);
   const { camera, pointer, gl } = useThree();
   const [isHovered, setIsHovered] = useState(false);
+  const isInteractiveEnabled =
+    typeof document !== 'undefined'
+      ? document.documentElement.dataset.interactive3d !== 'false'
+      : true;
 
   const dragStateRef = useRef({
     active: false,
@@ -63,6 +67,8 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
   const clonedScene = useMemo(() => cloneSceneWithFixedMaterials(scene as THREE.Group), [scene]);
 
   useEffect(() => {
+    if (!isInteractiveEnabled) return;
+
     const handlePointerDown = (e: PointerEvent) => {
       dragStateRef.current.active = true;
       dragStateRef.current.startX = e.clientX;
@@ -102,14 +108,20 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
   useFrame(() => {
     if (!groupRef.current) return;
 
-    const idleRotationY = pointer.x * 0.12;
+    const idleRotationY = isInteractiveEnabled ? pointer.x * 0.12 : 0;
     const idleRotationX = -pointer.y * 0.08;
 
     const baseRotationX = 0.55;
     const baseRotationY = -0.38;
 
-    const targetRotX = baseRotationX + idleRotationX + dragStateRef.current.targetRotationX;
-    const targetRotY = baseRotationY + idleRotationY + dragStateRef.current.targetRotationY;
+    const targetRotX =
+      baseRotationX +
+      idleRotationX +
+      (isInteractiveEnabled ? dragStateRef.current.targetRotationX : 0);
+    const targetRotY =
+      baseRotationY +
+      idleRotationY +
+      (isInteractiveEnabled ? dragStateRef.current.targetRotationY : 0);
 
     groupRef.current.rotation.x = THREE.MathUtils.lerp(
       groupRef.current.rotation.x,

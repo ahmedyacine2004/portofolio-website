@@ -313,8 +313,23 @@ const getCommandItems = (t: any): CommandItem[] => [
     Icon: Sparkles,
     shortcut: '⌘I',
     badge: 'AI',
-    action: ({ openTerminal, close }) => {
-      openTerminal();
+    action: ({ router, openTerminal, close }) => {
+      if (typeof window !== 'undefined') {
+        try {
+          const stored = window.localStorage.getItem('portfolio-preferences');
+          if (stored) {
+            const prefs = JSON.parse(stored);
+            if (prefs.aiAssistantEnabled === false) {
+              close();
+              return;
+            }
+          }
+        } catch {
+          // fall through to default behavior
+        }
+      }
+
+      router.push('/ai-assistant');
       close();
     },
   },

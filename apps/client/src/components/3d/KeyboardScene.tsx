@@ -84,6 +84,8 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
   const [contextLost, setContextLost] = useState(false);
   const [key, setKey] = useState(0);
   const cleanupRef = useRef<(() => void) | null>(null);
+  const isHeroEnabled =
+    typeof document !== 'undefined' ? document.documentElement.dataset.hero3d !== 'false' : true;
 
   useEffect(() => {
     setMounted(true);
@@ -139,8 +141,28 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
     setKey((k) => k + 1);
   }, []);
 
+  if (!isHeroEnabled) {
+    return (
+      <div
+        data-hero-fallback="true"
+        className={[
+          'relative hidden h-full w-full min-h-0 min-w-0 items-center justify-center overflow-hidden rounded-xs border border-border/30 bg-muted/20',
+          isDark ? 'bg-black text-white' : 'bg-white text-slate-900',
+        ].join(' ')}
+      >
+        <div className="flex flex-col items-center gap-1 text-center">
+          <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            3D Disabled
+          </span>
+          <span className="text-[10px] text-foreground">Enable 3D hero in settings.</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
+      data-hero-3d-scene="true"
       className={[
         'relative h-full w-full min-h-0 min-w-0 overflow-hidden rounded-xs',
         isDark ? 'bg-black' : 'bg-white',

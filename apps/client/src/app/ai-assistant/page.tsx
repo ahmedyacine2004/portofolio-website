@@ -33,7 +33,24 @@ interface ChatMessage {
   time: string;
 }
 
+const getStoredPreference = (key: string, fallback: boolean) => {
+  if (typeof window === 'undefined') return fallback;
+
+  try {
+    const stored = window.localStorage.getItem('portfolio-preferences');
+    if (!stored) return fallback;
+    const parsed = JSON.parse(stored);
+    return parsed[key] ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
 export default function AIAssistantPage() {
+  const aiAssistantEnabled = getStoredPreference('aiAssistantEnabled', true);
+  const autoSuggest = getStoredPreference('autoSuggest', true);
+  const contextAwareness = getStoredPreference('contextAwareness', true);
+
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshingContext, setIsRefreshingContext] = useState(false);
@@ -51,27 +68,30 @@ export default function AIAssistantPage() {
   ]);
 
   const suggestionCards = useMemo(
-    () => [
-      {
-        id: 'summarize',
-        title: 'Summarize',
-        subtitle: 'His experience',
-        icon: MessageSquare,
-      },
-      {
-        id: 'tell-me',
-        title: 'Tell me about',
-        subtitle: 'His projects',
-        icon: MessageSquare,
-      },
-      {
-        id: 'generate',
-        title: 'Generate',
-        subtitle: 'Cover letter',
-        icon: MessageSquare,
-      },
-    ],
-    [],
+    () =>
+      autoSuggest
+        ? [
+            {
+              id: 'summarize',
+              title: 'Summarize',
+              subtitle: 'His experience',
+              icon: MessageSquare,
+            },
+            {
+              id: 'tell-me',
+              title: 'Tell me about',
+              subtitle: 'His projects',
+              icon: MessageSquare,
+            },
+            {
+              id: 'generate',
+              title: 'Generate',
+              subtitle: 'Cover letter',
+              icon: MessageSquare,
+            },
+          ]
+        : [],
+    [autoSuggest],
   );
 
   const capabilities = useMemo(
@@ -111,32 +131,48 @@ export default function AIAssistantPage() {
   );
 
   const quickActions = useMemo(
-    () => [
-      {
-        label: 'Summarize His Background',
-        icon: Briefcase,
-        prompt: 'Summarize his background and experience.',
-      },
-      {
-        label: 'List His Technical Skills',
-        icon: Code2,
-        prompt: 'What are his main technical skills?',
-      },
-      {
-        label: 'Show His Achievements',
-        icon: Award,
-        prompt: 'What are his biggest achievements?',
-      },
-      {
-        label: 'Generate Cover Letter',
-        icon: FileText,
-        prompt: 'Can you help draft a cover letter for him?',
-      },
-    ],
-    [],
+    () =>
+      autoSuggest
+        ? [
+            {
+              label: 'Summarize His Background',
+              icon: Briefcase,
+              prompt: 'Summarize his background and experience.',
+            },
+            {
+              label: 'List His Technical Skills',
+              icon: Code2,
+              prompt: 'What are his main technical skills?',
+            },
+            {
+              label: 'Show His Achievements',
+              icon: Award,
+              prompt: 'What are his biggest achievements?',
+            },
+            {
+              label: 'Generate Cover Letter',
+              icon: FileText,
+              prompt: 'Can you help draft a cover letter for him?',
+            },
+          ]
+        : [],
+    [autoSuggest],
   );
 
   const sendPrompt = async (prompt?: string, attachmentsToSend: AssistantAttachment[] = []) => {
+    if (!aiAssistantEnabled) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          text: 'The AI assistant is currently disabled in settings.',
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        },
+      ]);
+      return;
+    }
+
     const finalPrompt = (prompt ?? inputMessage).trim();
     if ((!finalPrompt && attachmentsToSend.length === 0) || isLoading) return;
 
@@ -159,7 +195,9 @@ export default function AIAssistantPage() {
 
     try {
       const response = await askAssistant(
-        finalPrompt || 'Please review the attached file.',
+        contextAwareness
+          ? finalPrompt || 'Please review the attached file.'
+          : `Answer generally without relying on portfolio context: ${finalPrompt || 'Please review the attached file.'}`,
         attachmentsToSend,
       );
       const reply = response?.data?.reply ?? 'I could not generate an answer right now.';

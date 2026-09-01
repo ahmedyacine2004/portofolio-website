@@ -10,6 +10,19 @@ import { useLanguageStore } from '@/stores/language.store';
 import { useNotificationsStore } from '@/stores/notifications.store';
 import { useVisitorInfoStore } from '@/stores/visitor-info.store';
 
+const getPreferenceValue = (key: string, fallback: boolean) => {
+  if (typeof window === 'undefined') return fallback;
+
+  try {
+    const stored = window.localStorage.getItem('portfolio-preferences');
+    if (!stored) return fallback;
+    const parsed = JSON.parse(stored);
+    return parsed[key] ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
 const actionButtonClass =
   'relative flex size-8 items-center justify-center rounded-sm bg-brand-dark text-primary-foreground transition-colors hover:bg-primary/80 cursor-pointer';
 
@@ -17,17 +30,25 @@ type HeaderActionButtonProps = {
   label: string;
   onClick?: () => void;
   badge?: number | boolean;
+  disabled?: boolean;
   children: React.ReactNode;
 };
 
-function HeaderActionButton({ label, onClick, badge, children }: HeaderActionButtonProps) {
+function HeaderActionButton({
+  label,
+  onClick,
+  badge,
+  disabled,
+  children,
+}: HeaderActionButtonProps) {
   return (
     <button
       type="button"
       aria-label={label}
       title={label}
       onClick={onClick}
-      className={actionButtonClass}
+      disabled={disabled}
+      className={`${actionButtonClass} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
     >
       {children}
       {typeof badge === 'number' && badge > 0 && (
@@ -57,6 +78,7 @@ export function HeaderActionButtons() {
   const setLocale = useLanguageStore((s) => s.setLocale);
   const toggleVisitorInfo = useVisitorInfoStore((s) => s.toggle);
   const { t } = useTranslation();
+  const aiAssistantEnabled = getPreferenceValue('aiAssistantEnabled', true);
 
   return (
     <div className="flex shrink-0 items-center gap-1.5">
@@ -73,7 +95,11 @@ export function HeaderActionButtons() {
 
       <HeaderActionButton
         label={t('header.aiAssistant')}
-        onClick={() => router.push('/ai-assistant')}
+        onClick={() => {
+          if (!aiAssistantEnabled) return;
+          router.push('/ai-assistant');
+        }}
+        disabled={!aiAssistantEnabled}
       >
         <MessageCircle className="size-[18px]" strokeWidth={1.8} />
       </HeaderActionButton>

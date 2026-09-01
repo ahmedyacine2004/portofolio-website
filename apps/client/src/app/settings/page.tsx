@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import {
   Bot,
   Box,
@@ -17,12 +16,149 @@ import {
   Tablet,
   Zap,
 } from 'lucide-react';
-import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import RobotImage from '@/assets/images/robot.png';
 import { KeyboardScene } from '@/components/3d/KeyboardScene';
 import { useTheme } from '@/hooks/use-theme';
+import type { Theme } from '@/lib/theme';
+
+const SETTINGS_STORAGE_KEY = 'portfolio-preferences';
+
+type PreferenceState = {
+  theme: Theme;
+  colorAccent: string;
+  animationsEnabled: boolean;
+  fontFamily: string;
+  compactMode: boolean;
+  hero3dEnabled: boolean;
+  interactive3d: boolean;
+  performanceMode: string;
+  reduceMotion: boolean;
+  highContrast: boolean;
+  focusIndicators: boolean;
+  textScaling: string;
+  imageLazyLoading: boolean;
+  smoothScrolling: boolean;
+  preloadCritical: boolean;
+  aiAssistantEnabled: boolean;
+  autoSuggest: boolean;
+  contextAwareness: boolean;
+};
+
+const defaultPreferences: PreferenceState = {
+  theme: 'dark',
+  colorAccent: 'Indigo',
+  animationsEnabled: true,
+  fontFamily: 'Inter',
+  compactMode: false,
+  hero3dEnabled: true,
+  interactive3d: true,
+  performanceMode: 'Auto Detect',
+  reduceMotion: false,
+  highContrast: false,
+  focusIndicators: true,
+  textScaling: '100%',
+  imageLazyLoading: true,
+  smoothScrolling: true,
+  preloadCritical: true,
+  aiAssistantEnabled: true,
+  autoSuggest: true,
+  contextAwareness: true,
+};
+
+const parseScale = (value: string) => {
+  const numericValue = Number.parseFloat(value.replace('%', '')) || 100;
+  return numericValue / 100;
+};
+
+const readStoredPreferences = () => {
+  if (typeof window === 'undefined') {
+    return defaultPreferences;
+  }
+
+  try {
+    const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
+
+    if (!stored) {
+      return defaultPreferences;
+    }
+
+    return { ...defaultPreferences, ...JSON.parse(stored) };
+  } catch {
+    return defaultPreferences;
+  }
+};
+
+const applyPreferenceStyles = (preferences: typeof defaultPreferences) => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  const root = document.documentElement;
+  const accentMap: Record<string, Record<string, string>> = {
+    Indigo: {
+      '--primary': 'oklch(0.55 0.22 263.2)',
+      '--primary-foreground': 'oklch(0.985 0 0)',
+      '--ring': 'oklch(0.65 0.18 263.2)',
+    },
+    Emerald: {
+      '--primary': 'oklch(0.6 0.18 155)',
+      '--primary-foreground': 'oklch(0.985 0 0)',
+      '--ring': 'oklch(0.7 0.16 155)',
+    },
+    Violet: {
+      '--primary': 'oklch(0.62 0.2 305)',
+      '--primary-foreground': 'oklch(0.985 0 0)',
+      '--ring': 'oklch(0.7 0.18 305)',
+    },
+    Cyan: {
+      '--primary': 'oklch(0.64 0.14 205)',
+      '--primary-foreground': 'oklch(0.985 0 0)',
+      '--ring': 'oklch(0.72 0.14 205)',
+    },
+    Rose: {
+      '--primary': 'oklch(0.65 0.18 15)',
+      '--primary-foreground': 'oklch(0.985 0 0)',
+      '--ring': 'oklch(0.73 0.16 15)',
+    },
+  };
+
+  const accent = accentMap[preferences.colorAccent] ?? accentMap.Indigo;
+
+  root.dataset.theme = preferences.theme;
+  root.dataset.compact = String(preferences.compactMode);
+  root.dataset.highContrast = String(preferences.highContrast);
+  root.dataset.reduceMotion = String(preferences.reduceMotion);
+  root.dataset.performanceMode = preferences.performanceMode.toLowerCase().replace(/\s+/g, '-');
+  root.dataset.hero3d = String(preferences.hero3dEnabled);
+  root.dataset.interactive3d = String(preferences.interactive3d);
+  root.dataset.imageLazyLoading = String(preferences.imageLazyLoading);
+  root.dataset.smoothScrolling = String(preferences.smoothScrolling);
+  root.dataset.preloadCritical = String(preferences.preloadCritical);
+  root.dataset.aiAssistantEnabled = String(preferences.aiAssistantEnabled);
+  root.dataset.autoSuggest = String(preferences.autoSuggest);
+  root.dataset.contextAwareness = String(preferences.contextAwareness);
+  root.dataset.focusIndicators = String(preferences.focusIndicators);
+  root.style.setProperty('scroll-behavior', preferences.smoothScrolling ? 'smooth' : 'auto');
+  root.style.setProperty('--font-sans', `${preferences.fontFamily}, sans-serif`);
+  root.style.setProperty('--portfolio-font-scale', String(parseScale(preferences.textScaling)));
+
+  Object.entries(accent).forEach(([key, value]) => {
+    root.style.setProperty(key, value);
+  });
+
+  root.style.setProperty('--background', preferences.highContrast ? 'oklch(0.99 0 0)' : '');
+  root.style.setProperty('--foreground', preferences.highContrast ? 'oklch(0.12 0 0)' : '');
+  root.style.setProperty('--border', preferences.highContrast ? 'oklch(0.18 0 0)' : '');
+  root.style.setProperty('--muted', preferences.highContrast ? 'oklch(0.96 0 0)' : '');
+  root.style.setProperty('--muted-foreground', preferences.highContrast ? 'oklch(0.28 0 0)' : '');
+
+  if (!preferences.animationsEnabled || preferences.reduceMotion) {
+    root.dataset.motionReduced = 'true';
+  } else {
+    root.dataset.motionReduced = 'false';
+  }
+};
 
 type CategoryId = 'appearance' | '3d-elements' | 'accessibility' | 'performance' | 'ai-assistant';
 
@@ -44,6 +180,7 @@ type Category = {
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
+  const savedPreferences = readStoredPreferences();
 
   // Settings State
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,29 +192,79 @@ export default function SettingsPage() {
     'ai-assistant': true,
   });
 
-  const [colorAccent, setColorAccent] = useState('Indigo');
-  const [animationsEnabled, setAnimationsEnabled] = useState(true);
-  const [fontFamily, setFontFamily] = useState('Inter');
-  const [compactMode, setCompactMode] = useState(false);
+  const [colorAccent, setColorAccent] = useState(savedPreferences.colorAccent);
+  const [animationsEnabled, setAnimationsEnabled] = useState(savedPreferences.animationsEnabled);
+  const [fontFamily, setFontFamily] = useState(savedPreferences.fontFamily);
+  const [compactMode, setCompactMode] = useState(savedPreferences.compactMode);
 
-  const [hero3dEnabled, setHero3dEnabled] = useState(true);
-  const [interactive3d, setInteractive3d] = useState(true);
-  const [performanceMode, setPerformanceMode] = useState('Auto Detect');
+  const [hero3dEnabled, setHero3dEnabled] = useState(savedPreferences.hero3dEnabled);
+  const [interactive3d, setInteractive3d] = useState(savedPreferences.interactive3d);
+  const [performanceMode, setPerformanceMode] = useState(savedPreferences.performanceMode);
 
-  const [reduceMotion, setReduceMotion] = useState(false);
-  const [highContrast, setHighContrast] = useState(false);
-  const [focusIndicators, setFocusIndicators] = useState(true);
-  const [textScaling, setTextScaling] = useState('100%');
+  const [reduceMotion, setReduceMotion] = useState(savedPreferences.reduceMotion);
+  const [highContrast, setHighContrast] = useState(savedPreferences.highContrast);
+  const [focusIndicators, setFocusIndicators] = useState(savedPreferences.focusIndicators);
+  const [textScaling, setTextScaling] = useState(savedPreferences.textScaling);
 
-  const [imageLazyLoading, setImageLazyLoading] = useState(true);
-  const [smoothScrolling, setSmoothScrolling] = useState(true);
-  const [preloadCritical, setPreloadCritical] = useState(true);
+  const [imageLazyLoading, setImageLazyLoading] = useState(savedPreferences.imageLazyLoading);
+  const [smoothScrolling, setSmoothScrolling] = useState(savedPreferences.smoothScrolling);
+  const [preloadCritical, setPreloadCritical] = useState(savedPreferences.preloadCritical);
 
-  const [aiAssistantEnabled, setAiAssistantEnabled] = useState(true);
-  const [autoSuggest, setAutoSuggest] = useState(true);
-  const [contextAwareness, setContextAwareness] = useState(true);
+  const [aiAssistantEnabled, setAiAssistantEnabled] = useState(savedPreferences.aiAssistantEnabled);
+  const [autoSuggest, setAutoSuggest] = useState(savedPreferences.autoSuggest);
+  const [contextAwareness, setContextAwareness] = useState(savedPreferences.contextAwareness);
 
   const [previewDevice, setPreviewDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+
+  useEffect(() => {
+    const preferences = {
+      theme,
+      colorAccent,
+      animationsEnabled,
+      fontFamily,
+      compactMode,
+      hero3dEnabled,
+      interactive3d,
+      performanceMode,
+      reduceMotion,
+      highContrast,
+      focusIndicators,
+      textScaling,
+      imageLazyLoading,
+      smoothScrolling,
+      preloadCritical,
+      aiAssistantEnabled,
+      autoSuggest,
+      contextAwareness,
+    };
+
+    applyPreferenceStyles(preferences);
+    window.localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(preferences));
+  }, [
+    theme,
+    colorAccent,
+    animationsEnabled,
+    fontFamily,
+    compactMode,
+    hero3dEnabled,
+    interactive3d,
+    performanceMode,
+    reduceMotion,
+    highContrast,
+    focusIndicators,
+    textScaling,
+    imageLazyLoading,
+    smoothScrolling,
+    preloadCritical,
+    aiAssistantEnabled,
+    autoSuggest,
+    contextAwareness,
+  ]);
+
+  useEffect(() => {
+    const savedPreferences = readStoredPreferences();
+    setTheme(savedPreferences.theme);
+  }, [setTheme]);
 
   const toggleCategory = (id: CategoryId) => {
     setOpenCategories((prev) => ({ ...prev, [id]: !prev[id] }));

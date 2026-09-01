@@ -1,13 +1,48 @@
-'use client'; // <-- Add this exactly at the top
+'use client';
 
 import { KeyboardScene } from '@/components/3d/KeyboardScene';
 import { HomeCards } from '@/components/home/home-cards';
 import { useTranslation } from '@/hooks/use-translation';
 import { motion } from 'framer-motion';
 import { Code } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+const getHome3DPreference = () => {
+  if (typeof window === 'undefined') return true;
+
+  try {
+    const stored = window.localStorage.getItem('portfolio-preferences');
+    if (!stored) return true;
+    const parsed = JSON.parse(stored);
+    return parsed.hero3dEnabled !== false;
+  } catch {
+    return true;
+  }
+};
 
 export default function Home() {
   const { t } = useTranslation();
+  const [showHome3D, setShowHome3D] = useState(getHome3DPreference);
+
+  useEffect(() => {
+    const syncPreference = () => setShowHome3D(getHome3DPreference());
+
+    syncPreference();
+
+    const handleStorage = () => syncPreference();
+    const observer = new MutationObserver(() => syncPreference());
+
+    window.addEventListener('storage', handleStorage);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-hero3d'],
+    });
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div className="h-full w-full">
@@ -89,17 +124,18 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Right Side - 3D Keyboard */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="relative flex h-full min-h-0 w-[45%] flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
-        >
-          <div className="h-full w-full min-h-0 min-w-0 flex-1">
-            <KeyboardScene />
-          </div>
-        </motion.div>
+        {showHome3D && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="relative flex h-full min-h-0 w-[45%] flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+          >
+            <div className="h-full w-full min-h-0 min-w-0 flex-1">
+              <KeyboardScene />
+            </div>
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -199,17 +235,18 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* 3D Keyboard - Tablet */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
-          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="relative flex h-44 w-full min-h-0 min-w-0 flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
-        >
-          <div className="h-full w-full min-h-0 min-w-0">
-            <KeyboardScene />
-          </div>
-        </motion.div>
+        {showHome3D && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
+            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="relative flex h-44 w-full min-h-0 min-w-0 flex-col overflow-hidden rounded-xs shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] shrink-0"
+          >
+            <div className="h-full w-full min-h-0 min-w-0">
+              <KeyboardScene />
+            </div>
+          </motion.div>
+        )}
       </div>
 
       {/* Mobile Layout */}
