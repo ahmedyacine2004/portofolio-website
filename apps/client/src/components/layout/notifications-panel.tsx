@@ -141,7 +141,7 @@ export function NotificationsPanel() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -10, scale: 0.98 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="fixed top-12 right-6 z-50 w-full max-w-[340px] overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        className="fixed inset-x-2 top-16 z-50 w-auto max-w-none overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] sm:inset-x-auto sm:top-12 sm:right-6 sm:w-full sm:max-w-[340px]"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
@@ -154,7 +154,7 @@ export function NotificationsPanel() {
             type="button"
             onClick={markAllAsRead}
             title={t('notificationsPanel.markAllRead', 'Mark all as read')}
-            className="flex items-center gap-1 text-[8px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+            className="flex size-7 items-center justify-center gap-1 rounded-xs text-[8px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:size-auto sm:justify-start"
           >
             <CheckCheck className="size-3" />
           </button>
@@ -192,7 +192,7 @@ export function NotificationsPanel() {
         </div>
 
         {/* Notifications List */}
-        <div className="max-h-[320px] overflow-y-auto p-2 space-y-2">
+        <div className="max-h-[calc(100dvh-9rem)] overflow-y-auto p-2 space-y-2 sm:max-h-[320px]">
           {filteredNotifications.length === 0 ? (
             <div className="py-6 text-center text-[9px] text-muted-foreground">
               {t('notifications.noUpdates')}

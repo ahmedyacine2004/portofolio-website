@@ -204,7 +204,7 @@ export function VisitorInfoPanel() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.98 }}
           transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-          className="fixed right-6 top-12 z-50 w-full max-w-[360px] overflow-hidden rounded-[8px] border border-border/80 bg-background/95 shadow-2xl backdrop-blur-md dark:shadow-[0_10px_30px_rgba(0,0,0,0.6)]"
+          className="fixed inset-x-2 top-16 z-50 w-auto max-w-none overflow-hidden rounded-[8px] border border-border/80 bg-background/95 shadow-2xl backdrop-blur-md dark:shadow-[0_10px_30px_rgba(0,0,0,0.6)] sm:inset-x-auto sm:right-6 sm:top-12 sm:w-full sm:max-w-[360px]"
         >
           <div className="flex items-center justify-between border-b border-border/60 bg-muted/40 px-3.5 py-2.5">
             <div className="flex items-center gap-2">
@@ -217,24 +217,24 @@ export function VisitorInfoPanel() {
             <button
               type="button"
               onClick={close}
-              className="flex size-5 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:size-5"
               aria-label="Close Visitor Info"
             >
               ×
             </button>
           </div>
 
-          <div className="max-h-[420px] overflow-y-auto p-3">
+          <div className="max-h-[calc(100dvh-9rem)] overflow-y-auto p-2.5 sm:max-h-[420px] sm:p-3">
             {isLoading ? (
               <div className="flex items-center justify-center py-8 text-[10px] text-muted-foreground">
                 {t('visitorInfo.loading')}
               </div>
             ) : (
-              <div className="space-y-2.5">
+              <div className="grid grid-cols-1 gap-2 sm:block sm:space-y-2.5">
                 {infoRows.map(({ label, value, icon: Icon }) => (
                   <div
                     key={label}
-                    className="flex items-start gap-2.5 rounded-sm border border-border/60 bg-muted/20 p-2"
+                    className="flex min-w-0 items-start gap-2 rounded-sm border border-border/60 bg-muted/20 p-2 sm:gap-2.5"
                   >
                     <div className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-sm bg-primary/10 text-primary">
                       <Icon className="size-3.5" />

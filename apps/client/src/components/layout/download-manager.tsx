@@ -56,7 +56,7 @@ export function DownloadManager() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.95 }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="fixed bottom-10 right-6 z-50 w-full max-w-[360px] overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
+        className="fixed inset-x-2 bottom-14 z-50 w-auto max-w-none overflow-hidden rounded-sm bg-background shadow-[0_0_12px_rgba(148,163,184,0.22)] dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] sm:inset-x-auto sm:right-6 sm:bottom-10 sm:w-full sm:max-w-[360px]"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-border px-3 py-2">
@@ -71,7 +71,7 @@ export function DownloadManager() {
             <button
               type="button"
               onClick={toggleMinimize}
-              className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:size-5"
               aria-label={isMinimized ? t('downloadManager.expand') : t('downloadManager.minimize')}
             >
               <Minus className="size-3" />
@@ -79,7 +79,7 @@ export function DownloadManager() {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex size-5 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground sm:size-5"
               aria-label={t('downloadManager.close')}
             >
               <X className="size-3" />
@@ -91,7 +91,7 @@ export function DownloadManager() {
         {!isMinimized && (
           <>
             {/* Downloads List */}
-            <div className="max-h-[280px] overflow-y-auto p-2 space-y-2">
+            <div className="max-h-[calc(100dvh-12rem)] overflow-y-auto p-2 space-y-2 sm:max-h-[280px]">
               {items.length === 0 ? (
                 <div className="py-6 text-center text-[9px] text-muted-foreground">
                   {t('downloadManager.noDownloads')}
@@ -174,7 +174,7 @@ export function DownloadManager() {
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex items-center gap-1 shrink-0">
+                    <div className="flex shrink-0 items-center gap-1">
                       {item.status === 'completed' && (
                         <button
                           type="button"
