@@ -2,8 +2,9 @@
 'use client';
 
 import { MeshReflectorMaterial, Stars, useGLTF } from '@react-three/drei';
-import { Canvas, type RootState, useThree } from '@react-three/fiber';
+import { Canvas, type RootState, useFrame, useThree } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import * as THREE from 'three';
 
 import { useTheme } from '@/hooks/use-theme';
 
@@ -15,12 +16,17 @@ useGLTF.preload(keyboardModelUrl);
 // Use React.lazy so @react-three/fiber's internal Suspense boundary catches the load
 const KeyboardModel = lazy(() => import('./KeyboardModel'));
 
+const KEYBOARD_CAMERA_DISTANCE = 14;
+const ZOOM_MIN = 10;
+const ZOOM_MAX = 28;
+const ZOOM_SPEED = 1;
+const ZOOM_LERP = 0.1;
+
 interface SceneContentProps {
-  isDark: boolean;
   mobile?: boolean;
 }
 
-function SceneContent({ isDark, mobile = false }: SceneContentProps) {
+function SceneContent({ mobile = false }: SceneContentProps) {
   return (
     <Suspense fallback={null}>
       {/* 3D Keyboard Model */}
@@ -77,20 +83,64 @@ function ResizeCanvasToParent() {
   return null;
 }
 
+function ZoomController() {
+  const { camera, gl } = useThree();
+  const targetDistanceRef = useRef(KEYBOARD_CAMERA_DISTANCE);
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = e.deltaY > 0 ? ZOOM_SPEED : -ZOOM_SPEED;
+      targetDistanceRef.current = THREE.MathUtils.clamp(
+        targetDistanceRef.current + delta,
+        ZOOM_MIN,
+        ZOOM_MAX,
+      );
+    };
+
+    canvas.addEventListener('wheel', onWheel, { passive: false });
+    return () => canvas.removeEventListener('wheel', onWheel);
+  }, [gl]);
+
+  useFrame(() => {
+    const currentDistance = camera.position.length();
+
+    if (Math.abs(currentDistance - targetDistanceRef.current) > 3) {
+      targetDistanceRef.current = currentDistance;
+    }
+
+    if (Math.abs(currentDistance - targetDistanceRef.current) < 0.001) return;
+    const direction = camera.position.clone().normalize();
+    const newDistance = THREE.MathUtils.lerp(currentDistance, targetDistanceRef.current, ZOOM_LERP);
+    camera.position.copy(direction.multiplyScalar(newDistance));
+  });
+
+  return null;
+}
+
 export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [canRender, setCanRender] = useState(false);
   const [contextLost, setContextLost] = useState(false);
   const [key, setKey] = useState(0);
+  const [showScrollHint, setShowScrollHint] = useState(false);
   const cleanupRef = useRef<(() => void) | null>(null);
   const isHeroEnabled =
     typeof document !== 'undefined' ? document.documentElement.dataset.hero3d !== 'false' : true;
 
   useEffect(() => {
     setMounted(true);
-    const timer = setTimeout(() => setCanRender(true), 100);
-    return () => clearTimeout(timer);
+    const renderTimer = setTimeout(() => setCanRender(true), 100);
+    const hintTimer = setTimeout(() => setShowScrollHint(true), 1200);
+    const hideHintTimer = setTimeout(() => setShowScrollHint(false), 4200);
+    return () => {
+      clearTimeout(renderTimer);
+      clearTimeout(hintTimer);
+      clearTimeout(hideHintTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -188,6 +238,24 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
         </div>
       )}
 
+      <div
+        aria-hidden="true"
+        className={[
+          'pointer-events-none absolute bottom-4 left-1/2 z-10 -translate-x-1/2',
+          'flex items-center gap-1.5 rounded-full px-3 py-1.5',
+          'bg-black/30 text-white backdrop-blur-sm',
+          'text-[10px] font-medium tracking-wide',
+          showScrollHint ? 'opacity-100' : 'opacity-0',
+          'transition-opacity duration-700',
+        ].join(' ')}
+      >
+        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="8" height="12" rx="4" stroke="white" strokeWidth="1.2" />
+          <rect x="4" y="3.5" width="2" height="3" rx="1" fill="white" />
+        </svg>
+        Scroll to zoom
+      </div>
+
       {mounted && canRender && (
         <Suspense
           fallback={
@@ -219,6 +287,7 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             onCreated={handleCreated}
           >
             <ResizeCanvasToParent />
+            <ZoomController />
             <color attach="background" args={[isDark ? '#000000' : '#ffffff']} />
 
             {/* Fog fades the floor edge into the background so plane boundary is invisible */}
@@ -256,7 +325,7 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             )}
 
             {/* Inner Scene Content (Environment + Model) with internal Suspense */}
-            <SceneContent isDark={isDark} mobile={mobile} />
+            <SceneContent mobile={mobile} />
 
             {/* Keep the old camera framing and make the floor fill the full viewport corners */}
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.2, 0]}>

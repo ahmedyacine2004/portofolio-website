@@ -503,6 +503,30 @@ export default function SettingsPage() {
       (cat) => cat.title.toLowerCase().includes(searchQuery.toLowerCase()) || cat.items.length > 0,
     );
 
+  const previewLayout = {
+    desktop: {
+      frame: 'w-full',
+      viewport: 'h-[155px] flex-row',
+      content: 'w-[55%]',
+      keyboard: 'w-[45%] h-full',
+      variant: 'desktop' as const,
+    },
+    tablet: {
+      frame: 'w-[84%]',
+      viewport: 'h-[240px] flex-col',
+      content: 'w-full min-h-0 flex-1',
+      keyboard: 'w-full h-[72px] shrink-0',
+      variant: 'tablet' as const,
+    },
+    mobile: {
+      frame: 'w-[58%]',
+      viewport: 'h-[320px] flex-col',
+      content: 'w-full min-h-0 flex-1',
+      keyboard: 'w-full aspect-square shrink-0',
+      variant: 'mobile' as const,
+    },
+  }[previewDevice];
+
   return (
     <div className="font-inter flex h-full w-full lg:max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
       {/* Header Bar */}
@@ -717,13 +741,7 @@ export default function SettingsPage() {
 
             {/* Interactive Preview Canvas Box (Live Micro View of Home / Page) */}
             <div
-              className={`relative overflow-hidden rounded-xs border border-border/40 p-1.5 shadow-xs transition-all duration-300 mx-auto ${
-                previewDevice === 'desktop'
-                  ? 'w-full'
-                  : previewDevice === 'tablet'
-                    ? 'w-[84%]'
-                    : 'w-[58%]'
-              } ${theme === 'dark' ? 'bg-black text-slate-100' : 'bg-white text-slate-900'}`}
+              className={`relative overflow-hidden rounded-xs border border-border/40 p-1.5 shadow-xs transition-all duration-300 mx-auto ${previewLayout.frame} ${theme === 'dark' ? 'bg-black text-slate-100' : 'bg-white text-slate-900'}`}
             >
               {/* Mini Browser Top Bar */}
               <div className="flex items-center justify-between pb-1 mb-1 border-b border-border/30 text-[7.5px] font-mono">
@@ -741,9 +759,11 @@ export default function SettingsPage() {
               </div>
 
               {/* Live Home Page Mini Layout (Scaled Representation of / Page) */}
-              <div className="relative h-[155px] w-full overflow-hidden p-1 flex gap-1.5">
+              <div
+                className={`relative w-full overflow-hidden p-1 flex gap-1.5 ${previewLayout.viewport}`}
+              >
                 {/* Left Side: Intro & Home Info */}
-                <div className="flex flex-col justify-between w-[55%] min-w-0">
+                <div className={`flex flex-col justify-between min-w-0 ${previewLayout.content}`}>
                   <div>
                     <span className="text-[6.5px] font-semibold text-primary bg-primary/10 px-1 py-0.5 rounded-xs inline-block">
                       Salutations
@@ -751,9 +771,19 @@ export default function SettingsPage() {
                     <p className="text-[6px] font-medium text-primary mt-0.5">
                       Workspace Initialized
                     </p>
-                    <h3 className="font-black text-[10px] sm:text-[11px] leading-[0.85] tracking-tight uppercase mt-0.5">
-                      <span className="block text-foreground">AHMED YASSINE</span>
-                      <span className="block text-primary">ABBANE</span>
+                    <h3 className="font-black text-[10px] leading-[0.85] tracking-tight uppercase mt-0.5">
+                      {previewDevice === 'mobile' ? (
+                        <>
+                          <span className="block text-foreground">AHMED</span>
+                          <span className="block text-foreground">YASSINE</span>
+                          <span className="block text-primary">ABBANE</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="block text-foreground">AHMED YASSINE</span>
+                          <span className="block text-primary">ABBANE</span>
+                        </>
+                      )}
                     </h3>
                     <p className="text-[6.5px] text-muted-foreground mt-0.5 line-clamp-2 leading-none">
                       Full Stack Web Developer & Graphic Designer
@@ -761,7 +791,9 @@ export default function SettingsPage() {
                   </div>
 
                   {/* Mini Home Cards */}
-                  <div className="grid grid-cols-2 gap-1 mt-1">
+                  <div
+                    className={`grid gap-1 mt-1 ${previewDevice === 'mobile' ? 'grid-cols-1' : 'grid-cols-2'}`}
+                  >
                     <div className="p-1 rounded-xs bg-muted/40 text-[6.5px]">
                       <div className="font-bold text-foreground">Quick Actions</div>
                       <div className="text-[5.5px] text-muted-foreground truncate">
@@ -778,14 +810,18 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Right Side: Live 3D Keyboard Scene */}
-                <div className="w-[45%] h-full rounded-xs overflow-hidden border border-border/20 relative">
-                  <KeyboardScene />
+                <div
+                  className={`rounded-xs overflow-hidden border border-border/20 relative ${previewLayout.keyboard}`}
+                >
+                  <KeyboardScene mobile={previewDevice === 'mobile'} />
                 </div>
 
                 {/* Floating Welcome Tag */}
-                <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-xs px-1.5 py-0.5 rounded-xs border border-border/40 shadow-xs text-[5.5px] font-bold text-foreground flex items-center gap-1 z-10 whitespace-nowrap">
-                  <span>Welcome to the Developer Environment</span>
-                </div>
+                {previewDevice === 'desktop' && (
+                  <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-xs px-1.5 py-0.5 rounded-xs border border-border/40 shadow-xs text-[5.5px] font-bold text-foreground flex items-center gap-1 z-10 whitespace-nowrap">
+                    <span>Welcome to the Developer Environment</span>
+                  </div>
+                )}
               </div>
 
               {/* Device Viewport Buttons */}

@@ -33,6 +33,8 @@ interface ChatMessage {
   time: string;
 }
 
+type MessageFeedback = 'like' | 'dislike';
+
 const getStoredPreference = (key: string, fallback: boolean) => {
   if (typeof window === 'undefined') return fallback;
 
@@ -58,6 +60,7 @@ export default function AIAssistantPage() {
   const [isAttachmentModalOpen, setIsAttachmentModalOpen] = useState(false);
   const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [messageFeedback, setMessageFeedback] = useState<Record<string, MessageFeedback>>({});
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome',
@@ -261,6 +264,18 @@ export default function AIAssistantPage() {
       "Refresh Ahmed Yassine Abbane's portfolio context and summarize his latest profile, projects, and current focus.",
     );
     setIsRefreshingContext(false);
+  };
+
+  const handleMessageFeedback = (messageId: string, value: MessageFeedback) => {
+    setMessageFeedback((previousFeedback) => {
+      if (previousFeedback[messageId] === value) {
+        const nextFeedback = { ...previousFeedback };
+        delete nextFeedback[messageId];
+        return nextFeedback;
+      }
+
+      return { ...previousFeedback, [messageId]: value };
+    });
   };
 
   const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -468,16 +483,42 @@ export default function AIAssistantPage() {
                           <button
                             type="button"
                             suppressHydrationWarning
-                            className="hover:text-foreground transition-colors cursor-pointer"
+                            aria-label="Like this response"
+                            aria-pressed={messageFeedback[message.id] === 'like'}
+                            title="Like this response"
+                            onClick={() => handleMessageFeedback(message.id, 'like')}
+                            className={`cursor-pointer transition-colors hover:text-foreground ${
+                              messageFeedback[message.id] === 'like'
+                                ? 'text-emerald-600 dark:text-emerald-400'
+                                : ''
+                            }`}
                           >
-                            <ThumbsUp className="size-3" />
+                            <ThumbsUp
+                              className="size-3"
+                              fill={
+                                messageFeedback[message.id] === 'like' ? 'currentColor' : 'none'
+                              }
+                            />
                           </button>
                           <button
                             type="button"
                             suppressHydrationWarning
-                            className="hover:text-foreground transition-colors cursor-pointer"
+                            aria-label="Dislike this response"
+                            aria-pressed={messageFeedback[message.id] === 'dislike'}
+                            title="Dislike this response"
+                            onClick={() => handleMessageFeedback(message.id, 'dislike')}
+                            className={`cursor-pointer transition-colors hover:text-foreground ${
+                              messageFeedback[message.id] === 'dislike'
+                                ? 'text-red-600 dark:text-red-400'
+                                : ''
+                            }`}
                           >
-                            <ThumbsDown className="size-3" />
+                            <ThumbsDown
+                              className="size-3"
+                              fill={
+                                messageFeedback[message.id] === 'dislike' ? 'currentColor' : 'none'
+                              }
+                            />
                           </button>
                         </div>
                       </div>
