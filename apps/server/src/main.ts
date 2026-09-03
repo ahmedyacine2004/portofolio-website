@@ -19,6 +19,10 @@ async function bootstrap(): Promise<void> {
   const port = configService.getOrThrow<number>('app.port');
 
   const frontendUrl = configService.getOrThrow<string>('app.frontendUrl');
+  const frontendUrls = frontendUrl
+    .split(',')
+    .map((url) => url.trim())
+    .filter(Boolean);
 
   const httpAdapter = app.getHttpAdapter();
 
@@ -41,7 +45,7 @@ async function bootstrap(): Promise<void> {
    */
 
   app.enableCors({
-    origin: [frontendUrl],
+    origin: frontendUrls,
 
     credentials: true,
 
