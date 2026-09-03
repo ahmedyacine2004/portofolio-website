@@ -148,8 +148,9 @@ export function StatusBar() {
 
           {/* GitHub */}
           <Link
-            href="#"
+            href="https://github.com/ahmedyacine2004"
             aria-label="GitHub"
+            target="_blank"
             className="ml-3 flex shrink-0 items-center gap-1.5 text-[10px] leading-none text-foreground-secondary transition-colors hover:text-foreground"
           >
             <Image
