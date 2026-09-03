@@ -15,6 +15,11 @@ useGLTF.preload(keyboardModelUrl);
  */
 function cloneSceneWithFixedMaterials(source: THREE.Group): THREE.Group {
   const clone = source.clone();
+  const importedFloor = clone.getObjectByName('Plane');
+
+  if (importedFloor) {
+    importedFloor.removeFromParent();
+  }
 
   clone.traverse((child) => {
     if (!(child instanceof THREE.Mesh)) return;
