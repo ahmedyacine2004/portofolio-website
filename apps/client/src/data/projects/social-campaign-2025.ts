@@ -114,25 +114,26 @@ export const SOCIAL_CAMPAIGN_2025_OVERVIEW_DATA: GraphicDesignOverviewData = {
     'Typography System',
   ],
   summary:
-    'Comprehensive social media campaign design with 50+ unique assets and 3D motion graphics.',
+    'A modular launch campaign translating one product story into a recognizable social system across short video, carousel, and professional channels.',
   challenge:
-    'Create a cohesive visual identity across multiple social platforms while maintaining brand consistency',
+    'The campaign needed to feel native to each platform without becoming a collection of disconnected posts. Fast production also had to preserve hierarchy, motion, and brand recognition.',
   solution:
-    'Developed a flexible design system with modular components adaptable to different platform requirements',
+    'Built a flexible campaign language from bold editorial type, modular crops, kinetic color blocks, and reusable motion behaviors. The system let the team scale a launch narrative across 52 assets without repeating the same composition.',
   pillars: [
     {
-      title: 'Visual Consistency',
-      description: 'Unified look and feel across all social platforms',
+      title: 'One Campaign Language',
+      description:
+        'A recognizable visual rhythm across feed, story, short video, and professional formats',
       tag: 'Identity',
     },
     {
-      title: 'Motion & Dynamics',
-      description: 'Engaging animated graphics and video content',
+      title: 'Motion with Purpose',
+      description: 'Short transitions that reveal product value instead of adding decorative noise',
       tag: 'Animation',
     },
     {
-      title: 'Platform Optimization',
-      description: 'Tailored designs for Instagram, TikTok, LinkedIn, and more',
+      title: 'Native Adaptation',
+      description: 'Platform-specific crops, pacing, and calls to action built from shared modules',
       tag: 'Adaptation',
     },
   ],
@@ -156,10 +157,10 @@ export const SOCIAL_CAMPAIGN_2025_OVERVIEW_DATA: GraphicDesignOverviewData = {
   assetsPreview: [
     {
       id: 'asset-1',
-      title: 'Instagram Feed Post',
+      title: 'Launch Narrative Carousel',
       category: 'Social Media',
       dimensions: '1080 × 1080px',
-      description: 'Main feed campaign post design',
+      description: 'Seven-frame carousel moving from tension to product promise and action.',
       format: 'PSD / PNG',
     },
   ],

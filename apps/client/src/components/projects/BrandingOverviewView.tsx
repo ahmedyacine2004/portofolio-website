@@ -1,26 +1,36 @@
 'use client';
 
-import React from 'react';
-import {
-  Sparkles,
-  Layers,
-  CheckCircle2,
-  Calendar,
-  Clock,
-  Building2,
-  Quote,
-  ArrowUpRight,
-  Target,
-  Lightbulb,
-  Award,
-} from 'lucide-react';
 import type { BrandingOverviewData } from '@/data/projects/lumina-studio';
+import { useTranslation } from '@/hooks/use-translation';
+import {
+  ArrowUpRight,
+  Award,
+  Building2,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Layers,
+  Lightbulb,
+  Quote,
+  Sparkles,
+  Target,
+} from 'lucide-react';
 
 interface BrandingOverviewViewProps {
   data: BrandingOverviewData;
 }
 
 export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Nova Coffee'
+      ? 'novaCoffee'
+      : data.projectName === 'GreenLeaf Market'
+        ? 'greenleafMarket'
+        : 'luminaStudio';
+  const pt = (value: string) => projectText(projectKey, value);
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
       {/* --- HERO BANNER & PROJECT META --- */}
@@ -29,20 +39,22 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-violet-500/10 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-violet-600 dark:text-violet-400">
               <Sparkles className="size-3" />
-              {data.heroBanner.badge}
+              {pt(data.heroBanner.badge)}
             </span>
             <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
-              {data.status}
+              {pt(data.status)}
             </span>
           </div>
 
           <div>
-            <h1 className="font-inter text-3xl font-black tracking-tight">{data.projectName}</h1>
+            <h1 className="font-inter text-3xl font-black tracking-tight">
+              {pt(data.projectName)}
+            </h1>
             <p className="mt-1 font-inter text-sm font-semibold text-violet-600 dark:text-violet-400">
-              {data.tagline}
+              {pt(data.tagline)}
             </p>
             <p className="mt-2 text-xs text-muted-foreground leading-relaxed max-w-3xl">
-              {data.heroBanner.description}
+              {pt(data.heroBanner.description)}
             </p>
           </div>
         </div>
@@ -52,32 +64,40 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
           <div className="flex items-center gap-2.5">
             <Building2 className="size-4 text-violet-600 dark:text-violet-400 shrink-0" />
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold uppercase text-muted-foreground">Client</span>
-              <span className="text-[11px] font-extrabold">{data.client}</span>
+              <span className="text-[9px] font-bold uppercase text-muted-foreground">
+                {tt('client', 'Client')}
+              </span>
+              <span className="text-[11px] font-extrabold">{pt(data.client)}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5">
             <Layers className="size-4 text-violet-600 dark:text-violet-400 shrink-0" />
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold uppercase text-muted-foreground">Industry</span>
-              <span className="text-[11px] font-extrabold">{data.industry}</span>
+              <span className="text-[9px] font-bold uppercase text-muted-foreground">
+                {tt('industry', 'Industry')}
+              </span>
+              <span className="text-[11px] font-extrabold">{pt(data.industry)}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5">
             <Calendar className="size-4 text-violet-600 dark:text-violet-400 shrink-0" />
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold uppercase text-muted-foreground">Year</span>
-              <span className="text-[11px] font-extrabold">{data.year}</span>
+              <span className="text-[9px] font-bold uppercase text-muted-foreground">
+                {tt('year', 'Year')}
+              </span>
+              <span className="text-[11px] font-extrabold">{pt(data.year)}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2.5">
             <Clock className="size-4 text-violet-600 dark:text-violet-400 shrink-0" />
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold uppercase text-muted-foreground">Duration</span>
-              <span className="text-[11px] font-extrabold">{data.duration}</span>
+              <span className="text-[9px] font-bold uppercase text-muted-foreground">
+                {tt('duration', 'Duration')}
+              </span>
+              <span className="text-[11px] font-extrabold">{pt(data.duration)}</span>
             </div>
           </div>
         </div>
@@ -92,7 +112,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-extrabold uppercase tracking-wider text-muted-foreground">
-                {metric.label}
+                {pt(metric.label)}
               </span>
               {metric.trend && (
                 <span className="inline-flex items-center gap-0.5 font-mono text-[9px] font-black text-emerald-500">
@@ -104,7 +124,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
             <div className="mt-3">
               <span className="font-inter text-2xl font-black">{metric.value}</span>
               <p className="mt-1 text-[9.5px] font-medium text-muted-foreground">
-                {metric.subtext}
+                {pt(metric.subtext)}
               </p>
             </div>
           </div>
@@ -116,30 +136,36 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
         <div className="flex flex-col gap-2 rounded-[8px] bg-card p-4 border border-border/50 shadow-sm">
           <div className="flex items-center gap-2 text-rose-500">
             <Target className="size-4" />
-            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">The Challenge</h3>
+            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">
+              {tt('challenge', 'The Challenge')}
+            </h3>
           </div>
           <p className="text-[11px] leading-relaxed text-muted-foreground">
-            {data.executiveSummary.challenge}
+            {pt(data.executiveSummary.challenge)}
           </p>
         </div>
 
         <div className="flex flex-col gap-2 rounded-[8px] bg-card p-4 border border-border/50 shadow-sm">
           <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400">
             <Lightbulb className="size-4" />
-            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">The Strategy</h3>
+            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">
+              {tt('strategy', 'The Strategy')}
+            </h3>
           </div>
           <p className="text-[11px] leading-relaxed text-muted-foreground">
-            {data.executiveSummary.strategy}
+            {pt(data.executiveSummary.strategy)}
           </p>
         </div>
 
         <div className="flex flex-col gap-2 rounded-[8px] bg-card p-4 border border-border/50 shadow-sm">
           <div className="flex items-center gap-2 text-emerald-500">
             <Award className="size-4" />
-            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">The Outcome</h3>
+            <h3 className="font-inter text-xs font-bold uppercase tracking-wider">
+              {tt('outcome', 'The Outcome')}
+            </h3>
           </div>
           <p className="text-[11px] leading-relaxed text-muted-foreground">
-            {data.executiveSummary.outcome}
+            {pt(data.executiveSummary.outcome)}
           </p>
         </div>
       </div>
@@ -148,7 +174,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
       <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-sm border border-border/50">
         <div className="border-b border-border/40 pb-2.5">
           <h2 className="font-inter text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-            Core Brand Pillars
+            {tt('corePillars', 'Core Brand Pillars')}
           </h2>
         </div>
 
@@ -160,11 +186,11 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
             >
               <div className="flex flex-col gap-2">
                 <span className="w-fit rounded bg-violet-500/10 px-2 py-0.5 text-[8px] font-extrabold uppercase text-violet-600 dark:text-violet-400">
-                  {pillar.tag}
+                  {pt(pillar.tag)}
                 </span>
-                <h4 className="font-inter text-[12px] font-extrabold">{pillar.title}</h4>
+                <h4 className="font-inter text-[12px] font-extrabold">{pt(pillar.title)}</h4>
                 <p className="text-[10px] leading-relaxed text-muted-foreground">
-                  {pillar.description}
+                  {pt(pillar.description)}
                 </p>
               </div>
             </div>
@@ -176,7 +202,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
       <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-sm border border-border/50">
         <div className="border-b border-border/40 pb-2.5">
           <h2 className="font-inter text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-            Scope & Delivered Assets
+            {tt('deliveredAssets', 'Scope & Delivered Assets')}
           </h2>
         </div>
 
@@ -187,7 +213,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
               className="flex flex-col gap-2.5 rounded-[8px] border border-border/50 bg-background p-3.5"
             >
               <h3 className="font-inter text-[11px] font-extrabold text-foreground border-b border-border/30 pb-1.5">
-                {group.category}
+                {pt(group.category)}
               </h3>
               <ul className="flex flex-col gap-2">
                 {group.items.map((item, itemIdx) => (
@@ -196,7 +222,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
                     className="flex items-start gap-2 text-[10px] text-muted-foreground"
                   >
                     <CheckCircle2 className="size-3.5 text-violet-600 dark:text-violet-400 shrink-0 mt-0.5" />
-                    <span>{item}</span>
+                    <span>{pt(item)}</span>
                   </li>
                 ))}
               </ul>

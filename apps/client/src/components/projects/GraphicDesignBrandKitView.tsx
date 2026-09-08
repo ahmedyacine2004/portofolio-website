@@ -1,6 +1,7 @@
 'use client';
 
 import type { GraphicDesignBrandKitData } from '@/data/projects/apex-brand-kit';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   BookOpen,
   Check,
@@ -20,6 +21,16 @@ interface GraphicDesignBrandKitViewProps {
 }
 
 export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Social Campaign 2025'
+      ? 'socialCampaign2025'
+      : data.projectName === 'Event Visual Identity'
+        ? 'eventVisualIdentity'
+        : 'apexBrandKit';
+  const pt = (value: string) => projectText(projectKey, value);
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
 
   const handleCopyHex = (hex: string) => {
@@ -38,15 +49,19 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
               <BookOpen className="size-4" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-              {data.category}
+              {pt(data.category)}
             </span>
           </div>
 
           <div>
-            <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
+            <h1 className="font-inter text-2xl font-black tracking-tight">
+              {pt(data.projectName)}
+            </h1>
             <p className="text-[11px] font-medium text-muted-foreground">
-              Official design tokens, typography specifications, color swatches, and logo usage
-              rules.
+              {tt(
+                'brandKitDescription',
+                'Official design tokens, typography specifications, color swatches, and logo usage rules.',
+              )}
             </p>
           </div>
         </div>
@@ -57,12 +72,14 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
               {data.version}
             </span>
             <span className="text-[9px] font-bold text-muted-foreground">
-              Updated {data.updatedDate}
+              {tt('updated', 'Updated')} {data.updatedDate}
             </span>
           </div>
           <button className="flex items-center gap-1.5 rounded-[6px] bg-indigo-600 px-3 py-2 text-[10px] font-bold text-white shadow-md shadow-indigo-500/20 hover:bg-indigo-700 transition-colors">
             <Download className="size-3" />
-            <span>Brand Kit PDF ({data.downloadPdfSize})</span>
+            <span>
+              {tt('brandKitPdf', 'Brand Kit PDF')} ({data.downloadPdfSize})
+            </span>
           </button>
         </div>
       </div>
@@ -73,11 +90,11 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
           <div className="flex items-center gap-2">
             <Palette className="size-4 text-indigo-600 dark:text-indigo-400" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Color Palette & Token System
+              {tt('colorPalette', 'Color Palette & Token System')}
             </h2>
           </div>
           <span className="text-[9px] font-bold text-muted-foreground">
-            Click any swatch card to copy HEX value
+            {tt('copyHex', 'Click any swatch card to copy HEX value')}
           </span>
         </div>
 
@@ -114,9 +131,9 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
 
               {/* Color Details */}
               <div className="flex flex-col gap-1 p-2.5">
-                <h3 className="font-inter text-[10.5px] font-extrabold">{color.name}</h3>
+                <h3 className="font-inter text-[10.5px] font-extrabold">{pt(color.name)}</h3>
                 <p className="text-[8.5px] font-medium text-muted-foreground line-clamp-1">
-                  {color.role}
+                  {pt(color.role)}
                 </p>
 
                 <div className="mt-2 grid grid-cols-2 gap-1 border-t border-border/40 pt-1.5 font-mono text-[7.5px] font-bold text-muted-foreground">
@@ -144,7 +161,7 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Type className="size-4 text-indigo-600 dark:text-indigo-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Typography Hierarchy & Font Families
+            {tt('typography', 'Typography Hierarchy & Font Families')}
           </h2>
         </div>
 
@@ -157,33 +174,37 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[8px] font-extrabold uppercase text-indigo-600 dark:text-indigo-400">
-                    {font.role}
+                    {pt(font.role)}
                   </span>
                 </div>
 
-                <h3 className="font-inter text-lg font-black">{font.fontName}</h3>
-                <p className="text-[9.5px] leading-relaxed text-muted-foreground">{font.usage}</p>
+                <h3 className="font-inter text-lg font-black">{pt(font.fontName)}</h3>
+                <p className="text-[9.5px] leading-relaxed text-muted-foreground">
+                  {pt(font.usage)}
+                </p>
 
                 {/* Font Specimen Preview */}
                 <div className="mt-2 rounded-[6px] bg-card p-3 border border-border/40">
                   <span className="font-mono text-[7.5px] font-bold uppercase text-muted-foreground">
-                    Live Specimen
+                    {tt('liveSpecimen', 'Live Specimen')}
                   </span>
                   <p className="mt-1 font-inter text-xs font-bold leading-snug tracking-tight text-foreground">
-                    {font.sampleText}
+                    {pt(font.sampleText)}
                   </p>
                 </div>
               </div>
 
               {/* Allowed Font Weights */}
               <div className="mt-3 flex flex-wrap items-center gap-1 border-t border-border/40 pt-2">
-                <span className="text-[8px] font-bold text-muted-foreground mr-1">Weights:</span>
+                <span className="text-[8px] font-bold text-muted-foreground mr-1">
+                  {tt('weights', 'Weights')}:
+                </span>
                 {font.weights.map((w) => (
                   <span
                     key={w}
                     className="rounded bg-muted px-1.5 py-0.5 font-mono text-[7.5px] font-bold text-foreground"
                   >
-                    {w}
+                    {pt(w)}
                   </span>
                 ))}
               </div>
@@ -197,7 +218,7 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <ShieldCheck className="size-4 text-indigo-600 dark:text-indigo-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Logo Application & Clear Space Rules
+            {tt('logoRules', 'Logo Application & Clear Space Rules')}
           </h2>
         </div>
 
@@ -227,13 +248,13 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
                           : 'text-rose-600 dark:text-rose-400'
                       }`}
                     >
-                      {isDo ? 'DO THIS' : "DON'T DO THIS"}
+                      {isDo ? tt('doThis', 'DO THIS') : tt('dontDoThis', "DON'T DO THIS")}
                     </span>
                   </div>
 
-                  <h3 className="font-inter text-[11px] font-extrabold">{rule.title}</h3>
+                  <h3 className="font-inter text-[11px] font-extrabold">{pt(rule.title)}</h3>
                   <p className="text-[9.5px] leading-relaxed text-muted-foreground">
-                    {rule.description}
+                    {pt(rule.description)}
                   </p>
                 </div>
               </div>
@@ -247,7 +268,7 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Volume2 className="size-4 text-indigo-600 dark:text-indigo-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Brand Voice & Communication Persona
+            {tt('brandVoice', 'Brand Voice & Communication Persona')}
           </h2>
         </div>
 
@@ -259,24 +280,26 @@ export function GraphicDesignBrandKitView({ data }: GraphicDesignBrandKitViewPro
             >
               <div>
                 <h3 className="font-inter text-[11px] font-extrabold text-indigo-600 dark:text-indigo-400">
-                  {voice.trait}
+                  {pt(voice.trait)}
                 </h3>
                 <p className="mt-0.5 text-[9.5px] text-muted-foreground leading-relaxed">
-                  {voice.description}
+                  {pt(voice.description)}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 text-[9px]">
                 <div className="rounded-[6px] bg-emerald-500/10 p-2.5 border border-emerald-500/20">
                   <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                    Preferred Tone:
+                    {tt('preferredTone', 'Preferred Tone')}:
                   </span>
-                  <p className="mt-1 font-medium text-foreground italic">{voice.doExample}</p>
+                  <p className="mt-1 font-medium text-foreground italic">{pt(voice.doExample)}</p>
                 </div>
 
                 <div className="rounded-[6px] bg-rose-500/10 p-2.5 border border-rose-500/20">
-                  <span className="font-bold text-rose-600 dark:text-rose-400">Avoid Tone:</span>
-                  <p className="mt-1 font-medium text-foreground italic">{voice.dontExample}</p>
+                  <span className="font-bold text-rose-600 dark:text-rose-400">
+                    {tt('avoidTone', 'Avoid Tone')}:
+                  </span>
+                  <p className="mt-1 font-medium text-foreground italic">{pt(voice.dontExample)}</p>
                 </div>
               </div>
             </div>

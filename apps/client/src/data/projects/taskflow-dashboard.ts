@@ -1,8 +1,11 @@
 import type { GalleryItem } from '@/components/3d/Carousel3D';
 import { StaticImageData } from 'next/image';
 
-// Placeholder image imports - adjust to match your actual assets
-import placeholderImage from '@/assets/images/consultify.png';
+import taskflowBoard from '@/assets/images/taskflow/board.jpg';
+import taskflowCalendar from '@/assets/images/taskflow/calendar.jpg';
+import taskflowDashboard from '@/assets/images/taskflow/dashboard.jpg';
+import taskflowLogo from '@/assets/images/taskflow/taskflow-mark.png';
+import taskflowTeam from '@/assets/images/taskflow/team.jpg';
 
 export interface WebProjectDetails {
   projectName: string;
@@ -166,69 +169,98 @@ export interface LanguageBreakdownItem {
 export const TASKFLOW_DASHBOARD_DETAILS: WebProjectDetails = {
   projectName: 'TaskFlow Dashboard',
   tagline: 'Real-time project management dashboard with team collaboration features.',
-  liveDemoUrl: 'https://taskflow-dashboard.example.com',
-  repositoryUrl: 'https://github.com/username/taskflow-dashboard',
-  imageUrl: placeholderImage.src,
-  coreObjective: 'Streamline team project management with real-time collaboration',
-  targetAudience: ['Teams', 'Project Managers', 'Organizations'],
-  currentPhase: ['MVP Launch', 'Real-time Sync', 'UI Complete'],
+  liveDemoUrl: 'https://taskflow-dashboard.vercel.app',
+  repositoryUrl: 'https://github.com/ahmedyacine2004/taskflow-dashboard',
+  imageUrl: taskflowLogo.src,
+  coreObjective:
+    'Give distributed teams one focused workspace for planning, execution, and delivery.',
+  targetAudience: ['Product Teams', 'Project Managers', 'Agencies'],
+  currentPhase: ['Public Beta', 'Realtime Collaboration', 'Reporting in Progress'],
   systemModules: [
     {
       id: 'tasks',
       title: 'Task Management',
-      description: 'Create, assign, and track tasks in real-time',
+      description: 'Create, assign, prioritize, and track work from backlog to done.',
       status: 'Stable',
       icon: 'CheckSquare',
     },
     {
       id: 'collaboration',
-      title: 'Collaboration',
-      description: 'Real-time updates and team communication',
+      title: 'Team Collaboration',
+      description: 'Keep comments, mentions, and activity updates attached to the work.',
       status: 'Stable',
       icon: 'Users',
     },
     {
       id: 'analytics',
-      title: 'Analytics',
-      description: 'Project metrics and team performance insights',
+      title: 'Delivery Analytics',
+      description: 'Track cycle time, throughput, workload, and sprint progress.',
       status: 'In Development',
       icon: 'LineChart',
     },
     {
       id: 'notifications',
       title: 'Notifications',
-      description: 'Real-time alerts for task updates',
+      description: 'Receive focused alerts for assignments, mentions, and due dates.',
       status: 'Stable',
       icon: 'Bell',
     },
   ],
   architectureSnapshot: [
-    { title: 'Frontend', subtitle: 'React / TypeScript', icon: 'Smartphone' },
-    { title: 'Real-time', subtitle: 'WebSocket', icon: 'GitFork' },
-    { title: 'Backend', subtitle: 'Node.js', icon: 'Cpu' },
-    { title: 'Database', subtitle: 'PostgreSQL', icon: 'Database' },
+    { title: 'Frontend', subtitle: 'Next.js / TypeScript', icon: 'Smartphone' },
+    { title: 'Realtime', subtitle: 'WebSocket Gateway', icon: 'GitFork' },
+    { title: 'Backend', subtitle: 'NestJS / Node.js', icon: 'Cpu' },
+    { title: 'Database', subtitle: 'PostgreSQL / Redis', icon: 'Database' },
   ],
   engineeringHighlights: [
-    'Real-time Sync',
-    'Collaborative Editing',
-    'Performance Optimized',
-    'Scalable Backend',
-    'Mobile Ready',
+    'Realtime Event Sync',
+    'Role-based Workspaces',
+    'Sprint Analytics',
+    'Optimistic UI Updates',
+    'Responsive Workflows',
   ],
 };
 
 export const TASKFLOW_DASHBOARD_GALLERY_DATA: WebProjectGalleryData = {
   projectName: 'TaskFlow Dashboard',
-  tagline: 'Explore the dashboard interface and project management screens.',
-  liveDemoUrl: 'https://taskflow-dashboard.example.com',
+  tagline: 'Explore the planning, collaboration, and delivery workflows behind TaskFlow.',
+  liveDemoUrl: 'https://taskflow-dashboard.vercel.app',
+  heroGraphicUrl: taskflowLogo.src,
   items: [
     {
       id: 'screen-1',
-      title: 'Dashboard Overview',
-      imageUrl: placeholderImage.src,
+      title: 'Workspace Overview',
+      imageUrl: taskflowDashboard.src,
       resolution: '1920 × 1080',
       device: 'Desktop Browser',
       lastUpdated: '2 days ago',
+      fileType: 'PNG Image',
+    },
+    {
+      id: 'screen-2',
+      title: 'Kanban Project Board',
+      imageUrl: taskflowBoard.src,
+      resolution: '1920 × 1080',
+      device: 'Desktop Browser',
+      lastUpdated: '2 days ago',
+      fileType: 'PNG Image',
+    },
+    {
+      id: 'screen-3',
+      title: 'Team Activity and Collaboration',
+      imageUrl: taskflowTeam.src,
+      resolution: '1920 × 1080',
+      device: 'Desktop Browser',
+      lastUpdated: '3 days ago',
+      fileType: 'PNG Image',
+    },
+    {
+      id: 'screen-4',
+      title: 'Sprint Calendar and Deadlines',
+      imageUrl: taskflowCalendar.src,
+      resolution: '1920 × 1080',
+      device: 'Desktop Browser',
+      lastUpdated: '3 days ago',
       fileType: 'PNG Image',
     },
   ],
@@ -236,43 +268,89 @@ export const TASKFLOW_DASHBOARD_GALLERY_DATA: WebProjectGalleryData = {
 
 export const TASKFLOW_DASHBOARD_TECH_STACK_DATA: WebProjectTechStackData = {
   projectName: 'TaskFlow Dashboard',
-  subtitle: 'Collaborative Project Management',
-  description: 'Real-time collaboration with modern tech stack',
-  totalTechnologiesCount: 18,
+  subtitle: 'Collaborative Delivery Platform',
+  description: 'A realtime project workspace for planning, collaboration, and delivery visibility.',
+  totalTechnologiesCount: 16,
   environmentStatus: [
     {
       id: 'frontend',
       title: 'Frontend',
       count: 6,
-      tools: 'React, Redux, WebSocket, Tailwind',
+      tools: 'Next.js, React, TypeScript, Tailwind',
       status: 'Running',
-      icon: 'Monitor',
+      icon: 'Code2',
+    },
+    {
+      id: 'realtime',
+      title: 'Realtime Layer',
+      count: 3,
+      tools: 'WebSocket, Redis, Events',
+      status: 'Active',
+      icon: 'Zap',
+    },
+    {
+      id: 'backend',
+      title: 'Backend',
+      count: 4,
+      tools: 'NestJS, Node.js, PostgreSQL, Prisma',
+      status: 'Running',
+      icon: 'Server',
     },
   ],
   coreStack: [
     {
-      id: 'react',
-      name: 'React',
-      role: 'UI Library',
-      tag: 'v18',
+      id: 'nextjs',
+      name: 'Next.js',
+      role: 'Application framework',
+      tag: 'App Router',
       badgeVariant: 'core',
-      icon: 'Package',
+      icon: 'Code2',
+    },
+    {
+      id: 'nestjs',
+      name: 'NestJS',
+      role: 'Realtime API layer',
+      tag: 'Core',
+      badgeVariant: 'primary',
+      icon: 'Server',
+    },
+    {
+      id: 'postgresql',
+      name: 'PostgreSQL',
+      role: 'Relational data store',
+      tag: 'Core',
+      badgeVariant: 'connected',
+      icon: 'Database',
     },
   ],
   runtimeServices: [
     {
       id: 'websocket',
-      name: 'WebSocket Server',
+      name: 'WebSocket Gateway',
       status: 'Active',
       icon: 'Zap',
     },
+    { id: 'redis', name: 'Redis Pub/Sub', status: 'Connected', icon: 'Workflow' },
+    { id: 'notifications', name: 'Notification Worker', status: 'Active', icon: 'Bell' },
   ],
   buildStatus: [
     {
-      id: 'build-1',
-      layer: 'Application Build',
+      id: 'frontend-build',
+      layer: 'Frontend Build',
       status: 'Passing',
       statusVariant: 'passing',
+    },
+    {
+      id: 'api-build',
+      layer: 'API and WebSocket Build',
+      status: 'Passing',
+      statusVariant: 'passing',
+    },
+    {
+      id: 'database',
+      layer: 'Database Migrations',
+      status: 'Connected',
+      statusVariant: 'connected',
     },
   ],
 };
@@ -285,12 +363,13 @@ export const TASKFLOW_DASHBOARD_DEMO_DATA: WebProjectDemoData = {
     { label: 'Environment', value: 'Production' },
     { label: 'Region', value: 'EU West' },
   ],
-  liveDemoUrl: 'https://taskflow-dashboard.example.com',
-  runtimeHighlights: ['Real-time Updates', 'Collaborative Features', 'High Performance'],
-  systemOutput: ['Server running on port 3000', 'WebSocket connected'],
+  liveDemoUrl: 'https://taskflow-dashboard.vercel.app',
+  heroImageUrl: taskflowLogo,
+  runtimeHighlights: ['Realtime task updates', 'Collaborative workspaces', 'Sprint visibility'],
+  systemOutput: ['TaskFlow API ready on port 3000', 'WebSocket gateway connected'],
   previewSession: {
     status: 'Running',
-    url: 'https://taskflow-dashboard.example.com',
+    url: 'https://taskflow-dashboard.vercel.app',
     device: 'Desktop',
     region: 'EU West',
   },
@@ -301,14 +380,15 @@ export const TASKFLOW_DASHBOARD_REPOSITORY_DATA: WebProjectRepositoryData = {
   projectName: 'TaskFlow Dashboard',
   badgeText: 'GITHUB REPOSITORY',
   status: 'Online',
-  repositoryPath: 'username/taskflow-dashboard',
-  description: 'Real-time project management dashboard',
+  repositoryPath: 'ahmedyacine2004 / taskflow-dashboard',
+  description: 'Realtime project planning and collaboration workspace.',
+  heroImageUrl: taskflowLogo,
   stats: [
     { id: 'stars', label: 'Stars', value: 521, icon: 'Star' },
     { id: 'forks', label: 'Forks', value: 156, icon: 'GitFork' },
     { id: 'commits', label: 'Commits', value: 678, icon: 'GitCommit' },
   ],
-  activeTab: 'Code',
+  activeTab: 'README',
   latestCommit: {
     title: 'feat: add real-time collaboration',
     authorName: 'Ahmed',

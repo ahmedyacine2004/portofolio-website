@@ -1,6 +1,7 @@
 'use client';
 
 import type { UIUXPrototypeData } from '@/data/projects/neobank-mobile';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   CheckCircle2,
   ExternalLink,
@@ -18,6 +19,21 @@ interface UIUXProjectPrototypeViewProps {
 }
 
 export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Design System'
+      ? 'designSystem'
+      : data.projectName === 'LearnHub LMS'
+        ? 'learnhubLms'
+        : data.projectName === 'TravelMate'
+          ? 'travelMate'
+          : data.projectName === 'HealthSync'
+            ? 'healthsync'
+            : data.projectName === 'Insight Analytics'
+              ? 'insightAnalytics'
+              : 'neobankMobile';
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+  const pt = (value: string) => projectText(projectKey, value);
   const [currentScreenId, setCurrentScreenId] = useState(data.defaultScreenId);
   const [showHotspots, setShowHotspots] = useState(true);
   const [interactionLog, setInteractionLog] = useState<string[]>([
@@ -35,9 +51,9 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
       second: '2-digit',
     });
     setInteractionLog((prev) => [
-      `[${timestamp}] ${actionType}: ${label} -> Navigated to "${
-        data.screens.find((s) => s.id === targetId)?.name || targetId
-      }"`,
+      `[${timestamp}] ${actionType}: ${label} -> Navigated to "${pt(
+        data.screens.find((s) => s.id === targetId)?.name || targetId,
+      )}"`,
       ...prev.slice(0, 8),
     ]);
   };
@@ -60,17 +76,17 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
               <Play className="size-4 fill-current" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              {data.badgeText}
+              {tt('prototype', data.badgeText)}
             </span>
           </div>
 
           <div>
             <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
             <p className="mt-0.5 font-inter text-[11px] font-bold text-muted-foreground">
-              {data.category}
+              {pt(data.category)}
             </p>
             <p className="mt-1 text-[12px] font-medium leading-relaxed text-foreground/90">
-              {data.description}
+              {pt(data.description)}
             </p>
           </div>
         </div>
@@ -84,7 +100,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
               className="flex items-center gap-1.5 rounded-[6px] bg-purple-600 px-3 py-2 font-inter text-[10px] font-bold text-white shadow-md shadow-purple-500/20 hover:bg-purple-700 transition-colors"
             >
               <ExternalLink className="size-3" />
-              Open in ProtoPie
+              {tt('openProtoPie', 'Open in ProtoPie')}
             </a>
           )}
         </div>
@@ -94,10 +110,10 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
       <div className="flex flex-wrap items-center justify-between gap-2 rounded-[8px] bg-card p-3 shadow-md shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         <div className="flex items-center gap-2">
           <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-            Current Screen:
+            {tt('currentScreen', 'Current Screen')}:
           </span>
           <span className="rounded-full bg-purple-500/10 px-2.5 py-0.5 font-inter text-[10px] font-black text-purple-600 dark:text-purple-400">
-            {currentScreen.name} ({currentScreen.type})
+            {pt(currentScreen.name)} ({pt(currentScreen.type)})
           </span>
         </div>
 
@@ -111,7 +127,9 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
             }`}
           >
             <Eye className="size-3" />
-            {showHotspots ? 'Hotspots Visible' : 'Hotspots Hidden'}
+            {showHotspots
+              ? tt('hotspotsVisible', 'Hotspots Visible')
+              : tt('hotspotsHidden', 'Hotspots Hidden')}
           </button>
 
           <button
@@ -119,7 +137,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
             className="flex items-center gap-1.5 rounded-[6px] bg-background px-2.5 py-1 text-[9.5px] font-bold text-foreground hover:bg-accent transition-colors shadow-xs"
           >
             <RefreshCw className="size-3" />
-            Restart Flow
+            {tt('restartFlow', 'Restart Flow')}
           </button>
         </div>
       </div>
@@ -130,10 +148,10 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
         <div className="flex flex-col items-center gap-3 rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)] lg:col-span-7">
           <div className="flex w-full items-center justify-between border-b border-border pb-2">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Interactive Viewport Simulator
+              {tt('interactiveViewport', 'Interactive Viewport Simulator')}
             </span>
             <span className="font-mono text-[9px] font-medium text-muted-foreground">
-              {data.deviceFrame}
+              {pt(data.deviceFrame)}
             </span>
           </div>
 
@@ -152,10 +170,10 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
                 </div>
                 <div className="mt-2 text-center">
                   <span className="font-inter text-xs font-black uppercase text-purple-600 dark:text-purple-400">
-                    {currentScreen.name}
+                    {pt(currentScreen.name)}
                   </span>
                   <p className="mt-1 text-[8.5px] text-muted-foreground line-clamp-2">
-                    {currentScreen.description}
+                    {pt(currentScreen.description)}
                   </p>
                 </div>
               </div>
@@ -231,7 +249,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
                       className="absolute z-40 flex items-center justify-center rounded-[6px] border border-purple-400/80 bg-purple-500/30 font-inter text-[8px] font-black text-white shadow-xs backdrop-blur-[1px] animate-pulse hover:bg-purple-600/60 transition-all"
                     >
                       <MousePointer className="mr-0.5 size-2.5" />
-                      {hs.label}
+                      {pt(hs.label)}
                     </button>
                   );
                 })}
@@ -245,7 +263,10 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
           </div>
 
           <p className="text-[9px] font-medium text-muted-foreground text-center">
-            Click on highlighted hotspots inside the screen to trigger prototype transitions.
+            {tt(
+              'prototypeHint',
+              'Click on highlighted hotspots inside the screen to trigger prototype transitions.',
+            )}
           </p>
         </div>
 
@@ -256,7 +277,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
             <div className="flex items-center gap-2">
               <Zap className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Micro-Animations & Motion Specs
+                {tt('motionSpecs', 'Micro-Animations & Motion Specs')}
               </h2>
             </div>
 
@@ -268,13 +289,15 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[9.5px] font-bold text-purple-600 dark:text-purple-400">
-                      Trigger: {item.trigger}
+                      {tt('trigger', 'Trigger')}: {item.trigger}
                     </span>
                     <span className="font-mono text-[8px] font-extrabold text-muted-foreground">
-                      {item.duration}
+                      {pt(item.duration)}
                     </span>
                   </div>
-                  <p className="text-[9px] leading-relaxed text-muted-foreground">{item.effect}</p>
+                  <p className="text-[9px] leading-relaxed text-muted-foreground">
+                    {pt(item.effect)}
+                  </p>
                 </div>
               ))}
             </div>
@@ -285,7 +308,7 @@ export function UIUXProjectPrototypeView({ data }: UIUXProjectPrototypeViewProps
             <div className="flex items-center gap-2">
               <Layers className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                State Transition Log
+                {tt('stateLog', 'State Transition Log')}
               </h2>
             </div>
 

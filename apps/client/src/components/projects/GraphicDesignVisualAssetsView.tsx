@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import {
   Box,
   Copy,
@@ -50,6 +51,16 @@ interface GraphicDesignVisualAssetsViewProps {
 }
 
 export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAssetsViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Social Campaign 2025'
+      ? 'socialCampaign2025'
+      : data.projectName === 'Event Visual Identity'
+        ? 'eventVisualIdentity'
+        : 'apexBrandKit';
+  const pt = (value: string) => projectText(projectKey, value);
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+
   const normalizedData: StandardVisualAssetsData =
     'totalAssetCount' in data
       ? data
@@ -98,14 +109,19 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
               <ImageIcon className="size-4" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
-              {data.category}
+              {pt(data.category)}
             </span>
           </div>
 
           <div>
-            <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
+            <h1 className="font-inter text-2xl font-black tracking-tight">
+              {pt(data.projectName)}
+            </h1>
             <p className="text-[11px] font-medium text-muted-foreground">
-              Production-ready vector files, 3D renders, templates, and digital media assets.
+              {tt(
+                'assetLibrary',
+                'Production-ready vector files, 3D renders, templates, and digital media assets.',
+              )}
             </p>
           </div>
         </div>
@@ -113,15 +129,19 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
         <div className="z-10 hidden sm:flex items-center gap-3">
           <div className="flex flex-col items-end border-r border-border/60 pr-3">
             <span className="font-inter text-base font-black text-indigo-600 dark:text-indigo-400">
-              {normalizedData.totalAssetCount} Assets
+              {normalizedData.totalAssetCount} {tt('assets', 'Assets')}
             </span>
-            <span className="text-[9px] font-bold text-muted-foreground">Total In Package</span>
+            <span className="text-[9px] font-bold text-muted-foreground">
+              {tt('totalInPackage', 'Total In Package')}
+            </span>
           </div>
           <div className="flex flex-col items-end">
             <span className="font-inter text-base font-black text-emerald-600 dark:text-emerald-400">
               {normalizedData.totalStorageSize}
             </span>
-            <span className="text-[9px] font-bold text-muted-foreground">Archive Size</span>
+            <span className="text-[9px] font-bold text-muted-foreground">
+              {tt('archiveSize', 'Archive Size')}
+            </span>
           </div>
         </div>
       </div>
@@ -134,7 +154,10 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
             <Search className="absolute left-2.5 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search assets by name, tag, or format (SVG, 3D, PSD)..."
+              placeholder={tt(
+                'searchPlaceholder',
+                'Search assets by name, tag, or format (SVG, 3D, PSD)...',
+              )}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded-[6px] border border-border/60 bg-background py-1.5 pl-8 pr-3 text-[11px] font-medium placeholder:text-muted-foreground/70 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
@@ -178,7 +201,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
 
             <button className="flex items-center gap-1.5 rounded-[6px] bg-indigo-600 px-3 py-1.5 text-[10px] font-bold text-white shadow-sm hover:bg-indigo-700 transition-colors">
               <Download className="size-3" />
-              <span>Download All (.ZIP)</span>
+              <span>{tt('downloadAll', 'Download All (.ZIP)')}</span>
             </button>
           </div>
         </div>
@@ -195,7 +218,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                   : 'bg-background text-muted-foreground hover:bg-muted hover:text-foreground border border-border/40'
               }`}
             >
-              {cat}
+              {pt(cat)}
             </button>
           ))}
         </div>
@@ -235,14 +258,14 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                   <div className="flex flex-col items-center justify-center gap-1.5 text-white/90 drop-shadow-md transition-transform duration-300 group-hover:scale-105">
                     <Sparkles className="size-6" />
                     <span className="font-mono text-[9px] font-extrabold uppercase tracking-widest text-white/80">
-                      {asset.format.split(' ')[0]}
+                      {pt(asset.format.split(' ')[0])}
                     </span>
                   </div>
 
                   {/* Badges */}
                   <div className="absolute top-2 left-2 flex gap-1">
                     <span className="rounded-[4px] bg-black/40 backdrop-blur-md px-1.5 py-0.5 text-[7.5px] font-extrabold text-white">
-                      {asset.category}
+                      {pt(asset.category)}
                     </span>
                   </div>
 
@@ -268,12 +291,12 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                 <div className="p-3">
                   <div className="flex items-start justify-between gap-1">
                     <h3 className="font-inter text-[11px] font-extrabold text-foreground line-clamp-1">
-                      {asset.title}
+                      {pt(asset.title)}
                     </h3>
                   </div>
 
                   <p className="mt-1 text-[9.5px] leading-relaxed text-muted-foreground line-clamp-2">
-                    {asset.description}
+                    {pt(asset.description)}
                   </p>
 
                   {/* Tags */}
@@ -283,7 +306,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                         key={tag}
                         className="rounded-full bg-background px-1.5 py-0.5 text-[7.5px] font-semibold text-muted-foreground border border-border/40"
                       >
-                        #{tag}
+                        #{pt(tag)}
                       </span>
                     ))}
                   </div>
@@ -292,7 +315,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
 
               {/* Footer Meta */}
               <div className="flex items-center justify-between border-t border-border/40 bg-background/50 px-3 py-2 text-[8px] font-bold text-muted-foreground">
-                <span className="font-mono">{asset.dimensions}</span>
+                <span className="font-mono">{pt(asset.dimensions)}</span>
                 <span className="rounded bg-indigo-500/10 px-1 py-0.5 text-indigo-600 dark:text-indigo-400">
                   {asset.fileSize}
                 </span>
@@ -318,18 +341,20 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                 <div className="flex flex-col min-w-0">
                   <div className="flex items-center gap-2">
                     <h3 className="font-inter text-[11px] font-extrabold truncate">
-                      {asset.title}
+                      {pt(asset.title)}
                     </h3>
                     <span className="rounded bg-indigo-500/10 px-1.5 py-0.5 font-mono text-[7.5px] font-bold text-indigo-600 dark:text-indigo-400">
-                      {asset.format}
+                      {pt(asset.format)}
                     </span>
                   </div>
-                  <p className="text-[9px] text-muted-foreground truncate">{asset.description}</p>
+                  <p className="text-[9px] text-muted-foreground truncate">
+                    {pt(asset.description)}
+                  </p>
                 </div>
               </div>
 
               <div className="hidden md:flex items-center gap-4 shrink-0 text-[9px] font-medium text-muted-foreground">
-                <span className="font-mono">{asset.dimensions}</span>
+                <span className="font-mono">{pt(asset.dimensions)}</span>
                 <span className="font-mono font-bold text-foreground">{asset.fileSize}</span>
               </div>
 
@@ -369,7 +394,7 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
               <div className="flex flex-col items-center justify-center gap-2 text-center">
                 <Sparkles className="size-10 text-white/90 drop-shadow-md" />
                 <span className="font-mono text-[10px] font-extrabold uppercase tracking-widest text-white/80">
-                  {activeAsset.format}
+                  {pt(activeAsset.format)}
                 </span>
               </div>
             </div>
@@ -378,26 +403,30 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
             <div className="flex flex-col gap-3 p-4">
               <div>
                 <span className="rounded-full bg-indigo-500/10 px-2 py-0.5 text-[8px] font-extrabold uppercase text-indigo-600 dark:text-indigo-400">
-                  {activeAsset.category}
+                  {pt(activeAsset.category)}
                 </span>
-                <h2 className="mt-1 font-inter text-base font-black">{activeAsset.title}</h2>
+                <h2 className="mt-1 font-inter text-base font-black">{pt(activeAsset.title)}</h2>
                 <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-                  {activeAsset.description}
+                  {pt(activeAsset.description)}
                 </p>
               </div>
 
               {/* Asset Metadata Grid */}
               <div className="grid grid-cols-3 gap-2 rounded-[6px] bg-background p-2.5 text-[9px] border border-border/40">
                 <div className="flex flex-col">
-                  <span className="font-bold text-muted-foreground">Format</span>
-                  <span className="font-mono font-black">{activeAsset.format}</span>
+                  <span className="font-bold text-muted-foreground">{tt('format', 'Format')}</span>
+                  <span className="font-mono font-black">{pt(activeAsset.format)}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-muted-foreground">Dimensions</span>
-                  <span className="font-mono font-black">{activeAsset.dimensions}</span>
+                  <span className="font-bold text-muted-foreground">
+                    {tt('dimensions', 'Dimensions')}
+                  </span>
+                  <span className="font-mono font-black">{pt(activeAsset.dimensions)}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-bold text-muted-foreground">File Size</span>
+                  <span className="font-bold text-muted-foreground">
+                    {tt('fileSize', 'File Size')}
+                  </span>
                   <span className="font-mono font-black">{activeAsset.fileSize}</span>
                 </div>
               </div>
@@ -409,11 +438,15 @@ export function GraphicDesignVisualAssetsView({ data }: GraphicDesignVisualAsset
                   className="flex items-center gap-1 rounded-[6px] border border-border/60 bg-background px-3 py-1.5 text-[10px] font-bold text-foreground hover:bg-muted"
                 >
                   <Copy className="size-3" />
-                  <span>{copiedId === activeAsset.id ? 'Copied Link!' : 'Copy Asset Link'}</span>
+                  <span>
+                    {copiedId === activeAsset.id
+                      ? tt('copiedLink', 'Copied Link!')
+                      : tt('copyAssetLink', 'Copy Asset Link')}
+                  </span>
                 </button>
                 <button className="flex items-center gap-1.5 rounded-[6px] bg-indigo-600 px-4 py-1.5 text-[10px] font-bold text-white shadow-md hover:bg-indigo-700">
                   <Download className="size-3" />
-                  <span>Download Package</span>
+                  <span>{tt('downloadPackage', 'Download Package')}</span>
                 </button>
               </div>
             </div>

@@ -1,8 +1,11 @@
 import type { GalleryItem } from '@/components/3d/Carousel3D';
 import { StaticImageData } from 'next/image';
 
-// Placeholder image imports - adjust to match your actual assets
-import placeholderImage from '@/assets/images/consultify.png';
+import shopsphereCoffee from '@/assets/images/shopsphere/product-coffee.jpg';
+import shopsphereShoe from '@/assets/images/shopsphere/product-shoe.jpg';
+import shopsphereWatch from '@/assets/images/shopsphere/product-watch.jpg';
+import shopsphereMark from '@/assets/images/shopsphere/shopsphere-mark.png';
+import shopsphereStorefront from '@/assets/images/shopsphere/storefront.jpg';
 
 export interface WebProjectDetails {
   projectName: string;
@@ -166,113 +169,200 @@ export interface LanguageBreakdownItem {
 export const SHOPSPHERE_DETAILS: WebProjectDetails = {
   projectName: 'ShopSphere',
   tagline: 'E-commerce platform with advanced product discovery and AI-powered recommendations.',
-  liveDemoUrl: 'https://shopsphere.example.com',
-  repositoryUrl: 'https://github.com/username/shopsphere',
-  imageUrl: placeholderImage.src,
-  coreObjective: 'Build a scalable e-commerce platform with personalized shopping experience',
-  targetAudience: ['Shoppers', 'Retailers', 'E-commerce Businesses'],
-  currentPhase: ['In Development', 'MVP Features', 'Payment Integration'],
+  liveDemoUrl: 'https://shopsphere-store.vercel.app',
+  repositoryUrl: 'https://github.com/ahmedyacine2004/shopsphere',
+  imageUrl: shopsphereMark.src,
+  coreObjective:
+    'Make product discovery, checkout, and fulfillment feel effortless for growing retailers.',
+  targetAudience: ['Online Shoppers', 'Independent Retailers', 'DTC Brands'],
+  currentPhase: ['Private Beta', 'Catalog and Checkout', 'Payments Hardening'],
   systemModules: [
     {
       id: 'products',
       title: 'Product Catalog',
-      description: 'Scalable product database with advanced filtering',
+      description: 'Structured catalog with variants, collections, inventory, and faceted filters.',
       status: 'Stable',
       icon: 'Package',
     },
     {
       id: 'cart',
       title: 'Shopping Cart',
-      description: 'Persistent cart with real-time synchronization',
+      description: 'Persistent cart that survives sessions and stays synchronized across devices.',
       status: 'Stable',
       icon: 'ShoppingCart',
     },
     {
       id: 'payments',
       title: 'Payment Processing',
-      description: 'Secure payment gateway integration',
+      description: 'Checkout orchestration with payment intents, refunds, and order confirmation.',
       status: 'In Development',
       icon: 'CreditCard',
     },
     {
       id: 'recommendations',
       title: 'AI Recommendations',
-      description: 'Personalized product suggestions',
+      description: 'Contextual recommendations based on browsing and purchase signals.',
       status: 'In Development',
       icon: 'Sparkles',
     },
   ],
   architectureSnapshot: [
     { title: 'Frontend', subtitle: 'Next.js / React', icon: 'Smartphone' },
-    { title: 'Backend', subtitle: 'Node.js / Express', icon: 'Cpu' },
-    { title: 'Database', subtitle: 'MongoDB', icon: 'Database' },
-    { title: 'Search', subtitle: 'Elasticsearch', icon: 'Search' },
+    { title: 'Commerce API', subtitle: 'NestJS / Node.js', icon: 'Cpu' },
+    { title: 'Database', subtitle: 'PostgreSQL / Redis', icon: 'Database' },
+    { title: 'Search', subtitle: 'OpenSearch', icon: 'Search' },
   ],
   engineeringHighlights: [
-    'Advanced Search',
-    'AI Recommendations',
-    'Payment Secure',
-    'Inventory Management',
-    'Mobile Optimized',
+    'Faceted Product Search',
+    'Personalized Recommendations',
+    'Payment Intent Flow',
+    'Inventory Reservations',
+    'Mobile-first Checkout',
   ],
 };
 
 export const SHOPSPHERE_GALLERY_DATA: WebProjectGalleryData = {
   projectName: 'ShopSphere',
-  tagline: 'Explore the e-commerce platform interface and shopping experience.',
-  liveDemoUrl: 'https://shopsphere.example.com',
+  tagline: 'Explore the storefront, product detail, and checkout experience behind ShopSphere.',
+  liveDemoUrl: 'https://shopsphere-store.vercel.app',
+  heroGraphicUrl: shopsphereMark.src,
   items: [
     {
       id: 'screen-1',
-      title: 'Homepage & Product Discovery',
-      imageUrl: placeholderImage.src,
+      title: 'Storefront and Product Discovery',
+      imageUrl: shopsphereStorefront.src,
       resolution: '1920 × 1080',
       device: 'Desktop Browser',
       lastUpdated: '3 days ago',
       fileType: 'PNG Image',
+    },
+    {
+      id: 'screen-2',
+      title: 'Product Detail and Variants',
+      imageUrl: shopsphereWatch.src,
+      resolution: '1440 × 900',
+      device: 'Desktop Browser',
+      lastUpdated: '2 days ago',
+      fileType: 'JPG Image',
+    },
+    {
+      id: 'screen-3',
+      title: 'Cart and Checkout Flow',
+      imageUrl: shopsphereShoe.src,
+      resolution: '1440 × 900',
+      device: 'Desktop Browser',
+      lastUpdated: '3 days ago',
+      fileType: 'JPG Image',
+    },
+    {
+      id: 'screen-4',
+      title: 'Order Confirmation and Recommendations',
+      imageUrl: shopsphereCoffee.src,
+      resolution: '1440 × 900',
+      device: 'Desktop Browser',
+      lastUpdated: '3 days ago',
+      fileType: 'JPG Image',
     },
   ],
 };
 
 export const SHOPSPHERE_TECH_STACK_DATA: WebProjectTechStackData = {
   projectName: 'ShopSphere',
-  subtitle: 'E-Commerce Platform',
-  description: 'Full-featured e-commerce solution with modern architecture',
-  totalTechnologiesCount: 20,
+  subtitle: 'Commerce and Checkout Platform',
+  description:
+    'A commerce foundation for catalog management, discovery, checkout, and fulfillment.',
+  totalTechnologiesCount: 19,
   environmentStatus: [
     {
       id: 'frontend',
       title: 'Frontend',
-      count: 7,
-      tools: 'Next.js, React, Redux, Tailwind',
+      count: 6,
+      tools: 'Next.js, React, TypeScript, Tailwind',
       status: 'Running',
-      icon: 'Monitor',
+      icon: 'Code2',
+    },
+    {
+      id: 'commerce-api',
+      title: 'Commerce API',
+      count: 5,
+      tools: 'NestJS, Node.js, REST, Prisma',
+      status: 'Running',
+      icon: 'Server',
+    },
+    {
+      id: 'data-search',
+      title: 'Data and Search',
+      count: 4,
+      tools: 'PostgreSQL, Redis, OpenSearch',
+      status: 'Synced',
+      icon: 'Database',
+    },
+    {
+      id: 'payments',
+      title: 'Payments',
+      count: 2,
+      tools: 'Stripe, Webhooks',
+      status: 'Active',
+      icon: 'Zap',
     },
   ],
   coreStack: [
     {
       id: 'nextjs',
       name: 'Next.js',
-      role: 'Framework',
-      tag: 'v14',
+      role: 'Storefront framework',
+      tag: 'App Router',
+      badgeVariant: 'primary',
+      icon: 'Code2',
+    },
+    {
+      id: 'nestjs',
+      name: 'NestJS',
+      role: 'Commerce API',
+      tag: 'Core',
       badgeVariant: 'core',
-      icon: 'Package',
+      icon: 'Server',
+    },
+    {
+      id: 'postgresql',
+      name: 'PostgreSQL',
+      role: 'Order and catalog data',
+      tag: 'Core',
+      badgeVariant: 'connected',
+      icon: 'Database',
+    },
+    {
+      id: 'stripe',
+      name: 'Stripe',
+      role: 'Payment processing',
+      tag: 'Connected',
+      badgeVariant: 'connected',
+      icon: 'CreditCard',
     },
   ],
   runtimeServices: [
     {
-      id: 'api',
-      name: 'REST API',
+      id: 'search',
+      name: 'OpenSearch',
       status: 'Active',
-      icon: 'Cpu',
+      icon: 'Search',
     },
+    { id: 'redis', name: 'Redis Cache', status: 'Connected', icon: 'Zap' },
+    { id: 'webhooks', name: 'Payment Webhooks', status: 'Active', icon: 'Workflow' },
   ],
   buildStatus: [
     {
-      id: 'build-1',
-      layer: 'Frontend Build',
+      id: 'storefront-build',
+      layer: 'Storefront Build',
       status: 'Passing',
       statusVariant: 'passing',
+    },
+    { id: 'api-build', layer: 'Commerce API', status: 'Passing', statusVariant: 'passing' },
+    {
+      id: 'payment-connection',
+      layer: 'Payment Connection',
+      status: 'Connected',
+      statusVariant: 'connected',
     },
   ],
 };
@@ -285,12 +375,21 @@ export const SHOPSPHERE_DEMO_DATA: WebProjectDemoData = {
     { label: 'Environment', value: 'Production' },
     { label: 'Region', value: 'Multi-Region' },
   ],
-  liveDemoUrl: 'https://shopsphere.example.com',
-  runtimeHighlights: ['Fast Checkout', 'Product Search', 'AI Recommendations'],
-  systemOutput: ['Server running on port 3000', 'Database connected', 'Search indexed'],
+  heroImageUrl: shopsphereMark,
+  liveDemoUrl: 'https://shopsphere-store.vercel.app',
+  runtimeHighlights: [
+    'Fast checkout flow',
+    'Faceted product search',
+    'Personalized recommendations',
+  ],
+  systemOutput: [
+    'ShopSphere API ready on port 3000',
+    'Catalog index synchronized',
+    'Payment webhooks listening',
+  ],
   previewSession: {
     status: 'Running',
-    url: 'https://shopsphere.example.com',
+    url: 'https://shopsphere-store.vercel.app',
     device: 'Desktop',
     region: 'Multi-Region',
   },
@@ -301,14 +400,14 @@ export const SHOPSPHERE_REPOSITORY_DATA: WebProjectRepositoryData = {
   projectName: 'ShopSphere',
   badgeText: 'GITHUB REPOSITORY',
   status: 'Online',
-  repositoryPath: 'username/shopsphere',
-  description: 'E-commerce platform with AI-powered features',
+  repositoryPath: 'ahmedyacine2004 / shopsphere',
+  description: 'Commerce storefront and checkout platform with search and recommendations.',
   stats: [
     { id: 'stars', label: 'Stars', value: 687, icon: 'Star' },
     { id: 'forks', label: 'Forks', value: 234, icon: 'GitFork' },
     { id: 'commits', label: 'Commits', value: 892, icon: 'GitCommit' },
   ],
-  activeTab: 'Code',
+  activeTab: 'README',
   latestCommit: {
     title: 'feat: add AI product recommendations',
     authorName: 'Ahmed',

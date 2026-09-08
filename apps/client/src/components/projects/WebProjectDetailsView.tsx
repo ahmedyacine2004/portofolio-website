@@ -7,6 +7,8 @@ import {
   Bell,
   Calendar,
   CheckCircle2,
+  CheckSquare,
+  CreditCard,
   ChevronRight,
   Cloud,
   Cpu,
@@ -16,12 +18,17 @@ import {
   GitFork,
   Grid,
   Layers,
+  LineChart,
+  Package,
+  Search,
+  ShoppingCart,
   MapPin,
   Rocket,
   Settings,
   Shield,
   Smartphone,
   User,
+  Users,
   Zap,
   type LucideIcon,
 } from 'lucide-react';
@@ -39,6 +46,13 @@ const ICON_MAP: Record<string, LucideIcon> = {
   GitFork,
   Database,
   Cloud,
+  CheckSquare,
+  Users,
+  LineChart,
+  CreditCard,
+  Package,
+  Search,
+  ShoppingCart,
 };
 
 interface WebProjectDetailsViewProps {
@@ -46,7 +60,27 @@ interface WebProjectDetailsViewProps {
 }
 
 export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
-  const { t } = useTranslation();
+  const { t, tArray } = useTranslation();
+  const projectKey = data.projectName
+    .split(/\s+/)
+    .map((part, index) =>
+      index === 0 ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase(),
+    )
+    .join('');
+  const projectTranslationKey =
+    projectKey === 'portfolioWorkspace'
+      ? 'projects.portfolioWorkspace'
+      : projectKey === 'taskflowDashboard'
+        ? 'projects.taskflowDashboard'
+        : projectKey === 'shopsphere'
+          ? 'projects.shopsphere'
+          : `projectsDetails.${projectKey}`;
+  const getProjectText = (key: string, fallback: string) =>
+    t(`${projectTranslationKey}.${key}`, fallback);
+  const getProjectArray = (key: string, fallback: string[]) => {
+    const translated = tArray(`${projectTranslationKey}.${key}`);
+    return translated.length > 0 ? translated.map(String) : fallback;
+  };
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
@@ -77,14 +111,16 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                 <div className="flex h-20 w-32 shrink-0 items-center justify-center overflow-hidden rounded-[6px] max-md:h-16 max-md:w-24 max-md:self-center">
                   <img
                     src={data.imageUrl}
-                    alt={`${data.projectName} Preview`}
+                    alt={getProjectText('previewAlt', `${data.projectName} Preview`)}
                     className="size-full object-contain drop-shadow-md dark:drop-shadow-none"
                   />
                 </div>
               )}
             </div>
 
-            <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">{data.tagline}</p>
+            <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
+              {getProjectText('tagline', data.tagline)}
+            </p>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-2 max-md:flex-col max-md:items-stretch">
@@ -121,7 +157,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                 {t('projectsDetails.commonLabels.coreObjective')}
               </h3>
               <p className="mt-1 text-[9px] leading-tight text-muted-foreground">
-                {data.coreObjective}
+                {getProjectText('coreObjective', data.coreObjective)}
               </p>
             </div>
 
@@ -133,7 +169,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                 {t('projectsDetails.commonLabels.targetAudience')}
               </h3>
               <ul className="mt-1 space-y-0.5 text-[9px] text-muted-foreground">
-                {data.targetAudience.map((item) => (
+                {getProjectArray('targetAudience', data.targetAudience).map((item) => (
                   <li key={item} className="flex items-center gap-1">
                     <span className="size-1 rounded-full bg-muted-foreground" />
                     <span>{item}</span>
@@ -154,7 +190,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
               </h3>
             </div>
             <ul className="mt-2 grid grid-cols-3 gap-1 text-[9px] text-muted-foreground">
-              {data.currentPhase.map((phase) => (
+              {getProjectArray('currentPhase', data.currentPhase).map((phase) => (
                 <li key={phase} className="flex items-center gap-1">
                   <span className="size-1 rounded-full bg-blue-500" />
                   <span className="truncate">{phase}</span>
@@ -189,8 +225,12 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                     <IconComponent className="size-3.5" />
                   </div>
                   <div>
-                    <h4 className="font-inter text-[10px] font-bold">{module.title}</h4>
-                    <p className="text-[9px] text-muted-foreground">{module.description}</p>
+                    <h4 className="font-inter text-[10px] font-bold">
+                      {getProjectText(`systemModules.${module.id}.title`, module.title)}
+                    </h4>
+                    <p className="text-[9px] text-muted-foreground">
+                      {getProjectText(`systemModules.${module.id}.description`, module.description)}
+                    </p>
                   </div>
                 </div>
 
@@ -202,7 +242,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                         : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
                     }`}
                   >
-                    {module.status}
+                    {getProjectText(`systemModules.${module.id}.status`, module.status)}
                   </span>
                   <ChevronRight className="size-3 text-muted-foreground" />
                 </div>
@@ -235,9 +275,17 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
                       <NodeIcon className="size-4" />
                     </div>
                     <span className="font-inter mt-2 text-[9px] font-bold leading-none">
-                      {node.title}
+                      {getProjectText(
+                        `architecture.${node.title.toLowerCase().replace(/\s+/g, '-')}.title`,
+                        node.title,
+                      )}
                     </span>
-                    <span className="mt-0.5 text-[8px] text-muted-foreground">{node.subtitle}</span>
+                    <span className="mt-0.5 text-[8px] text-muted-foreground">
+                      {getProjectText(
+                        `architecture.${node.title.toLowerCase().replace(/\s+/g, '-')}.subtitle`,
+                        node.subtitle,
+                      )}
+                    </span>
                   </div>
 
                   {!isLast && <ChevronRight className="size-3 shrink-0 text-muted-foreground" />}
@@ -257,15 +305,17 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            {data.engineeringHighlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex items-center gap-1.5 rounded-[4px] bg-background/50 p-1.5 text-[9px] font-medium shadow-xs shadow-gray-300 dark:shadow-none"
-              >
-                <CheckCircle2 className="size-3 shrink-0 text-purple-600 dark:text-purple-400" />
-                <span className="truncate">{highlight}</span>
-              </div>
-            ))}
+            {getProjectArray('engineeringHighlights', data.engineeringHighlights).map(
+              (highlight) => (
+                <div
+                  key={highlight}
+                  className="flex items-center gap-1.5 rounded-[4px] bg-background/50 p-1.5 text-[9px] font-medium shadow-xs shadow-gray-300 dark:shadow-none"
+                >
+                  <CheckCircle2 className="size-3 shrink-0 text-purple-600 dark:text-purple-400" />
+                  <span className="truncate">{highlight}</span>
+                </div>
+              ),
+            )}
           </div>
         </div>
       </div>

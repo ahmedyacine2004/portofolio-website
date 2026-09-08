@@ -139,7 +139,6 @@
   },
   "projects": {
     "projectWorkspace": "Espace de travail projet",
-    "description": "Sélectionnez un projet dans le panneau Contrôle de source pour inspecter son référentiel.",
     "browseFeatured": "Parcourir les projets en vedette",
     "workspaceStatus": "Statut de l'espace de travail",
     "projects": "Projets",
@@ -680,6 +679,444 @@
       "guidelines": "Directives",
       "colorPalette": "Palette de Couleurs",
       "mockups": "Maquettes"
+    },
+    "projectPages": "Pages du projet",
+    "consultify": {
+      "tagline": "Écosystème de consultation alimenté par l'IA, mettant les utilisateurs en relation avec des experts certifiés.",
+      "coreObjective": "Rendre les connaissances des experts accessibles à tous",
+      "targetAudience": ["Étudiants", "Professionnels", "Entreprises"],
+      "currentPhase": ["Développement du MVP", "Architecture terminée", "Système UI prêt"],
+      "systemModules": {
+        "auth": {
+          "title": "Authentification",
+          "description": "Authentification sécurisée avec OAuth et JWT",
+          "status": "Stable"
+        },
+        "booking": {
+          "title": "Réservation de consultations",
+          "description": "Planification intelligente et gestion du calendrier",
+          "status": "Stable"
+        },
+        "ai-assistant": {
+          "title": "Assistant IA",
+          "description": "Recommandations et informations alimentées par l'IA",
+          "status": "En développement"
+        },
+        "notifications": {
+          "title": "Notifications",
+          "description": "Système d'alertes et de communication en temps réel",
+          "status": "Stable"
+        },
+        "admin": {
+          "title": "Administration",
+          "description": "Gestion de la plateforme et tableau de bord analytique",
+          "status": "Stable"
+        }
+      },
+      "architecture": {
+        "client": { "title": "Client", "subtitle": "Web / Mobile" },
+        "api-gateway": { "title": "Passerelle API", "subtitle": "Nginx / Express" },
+        "services": { "title": "Services", "subtitle": "Microservices" },
+        "database": { "title": "Base de données", "subtitle": "MongoDB" },
+        "storage": { "title": "Stockage", "subtitle": "Stockage cloud" }
+      },
+      "engineeringHighlights": [
+        "Architecture modulaire",
+        "Support multilingue",
+        "Flux de travail axé sur l'IA",
+        "Backend évolutif",
+        "Compatible Docker",
+        "Système de design responsive"
+      ],
+      "previewAlt": "Aperçu de Consultify",
+      "gallery": {
+        "title": "Galerie",
+        "openLiveDemo": "Ouvrir la démo en direct",
+        "browseScreens": "Parcourir les écrans",
+        "resolution": "Résolution",
+        "device": "Appareil",
+        "lastUpdated": "Dernière mise à jour",
+        "fileType": "Type de fichier",
+        "graphicAlt": "Graphique de Consultify",
+        "toggleFullscreen": "Basculer en plein écran",
+        "items": {
+          "screen-1": {
+            "title": "Page d'accueil et section principale",
+            "device": "Navigateur de bureau",
+            "lastUpdated": "il y a 2 jours",
+            "fileType": "Image PNG"
+          },
+          "screen-2": {
+            "title": "Découverte et filtrage des experts",
+            "device": "Navigateur de bureau",
+            "lastUpdated": "il y a 3 jours",
+            "fileType": "Image PNG"
+          },
+          "screen-3": {
+            "title": "Fenêtre de réservation d'un consultant",
+            "device": "MacBook Pro",
+            "lastUpdated": "il y a 5 jours",
+            "fileType": "Image PNG"
+          },
+          "screen-4": {
+            "title": "Espace de consultation vidéo en direct",
+            "device": "Navigateur de bureau",
+            "lastUpdated": "il y a 1 semaine",
+            "fileType": "Image PNG"
+          },
+          "screen-5": {
+            "title": "Tableau de bord analytique et des revenus",
+            "device": "Navigateur de bureau",
+            "lastUpdated": "il y a 2 semaines",
+            "fileType": "Image PNG"
+          },
+          "screen-6": {
+            "title": "Portail d'avis et de retours clients",
+            "device": "Navigateur de bureau",
+            "lastUpdated": "il y a 2 semaines",
+            "fileType": "Image PNG"
+          }
+        }
+      },
+      "techStack": {
+        "subtitle": "Environnement de travail",
+        "description": "Environnement d'exécution interactif des technologies qui alimentent le projet.",
+        "technologiesLoaded": "Technologies chargées",
+        "coreStack": "Pile principale",
+        "runtimeServices": "Services d'exécution",
+        "buildStatus": "État de la compilation",
+        "environment": {
+          "frontend-env": { "title": "Frontend" },
+          "data-env": { "title": "Couche de données" },
+          "backend-env": { "title": "Backend" },
+          "ui-env": { "title": "UI/UX" }
+        },
+        "statuses": {
+          "Running": "En cours",
+          "Synced": "Synchronisé",
+          "Available": "Disponible",
+          "Connected": "Connecté",
+          "Passing": "Réussi",
+          "Production": "Production"
+        },
+        "core": {
+          "react": { "role": "Framework frontend", "tag": "Principal" },
+          "typescript": { "role": "Sécurité des types", "tag": "Noyau" },
+          "nestjs": { "role": "Framework backend", "tag": "Noyau" },
+          "mongodb": { "role": "Base de données principale", "tag": "Connecté" }
+        },
+        "runtime": {
+          "openai": { "name": "API OpenAI" },
+          "cloudinary": { "name": "Cloudinary" },
+          "stripe": { "name": "Stripe" },
+          "resend": { "name": "E-mail Resend" }
+        },
+        "build": {
+          "build-fe": { "layer": "Couche frontend" },
+          "build-be": { "layer": "Couche backend" },
+          "build-db": { "layer": "Couche base de données" },
+          "build-deploy": { "layer": "Déploiement" }
+        }
+      },
+      "demo": {
+        "badgeText": "LANCER LE PROJET",
+        "status": "En ligne",
+        "heroAlt": "Illustration principale de Consultify",
+        "executionConfiguration": "Configuration d'exécution",
+        "launchLiveDemo": "Lancer la démo en direct",
+        "runtime": "Exécution",
+        "systemOutput": "Sortie système",
+        "previewSession": "Session de prévisualisation",
+        "sessionStatus": "État de la session",
+        "url": "URL",
+        "device": "Appareil",
+        "region": "Région",
+        "launchArguments": "Arguments de lancement",
+        "arguments": "arguments",
+        "configLabels": {
+          "Project": "Projet",
+          "Environment": "Environnement",
+          "Build": "Compilation",
+          "Runtime": "Exécution"
+        },
+        "configValues": {
+          "Production": "Production",
+          "Ready": "Prêt"
+        },
+        "previewValues": {
+          "device": "Ordinateur de bureau",
+          "region": "Algérie, Tébessa, Tébessa"
+        },
+        "statuses": {
+          "Online": "En ligne",
+          "Running": "En cours"
+        },
+        "runtimeHighlights": [
+          "Architecture modulaire",
+          "Support multilingue",
+          "Flux de travail axé sur l'IA",
+          "Backend évolutif"
+        ],
+        "systemOutputLines": [
+          "################################",
+          "TOUS LES SYSTÈMES SONT OPÉRATIONNELS.",
+          "CONSULTIFY EST DISPONIBLE DÈS MAINTENANT",
+          "DÉVELOPPEZ VOS CONNAISSANCES.",
+          "################################"
+        ],
+        "launchArgumentLines": [
+          "-- mode=production",
+          "-- appareil=ordinateur",
+          "-- réseau=en-ligne",
+          "-- performance=optimisée"
+        ]
+      },
+      "repository": {
+        "badgeText": "DÉPÔT GITHUB",
+        "status": "En ligne",
+        "heroAlt": "Illustration principale de Consultify",
+        "repositoryLabel": "Dépôt",
+        "description": "Plateforme de consultation alimentée par l'IA, mettant les utilisateurs en relation avec des experts certifiés.",
+        "notice": "Remarque : cliquez pour prévisualiser le contenu [Modèle]",
+        "latestCommits": "Derniers commits",
+        "author": "Auteur",
+        "commitMessage": "Message du commit",
+        "branches": "Branches",
+        "default": "Par défaut",
+        "moreBranches": "branches supplémentaires",
+        "repositoryInsights": "Statistiques du dépôt",
+        "files": "Fichiers",
+        "commits": "Commits",
+        "contributors": "Contributeurs",
+        "openIssues": "Issues ouvertes",
+        "pullRequests": "Pull requests",
+        "viewAllInsights": "Voir toutes les statistiques",
+        "continuousIntegration": "Intégration continue",
+        "languages": "Langages",
+        "viewAllLanguages": "Voir tous les langages",
+        "ciNames": {
+          "Build": "Compilation",
+          "Tests": "Tests",
+          "Lint": "Vérification du code",
+          "Deployments": "Déploiements"
+        },
+        "tabs": {
+          "README": "README",
+          "Commits": "Commits",
+          "Branches": "Branches",
+          "Releases": "Versions",
+          "Insights": "Statistiques"
+        },
+        "statuses": {
+          "Online": "En ligne",
+          "Passing": "Réussi",
+          "Production": "Production"
+        },
+        "stats": {
+          "stars": "Étoiles",
+          "forks": "Forks",
+          "watching": "Observateurs",
+          "releases": "Versions"
+        },
+        "commit": {
+          "title": "feat(ai) : intégration du moteur de recommandations multilingue",
+          "message": "Mise en place d'un moteur de recommandations alimenté par l'IA avec prise en charge multilingue. Ajout de la détection de langue, du calcul du score des recommandations, de l'optimisation des prompts et d'un middleware de traduction pour l'anglais, le français et l'arabe."
+        },
+        "languagesList": {
+          "TypeScript": "TypeScript",
+          "CSS": "CSS",
+          "JavaScript": "JavaScript",
+          "HTML": "HTML",
+          "Other": "Autres"
+        }
+      },
+      "portfolioWorkspace": {
+        "tagline": "Plateforme portfolio full-stack avec Next.js, React, TypeScript et MongoDB.",
+        "previewAlt": "Logo de Portfolio Workspace",
+        "coreObjective": "Présenter des travaux créatifs avec une plateforme portfolio moderne et interactive",
+        "targetAudience": ["Designers", "Développeurs", "Professionnels de la création"],
+        "currentPhase": ["Production", "API terminée", "Interface finalisée"],
+        "systemModules": {
+          "auth": {
+            "title": "Authentification",
+            "description": "Système d'authentification sécurisé basé sur JWT",
+            "status": "Stable"
+          },
+          "projects": {
+            "title": "Gestion des projets",
+            "description": "Opérations CRUD pour la gestion du portfolio de projets",
+            "status": "Stable"
+          },
+          "analytics": {
+            "title": "Analytique",
+            "description": "Suivi des visites du portfolio et des indicateurs d'engagement",
+            "status": "En développement"
+          },
+          "admin": {
+            "title": "Administration",
+            "description": "Gestion du contenu et tableau de bord",
+            "status": "Stable"
+          }
+        },
+        "architecture": {
+          "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
+          "backend": { "title": "Backend", "subtitle": "Node.js / Express" },
+          "database": { "title": "Base de données", "subtitle": "MongoDB" },
+          "storage": { "title": "Stockage", "subtitle": "Stockage cloud" }
+        },
+        "engineeringHighlights": [
+          "Génération SSR et statique",
+          "Design responsive",
+          "Optimisé pour le SEO",
+          "Temps de chargement rapides",
+          "Tableau de bord administrateur"
+        ],
+        "gallery": {
+          "title": "Galerie",
+          "openLiveDemo": "Ouvrir la démo en direct",
+          "browseScreens": "Parcourir les écrans",
+          "resolution": "Résolution",
+          "device": "Appareil",
+          "lastUpdated": "Dernière mise à jour",
+          "fileType": "Type de fichier",
+          "graphicAlt": "Illustration de Portfolio Workspace",
+          "items": {
+            "screen-1": {
+              "title": "Accueil du portfolio",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 1 jour",
+              "fileType": "Image PNG"
+            },
+            "screen-2": {
+              "title": "Espace À propos et profil",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 1 jour",
+              "fileType": "Image PNG"
+            },
+            "screen-3": {
+              "title": "Tableau de bord des projets",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 2 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-4": {
+              "title": "Explorateur des compétences et technologies",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 2 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-5": {
+              "title": "Chronologie de l'expérience",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 3 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-6": {
+              "title": "Espace de détails du projet",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 3 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-7": {
+              "title": "Espace de contact",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 4 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-8": {
+              "title": "Espace de l'assistant IA",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 4 jours",
+              "fileType": "Image PNG"
+            },
+            "screen-9": {
+              "title": "Espace des paramètres",
+              "device": "Navigateur de bureau",
+              "lastUpdated": "il y a 5 jours",
+              "fileType": "Image PNG"
+            }
+          }
+        },
+        "techStack": {
+          "subtitle": "Architecture full-stack moderne",
+          "description": "Construit avec des technologies modernes pour la performance, la maintenabilité et l'évolutivité.",
+          "technologiesLoaded": "Technologies chargées",
+          "coreStack": "Pile principale",
+          "runtimeServices": "Services d'exécution",
+          "buildStatus": "État de la compilation",
+          "environment": {
+            "frontend-runtime": { "title": "Frontend" },
+            "backend-runtime": { "title": "Backend" },
+            "data-layer": { "title": "Couche de données" },
+            "interactive-ui": { "title": "Interface interactive" }
+          },
+          "statuses": {
+            "Running": "En cours",
+            "Synced": "Connecté",
+            "Connected": "Connecté",
+            "Active": "Actif",
+            "Passing": "Réussi"
+          },
+          "core": {
+            "nextjs": { "role": "Frontend avec App Router", "tag": "v16.3" },
+            "react": { "role": "Runtime des composants UI", "tag": "v19.2" },
+            "nestjs": { "role": "Framework applicatif backend", "tag": "v11" },
+            "typescript": { "role": "Système de types strict", "tag": "v5" },
+            "tailwind": { "role": "Styles utilitaires", "tag": "v4" },
+            "mongodb": { "role": "Base de données documentaire", "tag": "Connecté" }
+          },
+          "runtime": {
+            "react-query": { "name": "TanStack Query" },
+            "zustand": { "name": "Zustand" },
+            "three": { "name": "Three.js / R3F" },
+            "rest-api": { "name": "API REST NestJS" }
+          },
+          "build": {
+            "client-build": { "layer": "Client Next.js" },
+            "server-build": { "layer": "Serveur NestJS" },
+            "database-connection": { "layer": "Connexion MongoDB" }
+          }
+        },
+        "demo": {
+          "badgeText": "PORTFOLIO EN DIRECT",
+          "status": "En ligne",
+          "heroAlt": "Logo de Portfolio Workspace",
+          "executionConfiguration": "Configuration du portfolio",
+          "launchLiveDemo": "Ouvrir l'accueil du portfolio",
+          "runtime": "Exécution du portfolio",
+          "systemOutput": "Sortie système",
+          "previewSession": "Session de prévisualisation",
+          "sessionStatus": "État de la session",
+          "url": "URL",
+          "device": "Appareil",
+          "region": "Région",
+          "launchArguments": "Arguments de lancement",
+          "arguments": "arguments",
+          "configLabels": {
+            "Environment": "Environnement",
+            "Region": "Région"
+          },
+          "configValues": {
+            "Production": "Production",
+            "US East": "Hébergement du portfolio"
+          },
+          "previewValues": {
+            "device": "Ordinateur de bureau",
+            "region": "Racine du portfolio"
+          },
+          "statuses": {
+            "Online": "En ligne",
+            "Running": "En cours"
+          },
+          "runtimeHighlights": [
+            "Temps de chargement rapides",
+            "Design responsive",
+            "Optimisé pour le SEO"
+          ],
+          "systemOutputLines": ["Client Next.js prêt", "Espace portfolio chargé"],
+          "launchArgumentLines": ["npm run dev", "NODE_ENV=production"]
+        }
+      }
     }
   },
   "projectsSidebar": {

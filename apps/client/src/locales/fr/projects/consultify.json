@@ -1,0 +1,57 @@
+{
+  "demo": {
+    "badgeText": "LANCER LE PROJET",
+    "status": "En ligne",
+    "heroAlt": "Illustration principale de Consultify",
+    "executionConfiguration": "Configuration d'exécution",
+    "launchLiveDemo": "Lancer la démo en direct",
+    "runtime": "Exécution",
+    "systemOutput": "Sortie système",
+    "previewSession": "Session de prévisualisation",
+    "sessionStatus": "État de la session",
+    "url": "URL",
+    "device": "Appareil",
+    "region": "Région",
+    "launchArguments": "Arguments de lancement",
+    "arguments": "arguments",
+    "configLabels": {
+      "Project": "Projet",
+      "Environment": "Environnement",
+      "Build": "Compilation",
+      "Runtime": "Exécution"
+    },
+    "configValues": {
+      "CONSULTIFY": "CONSULTIFY",
+      "Production": "Production",
+      "v1.0.0": "v1.0.0",
+      "Ready": "Prêt"
+    },
+    "previewValues": {
+      "device": "Ordinateur de bureau",
+      "region": "Algérie, Tébessa, Tébessa"
+    },
+    "statuses": {
+      "Online": "En ligne",
+      "Running": "En cours"
+    },
+    "runtimeHighlights": [
+      "Architecture modulaire",
+      "Support multilingue",
+      "Flux de travail axé sur l'IA",
+      "Backend évolutif"
+    ],
+    "systemOutputLines": [
+      "################################",
+      "TOUS LES SYSTÈMES SONT OPÉRATIONNELS.",
+      "CONSULTIFY EST DISPONIBLE DÈS MAINTENANT",
+      "DÉVELOPPEZ VOS CONNAISSANCES.",
+      "################################"
+    ],
+    "launchArgumentLines": [
+      "-- mode=production",
+      "-- appareil=ordinateur",
+      "-- réseau=en-ligne",
+      "-- performance=optimisée"
+    ]
+  }
+}

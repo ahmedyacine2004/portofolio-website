@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import {
   ArrowUpRight,
   Calendar,
@@ -31,13 +32,37 @@ interface WebProjectGalleryViewProps {
 }
 
 export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGalleryViewProps) {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(0);
+  const projectKey = data.projectName
+    .split(/\s+/)
+    .map((part, index) =>
+      index === 0 ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase(),
+    )
+    .join('');
+  const projectTranslationKey =
+    projectKey === 'portfolioWorkspace'
+      ? 'projects.portfolioWorkspace'
+      : projectKey === 'taskflowDashboard'
+        ? 'projects.taskflowDashboard'
+        : projectKey === 'shopsphere'
+          ? 'projects.shopsphere'
+          : `projectsDetails.${projectKey}`;
+  const getGalleryText = (key: string, fallback: string) =>
+    t(`${projectTranslationKey}.gallery.${key}`, fallback);
 
   if (!data || !data.items || data.items.length === 0) {
     return null;
   }
 
-  const currentItem = data.items[activeIndex] || data.items[0];
+  const translatedItems = data.items.map((item) => ({
+    ...item,
+    title: getGalleryText(`items.${item.id}.title`, item.title),
+    device: getGalleryText(`items.${item.id}.device`, item.device || ''),
+    lastUpdated: getGalleryText(`items.${item.id}.lastUpdated`, item.lastUpdated || ''),
+    fileType: getGalleryText(`items.${item.id}.fileType`, item.fileType || ''),
+  }));
+  const translatedCurrentItem = translatedItems[activeIndex] || translatedItems[0];
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
@@ -52,13 +77,15 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
             </div>
             <div className="flex flex-col">
               <span className="font-inter text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Gallery
+                {getGalleryText('title', 'Gallery')}
               </span>
               <h1 className="font-inter text-2xl font-bold tracking-tight">{data.projectName}</h1>
             </div>
           </div>
 
-          <p className="text-[11px] leading-relaxed text-muted-foreground">{data.tagline}</p>
+          <p className="text-[11px] leading-relaxed text-muted-foreground">
+            {t(`${projectTranslationKey}.tagline`, data.tagline)}
+          </p>
 
           <div className="mt-1 flex flex-wrap items-center gap-2.5">
             {data.liveDemoUrl && (
@@ -68,7 +95,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-[6px] bg-primary px-4 py-2 text-[10px] font-bold text-primary-foreground shadow-xs shadow-gray-300 transition-opacity hover:opacity-90 dark:shadow-none"
               >
-                <span>Open Live Demo</span>
+                <span>{getGalleryText('openLiveDemo', 'Open Live Demo')}</span>
                 <ArrowUpRight className="size-3.5" />
               </a>
             )}
@@ -80,7 +107,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
                 className="flex items-center gap-2 rounded-[6px] bg-muted px-4 py-2 text-[10px] font-bold shadow-xs shadow-gray-300 transition-colors hover:bg-accent dark:shadow-none"
               >
                 <Layers className="size-3.5 text-muted-foreground" />
-                <span>Browse Screens</span>
+                <span>{getGalleryText('browseScreens', 'Browse Screens')}</span>
               </a>
             )}
           </div>
@@ -91,7 +118,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
           {data.heroGraphicUrl ? (
             <img
               src={data.heroGraphicUrl}
-              alt={`${data.projectName} Graphic`}
+              alt={getGalleryText('graphicAlt', `${data.projectName} Graphic`)}
               className="size-full object-contain drop-shadow-md dark:drop-shadow-none"
             />
           ) : (
@@ -105,7 +132,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
       {/* --- 3D CAROUSEL SECTION --- */}
       <div className="rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         <Carousel3D
-          items={data.items}
+          items={translatedItems}
           activeIndex={activeIndex}
           onSelectIndex={setActiveIndex}
           onToggleFullscreen={onToggleFullscreen}
@@ -120,8 +147,12 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
             <Grid className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <span className="block text-[9px] font-medium text-muted-foreground">Resolution</span>
-            <p className="truncate text-[10px] font-bold">{currentItem.resolution || '—'}</p>
+            <span className="block text-[9px] font-medium text-muted-foreground">
+              {getGalleryText('resolution', 'Resolution')}
+            </span>
+            <p className="truncate text-[10px] font-bold">
+              {translatedCurrentItem.resolution || '—'}
+            </p>
           </div>
         </div>
 
@@ -131,8 +162,10 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
             <Monitor className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <span className="block text-[9px] font-medium text-muted-foreground">Device</span>
-            <p className="truncate text-[10px] font-bold">{currentItem.device || '—'}</p>
+            <span className="block text-[9px] font-medium text-muted-foreground">
+              {getGalleryText('device', 'Device')}
+            </span>
+            <p className="truncate text-[10px] font-bold">{translatedCurrentItem.device || '—'}</p>
           </div>
         </div>
 
@@ -142,8 +175,12 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
             <Calendar className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <span className="block text-[9px] font-medium text-muted-foreground">Last Updated</span>
-            <p className="truncate text-[10px] font-bold">{currentItem.lastUpdated || '—'}</p>
+            <span className="block text-[9px] font-medium text-muted-foreground">
+              {getGalleryText('lastUpdated', 'Last Updated')}
+            </span>
+            <p className="truncate text-[10px] font-bold">
+              {translatedCurrentItem.lastUpdated || '—'}
+            </p>
           </div>
         </div>
 
@@ -153,8 +190,12 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
             <FileText className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <span className="block text-[9px] font-medium text-muted-foreground">File Type</span>
-            <p className="truncate text-[10px] font-bold">{currentItem.fileType || '—'}</p>
+            <span className="block text-[9px] font-medium text-muted-foreground">
+              {getGalleryText('fileType', 'File Type')}
+            </span>
+            <p className="truncate text-[10px] font-bold">
+              {translatedCurrentItem.fileType || '—'}
+            </p>
           </div>
         </div>
       </div>
@@ -174,14 +215,14 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
           </button>
 
           {/* Thumbnail Strip */}
-          <div className="grid flex-1 grid-cols-6 gap-2 overflow-hidden">
-            {data.items.map((item, idx) => {
+          <div className="flex min-w-0 flex-1 gap-2 overflow-x-auto px-1 py-1">
+            {translatedItems.map((item, idx) => {
               const isSelected = idx === activeIndex;
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveIndex(idx)}
-                  className={`group relative aspect-video overflow-hidden rounded-[6px] bg-background transition-all ${
+                  className={`group relative aspect-video w-[clamp(100px,11vw,180px)] shrink-0 overflow-hidden rounded-[6px] bg-background transition-all ${
                     isSelected
                       ? 'ring-2 ring-primary shadow-md shadow-gray-300 dark:shadow-[0_0_4px_rgba(255,255,255,0.03)]'
                       : 'opacity-50 hover:opacity-100'

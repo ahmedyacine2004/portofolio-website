@@ -1,0 +1,189 @@
+{
+  "tagline": "Un espace de gestion de projets en temps réel pour planifier, collaborer et suivre les livraisons.",
+  "previewAlt": "Logo de TaskFlow Dashboard",
+  "coreObjective": "Offrir aux équipes distribuées un espace unique pour planifier, exécuter et livrer leurs projets.",
+  "targetAudience": ["Équipes produit", "Chefs de projet", "Agences"],
+  "currentPhase": ["Bêta publique", "Collaboration en temps réel", "Rapports en cours"],
+  "systemModules": {
+    "tasks": {
+      "title": "Gestion des tâches",
+      "description": "Créer, attribuer, prioriser et suivre le travail du backlog à la livraison.",
+      "status": "Stable"
+    },
+    "collaboration": {
+      "title": "Collaboration d'équipe",
+      "description": "Garder les commentaires, mentions et activités liés au travail.",
+      "status": "Stable"
+    },
+    "analytics": {
+      "title": "Analytique de livraison",
+      "description": "Suivre le cycle, le débit, la charge et la progression des sprints.",
+      "status": "En développement"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Recevoir des alertes ciblées pour les attributions, mentions et échéances.",
+      "status": "Stable"
+    }
+  },
+  "architecture": {
+    "frontend": { "title": "Frontend", "subtitle": "Next.js / TypeScript" },
+    "realtime": { "title": "Temps réel", "subtitle": "Passerelle WebSocket" },
+    "backend": { "title": "Backend", "subtitle": "NestJS / Node.js" },
+    "database": { "title": "Base de données", "subtitle": "PostgreSQL / Redis" }
+  },
+  "engineeringHighlights": [
+    "Synchronisation événementielle",
+    "Espaces par rôles",
+    "Analytique des sprints",
+    "Mises à jour UI optimistes",
+    "Workflows responsives"
+  ],
+  "gallery": {
+    "title": "Galerie produit",
+    "openLiveDemo": "Ouvrir TaskFlow",
+    "browseScreens": "Parcourir les écrans",
+    "resolution": "Résolution",
+    "device": "Appareil",
+    "lastUpdated": "Dernière mise à jour",
+    "fileType": "Type de fichier",
+    "graphicAlt": "Logo de TaskFlow Dashboard",
+    "items": {
+      "screen-1": {
+        "title": "Vue d'ensemble de l'espace",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 2 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-2": {
+        "title": "Tableau Kanban du projet",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 2 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-3": {
+        "title": "Activité et collaboration d'équipe",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-4": {
+        "title": "Calendrier des sprints et échéances",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image JPG"
+      }
+    }
+  },
+  "techStack": {
+    "subtitle": "Plateforme collaborative de livraison",
+    "description": "Un espace de projet en temps réel pour planifier, collaborer et suivre les livraisons.",
+    "technologiesLoaded": "Technologies chargées",
+    "coreStack": "Pile principale",
+    "runtimeServices": "Services d'exécution",
+    "buildStatus": "État de la compilation",
+    "environment": {
+      "frontend": { "title": "Frontend" },
+      "realtime": { "title": "Couche temps réel" },
+      "backend": { "title": "Backend" }
+    },
+    "statuses": {
+      "Running": "En cours",
+      "Synced": "Connecté",
+      "Connected": "Connecté",
+      "Active": "Actif",
+      "Passing": "Réussi"
+    },
+    "core": {
+      "nextjs": { "role": "Framework applicatif", "tag": "App Router" },
+      "nestjs": { "role": "Couche API temps réel", "tag": "Noyau" },
+      "postgresql": { "role": "Base de données relationnelle", "tag": "Noyau" }
+    },
+    "runtime": {
+      "websocket": { "name": "Passerelle WebSocket" },
+      "redis": { "name": "Redis Pub/Sub" },
+      "notifications": { "name": "Worker de notifications" }
+    },
+    "build": {
+      "frontend-build": { "layer": "Compilation frontend" },
+      "api-build": { "layer": "Compilation API et WebSocket" },
+      "database": { "layer": "Migrations de la base" }
+    }
+  },
+  "demo": {
+    "badgeText": "TASKFLOW EN DIRECT",
+    "status": "En ligne",
+    "heroAlt": "Logo de TaskFlow Dashboard",
+    "executionConfiguration": "Configuration de l'espace",
+    "launchLiveDemo": "Ouvrir TaskFlow",
+    "runtime": "Exécution de TaskFlow",
+    "systemOutput": "Sortie système",
+    "previewSession": "Session de prévisualisation",
+    "sessionStatus": "État de la session",
+    "url": "URL",
+    "device": "Appareil",
+    "region": "Région",
+    "launchArguments": "Arguments de lancement",
+    "arguments": "arguments",
+    "configLabels": { "Environment": "Environnement", "Region": "Région" },
+    "configValues": { "Production": "Production", "EU West": "Europe de l'Ouest" },
+    "previewValues": { "device": "Ordinateur de bureau", "region": "Europe de l'Ouest" },
+    "statuses": { "Online": "En ligne", "Running": "En cours" },
+    "runtimeHighlights": [
+      "Mises à jour des tâches en temps réel",
+      "Espaces collaboratifs",
+      "Visibilité des sprints"
+    ],
+    "systemOutputLines": ["API TaskFlow prête sur le port 3000", "Passerelle WebSocket connectée"],
+    "launchArgumentLines": ["npm start", "NODE_ENV=production"]
+  },
+  "repository": {
+    "badgeText": "DÉPÔT GITHUB",
+    "status": "En ligne",
+    "heroAlt": "Logo de TaskFlow Dashboard",
+    "repositoryLabel": "Dépôt",
+    "description": "Le dépôt source de l'espace collaboratif TaskFlow.",
+    "notice": "Remarque : cliquez pour prévisualiser le contenu [Modèle]",
+    "latestCommits": "Derniers commits",
+    "author": "Auteur",
+    "commitMessage": "Message du commit",
+    "branches": "Branches",
+    "default": "Par défaut",
+    "moreBranches": "branches supplémentaires",
+    "repositoryInsights": "Statistiques du dépôt",
+    "files": "Fichiers",
+    "commits": "Commits",
+    "contributors": "Contributeurs",
+    "openIssues": "Issues ouvertes",
+    "pullRequests": "Pull requests",
+    "viewAllInsights": "Voir toutes les statistiques",
+    "continuousIntegration": "Intégration continue",
+    "languages": "Langages",
+    "viewAllLanguages": "Voir tous les langages",
+    "tabs": {
+      "README": "README",
+      "Commits": "Commits",
+      "Branches": "Branches",
+      "Releases": "Versions",
+      "Insights": "Statistiques"
+    },
+    "statuses": {
+      "Online": "En ligne",
+      "Passing": "Réussi",
+      "Connected": "Connecté",
+      "Production": "Production"
+    },
+    "stats": { "stars": "Étoiles", "forks": "Forks", "commits": "Commits" },
+    "ciNames": {
+      "Build": "Compilation",
+      "Tests": "Tests",
+      "Lint": "Vérification du code",
+      "Deployments": "Déploiements"
+    },
+    "commit": {
+      "title": "feat : ajout de la collaboration en temps réel",
+      "message": "Mise en place des mises à jour de tâches en temps réel avec WebSocket."
+    },
+    "languagesList": { "TypeScript": "TypeScript", "CSS": "CSS", "JavaScript": "JavaScript" }
+  }
+}

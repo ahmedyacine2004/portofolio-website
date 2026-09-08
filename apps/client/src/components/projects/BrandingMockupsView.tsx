@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import {
   Box,
   Check,
@@ -40,6 +41,16 @@ interface BrandingMockupsViewProps {
 }
 
 export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Nova Coffee'
+      ? 'novaCoffee'
+      : data.projectName === 'GreenLeaf Market'
+        ? 'greenleafMarket'
+        : 'luminaStudio';
+  const pt = (value: string) => projectText(projectKey, value);
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -64,7 +75,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
                 <Box className="size-4" />
               </div>
               <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-                {data.category}
+                {pt(data.category)}
               </span>
             </div>
 
@@ -74,23 +85,27 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
                   {data.version}
                 </span>
                 <span className="text-[9px] font-bold text-muted-foreground">
-                  Updated {data.updatedDate}
+                  {tt('updated', 'Updated')} {data.updatedDate}
                 </span>
               </div>
               <button className="flex items-center gap-1.5 rounded-[6px] bg-violet-600 px-3.5 py-2 text-[10.5px] font-bold text-white shadow-md shadow-violet-500/20 hover:bg-violet-700 transition-colors">
                 <FolderDown className="size-3.5" />
-                <span>Download Complete Kit ({data.downloadKitSize})</span>
+                <span>
+                  {tt('downloadKit', 'Download Complete Kit')} ({data.downloadKitSize})
+                </span>
               </button>
             </div>
           </div>
 
           <div>
             <h1 className="font-inter text-3xl font-black tracking-tight">
-              {data.projectName} Production Mockups
+              {pt(data.projectName)} {tt('productionMockups', 'Production Mockups')}
             </h1>
             <p className="mt-1.5 max-w-3xl text-xs font-medium text-muted-foreground leading-relaxed">
-              Photorealistic 3D render scenes, editable smart object templates, hardware showcases,
-              and spatial signage mockups.
+              {tt(
+                'mockupDescription',
+                'Photorealistic 3D render scenes, editable smart object templates, hardware showcases, and spatial signage mockups.',
+              )}
             </p>
           </div>
         </div>
@@ -98,13 +113,14 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
         {/* Quick Spec Pills */}
         <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/40 pt-3 text-[10px] font-extrabold text-muted-foreground">
           <span className="rounded bg-violet-500/10 px-2 py-0.5 text-violet-600 dark:text-violet-400">
-            Total Templates: {data.totalMockupsCount} Assets
+            {tt('totalTemplates', 'Total Templates')}: {data.totalMockupsCount}{' '}
+            {tt('assets', 'Assets')}
           </span>
           <span className="rounded bg-violet-500/10 px-2 py-0.5 text-violet-600 dark:text-violet-400">
-            Formats: PSD, Figma, Blender
+            {tt('formats', 'Formats')}: PSD, Figma, Blender
           </span>
           <span className="rounded bg-violet-500/10 px-2 py-0.5 text-violet-600 dark:text-violet-400">
-            Resolution: Up to 8K Ultra-HD
+            {tt('resolution', 'Resolution')}: Up to 8K Ultra-HD
           </span>
         </div>
       </div>
@@ -124,7 +140,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
                     : 'bg-background/80 text-muted-foreground hover:bg-muted hover:text-foreground'
                 }`}
               >
-                <span>{cat.label}</span>
+                <span>{pt(cat.label)}</span>
                 <span
                   className={`rounded-full px-1.5 py-0.2 text-[8px] ${
                     isActive ? 'bg-white/20 text-white' : 'bg-muted text-muted-foreground'
@@ -139,7 +155,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
 
         <div className="hidden sm:flex items-center gap-1 text-[9px] font-extrabold text-muted-foreground px-2 border-l border-border/50 shrink-0">
           <Filter className="size-3 text-violet-600 dark:text-violet-400" />
-          <span>Filter by asset type</span>
+          <span>{tt('filter', 'Filter by asset type')}</span>
         </div>
       </div>
 
@@ -149,11 +165,11 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
           <div className="flex items-center gap-2">
             <Layers className="size-4 text-violet-600 dark:text-violet-400" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              High-Resolution Template Gallery
+              {tt('mockupGallery', 'High-Resolution Template Gallery')}
             </h2>
           </div>
           <span className="text-[9px] font-bold text-muted-foreground">
-            Showing {filteredItems.length} templates
+            {tt('showing', 'Showing')} {filteredItems.length} {tt('templates', 'templates')}
           </span>
         </div>
 
@@ -170,7 +186,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
               >
                 <div className="flex items-center justify-between">
                   <span className="rounded bg-black/40 backdrop-blur-md px-2 py-0.5 text-[8px] font-extrabold uppercase text-white shadow-xs">
-                    {item.category}
+                    {pt(item.category)}
                   </span>
                   <span className="rounded bg-white/20 backdrop-blur-md px-2 py-0.5 font-mono text-[8px] font-black text-white">
                     {item.format}
@@ -204,9 +220,9 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
               {/* Template Info & Action */}
               <div className="flex flex-col gap-3 p-3.5">
                 <div>
-                  <h3 className="font-inter text-[12px] font-extrabold">{item.title}</h3>
+                  <h3 className="font-inter text-[12px] font-extrabold">{pt(item.title)}</h3>
                   <p className="mt-1 text-[9.5px] leading-relaxed text-muted-foreground">
-                    {item.description}
+                    {pt(item.description)}
                   </p>
                 </div>
 
@@ -217,7 +233,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
                       key={tag}
                       className="rounded bg-muted px-1.5 py-0.5 font-mono text-[7.5px] font-bold text-muted-foreground"
                     >
-                      #{tag}
+                      #{pt(tag)}
                     </span>
                   ))}
                 </div>
@@ -225,12 +241,12 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
                 {/* Footer Action */}
                 <div className="flex items-center justify-between border-t border-border/40 pt-2.5">
                   <span className="font-mono text-[8.5px] font-bold text-muted-foreground">
-                    File Size: {item.downloadSize}
+                    {tt('fileSize', 'File Size')}: {item.downloadSize}
                   </span>
 
                   <button className="flex items-center gap-1 rounded bg-violet-600/10 px-2.5 py-1 text-[9px] font-extrabold text-violet-600 hover:bg-violet-600 hover:text-white dark:text-violet-400 transition-colors">
                     <Download className="size-3" />
-                    <span>Download Template</span>
+                    <span>{tt('downloadTemplate', 'Download Template')}</span>
                   </button>
                 </div>
               </div>
@@ -244,14 +260,14 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Sparkles className="size-4 text-violet-600 dark:text-violet-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Render & Smart Object Directives
+            {tt('renderDirectives', 'Render & Smart Object Directives')}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 text-[9.5px]">
           <div className="flex flex-col gap-1 rounded-[6px] border border-border/50 bg-background p-3">
             <span className="font-inter font-extrabold text-foreground">
-              Smart Object Placement
+              {tt('smartObject', 'Smart Object Placement')}
             </span>
             <p className="text-muted-foreground leading-relaxed">
               Always double-click designated green Smart Object layers in Photoshop to place your
@@ -261,7 +277,7 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
 
           <div className="flex flex-col gap-1 rounded-[6px] border border-border/50 bg-background p-3">
             <span className="font-inter font-extrabold text-foreground">
-              Lighting & Shadow Tuning
+              {tt('lighting', 'Lighting & Shadow Tuning')}
             </span>
             <p className="text-muted-foreground leading-relaxed">
               Use dedicated &quot;Shadow Opacity&quot;adjustment groups to adapt contrast when
@@ -270,7 +286,9 @@ export function BrandingMockupsView({ data }: BrandingMockupsViewProps) {
           </div>
 
           <div className="flex flex-col gap-1 rounded-[6px] border border-border/50 bg-background p-3">
-            <span className="font-inter font-extrabold text-foreground">Export Settings</span>
+            <span className="font-inter font-extrabold text-foreground">
+              {tt('export', 'Export Settings')}
+            </span>
             <p className="text-muted-foreground leading-relaxed">
               Export high-resolution deliverables at 100% scale in sRGB color profile for digital
               web showcases or Adobe RGB for print presentation decks.

@@ -1,6 +1,7 @@
 'use client';
 
 import type { FlowNodeType, UIUXUserFlowData } from '@/data/projects/neobank-mobile';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   AlertCircle,
   ArrowRight,
@@ -48,6 +49,21 @@ const NODE_TYPE_STYLES: Record<
 };
 
 export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Design System'
+      ? 'designSystem'
+      : data.projectName === 'LearnHub LMS'
+        ? 'learnhubLms'
+        : data.projectName === 'TravelMate'
+          ? 'travelMate'
+          : data.projectName === 'HealthSync'
+            ? 'healthsync'
+            : data.projectName === 'Insight Analytics'
+              ? 'insightAnalytics'
+              : 'neobankMobile';
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+  const pt = (value: string) => projectText(projectKey, value);
   const [activeFlowId, setActiveFlowId] = useState(data.activeFlowId);
 
   const activeFlow = data.userFlows.find((flow) => flow.id === activeFlowId) || data.userFlows[0];
@@ -62,17 +78,17 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
               <Workflow className="size-4" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              {data.badgeText}
+              {tt('userFlow', data.badgeText)}
             </span>
           </div>
 
           <div>
             <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
             <p className="mt-0.5 font-inter text-[11px] font-bold text-muted-foreground">
-              {data.category}
+              {pt(data.category)}
             </p>
             <p className="mt-1 text-[12px] font-medium leading-relaxed text-foreground/90">
-              {data.description}
+              {pt(data.description)}
             </p>
           </div>
         </div>
@@ -80,10 +96,10 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
         <div className="z-10 hidden sm:flex items-center gap-3">
           <div className="flex flex-col items-end rounded-[6px] bg-background/80 px-3 py-2 text-right shadow-xs">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Total Mapped Flows
+              {tt('totalMappedFlows', 'Total Mapped Flows')}
             </span>
             <span className="font-inter text-base font-black text-purple-600 dark:text-purple-400">
-              {data.totalFlowsCount} Key Journeys
+              {data.totalFlowsCount} {tt('keyJourneys', 'Key Journeys')}
             </span>
           </div>
         </div>
@@ -92,7 +108,7 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
       {/* --- FLOW SELECTOR TABS --- */}
       <div className="flex flex-col gap-1.5">
         <span className="text-[9px] font-extrabold uppercase tracking-wider text-muted-foreground px-1">
-          Select User Journey
+          {tt('selectUserJourney', 'Select User Journey')}
         </span>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {data.userFlows.map((flow) => {
@@ -113,17 +129,19 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
                       isActive ? 'text-purple-200' : 'text-purple-600 dark:text-purple-400'
                     }`}
                   >
-                    Journey
+                    {tt('journey', 'Journey')}
                   </span>
                   {isActive && <Sparkles className="size-3.5 text-purple-200" />}
                 </div>
-                <h3 className="font-inter text-[11px] font-black leading-tight">{flow.title}</h3>
+                <h3 className="font-inter text-[11px] font-black leading-tight">
+                  {pt(flow.title)}
+                </h3>
                 <span
                   className={`text-[9px] font-medium ${
                     isActive ? 'text-purple-100' : 'text-muted-foreground'
                   }`}
                 >
-                  {flow.persona}
+                  {pt(flow.persona)}
                 </span>
               </button>
             );
@@ -139,9 +157,9 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
           </div>
           <div className="flex flex-col">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Avg Target Duration
+              {tt('avgTargetDuration', 'Avg Target Duration')}
             </span>
-            <span className="font-inter text-sm font-black">{activeFlow.estimatedTime}</span>
+            <span className="font-inter text-sm font-black">{pt(activeFlow.estimatedTime)}</span>
           </div>
         </div>
 
@@ -151,10 +169,10 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
           </div>
           <div className="flex flex-col">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Completion Rate
+              {tt('completionRate', 'Completion Rate')}
             </span>
             <span className="font-inter text-sm font-black text-emerald-600 dark:text-emerald-400">
-              {activeFlow.avgCompletionRate}
+              {pt(activeFlow.avgCompletionRate)}
             </span>
           </div>
         </div>
@@ -165,10 +183,10 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
           </div>
           <div className="flex flex-col">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Primary Friction Point
+              {tt('primaryFrictionPoint', 'Primary Friction Point')}
             </span>
             <span className="font-inter text-[10px] font-bold leading-tight line-clamp-1">
-              {activeFlow.frictionPoint}
+              {pt(activeFlow.frictionPoint)}
             </span>
           </div>
         </div>
@@ -180,11 +198,11 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
           <div className="flex items-center gap-2">
             <GitBranch className="size-4 text-purple-600 dark:text-purple-400" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Step-by-step Flow Sequence
+              {tt('stepByStep', 'Step-by-step Flow Sequence')}
             </h2>
           </div>
           <span className="text-[9px] font-extrabold text-muted-foreground">
-            {activeFlow.steps.length} Sequential Nodes
+            {activeFlow.steps.length} {tt('sequentialNodes', 'Sequential Nodes')}
           </span>
         </div>
 
@@ -218,17 +236,26 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
                       <span
                         className={`rounded-full px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-wider ${nodeStyle.badgeBg} ${nodeStyle.textCol}`}
                       >
-                        {nodeStyle.label}
+                        {tt(
+                          nodeStyle.label === 'UI Screen'
+                            ? 'uiScreen'
+                            : nodeStyle.label === 'User Action'
+                              ? 'userAction'
+                              : nodeStyle.label === 'Logic Node'
+                                ? 'logicNode'
+                                : 'finalOutcome',
+                          nodeStyle.label,
+                        )}
                       </span>
                       <h3 className="font-inter text-[11px] font-black text-foreground">
-                        {step.screenName}
+                        {pt(step.screenName)}
                       </h3>
                     </div>
 
                     {step.isKeyMilestone && (
                       <span className="flex items-center gap-1 text-[8.5px] font-black text-emerald-600 dark:text-emerald-400">
                         <CheckCircle2 className="size-3" />
-                        Milestone Reached
+                        {tt('milestoneReached', 'Milestone Reached')}
                       </span>
                     )}
                   </div>
@@ -237,20 +264,20 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
                     {/* User action */}
                     <div className="flex flex-col gap-0.5 rounded-[6px] bg-card p-2.5">
                       <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-                        User Trigger / Input
+                        {tt('userTrigger', 'User Trigger / Input')}
                       </span>
                       <p className="text-[10px] font-semibold text-foreground/90">
-                        {step.userAction}
+                        {pt(step.userAction)}
                       </p>
                     </div>
 
                     {/* System response */}
                     <div className="flex flex-col gap-0.5 rounded-[6px] bg-card p-2.5">
                       <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-                        System Logic & Response
+                        {tt('systemLogic', 'System Logic & Response')}
                       </span>
                       <p className="text-[10px] font-semibold text-foreground/90">
-                        {step.systemResponse}
+                        {pt(step.systemResponse)}
                       </p>
                     </div>
                   </div>
@@ -259,7 +286,7 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
                   {step.decisionOptions && step.decisionOptions.length > 0 && (
                     <div className="mt-2.5 flex flex-col gap-1.5 rounded-[6px] bg-purple-500/10 p-2.5 text-[9px]">
                       <span className="font-extrabold text-purple-600 dark:text-purple-400 uppercase tracking-wider text-[8px]">
-                        Conditional Decision Branches
+                        {tt('conditionalBranches', 'Conditional Decision Branches')}
                       </span>
                       <div className="flex flex-wrap gap-2">
                         {step.decisionOptions.map((opt) => (
@@ -268,7 +295,7 @@ export function UIUXProjectUserFlowView({ data }: UIUXProjectUserFlowViewProps) 
                             className="flex items-center gap-1.5 rounded-[4px] bg-background/90 px-2 py-1 text-[9px] font-bold shadow-xs"
                           >
                             <CornerDownRight className="size-3 text-purple-600 dark:text-purple-400" />
-                            <span>{opt.label}</span>
+                            <span>{pt(opt.label)}</span>
                             <ArrowRight className="size-2.5 text-muted-foreground" />
                             <span className="font-mono text-purple-600 dark:text-purple-400">
                               {opt.targetStep}

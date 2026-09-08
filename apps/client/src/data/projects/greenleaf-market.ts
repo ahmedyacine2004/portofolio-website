@@ -33,7 +33,7 @@ export const GREENLEAF_MARKET_OVERVIEW_DATA: BrandingOverviewData = {
   tagline:
     'Community-focused organic market rebrand emphasizing fresh, local, and sustainable produce.',
   category: 'Branding & Visual Identity',
-  client: 'GreenLeaf Market Network',
+  client: 'GreenLeaf Market (Concept Project)',
   industry: 'Retail / Organic & Local Produce',
   year: '2025',
   duration: '9 Weeks',
@@ -45,35 +45,33 @@ export const GREENLEAF_MARKET_OVERVIEW_DATA: BrandingOverviewData = {
   },
   metrics: [
     {
-      label: 'Customer Loyalty',
-      value: '+156%',
-      subtext: 'Increased loyalty program signups post-rebrand',
-      trend: '+156%',
+      label: 'Brand Direction',
+      value: '3 Pillars',
+      subtext: 'Community, organic integrity, and local-first values defined the system',
     },
     {
-      label: 'Foot Traffic',
-      value: '+48%',
-      subtext: 'Store visits increase in the first three months',
-      trend: '+48%',
+      label: 'Core Touchpoints',
+      value: '4',
+      subtext: 'Store, packaging, digital, and community-event applications',
     },
     {
-      label: 'Local Vendors',
-      value: '89',
-      subtext: 'New local producer partnerships created',
+      label: 'Guideline Chapters',
+      value: '5',
+      subtext: 'Practical rules for identity, color, type, imagery, and local storytelling',
     },
     {
-      label: 'Community Events',
-      value: '24',
-      subtext: 'Monthly events hosted in market locations',
+      label: 'Illustration Motifs',
+      value: '8',
+      subtext: 'Reusable botanical and neighborhood-inspired graphic elements',
     },
   ],
   executiveSummary: {
     challenge:
-      'GreenLeaf Market faced competition from larger chains and needed to strengthen its community identity and emphasize its unique commitment to local, organic products.',
+      'The concept needed to help a neighborhood market stand apart from larger chains while making local sourcing and organic integrity easy to recognize.',
     strategy:
-      'We created a warm, welcoming visual identity centered around the concept of community and sustainability, using natural elements and earthy tones to convey authenticity and organic values.',
+      'We explored a warm identity centered on community and responsible growing, using botanical forms, earthy colors, friendly typography, and a flexible illustration language.',
     outcome:
-      'The rebrand successfully positioned GreenLeaf Market as the community choice for organic, locally-sourced products, driving significant increases in customer engagement and store traffic.',
+      'The resulting concept gives GreenLeaf a coherent foundation for packaging, store signage, digital communication, and community events without claiming unverified commercial performance.',
   },
   brandPillars: [
     {
@@ -121,13 +119,6 @@ export const GREENLEAF_MARKET_OVERVIEW_DATA: BrandingOverviewData = {
       ],
     },
   ],
-  testimonial: {
-    quote:
-      'The rebrand captured the heart of what GreenLeaf Market stands for—community, quality, and sustainability. It has brought our stores and customers closer together.',
-    author: 'Sarah Mitchell',
-    role: 'Regional Manager',
-    company: 'GreenLeaf Market Network',
-  },
 };
 
 export const GREENLEAF_MARKET_GUIDELINES_DATA: BrandingGuidelinesData = {

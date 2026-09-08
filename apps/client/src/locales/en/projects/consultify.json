@@ -1,0 +1,57 @@
+{
+  "demo": {
+    "badgeText": "RUN PROJECT",
+    "status": "Online",
+    "heroAlt": "Consultify hero graphic",
+    "executionConfiguration": "Execution Configuration",
+    "launchLiveDemo": "Launch Live Demo",
+    "runtime": "Runtime",
+    "systemOutput": "System output",
+    "previewSession": "Preview Session",
+    "sessionStatus": "Session Status",
+    "url": "URL",
+    "device": "Device",
+    "region": "Region",
+    "launchArguments": "Launch arguments",
+    "arguments": "arguments",
+    "configLabels": {
+      "Project": "Project",
+      "Environment": "Environment",
+      "Build": "Build",
+      "Runtime": "Runtime"
+    },
+    "configValues": {
+      "CONSULTIFY": "CONSULTIFY",
+      "Production": "Production",
+      "v1.0.0": "v1.0.0",
+      "Ready": "Ready"
+    },
+    "previewValues": {
+      "device": "Desktop",
+      "region": "Algeria, Tebessa, Tebessa"
+    },
+    "statuses": {
+      "Online": "Online",
+      "Running": "Running"
+    },
+    "runtimeHighlights": [
+      "Modular Architecture",
+      "Multi-language Support",
+      "AI-first Workflow",
+      "Scalable Backend"
+    ],
+    "systemOutputLines": [
+      "################################",
+      "ALL SYSTEMS GO.",
+      "YOU CAN ENJOY CONSULTIFY RIGHT NOW",
+      "EXPAND YOUR KNOWLEDGE.",
+      "################################"
+    ],
+    "launchArgumentLines": [
+      "-- mode=production",
+      "-- device=desktop",
+      "-- network=online",
+      "-- performance=optimized"
+    ]
+  }
+}

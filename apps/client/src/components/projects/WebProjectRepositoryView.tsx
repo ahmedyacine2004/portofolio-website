@@ -1,6 +1,7 @@
 'use client';
 
 import type { WebProjectRepositoryData } from '@/data/projects/consultify';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   BarChart2,
   BookOpen,
@@ -34,14 +35,32 @@ interface WebProjectRepositoryViewProps {
 }
 
 export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps) {
+  const { t } = useTranslation();
+  const projectKey = data.projectName
+    .split(/\s+/)
+    .map((part, index) =>
+      index === 0 ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase(),
+    )
+    .join('');
+  const projectTranslationKey =
+    projectKey === 'portfolioWorkspace'
+      ? 'projects.portfolioWorkspace'
+      : projectKey === 'taskflowDashboard'
+        ? 'projects.taskflowDashboard'
+        : projectKey === 'shopsphere'
+          ? 'projects.shopsphere'
+          : 'projectsDetails.consultify';
+  const getRepositoryText = (key: string, fallback: string) =>
+    t(`${projectTranslationKey}.repository.${key}`, fallback);
+
   const [activeTab, setActiveTab] = useState(data.activeTab);
 
   const tabs = [
-    { id: 'README', label: 'README', icon: BookOpen },
-    { id: 'Commits', label: 'Commits', icon: GitCommit },
-    { id: 'Branches', label: 'Branches', icon: GitBranch },
-    { id: 'Releases', label: 'Releases', icon: Tag },
-    { id: 'Insights', label: 'Insights', icon: BarChart2 },
+    { id: 'README', label: getRepositoryText('tabs.README', 'README'), icon: BookOpen },
+    { id: 'Commits', label: getRepositoryText('tabs.Commits', 'Commits'), icon: GitCommit },
+    { id: 'Branches', label: getRepositoryText('tabs.Branches', 'Branches'), icon: GitBranch },
+    { id: 'Releases', label: getRepositoryText('tabs.Releases', 'Releases'), icon: Tag },
+    { id: 'Insights', label: getRepositoryText('tabs.Insights', 'Insights'), icon: BarChart2 },
   ];
 
   return (
@@ -55,27 +74,30 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
           </div>
           <div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-              {data.badgeText}
+              {getRepositoryText('badgeText', data.badgeText)}
             </span>
             <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
             <p className="mt-0.5 text-[10px] font-semibold text-muted-foreground">
-              Repository <span className="text-foreground">{data.repositoryPath}</span>
+              {getRepositoryText('repositoryLabel', 'Repository')}{' '}
+              <span className="text-foreground">{data.repositoryPath}</span>
             </p>
-            <p className="mt-1 text-[11px] text-muted-foreground">{data.description}</p>
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              {getRepositoryText('description', data.description)}
+            </p>
           </div>
         </div>
 
         <div className="z-10 flex items-center gap-4">
           <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[9px] font-bold text-emerald-600 shadow-xs shadow-gray-300 dark:text-emerald-400 dark:shadow-none">
             <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            {data.status}
+            {getRepositoryText(`statuses.${data.status}`, data.status)}
           </span>
 
           {data.heroImageUrl && (
             <div className="relative hidden h-24 w-44 items-center justify-center opacity-90 transition-transform hover:scale-105 sm:flex">
               <Image
                 src={data.heroImageUrl}
-                alt={`${data.projectName} Hero Graphic`}
+                alt={getRepositoryText('heroAlt', `${data.projectName} Hero Graphic`)}
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 176px"
@@ -101,7 +123,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
               <div className="flex flex-col">
                 <span className="font-inter text-base font-black leading-none">{stat.value}</span>
                 <span className="text-[9px] text-muted-foreground leading-tight mt-0.5">
-                  {stat.label}
+                  {getRepositoryText(`stats.${stat.id}`, stat.label)}
                 </span>
               </div>
             </div>
@@ -119,7 +141,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
       {/* --- NOTICE & TABS NAVIGATION --- */}
       <div className="flex flex-col gap-2">
         <div className="rounded-[6px] bg-blue-500/10 px-3 py-1.5 text-[10px] font-semibold text-blue-600 dark:text-blue-400 shadow-xs shadow-gray-300 dark:shadow-none">
-          Note : Click to preview the content [Model]
+          {getRepositoryText('notice', 'Note: Click to preview the content [Model]')}
         </div>
 
         <div className="grid grid-cols-2 gap-1.5 rounded-[8px] bg-card p-1.5 shadow-md shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)] sm:grid-cols-5">
@@ -151,15 +173,17 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
           <div className="flex items-center gap-2">
             <BookOpen className="size-3.5 text-primary" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Latest Commits
+              {getRepositoryText('latestCommits', 'Latest Commits')}
             </h2>
           </div>
 
           <div className="flex flex-col gap-1">
             <h3 className="font-inter text-[11px] font-bold text-foreground">
-              {data.latestCommit.title}
+              {getRepositoryText('commit.title', data.latestCommit.title)}
             </h3>
-            <span className="text-[9px] font-semibold text-muted-foreground">Author</span>
+            <span className="text-[9px] font-semibold text-muted-foreground">
+              {getRepositoryText('author', 'Author')}
+            </span>
           </div>
 
           <div className="flex items-center gap-2.5">
@@ -181,9 +205,11 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
           </div>
 
           <div className="mt-2 flex-1 rounded-[6px] bg-background/80 p-3 font-mono text-[9px] shadow-md shadow-gray-300 dark:shadow-[0_0_4px_rgba(255,255,255,0.01)]">
-            <span className="font-bold text-muted-foreground">$ Commit Message</span>
+            <span className="font-bold text-muted-foreground">
+              $ {getRepositoryText('commitMessage', 'Commit Message')}
+            </span>
             <p className="mt-2 font-mono leading-relaxed text-foreground/90">
-              {data.latestCommit.message}
+              {getRepositoryText('commit.message', data.latestCommit.message)}
             </p>
           </div>
         </div>
@@ -195,7 +221,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             <div className="flex items-center gap-2">
               <GitBranch className="size-3.5 text-primary" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Branches
+                {getRepositoryText('branches', 'Branches')}
               </h2>
             </div>
 
@@ -208,7 +234,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
                   <span className="font-mono font-medium">{branch.name}</span>
                   {branch.isDefault && (
                     <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[8px] font-bold text-purple-600 dark:text-purple-400">
-                      Default
+                      {getRepositoryText('default', 'Default')}
                     </span>
                   )}
                 </div>
@@ -216,7 +242,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             </div>
 
             <span className="text-[9px] font-bold text-purple-600 dark:text-purple-400">
-              + {data.moreBranchesCount} more branches
+              + {data.moreBranchesCount} {getRepositoryText('moreBranches', 'more branches')}
             </span>
           </div>
 
@@ -225,35 +251,43 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             <div className="flex items-center gap-2">
               <Layers className="size-3.5 text-primary" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Repository Insights
+                {getRepositoryText('repositoryInsights', 'Repository Insights')}
               </h2>
             </div>
 
             <div className="space-y-2 text-[10px]">
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Files</span>
+                <span className="text-muted-foreground">{getRepositoryText('files', 'Files')}</span>
                 <span className="font-bold">{data.insights.files}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Commits</span>
+                <span className="text-muted-foreground">
+                  {getRepositoryText('commits', 'Commits')}
+                </span>
                 <span className="font-bold">{data.insights.commits}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Contributors</span>
+                <span className="text-muted-foreground">
+                  {getRepositoryText('contributors', 'Contributors')}
+                </span>
                 <span className="font-bold">{data.insights.contributors}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Open Issues</span>
+                <span className="text-muted-foreground">
+                  {getRepositoryText('openIssues', 'Open Issues')}
+                </span>
                 <span className="font-bold">{data.insights.openIssues}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Pull Requests</span>
+                <span className="text-muted-foreground">
+                  {getRepositoryText('pullRequests', 'Pull Requests')}
+                </span>
                 <span className="font-bold">{data.insights.pullRequests}</span>
               </div>
             </div>
 
             <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
-              <span>View All Insights</span>
+              <span>{getRepositoryText('viewAllInsights', 'View All Insights')}</span>
               <ChevronRight className="size-3" />
             </button>
           </div>
@@ -266,7 +300,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             <div className="flex items-center gap-2">
               <Workflow className="size-3.5 text-primary" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Continuous Integration
+                {getRepositoryText('continuousIntegration', 'Continuous Integration')}
               </h2>
             </div>
 
@@ -275,7 +309,9 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
                 const isProd = ci.variant === 'primary';
                 return (
                   <div key={ci.name} className="flex items-center justify-between">
-                    <span className="font-semibold">{ci.name}</span>
+                    <span className="font-semibold">
+                      {getRepositoryText(`ciNames.${ci.name}`, ci.name)}
+                    </span>
                     <span
                       className={`rounded-full px-2 py-0.5 text-[8px] font-bold ${
                         isProd
@@ -283,7 +319,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
                           : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                       }`}
                     >
-                      {ci.status}
+                      {getRepositoryText(`statuses.${ci.status}`, ci.status)}
                     </span>
                   </div>
                 );
@@ -296,7 +332,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             <div className="flex items-center gap-2">
               <Tag className="size-3.5 text-primary" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Languages
+                {getRepositoryText('languages', 'Languages')}
               </h2>
             </div>
 
@@ -306,7 +342,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
                 <div
                   key={lang.name}
                   style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
-                  title={`${lang.name}: ${lang.percentage}%`}
+                  title={`${getRepositoryText(`languagesList.${lang.name}`, lang.name)}: ${lang.percentage}%`}
                 />
               ))}
             </div>
@@ -316,7 +352,9 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
                 <div key={lang.name} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="size-2 rounded-full" style={{ backgroundColor: lang.color }} />
-                    <span className="font-medium">{lang.name}</span>
+                    <span className="font-medium">
+                      {getRepositoryText(`languagesList.${lang.name}`, lang.name)}
+                    </span>
                   </div>
                   <span className="font-extrabold">{lang.percentage}%</span>
                 </div>
@@ -324,7 +362,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             </div>
 
             <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
-              <span>View All Languages</span>
+              <span>{getRepositoryText('viewAllLanguages', 'View All Languages')}</span>
               <ChevronRight className="size-3" />
             </button>
           </div>

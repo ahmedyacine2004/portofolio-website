@@ -32,7 +32,7 @@ export const NOVA_COFFEE_OVERVIEW_DATA: BrandingOverviewData = {
   projectName: 'Nova Coffee',
   tagline: 'Modern coffee brand rebrand with focus on sustainability and artisanal craftsmanship.',
   category: 'Branding & Visual Identity',
-  client: 'Nova Coffee Co.',
+  client: 'Nova Coffee Co. (Concept Project)',
   industry: 'Food & Beverage / Specialty Coffee',
   year: '2025',
   duration: '8 Weeks',
@@ -44,35 +44,33 @@ export const NOVA_COFFEE_OVERVIEW_DATA: BrandingOverviewData = {
   },
   metrics: [
     {
-      label: 'Brand Perception Shift',
-      value: '+128%',
-      subtext: 'Modern perception increase among target demographic',
-      trend: '+128%',
+      label: 'Brand Direction',
+      value: '3 Pillars',
+      subtext: 'Craft, sustainability, and contemporary warmth defined the system',
     },
     {
-      label: 'Sales Growth',
-      value: '+34%',
-      subtext: 'Post-rebrand revenue increase in first quarter',
-      trend: 'Strong',
+      label: 'Core Applications',
+      value: '4',
+      subtext: 'Packaging, café touchpoints, digital content, and retail signage',
     },
     {
-      label: 'Social Media Growth',
-      value: '78K',
-      subtext: 'New followers across social platforms',
+      label: 'Palette Families',
+      value: '2',
+      subtext: 'Earth-led primary colors with a bright seasonal accent family',
     },
     {
-      label: 'Retail Partners',
-      value: '127',
-      subtext: 'New retail locations adopting the new brand',
+      label: 'Guideline Chapters',
+      value: '5',
+      subtext: 'Practical rules for logo, color, type, packaging, and photography',
     },
   ],
   executiveSummary: {
     challenge:
-      'Nova Coffee needed to modernize its brand image to appeal to younger, eco-conscious consumers while maintaining its heritage and artisanal positioning.',
+      'The concept needed to make a heritage coffee story feel current without losing its handmade character or responsible sourcing point of view.',
     strategy:
-      'We developed a sophisticated visual identity combining natural elements with modern typography, emphasizing sustainability and craft quality through a refined color palette and contemporary design language.',
+      'We explored a tactile identity combining botanical forms, warm paper tones, confident typography, and restrained illustration to connect craft quality with everyday modern rituals.',
     outcome:
-      'The rebrand successfully positioned Nova Coffee as a premium, modern coffee brand, resulting in significant sales growth and expanded retail distribution.',
+      'The resulting concept gives Nova Coffee a reusable foundation for packaging, café environments, retail moments, and social storytelling without making unsupported market-performance claims.',
   },
   brandPillars: [
     {
@@ -123,13 +121,6 @@ export const NOVA_COFFEE_OVERVIEW_DATA: BrandingOverviewData = {
       ],
     },
   ],
-  testimonial: {
-    quote:
-      'The rebrand elevated Nova Coffee from a traditional brand to a modern premium player. The visual system is cohesive, beautiful, and perfectly captures our values.',
-    author: 'Marcus Chen',
-    role: 'Founder & CEO',
-    company: 'Nova Coffee Co.',
-  },
 };
 
 export const NOVA_COFFEE_GUIDELINES_DATA: BrandingGuidelinesData = {

@@ -1,6 +1,7 @@
 'use client';
 
 import type { UIUXWireframesData } from '@/data/projects/neobank-mobile';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   CheckCircle2,
   Compass,
@@ -20,6 +21,21 @@ interface UIUXProjectWireframesViewProps {
 }
 
 export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Design System'
+      ? 'designSystem'
+      : data.projectName === 'LearnHub LMS'
+        ? 'learnhubLms'
+        : data.projectName === 'TravelMate'
+          ? 'travelMate'
+          : data.projectName === 'HealthSync'
+            ? 'healthsync'
+            : data.projectName === 'Insight Analytics'
+              ? 'insightAnalytics'
+              : 'neobankMobile';
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+  const pt = (value: string) => projectText(projectKey, value);
   const [activeScreenId, setActiveScreenId] = useState(data.activeScreenId);
   const [selectedAnnotationId, setSelectedAnnotationId] = useState<string | null>(null);
 
@@ -36,17 +52,17 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
               <Layout className="size-4" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              {data.badgeText}
+              {tt('wireframes', data.badgeText)}
             </span>
           </div>
 
           <div>
             <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
             <p className="mt-0.5 font-inter text-[11px] font-bold text-muted-foreground">
-              {data.category}
+              {pt(data.category)}
             </p>
             <p className="mt-1 text-[12px] font-medium leading-relaxed text-foreground/90">
-              {data.description}
+              {pt(data.description)}
             </p>
           </div>
         </div>
@@ -54,10 +70,10 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
         <div className="z-10 hidden sm:flex items-center gap-3">
           <div className="flex flex-col items-end rounded-[6px] bg-background/80 px-3 py-2 text-right shadow-xs">
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              Wireframe Screens
+              {tt('wireframeScreens', 'Wireframe Screens')}
             </span>
             <span className="font-inter text-base font-black text-purple-600 dark:text-purple-400">
-              {data.screens.length} Structural Layouts
+              {data.screens.length} {tt('structuralLayouts', 'Structural Layouts')}
             </span>
           </div>
         </div>
@@ -69,10 +85,10 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
           <Grid className="size-4 shrink-0 text-purple-600 dark:text-purple-400" />
           <div className="flex flex-col">
             <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-              Grid Layout
+              {tt('gridLayout', 'Grid Layout')}
             </span>
             <span className="font-inter text-[10px] font-extrabold line-clamp-1">
-              {data.designSystemSpecs.gridSystem}
+              {pt(data.designSystemSpecs.gridSystem)}
             </span>
           </div>
         </div>
@@ -81,10 +97,10 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
           <Type className="size-4 shrink-0 text-purple-600 dark:text-purple-400" />
           <div className="flex flex-col">
             <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-              Typography Scale
+              {tt('typographyScale', 'Typography Scale')}
             </span>
             <span className="font-inter text-[10px] font-extrabold line-clamp-1">
-              {data.designSystemSpecs.typographyScale}
+              {pt(data.designSystemSpecs.typographyScale)}
             </span>
           </div>
         </div>
@@ -93,10 +109,10 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
           <Ruler className="size-4 shrink-0 text-purple-600 dark:text-purple-400" />
           <div className="flex flex-col">
             <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-              Spacing Unit
+              {tt('spacingUnit', 'Spacing Unit')}
             </span>
             <span className="font-inter text-[10px] font-extrabold line-clamp-1">
-              {data.designSystemSpecs.spacingUnit}
+              {pt(data.designSystemSpecs.spacingUnit)}
             </span>
           </div>
         </div>
@@ -105,10 +121,10 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
           <Smartphone className="size-4 shrink-0 text-purple-600 dark:text-purple-400" />
           <div className="flex flex-col">
             <span className="text-[8.5px] font-bold uppercase tracking-wider text-muted-foreground">
-              Touch Target Min
+              {tt('touchTargetMin', 'Touch Target Min')}
             </span>
             <span className="font-inter text-[10px] font-extrabold line-clamp-1">
-              {data.designSystemSpecs.touchTargetMin}
+              {pt(data.designSystemSpecs.touchTargetMin)}
             </span>
           </div>
         </div>
@@ -117,7 +133,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
       {/* --- SCREEN SELECTOR TABS --- */}
       <div className="flex flex-col gap-1.5">
         <span className="text-[9px] font-extrabold uppercase tracking-wider text-muted-foreground px-1">
-          Select Wireframe Blueprint
+          {tt('selectBlueprint', 'Select Wireframe Blueprint')}
         </span>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
           {data.screens.map((screen) => {
@@ -143,13 +159,15 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
                         : 'bg-purple-500/10 text-purple-600 dark:text-purple-400'
                     }`}
                   >
-                    {screen.fidelity}
+                    {pt(screen.fidelity)}
                   </span>
                   <span className="text-[8.5px] font-mono font-medium opacity-80">
-                    {screen.deviceTarget}
+                    {pt(screen.deviceTarget)}
                   </span>
                 </div>
-                <h3 className="font-inter text-[11px] font-black leading-tight">{screen.title}</h3>
+                <h3 className="font-inter text-[11px] font-black leading-tight">
+                  {pt(screen.title)}
+                </h3>
               </button>
             );
           })}
@@ -164,11 +182,11 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             <div className="flex items-center gap-2">
               <Eye className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                {activeScreen.title} Layout View
+                {pt(activeScreen.title)} {tt('layoutView', 'Layout View')}
               </h2>
             </div>
             <span className="text-[9px] font-mono text-muted-foreground">
-              {activeScreen.deviceTarget}
+              {pt(activeScreen.deviceTarget)}
             </span>
           </div>
 
@@ -229,7 +247,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
           </div>
 
           <span className="text-center text-[9px] font-semibold text-muted-foreground">
-            Click annotated hotspot numbers (1-3) to inspect UX design notes.
+            {tt('hotspotHint', 'Click annotated hotspot numbers (1-3) to inspect UX design notes.')}
           </span>
         </div>
 
@@ -240,11 +258,11 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             <div className="flex items-center gap-2">
               <Compass className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Layout & Structure
+                {tt('layoutStructure', 'Layout & Structure')}
               </h2>
             </div>
             <p className="text-[10px] font-medium leading-relaxed text-muted-foreground">
-              {activeScreen.layoutGrid}
+              {pt(activeScreen.layoutGrid)}
             </p>
           </div>
 
@@ -253,7 +271,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             <div className="flex items-center gap-2">
               <Info className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                UX Annotations & Spec Notes
+                {tt('uxAnnotations', 'UX Annotations & Spec Notes')}
               </h2>
             </div>
 
@@ -275,11 +293,11 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
                         {ann.number}
                       </span>
                       <h3 className="font-inter text-[10.5px] font-bold text-foreground">
-                        {ann.title}
+                        {pt(ann.title)}
                       </h3>
                     </div>
                     <p className="mt-1 text-[9.5px] leading-relaxed text-muted-foreground pl-7">
-                      {ann.description}
+                      {pt(ann.description)}
                     </p>
                   </div>
                 );
@@ -292,7 +310,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
             <div className="flex items-center gap-2">
               <Layers className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Design System Components Used
+                {tt('componentsUsed', 'Design System Components Used')}
               </h2>
             </div>
 
@@ -303,7 +321,7 @@ export function UIUXProjectWireframesView({ data }: UIUXProjectWireframesViewPro
                   className="flex items-center gap-1 rounded-[4px] bg-purple-500/10 px-2 py-1 text-[9px] font-extrabold text-purple-600 dark:text-purple-400"
                 >
                   <CheckCircle2 className="size-2.5" />
-                  {comp}
+                  {pt(comp)}
                 </span>
               ))}
             </div>

@@ -1,0 +1,180 @@
+{
+  "tagline": "A realtime project management workspace for planning, collaboration, and delivery visibility.",
+  "previewAlt": "TaskFlow Dashboard logo",
+  "coreObjective": "Give distributed teams one focused workspace for planning, execution, and delivery.",
+  "targetAudience": ["Product Teams", "Project Managers", "Agencies"],
+  "currentPhase": ["Public Beta", "Realtime Collaboration", "Reporting in Progress"],
+  "systemModules": {
+    "tasks": {
+      "title": "Task Management",
+      "description": "Create, assign, prioritize, and track work from backlog to done.",
+      "status": "Stable"
+    },
+    "collaboration": {
+      "title": "Team Collaboration",
+      "description": "Keep comments, mentions, and activity updates attached to the work.",
+      "status": "Stable"
+    },
+    "analytics": {
+      "title": "Delivery Analytics",
+      "description": "Track cycle time, throughput, workload, and sprint progress.",
+      "status": "In Development"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Receive focused alerts for assignments, mentions, and due dates.",
+      "status": "Stable"
+    }
+  },
+  "architecture": {
+    "frontend": { "title": "Frontend", "subtitle": "Next.js / TypeScript" },
+    "realtime": { "title": "Realtime", "subtitle": "WebSocket Gateway" },
+    "backend": { "title": "Backend", "subtitle": "NestJS / Node.js" },
+    "database": { "title": "Database", "subtitle": "PostgreSQL / Redis" }
+  },
+  "engineeringHighlights": [
+    "Realtime Event Sync",
+    "Role-based Workspaces",
+    "Sprint Analytics",
+    "Optimistic UI Updates",
+    "Responsive Workflows"
+  ],
+  "gallery": {
+    "title": "Product Gallery",
+    "openLiveDemo": "Open TaskFlow",
+    "browseScreens": "Browse Product Screens",
+    "resolution": "Resolution",
+    "device": "Device",
+    "lastUpdated": "Last Updated",
+    "fileType": "File Type",
+    "graphicAlt": "TaskFlow Dashboard logo",
+    "items": {
+      "screen-1": {
+        "title": "Workspace Overview",
+        "device": "Desktop Browser",
+        "lastUpdated": "2 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-2": {
+        "title": "Kanban Project Board",
+        "device": "Desktop Browser",
+        "lastUpdated": "2 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-3": {
+        "title": "Team Activity and Collaboration",
+        "device": "Desktop Browser",
+        "lastUpdated": "3 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-4": {
+        "title": "Sprint Calendar and Deadlines",
+        "device": "Desktop Browser",
+        "lastUpdated": "3 days ago",
+        "fileType": "JPG Image"
+      }
+    }
+  },
+  "techStack": {
+    "subtitle": "Collaborative Delivery Platform",
+    "description": "A realtime project workspace for planning, collaboration, and delivery visibility.",
+    "technologiesLoaded": "Technologies Loaded",
+    "coreStack": "Core Stack",
+    "runtimeServices": "Runtime Services",
+    "buildStatus": "Build Status",
+    "environment": {
+      "frontend": { "title": "Frontend" },
+      "realtime": { "title": "Realtime Layer" },
+      "backend": { "title": "Backend" }
+    },
+    "statuses": {
+      "Running": "Running",
+      "Synced": "Connected",
+      "Connected": "Connected",
+      "Active": "Active",
+      "Passing": "Passing"
+    },
+    "core": {
+      "nextjs": { "role": "Application framework", "tag": "App Router" },
+      "nestjs": { "role": "Realtime API layer", "tag": "Core" },
+      "postgresql": { "role": "Relational data store", "tag": "Core" }
+    },
+    "runtime": {
+      "websocket": { "name": "WebSocket Gateway" },
+      "redis": { "name": "Redis Pub/Sub" },
+      "notifications": { "name": "Notification Worker" }
+    },
+    "build": {
+      "frontend-build": { "layer": "Frontend Build" },
+      "api-build": { "layer": "API and WebSocket Build" },
+      "database": { "layer": "Database Migrations" }
+    }
+  },
+  "demo": {
+    "badgeText": "LIVE TASKFLOW",
+    "status": "Online",
+    "heroAlt": "TaskFlow Dashboard logo",
+    "executionConfiguration": "Workspace Configuration",
+    "launchLiveDemo": "Open TaskFlow",
+    "runtime": "TaskFlow Runtime",
+    "systemOutput": "System output",
+    "previewSession": "Preview Session",
+    "sessionStatus": "Session Status",
+    "url": "URL",
+    "device": "Device",
+    "region": "Region",
+    "launchArguments": "Launch arguments",
+    "arguments": "arguments",
+    "configLabels": { "Environment": "Environment", "Region": "Region" },
+    "configValues": { "Production": "Production", "EU West": "EU West" },
+    "previewValues": { "device": "Desktop", "region": "EU West" },
+    "statuses": { "Online": "Online", "Running": "Running" },
+    "runtimeHighlights": ["Realtime task updates", "Collaborative workspaces", "Sprint visibility"],
+    "systemOutputLines": ["TaskFlow API ready on port 3000", "WebSocket gateway connected"],
+    "launchArgumentLines": ["npm start", "NODE_ENV=production"]
+  },
+  "repository": {
+    "badgeText": "GITHUB REPOSITORY",
+    "status": "Online",
+    "heroAlt": "TaskFlow Dashboard logo",
+    "repositoryLabel": "Repository",
+    "description": "The source repository for the TaskFlow collaboration workspace.",
+    "notice": "Note: Click to preview the content [Model]",
+    "latestCommits": "Latest Commits",
+    "author": "Author",
+    "commitMessage": "Commit Message",
+    "branches": "Branches",
+    "default": "Default",
+    "moreBranches": "more branches",
+    "repositoryInsights": "Repository Insights",
+    "files": "Files",
+    "commits": "Commits",
+    "contributors": "Contributors",
+    "openIssues": "Open Issues",
+    "pullRequests": "Pull Requests",
+    "viewAllInsights": "View All Insights",
+    "continuousIntegration": "Continuous Integration",
+    "languages": "Languages",
+    "viewAllLanguages": "View All Languages",
+    "tabs": {
+      "README": "README",
+      "Commits": "Commits",
+      "Branches": "Branches",
+      "Releases": "Releases",
+      "Insights": "Insights"
+    },
+    "statuses": {
+      "Online": "Online",
+      "Passing": "Passing",
+      "Connected": "Connected",
+      "Production": "Production"
+    },
+    "stats": { "stars": "Stars", "forks": "Forks", "commits": "Commits" },
+    "ciNames": { "Build": "Build", "Tests": "Tests", "Lint": "Lint", "Deployments": "Deployments" },
+    "commit": {
+      "title": "feat: add realtime collaboration",
+      "message": "Implemented WebSocket-based realtime task updates."
+    },
+    "languagesList": { "TypeScript": "TypeScript", "CSS": "CSS", "JavaScript": "JavaScript" }
+  }
+}

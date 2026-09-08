@@ -1,24 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
-import {
-  Palette,
-  Download,
-  Copy,
-  Check,
-  ShieldCheck,
-  Sparkles,
-  Layers,
-  Sliders,
-  Eye,
-} from 'lucide-react';
 import type { BrandingColorPaletteData } from '@/data/projects/lumina-studio';
+import { useTranslation } from '@/hooks/use-translation';
+import { Check, Copy, Download, Eye, Layers, Palette, Sliders, Sparkles } from 'lucide-react';
+import { useState } from 'react';
 
 interface BrandingColorPaletteViewProps {
   data: BrandingColorPaletteData;
 }
 
 export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps) {
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Nova Coffee'
+      ? 'novaCoffee'
+      : data.projectName === 'GreenLeaf Market'
+        ? 'greenleafMarket'
+        : 'luminaStudio';
+  const pt = (value: string) => projectText(projectKey, value);
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const handleCopy = (text: string) => {
@@ -38,7 +38,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
                 <Palette className="size-4" />
               </div>
               <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-                {data.category}
+                {pt(data.category)}
               </span>
             </div>
 
@@ -48,23 +48,27 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
                   {data.version}
                 </span>
                 <span className="text-[9px] font-bold text-muted-foreground">
-                  Updated {data.updatedDate}
+                  {tt('updated', 'Updated')} {data.updatedDate}
                 </span>
               </div>
               <button className="flex items-center gap-1.5 rounded-[6px] bg-violet-600 px-3.5 py-2 text-[10.5px] font-bold text-white shadow-md shadow-violet-500/20 hover:bg-violet-700 transition-colors">
                 <Download className="size-3.5" />
-                <span>Download Swatches ({data.downloadSwatchesSize})</span>
+                <span>
+                  {tt('downloadSwatches', 'Download Swatches')} ({data.downloadSwatchesSize})
+                </span>
               </button>
             </div>
           </div>
 
           <div>
             <h1 className="font-inter text-3xl font-black tracking-tight">
-              {data.projectName} Color System
+              {pt(data.projectName)} {tt('colorSystemTitle', 'Color System')}
             </h1>
             <p className="mt-1.5 max-w-3xl text-xs font-medium text-muted-foreground leading-relaxed">
-              Official color tokens, chromatic values (HEX, RGB, HSL, CMYK, Pantone), dynamic
-              gradient definitions, and WCAG accessibility contrast benchmarks.
+              {tt(
+                'colorDescription',
+                'Official color tokens, chromatic values (HEX, RGB, HSL, CMYK, Pantone), dynamic gradient definitions, and WCAG accessibility contrast benchmarks.',
+              )}
             </p>
           </div>
         </div>
@@ -88,7 +92,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Layers className="size-4 text-violet-600 dark:text-violet-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            1. Primary Brand Chromatic System
+            1. {tt('primaryColors', 'Primary Brand Chromatic System')}
           </h2>
         </div>
 
@@ -109,7 +113,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
                       color.isDarkText ? 'bg-black/20 text-black' : 'bg-white/20 text-white'
                     }`}
                   >
-                    {color.role}
+                    {pt(color.role)}
                   </span>
                   <button
                     onClick={() => handleCopy(color.hex)}
@@ -141,9 +145,9 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
               {/* Technical Specifications */}
               <div className="flex flex-col gap-2 p-3 text-[9px]">
                 <div>
-                  <h3 className="font-inter text-[11px] font-extrabold">{color.name}</h3>
+                  <h3 className="font-inter text-[11px] font-extrabold">{pt(color.name)}</h3>
                   <p className="mt-0.5 text-[8.5px] leading-relaxed text-muted-foreground">
-                    {color.usage}
+                    {pt(color.usage)}
                   </p>
                 </div>
 
@@ -178,7 +182,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Sliders className="size-4 text-violet-600 dark:text-violet-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            2. Secondary & System Functional Accents
+            2. {tt('secondaryColors', 'Secondary & System Functional Accents')}
           </h2>
         </div>
 
@@ -208,12 +212,12 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
               </div>
 
               <div className="flex flex-col gap-1 p-3">
-                <h3 className="font-inter text-[11px] font-extrabold">{color.name}</h3>
+                <h3 className="font-inter text-[11px] font-extrabold">{pt(color.name)}</h3>
                 <span className="text-[8.5px] font-extrabold text-violet-600 dark:text-violet-400 uppercase">
-                  {color.role}
+                  {pt(color.role)}
                 </span>
                 <p className="mt-1 text-[9px] leading-relaxed text-muted-foreground">
-                  {color.usage}
+                  {pt(color.usage)}
                 </p>
               </div>
             </div>
@@ -226,7 +230,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Sparkles className="size-4 text-violet-600 dark:text-violet-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            3. Brand Gradient System
+            3. {tt('gradients', 'Brand Gradient System')}
           </h2>
         </div>
 
@@ -245,7 +249,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
 
                 <div>
                   <div className="flex items-center justify-between">
-                    <h3 className="font-inter text-[11.5px] font-extrabold">{grad.name}</h3>
+                    <h3 className="font-inter text-[11.5px] font-extrabold">{pt(grad.name)}</h3>
                     <button
                       onClick={() => handleCopy(grad.cssGradient)}
                       className="flex items-center gap-1 text-[8.5px] font-extrabold text-violet-600 hover:text-violet-700 dark:text-violet-400"
@@ -262,10 +266,10 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
                     </button>
                   </div>
                   <span className="text-[8.5px] font-extrabold text-muted-foreground uppercase">
-                    {grad.role}
+                    {pt(grad.role)}
                   </span>
                   <p className="mt-1 text-[9px] leading-relaxed text-muted-foreground">
-                    {grad.usage}
+                    {pt(grad.usage)}
                   </p>
                 </div>
               </div>
@@ -292,7 +296,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
         <div className="flex items-center gap-2 border-b border-border/40 pb-2.5">
           <Eye className="size-4 text-violet-600 dark:text-violet-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            4. WCAG 2.1 Accessibility & Contrast Verification
+            4. {tt('accessibility', 'WCAG 2.1 Accessibility & Contrast Verification')}
           </h2>
         </div>
 

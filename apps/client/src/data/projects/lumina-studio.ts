@@ -182,9 +182,9 @@ export const LUMINA_STUDIO_OVERVIEW_DATA: BrandingOverviewData = {
   projectName: 'Lumina Studio',
   tagline: 'Illuminating Digital Identity Through Architecture & Modern Motion',
   category: 'Branding & Visual Identity',
-  client: 'Lumina Creative Group',
-  industry: 'Creative Agency & Design System Lab',
-  year: '2026',
+  client: 'Lumina Studio (Concept Project)',
+  industry: 'Creative Agency & Design Systems',
+  year: 'Representative Case Study',
   duration: '10 Weeks',
   status: 'Completed',
   heroBanner: {
@@ -194,35 +194,33 @@ export const LUMINA_STUDIO_OVERVIEW_DATA: BrandingOverviewData = {
   },
   metrics: [
     {
-      label: 'Brand Equity Increase',
-      value: '+142%',
-      subtext: 'Measured via post-rebrand enterprise inbound inquiry volume',
-      trend: '+142%',
+      label: 'Brand System Scope',
+      value: '4 Pillars',
+      subtext: 'Defined principles for structure, contrast, motion, and simplicity',
     },
     {
-      label: 'Design System Adoption',
-      value: '98.4%',
-      subtext: 'Compliance across internal engineering & marketing squads',
-      trend: 'Top Tier',
+      label: 'Token Families',
+      value: '3',
+      subtext: 'Color, typography, and motion decisions documented for reuse',
     },
     {
-      label: 'Guidelines Usage',
-      value: '12.5k',
-      subtext: 'Active design token reads across digital brand portals',
+      label: 'Guideline Sections',
+      value: '5',
+      subtext: 'Practical sections covering logo, color, type, imagery, and motion',
     },
     {
-      label: 'Deliverables Completed',
-      value: '45+',
-      subtext: 'Assets ranging from identity marks to motion packages',
+      label: 'Prototype Touchpoints',
+      value: '12',
+      subtext: 'Representative applications across digital, print, spatial, and motion formats',
     },
   ],
   executiveSummary: {
     challenge:
-      'Lumina Studio had outgrown its legacy visual identity. The previous branding failed to convey its evolution into enterprise design engineering, resulting in positioning confusion among high-value client prospects.',
+      'The concept began with a common studio problem: a strong portfolio but no shared visual language for expressing precision, experimentation, and digital craft across touchpoints.',
     strategy:
-      'We engineered a futuristic, architectural visual system rooted in light refraction, high-contrast typography, and dynamic grid motifs that effortlessly scale from digital UIs to physical installations.',
+      'We explored an architectural visual system rooted in light refraction, high-contrast typography, and dynamic grid motifs that can scale from digital interfaces to physical installations.',
     outcome:
-      'A sleek, elevated identity system that secured Lumina Studio as a premier design partner for Tier-1 technology companies, boosting average contract value by 65%.',
+      'A documented identity direction with reusable tokens, logo rules, art direction, and mockup applications that gives Lumina Studio a consistent foundation for future brand decisions.',
   },
   brandPillars: [
     {
@@ -279,13 +277,6 @@ export const LUMINA_STUDIO_OVERVIEW_DATA: BrandingOverviewData = {
       ],
     },
   ],
-  testimonial: {
-    quote:
-      'The rebrand executed for Lumina Studio completely transformed how enterprise leadership views our firm. The system is precise, adaptable, and remarkably beautiful.',
-    author: 'Elena Rostova',
-    role: 'Founder & Chief Design Officer',
-    company: 'Lumina Creative Group',
-  },
 };
 
 // --- LUMINA STUDIO GUIDELINES DATA ---

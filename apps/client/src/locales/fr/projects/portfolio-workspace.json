@@ -1,0 +1,229 @@
+{
+  "tagline": "Plateforme portfolio full-stack avec Next.js, React, TypeScript et MongoDB.",
+  "previewAlt": "Logo de Portfolio Workspace",
+  "coreObjective": "Présenter des travaux créatifs avec une plateforme portfolio moderne et interactive",
+  "targetAudience": ["Designers", "Développeurs", "Professionnels de la création"],
+  "currentPhase": ["Production", "API terminée", "Interface finalisée"],
+  "systemModules": {
+    "auth": {
+      "title": "Authentification",
+      "description": "Système d'authentification sécurisé basé sur JWT",
+      "status": "Stable"
+    },
+    "projects": {
+      "title": "Gestion des projets",
+      "description": "Opérations CRUD pour la gestion du portfolio de projets",
+      "status": "Stable"
+    },
+    "analytics": {
+      "title": "Analytique",
+      "description": "Suivi des visites du portfolio et des indicateurs d'engagement",
+      "status": "En développement"
+    },
+    "admin": {
+      "title": "Administration",
+      "description": "Gestion du contenu et tableau de bord",
+      "status": "Stable"
+    }
+  },
+  "architecture": {
+    "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
+    "backend": { "title": "Backend", "subtitle": "Node.js / Express" },
+    "database": { "title": "Base de données", "subtitle": "MongoDB" },
+    "storage": { "title": "Stockage", "subtitle": "Stockage cloud" }
+  },
+  "engineeringHighlights": [
+    "Génération SSR et statique",
+    "Design responsive",
+    "Optimisé pour le SEO",
+    "Temps de chargement rapides",
+    "Tableau de bord administrateur"
+  ],
+  "gallery": {
+    "title": "Galerie",
+    "openLiveDemo": "Ouvrir la démo en direct",
+    "browseScreens": "Parcourir les écrans",
+    "resolution": "Résolution",
+    "device": "Appareil",
+    "lastUpdated": "Dernière mise à jour",
+    "fileType": "Type de fichier",
+    "graphicAlt": "Illustration de Portfolio Workspace",
+    "items": {
+      "screen-1": {
+        "title": "Accueil du portfolio",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 1 jour",
+        "fileType": "Image PNG"
+      },
+      "screen-2": {
+        "title": "Espace À propos et profil",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 1 jour",
+        "fileType": "Image PNG"
+      },
+      "screen-3": {
+        "title": "Tableau de bord des projets",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 2 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-4": {
+        "title": "Explorateur des compétences et technologies",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 2 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-5": {
+        "title": "Chronologie de l'expérience",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-6": {
+        "title": "Espace de détails du projet",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-7": {
+        "title": "Espace de contact",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 4 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-8": {
+        "title": "Espace de l'assistant IA",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 4 jours",
+        "fileType": "Image PNG"
+      },
+      "screen-9": {
+        "title": "Espace des paramètres",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 5 jours",
+        "fileType": "Image PNG"
+      }
+    }
+  },
+  "techStack": {
+    "subtitle": "Architecture actuelle du monorepo",
+    "description": "La pile qui alimente actuellement ce portfolio avec son client Next.js et son API NestJS.",
+    "technologiesLoaded": "Technologies chargées",
+    "coreStack": "Pile principale",
+    "runtimeServices": "Services d'exécution",
+    "buildStatus": "État de la compilation",
+    "environment": {
+      "frontend-runtime": { "title": "Frontend" },
+      "backend-runtime": { "title": "Backend" },
+      "data-layer": { "title": "Couche de données" },
+      "interactive-ui": { "title": "Interface interactive" }
+    },
+    "statuses": {
+      "Running": "En cours",
+      "Synced": "Connecté",
+      "Connected": "Connecté",
+      "Active": "Actif",
+      "Passing": "Réussi"
+    },
+    "core": {
+      "nextjs": { "role": "Frontend avec App Router", "tag": "v16.3" },
+      "react": { "role": "Runtime des composants UI", "tag": "v19.2" },
+      "nestjs": { "role": "Framework applicatif backend", "tag": "v11" },
+      "typescript": { "role": "Système de types strict", "tag": "v5" },
+      "tailwind": { "role": "Styles utilitaires", "tag": "v4" },
+      "mongodb": { "role": "Base de données documentaire", "tag": "Connecté" }
+    },
+    "runtime": {
+      "react-query": { "name": "TanStack Query" },
+      "zustand": { "name": "Zustand" },
+      "three": { "name": "Three.js / R3F" },
+      "rest-api": { "name": "API REST NestJS" }
+    },
+    "build": {
+      "client-build": { "layer": "Client Next.js" },
+      "server-build": { "layer": "Serveur NestJS" },
+      "database-connection": { "layer": "Connexion MongoDB" }
+    }
+  },
+  "demo": {
+    "badgeText": "PORTFOLIO EN DIRECT",
+    "status": "En ligne",
+    "heroAlt": "Logo de Portfolio Workspace",
+    "executionConfiguration": "Configuration du portfolio",
+    "launchLiveDemo": "Ouvrir l'accueil du portfolio",
+    "runtime": "Exécution du portfolio",
+    "systemOutput": "Sortie système",
+    "previewSession": "Session de prévisualisation",
+    "sessionStatus": "État de la session",
+    "url": "URL",
+    "device": "Appareil",
+    "region": "Région",
+    "launchArguments": "Arguments de lancement",
+    "arguments": "arguments",
+    "configLabels": { "Environment": "Environnement", "Region": "Région" },
+    "configValues": { "Production": "Production", "US East": "Hébergement du portfolio" },
+    "previewValues": { "device": "Ordinateur de bureau", "region": "Racine du portfolio" },
+    "statuses": { "Online": "En ligne", "Running": "En cours" },
+    "runtimeHighlights": [
+      "Temps de chargement rapides",
+      "Design responsive",
+      "Optimisé pour le SEO"
+    ],
+    "systemOutputLines": ["Client Next.js prêt", "Espace portfolio chargé"],
+    "launchArgumentLines": ["npm run dev", "NODE_ENV=production"]
+  },
+  "repository": {
+    "badgeText": "DÉPÔT GITHUB",
+    "status": "En ligne",
+    "heroAlt": "Logo de Portfolio Workspace",
+    "repositoryLabel": "Dépôt",
+    "description": "Le dépôt source du monorepo actuel du portfolio.",
+    "notice": "Remarque : cliquez pour prévisualiser le contenu [Modèle]",
+    "latestCommits": "Derniers commits",
+    "author": "Auteur",
+    "commitMessage": "Message du commit",
+    "branches": "Branches",
+    "default": "Par défaut",
+    "moreBranches": "branches supplémentaires",
+    "repositoryInsights": "Statistiques du dépôt",
+    "files": "Fichiers",
+    "commits": "Commits",
+    "contributors": "Contributeurs",
+    "openIssues": "Issues ouvertes",
+    "pullRequests": "Pull requests",
+    "viewAllInsights": "Voir toutes les statistiques",
+    "continuousIntegration": "Intégration continue",
+    "languages": "Langages",
+    "viewAllLanguages": "Voir tous les langages",
+    "tabs": {
+      "README": "README",
+      "Commits": "Commits",
+      "Branches": "Branches",
+      "Releases": "Versions",
+      "Insights": "Statistiques"
+    },
+    "statuses": {
+      "Online": "En ligne",
+      "Passing": "Réussi",
+      "Connected": "Connecté",
+      "Production": "Production"
+    },
+    "stats": { "stars": "Étoiles", "forks": "Forks", "commits": "Commits" },
+    "ciNames": {
+      "Build": "Compilation",
+      "Tests": "Tests",
+      "Lint": "Vérification du code",
+      "Deployments": "Déploiements"
+    },
+    "commit": {
+      "title": "feat : mise à jour du modèle de clavier avec de nouvelles données binaires",
+      "message": "Le modèle de clavier a été mis à jour avec de nouvelles données binaires."
+    },
+    "languagesList": {
+      "TypeScript": "TypeScript",
+      "CSS": "CSS",
+      "JavaScript": "JavaScript",
+      "Other": "Autres"
+    }
+  }
+}

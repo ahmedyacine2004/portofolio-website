@@ -1,6 +1,5 @@
 import { UIUXProjectPrototypeView } from '@/components/projects/UIUXProjectPrototypeView';
 import { HEALTHSYNC_PROTOTYPE_DATA } from '@/data/projects/healthsync';
-import type { UIUXPrototypeData } from '@/data/projects/neobank-mobile';
 
 export const metadata = {
   title: 'HealthSync - Prototype',
@@ -10,7 +9,7 @@ export const metadata = {
 export default function HealthSyncPrototypePage() {
   return (
     <main className="h-full w-full p-2">
-      <UIUXProjectPrototypeView data={HEALTHSYNC_PROTOTYPE_DATA as unknown as UIUXPrototypeData} />
+      <UIUXProjectPrototypeView data={HEALTHSYNC_PROTOTYPE_DATA} />
     </main>
   );
 }

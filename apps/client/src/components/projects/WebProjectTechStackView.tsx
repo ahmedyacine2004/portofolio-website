@@ -1,6 +1,7 @@
 'use client';
 
 import type { WebProjectTechStackData } from '@/data/projects/consultify';
+import { useTranslation } from '@/hooks/use-translation';
 import {
   Activity,
   ChevronRight,
@@ -9,6 +10,9 @@ import {
   Cpu,
   Database,
   Layers,
+  Monitor,
+  Package,
+  Search,
   Palette,
   Server,
   ShieldCheck,
@@ -33,6 +37,9 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Cpu,
   Layers,
   Terminal,
+  Monitor,
+  Package,
+  Search,
 };
 
 interface WebProjectTechStackViewProps {
@@ -40,6 +47,24 @@ interface WebProjectTechStackViewProps {
 }
 
 export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) {
+  const { t } = useTranslation();
+  const projectKey = data.projectName
+    .split(/\s+/)
+    .map((part, index) =>
+      index === 0 ? part.toLowerCase() : part.charAt(0).toUpperCase() + part.slice(1).toLowerCase(),
+    )
+    .join('');
+  const projectTranslationKey =
+    projectKey === 'portfolioWorkspace'
+      ? 'projects.portfolioWorkspace'
+      : projectKey === 'taskflowDashboard'
+        ? 'projects.taskflowDashboard'
+        : projectKey === 'shopsphere'
+          ? 'projects.shopsphere'
+          : `projectsDetails.${projectKey}`;
+  const getTechText = (key: string, fallback: string) =>
+    t(`${projectTranslationKey}.techStack.${key}`, fallback);
+
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
       <WebProjectPageTabs />
@@ -51,16 +76,21 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
             <div className="flex items-center gap-2 text-primary">
               <Activity className="size-4" />
               <span className="font-inter text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                {data.subtitle || 'Workspace environment'}
+                {getTechText('subtitle', data.subtitle || 'Workspace environment')}
               </span>
             </div>
-            <p className="text-[11px] text-muted-foreground">{data.description}</p>
+            <p className="text-[11px] text-muted-foreground">
+              {getTechText('description', data.description)}
+            </p>
             <h1 className="font-inter text-2xl font-bold tracking-tight">{data.projectName}</h1>
           </div>
 
           <div className="flex items-center gap-1.5 rounded-full bg-purple-500/10 px-3 py-1 text-[10px] font-semibold text-purple-600 shadow-xs shadow-gray-300 dark:text-purple-400 dark:shadow-[0_0_10px_rgba(168,85,247,0.2)]">
             <Sparkles className="size-3" />
-            <span>{data.totalTechnologiesCount} Technologies Loaded</span>
+            <span>
+              {data.totalTechnologiesCount}{' '}
+              {getTechText('technologiesLoaded', 'Technologies Loaded')}
+            </span>
           </div>
         </div>
 
@@ -82,7 +112,9 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                   <div className="flex items-baseline gap-2">
                     <span className="font-inter text-lg font-extrabold">{env.count}</span>
                     <div>
-                      <h4 className="font-inter text-[11px] font-bold leading-none">{env.title}</h4>
+                      <h4 className="font-inter text-[11px] font-bold leading-none">
+                        {getTechText(`environment.${env.id}.title`, env.title)}
+                      </h4>
                       <span className="mt-0.5 block text-[9px] text-muted-foreground">
                         {env.tools}
                       </span>
@@ -98,7 +130,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                   }`}
                 >
                   <span className="size-1 rounded-full bg-current" />
-                  {env.status}
+                  {getTechText(`statuses.${env.status}`, env.status)}
                 </span>
               </div>
             );
@@ -110,7 +142,9 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
       <div className="rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         <div className="mb-3 flex items-center gap-2">
           <Database className="size-3.5 text-primary" />
-          <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">Core Stack</h2>
+          <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+            {getTechText('coreStack', 'Core Stack')}
+          </h2>
         </div>
 
         <div className="space-y-2">
@@ -135,7 +169,9 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                   </div>
                   <div>
                     <h4 className="font-inter text-[10px] font-bold">{item.name}</h4>
-                    <p className="text-[9px] text-muted-foreground">{item.role}</p>
+                    <p className="text-[9px] text-muted-foreground">
+                      {getTechText(`core.${item.id}.role`, item.role)}
+                    </p>
                   </div>
                 </div>
 
@@ -144,7 +180,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                     className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[8px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none ${badgeStyle}`}
                   >
                     <span className="size-1 rounded-full bg-current" />
-                    {item.tag}
+                    {getTechText(`core.${item.id}.tag`, item.tag)}
                   </span>
                   <ChevronRight className="size-3 text-muted-foreground" />
                 </div>
@@ -159,7 +195,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
         <div className="mb-3 flex items-center gap-2">
           <Workflow className="size-3.5 text-primary" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Runtime Services
+            {getTechText('runtimeServices', 'Runtime Services')}
           </h2>
         </div>
 
@@ -175,12 +211,14 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                   <div className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-muted text-foreground shadow-xs shadow-gray-300 dark:shadow-none">
                     <IconComp className="size-3.5" />
                   </div>
-                  <span className="font-inter text-[10px] font-bold">{service.name}</span>
+                  <span className="font-inter text-[10px] font-bold">
+                    {getTechText(`runtime.${service.id}.name`, service.name)}
+                  </span>
                 </div>
 
                 <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[8px] font-semibold text-emerald-600 shadow-xs shadow-gray-300 dark:text-emerald-400 dark:shadow-none">
                   <span className="size-1 rounded-full bg-emerald-500" />
-                  {service.status}
+                  {getTechText(`statuses.${service.status}`, service.status)}
                 </span>
               </div>
             );
@@ -193,7 +231,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
         <div className="mb-3 flex items-center gap-2">
           <Terminal className="size-3.5 text-primary" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Build status
+            {getTechText('buildStatus', 'Build status')}
           </h2>
         </div>
 
@@ -209,12 +247,14 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                 key={build.id}
                 className="flex items-center justify-between rounded-[6px] bg-background/80 px-3 py-2 text-[10px] font-medium shadow-xs shadow-gray-300 transition-all hover:bg-accent/30 dark:shadow-[0_0_6px_rgba(255,255,255,0.02)]"
               >
-                <span className="text-foreground/80">{build.layer}</span>
+                <span className="text-foreground/80">
+                  {getTechText(`build.${build.id}.layer`, build.layer)}
+                </span>
                 <span
                   className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[8px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none ${badgeStyle}`}
                 >
                   <span className="size-1 rounded-full bg-current" />
-                  {build.status}
+                  {getTechText(`statuses.${build.status}`, build.status)}
                 </span>
               </div>
             );

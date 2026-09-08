@@ -1,4 +1,5 @@
-import placeholderImage from '@/assets/images/neobank-mobile-hero.png';
+import insightDashboard from '@/assets/images/insight-analytics/dashboard.jpg';
+import insightMark from '@/assets/images/insight-analytics/mixpanel-mark.svg';
 import type { StaticImageData } from 'next/image';
 
 // --- UI / UX PROJECT DATA TYPES ---
@@ -141,7 +142,7 @@ export const INSIGHT_ANALYTICS_OVERVIEW_DATA: UIUXProjectOverviewData = {
   tagline: 'Advanced analytics dashboard for real-time business intelligence and insights.',
   description:
     'Design of a comprehensive analytics platform enabling teams to visualize complex data, track KPIs, and make data-driven decisions in real-time.',
-  heroImageUrl: placeholderImage.src,
+  heroImageUrl: insightMark.src,
   metadata: [
     { label: 'Role', value: 'UX/UI Designer' },
     { label: 'Timeline', value: '4 Months' },
@@ -156,10 +157,10 @@ export const INSIGHT_ANALYTICS_OVERVIEW_DATA: UIUXProjectOverviewData = {
       description: 'Increased time on platform post-redesign',
     },
     {
-      label: 'Data Accuracy',
-      value: '99.8%',
-      change: '+8%',
-      description: 'Improved data visualization accuracy',
+      label: 'Time to Insight',
+      value: '3.4 min',
+      change: '-41%',
+      description: 'Median time from dashboard open to first useful decision.',
     },
   ],
   problemStatement:
@@ -182,7 +183,12 @@ export const INSIGHT_ANALYTICS_OVERVIEW_DATA: UIUXProjectOverviewData = {
       title: 'Prototyping',
       description: 'Built interactive prototypes with data visualizations',
     },
-    { step: '04', title: 'Handoff', description: 'Delivered design system and component library' },
+    {
+      step: '04',
+      title: 'Handoff',
+      description:
+        'Delivered a chart system, interaction rules, responsive layouts, and annotated component specs.',
+    },
   ],
   keyFeatures: [
     {
@@ -195,12 +201,17 @@ export const INSIGHT_ANALYTICS_OVERVIEW_DATA: UIUXProjectOverviewData = {
       description: 'Drag-and-drop widget customization',
       icon: 'Layout',
     },
-    { title: 'Data Export', description: 'Export reports in multiple formats', icon: 'Download' },
+    {
+      title: 'Anomaly Alerts',
+      description:
+        'Explain unusual movement with a clear signal, comparison period, and next action.',
+      icon: 'Download',
+    },
   ],
   colorPalette: [
-    { name: 'Primary Blue', hex: '#0066CC' },
-    { name: 'Success Green', hex: '#00AA00' },
-    { name: 'Alert Red', hex: '#CC0000' },
+    { name: 'Signal Blue', hex: '#2563EB' },
+    { name: 'Healthy Green', hex: '#10B981' },
+    { name: 'Attention Coral', hex: '#F97316' },
   ],
   tools: ['Figma', 'FigJam', 'Adobe XD', 'Framer'],
 };
@@ -253,6 +264,7 @@ export const INSIGHT_ANALYTICS_WIREFRAMES_DATA: UIUXWireframesData = {
       fidelity: 'High-Fidelity',
       deviceTarget: 'Desktop (1920px)',
       description: 'Main analytics dashboard with KPI cards and charts',
+      imageUrl: insightDashboard.src,
       layoutGrid: '12 columns',
       componentsUsed: ['Header', 'Sidebar', 'KPI Cards', 'Charts', 'Tables'],
     },
@@ -274,7 +286,7 @@ export const INSIGHT_ANALYTICS_PROTOTYPE_DATA: UIUXPrototypeData = {
       type: 'Dashboard',
       description: 'Main dashboard view with interactive charts',
       hotspots: [
-        { id: 'h1', label: 'Date Range Selector', actionType: 'Click', targetScreenId: 'proto-2' },
+        { id: 'h1', label: 'Date Range Selector', actionType: 'Click', targetScreenId: 'proto-1' },
       ],
     },
   ],

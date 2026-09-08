@@ -139,7 +139,6 @@
   },
   "projects": {
     "projectWorkspace": "Project Workspace",
-    "description": "Select a project from the Source Control panel to inspect its repository.",
     "browseFeatured": "Browse Featured Projects",
     "workspaceStatus": "Workspace Status",
     "projects": "Projects",
@@ -680,6 +679,440 @@
       "guidelines": "Guidelines",
       "colorPalette": "Color Palette",
       "mockups": "Mockups"
+    },
+    "projectPages": "Project pages",
+    "consultify": {
+      "tagline": "AI-powered consultation ecosystem connecting users with certified experts.",
+      "coreObjective": "Make expert knowledge universally accessible",
+      "targetAudience": ["Students", "Professionals", "Businesses"],
+      "currentPhase": ["MVP Development", "Architecture Completed", "UI System Ready"],
+      "systemModules": {
+        "auth": {
+          "title": "Authentication",
+          "description": "Secure user authentication with OAuth & JWT",
+          "status": "Stable"
+        },
+        "booking": {
+          "title": "Consultation Booking",
+          "description": "Smart scheduling and calendar management",
+          "status": "Stable"
+        },
+        "ai-assistant": {
+          "title": "AI Assistant",
+          "description": "AI-powered recommendations and insights",
+          "status": "In Development"
+        },
+        "notifications": {
+          "title": "Notifications",
+          "description": "Real-time alerts and communication system",
+          "status": "Stable"
+        },
+        "admin": {
+          "title": "Administration",
+          "description": "Platform management and analytics dashboard",
+          "status": "Stable"
+        }
+      },
+      "architecture": {
+        "client": { "title": "Client", "subtitle": "Web / Mobile" },
+        "api-gateway": { "title": "API Gateway", "subtitle": "Nginx / Express" },
+        "services": { "title": "Services", "subtitle": "Microservices" },
+        "database": { "title": "Database", "subtitle": "MongoDB" },
+        "storage": { "title": "Storage", "subtitle": "Cloud Storage" }
+      },
+      "engineeringHighlights": [
+        "Modular Architecture",
+        "Multi-language Support",
+        "AI-first Workflow",
+        "Scalable Backend",
+        "Docker Ready",
+        "Responsive Design System"
+      ],
+      "previewAlt": "Consultify preview",
+      "gallery": {
+        "title": "Gallery",
+        "openLiveDemo": "Open Live Demo",
+        "browseScreens": "Browse Screens",
+        "resolution": "Resolution",
+        "device": "Device",
+        "lastUpdated": "Last Updated",
+        "fileType": "File Type",
+        "graphicAlt": "Consultify graphic",
+        "toggleFullscreen": "Toggle Fullscreen",
+        "items": {
+          "screen-1": {
+            "title": "Landing Page & Hero Section",
+            "device": "Desktop Browser",
+            "lastUpdated": "2 days ago",
+            "fileType": "PNG Image"
+          },
+          "screen-2": {
+            "title": "Expert Discovery & Filtering",
+            "device": "Desktop Browser",
+            "lastUpdated": "3 days ago",
+            "fileType": "PNG Image"
+          },
+          "screen-3": {
+            "title": "Consultant Booking Modal",
+            "device": "MacBook Pro",
+            "lastUpdated": "5 days ago",
+            "fileType": "PNG Image"
+          },
+          "screen-4": {
+            "title": "Live Video Consultation Workspace",
+            "device": "Desktop Browser",
+            "lastUpdated": "1 week ago",
+            "fileType": "PNG Image"
+          },
+          "screen-5": {
+            "title": "Analytics & Revenue Dashboard",
+            "device": "Desktop Browser",
+            "lastUpdated": "2 weeks ago",
+            "fileType": "PNG Image"
+          },
+          "screen-6": {
+            "title": "Client Review & Feedback Portal",
+            "device": "Desktop Browser",
+            "lastUpdated": "2 weeks ago",
+            "fileType": "PNG Image"
+          }
+        }
+      },
+      "techStack": {
+        "subtitle": "Workspace environment",
+        "description": "Interactive runtime of the technologies powering the project.",
+        "technologiesLoaded": "Technologies Loaded",
+        "coreStack": "Core Stack",
+        "runtimeServices": "Runtime Services",
+        "buildStatus": "Build status",
+        "environment": {
+          "frontend-env": { "title": "Frontend" },
+          "data-env": { "title": "Data Layer" },
+          "backend-env": { "title": "Backend" },
+          "ui-env": { "title": "UI/UX" }
+        },
+        "statuses": {
+          "Running": "Running",
+          "Synced": "Synced",
+          "Available": "Available",
+          "Connected": "Connected",
+          "Passing": "Passing",
+          "Production": "Production"
+        },
+        "core": {
+          "react": { "role": "Frontend Framework", "tag": "Primary" },
+          "typescript": { "role": "Type Safety", "tag": "Core" },
+          "nestjs": { "role": "Backend Framework", "tag": "Core" },
+          "mongodb": { "role": "Primary Database", "tag": "Connected" }
+        },
+        "runtime": {
+          "openai": { "name": "OpenAI API" },
+          "cloudinary": { "name": "Cloudinary" },
+          "stripe": { "name": "Stripe" },
+          "resend": { "name": "Resend Email" }
+        },
+        "build": {
+          "build-fe": { "layer": "Frontend Layer" },
+          "build-be": { "layer": "Backend Layer" },
+          "build-db": { "layer": "Database Layer" },
+          "build-deploy": { "layer": "Deployment" }
+        }
+      },
+      "demo": {
+        "badgeText": "RUN PROJECT",
+        "status": "Online",
+        "heroAlt": "Consultify hero graphic",
+        "executionConfiguration": "Execution Configuration",
+        "launchLiveDemo": "Launch Live Demo",
+        "runtime": "Runtime",
+        "systemOutput": "System output",
+        "previewSession": "Preview Session",
+        "sessionStatus": "Session Status",
+        "url": "URL",
+        "device": "Device",
+        "region": "Region",
+        "launchArguments": "Launch arguments",
+        "arguments": "arguments",
+        "configLabels": {
+          "Project": "Project",
+          "Environment": "Environment",
+          "Build": "Build",
+          "Runtime": "Runtime"
+        },
+        "configValues": {
+          "Production": "Production",
+          "Ready": "Ready"
+        },
+        "previewValues": {
+          "device": "Desktop",
+          "region": "Algeria, Tebessa, Tebessa"
+        },
+        "statuses": {
+          "Online": "Online",
+          "Running": "Running"
+        },
+        "runtimeHighlights": [
+          "Modular Architecture",
+          "Multi-language Support",
+          "AI-first Workflow",
+          "Scalable Backend"
+        ],
+        "systemOutputLines": [
+          "################################",
+          "ALL SYSTEMS GO.",
+          "YOU CAN ENJOY CONSULTIFY RIGHT NOW",
+          "EXPAND YOUR KNOWLEDGE.",
+          "################################"
+        ],
+        "launchArgumentLines": [
+          "-- mode=production",
+          "-- device=desktop",
+          "-- network=online",
+          "-- performance=optimized"
+        ]
+      },
+      "repository": {
+        "badgeText": "GITHUB REPOSITORY",
+        "status": "Online",
+        "heroAlt": "Consultify hero graphic",
+        "repositoryLabel": "Repository",
+        "description": "AI-powered consultation platform connecting users with certified experts.",
+        "notice": "Note: Click to preview the content [Model]",
+        "latestCommits": "Latest Commits",
+        "author": "Author",
+        "commitMessage": "Commit Message",
+        "branches": "Branches",
+        "default": "Default",
+        "moreBranches": "more branches",
+        "repositoryInsights": "Repository Insights",
+        "files": "Files",
+        "commits": "Commits",
+        "contributors": "Contributors",
+        "openIssues": "Open Issues",
+        "pullRequests": "Pull Requests",
+        "viewAllInsights": "View All Insights",
+        "continuousIntegration": "Continuous Integration",
+        "languages": "Languages",
+        "viewAllLanguages": "View All Languages",
+        "ciNames": {
+          "Build": "Build",
+          "Tests": "Tests",
+          "Lint": "Lint",
+          "Deployments": "Deployments"
+        },
+        "tabs": {
+          "README": "README",
+          "Commits": "Commits",
+          "Branches": "Branches",
+          "Releases": "Releases",
+          "Insights": "Insights"
+        },
+        "statuses": {
+          "Online": "Online",
+          "Passing": "Passing",
+          "Production": "Production"
+        },
+        "stats": {
+          "stars": "Stars",
+          "forks": "Forks",
+          "watching": "Watching",
+          "releases": "Releases"
+        },
+        "commit": {
+          "title": "feat(ai): Integrate multilingual recommendation engine",
+          "message": "Implemented an AI-powered recommendation engine with multilingual support. Added language detection, recommendation scoring, prompt optimization, and localization middleware for English, French, and Arabic."
+        },
+        "languagesList": {
+          "TypeScript": "TypeScript",
+          "CSS": "CSS",
+          "JavaScript": "JavaScript",
+          "HTML": "HTML",
+          "Other": "Other"
+        }
+      },
+      "portfolioWorkspace": {
+        "tagline": "Full-stack portfolio platform with Next.js, React, TypeScript, and MongoDB.",
+        "previewAlt": "Portfolio Workspace logo",
+        "coreObjective": "Showcase creative work with a modern, interactive portfolio platform",
+        "targetAudience": ["Designers", "Developers", "Creative Professionals"],
+        "currentPhase": ["Production", "API Complete", "UI Polished"],
+        "systemModules": {
+          "auth": {
+            "title": "Authentication",
+            "description": "Secure JWT-based authentication system",
+            "status": "Stable"
+          },
+          "projects": {
+            "title": "Project Management",
+            "description": "CRUD operations for project portfolio management",
+            "status": "Stable"
+          },
+          "analytics": {
+            "title": "Analytics",
+            "description": "Portfolio view tracking and engagement metrics",
+            "status": "In Development"
+          },
+          "admin": {
+            "title": "Administration",
+            "description": "Content management and dashboard",
+            "status": "Stable"
+          }
+        },
+        "architecture": {
+          "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
+          "backend": { "title": "Backend", "subtitle": "Node.js / Express" },
+          "database": { "title": "Database", "subtitle": "MongoDB" },
+          "storage": { "title": "Storage", "subtitle": "Cloud Storage" }
+        },
+        "engineeringHighlights": [
+          "SSR & Static Generation",
+          "Responsive Design",
+          "SEO Optimized",
+          "Fast Load Times",
+          "Admin Dashboard"
+        ],
+        "gallery": {
+          "title": "Gallery",
+          "openLiveDemo": "Open Live Demo",
+          "browseScreens": "Browse Screens",
+          "resolution": "Resolution",
+          "device": "Device",
+          "lastUpdated": "Last Updated",
+          "fileType": "File Type",
+          "graphicAlt": "Portfolio Workspace graphic",
+          "items": {
+            "screen-1": {
+              "title": "Portfolio Homepage",
+              "device": "Desktop Browser",
+              "lastUpdated": "1 day ago",
+              "fileType": "PNG Image"
+            },
+            "screen-2": {
+              "title": "About and Profile Workspace",
+              "device": "Desktop Browser",
+              "lastUpdated": "1 day ago",
+              "fileType": "PNG Image"
+            },
+            "screen-3": {
+              "title": "Projects Dashboard",
+              "device": "Desktop Browser",
+              "lastUpdated": "2 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-4": {
+              "title": "Skills and Technology Explorer",
+              "device": "Desktop Browser",
+              "lastUpdated": "2 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-5": {
+              "title": "Experience Timeline",
+              "device": "Desktop Browser",
+              "lastUpdated": "3 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-6": {
+              "title": "Project Details Workspace",
+              "device": "Desktop Browser",
+              "lastUpdated": "3 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-7": {
+              "title": "Contact Workspace",
+              "device": "Desktop Browser",
+              "lastUpdated": "4 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-8": {
+              "title": "AI Assistant Workspace",
+              "device": "Desktop Browser",
+              "lastUpdated": "4 days ago",
+              "fileType": "PNG Image"
+            },
+            "screen-9": {
+              "title": "Settings Workspace",
+              "device": "Desktop Browser",
+              "lastUpdated": "5 days ago",
+              "fileType": "PNG Image"
+            }
+          }
+        },
+        "techStack": {
+          "subtitle": "Modern Full-Stack Architecture",
+          "description": "Built with modern technologies for performance, maintainability, and scalability.",
+          "technologiesLoaded": "Technologies Loaded",
+          "coreStack": "Core Stack",
+          "runtimeServices": "Runtime Services",
+          "buildStatus": "Build Status",
+          "environment": {
+            "frontend-runtime": { "title": "Frontend" },
+            "backend-runtime": { "title": "Backend" },
+            "data-layer": { "title": "Data Layer" },
+            "interactive-ui": { "title": "Interactive UI" }
+          },
+          "statuses": {
+            "Running": "Running",
+            "Synced": "Connected",
+            "Connected": "Connected",
+            "Active": "Active",
+            "Passing": "Passing"
+          },
+          "core": {
+            "nextjs": { "role": "App Router frontend", "tag": "v16.3" },
+            "react": { "role": "UI component runtime", "tag": "v19.2" },
+            "nestjs": { "role": "Backend application framework", "tag": "v11" },
+            "typescript": { "role": "Strict type system", "tag": "v5" },
+            "tailwind": { "role": "Utility-first styling", "tag": "v4" },
+            "mongodb": { "role": "Document database", "tag": "Connected" }
+          },
+          "runtime": {
+            "react-query": { "name": "TanStack Query" },
+            "zustand": { "name": "Zustand" },
+            "three": { "name": "Three.js / R3F" },
+            "rest-api": { "name": "NestJS REST API" }
+          },
+          "build": {
+            "client-build": { "layer": "Next.js Client" },
+            "server-build": { "layer": "NestJS Server" },
+            "database-connection": { "layer": "MongoDB Connection" }
+          }
+        },
+        "demo": {
+          "badgeText": "LIVE PORTFOLIO",
+          "status": "Online",
+          "heroAlt": "Portfolio Workspace logo",
+          "executionConfiguration": "Portfolio Configuration",
+          "launchLiveDemo": "Open Portfolio Home",
+          "runtime": "Portfolio Runtime",
+          "systemOutput": "System output",
+          "previewSession": "Preview Session",
+          "sessionStatus": "Session Status",
+          "url": "URL",
+          "device": "Device",
+          "region": "Region",
+          "launchArguments": "Launch arguments",
+          "arguments": "arguments",
+          "configLabels": {
+            "Environment": "Environment",
+            "Region": "Region"
+          },
+          "configValues": {
+            "Production": "Production",
+            "US East": "Portfolio host"
+          },
+          "previewValues": {
+            "device": "Desktop",
+            "region": "Portfolio root"
+          },
+          "statuses": {
+            "Online": "Online",
+            "Running": "Running"
+          },
+          "runtimeHighlights": ["Fast Load Times", "Responsive Design", "SEO Optimized"],
+          "systemOutputLines": ["Next.js client ready", "Portfolio workspace loaded"],
+          "launchArgumentLines": ["npm run dev", "NODE_ENV=production"]
+        }
+      }
     }
   },
   "projectsSidebar": {

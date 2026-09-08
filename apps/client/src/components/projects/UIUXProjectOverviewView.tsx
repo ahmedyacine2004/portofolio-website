@@ -33,7 +33,21 @@ interface UIUXProjectOverviewViewProps {
 }
 
 export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) {
-  const { t } = useTranslation();
+  const { t, projectText } = useTranslation();
+  const projectKey =
+    data.projectName === 'Design System'
+      ? 'designSystem'
+      : data.projectName === 'LearnHub LMS'
+        ? 'learnhubLms'
+        : data.projectName === 'TravelMate'
+          ? 'travelMate'
+          : data.projectName === 'HealthSync'
+            ? 'healthsync'
+            : data.projectName === 'Insight Analytics'
+              ? 'insightAnalytics'
+              : 'neobankMobile';
+  const tt = (key: string, fallback: string) => t(`projects.${projectKey}.common.${key}`, fallback);
+  const pt = (value: string) => projectText(projectKey, value);
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
@@ -45,17 +59,17 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
               <Palette className="size-4" />
             </div>
             <span className="font-inter text-[10px] font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-              {data.badgeText}
+              {tt('uiUxDesign', data.badgeText)}
             </span>
           </div>
 
           <div>
             <h1 className="font-inter text-2xl font-black tracking-tight">{data.projectName}</h1>
             <p className="mt-0.5 font-inter text-[11px] font-bold text-muted-foreground">
-              {data.category}
+              {pt(data.category)}
             </p>
             <p className="mt-1 text-[12px] font-medium leading-relaxed text-foreground/90">
-              {data.tagline}
+              {pt(data.tagline)}
             </p>
           </div>
         </div>
@@ -63,7 +77,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
         <div className="z-10 flex items-center gap-4">
           <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-[9px] font-bold text-emerald-600 shadow-xs dark:text-emerald-400 dark:shadow-none">
             <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            {data.status}
+            {pt(data.status)}
           </span>
 
           {data.heroImageUrl && (
@@ -89,10 +103,10 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
             className="flex flex-col gap-0.5 rounded-[8px] bg-card p-3 shadow-md shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]"
           >
             <span className="text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
-              {item.label}
+              {pt(item.label)}
             </span>
             <span className="font-inter text-[11px] font-extrabold text-foreground">
-              {item.value}
+              {pt(item.value)}
             </span>
           </div>
         ))}
@@ -107,11 +121,11 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
             <div className="flex items-center gap-2 text-rose-500">
               <Target className="size-4 shrink-0" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider text-foreground">
-                The Problem
+                {tt('theProblem', 'The Problem')}
               </h2>
             </div>
             <p className="text-[10px] font-medium leading-relaxed text-muted-foreground">
-              {data.problemStatement}
+              {pt(data.problemStatement)}
             </p>
           </div>
 
@@ -120,11 +134,11 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
             <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400">
               <Sparkles className="size-4 shrink-0" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider text-foreground">
-                The Solution
+                {tt('theSolution', 'The Solution')}
               </h2>
             </div>
             <p className="text-[10px] font-medium leading-relaxed text-muted-foreground">
-              {data.solutionStatement}
+              {pt(data.solutionStatement)}
             </p>
           </div>
         </div>
@@ -135,7 +149,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
             <div className="flex items-center gap-2">
               <TrendingUp className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Measurable Impact
+                {tt('measurableImpact', 'Measurable Impact')}
               </h2>
             </div>
 
@@ -146,18 +160,20 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
                   className="rounded-[6px] bg-background/80 p-2.5 shadow-xs shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.02)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold">{metric.label}</span>
+                    <span className="text-[10px] font-bold">{pt(metric.label)}</span>
                     {metric.change && (
                       <span className="flex items-center text-[9px] font-black text-emerald-600 dark:text-emerald-400">
                         <ArrowUpRight className="size-3" />
-                        {metric.change}
+                        {pt(metric.change)}
                       </span>
                     )}
                   </div>
                   <div className="font-inter text-lg font-black text-foreground">
                     {metric.value}
                   </div>
-                  <p className="mt-0.5 text-[8.5px] text-muted-foreground">{metric.description}</p>
+                  <p className="mt-0.5 text-[8.5px] text-muted-foreground">
+                    {pt(metric.description)}
+                  </p>
                 </div>
               ))}
             </div>
@@ -170,7 +186,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
         <div className="flex items-center gap-2">
           <Layers className="size-4 text-purple-600 dark:text-purple-400" />
           <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-            Design Process & Methodology
+            {tt('designProcess', 'Design Process & Methodology')}
           </h2>
         </div>
 
@@ -185,10 +201,10 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
                   {item.step}
                 </span>
                 <h3 className="mt-1 font-inter text-[10px] font-bold text-foreground">
-                  {item.title}
+                  {pt(item.title)}
                 </h3>
                 <p className="mt-1 text-[9px] leading-relaxed text-muted-foreground">
-                  {item.description}
+                  {pt(item.description)}
                 </p>
               </div>
             </div>
@@ -203,7 +219,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
           <div className="flex items-center gap-2">
             <Smartphone className="size-4 text-purple-600 dark:text-purple-400" />
             <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              Core Experience Highlights
+              {tt('coreHighlights', 'Core Experience Highlights')}
             </h2>
           </div>
 
@@ -220,10 +236,10 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
                   </div>
                   <div className="flex flex-col">
                     <h3 className="font-inter text-[10px] font-bold text-foreground">
-                      {feature.title}
+                      {pt(feature.title)}
                     </h3>
                     <p className="mt-0.5 text-[9px] leading-relaxed text-muted-foreground">
-                      {feature.description}
+                      {pt(feature.description)}
                     </p>
                   </div>
                 </div>
@@ -239,7 +255,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
             <div className="flex items-center gap-2">
               <Palette className="size-4 text-purple-600 dark:text-purple-400" />
               <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                Visual Palette
+                {tt('visualPalette', 'Visual Palette')}
               </h2>
             </div>
 
@@ -254,7 +270,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
                     style={{ backgroundColor: color.hex }}
                   />
                   <div className="flex flex-col">
-                    <span className="text-[9px] font-bold">{color.name}</span>
+                    <span className="text-[9px] font-bold">{pt(color.name)}</span>
                     <span className="font-mono text-[8px] text-muted-foreground">{color.hex}</span>
                   </div>
                 </div>
@@ -265,7 +281,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
           {/* Tools Used */}
           <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
             <span className="font-inter text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-              Design & Prototyping Tools
+              {tt('designTools', 'Design & Prototyping Tools')}
             </span>
             <div className="flex flex-wrap gap-1.5">
               {data.tools.map((tool) => (
@@ -273,7 +289,7 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
                   key={tool}
                   className="rounded-[4px] bg-purple-500/10 px-2 py-1 text-[9px] font-extrabold text-purple-600 dark:text-purple-400"
                 >
-                  {tool}
+                  {pt(tool)}
                 </span>
               ))}
             </div>

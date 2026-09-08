@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import { useTranslation } from '@/hooks/use-translation';
 import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 export interface GalleryItem {
@@ -26,6 +26,7 @@ export function Carousel3D({
   onSelectIndex,
   onToggleFullscreen,
 }: Carousel3DProps) {
+  const { t } = useTranslation();
   if (!items || items.length === 0) return null;
 
   const handlePrev = () => {
@@ -43,7 +44,7 @@ export function Carousel3D({
         <button
           onClick={onToggleFullscreen}
           className="absolute right-3 top-2 z-40 flex size-8 items-center justify-center rounded-[6px] bg-card text-muted-foreground shadow-xs transition-colors hover:bg-accent hover:text-foreground dark:shadow-black/40"
-          title="Toggle Fullscreen"
+          title={t('projectsDetails.consultify.gallery.toggleFullscreen', 'Toggle Fullscreen')}
           type="button"
         >
           <Maximize2 className="size-4" />

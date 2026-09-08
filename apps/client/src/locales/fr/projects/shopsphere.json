@@ -1,0 +1,195 @@
+{
+  "tagline": "Une vitrine e-commerce pour découvrir les produits, payer et suivre les commandes.",
+  "previewAlt": "Icône de panier ShopSphere",
+  "coreObjective": "Rendre la découverte, le paiement et la livraison simples pour les commerçants en croissance.",
+  "targetAudience": ["Acheteurs en ligne", "Commerçants indépendants", "Marques DTC"],
+  "currentPhase": ["Bêta privée", "Catalogue et paiement", "Sécurisation des paiements"],
+  "systemModules": {
+    "products": {
+      "title": "Catalogue produit",
+      "description": "Catalogue structuré avec variantes, collections, stocks et filtres avancés.",
+      "status": "Stable"
+    },
+    "cart": {
+      "title": "Panier",
+      "description": "Panier persistant synchronisé entre les différentes sessions et appareils.",
+      "status": "Stable"
+    },
+    "payments": {
+      "title": "Traitement des paiements",
+      "description": "Orchestration du paiement avec intentions, remboursements et confirmation de commande.",
+      "status": "En développement"
+    },
+    "recommendations": {
+      "title": "Recommandations IA",
+      "description": "Suggestions contextuelles basées sur la navigation et les achats.",
+      "status": "En développement"
+    }
+  },
+  "architecture": {
+    "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
+    "commerce-api": { "title": "API commerce", "subtitle": "NestJS / Node.js" },
+    "database": { "title": "Base de données", "subtitle": "PostgreSQL / Redis" },
+    "search": { "title": "Recherche", "subtitle": "OpenSearch" }
+  },
+  "engineeringHighlights": [
+    "Recherche produit avancée",
+    "Recommandations personnalisées",
+    "Flux d'intention de paiement",
+    "Réservation des stocks",
+    "Paiement mobile-first"
+  ],
+  "gallery": {
+    "title": "Galerie commerce",
+    "openLiveDemo": "Ouvrir ShopSphere",
+    "browseScreens": "Parcourir les écrans produit",
+    "resolution": "Résolution",
+    "device": "Appareil",
+    "lastUpdated": "Dernière mise à jour",
+    "fileType": "Type de fichier",
+    "graphicAlt": "Icône de panier ShopSphere",
+    "items": {
+      "screen-1": {
+        "title": "Vitrine et découverte produit",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-2": {
+        "title": "Détails produit et variantes",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 2 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-3": {
+        "title": "Parcours panier et paiement",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image JPG"
+      },
+      "screen-4": {
+        "title": "Confirmation de commande et recommandations",
+        "device": "Navigateur de bureau",
+        "lastUpdated": "il y a 3 jours",
+        "fileType": "Image JPG"
+      }
+    }
+  },
+  "techStack": {
+    "subtitle": "Plateforme commerce et paiement",
+    "description": "Une base e-commerce pour gérer le catalogue, la découverte, le paiement et la livraison.",
+    "technologiesLoaded": "Technologies chargées",
+    "coreStack": "Pile principale",
+    "runtimeServices": "Services d'exécution",
+    "buildStatus": "État de la compilation",
+    "environment": {
+      "frontend": { "title": "Frontend" },
+      "commerce-api": { "title": "API commerce" },
+      "data-search": { "title": "Données et recherche" },
+      "payments": { "title": "Paiements" }
+    },
+    "statuses": {
+      "Running": "En cours",
+      "Synced": "Connecté",
+      "Connected": "Connecté",
+      "Active": "Actif",
+      "Passing": "Réussi"
+    },
+    "core": {
+      "nextjs": { "role": "Framework de la vitrine", "tag": "App Router" },
+      "nestjs": { "role": "API commerce", "tag": "Noyau" },
+      "postgresql": { "role": "Données de commandes et catalogue", "tag": "Noyau" },
+      "stripe": { "role": "Traitement des paiements", "tag": "Connecté" }
+    },
+    "runtime": {
+      "search": { "name": "OpenSearch" },
+      "redis": { "name": "Cache Redis" },
+      "webhooks": { "name": "Webhooks de paiement" }
+    },
+    "build": {
+      "storefront-build": { "layer": "Compilation de la vitrine" },
+      "api-build": { "layer": "API commerce" },
+      "payment-connection": { "layer": "Connexion de paiement" }
+    }
+  },
+  "demo": {
+    "badgeText": "SHOPSPHERE EN DIRECT",
+    "status": "En ligne",
+    "heroAlt": "Icône de panier ShopSphere",
+    "executionConfiguration": "Configuration de la boutique",
+    "launchLiveDemo": "Ouvrir ShopSphere",
+    "runtime": "Exécution de ShopSphere",
+    "systemOutput": "Sortie système",
+    "previewSession": "Session de prévisualisation",
+    "sessionStatus": "État de la session",
+    "url": "URL",
+    "device": "Appareil",
+    "region": "Région",
+    "launchArguments": "Arguments de lancement",
+    "arguments": "arguments",
+    "configLabels": { "Environment": "Environnement", "Region": "Région" },
+    "configValues": { "Production": "Production", "Multi-Region": "Multi-région" },
+    "previewValues": { "device": "Ordinateur de bureau", "region": "Multi-région" },
+    "statuses": { "Online": "En ligne", "Running": "En cours" },
+    "runtimeHighlights": [
+      "Paiement rapide",
+      "Recherche produit avancée",
+      "Recommandations personnalisées"
+    ],
+    "systemOutputLines": [
+      "API ShopSphere prête sur le port 3000",
+      "Index catalogue synchronisé",
+      "Webhooks de paiement actifs"
+    ],
+    "launchArgumentLines": ["npm run dev", "NODE_ENV=production"]
+  },
+  "repository": {
+    "badgeText": "DÉPÔT GITHUB",
+    "status": "En ligne",
+    "heroAlt": "Icône de panier ShopSphere",
+    "repositoryLabel": "Dépôt",
+    "description": "Vitrine e-commerce et plateforme de paiement avec recherche et recommandations.",
+    "notice": "Remarque : cliquez pour prévisualiser le contenu [Modèle]",
+    "latestCommits": "Derniers commits",
+    "author": "Auteur",
+    "commitMessage": "Message du commit",
+    "branches": "Branches",
+    "default": "Par défaut",
+    "moreBranches": "branches supplémentaires",
+    "repositoryInsights": "Statistiques du dépôt",
+    "files": "Fichiers",
+    "commits": "Commits",
+    "contributors": "Contributeurs",
+    "openIssues": "Issues ouvertes",
+    "pullRequests": "Pull requests",
+    "viewAllInsights": "Voir toutes les statistiques",
+    "continuousIntegration": "Intégration continue",
+    "languages": "Langages",
+    "viewAllLanguages": "Voir tous les langages",
+    "tabs": {
+      "README": "README",
+      "Commits": "Commits",
+      "Branches": "Branches",
+      "Releases": "Versions",
+      "Insights": "Statistiques"
+    },
+    "statuses": {
+      "Online": "En ligne",
+      "Passing": "Réussi",
+      "Connected": "Connecté",
+      "Production": "Production"
+    },
+    "stats": { "stars": "Étoiles", "forks": "Forks", "commits": "Commits" },
+    "ciNames": {
+      "Build": "Compilation",
+      "Tests": "Tests",
+      "Lint": "Vérification du code",
+      "Deployments": "Déploiements"
+    },
+    "commit": {
+      "title": "feat : ajout du service de recommandations produit",
+      "message": "Ajout du score de recommandation produit et du suivi des événements de paiement."
+    },
+    "languagesList": { "TypeScript": "TypeScript", "CSS": "CSS", "JavaScript": "JavaScript" }
+  }
+}

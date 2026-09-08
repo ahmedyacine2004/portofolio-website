@@ -1,0 +1,190 @@
+{
+  "tagline": "A commerce storefront for product discovery, checkout, and fulfillment visibility.",
+  "previewAlt": "ShopSphere shopping cart mark",
+  "coreObjective": "Make product discovery, checkout, and fulfillment feel effortless for growing retailers.",
+  "targetAudience": ["Online Shoppers", "Independent Retailers", "DTC Brands"],
+  "currentPhase": ["Private Beta", "Catalog and Checkout", "Payments Hardening"],
+  "systemModules": {
+    "products": {
+      "title": "Product Catalog",
+      "description": "Structured catalog with variants, collections, inventory, and faceted filters.",
+      "status": "Stable"
+    },
+    "cart": {
+      "title": "Shopping Cart",
+      "description": "Persistent cart that survives sessions and stays synchronized across devices.",
+      "status": "Stable"
+    },
+    "payments": {
+      "title": "Payment Processing",
+      "description": "Checkout orchestration with payment intents, refunds, and order confirmation.",
+      "status": "In Development"
+    },
+    "recommendations": {
+      "title": "AI Recommendations",
+      "description": "Contextual recommendations based on browsing and purchase signals.",
+      "status": "In Development"
+    }
+  },
+  "architecture": {
+    "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
+    "commerce-api": { "title": "Commerce API", "subtitle": "NestJS / Node.js" },
+    "database": { "title": "Database", "subtitle": "PostgreSQL / Redis" },
+    "search": { "title": "Search", "subtitle": "OpenSearch" }
+  },
+  "engineeringHighlights": [
+    "Faceted Product Search",
+    "Personalized Recommendations",
+    "Payment Intent Flow",
+    "Inventory Reservations",
+    "Mobile-first Checkout"
+  ],
+  "gallery": {
+    "title": "Commerce Gallery",
+    "openLiveDemo": "Open ShopSphere",
+    "browseScreens": "Browse Product Screens",
+    "resolution": "Resolution",
+    "device": "Device",
+    "lastUpdated": "Last Updated",
+    "fileType": "File Type",
+    "graphicAlt": "ShopSphere shopping cart mark",
+    "items": {
+      "screen-1": {
+        "title": "Storefront and Product Discovery",
+        "device": "Desktop Browser",
+        "lastUpdated": "3 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-2": {
+        "title": "Product Detail and Variants",
+        "device": "Desktop Browser",
+        "lastUpdated": "2 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-3": {
+        "title": "Cart and Checkout Flow",
+        "device": "Desktop Browser",
+        "lastUpdated": "3 days ago",
+        "fileType": "JPG Image"
+      },
+      "screen-4": {
+        "title": "Order Confirmation and Recommendations",
+        "device": "Desktop Browser",
+        "lastUpdated": "3 days ago",
+        "fileType": "JPG Image"
+      }
+    }
+  },
+  "techStack": {
+    "subtitle": "Commerce and Checkout Platform",
+    "description": "A commerce foundation for catalog management, discovery, checkout, and fulfillment.",
+    "technologiesLoaded": "Technologies Loaded",
+    "coreStack": "Core Stack",
+    "runtimeServices": "Runtime Services",
+    "buildStatus": "Build Status",
+    "environment": {
+      "frontend": { "title": "Frontend" },
+      "commerce-api": { "title": "Commerce API" },
+      "data-search": { "title": "Data and Search" },
+      "payments": { "title": "Payments" }
+    },
+    "statuses": {
+      "Running": "Running",
+      "Synced": "Connected",
+      "Connected": "Connected",
+      "Active": "Active",
+      "Passing": "Passing"
+    },
+    "core": {
+      "nextjs": { "role": "Storefront framework", "tag": "App Router" },
+      "nestjs": { "role": "Commerce API", "tag": "Core" },
+      "postgresql": { "role": "Order and catalog data", "tag": "Core" },
+      "stripe": { "role": "Payment processing", "tag": "Connected" }
+    },
+    "runtime": {
+      "search": { "name": "OpenSearch" },
+      "redis": { "name": "Redis Cache" },
+      "webhooks": { "name": "Payment Webhooks" }
+    },
+    "build": {
+      "storefront-build": { "layer": "Storefront Build" },
+      "api-build": { "layer": "Commerce API" },
+      "payment-connection": { "layer": "Payment Connection" }
+    }
+  },
+  "demo": {
+    "badgeText": "LIVE SHOPSPHERE",
+    "status": "Online",
+    "heroAlt": "ShopSphere shopping cart mark",
+    "executionConfiguration": "Store Configuration",
+    "launchLiveDemo": "Open ShopSphere",
+    "runtime": "ShopSphere Runtime",
+    "systemOutput": "System output",
+    "previewSession": "Preview Session",
+    "sessionStatus": "Session Status",
+    "url": "URL",
+    "device": "Device",
+    "region": "Region",
+    "launchArguments": "Launch arguments",
+    "arguments": "arguments",
+    "configLabels": { "Environment": "Environment", "Region": "Region" },
+    "configValues": { "Production": "Production", "Multi-Region": "Multi-region" },
+    "previewValues": { "device": "Desktop", "region": "Multi-region" },
+    "statuses": { "Online": "Online", "Running": "Running" },
+    "runtimeHighlights": [
+      "Fast checkout flow",
+      "Faceted product search",
+      "Personalized recommendations"
+    ],
+    "systemOutputLines": [
+      "ShopSphere API ready on port 3000",
+      "Catalog index synchronized",
+      "Payment webhooks listening"
+    ],
+    "launchArgumentLines": ["npm run dev", "NODE_ENV=production"]
+  },
+  "repository": {
+    "badgeText": "GITHUB REPOSITORY",
+    "status": "Online",
+    "heroAlt": "ShopSphere shopping cart mark",
+    "repositoryLabel": "Repository",
+    "description": "Commerce storefront and checkout platform with search and recommendations.",
+    "notice": "Note: Click to preview the content [Model]",
+    "latestCommits": "Latest Commits",
+    "author": "Author",
+    "commitMessage": "Commit Message",
+    "branches": "Branches",
+    "default": "Default",
+    "moreBranches": "more branches",
+    "repositoryInsights": "Repository Insights",
+    "files": "Files",
+    "commits": "Commits",
+    "contributors": "Contributors",
+    "openIssues": "Open Issues",
+    "pullRequests": "Pull Requests",
+    "viewAllInsights": "View All Insights",
+    "continuousIntegration": "Continuous Integration",
+    "languages": "Languages",
+    "viewAllLanguages": "View All Languages",
+    "tabs": {
+      "README": "README",
+      "Commits": "Commits",
+      "Branches": "Branches",
+      "Releases": "Releases",
+      "Insights": "Insights"
+    },
+    "statuses": {
+      "Online": "Online",
+      "Passing": "Passing",
+      "Connected": "Connected",
+      "Production": "Production"
+    },
+    "stats": { "stars": "Stars", "forks": "Forks", "commits": "Commits" },
+    "ciNames": { "Build": "Build", "Tests": "Tests", "Lint": "Lint", "Deployments": "Deployments" },
+    "commit": {
+      "title": "feat: add product recommendation service",
+      "message": "Added product recommendation scoring and checkout event tracking."
+    },
+    "languagesList": { "TypeScript": "TypeScript", "CSS": "CSS", "JavaScript": "JavaScript" }
+  }
+}

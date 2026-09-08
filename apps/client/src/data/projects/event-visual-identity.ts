@@ -114,25 +114,25 @@ export const EVENT_VISUAL_IDENTITY_OVERVIEW_DATA: GraphicDesignOverviewData = {
     'Digital Assets',
   ],
   summary:
-    'Complete visual identity design for major digital event with 30+ collateral pieces and 3D branding elements.',
+    'A spatial identity system for a technology summit that connects the stage, venue, attendee journey, and live digital conversation.',
   challenge:
-    'Create a distinctive visual identity that represents innovation and brings attendees together',
+    'The summit needed to feel ambitious without becoming cold or generic. The identity had to guide thousands of attendees through a physical venue while staying legible on screens and social posts.',
   solution:
-    'Developed a modern, dynamic visual system with flexible components for both digital and physical applications',
+    'Designed a modular visual system built from luminous wayfinding lines, layered data shapes, and a warm signal color. The same geometry scaled from badges and room signs to stage graphics and live social templates.',
   pillars: [
     {
-      title: 'Innovation & Modernity',
-      description: 'Contemporary design reflecting tech industry trends',
+      title: 'Human Innovation',
+      description: 'A contemporary language that makes technical ideas feel welcoming and useful',
       tag: 'Visual',
     },
     {
-      title: 'Spatial Design',
-      description: '3D graphics and environmental branding',
+      title: 'Spatial Continuity',
+      description: 'A visual route connecting entrance, stage, rooms, badges, and screens',
       tag: '3D & Space',
     },
     {
-      title: 'Digital-First Approach',
-      description: 'Optimized for digital and physical experiences',
+      title: 'Built for the Moment',
+      description: 'Assets designed to work in print, motion, low light, and live social coverage',
       tag: 'Multi-channel',
     },
   ],
@@ -156,10 +156,10 @@ export const EVENT_VISUAL_IDENTITY_OVERVIEW_DATA: GraphicDesignOverviewData = {
   assetsPreview: [
     {
       id: 'asset-1',
-      title: 'Event Badge Design',
+      title: 'Attendee Badge System',
       category: 'Stationery',
       dimensions: '200 × 300mm',
-      description: 'Attendee badge with security features',
+      description: 'Readable badge hierarchy with role color, access zone, and security details.',
       format: 'PDF / Print Ready',
     },
   ],
