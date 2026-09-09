@@ -4,48 +4,23 @@ import { FrontendWorkspaceData } from '@/data/skills/react-workspace';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
-  AlertCircle,
-  ArrowRight,
   Boxes,
-  Check,
-  CheckCircle2,
-  Clock,
   Cloud,
-  Code,
-  Code2,
-  Compass,
-  Cpu,
-  FileCode2,
-  FileText,
-  Folder,
-  FolderGit2,
   GitBranch,
-  Globe,
-  HardDrive,
   Layers,
-  Layers3,
   Lock,
-  LucideIcon,
-  Monitor,
   Package,
-  Play,
   Radio,
-  RefreshCw,
   Rocket,
-  Search,
   Server,
   ServerCog,
-  Settings,
   Shield,
-  ShieldAlert,
   ShieldCheck,
-  Sparkles,
-  Terminal,
   TrendingUp,
   Workflow,
   Zap,
 } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 function CircularProgress({
   percentage,
@@ -327,7 +302,7 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
             return (
               <div
                 key={idx}
-                className="relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3 transition-colors hover:bg-muted/40"
+                className="font-inter relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3 transition-colors hover:bg-muted/40"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="font-mono text-[9px] font-semibold text-amber-600 dark:text-amber-400">
@@ -340,11 +315,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
                 <div>
                   <div className="flex items-center gap-1.5 mb-1">
                     <Icon className="size-3.5 text-amber-600 dark:text-amber-400" />
-                    <h4 className="text-[11px] font-bold leading-tight text-foreground">
+                    <h4 className="font-inter min-h-7 text-[11px] font-bold leading-tight text-foreground">
                       {step.title}
                     </h4>
                   </div>
-                  <p className="text-[10px] text-muted-foreground leading-tight">{step.detail}</p>
+                  <p className="font-inter text-[10px] text-muted-foreground leading-tight">
+                    {step.detail}
+                  </p>
                 </div>
               </div>
             );

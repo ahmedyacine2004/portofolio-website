@@ -591,6 +591,7 @@ export default function FrontendSkillsPage() {
   return (
     <motion.div
       className="h-full w-full space-y-6 rounded-[8px] bg-background p-4 text-foreground md:p-8 overflow-y-auto overflow-x-hidden"
+      style={{ fontSize: '0.88rem', lineHeight: '1.4' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -902,7 +903,7 @@ export default function FrontendSkillsPage() {
         </div>
 
         {/* Layer Stack Presentation */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {FRONTEND_ARCHITECTURE_TIERS.map((tier) => {
             const isSelected = selectedTier === tier.id;
             const Icon = tier.icon;
@@ -910,7 +911,7 @@ export default function FrontendSkillsPage() {
               <div
                 key={tier.id}
                 onClick={() => setSelectedTier(tier.id)}
-                className={`cursor-pointer rounded-[10px] border p-4 transition-all duration-300 ${
+                className={`cursor-pointer rounded-[12px] border p-5 transition-all duration-300 ${
                   isSelected
                     ? 'border-blue-500/60 bg-blue-500/[0.04] shadow-md -translate-y-1'
                     : 'border-border/40 bg-muted/10 hover:bg-muted/30'
@@ -935,11 +936,11 @@ export default function FrontendSkillsPage() {
                   {tier.subtitle}
                 </p>
 
-                <div className="mt-4 space-y-2 border-t border-border/30 pt-3">
+                <div className="mt-4 space-y-3 border-t border-border/30 pt-3">
                   {tier.components.map((comp, idx) => (
                     <div
                       key={idx}
-                      className="rounded-[6px] bg-card/80 p-2 border border-border/30 text-[10.5px]"
+                      className="rounded-[8px] bg-card/80 p-3 border border-border/30 text-[10.5px]"
                     >
                       <div className="flex items-center justify-between font-semibold text-foreground">
                         <span>{comp.name}</span>

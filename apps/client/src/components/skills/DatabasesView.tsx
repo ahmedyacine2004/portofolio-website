@@ -4,38 +4,28 @@ import { FrontendWorkspaceData } from '@/data/skills/react-workspace';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
-  ArrowRight,
   Boxes,
-  CheckCircle2,
   Clock,
   Code2,
   Cpu,
   Database,
   DatabaseZap,
-  FileCode2,
   FileText,
   Folder,
-  FolderGit2,
-  Gauge,
-  Globe,
   HardDrive,
   KeyRound,
   Layers,
   Layers3,
   Lock,
   LucideIcon,
-  Network,
   Package,
-  Radio,
   Search,
-  Server,
   ServerCog,
   Settings,
   Shield,
   ShieldAlert,
   ShieldCheck,
   TableProperties,
-  Terminal,
   TrendingUp,
   Workflow,
   Zap,
@@ -340,7 +330,7 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
             return (
               <div
                 key={idx}
-                className="relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3.5 transition-colors hover:bg-muted/40"
+                className="font-inter relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3.5 transition-colors hover:bg-muted/40"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="rounded bg-violet-500/10 px-1.5 py-0.5 font-mono text-[9px] font-bold text-violet-600 dark:text-violet-400">
@@ -349,10 +339,10 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
                   <Icon className="size-3.5 text-muted-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-[11.5px] font-bold leading-tight text-foreground">
+                  <h4 className="font-inter min-h-7 text-[11.5px] font-bold leading-tight text-foreground">
                     {tier.tier}
                   </h4>
-                  <p className="mt-1 text-[10px] text-muted-foreground leading-tight">
+                  <p className="font-inter mt-1 text-[10px] text-muted-foreground leading-tight">
                     {tier.detail}
                   </p>
                 </div>

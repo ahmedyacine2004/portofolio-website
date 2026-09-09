@@ -1,42 +1,27 @@
 'use client';
 
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowRight,
-  Boxes,
-  CheckCircle2,
   Clock,
-  Code2,
-  Cpu,
   Database,
   DatabaseZap,
   ExternalLink,
   FileCode2,
-  FolderGit2,
   HardDrive,
-  KeyRound,
   Layers,
-  Layers3,
-  Lock,
   LucideIcon,
   Network,
   Play,
   RefreshCw,
-  Search,
-  Server,
-  ServerCog,
-  Shield,
-  ShieldAlert,
   ShieldCheck,
   TableProperties,
   Terminal,
-  TrendingUp,
-  Workflow,
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -380,6 +365,7 @@ export default function DatabasesSkillsPage() {
   return (
     <motion.div
       className="h-full w-full space-y-6 rounded-[8px] bg-background p-4 text-foreground md:p-8 overflow-y-auto overflow-x-hidden"
+      style={{ fontSize: '0.88rem', lineHeight: '1.4' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

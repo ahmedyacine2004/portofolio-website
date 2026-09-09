@@ -2,44 +2,23 @@
 
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import {
-  Activity,
   ArrowRight,
   Boxes,
   Check,
-  CheckCircle2,
-  Clock,
   Compass,
   Copy,
-  ExternalLink,
-  Eye,
   FileCode2,
-  Folder,
-  FolderCheck,
-  Grid,
-  Heart,
   Image as ImageIcon,
-  Layers,
-  Layers3,
   Layout,
-  LucideIcon,
   Maximize2,
-  Monitor,
-  MousePointerClick,
-  Move,
   Palette,
-  Play,
-  RotateCw,
   Search,
-  Sliders,
   Sparkles,
-  Type,
   Video,
   Wand2,
-  Wrench,
-  Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -277,6 +256,7 @@ export default function DesignSkillsPage() {
   return (
     <motion.div
       className="h-full w-full space-y-6 rounded-[8px] bg-background p-4 text-foreground md:p-8 overflow-y-auto overflow-x-hidden"
+      style={{ fontSize: '0.88rem', lineHeight: '1.4' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

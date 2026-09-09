@@ -121,6 +121,24 @@
     "Dashboard": "Tableau de bord",
     "Main dashboard view with interactive charts": "Vue principale avec graphiques interactifs",
     "Date Range Selector": "Sélecteur de période",
-    "Click": "Clic"
+    "Click": "Clic",
+    "Low-Fidelity": "Basse fidélité",
+    "Mid-Fidelity": "Fidélité intermédiaire",
+    "Explain unusual movement with a clear signal, comparison period, and next action.": "Expliquez un mouvement inhabituel avec un signal clair, une période de comparaison et une action à suivre.",
+    "Adobe XD": "Adobe XD",
+    "#2563EB": "#2563EB",
+    "#10B981": "#10B981",
+    "#F97316": "#F97316",
+    "94%": "94 %",
+    "Key user journeys through the analytics platform": "Parcours utilisateurs clés à travers la plateforme d'analyse",
+    "Login & Dashboard Access": "Connexion et accès au tableau de bord",
+    "Product Manager": "Responsable produit",
+    "User logs in and accesses their custom dashboard": "L'utilisateur se connecte et accède à son tableau de bord personnalisé",
+    "2 minutes": "2 minutes",
+    "Remembering complex passwords": "Mémorisation de mots de passe complexes",
+    "Enter credentials": "Saisir les identifiants",
+    "Authenticate user": "Authentifier l'utilisateur",
+    "12-column": "12 colonnes",
+    "Dashboard Home": "Accueil du tableau de bord"
   }
 }

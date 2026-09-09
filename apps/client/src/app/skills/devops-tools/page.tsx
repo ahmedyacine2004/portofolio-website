@@ -1,54 +1,29 @@
 'use client';
 
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowRight,
-  Boxes,
-  Check,
-  CheckCircle2,
   Clock,
   Cloud,
-  Code,
-  Code2,
-  Compass,
-  Cpu,
   ExternalLink,
-  Eye,
   FileCode2,
-  FileText,
-  Folder,
-  FolderGit2,
   GitBranch,
   Globe,
   HardDrive,
-  KeyRound,
   Layers,
-  Layers3,
-  Layout,
-  Lock,
   LucideIcon,
-  Monitor,
   Package,
-  Play,
-  Radio,
   RefreshCw,
-  Rocket,
-  Search,
   Server,
   ServerCog,
-  Settings,
-  Shield,
-  ShieldAlert,
   ShieldCheck,
-  Sparkles,
   Terminal,
-  TrendingUp,
   Workflow,
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -480,6 +455,7 @@ export default function DevOpsToolsSkillsPage() {
   return (
     <motion.div
       className="h-full w-full space-y-6 rounded-[8px] bg-background p-4 text-foreground md:p-8 overflow-y-auto overflow-x-hidden"
+      style={{ fontSize: '0.88rem', lineHeight: '1.4' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"

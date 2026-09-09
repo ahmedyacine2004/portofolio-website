@@ -75,6 +75,18 @@ const bottomNavigation = [
   },
 ];
 
+function isRouteActive(pathname: string | null, href: string) {
+  if (!pathname) {
+    return false;
+  }
+
+  if (href === '/') {
+    return pathname === '/';
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function Sidebar() {
   const pathname = usePathname();
   const isAuthenticated = useAdminAuthStore((state) => state.isAuthenticated);
@@ -104,7 +116,7 @@ export function Sidebar() {
         <nav className="flex flex-col items-center gap-2" aria-label="Main navigation">
           {visibleMainNavigation.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive = isRouteActive(pathname, item.href);
 
             return (
               <Link
@@ -131,7 +143,7 @@ export function Sidebar() {
         <nav className="mt-auto flex flex-col items-center gap-2" aria-label="Secondary navigation">
           {bottomNavigation.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive = isRouteActive(pathname, item.href);
 
             return (
               <Link
@@ -168,7 +180,7 @@ export function Sidebar() {
         <nav className="flex flex-col items-center gap-1" aria-label="Main navigation">
           {visibleMainNavigation.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive = isRouteActive(pathname, item.href);
 
             return (
               <Link
@@ -195,7 +207,7 @@ export function Sidebar() {
         <nav className="mt-auto flex flex-col items-center gap-1" aria-label="Secondary navigation">
           {bottomNavigation.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href;
+            const isActive = isRouteActive(pathname, item.href);
 
             return (
               <Link
@@ -231,7 +243,7 @@ export function Sidebar() {
       >
         {visibleMainNavigation.slice(0, 5).map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isActive = isRouteActive(pathname, item.href);
 
           return (
             <Link

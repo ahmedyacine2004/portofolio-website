@@ -5,21 +5,15 @@ import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   AlertCircle,
-  ArrowRight,
   Atom,
   Boxes,
   CheckCircle2,
   Clock,
-  Code,
   Code2,
   Cpu,
-  Eye,
-  FileCode2,
   FileText,
   Folder,
-  FolderGit2,
   Globe,
-  HardDrive,
   KeyRound,
   Layers,
   Layers3,
@@ -30,16 +24,11 @@ import {
   Package,
   Radio,
   Search,
-  Server,
-  ServerCog,
   Settings,
   Shield,
-  ShieldAlert,
   ShieldCheck,
   Smartphone,
   Sparkles,
-  TableProperties,
-  Terminal,
   TrendingUp,
   Workflow,
   Zap,
@@ -352,7 +341,7 @@ export default function FrontendView({ data }: FrontendViewProps) {
             return (
               <div
                 key={idx}
-                className="relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3 transition-colors hover:bg-muted/40"
+                className="font-inter relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3 transition-colors hover:bg-muted/40"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="font-mono text-[9px] font-semibold text-blue-600 dark:text-blue-400">
@@ -361,10 +350,10 @@ export default function FrontendView({ data }: FrontendViewProps) {
                   <Icon className="size-3.5 text-muted-foreground" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] font-bold leading-tight text-foreground">
+                  <h4 className="font-inter min-h-7 text-[11px] font-bold leading-tight text-foreground">
                     {step.title}
                   </h4>
-                  <p className="mt-1 text-[10px] text-muted-foreground leading-tight">
+                  <p className="font-inter mt-1 text-[10px] text-muted-foreground leading-tight">
                     {step.detail}
                   </p>
                 </div>

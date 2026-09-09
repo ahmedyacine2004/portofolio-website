@@ -1,13 +1,12 @@
 'use client';
 
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Activity,
   ArrowRight,
   Boxes,
   CheckCircle2,
   Clock,
-  Cloud,
   Code2,
   Cpu,
   Database,
@@ -15,7 +14,6 @@ import {
   FileCode2,
   Fingerprint,
   FolderGit2,
-  Gauge,
   Globe,
   GraduationCap,
   HardDrive,
@@ -26,7 +24,6 @@ import {
   LucideIcon,
   MessageSquare,
   Network,
-  Play,
   Radio,
   RefreshCw,
   Server,
@@ -35,12 +32,11 @@ import {
   ShieldAlert,
   ShieldCheck,
   Terminal,
-  TrendingUp,
   Workflow,
   Zap,
 } from 'lucide-react';
 import Link from 'next/link';
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -81,6 +77,20 @@ function pointsToSmoothPath(points: number[], width = 100): string {
   return d;
 }
 
+function getStableSparklinePoints(
+  baseline: number,
+  variance: number,
+  pointCount: number,
+  isFlat: boolean,
+) {
+  return Array.from({ length: pointCount }, (_, index) => {
+    if (isFlat) return baseline;
+
+    const wave = Math.sin(index * 0.85 + baseline) * (variance * 0.45);
+    return Math.max(4, Math.min(26, baseline + wave));
+  });
+}
+
 interface LiveMetricRowProps {
   label: string;
   type: 'requests' | 'latency' | 'error' | 'throughput' | 'data';
@@ -102,9 +112,7 @@ function LiveMetricRow({
   const isFlat = type === 'error';
 
   const [points, setPoints] = useState<number[]>(() =>
-    Array.from({ length: pointCount }, () =>
-      isFlat ? baseline : Math.max(4, Math.min(26, baseline + (Math.random() - 0.5) * variance)),
-    ),
+    getStableSparklinePoints(baseline, variance, pointCount, isFlat),
   );
 
   const [displayVal, setDisplayVal] = useState<string>('0');
@@ -658,6 +666,7 @@ export default function BackendSkillsPage() {
   return (
     <motion.div
       className="h-full w-full space-y-6 rounded-[8px] bg-background p-4 text-foreground md:p-8 overflow-y-auto overflow-x-hidden"
+      style={{ fontSize: '0.88rem', lineHeight: '1.4' }}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -977,7 +986,7 @@ export default function BackendSkillsPage() {
         </div>
 
         {/* Layer Stack Presentation */}
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {ARCHITECTURE_TIERS.map((tier) => {
             const isSelected = selectedTier === tier.id;
             const Icon = tier.icon;
