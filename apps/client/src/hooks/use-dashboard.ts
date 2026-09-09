@@ -4,27 +4,53 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import {
   getDashboardActivity,
+  getDashboardAnalytics,
   getDashboardGoals,
   getDashboardHealth,
+  getDashboardRequests,
+  getDashboardSessions,
   getDashboardStats,
   getDashboardSummary,
+  getDashboardVisitors,
 } from '@/services/dashboard.service';
 import type {
   ActivityFilter,
+  AnalyticsSummary,
+  ApiRequestLog,
   DashboardActivityItem,
   DashboardData,
   DashboardStatsResponse,
   DashboardSummaryResponse,
   GoalProgressItem,
+  SessionStats,
   SystemHealthStatus,
+  VisitorLog,
 } from '@/types/dashboard.types';
 
-// ---------------------------------------------------------------------------
-// Fallback data (displayed when backend is unreachable)
-// ---------------------------------------------------------------------------
+// ─── Fallback data ──────────────────────────────────────────────────────────
 
 const FALLBACK_SUMMARY: DashboardSummaryResponse = {
   metrics: [
+    {
+      id: 'visitors-today',
+      label: 'Visitors Today',
+      value: '0',
+      change: '0 unique IPs',
+      trend: 'neutral',
+      icon: 'Users',
+      color: 'bg-sky-500',
+      subtext: '0 this week',
+    },
+    {
+      id: 'requests-today',
+      label: 'API Requests',
+      value: '0',
+      change: 'No errors',
+      trend: 'up',
+      icon: 'Activity',
+      color: 'bg-violet-600',
+      subtext: '0ms avg latency',
+    },
     {
       id: 'projects',
       label: 'Total Projects',
@@ -32,18 +58,8 @@ const FALLBACK_SUMMARY: DashboardSummaryResponse = {
       change: '+4 this quarter',
       trend: 'up',
       icon: 'FolderKanban',
-      color: 'bg-violet-600',
+      color: 'bg-emerald-500',
       subtext: '4 Production · 12 Prototypes',
-    },
-    {
-      id: 'experience',
-      label: 'Experience',
-      value: '2+ Years',
-      change: 'Active Contributor',
-      trend: 'up',
-      icon: 'UserRound',
-      color: 'bg-sky-500',
-      subtext: 'Full Stack & UI/UX',
     },
     {
       id: 'skills',
@@ -52,18 +68,8 @@ const FALLBACK_SUMMARY: DashboardSummaryResponse = {
       change: '10 Core Frameworks',
       trend: 'neutral',
       icon: 'Code2',
-      color: 'bg-emerald-500',
-      subtext: 'TypeScript, React, NestJS',
-    },
-    {
-      id: 'certifications',
-      label: 'Certifications',
-      value: '6',
-      change: 'Verified',
-      trend: 'up',
-      icon: 'GraduationCap',
       color: 'bg-amber-500',
-      subtext: 'ESTIN & Tech Programs',
+      subtext: 'TypeScript, React, NestJS',
     },
     {
       id: 'code-volume',
@@ -77,13 +83,13 @@ const FALLBACK_SUMMARY: DashboardSummaryResponse = {
     },
     {
       id: 'system-uptime',
-      label: 'System Status',
-      value: '99.9%',
-      change: 'Operational',
-      trend: 'neutral',
+      label: 'System Uptime',
+      value: 'Unavailable',
+      change: 'Degraded',
+      trend: 'down',
       icon: 'ShieldCheck',
-      color: 'bg-emerald-600',
-      subtext: 'NestJS · Next.js 15',
+      color: 'bg-amber-500',
+      subtext: 'Backend offline',
     },
   ],
   workStatus: {
@@ -145,17 +151,6 @@ const FALLBACK_ACTIVITY: DashboardActivityItem[] = [
     status: 'completed',
     link: '/about',
     badgeColor: 'bg-amber-500',
-  },
-  {
-    id: 'act-5',
-    title: 'Lumina Studio Brand Kit Finalized',
-    description:
-      'Exported complete vector assets, typography system, and mobile design guidelines.',
-    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 48).toISOString(),
-    category: 'project',
-    status: 'deployed',
-    link: '/projects',
-    badgeColor: 'bg-violet-600',
   },
 ];
 
@@ -231,16 +226,48 @@ const FALLBACK_HEALTH: SystemHealthStatus = {
   uptimeSeconds: 0,
   uptimeFormatted: 'Unavailable',
   memoryUsageMb: 0,
+  memoryTotalMb: 0,
+  memoryPercent: 0,
+  cpuUser: 0,
+  cpuSystem: 0,
   nodeVersion: 'N/A',
   environment: 'development',
   databaseStatus: 'mocked',
   apiLatencyMs: 0,
   version: '1.0.0',
+  requestsTotal: 0,
+  requestsLastHour: 0,
+  errorsLastHour: 0,
 };
 
-// ---------------------------------------------------------------------------
-// Hook
-// ---------------------------------------------------------------------------
+const FALLBACK_ANALYTICS: AnalyticsSummary = {
+  visitorsToday: 0,
+  visitorsThisWeek: 0,
+  visitorsTotal: 0,
+  pageViewsToday: 0,
+  uniqueIpsToday: 0,
+  topPages: [],
+  deviceBreakdown: [],
+  referrerBreakdown: [],
+  hourlyRequests: [],
+  requestsTotal: 0,
+  requestsToday: 0,
+  errorsToday: 0,
+  avgLatencyMs: 0,
+};
+
+const FALLBACK_VISITORS: VisitorLog[] = [];
+
+const FALLBACK_REQUESTS: ApiRequestLog[] = [];
+
+const FALLBACK_SESSIONS: SessionStats = {
+  activeSessions: 0,
+  totalSessionsToday: 0,
+  avgSessionDurationMs: 0,
+  topUserAgents: [],
+};
+
+// ─── Hook ────────────────────────────────────────────────────────────────────
 
 interface UseDashboardReturn {
   data: DashboardData;
@@ -261,6 +288,10 @@ export function useDashboard(): UseDashboardReturn {
     stats: null,
     goals: [],
     health: null,
+    analytics: null,
+    visitors: [],
+    requests: [],
+    sessions: null,
   });
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -270,21 +301,27 @@ export function useDashboard(): UseDashboardReturn {
   const [activityFilter, setActivityFilter] = useState<ActivityFilter>('all');
 
   const healthIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const telemetryIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const fetchAll = useCallback(async (silent = false) => {
     if (!silent) setIsLoading(true);
     else setIsRefreshing(true);
 
     try {
-      const [summary, activity, stats, goals, health] = await Promise.all([
-        getDashboardSummary(),
-        getDashboardActivity(),
-        getDashboardStats(),
-        getDashboardGoals(),
-        getDashboardHealth(),
-      ]);
+      const [summary, activity, stats, goals, health, analytics, visitors, requests, sessions] =
+        await Promise.all([
+          getDashboardSummary(),
+          getDashboardActivity(),
+          getDashboardStats(),
+          getDashboardGoals(),
+          getDashboardHealth(),
+          getDashboardAnalytics(),
+          getDashboardVisitors(50),
+          getDashboardRequests(100),
+          getDashboardSessions(),
+        ]);
 
-      setData({ summary, activity, stats, goals, health });
+      setData({ summary, activity, stats, goals, health, analytics, visitors, requests, sessions });
       setHasError(false);
       setIsLiveFeed(true);
       setLastUpdated(new Date());
@@ -296,6 +333,10 @@ export function useDashboard(): UseDashboardReturn {
           stats: FALLBACK_STATS,
           goals: FALLBACK_GOALS,
           health: FALLBACK_HEALTH,
+          analytics: FALLBACK_ANALYTICS,
+          visitors: FALLBACK_VISITORS,
+          requests: FALLBACK_REQUESTS,
+          sessions: FALLBACK_SESSIONS,
         });
         setHasError(true);
         setIsLiveFeed(false);
@@ -307,7 +348,6 @@ export function useDashboard(): UseDashboardReturn {
     }
   }, []);
 
-  // Refresh only health every 30s for real-time feel
   const fetchHealth = useCallback(async () => {
     try {
       const health = await getDashboardHealth();
@@ -317,20 +357,41 @@ export function useDashboard(): UseDashboardReturn {
     }
   }, []);
 
+  const fetchTelemetry = useCallback(async () => {
+    try {
+      const [analytics, visitors, requests, sessions] = await Promise.all([
+        getDashboardAnalytics(),
+        getDashboardVisitors(50),
+        getDashboardRequests(100),
+        getDashboardSessions(),
+      ]);
+      setData((prev) => ({ ...prev, analytics, visitors, requests, sessions }));
+      setLastUpdated(new Date());
+    } catch {
+      // silently ignore
+    }
+  }, []);
+
   useEffect(() => {
-    fetchAll(false);
+    void fetchAll(false);
 
     healthIntervalRef.current = setInterval(() => {
-      fetchHealth();
+      void fetchHealth();
     }, 30_000);
+
+    // Refresh telemetry (visitors, requests, sessions) every 15s
+    telemetryIntervalRef.current = setInterval(() => {
+      void fetchTelemetry();
+    }, 15_000);
 
     return () => {
       if (healthIntervalRef.current) clearInterval(healthIntervalRef.current);
+      if (telemetryIntervalRef.current) clearInterval(telemetryIntervalRef.current);
     };
-  }, [fetchAll, fetchHealth]);
+  }, [fetchAll, fetchHealth, fetchTelemetry]);
 
   const refresh = useCallback(() => {
-    fetchAll(true);
+    void fetchAll(true);
   }, [fetchAll]);
 
   return {

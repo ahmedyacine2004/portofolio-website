@@ -1,6 +1,7 @@
 'use client';
 
 import type { DashboardStatsResponse } from '@/types/dashboard.types';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface DashboardStatisticsProps {
   stats: DashboardStatsResponse | null;
@@ -8,9 +9,11 @@ interface DashboardStatisticsProps {
 }
 
 export function DashboardStatistics({ stats, isLoading }: DashboardStatisticsProps) {
+  const { t } = useTranslation();
+
   if (isLoading || !stats) {
     return (
-      <div className="rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+      <div className="rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-sans">
         <div className="h-4 w-28 animate-pulse rounded bg-muted" />
         <div className="mt-3 space-y-2">
           {Array.from({ length: 4 }).map((_, index) => (
@@ -22,22 +25,22 @@ export function DashboardStatistics({ stats, isLoading }: DashboardStatisticsPro
   }
 
   return (
-    <div className="rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-      <h2 className="text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-        Statistics
+    <div className="rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-sans">
+      <h2 className="font-inter text-[9px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+        {t('dashboard.statistics', 'Statistics')}
       </h2>
 
       <div className="mt-3 space-y-4 text-[7px]">
         <div>
           <p className="mb-2 text-[7px] font-medium text-muted-foreground">
-            Technology Stack Distribution
+            {t('dashboard.techBreakdown', 'Technology Stack Distribution')}
           </p>
           <div className="space-y-2">
             {stats.techDistribution.map((item) => (
               <div key={item.name}>
                 <div className="mb-1 flex items-center justify-between gap-2">
                   <span>{item.name}</span>
-                  <span>{item.percentage}%</span>
+                  <span className="font-mono">{item.percentage}%</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-muted">
                   <div
@@ -51,13 +54,15 @@ export function DashboardStatistics({ stats, isLoading }: DashboardStatisticsPro
         </div>
 
         <div>
-          <p className="mb-2 text-[7px] font-medium text-muted-foreground">Domain Mastery</p>
+          <p className="mb-2 text-[7px] font-medium text-muted-foreground">
+            {t('dashboard.skillRadar', 'Domain Mastery')}
+          </p>
           <div className="space-y-2">
             {stats.skillProficiency.map((item) => (
               <div key={item.domain}>
                 <div className="mb-1 flex items-center justify-between gap-2">
                   <span>{item.domain}</span>
-                  <span>{item.score}%</span>
+                  <span className="font-mono">{item.score}%</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-muted">
                   <div

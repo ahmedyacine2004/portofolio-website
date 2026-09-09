@@ -41,21 +41,30 @@ export interface SystemHealthStatus {
   uptimeSeconds: number;
   uptimeFormatted: string;
   memoryUsageMb: number;
+  memoryTotalMb: number;
+  memoryPercent: number;
+  cpuUser: number;
+  cpuSystem: number;
   nodeVersion: string;
   environment: string;
   databaseStatus: 'connected' | 'disconnected' | 'mocked';
   apiLatencyMs: number;
   version: string;
+  requestsTotal: number;
+  requestsLastHour: number;
+  errorsLastHour: number;
+}
+
+export interface DashboardWorkStatus {
+  availability: string;
+  focus: string;
+  timezone: string;
+  location: string;
 }
 
 export interface DashboardSummaryResponse {
   metrics: DashboardMetric[];
-  workStatus: {
-    availability: string;
-    focus: string;
-    timezone: string;
-    location: string;
-  };
+  workStatus: DashboardWorkStatus;
   highlights: {
     featuredProject: {
       name: string;
@@ -83,4 +92,91 @@ export interface DashboardStatsResponse {
     month: string;
     contributions: number;
   }[];
+}
+
+// ─── Telemetry / Analytics ──────────────────────────────────────────────────
+
+export interface VisitorLog {
+  id: string;
+  /** Partially masked IP, e.g. 192.168.x.x */
+  ip: string;
+  /** Raw IP for internal deduplication (never sent to client) */
+  rawIp: string;
+  page: string;
+  referrer: string;
+  userAgent: string;
+  /** Parsed friendly name, e.g. "Chrome / Desktop" */
+  deviceLabel: string;
+  country: string;
+  timestamp: string;
+  sessionId: string;
+}
+
+export interface ApiRequestLog {
+  id: string;
+  method: string;
+  path: string;
+  statusCode: number;
+  latencyMs: number;
+  ip: string;
+  userAgent: string;
+  timestamp: string;
+  /** true if status >= 400 */
+  isError: boolean;
+}
+
+export interface PageViewStat {
+  page: string;
+  views: number;
+  percentage: number;
+}
+
+export interface DeviceStat {
+  type: 'Desktop' | 'Mobile' | 'Tablet' | 'Bot' | 'Unknown';
+  count: number;
+  percentage: number;
+}
+
+export interface ReferrerStat {
+  source: string;
+  count: number;
+  percentage: number;
+}
+
+export interface HourlyStat {
+  hour: string;
+  requests: number;
+}
+
+export interface AnalyticsSummary {
+  visitorsToday: number;
+  visitorsThisWeek: number;
+  visitorsTotal: number;
+  pageViewsToday: number;
+  uniqueIpsToday: number;
+  topPages: PageViewStat[];
+  deviceBreakdown: DeviceStat[];
+  referrerBreakdown: ReferrerStat[];
+  hourlyRequests: HourlyStat[];
+  requestsTotal: number;
+  requestsToday: number;
+  errorsToday: number;
+  avgLatencyMs: number;
+}
+
+export interface SessionStats {
+  activeSessions: number;
+  totalSessionsToday: number;
+  avgSessionDurationMs: number;
+  topUserAgents: { label: string; count: number }[];
+}
+
+export interface SessionRecord {
+  sessionId: string;
+  ip: string;
+  userAgent: string;
+  deviceLabel: string;
+  firstSeen: number;
+  lastSeen: number;
+  pageCount: number;
 }

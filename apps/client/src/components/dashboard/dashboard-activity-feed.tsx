@@ -1,6 +1,7 @@
 'use client';
 
 import type { ActivityFilter, DashboardActivityItem } from '@/types/dashboard.types';
+import { useTranslation } from '@/hooks/use-translation';
 import type { LucideIcon } from 'lucide-react';
 import {
   ChevronRight,
@@ -28,13 +29,6 @@ const CATEGORY_ICON: Record<string, LucideIcon> = {
   certification: GraduationCap,
 };
 
-const STATUS_LABEL: Record<string, string> = {
-  completed: 'Completed',
-  'in-progress': 'In Progress',
-  deployed: 'Deployed',
-  verified: 'Verified',
-};
-
 const STATUS_COLOR: Record<string, string> = {
   completed: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10',
   'in-progress': 'text-amber-600 dark:text-amber-400 bg-amber-500/10',
@@ -42,26 +36,20 @@ const STATUS_COLOR: Record<string, string> = {
   verified: 'text-sky-600 dark:text-sky-400 bg-sky-500/10',
 };
 
-const FILTERS: { key: ActivityFilter; label: string }[] = [
-  { key: 'all', label: 'All' },
-  { key: 'project', label: 'Projects' },
-  { key: 'code', label: 'Code' },
-  { key: 'system', label: 'System' },
-  { key: 'milestone', label: 'Milestones' },
-];
-
-function formatRelativeTime(timestamp: string) {
+function formatRelativeTime(timestamp: string, t: (k: string, f?: string) => string) {
   const diffMs = Date.now() - new Date(timestamp).getTime();
   const diffMinutes = Math.round(diffMs / 60000);
 
-  if (diffMinutes < 1) return 'just now';
-  if (diffMinutes < 60) return `${diffMinutes}m ago`;
+  if (diffMinutes < 1) return t('dashboard.justNow', 'just now');
+  if (diffMinutes < 60)
+    return t('dashboard.minutesAgo', `${diffMinutes}m ago`).replace('{m}', String(diffMinutes));
 
   const diffHours = Math.round(diffMinutes / 60);
-  if (diffHours < 24) return `${diffHours}h ago`;
+  if (diffHours < 24)
+    return t('dashboard.hoursAgo', `${diffHours}h ago`).replace('{h}', String(diffHours));
 
   const diffDays = Math.round(diffHours / 24);
-  return `${diffDays}d ago`;
+  return t('dashboard.daysAgo', `${diffDays}d ago`).replace('{d}', String(diffDays));
 }
 
 export function DashboardActivityFeed({
@@ -70,18 +58,42 @@ export function DashboardActivityFeed({
   filter,
   onFilterChange,
 }: DashboardActivityFeedProps) {
+  const { t } = useTranslation();
   const filtered = filter === 'all' ? items : items.filter((i) => i.category === filter);
 
+  const filters: { key: ActivityFilter; label: string }[] = [
+    { key: 'all', label: t('dashboard.filterAll', 'All') },
+    { key: 'project', label: t('dashboard.filterProjects', 'Projects') },
+    { key: 'code', label: t('dashboard.filterCode', 'Code') },
+    { key: 'system', label: t('dashboard.filterSystem', 'System') },
+    { key: 'milestone', label: t('dashboard.filterMilestones', 'Milestones') },
+  ];
+
+  const getStatusLabel = (status: string) => {
+    switch (status) {
+      case 'completed':
+        return t('dashboard.statusCompleted', 'Completed');
+      case 'in-progress':
+        return t('dashboard.statusInProgress', 'In Progress');
+      case 'deployed':
+        return t('dashboard.statusDeployed', 'Deployed');
+      case 'verified':
+        return t('dashboard.statusVerified', 'Verified');
+      default:
+        return status;
+    }
+  };
+
   return (
-    <div className="flex min-h-0 flex-col rounded-sm bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+    <div className="flex min-h-0 flex-col rounded-sm bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] font-sans">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-3 py-2">
         <h2 className="font-inter text-[11px] font-bold leading-none tracking-[-0.02em]">
-          Recent Activity
+          {t('dashboard.recentActivity', 'Recent Activity')}
         </h2>
         {/* Filter pills */}
         <div className="flex gap-1">
-          {FILTERS.map((f) => (
+          {filters.map((f) => (
             <button
               key={f.key}
               type="button"
@@ -119,7 +131,7 @@ export function DashboardActivityFeed({
         ) : filtered.length === 0 ? (
           <div className="flex flex-1 items-center justify-center p-4">
             <p className="text-[8px] text-muted-foreground">
-              No recent activity matching the selected filter.
+              {t('dashboard.emptyActivity', 'No recent activity matching the selected filter.')}
             </p>
           </div>
         ) : (
@@ -149,7 +161,7 @@ export function DashboardActivityFeed({
                       <span
                         className={`shrink-0 rounded-xs px-1 py-0.5 text-[6px] font-semibold ${STATUS_COLOR[item.status]}`}
                       >
-                        {STATUS_LABEL[item.status]}
+                        {getStatusLabel(item.status)}
                       </span>
                     </div>
                     <p className="mt-0.5 line-clamp-1 text-[6.5px] leading-tight text-muted-foreground">
@@ -157,14 +169,14 @@ export function DashboardActivityFeed({
                     </p>
                     <div className="mt-1 flex items-center gap-1.5">
                       <span className="text-[6px] text-muted-foreground/60">
-                        {formatRelativeTime(item.timestamp)}
+                        {formatRelativeTime(item.timestamp, t)}
                       </span>
                       {item.link && (
                         <Link
                           href={item.link}
                           className="flex items-center gap-0.5 text-[6px] text-primary opacity-0 transition-opacity group-hover:opacity-100"
                         >
-                          View <ChevronRight className="size-2" />
+                          {t('dashboard.view', 'View')} <ChevronRight className="size-2" />
                         </Link>
                       )}
                     </div>

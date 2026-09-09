@@ -5,7 +5,6 @@ import {
   Code2,
   FolderKanban,
   GraduationCap,
-  LayoutDashboard,
   RefreshCw,
   ShieldCheck,
   UserRound,
@@ -13,6 +12,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { DashboardMetric } from '@/types/dashboard.types';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface DashboardMetricsProps {
   metrics: DashboardMetric[];
@@ -31,9 +31,48 @@ const ICON_MAP: Record<string, LucideIcon> = {
 };
 
 export function DashboardMetrics({ metrics, isLoading }: DashboardMetricsProps) {
+  const { t } = useTranslation();
+
+  const getMetricLabel = (m: DashboardMetric) => {
+    switch (m.id) {
+      case 'visitors-today':
+        return t('dashboard.metrics.visitorsToday', m.label);
+      case 'requests-today':
+        return t('dashboard.metrics.apiRequests', m.label);
+      case 'projects':
+        return t('dashboard.metrics.totalProjects', m.label);
+      case 'skills':
+        return t('dashboard.metrics.technologies', m.label);
+      case 'code-volume':
+        return t('dashboard.metrics.codeVolume', m.label);
+      case 'system-uptime':
+        return t('dashboard.metrics.systemUptime', m.label);
+      default:
+        return m.label;
+    }
+  };
+
+  const getMetricSubtext = (m: DashboardMetric) => {
+    if (!m.subtext) return undefined;
+    if (m.id === 'code-volume' && m.subtext.includes('16 Repositories')) {
+      return t('dashboard.metrics.acrossRepos', m.subtext);
+    }
+    if (m.id === 'system-uptime' && m.subtext.toLowerCase().includes('backend offline')) {
+      return t('dashboard.metrics.backendOffline', m.subtext);
+    }
+    return m.subtext;
+  };
+
+  const getMetricValue = (m: DashboardMetric) => {
+    if (typeof m.value === 'string' && m.value.toLowerCase() === 'unavailable') {
+      return t('dashboard.metrics.unavailable', m.value);
+    }
+    return m.value;
+  };
+
   if (isLoading) {
     return (
-      <div className="grid grid-cols-3 gap-1.5">
+      <div className="grid grid-cols-3 gap-1.5 font-sans">
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
@@ -51,9 +90,10 @@ export function DashboardMetrics({ metrics, isLoading }: DashboardMetricsProps) 
   }
 
   return (
-    <div className="grid grid-cols-3 gap-1.5">
+    <div className="grid grid-cols-3 gap-1.5 font-sans">
       {metrics.map((metric) => {
         const Icon = ICON_MAP[metric.icon] ?? Code2;
+        const sub = getMetricSubtext(metric);
         return (
           <div
             key={metric.id}
@@ -66,11 +106,15 @@ export function DashboardMetrics({ metrics, isLoading }: DashboardMetricsProps) 
             </div>
 
             <div className="min-w-0">
-              <p className="text-[6.5px] leading-none text-muted-foreground">{metric.label}</p>
-              <p className="mt-0.5 text-[11px] font-semibold leading-none">{metric.value}</p>
-              {metric.subtext && (
+              <p className="text-[6.5px] leading-none text-muted-foreground">
+                {getMetricLabel(metric)}
+              </p>
+              <p className="mt-0.5 text-[11px] font-semibold leading-none">
+                {getMetricValue(metric)}
+              </p>
+              {sub && (
                 <p className="mt-0.5 truncate text-[6px] leading-none text-muted-foreground/70">
-                  {metric.subtext}
+                  {sub}
                 </p>
               )}
             </div>

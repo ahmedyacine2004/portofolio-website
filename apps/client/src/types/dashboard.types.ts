@@ -41,11 +41,18 @@ export interface SystemHealthStatus {
   uptimeSeconds: number;
   uptimeFormatted: string;
   memoryUsageMb: number;
+  memoryTotalMb: number;
+  memoryPercent: number;
+  cpuUser: number;
+  cpuSystem: number;
   nodeVersion: string;
   environment: string;
   databaseStatus: 'connected' | 'disconnected' | 'mocked';
   apiLatencyMs: number;
   version: string;
+  requestsTotal: number;
+  requestsLastHour: number;
+  errorsLastHour: number;
 }
 
 export interface DashboardWorkStatus {
@@ -72,22 +79,84 @@ export interface DashboardSummaryResponse {
 
 export interface DashboardStatsResponse {
   techDistribution: TechDistributionItem[];
-  projectCategoryBreakdown: {
-    category: string;
-    count: number;
-  }[];
-  skillProficiency: {
-    domain: string;
-    score: number;
-    skillsCount: number;
-  }[];
-  monthlyActivity: {
-    month: string;
-    contributions: number;
-  }[];
+  projectCategoryBreakdown: { category: string; count: number }[];
+  skillProficiency: { domain: string; score: number; skillsCount: number }[];
+  monthlyActivity: { month: string; contributions: number }[];
 }
 
 export type ActivityFilter = 'all' | 'project' | 'code' | 'system' | 'milestone';
+
+// ─── Telemetry / Analytics ──────────────────────────────────────────────────
+
+export interface VisitorLog {
+  id: string;
+  ip: string;
+  page: string;
+  referrer: string;
+  userAgent: string;
+  deviceLabel: string;
+  country: string;
+  timestamp: string;
+  sessionId: string;
+}
+
+export interface ApiRequestLog {
+  id: string;
+  method: string;
+  path: string;
+  statusCode: number;
+  latencyMs: number;
+  ip: string;
+  userAgent: string;
+  timestamp: string;
+  isError: boolean;
+}
+
+export interface PageViewStat {
+  page: string;
+  views: number;
+  percentage: number;
+}
+
+export interface DeviceStat {
+  type: 'Desktop' | 'Mobile' | 'Tablet' | 'Bot' | 'Unknown';
+  count: number;
+  percentage: number;
+}
+
+export interface ReferrerStat {
+  source: string;
+  count: number;
+  percentage: number;
+}
+
+export interface HourlyStat {
+  hour: string;
+  requests: number;
+}
+
+export interface AnalyticsSummary {
+  visitorsToday: number;
+  visitorsThisWeek: number;
+  visitorsTotal: number;
+  pageViewsToday: number;
+  uniqueIpsToday: number;
+  topPages: PageViewStat[];
+  deviceBreakdown: DeviceStat[];
+  referrerBreakdown: ReferrerStat[];
+  hourlyRequests: HourlyStat[];
+  requestsTotal: number;
+  requestsToday: number;
+  errorsToday: number;
+  avgLatencyMs: number;
+}
+
+export interface SessionStats {
+  activeSessions: number;
+  totalSessionsToday: number;
+  avgSessionDurationMs: number;
+  topUserAgents: { label: string; count: number }[];
+}
 
 export interface DashboardData {
   summary: DashboardSummaryResponse | null;
@@ -95,4 +164,8 @@ export interface DashboardData {
   stats: DashboardStatsResponse | null;
   goals: GoalProgressItem[];
   health: SystemHealthStatus | null;
+  analytics: AnalyticsSummary | null;
+  visitors: VisitorLog[];
+  requests: ApiRequestLog[];
+  sessions: SessionStats | null;
 }
