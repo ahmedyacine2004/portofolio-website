@@ -1,5 +1,6 @@
 'use client';
 
+import { ProjectPageTabs } from '@/components/projects/WebProjectPageTabs';
 import type { BrandingOverviewData } from '@/data/projects/lumina-studio';
 import { useTranslation } from '@/hooks/use-translation';
 import {
@@ -33,6 +34,7 @@ export function BrandingOverviewView({ data }: BrandingOverviewViewProps) {
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <ProjectPageTabs />
       {/* --- HERO BANNER & PROJECT META --- */}
       <div className="relative flex flex-col min-h-[180px] justify-between overflow-hidden rounded-[8px] bg-card p-6 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)] gap-6">
         <div className="flex flex-col gap-3">

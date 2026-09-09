@@ -31,6 +31,45 @@ export default function ProjectsPage() {
   const { t } = useTranslation();
   const { download } = useDownload();
   const [isProjectsSidebarOpen, setIsProjectsSidebarOpen] = useState(false);
+  const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
+  const [isActivityModalOpen, setIsActivityModalOpen] = useState(false);
+  const [isFeaturedModalOpen, setIsFeaturedModalOpen] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(t('projects.todayTime'));
+
+  const projectStats = {
+    total: 12,
+    completed: 10,
+    active: 2,
+    archived: 1,
+  };
+
+  const activityItems = [
+    { label: t('projects.consultifyUpdated'), time: t('projects.time15mAgo'), color: 'purple' },
+    { label: t('projects.consultifyUpdated'), time: t('projects.time15mAgo'), color: 'green' },
+    { label: t('projects.taskflowDocAdded'), time: t('projects.time1hAgo'), color: 'warning' },
+    { label: t('projects.newProjectInit'), time: t('projects.time3hAgo'), color: 'brand' },
+  ];
+
+  const featuredProjects = [
+    {
+      name: 'CONSULTIFY',
+      subtitle: `${t('projects.fullStack')} / ${t('projects.enterprise')}`,
+      link: '/projects/web-dev/consultify/project-details',
+      icon: Layers,
+    },
+    {
+      name: 'Portfolio Workspace',
+      subtitle: 'React / Next.js / Live',
+      link: '/projects/web-dev/portfolio-workspace/project-details',
+      icon: Code2,
+    },
+    {
+      name: 'ShopSphere',
+      subtitle: 'MERN STACK / In progress',
+      link: '/projects/web-dev/shopsphere/project-details',
+      icon: LayoutTemplate,
+    },
+  ];
 
   const handleDownloadResume = () => {
     download({
@@ -145,9 +184,42 @@ export default function ProjectsPage() {
                 {t('projects.workspaceStatus')}
               </h2>
             </div>
-            <button className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]">
-              <MoreVertical className="size-3" />
-            </button>
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Open workspace status actions"
+                aria-expanded={isStatusMenuOpen}
+                className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]"
+                onClick={() => setIsStatusMenuOpen((value) => !value)}
+              >
+                <MoreVertical className="size-3" />
+              </button>
+              {isStatusMenuOpen && (
+                <div className="absolute right-0 top-full z-20 mt-1 min-w-[160px] rounded-[4px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1 shadow-[var(--shadow-sm)]">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLastUpdated(
+                        new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                      );
+                      setIsStatusMenuOpen(false);
+                    }}
+                    className="flex w-full items-center gap-1 rounded-[3px] px-2 py-1 text-[8px] font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
+                  >
+                    <Clock className="size-2.5" />
+                    Refresh status
+                  </button>
+                  <Link
+                    href="/projects"
+                    onClick={() => setIsStatusMenuOpen(false)}
+                    className="flex w-full items-center gap-1 rounded-[3px] px-2 py-1 text-[8px] font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
+                  >
+                    <Folder className="size-2.5" />
+                    View all projects
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="space-y-0 text-[8px] font-medium">
@@ -156,35 +228,43 @@ export default function ProjectsPage() {
                 <Folder className="size-2.5 text-[var(--color-purple)]" />
                 <span>{t('projects.projects')}</span>
               </div>
-              <span className="font-bold text-[var(--color-text-primary)]">12</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {projectStats.total}
+              </span>
             </div>
             <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <CheckCircle2 className="size-2.5 text-[var(--color-purple)]" />
                 <span>{t('projects.completed')}</span>
               </div>
-              <span className="font-bold text-[var(--color-text-primary)]">10</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {projectStats.completed}
+              </span>
             </div>
             <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <Clock className="size-2.5 text-[var(--color-purple)]" />
                 <span>{t('projects.active')}</span>
               </div>
-              <span className="font-bold text-[var(--color-text-primary)]">02</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {String(projectStats.active).padStart(2, '0')}
+              </span>
             </div>
             <div className="flex items-center justify-between py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
                 <Archive className="size-2.5 text-[var(--color-purple)]" />
                 <span>{t('projects.archived')}</span>
               </div>
-              <span className="font-bold text-[var(--color-text-primary)]">01</span>
+              <span className="font-bold text-[var(--color-text-primary)]">
+                {String(projectStats.archived).padStart(2, '0')}
+              </span>
             </div>
           </div>
 
           <div className="mt-1 flex items-center gap-1 text-[7px] font-semibold text-[var(--color-text-tertiary)] border-t border-[var(--color-border-light)] pt-1">
             <span className="text-[var(--color-text-primary)]">{t('projects.lastUpdate')}</span>
             <span className="size-1 rounded-full bg-[var(--color-success)]"></span>
-            <span>{t('projects.todayTime')}</span>
+            <span>{lastUpdated}</span>
           </div>
         </div>
       </div>
@@ -196,43 +276,38 @@ export default function ProjectsPage() {
         </h3>
         <div className="rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-2 shadow-[var(--shadow-sm)]">
           <ul className="space-y-1">
-            <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
-              <div className="flex items-center gap-1.5">
-                <span className="size-1 rounded-full bg-[var(--color-purple)]"></span>
-                <span>{t('projects.consultifyUpdated')}</span>
-              </div>
-              <span className="text-[var(--color-text-tertiary)]">{t('projects.time15mAgo')}</span>
-            </li>
-            <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
-              <div className="flex items-center gap-1.5">
-                <span className="size-1 rounded-full bg-[var(--color-success)]"></span>
-                <span>{t('projects.consultifyUpdated')}</span>
-              </div>
-              <span className="text-[var(--color-text-tertiary)]">{t('projects.time15mAgo')}</span>
-            </li>
-            <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
-              <div className="flex items-center gap-1.5">
-                <span className="size-1 rounded-full bg-[var(--color-warning)]"></span>
-                <span>{t('projects.taskflowDocAdded')}</span>
-              </div>
-              <span className="text-[var(--color-text-tertiary)]">{t('projects.time1hAgo')}</span>
-            </li>
-            <li className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]">
-              <div className="flex items-center gap-1.5">
-                <span className="size-1 rounded-full bg-[var(--color-brand)]"></span>
-                <span>{t('projects.newProjectInit')}</span>
-              </div>
-              <span className="text-[var(--color-text-tertiary)]">{t('projects.time3hAgo')}</span>
-            </li>
+            {activityItems.slice(0, 4).map((item, index) => (
+              <li
+                key={index}
+                className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span
+                    className={`size-1 rounded-full ${
+                      item.color === 'purple'
+                        ? 'bg-[var(--color-purple)]'
+                        : item.color === 'green'
+                          ? 'bg-[var(--color-success)]'
+                          : item.color === 'warning'
+                            ? 'bg-[var(--color-warning)]'
+                            : 'bg-[var(--color-brand)]'
+                    }`}
+                  ></span>
+                  <span>{item.label}</span>
+                </div>
+                <span className="text-[var(--color-text-tertiary)]">{item.time}</span>
+              </li>
+            ))}
           </ul>
           <div className="mt-1 flex justify-end">
-            <Link
-              href="/projects"
+            <button
+              type="button"
+              onClick={() => setIsActivityModalOpen(true)}
               className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80"
             >
               {t('projects.viewAllActivity')}
               <ArrowUpRight className="size-2" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -243,13 +318,14 @@ export default function ProjectsPage() {
           <h3 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
             {t('projects.featuredProjects')}
           </h3>
-          <Link
-            href="/projects"
+          <button
+            type="button"
+            onClick={() => setIsFeaturedModalOpen(true)}
             className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80"
           >
             {t('projects.viewAllProjects')}
             <ArrowUpRight className="size-2" />
-          </Link>
+          </button>
         </div>
 
         <div className="flex flex-col gap-2 md:gap-2.5 lg:gap-1.5">
@@ -335,6 +411,163 @@ export default function ProjectsPage() {
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isActivityModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-[2px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsActivityModalOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="w-full max-w-[560px] rounded-[8px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-4 shadow-[var(--shadow-sm)]"
+              initial={{ scale: 0.96, opacity: 0, y: 8 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.96, opacity: 0, y: 8 }}
+              transition={{ duration: 0.2 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <h3 className="font-inter text-[12px] font-bold uppercase text-[var(--color-text-primary)]">
+                    {t('projects.recentActivity')}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close activity modal"
+                  onClick={() => setIsActivityModalOpen(false)}
+                  className="flex size-7 items-center justify-center rounded-full text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
+                >
+                  <X className="size-3.5" />
+                </button>
+              </div>
+              <div className="space-y-2">
+                {activityItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between rounded-[4px] border border-[var(--color-border-light)] px-3 py-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`size-1.5 rounded-full ${
+                          item.color === 'purple'
+                            ? 'bg-[var(--color-purple)]'
+                            : item.color === 'green'
+                              ? 'bg-[var(--color-success)]'
+                              : item.color === 'warning'
+                                ? 'bg-[var(--color-warning)]'
+                                : 'bg-[var(--color-brand)]'
+                        }`}
+                      ></span>
+                      <span className="text-[8px] font-semibold text-[var(--color-text-secondary)]">
+                        {item.label}
+                      </span>
+                    </div>
+                    <span className="text-[7px] font-semibold text-[var(--color-text-tertiary)]">
+                      {item.time}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsActivityModalOpen(false)}
+                  className="rounded-[4px] bg-[var(--color-brand)] px-3 py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] hover:opacity-90"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {isFeaturedModalOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-[2px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsFeaturedModalOpen(false)}
+          >
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              className="w-full max-w-[620px] rounded-[8px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-4 shadow-[var(--shadow-sm)]"
+              initial={{ scale: 0.96, opacity: 0, y: 8 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.96, opacity: 0, y: 8 }}
+              transition={{ duration: 0.2 }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <h3 className="font-inter text-[12px] font-bold uppercase text-[var(--color-text-primary)]">
+                    {t('projects.featuredProjects')}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Close featured projects modal"
+                  onClick={() => setIsFeaturedModalOpen(false)}
+                  className="flex size-7 items-center justify-center rounded-full text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
+                >
+                  <X className="size-3.5" />
+                </button>
+              </div>
+              <div className="space-y-2">
+                {featuredProjects.map((project, index) => {
+                  const Icon = project.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between rounded-[4px] border border-[var(--color-border-light)] px-3 py-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="flex size-7 items-center justify-center rounded-[4px] bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-light)]">
+                          <Icon className="size-3.5" />
+                        </span>
+                        <div>
+                          <span className="block text-[8px] font-bold text-[var(--color-text-primary)]">
+                            {project.name}
+                          </span>
+                          <span className="block text-[7px] font-semibold text-[var(--color-text-secondary)]">
+                            {project.subtitle}
+                          </span>
+                        </div>
+                      </div>
+                      <Link
+                        href={project.link}
+                        onClick={() => setIsFeaturedModalOpen(false)}
+                        className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
+                      >
+                        {t('projects.viewProject')}
+                        <ExternalLink className="size-2" />
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-4 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setIsFeaturedModalOpen(false)}
+                  className="rounded-[4px] bg-[var(--color-brand)] px-3 py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] hover:opacity-90"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Quick Actions Section */}
       <div className="flex flex-col gap-2 md:gap-2.5 lg:gap-1">

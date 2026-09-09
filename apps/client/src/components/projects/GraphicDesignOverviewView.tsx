@@ -1,5 +1,6 @@
 'use client';
 
+import { ProjectPageTabs } from '@/components/projects/WebProjectPageTabs';
 import type { GraphicDesignOverviewData } from '@/data/projects/apex-brand-kit';
 import { useTranslation } from '@/hooks/use-translation';
 import {
@@ -31,6 +32,7 @@ export function GraphicDesignOverviewView({ data }: GraphicDesignOverviewViewPro
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <ProjectPageTabs />
       {/* --- HERO BANNER --- */}
       <div className="relative flex min-h-[200px] items-center justify-between overflow-hidden rounded-[8px] bg-card p-5 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         <div className="z-10 flex max-w-2xl flex-col gap-2">

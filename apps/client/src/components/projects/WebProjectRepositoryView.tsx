@@ -23,6 +23,10 @@ import { useState } from 'react';
 import GithubIcon from '@/assets/icons/github.svg';
 import { WebProjectPageTabs } from './WebProjectPageTabs';
 
+const GITHUB_PROFILE_AVATAR = 'https://avatars.githubusercontent.com/u/90479264?s=128&v=4';
+const GITHUB_FULL_NAME = 'Ahmed Yassine Abbane';
+const GITHUB_USERNAME = 'ahmedyacine2004';
+
 const STAT_ICON_MAP: Record<string, LucideIcon> = {
   Star,
   GitFork,
@@ -62,6 +66,381 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
     { id: 'Releases', label: getRepositoryText('tabs.Releases', 'Releases'), icon: Tag },
     { id: 'Insights', label: getRepositoryText('tabs.Insights', 'Insights'), icon: BarChart2 },
   ];
+
+  const renderMainRepositoryContent = () => {
+    switch (activeTab) {
+      case 'Commits':
+        return (
+          <div className="grid grid-cols-1 gap-4">
+            <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg">
+              <div className="flex items-center gap-2">
+                <GitCommit className="size-3.5 text-primary" />
+                <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                  {getRepositoryText('latestCommits', 'Latest Commits')}
+                </h2>
+              </div>
+
+              <div className="rounded-[6px] bg-background/80 p-3">
+                <div className="flex items-center gap-2.5">
+                  {data.latestCommit.authorAvatar ? (
+                    <div className="relative size-7 overflow-hidden rounded-full border border-border shadow-xs">
+                      <Image
+                        src={data.latestCommit.authorAvatar}
+                        alt={data.latestCommit.authorName}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex size-7 items-center justify-center rounded-full bg-accent text-foreground">
+                      <User className="size-3.5" />
+                    </div>
+                  )}
+                  <span className="font-inter text-[10px] font-bold">
+                    {data.latestCommit.authorName}
+                  </span>
+                </div>
+
+                <h3 className="mt-3 font-inter text-[11px] font-bold text-foreground">
+                  {data.latestCommit.title}
+                </h3>
+                <p className="mt-2 font-mono text-[9px] leading-relaxed text-foreground/90">
+                  {data.latestCommit.message}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      case 'Branches':
+        return (
+          <div className="rounded-[8px] bg-card p-4 shadow-lg">
+            <div className="flex items-center gap-2">
+              <GitBranch className="size-3.5 text-primary" />
+              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                {getRepositoryText('branches', 'Branches')}
+              </h2>
+            </div>
+
+            <div className="mt-3 space-y-1.5">
+              {data.branches.map((branch) => (
+                <div
+                  key={branch.name}
+                  className="flex items-center justify-between rounded-[6px] bg-background/80 px-3 py-2 text-[10px] shadow-xs shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.02)]"
+                >
+                  <span className="font-mono font-medium">{branch.name}</span>
+                  {branch.isDefault && (
+                    <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[8px] font-bold text-purple-600 dark:text-purple-400">
+                      {getRepositoryText('default', 'Default')}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <span className="mt-3 block text-[9px] font-bold text-purple-600 dark:text-purple-400">
+              + {data.moreBranchesCount} {getRepositoryText('moreBranches', 'more branches')}
+            </span>
+          </div>
+        );
+      case 'Releases':
+        return (
+          <div className="rounded-[8px] bg-card p-4 shadow-lg">
+            <div className="flex items-center gap-2">
+              <Tag className="size-3.5 text-primary" />
+              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                {getRepositoryText('releases', 'Releases')}
+              </h2>
+            </div>
+
+            <div className="mt-3 space-y-2">
+              {(
+                data.releases || [
+                  {
+                    version: 'v1.0.0',
+                    title: 'Initial Release',
+                    date: '2026-09-09',
+                    status: 'Published',
+                    notes: ['Repository ready'],
+                  },
+                ]
+              ).map((release) => (
+                <div key={release.version} className="rounded-[6px] bg-background/80 p-3 shadow-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="font-inter text-[11px] font-black">{release.version}</span>
+                    <span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[8px] font-bold text-blue-600 dark:text-blue-400">
+                      {release.status}
+                    </span>
+                  </div>
+                  <div className="mt-1 text-[10px] font-semibold text-foreground">
+                    {release.title}
+                  </div>
+                  <div className="mt-1 text-[9px] text-muted-foreground">{release.date}</div>
+                  <ul className="mt-2 list-disc pl-4 text-[9px] text-muted-foreground">
+                    {(release.notes || []).map((note) => (
+                      <li key={note}>{note}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'Insights':
+        return (
+          <div className="rounded-[8px] bg-card p-4 shadow-lg">
+            <div className="flex items-center gap-2">
+              <BarChart2 className="size-3.5 text-primary" />
+              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                {getRepositoryText('repositoryInsights', 'Repository Insights')}
+              </h2>
+            </div>
+
+            <div className="mt-3 space-y-2 text-[10px]">
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">{getRepositoryText('files', 'Files')}</span>
+                <span className="font-bold">{data.insights.files}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  {getRepositoryText('commits', 'Commits')}
+                </span>
+                <span className="font-bold">{data.insights.commits}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  {getRepositoryText('contributors', 'Contributors')}
+                </span>
+                <span className="font-bold">{data.insights.contributors}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  {getRepositoryText('openIssues', 'Open Issues')}
+                </span>
+                <span className="font-bold">{data.insights.openIssues}</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  {getRepositoryText('pullRequests', 'Pull Requests')}
+                </span>
+                <span className="font-bold">{data.insights.pullRequests}</span>
+              </div>
+            </div>
+          </div>
+        );
+      case 'README':
+      default:
+        return (
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
+            {/* Left Column: Latest Commit */}
+            <div className="lg:col-span-5 flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+              <div className="flex items-center gap-2">
+                <BookOpen className="size-3.5 text-primary" />
+                <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                  {getRepositoryText('latestCommits', 'Latest Commits')}
+                </h2>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <h3 className="font-inter text-[11px] font-bold text-foreground">
+                  {getRepositoryText('commit.title', data.latestCommit.title)}
+                </h3>
+                <span className="text-[9px] font-semibold text-muted-foreground">
+                  {getRepositoryText('author', 'Author')}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2.5">
+                {data.latestCommit.authorAvatar ? (
+                  <div className="relative size-7 overflow-hidden rounded-full border border-border shadow-xs">
+                    <Image
+                      src={data.latestCommit.authorAvatar}
+                      alt={data.latestCommit.authorName}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex size-7 items-center justify-center rounded-full bg-accent text-foreground">
+                    <User className="size-3.5" />
+                  </div>
+                )}
+                <span className="font-inter text-[10px] font-bold">
+                  {data.latestCommit.authorName}
+                </span>
+              </div>
+
+              <div className="mt-2 flex-1 rounded-[6px] bg-background/80 p-3 font-mono text-[9px] shadow-md shadow-gray-300 dark:shadow-[0_0_4px_rgba(255,255,255,0.01)]">
+                <span className="font-bold text-muted-foreground">
+                  $ {getRepositoryText('commitMessage', 'Commit Message')}
+                </span>
+                <p className="mt-2 font-mono leading-relaxed text-foreground/90">
+                  {getRepositoryText('commit.message', data.latestCommit.message)}
+                </p>
+              </div>
+            </div>
+
+            {/* Middle Column: Branches & Insights */}
+            <div className="lg:col-span-4 flex flex-col gap-4">
+              {/* Branches */}
+              <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+                <div className="flex items-center gap-2">
+                  <GitBranch className="size-3.5 text-primary" />
+                  <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                    {getRepositoryText('branches', 'Branches')}
+                  </h2>
+                </div>
+
+                <div className="space-y-1.5">
+                  {data.branches.map((branch) => (
+                    <div
+                      key={branch.name}
+                      className="flex items-center justify-between rounded-[6px] bg-background/80 px-3 py-2 text-[10px] shadow-xs shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.02)]"
+                    >
+                      <span className="font-mono font-medium">{branch.name}</span>
+                      {branch.isDefault && (
+                        <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[8px] font-bold text-purple-600 dark:text-purple-400">
+                          {getRepositoryText('default', 'Default')}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <span className="text-[9px] font-bold text-purple-600 dark:text-purple-400">
+                  + {data.moreBranchesCount} {getRepositoryText('moreBranches', 'more branches')}
+                </span>
+              </div>
+
+              {/* Repository Insights */}
+              <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+                <div className="flex items-center gap-2">
+                  <Layers className="size-3.5 text-primary" />
+                  <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                    {getRepositoryText('repositoryInsights', 'Repository Insights')}
+                  </h2>
+                </div>
+
+                <div className="space-y-2 text-[10px]">
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      {getRepositoryText('files', 'Files')}
+                    </span>
+                    <span className="font-bold">{data.insights.files}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      {getRepositoryText('commits', 'Commits')}
+                    </span>
+                    <span className="font-bold">{data.insights.commits}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      {getRepositoryText('contributors', 'Contributors')}
+                    </span>
+                    <span className="font-bold">{data.insights.contributors}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      {getRepositoryText('openIssues', 'Open Issues')}
+                    </span>
+                    <span className="font-bold">{data.insights.openIssues}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      {getRepositoryText('pullRequests', 'Pull Requests')}
+                    </span>
+                    <span className="font-bold">{data.insights.pullRequests}</span>
+                  </div>
+                </div>
+
+                <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
+                  <span>{getRepositoryText('viewAllInsights', 'View All Insights')}</span>
+                  <ChevronRight className="size-3" />
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column: CI Status & Languages */}
+            <div className="lg:col-span-3 flex flex-col gap-4">
+              {/* CI Status */}
+              <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+                <div className="flex items-center gap-2">
+                  <Workflow className="size-3.5 text-primary" />
+                  <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                    {getRepositoryText('continuousIntegration', 'Continuous Integration')}
+                  </h2>
+                </div>
+
+                <div className="space-y-2 text-[10px]">
+                  {data.ciStatuses.map((ci) => {
+                    const isProd = ci.variant === 'primary';
+                    return (
+                      <div key={ci.name} className="flex items-center justify-between">
+                        <span className="font-semibold">
+                          {getRepositoryText(`ciNames.${ci.name}`, ci.name)}
+                        </span>
+                        <span
+                          className={`rounded-full px-2 py-0.5 text-[8px] font-bold ${
+                            isProd
+                              ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                              : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                          }`}
+                        >
+                          {getRepositoryText(`statuses.${ci.status}`, ci.status)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Languages */}
+              <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+                <div className="flex items-center gap-2">
+                  <Tag className="size-3.5 text-primary" />
+                  <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
+                    {getRepositoryText('languages', 'Languages')}
+                  </h2>
+                </div>
+
+                {/* Language Distribution Bar */}
+                <div className="flex h-2 w-full overflow-hidden rounded-full bg-muted">
+                  {data.languages.map((lang) => (
+                    <div
+                      key={lang.name}
+                      style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
+                      title={`${getRepositoryText(`languagesList.${lang.name}`, lang.name)}: ${lang.percentage}%`}
+                    />
+                  ))}
+                </div>
+
+                <div className="space-y-1.5 text-[10px]">
+                  {data.languages.map((lang) => (
+                    <div key={lang.name} className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="size-2 rounded-full"
+                          style={{ backgroundColor: lang.color }}
+                        />
+                        <span className="font-medium">
+                          {getRepositoryText(`languagesList.${lang.name}`, lang.name)}
+                        </span>
+                      </div>
+                      <span className="font-extrabold">{lang.percentage}%</span>
+                    </div>
+                  ))}
+                </div>
+
+                <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
+                  <span>{getRepositoryText('viewAllLanguages', 'View All Languages')}</span>
+                  <ChevronRight className="size-3" />
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+    }
+  };
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
@@ -110,6 +489,27 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
 
       {/* --- STATS ROW --- */}
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-5">
+        {/* GitHub Profile Card first */}
+        <div className="flex items-center gap-3 rounded-[8px] bg-card p-3 shadow-md shadow-gray-300 transition-all hover:bg-accent/40 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
+          <div className="relative flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-accent shadow-xs shadow-gray-300 dark:shadow-none">
+            <Image
+              src={GITHUB_PROFILE_AVATAR}
+              alt="Ahmed Yassine Abbane GitHub profile"
+              width={32}
+              height={32}
+              className="object-cover"
+            />
+          </div>
+          <div className="flex min-w-0 flex-col">
+            <span className="font-inter text-[10px] font-black leading-none text-foreground">
+              {GITHUB_FULL_NAME}
+            </span>
+            <span className="mt-0.5 text-[9px] font-semibold text-muted-foreground leading-tight">
+              @{GITHUB_USERNAME}
+            </span>
+          </div>
+        </div>
+
         {data.stats.map((stat) => {
           const IconComp = STAT_ICON_MAP[stat.icon] || Star;
           return (
@@ -129,13 +529,6 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
             </div>
           );
         })}
-
-        {/* User Badge Card */}
-        <div className="col-span-2 hidden sm:col-span-4 lg:col-span-1 lg:flex items-center justify-center rounded-[8px] bg-card p-3 shadow-md shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-          <div className="flex size-8 items-center justify-center rounded-full bg-accent text-foreground shadow-xs shadow-gray-300 dark:shadow-none">
-            <User className="size-4" />
-          </div>
-        </div>
       </div>
 
       {/* --- NOTICE & TABS NAVIGATION --- */}
@@ -166,208 +559,8 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
         </div>
       </div>
 
-      {/* --- MAIN CONTENT GRID --- */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
-        {/* Left Column: Latest Commit */}
-        <div className="lg:col-span-5 flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-          <div className="flex items-center gap-2">
-            <BookOpen className="size-3.5 text-primary" />
-            <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-              {getRepositoryText('latestCommits', 'Latest Commits')}
-            </h2>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <h3 className="font-inter text-[11px] font-bold text-foreground">
-              {getRepositoryText('commit.title', data.latestCommit.title)}
-            </h3>
-            <span className="text-[9px] font-semibold text-muted-foreground">
-              {getRepositoryText('author', 'Author')}
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2.5">
-            {data.latestCommit.authorAvatar ? (
-              <div className="relative size-7 overflow-hidden rounded-full border border-border shadow-xs">
-                <Image
-                  src={data.latestCommit.authorAvatar}
-                  alt={data.latestCommit.authorName}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            ) : (
-              <div className="flex size-7 items-center justify-center rounded-full bg-accent text-foreground">
-                <User className="size-3.5" />
-              </div>
-            )}
-            <span className="font-inter text-[10px] font-bold">{data.latestCommit.authorName}</span>
-          </div>
-
-          <div className="mt-2 flex-1 rounded-[6px] bg-background/80 p-3 font-mono text-[9px] shadow-md shadow-gray-300 dark:shadow-[0_0_4px_rgba(255,255,255,0.01)]">
-            <span className="font-bold text-muted-foreground">
-              $ {getRepositoryText('commitMessage', 'Commit Message')}
-            </span>
-            <p className="mt-2 font-mono leading-relaxed text-foreground/90">
-              {getRepositoryText('commit.message', data.latestCommit.message)}
-            </p>
-          </div>
-        </div>
-
-        {/* Middle Column: Branches & Insights */}
-        <div className="lg:col-span-4 flex flex-col gap-4">
-          {/* Branches */}
-          <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-            <div className="flex items-center gap-2">
-              <GitBranch className="size-3.5 text-primary" />
-              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                {getRepositoryText('branches', 'Branches')}
-              </h2>
-            </div>
-
-            <div className="space-y-1.5">
-              {data.branches.map((branch) => (
-                <div
-                  key={branch.name}
-                  className="flex items-center justify-between rounded-[6px] bg-background/80 px-3 py-2 text-[10px] shadow-xs shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.02)]"
-                >
-                  <span className="font-mono font-medium">{branch.name}</span>
-                  {branch.isDefault && (
-                    <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[8px] font-bold text-purple-600 dark:text-purple-400">
-                      {getRepositoryText('default', 'Default')}
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <span className="text-[9px] font-bold text-purple-600 dark:text-purple-400">
-              + {data.moreBranchesCount} {getRepositoryText('moreBranches', 'more branches')}
-            </span>
-          </div>
-
-          {/* Repository Insights */}
-          <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-            <div className="flex items-center gap-2">
-              <Layers className="size-3.5 text-primary" />
-              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                {getRepositoryText('repositoryInsights', 'Repository Insights')}
-              </h2>
-            </div>
-
-            <div className="space-y-2 text-[10px]">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">{getRepositoryText('files', 'Files')}</span>
-                <span className="font-bold">{data.insights.files}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  {getRepositoryText('commits', 'Commits')}
-                </span>
-                <span className="font-bold">{data.insights.commits}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  {getRepositoryText('contributors', 'Contributors')}
-                </span>
-                <span className="font-bold">{data.insights.contributors}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  {getRepositoryText('openIssues', 'Open Issues')}
-                </span>
-                <span className="font-bold">{data.insights.openIssues}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  {getRepositoryText('pullRequests', 'Pull Requests')}
-                </span>
-                <span className="font-bold">{data.insights.pullRequests}</span>
-              </div>
-            </div>
-
-            <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
-              <span>{getRepositoryText('viewAllInsights', 'View All Insights')}</span>
-              <ChevronRight className="size-3" />
-            </button>
-          </div>
-        </div>
-
-        {/* Right Column: CI Status & Languages */}
-        <div className="lg:col-span-3 flex flex-col gap-4">
-          {/* CI Status */}
-          <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-            <div className="flex items-center gap-2">
-              <Workflow className="size-3.5 text-primary" />
-              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                {getRepositoryText('continuousIntegration', 'Continuous Integration')}
-              </h2>
-            </div>
-
-            <div className="space-y-2 text-[10px]">
-              {data.ciStatuses.map((ci) => {
-                const isProd = ci.variant === 'primary';
-                return (
-                  <div key={ci.name} className="flex items-center justify-between">
-                    <span className="font-semibold">
-                      {getRepositoryText(`ciNames.${ci.name}`, ci.name)}
-                    </span>
-                    <span
-                      className={`rounded-full px-2 py-0.5 text-[8px] font-bold ${
-                        isProd
-                          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400'
-                          : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                      }`}
-                    >
-                      {getRepositoryText(`statuses.${ci.status}`, ci.status)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Languages */}
-          <div className="flex flex-col gap-3 rounded-[8px] bg-card p-4 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
-            <div className="flex items-center gap-2">
-              <Tag className="size-3.5 text-primary" />
-              <h2 className="font-inter text-[11px] font-bold uppercase tracking-wider">
-                {getRepositoryText('languages', 'Languages')}
-              </h2>
-            </div>
-
-            {/* Language Distribution Bar */}
-            <div className="flex h-2 w-full overflow-hidden rounded-full bg-muted">
-              {data.languages.map((lang) => (
-                <div
-                  key={lang.name}
-                  style={{ width: `${lang.percentage}%`, backgroundColor: lang.color }}
-                  title={`${getRepositoryText(`languagesList.${lang.name}`, lang.name)}: ${lang.percentage}%`}
-                />
-              ))}
-            </div>
-
-            <div className="space-y-1.5 text-[10px]">
-              {data.languages.map((lang) => (
-                <div key={lang.name} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="size-2 rounded-full" style={{ backgroundColor: lang.color }} />
-                    <span className="font-medium">
-                      {getRepositoryText(`languagesList.${lang.name}`, lang.name)}
-                    </span>
-                  </div>
-                  <span className="font-extrabold">{lang.percentage}%</span>
-                </div>
-              ))}
-            </div>
-
-            <button className="mt-1 flex w-full items-center justify-center gap-1.5 rounded-[6px] bg-blue-600 py-2 text-[10px] font-bold text-white shadow-md shadow-blue-500/20 transition-all hover:bg-blue-700 active:scale-[0.99]">
-              <span>{getRepositoryText('viewAllLanguages', 'View All Languages')}</span>
-              <ChevronRight className="size-3" />
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* --- MAIN CONTENT RENDERER --- */}
+      {renderMainRepositoryContent()}
     </div>
   );
 }

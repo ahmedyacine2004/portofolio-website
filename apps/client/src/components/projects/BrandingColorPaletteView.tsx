@@ -1,5 +1,6 @@
 'use client';
 
+import { ProjectPageTabs } from '@/components/projects/WebProjectPageTabs';
 import type { BrandingColorPaletteData } from '@/data/projects/lumina-studio';
 import { useTranslation } from '@/hooks/use-translation';
 import { Check, Copy, Download, Eye, Layers, Palette, Sliders, Sparkles } from 'lucide-react';
@@ -29,6 +30,7 @@ export function BrandingColorPaletteView({ data }: BrandingColorPaletteViewProps
 
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-auto rounded-[8px] bg-background p-4 text-foreground">
+      <ProjectPageTabs />
       {/* --- HERO BANNER --- */}
       <div className="relative flex min-h-[180px] w-full shrink-0 flex-col justify-between rounded-[8px] bg-card p-6 shadow-lg shadow-gray-300 dark:shadow-[0_0_6px_rgba(255,255,255,0.015)]">
         <div className="flex flex-col gap-3">

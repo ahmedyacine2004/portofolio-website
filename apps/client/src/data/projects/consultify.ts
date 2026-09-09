@@ -2,17 +2,19 @@ import type { GalleryItem } from '@/components/3d/Carousel3D';
 
 // Import local images from src/assets/images
 // Adjust filenames and extensions (.png, .jpg, .webp, etc.) to match your exact assets
-import consultifyImage from '@/assets/images/consultify.png';
-import heroGraphicImage from '@/assets/images/consultify.png';
-import consultifyHeroImg from '@/assets/images/consultify.png';
+import ahmedAvatarImg from '@/assets/images/avatar.jpg';
 import screen1 from '@/assets/images/carousel/screen-1.png';
 import screen2 from '@/assets/images/carousel/screen-2.png';
 import screen3 from '@/assets/images/carousel/screen-3.png';
 import screen4 from '@/assets/images/carousel/screen-4.png';
 import screen5 from '@/assets/images/carousel/screen-5.png';
 import screen6 from '@/assets/images/carousel/screen-6.png';
+import {
+  default as consultifyHeroImg,
+  default as consultifyImage,
+  default as heroGraphicImage,
+} from '@/assets/images/consultify.png';
 import { StaticImageData } from 'next/image';
-import ahmedAvatarImg from '@/assets/images/avatar.jpg';
 
 export interface SystemModule {
   id: string;
@@ -143,6 +145,14 @@ export interface CIStatusItem {
   variant?: 'success' | 'primary' | 'warning';
 }
 
+export interface ReleaseItem {
+  version: string;
+  title: string;
+  date: string;
+  status: string;
+  notes: string[];
+}
+
 export interface LanguageBreakdownItem {
   name: string;
   percentage: number;
@@ -167,6 +177,7 @@ export interface WebProjectRepositoryData {
   branches: BranchItem[];
   moreBranchesCount: number;
   ciStatuses: CIStatusItem[];
+  releases?: ReleaseItem[];
   insights: {
     files: number;
     commits: number;
@@ -525,6 +536,22 @@ export const CONSULTIFY_REPOSITORY_DATA: WebProjectRepositoryData = {
     { name: 'feature/dashboard' },
   ],
   moreBranchesCount: 12,
+  releases: [
+    {
+      version: 'v1.0.0',
+      title: 'AI consultation workspace',
+      date: '2026-09-09',
+      status: 'Published',
+      notes: ['Multi-language assistant', 'Healthcare consultation UX', 'Repository automation'],
+    },
+    {
+      version: 'v0.9.0',
+      title: 'Dashboard and analytics preview',
+      date: '2026-08-19',
+      status: 'Preview',
+      notes: ['Insights layer', 'Realtime project metrics'],
+    },
+  ],
   ciStatuses: [
     { name: 'Build', status: 'Passing', variant: 'success' },
     { name: 'Tests', status: 'Passing', variant: 'success' },

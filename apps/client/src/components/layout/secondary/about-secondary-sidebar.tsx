@@ -206,9 +206,12 @@ export function AboutSecondarySidebar() {
   return (
     <aside className="flex h-full w-[180px] flex-col rounded-[8px] bg-background px-2 py-3 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* Title */}
-      <h2 className="mb-1 px-0.5 text-[12px] font-inter font-semibold uppercase leading-none text-foreground">
+      <Link
+        href="/about"
+        className="group mb-1 block px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground transition-colors hover:text-[var(--color-brand)]"
+      >
         {t('aboutSidebar.title')}
-      </h2>
+      </Link>
 
       {/* Default About Page */}
       <Link

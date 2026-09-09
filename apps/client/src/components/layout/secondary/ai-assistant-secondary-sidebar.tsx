@@ -1,25 +1,27 @@
 'use client';
 
 import { useTranslation } from '@/hooks/use-translation';
-import { Bot, MessageCircle, History, Sparkles } from 'lucide-react';
+import { Bot, History, MessageCircle, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 export function AIAssistantSecondarySidebar() {
   const { t } = useTranslation();
 
   return (
     <aside className="flex h-full w-[200px] flex-col rounded-sm bg-background p-3 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-      <div className="mb-4">
-        <div className="flex items-center gap-2">
-          <div className="flex size-7 items-center justify-center rounded-xs bg-primary text-primary-foreground">
-            <Bot className="size-4" />
-          </div>
-
-          <div>
-            <p className="text-[9px] font-semibold text-primary">{t('aiAssistantSidebar.title')}</p>
-            <h2 className="text-sm font-semibold">{t('aiAssistantSidebar.subtitle')}</h2>
-          </div>
+      <Link
+        href="/ai-assistant"
+        className="group mb-4 flex items-center gap-2 transition-colors hover:text-[var(--color-brand)]"
+      >
+        <div className="flex size-7 items-center justify-center rounded-xs bg-primary text-primary-foreground">
+          <Bot className="size-4" />
         </div>
-      </div>
+
+        <div>
+          <p className="text-[9px] font-semibold text-primary">{t('aiAssistantSidebar.title')}</p>
+          <h2 className="text-sm font-semibold">{t('aiAssistantSidebar.subtitle')}</h2>
+        </div>
+      </Link>
 
       <button className="mb-3 flex items-center justify-center gap-2 rounded-xs bg-primary px-3 py-2 text-[10px] font-semibold text-primary-foreground">
         <Sparkles className="size-3.5" />

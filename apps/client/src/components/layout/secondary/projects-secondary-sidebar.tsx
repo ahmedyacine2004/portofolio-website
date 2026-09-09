@@ -12,7 +12,6 @@ import {
   FileText,
   GitBranch,
   Globe,
-  Hexagon,
   Image as ImageIcon,
   Layers,
   Layout,
@@ -197,9 +196,12 @@ export function ProjectsSecondarySidebar() {
   return (
     <aside className="flex h-full w-[180px] select-none flex-col gap-1 overflow-y-auto rounded-[8px] bg-background px-2 py-3 text-[var(--color-text-primary)] shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
       {/* Title */}
-      <h2 className="mb-1 px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground">
+      <Link
+        href="/projects"
+        className="mb-1 block px-0.5 font-inter text-[12px] font-semibold uppercase leading-none text-foreground transition-colors hover:text-[var(--color-brand)]"
+      >
         {t('projectsSidebar.projectHub')}
-      </h2>
+      </Link>
 
       {/* Accordion Categories List */}
       <div className="space-y-1">

@@ -45,6 +45,7 @@ const translations = {
   en: {
     ...en,
     projects: {
+      ...en.projects,
       consultify: consultifyEn,
       designSystem: designSystemEn,
       apexBrandKit: {
@@ -81,6 +82,7 @@ const translations = {
   fr: {
     ...fr,
     projects: {
+      ...fr.projects,
       consultify: consultifyFr,
       designSystem: designSystemFr,
       apexBrandKit: {

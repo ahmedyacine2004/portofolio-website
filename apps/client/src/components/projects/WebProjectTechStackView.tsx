@@ -12,8 +12,8 @@ import {
   Layers,
   Monitor,
   Package,
-  Search,
   Palette,
+  Search,
   Server,
   ShieldCheck,
   Sparkles,
@@ -103,15 +103,19 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
             return (
               <div
                 key={env.id}
-                className="flex items-center justify-between rounded-[8px] bg-background/80 p-3 shadow-md shadow-gray-300 transition-all hover:bg-accent/40 dark:shadow-[0_0_8px_rgba(255,255,255,0.025)]"
+                className="flex min-h-18.5 w-full items-center justify-between gap-4 rounded-[8px] bg-background/80 p-3 shadow-md shadow-gray-300 transition-all hover:bg-accent/40 dark:shadow-[0_0_8px_rgba(255,255,255,0.025)]"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 flex-1 items-center gap-4">
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-[6px] bg-purple-500/10 text-purple-600 shadow-xs shadow-gray-300 dark:text-purple-400 dark:shadow-[0_0_6px_rgba(168,85,247,0.15)]">
                     <IconComp className="size-4" />
                   </div>
-                  <div className="flex items-baseline gap-2">
-                    <span className="font-inter text-lg font-extrabold">{env.count}</span>
-                    <div>
+
+                  <div className="flex min-w-0 flex-1 items-center gap-4">
+                    <span className="font-inter text-4xl font-black leading-none text-foreground">
+                      {env.count}
+                    </span>
+
+                    <div className="flex min-h-9.5 min-w-0 flex-col justify-center">
                       <h4 className="font-inter text-[11px] font-bold leading-none">
                         {getTechText(`environment.${env.id}.title`, env.title)}
                       </h4>
@@ -123,7 +127,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
                 </div>
 
                 <span
-                  className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[8px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none ${
+                  className={`flex shrink-0 items-center gap-1 rounded-full px-2 py-0.5 text-[8px] font-semibold shadow-xs shadow-gray-300 dark:shadow-none ${
                     isSynced
                       ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
                       : 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
