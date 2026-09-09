@@ -1,0 +1,289 @@
+{
+  "pageTitle": "DATABASES WORKSPACE",
+  "status": "Engines Online",
+  "description": "Designing normalized data architectures, high-performance indexing strategies, ACID transactional guarantees, and distributed caches.",
+  "activeEngines": "Active Engines",
+  "bufferCacheHit": "Buffer Cache Hit",
+  "queryTime": "P95 Query Time",
+  "dataIntegrity": "Data Integrity",
+  "schema": {
+    "title": "Data Architecture & Entity Schema Inspector",
+    "description": "Inspecting normalized table schemas, primary keys (PK), foreign keys (FK), compound indexes (IDX), and data relations.",
+    "entityTab": "Select entity to inspect",
+    "attribute": "Attribute",
+    "type": "Type",
+    "constraint": "Constraint",
+    "purpose": "Purpose & Index Strategy",
+    "engine": "Engine",
+    "records": "Records",
+    "cardinality": "Cardinality & Relationships",
+    "integrity": "Referential Integrity:",
+    "onDelete": "ON DELETE CASCADE",
+    "treeDepth": "B-Tree Tree Depth:",
+    "treeDepthLevels": "3 Levels",
+    "entities": {
+      "projects": {
+        "name": "projects_table",
+        "type": "SQL Table",
+        "records": "18 Rows",
+        "engine": "PostgreSQL / InnoDB",
+        "attributes": {
+          "id": { "desc": "Primary identifier" },
+          "user_id": { "desc": "Owner foreign key" },
+          "slug": { "desc": "URL routing identifier" },
+          "title": { "desc": "Project headline" },
+          "tech_stack": { "desc": "Indexed tags & metadata" },
+          "is_featured": { "desc": "Filtered showcase flag" },
+          "created_at": { "desc": "Creation timestamp" }
+        },
+        "relationships": {
+          "users_table": { "target": "users_table", "foreignKey": "projects.user_id -> users.id" },
+          "skills_matrix": { "target": "skills_matrix", "foreignKey": "project_skills (junction)" }
+        }
+      },
+      "users": {
+        "name": "users_table",
+        "type": "SQL Table",
+        "records": "1.2K Rows",
+        "engine": "PostgreSQL",
+        "attributes": {
+          "id": { "desc": "Primary identifier" },
+          "email": { "desc": "Unique account login" },
+          "password_hash": { "desc": "Bcrypt salted hash" },
+          "role": { "desc": "RBAC authorization level" },
+          "is_verified": { "desc": "Email verification state" },
+          "last_login": { "desc": "Session audit trace" }
+        },
+        "relationships": {
+          "projects_table": {
+            "target": "projects_table",
+            "foreignKey": "users.id -> projects.user_id"
+          },
+          "auth_sessions": {
+            "target": "auth_sessions",
+            "foreignKey": "users.id -> sessions.user_id"
+          }
+        }
+      },
+      "skills": {
+        "name": "skills_collection",
+        "type": "NoSQL Collection",
+        "records": "32 Documents",
+        "engine": "MongoDB Atlas",
+        "attributes": {
+          "_id": { "desc": "BSON primary identifier" },
+          "slug": { "desc": "Unique index on path" },
+          "name": { "desc": "Skill display title" },
+          "category": { "desc": "Frontend, Backend, DB..." },
+          "proficiency": { "desc": "Percentage mastery" },
+          "toolkit": { "desc": "Nested sub-competencies" }
+        },
+        "relationships": {
+          "projects_table": { "target": "projects_table", "foreignKey": "Referenced in tech_stack" }
+        }
+      },
+      "sessions": {
+        "name": "redis_cache_store",
+        "type": "Cache Key-Value",
+        "records": "4.8K Keys",
+        "engine": "Redis In-Memory",
+        "attributes": {
+          "sess:{token_hash}": { "desc": "TTL 7 Days active session" },
+          "rate:{ip_address}": { "desc": "Sliding window counter" },
+          "cache:projects:all": { "desc": "Hydrated project payload" },
+          "stats:views:today": { "desc": "Cardinality counter" }
+        },
+        "relationships": {
+          "users_table": { "target": "users_table", "foreignKey": "In-Memory mapping to user_id" }
+        }
+      }
+    }
+  },
+  "query": {
+    "title": "Query Execution & Plan Optimizer",
+    "subtitle": "Select query to analyze",
+    "purpose": "Purpose:",
+    "analyzeTitle": "EXPLAIN ANALYZE Breakdown",
+    "scan": "Scanning Index...",
+    "node": "Execution Node",
+    "index": "Index Utilized",
+    "cost": "Optimizer Cost",
+    "latency": "Execution Latency",
+    "gain": "Optimization Gain",
+    "samples": {
+      "sql-complex-join": {
+        "title": "Optimized Filtered Join with Compound Index",
+        "dialect": "PostgreSQL SQL",
+        "purpose": "Fetches featured portfolio projects with aggregated skills while avoiding full table locks.",
+        "executionPlan": {
+          "nodeType": "Index Scan using idx_projects_featured_created",
+          "indexUsed": "B-Tree (is_featured, created_at DESC)",
+          "cost": "0.28..12.45",
+          "latency": "0.74ms",
+          "improvement": "48x faster than Seq Scan (35.5ms)"
+        }
+      },
+      "mongo-aggregation": {
+        "title": "Multi-Stage Document Aggregation Pipeline",
+        "dialect": "MongoDB MQL",
+        "purpose": "Correlates skills with portfolio projects in a single non-blocking database roundtrip.",
+        "executionPlan": {
+          "nodeType": "IXSCAN on idx_category_proficiency -> $lookup",
+          "indexUsed": "Compound Index { category: 1, proficiency: -1 }",
+          "cost": "Keys Examined: 5, Docs Examined: 5",
+          "latency": "1.18ms",
+          "improvement": "Direct index seek with zero document scans"
+        }
+      },
+      "redis-cache-get": {
+        "title": "Sub-Millisecond In-Memory Cache Lookup",
+        "dialect": "Redis CLI",
+        "purpose": "Verifies user session and applies rate-limiting in a single atomic Lua script on RAM.",
+        "executionPlan": {
+          "nodeType": "O(1) In-Memory Lookup & Sliding Counter",
+          "indexUsed": "In-Memory Hash Table / Direct RAM Pointer",
+          "cost": "CPU Time: < 0.1ms",
+          "latency": "0.19ms",
+          "improvement": "Eliminates 99.4% of direct SQL hits"
+        }
+      }
+    }
+  },
+  "storage": {
+    "title": "4-Tier Storage & Persistence Hierarchy",
+    "subtitle": "From RAM buffer pool down to non-volatile SSD pages",
+    "tiers": {
+      "buffer": {
+        "title": "Tier 01: Buffer Cache & Shared Memory",
+        "desc": "Sub-millisecond access for active working set, reducing disk I/O load.",
+        "metric": "99.4% Hit Rate"
+      },
+      "wal": {
+        "title": "Tier 02: Write-Ahead Log (WAL)",
+        "desc": "Sequential transaction journaling ensuring zero data loss on crash (Atomicity & Durability).",
+        "metric": "Synchronous Flush"
+      },
+      "btree": {
+        "title": "Tier 03: Persistent B+ Tree Pages",
+        "desc": "Segmented tablespaces, clustering indexes, and compression on NVMe SSD storage.",
+        "metric": "4,200 IOPS"
+      },
+      "replica": {
+        "title": "Tier 04: Replica Sets & Automated Snapshots",
+        "desc": "Primary-secondary replication with automatic failover and point-in-time recovery.",
+        "metric": "0ms Replica Lag"
+      }
+    }
+  },
+  "taxonomy": {
+    "title": "Database Technology Taxonomy",
+    "description": "Deep expertise across Relational RDBMS, Document NoSQL databases, and In-Memory key-value caching.",
+    "clusters": {
+      "Relational Databases (SQL & ACID)": {
+        "title": "Relational Databases (SQL & ACID)",
+        "description": "Structured data modeling, strict constraints, and transaction safety",
+        "items": {
+          "PostgreSQL": {
+            "name": "PostgreSQL",
+            "role": "Advanced ACID relational database with JSONB & indexing power",
+            "paradigm": "Relational (ACID)",
+            "tags": {
+              "JSONB Support": "JSONB Support",
+              "B-Tree & GIN": "B-Tree & GIN",
+              "Transactions": "Transactions",
+              "PL/pgSQL": "PL/pgSQL"
+            }
+          },
+          "MySQL": {
+            "name": "MySQL",
+            "role": "Battle-tested relational engine for high-volume read workloads",
+            "paradigm": "Relational (InnoDB)",
+            "tags": {
+              "InnoDB B+ Tree": "InnoDB B+ Tree",
+              "Replication": "Replication",
+              "Query Cache": "Query Cache",
+              "Foreign Keys": "Foreign Keys"
+            }
+          },
+          "SQLite": {
+            "name": "SQLite",
+            "role": "Zero-configuration embedded serverless relational engine",
+            "paradigm": "Embedded SQL",
+            "tags": {
+              "WAL Mode": "WAL Mode",
+              "Single-File": "Single-File",
+              "Mobile & Local": "Mobile & Local",
+              "Low Overhead": "Low Overhead"
+            }
+          }
+        }
+      },
+      "Document & NoSQL Stores": {
+        "title": "Document & NoSQL Stores",
+        "description": "Schema flexibility, hierarchical documents, and horizontal scalability",
+        "items": {
+          "MongoDB Atlas": {
+            "name": "MongoDB Atlas",
+            "role": "Document-oriented NoSQL database with dynamic JSON schemas",
+            "paradigm": "Document Store",
+            "tags": {
+              "Aggregation Pipeline": "Aggregation Pipeline",
+              "Compound Index": "Compound Index",
+              "Mongoose ODM": "Mongoose ODM",
+              "Replica Sets": "Replica Sets"
+            }
+          },
+          "Firebase Firestore": {
+            "name": "Firebase Firestore",
+            "role": "Cloud document database with live WebSocket synchronization",
+            "paradigm": "BaaS / Document",
+            "tags": {
+              "Real-Time Sync": "Real-Time Sync",
+              "Security Rules": "Security Rules",
+              "Subcollections": "Subcollections",
+              "Offline Persistence": "Offline Persistence"
+            }
+          }
+        }
+      },
+      "In-Memory, Cache & ORM Tooling": {
+        "title": "In-Memory, Cache & ORM Tooling",
+        "description": "Sub-millisecond data structures and type-safe abstraction layers",
+        "items": {
+          "Redis": {
+            "name": "Redis",
+            "role": "Ultra-fast in-memory key-value store for caching & pub/sub",
+            "paradigm": "In-Memory KV",
+            "tags": {
+              "Sub-ms Latency": "Sub-ms Latency",
+              "Pub/Sub": "Pub/Sub",
+              "Sorted Sets": "Sorted Sets",
+              "Session Cache": "Session Cache"
+            }
+          },
+          "TypeORM & Prisma": {
+            "name": "TypeORM & Prisma",
+            "role": "Type-safe object relational mapping & schema migrations",
+            "paradigm": "ORM / QueryBuilder",
+            "tags": {
+              "Data Migrations": "Data Migrations",
+              "Schema Drift": "Schema Drift",
+              "Type-Safety": "Type-Safety",
+              "Relations": "Relations"
+            }
+          }
+        }
+      }
+    }
+  },
+  "explore": {
+    "title": "Explore Dedicated Database Workspaces",
+    "description": "Access individual schema metrics, execution logs, and indexing blueprints for MongoDB, PostgreSQL, MySQL, and Redis."
+  },
+  "metadata": {
+    "interface": "Data Architecture & Entity Schema Inspector",
+    "schema": "Inspecting normalized table schemas, primary keys, foreign keys, compound indexes, and data relations.",
+    "query": "Query Execution & Plan Optimizer",
+    "storage": "4-Tier Storage & Persistence Hierarchy"
+  }
+}

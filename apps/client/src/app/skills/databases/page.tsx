@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
@@ -340,19 +341,189 @@ const DATABASE_CLUSTERS: DatabaseCategoryCluster[] = [
 ];
 
 export default function DatabasesSkillsPage() {
+  const { skillPageText } = useTranslation();
   const [selectedEntityId, setSelectedEntityId] = useState<string>('projects');
   const [selectedQueryId, setSelectedQueryId] = useState<string>('sql-complex-join');
   const [isExecutingQuery, setIsExecutingQuery] = useState<boolean>(false);
 
+  const translatedSchemaEntities = SCHEMA_ENTITIES.map((entity) => ({
+    ...entity,
+    name: skillPageText(`databases`, `schema.entities.${entity.id}.name`, entity.name),
+    type: skillPageText(`databases`, `schema.entities.${entity.id}.type`, entity.type),
+    records: skillPageText(`databases`, `schema.entities.${entity.id}.records`, entity.records),
+    engine: skillPageText(`databases`, `schema.entities.${entity.id}.engine`, entity.engine),
+    attributes: entity.attributes.map((attr) => ({
+      ...attr,
+      desc: skillPageText(
+        `databases`,
+        `schema.entities.${entity.id}.attributes.${attr.name}.desc`,
+        attr.desc,
+      ),
+    })),
+    relationships: entity.relationships.map((rel) => ({
+      ...rel,
+      target: skillPageText(
+        `databases`,
+        `schema.entities.${entity.id}.relationships.${rel.target}.target`,
+        rel.target,
+      ),
+      foreignKey: skillPageText(
+        `databases`,
+        `schema.entities.${entity.id}.relationships.${rel.target}.foreignKey`,
+        rel.foreignKey,
+      ),
+    })),
+  }));
+
   const selectedEntity = useMemo(
-    () => SCHEMA_ENTITIES.find((e) => e.id === selectedEntityId) || SCHEMA_ENTITIES[0],
-    [selectedEntityId],
+    () =>
+      translatedSchemaEntities.find((e) => e.id === selectedEntityId) ||
+      translatedSchemaEntities[0],
+    [selectedEntityId, translatedSchemaEntities],
   );
 
+  const translatedQuerySamples = QUERY_SAMPLES.map((query) => ({
+    ...query,
+    title: skillPageText(`databases`, `query.samples.${query.id}.title`, query.title),
+    dialect: skillPageText(`databases`, `query.samples.${query.id}.dialect`, query.dialect),
+    purpose: skillPageText(`databases`, `query.samples.${query.id}.purpose`, query.purpose),
+    executionPlan: {
+      ...query.executionPlan,
+      nodeType: skillPageText(
+        `databases`,
+        `query.samples.${query.id}.executionPlan.nodeType`,
+        query.executionPlan.nodeType,
+      ),
+      indexUsed: skillPageText(
+        `databases`,
+        `query.samples.${query.id}.executionPlan.indexUsed`,
+        query.executionPlan.indexUsed,
+      ),
+      cost: skillPageText(
+        `databases`,
+        `query.samples.${query.id}.executionPlan.cost`,
+        query.executionPlan.cost,
+      ),
+      latency: skillPageText(
+        `databases`,
+        `query.samples.${query.id}.executionPlan.latency`,
+        query.executionPlan.latency,
+      ),
+      improvement: skillPageText(
+        `databases`,
+        `query.samples.${query.id}.executionPlan.improvement`,
+        query.executionPlan.improvement,
+      ),
+    },
+  }));
+
   const selectedQuery = useMemo(
-    () => QUERY_SAMPLES.find((q) => q.id === selectedQueryId) || QUERY_SAMPLES[0],
-    [selectedQueryId],
+    () => translatedQuerySamples.find((q) => q.id === selectedQueryId) || translatedQuerySamples[0],
+    [selectedQueryId, translatedQuerySamples],
   );
+
+  const translatedClusterGroups = DATABASE_CLUSTERS.map((cluster) => ({
+    ...cluster,
+    title: skillPageText(`databases`, `taxonomy.clusters.${cluster.title}.title`, cluster.title),
+    description: skillPageText(
+      `databases`,
+      `taxonomy.clusters.${cluster.title}.description`,
+      cluster.description,
+    ),
+    items: cluster.items.map((item) => ({
+      ...item,
+      name: skillPageText(
+        `databases`,
+        `taxonomy.clusters.${cluster.title}.items.${item.name}.name`,
+        item.name,
+      ),
+      role: skillPageText(
+        `databases`,
+        `taxonomy.clusters.${cluster.title}.items.${item.name}.role`,
+        item.role,
+      ),
+      paradigm: skillPageText(
+        `databases`,
+        `taxonomy.clusters.${cluster.title}.items.${item.name}.paradigm`,
+        item.paradigm,
+      ),
+      tags: item.tags.map((tag) =>
+        skillPageText(
+          `databases`,
+          `taxonomy.clusters.${cluster.title}.items.${item.name}.tags.${tag}`,
+          tag,
+        ),
+      ),
+    })),
+  }));
+
+  const translatedStorageTiers = [
+    {
+      title: skillPageText(
+        'databases',
+        'storage.tiers.buffer.title',
+        'Tier 01: Buffer Cache & Shared Memory',
+      ),
+      desc: skillPageText(
+        'databases',
+        'storage.tiers.buffer.desc',
+        'Sub-millisecond access for active working set, reducing disk I/O load.',
+      ),
+      metric: skillPageText('databases', 'storage.tiers.buffer.metric', '99.4% Hit Rate'),
+      icon: Zap,
+    },
+    {
+      title: skillPageText(
+        'databases',
+        'storage.tiers.wal.title',
+        'Tier 02: Write-Ahead Log (WAL)',
+      ),
+      desc: skillPageText(
+        'databases',
+        'storage.tiers.wal.desc',
+        'Sequential transaction journaling ensuring zero data loss on crash (Atomicity & Durability).',
+      ),
+      metric: skillPageText('databases', 'storage.tiers.wal.metric', 'Synchronous Flush'),
+      icon: ShieldCheck,
+    },
+    {
+      title: skillPageText(
+        'databases',
+        'storage.tiers.btree.title',
+        'Tier 03: Persistent B+ Tree Pages',
+      ),
+      desc: skillPageText(
+        'databases',
+        'storage.tiers.btree.desc',
+        'Segmented tablespaces, clustering indexes, and compression on NVMe SSD storage.',
+      ),
+      metric: skillPageText('databases', 'storage.tiers.btree.metric', '4,200 IOPS'),
+      icon: Database,
+    },
+    {
+      title: skillPageText(
+        'databases',
+        'storage.tiers.replica.title',
+        'Tier 04: Replica Sets & Automated Snapshots',
+      ),
+      desc: skillPageText(
+        'databases',
+        'storage.tiers.replica.desc',
+        'Primary-secondary replication with automatic failover and point-in-time recovery.',
+      ),
+      metric: skillPageText('databases', 'storage.tiers.replica.metric', '0ms Replica Lag'),
+      icon: HardDrive,
+    },
+  ];
+
+  const translatedExplore = {
+    title: skillPageText('databases', 'explore.title', 'Explore Dedicated Database Workspaces'),
+    description: skillPageText(
+      'databases',
+      'explore.description',
+      'Access individual schema metrics, execution logs, and indexing blueprints for MongoDB, PostgreSQL, MySQL, and Redis.',
+    ),
+  };
 
   const handleRunQuery = (queryId: string) => {
     setSelectedQueryId(queryId);
@@ -378,16 +549,19 @@ export default function DatabasesSkillsPage() {
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-[28px]">
-              DATABASES WORKSPACE
+              {skillPageText('databases', 'pageTitle', 'DATABASES WORKSPACE')}
             </h1>
             <span className="flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-0.5 text-[11px] font-semibold text-violet-600 dark:text-violet-400">
               <span className="size-2 rounded-full bg-violet-500 animate-pulse" />
-              Engines Online
+              {skillPageText('databases', 'status', 'Engines Online')}
             </span>
           </div>
           <p className="mt-1 max-w-2xl font-inter text-[13px] text-muted-foreground">
-            Designing normalized data architectures, high-performance indexing strategies, ACID
-            transactional guarantees, and distributed caches.
+            {skillPageText(
+              'databases',
+              'description',
+              'Designing normalized data architectures, high-performance indexing strategies, ACID transactional guarantees, and distributed caches.',
+            )}
           </p>
         </div>
 
@@ -399,7 +573,9 @@ export default function DatabasesSkillsPage() {
               <span className="font-inter text-[12px] font-bold leading-none">
                 Postgres / Mongo / Redis
               </span>
-              <span className="text-[10px] text-muted-foreground">Active Engines</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('databases', 'activeEngines', 'Active Engines')}
+              </span>
             </div>
           </div>
 
@@ -407,7 +583,9 @@ export default function DatabasesSkillsPage() {
             <Zap className="size-4 text-violet-600 dark:text-violet-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[12px] font-bold leading-none">99.4%</span>
-              <span className="text-[10px] text-muted-foreground">Buffer Cache Hit</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('databases', 'bufferCacheHit', 'Buffer Cache Hit')}
+              </span>
             </div>
           </div>
 
@@ -415,7 +593,9 @@ export default function DatabasesSkillsPage() {
             <Clock className="size-4 text-violet-600 dark:text-violet-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[12px] font-bold leading-none">&lt; 1.2ms</span>
-              <span className="text-[10px] text-muted-foreground">P95 Query Time</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('databases', 'queryTime', 'P95 Query Time')}
+              </span>
             </div>
           </div>
 
@@ -423,7 +603,9 @@ export default function DatabasesSkillsPage() {
             <ShieldCheck className="size-4 text-violet-600 dark:text-violet-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">ACID Compliant</span>
-              <span className="text-[10px] text-muted-foreground">Data Integrity</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('databases', 'dataIntegrity', 'Data Integrity')}
+              </span>
             </div>
           </div>
         </div>
@@ -439,18 +621,25 @@ export default function DatabasesSkillsPage() {
             <div className="flex items-center gap-2">
               <TableProperties className="size-4 text-violet-600 dark:text-violet-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                Data Architecture &amp; Entity Schema Inspector
+                {skillPageText(
+                  'databases',
+                  'schema.title',
+                  'Data Architecture & Entity Schema Inspector',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Inspecting normalized table schemas, primary keys (`PK`), foreign keys (`FK`),
-              compound indexes (`IDX`), and data relations.
+              {skillPageText(
+                'databases',
+                'schema.description',
+                'Inspecting normalized table schemas, primary keys (PK), foreign keys (FK), compound indexes (IDX), and data relations.',
+              )}
             </p>
           </div>
 
           {/* Entity Tab Switcher */}
           <div className="flex flex-wrap items-center gap-1 rounded-[8px] bg-muted/30 p-1 border border-border/40">
-            {SCHEMA_ENTITIES.map((entity) => {
+            {translatedSchemaEntities.map((entity) => {
               const isSelected = selectedEntityId === entity.id;
               return (
                 <button
@@ -592,17 +781,17 @@ export default function DatabasesSkillsPage() {
               <div className="flex items-center gap-2">
                 <Terminal className="size-4 text-violet-600 dark:text-violet-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  Query Execution &amp; Plan Optimizer
+                  {skillPageText('databases', 'query.title', 'Query Execution & Plan Optimizer')}
                 </h2>
               </div>
               <span className="font-mono text-[9px] text-muted-foreground">
-                Select query to analyze
+                {skillPageText('databases', 'query.subtitle', 'Select query to analyze')}
               </span>
             </div>
 
             {/* Query Buttons */}
             <div className="mb-3 flex flex-wrap gap-2">
-              {QUERY_SAMPLES.map((q) => {
+              {translatedQuerySamples.map((q) => {
                 const isSelected = selectedQueryId === q.id;
                 return (
                   <button
@@ -630,7 +819,8 @@ export default function DatabasesSkillsPage() {
               <pre className="text-slate-100 whitespace-pre-wrap">{selectedQuery.code}</pre>
             </div>
             <p className="mt-2 text-[10.5px] text-muted-foreground">
-              <strong>Purpose:</strong> {selectedQuery.purpose}
+              <strong>{skillPageText('databases', 'query.purpose', 'Purpose:')}</strong>{' '}
+              {selectedQuery.purpose}
             </p>
           </div>
         </motion.div>
@@ -645,26 +835,31 @@ export default function DatabasesSkillsPage() {
               <div className="flex items-center gap-2">
                 <Activity className="size-4 text-violet-600 dark:text-violet-400" />
                 <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  EXPLAIN ANALYZE Breakdown
+                  {skillPageText('databases', 'query.analyzeTitle', 'EXPLAIN ANALYZE Breakdown')}
                 </h3>
               </div>
               {isExecutingQuery && (
                 <span className="flex items-center gap-1 font-mono text-[9px] text-violet-600 dark:text-violet-400 animate-pulse">
-                  <RefreshCw className="size-2.5 animate-spin" /> Scanning Index...
+                  <RefreshCw className="size-2.5 animate-spin" />{' '}
+                  {skillPageText('databases', 'query.scan', 'Scanning Index...')}
                 </span>
               )}
             </div>
 
             <div className="space-y-2.5 font-mono text-[11px]">
               <div className="rounded-[8px] bg-muted/20 p-3 border border-border/30">
-                <span className="text-[9.5px] text-muted-foreground uppercase">Execution Node</span>
+                <span className="text-[9.5px] text-muted-foreground uppercase">
+                  {skillPageText('databases', 'query.node', 'Execution Node')}
+                </span>
                 <p className="mt-0.5 font-bold text-foreground">
                   {selectedQuery.executionPlan.nodeType}
                 </p>
               </div>
 
               <div className="rounded-[8px] bg-muted/20 p-3 border border-border/30">
-                <span className="text-[9.5px] text-muted-foreground uppercase">Index Utilized</span>
+                <span className="text-[9.5px] text-muted-foreground uppercase">
+                  {skillPageText('databases', 'query.index', 'Index Utilized')}
+                </span>
                 <p className="mt-0.5 font-bold text-violet-600 dark:text-violet-400">
                   {selectedQuery.executionPlan.indexUsed}
                 </p>
@@ -672,14 +867,16 @@ export default function DatabasesSkillsPage() {
 
               <div className="grid grid-cols-2 gap-2">
                 <div className="rounded-[8px] bg-muted/20 p-2.5 border border-border/30">
-                  <span className="text-[9px] text-muted-foreground uppercase">Optimizer Cost</span>
+                  <span className="text-[9px] text-muted-foreground uppercase">
+                    {skillPageText('databases', 'query.cost', 'Optimizer Cost')}
+                  </span>
                   <p className="mt-0.5 font-bold text-foreground">
                     {selectedQuery.executionPlan.cost}
                   </p>
                 </div>
                 <div className="rounded-[8px] bg-muted/20 p-2.5 border border-border/30">
                   <span className="text-[9px] text-muted-foreground uppercase">
-                    Execution Latency
+                    {skillPageText('databases', 'query.latency', 'Execution Latency')}
                   </span>
                   <p className="mt-0.5 font-bold text-emerald-600 dark:text-emerald-400">
                     {selectedQuery.executionPlan.latency}
@@ -688,7 +885,9 @@ export default function DatabasesSkillsPage() {
               </div>
 
               <div className="rounded-[8px] bg-emerald-500/10 p-2.5 border border-emerald-500/20 text-emerald-700 dark:text-emerald-300">
-                <span className="text-[9px] uppercase font-bold">Optimization Gain</span>
+                <span className="text-[9px] uppercase font-bold">
+                  {skillPageText('databases', 'query.gain', 'Optimization Gain')}
+                </span>
                 <p className="mt-0.5 text-[10.5px] font-semibold">
                   {selectedQuery.executionPlan.improvement}
                 </p>
@@ -707,41 +906,24 @@ export default function DatabasesSkillsPage() {
           <div className="flex items-center gap-2">
             <HardDrive className="size-4 text-violet-600 dark:text-violet-400" />
             <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-              4-Tier Storage &amp; Persistence Hierarchy
+              {skillPageText(
+                'databases',
+                'storage.title',
+                '4-Tier Storage & Persistence Hierarchy',
+              )}
             </h3>
           </div>
           <span className="font-mono text-[10px] text-muted-foreground">
-            From RAM buffer pool down to non-volatile SSD pages
+            {skillPageText(
+              'databases',
+              'storage.subtitle',
+              'From RAM buffer pool down to non-volatile SSD pages',
+            )}
           </span>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: 'Tier 01: Buffer Cache & Shared Memory',
-              desc: 'Sub-millisecond access for active working set, reducing disk I/O load.',
-              metric: '99.4% Hit Rate',
-              icon: Zap,
-            },
-            {
-              title: 'Tier 02: Write-Ahead Log (WAL)',
-              desc: 'Sequential transaction journaling ensuring zero data loss on crash (Atomicity & Durability).',
-              metric: 'Synchronous Flush',
-              icon: ShieldCheck,
-            },
-            {
-              title: 'Tier 03: Persistent B+ Tree Pages',
-              desc: 'Segmented tablespaces, clustering indexes, and compression on NVMe SSD storage.',
-              metric: '4,200 IOPS',
-              icon: Database,
-            },
-            {
-              title: 'Tier 04: Replica Sets & Automated Snapshots',
-              desc: 'Primary-secondary replication with automatic failover and point-in-time recovery.',
-              metric: '0ms Replica Lag',
-              icon: HardDrive,
-            },
-          ].map((tier, idx) => {
+          {translatedStorageTiers.map((tier, idx) => {
             const Icon = tier.icon;
             return (
               <div
@@ -771,17 +953,20 @@ export default function DatabasesSkillsPage() {
         <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
           <div>
             <h2 className="font-inter text-[18px] font-black uppercase tracking-tight text-foreground md:text-[20px]">
-              Database Technology Taxonomy
+              {skillPageText('databases', 'taxonomy.title', 'Database Technology Taxonomy')}
             </h2>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Deep expertise across Relational RDBMS, Document NoSQL databases, and In-Memory
-              key-value caching.
+              {skillPageText(
+                'databases',
+                'taxonomy.description',
+                'Deep expertise across Relational RDBMS, Document NoSQL databases, and In-Memory key-value caching.',
+              )}
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {DATABASE_CLUSTERS.map((cluster) => {
+          {translatedClusterGroups.map((cluster) => {
             const ClusterIcon = cluster.icon;
             return (
               <div
@@ -870,12 +1055,9 @@ export default function DatabasesSkillsPage() {
           </div>
           <div>
             <h4 className="font-inter text-[13px] font-bold text-foreground">
-              Explore Dedicated Database Workspaces
+              {translatedExplore.title}
             </h4>
-            <p className="text-[11px] text-muted-foreground">
-              Access individual schema metrics, execution logs, and indexing blueprints for MongoDB,
-              PostgreSQL, MySQL, and Redis.
-            </p>
+            <p className="text-[11px] text-muted-foreground">{translatedExplore.description}</p>
           </div>
         </div>
 

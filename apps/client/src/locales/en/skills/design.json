@@ -1,0 +1,188 @@
+{
+  "pageTitle": "DESIGN WORKSPACE",
+  "status": "Creative Studio Online",
+  "description": "UI/UX design systems, vector art, visual asset library, and prototype gallery.",
+  "creativeSuite": "Creative Suite",
+  "assetCount": "Created & Delivered",
+  "vectorPrecision": "Vector Precision",
+  "prototypeCount": "Hi-Fi Interactions",
+  "metadata": {
+    "studioStack": "Figma / Adobe / Blender",
+    "metrics": {
+      "assets": "120+ Assets",
+      "vector": "100% Vector",
+      "prototypes": "30+ Prototypes"
+    },
+    "visualGallery": "Visual Gallery & Creative Artifacts",
+    "visualGalleryDescription": "Filter and explore design deliverables across user interfaces, brand marks, vector artwork, motion graphics, and 3D scenes.",
+    "artifactFilters": {
+      "all": "All Artifacts",
+      "ui": "UI / UX",
+      "branding": "Branding",
+      "vector": "Vector Art",
+      "3d": "3D Renders",
+      "motion": "Motion Reels"
+    },
+    "designSystem": "Interactive Design System & Tokens Laboratory",
+    "designSystemDescription": "Live token playground showcasing interactive color tokens, UI component primitives, and responsive typography scales.",
+    "designSystemTabs": {
+      "tokens": "Color Tokens",
+      "components": "UI Components",
+      "typography": "Typography"
+    },
+    "creativeTools": "Design Tools & Creative Suite",
+    "creativeToolsDescription": "Specialized mastery across UI/UX prototyping, vector brand assets, photo compositing, motion reels, and 3D rendering.",
+    "creativeWorkflow": "5-Stage Creative Design & Handoff Workflow",
+    "creativeWorkflowSubtitle": "From Conceptual Discovery to Developer Handoff",
+    "openWorkspace": "Open Workspace",
+    "exploreTitle": "Explore Dedicated Creative Tool Workspaces",
+    "exploreDescription": "Inspect specialized project files, design tokens, asset galleries, and metrics for Figma, Illustrator, Photoshop, After Effects, and Blender.",
+    "componentLab": {
+      "buttonVariants": "Button Component Variants",
+      "figmaComponent": "Figma Component",
+      "primaryDefault": "Primary Pink Solid (Default)",
+      "secondaryGhost": "Secondary Ghost Variant",
+      "neutralOutline": "Neutral Outline Variant",
+      "badgesTitle": "Badges & Status Chips",
+      "infoNotice": "Info Notice",
+      "vector100": "Vector 100%",
+      "prototyped": "Prototyped",
+      "neutralSurface": "Neutral Surface",
+      "spacingGrid": "Auto Layout Spacing Grid",
+      "spaceXs": "space-xs (4px)",
+      "spaceSm": "space-sm (8px)",
+      "spaceMd": "space-md (16px)",
+      "spaceLg": "space-lg (24px)",
+      "typographyScale": "Typography Scale & Specimen (Inter Google Font)",
+      "fluidScale": "Fluid Scale",
+      "displayHeadline": "Display Headline 28px",
+      "headingTwo": "Heading Two 18px",
+      "bodyRegular": "Body Regular 13px: Clear and accessible readability across devices.",
+      "monoCode": "Monospace Code 11px: const designToken = { fill: '#ec4899' };",
+      "fontMono11": "font-mono 11px"
+    },
+    "designWorkflow": {
+      "stage01": "Discover & Moodboard",
+      "stage01Desc": "User personas, benchmark research, moodboards & art direction.",
+      "stage02": "Low-Fi Wireframing",
+      "stage02Desc": "Information architecture, user flow mapping, and structural layout grids.",
+      "stage03": "Design System & Tokens",
+      "stage03Desc": "Figma auto-layout variables, color swatches, typography & component atoms.",
+      "stage04": "Hi-Fi Prototyping",
+      "stage04Desc": "Interactive smart animations, transition curves, and usability testing.",
+      "stage05": "Dev Handoff & Specs",
+      "stage05Desc": "Clean SVG asset exports, CSS token specs, and React component alignment."
+    }
+  },
+  "gallery": {
+    "items": [
+      {
+        "title": "Developer Portfolio Experience UI",
+        "categoryLabel": "UI/UX Interface",
+        "description": "High-density design system, responsive grids, and dark/light mode token architecture.",
+        "metrics": "40+ Components"
+      },
+      {
+        "title": "Fintech Analytics & Trading Dashboard",
+        "categoryLabel": "Web Application",
+        "description": "Data-dense charts, candlestick widgets, transaction tables, and interactive navigation.",
+        "metrics": "Interactive Prototype"
+      },
+      {
+        "title": "Aura Technology Visual Identity",
+        "categoryLabel": "Brand Identity",
+        "description": "Geometric brandmark, typography system, color guidelines, and stationery templates.",
+        "metrics": "Full Brand Kit"
+      },
+      {
+        "title": "Cyber Geometric 64px Icon System",
+        "categoryLabel": "Vector Iconography",
+        "description": "Pixel-perfect SVG icon set with 2px consistent stroke weight on 24x24 grid.",
+        "metrics": "64 Vector SVGs"
+      },
+      {
+        "title": "3D Spatial Audio Device Rendering",
+        "categoryLabel": "3D Modeling & Render",
+        "description": "Procedural metallic shaders, studio lighting three-point setup, and 4K Cycles photorealism.",
+        "metrics": "4K Cycles Render"
+      },
+      {
+        "title": "Cyberpunk Workspace 3D Scene",
+        "categoryLabel": "3D Scene & Lighting",
+        "description": "Volumetric neon emission, procedural textures, and spatial architectural assets.",
+        "metrics": "Eevee Realtime"
+      },
+      {
+        "title": "Kinetic Typography & Brand Motion Reel",
+        "categoryLabel": "Motion Graphics",
+        "description": "Dynamic typography animation, rhythm-synced easing curves, and glow compositing.",
+        "metrics": "60 FPS 4K Reel"
+      },
+      {
+        "title": "Cinematic Visual Poster & Retouching",
+        "categoryLabel": "Digital Composite",
+        "description": "Multi-layer photo compositing, color grading, frequency separation, and lighting blending.",
+        "metrics": "Multi-layer PSD"
+      }
+    ]
+  },
+  "colorSwatches": [
+    { "name": "Vibrant Magenta", "role": "Primary Accent & Action" },
+    { "name": "Electric Azure", "role": "Interactive Links & Focus" },
+    { "name": "Cyber Emerald", "role": "Success Badges & Pulse" },
+    { "name": "Violet Nebula", "role": "Secondary Accents" },
+    { "name": "Amber Glow", "role": "Highlights & Alerts" },
+    { "name": "Deep Slate", "role": "Surface Background" }
+  ],
+  "tools": {
+    "figma": {
+      "name": "Figma",
+      "role": "UI/UX Design, Interactive Prototyping & Design Systems",
+      "tags": ["Auto Layout", "Variables", "Component Variants", "Prototypes"]
+    },
+    "illustrator": {
+      "name": "Adobe Illustrator",
+      "role": "Vector Illustration, Brand Identity & Iconography",
+      "tags": ["Vector Paths", "Logo Design", "SVG Optimization", "Print Systems"]
+    },
+    "photoshop": {
+      "name": "Adobe Photoshop",
+      "role": "Digital Compositing, Photo Manipulation & Retouching",
+      "tags": ["Photo Retouch", "Layer Masks", "Color Grading", "Smart Objects"]
+    },
+    "aftereffects": {
+      "name": "After Effects & Premiere",
+      "role": "Motion Graphics, Kinetic Typography & Video Editing",
+      "tags": ["Motion Graphics", "Easing Curves", "Keyframing", "Video Reels"]
+    },
+    "blender": {
+      "name": "Blender 3D",
+      "role": "3D Modeling, Photorealistic Shading & Cycles Rendering",
+      "tags": ["3D Modeling", "Procedural Shaders", "Cycles 4K", "Lighting"]
+    }
+  },
+  "workflow": {
+    "stages": [
+      {
+        "title": "Discover & Moodboard",
+        "desc": "User personas, benchmark research, moodboards & art direction."
+      },
+      {
+        "title": "Low-Fi Wireframing",
+        "desc": "Information architecture, user flow mapping, and structural layout grids."
+      },
+      {
+        "title": "Design System & Tokens",
+        "desc": "Figma auto-layout variables, color swatches, typography & component atoms."
+      },
+      {
+        "title": "Hi-Fi Prototyping",
+        "desc": "Interactive smart animations, transition curves, and usability testing."
+      },
+      {
+        "title": "Dev Handoff & Specs",
+        "desc": "Clean SVG asset exports, CSS token specs, and React component alignment."
+      }
+    ]
+  }
+}

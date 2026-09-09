@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
@@ -564,12 +565,343 @@ const FRONTEND_TECH_CLUSTERS: FrontendTechClusterCategory[] = [
 ];
 
 export default function FrontendSkillsPage() {
+  const { skillPageText } = useTranslation();
   const [selectedTier, setSelectedTier] = useState<string>('presentation');
   const [activeEventIndex, setActiveEventIndex] = useState<number>(0);
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
   const [activePipelineStep, setActivePipelineStep] = useState<number>(5);
 
-  const currentEvent = SIMULATED_UI_EVENTS[activeEventIndex];
+  const translatedSimulatedEvents = SIMULATED_UI_EVENTS.map((event) => ({
+    ...event,
+    action: skillPageText(`frontend`, `simulatedEvents.${event.id}.action`, event.action),
+    target: skillPageText(`frontend`, `simulatedEvents.${event.id}.target`, event.target),
+    description: skillPageText(
+      `frontend`,
+      `simulatedEvents.${event.id}.description`,
+      event.description,
+    ),
+  }));
+
+  const currentEvent = translatedSimulatedEvents[activeEventIndex] ?? translatedSimulatedEvents[0];
+
+  const translatedPipelineSteps = [
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.route.title',
+        '01. Route Ingress & RSC Streaming',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.route.detail',
+        'Next.js App Router streaming server component payload over HTTP',
+      ),
+      time: '< 3ms',
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.hydration.title',
+        '02. Hydration & State Initialization',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.hydration.detail',
+        'Zustand store hydration and React hook context binding',
+      ),
+      time: '2ms',
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.diff.title',
+        '03. Virtual DOM Diffing & Reconciliation',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.diff.detail',
+        'Component tree diffing with optimized useMemo/useCallback guards',
+      ),
+      time: '1ms',
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.dom.title',
+        '04. DOM Commit & Style Computation',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.dom.detail',
+        'Tailwind CSS utility classes evaluated without runtime overhead',
+      ),
+      time: '2ms',
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.motion.title',
+        '05. Motion & Gesture Physics',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.motion.detail',
+        'Framer Motion GPU hardware acceleration on transform layers',
+      ),
+      time: '< 1ms',
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'pipeline.steps.paint.title',
+        '06. 60fps Interactive UI Paint',
+      ),
+      detail: skillPageText(
+        'frontend',
+        'pipeline.steps.paint.detail',
+        'Zero layout shift (CLS: 0.00) and instant user input readiness (INP: 8ms)',
+      ),
+      time: currentEvent.latency,
+    },
+  ];
+
+  const translatedCoreWebVitals = {
+    title: skillPageText('frontend', 'metrics.coreWebVitals.title', 'Core Web Vitals'),
+    liveTelemetry: skillPageText('frontend', 'metrics.coreWebVitals.live', 'Live Telemetry'),
+    renderFramerate: skillPageText(
+      'frontend',
+      'metrics.coreWebVitals.renderFramerate',
+      'Render Framerate',
+    ),
+    largestContentfulPaint: skillPageText(
+      'frontend',
+      'metrics.coreWebVitals.lcp',
+      'Largest Contentful Paint (LCP)',
+    ),
+    cls: skillPageText('frontend', 'metrics.coreWebVitals.cls', 'Cumulative Layout Shift (CLS)'),
+    input: skillPageText(
+      'frontend',
+      'metrics.coreWebVitals.inp',
+      'Interaction to Next Paint (INP)',
+    ),
+    domNodes: skillPageText('frontend', 'metrics.coreWebVitals.dom', 'Active Virtual DOM Nodes'),
+    overallHealth: skillPageText(
+      'frontend',
+      'metrics.coreWebVitals.overallHealth',
+      'Overall UX Health',
+    ),
+    overallHealthScore: skillPageText(
+      'frontend',
+      'metrics.coreWebVitals.overallHealthScore',
+      '100 / 100 (Optimal)',
+    ),
+  };
+
+  const translatedArchitectureTiers = FRONTEND_ARCHITECTURE_TIERS.map((tier) => ({
+    ...tier,
+    title: skillPageText(`frontend`, `architecture.tiers.${tier.id}.title`, tier.title),
+    subtitle: skillPageText(`frontend`, `architecture.tiers.${tier.id}.subtitle`, tier.subtitle),
+    badge: skillPageText(`frontend`, `architecture.tiers.${tier.id}.badge`, tier.badge),
+    components: tier.components.map((component) => ({
+      ...component,
+      name: skillPageText(
+        `frontend`,
+        `architecture.tiers.${tier.id}.components.${component.name}.name`,
+        component.name,
+      ),
+      role: skillPageText(
+        `frontend`,
+        `architecture.tiers.${tier.id}.components.${component.name}.role`,
+        component.role,
+      ),
+      tech: skillPageText(
+        `frontend`,
+        `architecture.tiers.${tier.id}.components.${component.name}.tech`,
+        component.tech,
+      ),
+    })),
+  }));
+
+  const translatedClusters = FRONTEND_TECH_CLUSTERS.map((cluster) => ({
+    ...cluster,
+    title: skillPageText(`frontend`, `technologyClusters.${cluster.title}.title`, cluster.title),
+    description: skillPageText(
+      `frontend`,
+      `technologyClusters.${cluster.title}.description`,
+      cluster.description,
+    ),
+    items: cluster.items.map((item) => ({
+      ...item,
+      name: skillPageText(
+        `frontend`,
+        `technologyClusters.${cluster.title}.items.${item.name}.name`,
+        item.name,
+      ),
+      role: skillPageText(
+        `frontend`,
+        `technologyClusters.${cluster.title}.items.${item.name}.role`,
+        item.role,
+      ),
+      tags: item.tags.map((tag) =>
+        skillPageText(
+          `frontend`,
+          `technologyClusters.${cluster.title}.items.${item.name}.tags.${tag}`,
+          tag,
+        ),
+      ),
+    })),
+  }));
+
+  const translatedSystems = [
+    {
+      name: skillPageText('frontend', 'systems.react.name', 'React Workspace View'),
+      path: '/skills/frontend/react',
+      desc: skillPageText(
+        'frontend',
+        'systems.react.desc',
+        'Component design, state pipelines, and hooks',
+      ),
+      perf: skillPageText('frontend', 'systems.react.perf', '100% Score'),
+      icon: Atom,
+    },
+    {
+      name: skillPageText('frontend', 'systems.nextjs.name', 'Next.js App Router Workspace'),
+      path: '/skills/frontend/nextjs',
+      desc: skillPageText(
+        'frontend',
+        'systems.nextjs.desc',
+        'RSC streaming, static generation & route handlers',
+      ),
+      perf: skillPageText('frontend', 'systems.nextjs.perf', '0.8s LCP'),
+      icon: Globe,
+    },
+    {
+      name: skillPageText('frontend', 'systems.typescript.name', 'TypeScript Safe Workspace'),
+      path: '/skills/frontend/typescript',
+      desc: skillPageText(
+        'frontend',
+        'systems.typescript.desc',
+        'Strict interfaces, discriminated unions & generics',
+      ),
+      perf: skillPageText('frontend', 'systems.typescript.perf', 'Zero Errors'),
+      icon: FileCode2,
+    },
+    {
+      name: skillPageText('frontend', 'systems.tailwind.name', 'Tailwind Design System'),
+      path: '/skills/frontend/tailwind-css',
+      desc: skillPageText(
+        'frontend',
+        'systems.tailwind.desc',
+        'Utility design tokens & fluid dark/light themes',
+      ),
+      perf: skillPageText('frontend', 'systems.tailwind.perf', 'Zero Runtime'),
+      icon: Layout,
+    },
+    {
+      name: skillPageText('frontend', 'systems.html.name', 'Semantic HTML & CSS'),
+      path: '/skills/frontend/html-css',
+      desc: skillPageText(
+        'frontend',
+        'systems.html.desc',
+        'Accessible semantic markup & fluid responsive grids',
+      ),
+      perf: skillPageText('frontend', 'systems.html.perf', '100% A11y'),
+      icon: Layers,
+    },
+    {
+      name: skillPageText('frontend', 'systems.tilt.name', '3D Interactive Tilt Cards'),
+      path: '/skills',
+      desc: skillPageText(
+        'frontend',
+        'systems.tilt.desc',
+        'Spatial parallax depth & hover physics engine',
+      ),
+      perf: skillPageText('frontend', 'systems.tilt.perf', '60 FPS'),
+      icon: Sparkles,
+    },
+    {
+      name: skillPageText(
+        'frontend',
+        'systems.palette.name',
+        'Interactive Navigation & Command Palette',
+      ),
+      path: '/projects',
+      desc: skillPageText(
+        'frontend',
+        'systems.palette.desc',
+        'Keyboard accessible command palette & quick search',
+      ),
+      perf: skillPageText('frontend', 'systems.palette.perf', '< 5ms Input'),
+      icon: Terminal,
+    },
+    {
+      name: skillPageText('frontend', 'systems.i18n.name', 'Real-Time Language Switcher'),
+      path: '/contact',
+      desc: skillPageText(
+        'frontend',
+        'systems.i18n.desc',
+        'Dynamic multilingual i18n translation without reload',
+      ),
+      perf: skillPageText('frontend', 'systems.i18n.perf', 'Zero Shift'),
+      icon: Globe,
+    },
+  ];
+
+  const translatedStandards = [
+    {
+      title: skillPageText(
+        'frontend',
+        'standards.accessibility.title',
+        'Strict Accessibility (WCAG 2.1 AA)',
+      ),
+      desc: skillPageText(
+        'frontend',
+        'standards.accessibility.desc',
+        'Keyboard navigable focus states, ARIA labels, semantic landmark elements, and high contrast ratios.',
+      ),
+    },
+    {
+      title: skillPageText('frontend', 'standards.vitals.title', 'Core Web Vitals Optimization'),
+      desc: skillPageText(
+        'frontend',
+        'standards.vitals.desc',
+        'Sub-second LCP, zero layout shift (CLS: 0.00), responsive image optimization, and rapid INP.',
+      ),
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'standards.scalability.title',
+        'Component Scalability & Atomic Design',
+      ),
+      desc: skillPageText(
+        'frontend',
+        'standards.scalability.desc',
+        'Single responsibility components, compound patterns, custom hook decoupling, and reusability.',
+      ),
+    },
+    {
+      title: skillPageText(
+        'frontend',
+        'standards.typesafe.title',
+        'Type-Safe Contracts & Validation',
+      ),
+      desc: skillPageText(
+        'frontend',
+        'standards.typesafe.desc',
+        'Strict TypeScript props, zero any assertions, validated form schemas with Zod, and runtime sanity.',
+      ),
+    },
+  ];
+
+  const translatedExplore = {
+    title: skillPageText('frontend', 'explore.title', 'Explore Individual Frontend Workspaces'),
+    description: skillPageText(
+      'frontend',
+      'explore.description',
+      'Deep dive into dedicated UI telemetry, rendering pipelines, and component architecture for React, Next.js, TypeScript, and Tailwind CSS.',
+    ),
+  };
 
   // Function to simulate a live UI rendering execution
   const triggerSimulation = (index: number) => {
@@ -604,16 +936,19 @@ export default function FrontendSkillsPage() {
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-[28px]">
-              FRONTEND WORKSPACE
+              {skillPageText('frontend', 'pageTitle', 'FRONTEND WORKSPACE')}
             </h1>
             <span className="flex items-center gap-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-0.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400">
               <span className="size-2 rounded-full bg-blue-500 animate-pulse" />
-              Client Engine Online
+              {skillPageText('frontend', 'status', 'Client Engine Online')}
             </span>
           </div>
           <p className="mt-1 max-w-2xl font-inter text-[13px] text-muted-foreground">
-            Crafting fluid, high-performance user interfaces with React 19, Next.js 15, TypeScript,
-            Tailwind CSS, and Framer Motion.
+            {skillPageText(
+              'frontend',
+              'description',
+              'Crafting fluid, high-performance user interfaces with React 19, Next.js 15, TypeScript, Tailwind CSS, and Framer Motion.',
+            )}
           </p>
         </div>
 
@@ -625,7 +960,9 @@ export default function FrontendSkillsPage() {
               <span className="font-inter text-[12px] font-bold leading-none">
                 React 19 / Next.js 15
               </span>
-              <span className="text-[10px] text-muted-foreground">Component Engine</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('frontend', 'componentEngine', 'Component Engine')}
+              </span>
             </div>
           </div>
 
@@ -633,7 +970,9 @@ export default function FrontendSkillsPage() {
             <Gauge className="size-4 text-blue-600 dark:text-blue-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">100 / 100</span>
-              <span className="text-[10px] text-muted-foreground">Lighthouse Score</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('frontend', 'lighthouseScore', 'Lighthouse Score')}
+              </span>
             </div>
           </div>
 
@@ -641,7 +980,9 @@ export default function FrontendSkillsPage() {
             <Sparkles className="size-4 text-blue-600 dark:text-blue-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">60 FPS</span>
-              <span className="text-[10px] text-muted-foreground">Hardware Motion</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('frontend', 'hardwareMotion', 'Hardware Motion')}
+              </span>
             </div>
           </div>
 
@@ -649,7 +990,9 @@ export default function FrontendSkillsPage() {
             <ShieldCheck className="size-4 text-blue-600 dark:text-blue-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">WCAG 2.1 AA</span>
-              <span className="text-[10px] text-muted-foreground">Accessibility Grade</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('frontend', 'accessibilityGrade', 'Accessibility Grade')}
+              </span>
             </div>
           </div>
         </div>
@@ -667,14 +1010,20 @@ export default function FrontendSkillsPage() {
               <div className="flex items-center gap-2">
                 <Terminal className="size-4 text-blue-600 dark:text-blue-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  UI Event &amp; Render Simulator
+                  {skillPageText(
+                    'frontend',
+                    'metadata.uiEventRenderSimulator',
+                    'UI Event & Render Simulator',
+                  )}
                 </h2>
               </div>
-              <span className="font-mono text-[9px] text-muted-foreground">Click to simulate</span>
+              <span className="font-mono text-[9px] text-muted-foreground">
+                {skillPageText('frontend', 'metadata.clickToSimulate', 'Click to simulate')}
+              </span>
             </div>
 
             <div className="space-y-2">
-              {SIMULATED_UI_EVENTS.map((event, idx) => {
+              {translatedSimulatedEvents.map((event, idx) => {
                 const isSelected = activeEventIndex === idx;
                 return (
                   <button
@@ -708,7 +1057,9 @@ export default function FrontendSkillsPage() {
 
           <div className="mt-4 border-t border-border/40 pt-3">
             <div className="flex items-center justify-between font-mono text-[11px]">
-              <span className="text-muted-foreground">Event Target:</span>
+              <span className="text-muted-foreground">
+                {skillPageText('frontend', 'metadata.eventTarget', 'Event Target:')}
+              </span>
               <span className="font-bold text-foreground truncate max-w-[200px]">
                 {currentEvent.target}
               </span>
@@ -725,49 +1076,23 @@ export default function FrontendSkillsPage() {
             <div className="flex items-center gap-2">
               <Workflow className="size-4 text-blue-600 dark:text-blue-400" />
               <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                Rendering Pipeline Lifecycle
+                {skillPageText(
+                  'frontend',
+                  'metadata.renderingPipelineLifecycle',
+                  'Rendering Pipeline Lifecycle',
+                )}
               </h2>
             </div>
             {isSimulating && (
               <span className="flex items-center gap-1 font-mono text-[10px] text-blue-600 dark:text-blue-400 animate-pulse">
-                <RefreshCw className="size-3 animate-spin" /> Rendering Frame...
+                <RefreshCw className="size-3 animate-spin" />
+                {skillPageText('frontend', 'metadata.renderingFrame', 'Rendering Frame...')}
               </span>
             )}
           </div>
 
           <div className="relative space-y-3 pl-4 before:absolute before:left-1.5 before:top-2 before:h-[88%] before:w-0.5 before:bg-blue-500/30">
-            {[
-              {
-                title: '01. Route Ingress & RSC Streaming',
-                detail: 'Next.js App Router streaming server component payload over HTTP',
-                time: '< 3ms',
-              },
-              {
-                title: '02. Hydration & State Initialization',
-                detail: 'Zustand store hydration and React hook context binding',
-                time: '2ms',
-              },
-              {
-                title: '03. Virtual DOM Diffing & Reconciliation',
-                detail: 'Component tree diffing with optimized useMemo/useCallback guards',
-                time: '1ms',
-              },
-              {
-                title: '04. DOM Commit & Style Computation',
-                detail: 'Tailwind CSS utility classes evaluated without runtime overhead',
-                time: '2ms',
-              },
-              {
-                title: '05. Motion & Gesture Physics',
-                detail: 'Framer Motion GPU hardware acceleration on transform layers',
-                time: '< 1ms',
-              },
-              {
-                title: '06. 60fps Interactive UI Paint',
-                detail: 'Zero layout shift (CLS: 0.00) and instant user input readiness (INP: 8ms)',
-                time: currentEvent.latency,
-              },
-            ].map((step, idx) => {
+            {translatedPipelineSteps.map((step, idx) => {
               const isPastOrCurrent = activePipelineStep >= idx;
               return (
                 <div key={idx} className="relative flex items-start justify-between">
@@ -803,17 +1128,17 @@ export default function FrontendSkillsPage() {
               <div className="flex items-center gap-2">
                 <Activity className="size-4 text-blue-600 dark:text-blue-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  Core Web Vitals
+                  {translatedCoreWebVitals.title}
                 </h2>
               </div>
               <span className="font-mono text-[9px] text-blue-600 dark:text-blue-400">
-                Live Telemetry
+                {translatedCoreWebVitals.liveTelemetry}
               </span>
             </div>
 
             <div className="space-y-2">
               <LiveMetricRow
-                label="Render Framerate"
+                label={translatedCoreWebVitals.renderFramerate}
                 type="fps"
                 baseline={6}
                 variance={2}
@@ -821,7 +1146,7 @@ export default function FrontendSkillsPage() {
                 color="#2563eb"
               />
               <LiveMetricRow
-                label="Largest Contentful Paint (LCP)"
+                label={translatedCoreWebVitals.largestContentfulPaint}
                 type="lcp"
                 baseline={18}
                 variance={8}
@@ -829,7 +1154,7 @@ export default function FrontendSkillsPage() {
                 color="#2563eb"
               />
               <LiveMetricRow
-                label="Cumulative Layout Shift (CLS)"
+                label={translatedCoreWebVitals.cls}
                 type="cls"
                 baseline={26}
                 variance={0}
@@ -837,7 +1162,7 @@ export default function FrontendSkillsPage() {
                 color="#10b981"
               />
               <LiveMetricRow
-                label="Interaction to Next Paint (INP)"
+                label={translatedCoreWebVitals.input}
                 type="inp"
                 baseline={12}
                 variance={8}
@@ -845,7 +1170,7 @@ export default function FrontendSkillsPage() {
                 color="#2563eb"
               />
               <LiveMetricRow
-                label="Active Virtual DOM Nodes"
+                label={translatedCoreWebVitals.domNodes}
                 type="dom"
                 baseline={16}
                 variance={8}
@@ -856,8 +1181,8 @@ export default function FrontendSkillsPage() {
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded-[8px] bg-blue-500/10 p-2.5 font-mono text-[11px] text-blue-700 dark:text-blue-300">
-            <span>Overall UX Health</span>
-            <span className="font-bold">100 / 100 (Optimal)</span>
+            <span>{translatedCoreWebVitals.overallHealth}</span>
+            <span className="font-bold">{translatedCoreWebVitals.overallHealthScore}</span>
           </div>
         </motion.div>
       </div>
@@ -872,12 +1197,19 @@ export default function FrontendSkillsPage() {
             <div className="flex items-center gap-2">
               <Layers className="size-4 text-blue-600 dark:text-blue-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                5-Tier Frontend Architecture Blueprint
+                {skillPageText(
+                  'frontend',
+                  'architecture.title',
+                  '5-Tier Frontend Architecture Blueprint',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              A structured breakdown of how user interactions flow through our design system,
-              component hierarchy, state stores, compilation layer, and motion physics.
+              {skillPageText(
+                'frontend',
+                'architecture.description',
+                'A structured breakdown of how user interactions flow through our design system, component hierarchy, state stores, compilation layer, and motion physics.',
+              )}
             </p>
           </div>
 
@@ -904,7 +1236,7 @@ export default function FrontendSkillsPage() {
 
         {/* Layer Stack Presentation */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {FRONTEND_ARCHITECTURE_TIERS.map((tier) => {
+          {translatedArchitectureTiers.map((tier) => {
             const isSelected = selectedTier === tier.id;
             const Icon = tier.icon;
             return (
@@ -965,17 +1297,20 @@ export default function FrontendSkillsPage() {
         <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
           <div>
             <h2 className="font-inter text-[18px] font-black uppercase tracking-tight text-foreground md:text-[20px]">
-              Frontend Technology Clusters
+              {skillPageText('frontend', 'technology.title', 'Frontend Technology Clusters')}
             </h2>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Comprehensive expertise across component libraries, compilation engines, state stores,
-              and motion frameworks.
+              {skillPageText(
+                'frontend',
+                'technology.description',
+                'Comprehensive expertise across component libraries, compilation engines, state stores, and motion frameworks.',
+              )}
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {FRONTEND_TECH_CLUSTERS.map((cluster) => {
+          {translatedClusters.map((cluster) => {
             const ClusterIcon = cluster.icon;
             return (
               <div
@@ -1064,73 +1399,20 @@ export default function FrontendSkillsPage() {
             <div className="flex items-center gap-2">
               <Monitor className="size-4 text-blue-600 dark:text-blue-400" />
               <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                Active Production UI Systems &amp; Showcases
+                {skillPageText(
+                  'frontend',
+                  'systems.title',
+                  'Active Production UI Systems & Showcases',
+                )}
               </h3>
             </div>
             <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
-              8 Active Showcases
+              {skillPageText('frontend', 'systems.nodes', '8 Active Showcases')}
             </span>
           </div>
 
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {[
-              {
-                name: 'React Workspace View',
-                path: '/skills/frontend/react',
-                desc: 'Component design, state pipelines, and hooks',
-                perf: '100% Score',
-                icon: Atom,
-              },
-              {
-                name: 'Next.js App Router Workspace',
-                path: '/skills/frontend/nextjs',
-                desc: 'RSC streaming, static generation & route handlers',
-                perf: '0.8s LCP',
-                icon: Globe,
-              },
-              {
-                name: 'TypeScript Safe Workspace',
-                path: '/skills/frontend/typescript',
-                desc: 'Strict interfaces, discriminated unions & generics',
-                perf: 'Zero Errors',
-                icon: FileCode2,
-              },
-              {
-                name: 'Tailwind Design System',
-                path: '/skills/frontend/tailwind-css',
-                desc: 'Utility design tokens & fluid dark/light themes',
-                perf: 'Zero Runtime',
-                icon: Layout,
-              },
-              {
-                name: 'Semantic HTML & CSS',
-                path: '/skills/frontend/html-css',
-                desc: 'Accessible semantic markup & fluid responsive grids',
-                perf: '100% A11y',
-                icon: Layers,
-              },
-              {
-                name: '3D Interactive Tilt Cards',
-                path: '/skills',
-                desc: 'Spatial parallax depth & hover physics engine',
-                perf: '60 FPS',
-                icon: Sparkles,
-              },
-              {
-                name: 'Interactive Navigation & Command Palette',
-                path: '/projects',
-                desc: 'Keyboard accessible command palette & quick search',
-                perf: '< 5ms Input',
-                icon: Terminal,
-              },
-              {
-                name: 'Real-Time Language Switcher',
-                path: '/contact',
-                desc: 'Dynamic multilingual i18n translation without reload',
-                perf: 'Zero Shift',
-                icon: Globe,
-              },
-            ].map((system, idx) => {
+            {translatedSystems.map((system, idx) => {
               const Icon = system.icon;
               return (
                 <div
@@ -1183,24 +1465,7 @@ export default function FrontendSkillsPage() {
           </div>
 
           <div className="space-y-3">
-            {[
-              {
-                title: 'Strict Accessibility (WCAG 2.1 AA)',
-                desc: 'Keyboard navigable focus states, ARIA labels, semantic landmark elements, and high contrast ratios.',
-              },
-              {
-                title: 'Core Web Vitals Optimization',
-                desc: 'Sub-second LCP, zero layout shift (CLS: 0.00), responsive image optimization, and rapid INP.',
-              },
-              {
-                title: 'Component Scalability & Atomic Design',
-                desc: 'Single responsibility components, compound patterns, custom hook decoupling, and reusability.',
-              },
-              {
-                title: 'Type-Safe Contracts & Validation',
-                desc: 'Strict TypeScript props, zero any assertions, validated form schemas with Zod, and runtime sanity.',
-              },
-            ].map((pillar, idx) => (
+            {translatedStandards.map((pillar, idx) => (
               <div key={idx} className="rounded-[8px] border border-border/30 bg-muted/20 p-3">
                 <div className="flex items-center gap-2">
                   <div className="size-1.5 rounded-full bg-blue-500" />
@@ -1228,12 +1493,9 @@ export default function FrontendSkillsPage() {
           </div>
           <div>
             <h4 className="font-inter text-[13px] font-bold text-foreground">
-              Explore Individual Frontend Workspaces
+              {translatedExplore.title}
             </h4>
-            <p className="text-[11px] text-muted-foreground">
-              Deep dive into dedicated UI telemetry, rendering pipelines, and component architecture
-              for React, Next.js, TypeScript, and Tailwind CSS.
-            </p>
+            <p className="text-[11px] text-muted-foreground">{translatedExplore.description}</p>
           </div>
         </div>
 

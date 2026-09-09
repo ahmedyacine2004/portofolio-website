@@ -1,0 +1,188 @@
+{
+  "pageTitle": "ESPACE DESIGN",
+  "status": "Studio créatif en ligne",
+  "description": "Systèmes de design UI/UX, art vectoriel, bibliothèque d'assets visuels et galerie de prototypes.",
+  "creativeSuite": "Suite créative",
+  "assetCount": "Créés & livrés",
+  "vectorPrecision": "Précision vectorielle",
+  "prototypeCount": "Interactions hi-fi",
+  "metadata": {
+    "studioStack": "Figma / Adobe / Blender",
+    "metrics": {
+      "assets": "120+ Assets",
+      "vector": "100% Vector",
+      "prototypes": "30+ Prototypes"
+    },
+    "visualGallery": "Galerie visuelle & artefacts créatifs",
+    "visualGalleryDescription": "Filtrer et explorer les livrables de design entre interfaces utilisateur, marques, art vectoriel, motion graphics et scènes 3D.",
+    "artifactFilters": {
+      "all": "Tous les artefacts",
+      "ui": "UI / UX",
+      "branding": "Branding",
+      "vector": "Art vectoriel",
+      "3d": "Rendus 3D",
+      "motion": "Reels motion"
+    },
+    "designSystem": "Laboratoire interactif de design system & tokens",
+    "designSystemDescription": "Terrain de jeu des tokens interactifs, composants UI et échelles typographiques responsives.",
+    "designSystemTabs": {
+      "tokens": "Tokens de couleur",
+      "components": "Composants UI",
+      "typography": "Typographie"
+    },
+    "creativeTools": "Outils de design & suite créative",
+    "creativeToolsDescription": "Maîtrise spécialisée en prototypage UI/UX, assets de marque vectoriels, compositing photo, reels motion et rendu 3D.",
+    "creativeWorkflow": "Workflow créatif en 5 étapes",
+    "creativeWorkflowSubtitle": "De la découverte conceptuelle à la livraison développeur",
+    "openWorkspace": "Ouvrir l’espace",
+    "exploreTitle": "Explorer les espaces de travail créatifs dédiés",
+    "exploreDescription": "Inspectez les fichiers projet spécialisés, tokens de design, galeries d’assets et métriques pour Figma, Illustrator, Photoshop, After Effects et Blender.",
+    "componentLab": {
+      "buttonVariants": "Variantes de composants bouton",
+      "figmaComponent": "Composant Figma",
+      "primaryDefault": "Rose solide principale (par défaut)",
+      "secondaryGhost": "Variante fantôme secondaire",
+      "neutralOutline": "Variante contour neutre",
+      "badgesTitle": "Badges & chips de statut",
+      "infoNotice": "Notice info",
+      "vector100": "Vector 100%",
+      "prototyped": "Prototype",
+      "neutralSurface": "Surface neutre",
+      "spacingGrid": "Grille d’espacement auto layout",
+      "spaceXs": "space-xs (4px)",
+      "spaceSm": "space-sm (8px)",
+      "spaceMd": "space-md (16px)",
+      "spaceLg": "space-lg (24px)",
+      "typographyScale": "Échelle typographique & specimen (Inter Google Font)",
+      "fluidScale": "Échelle fluide",
+      "displayHeadline": "Display Headline 28px",
+      "headingTwo": "Heading Two 18px",
+      "bodyRegular": "Body Regular 13px: lisibilité claire et accessible sur tous les appareils.",
+      "monoCode": "Code monospace 11px: const designToken = { fill: '#ec4899' };",
+      "fontMono11": "font-mono 11px"
+    },
+    "designWorkflow": {
+      "stage01": "Découvrir & moodboard",
+      "stage01Desc": "Personas, recherche comparative, moodboards & direction artistique.",
+      "stage02": "Wireframing low-fi",
+      "stage02Desc": "Architecture de l’information, cartographie des parcours et grilles de mise en page structurales.",
+      "stage03": "Design System & Tokens",
+      "stage03Desc": "Variables Figma auto-layout, palettes, typographie et atomes de composants.",
+      "stage04": "Prototypage hi-fi",
+      "stage04Desc": "Animations intelligentes, courbes de transition et tests d’utilisabilité.",
+      "stage05": "Cession & spécifications",
+      "stage05Desc": "Exports SVG propres, spécifications CSS et alignement des composants React."
+    }
+  },
+  "gallery": {
+    "items": [
+      {
+        "title": "Expérience UI du portfolio développeur",
+        "categoryLabel": "Interface UI/UX",
+        "description": "Système design dense, grilles responsives et architecture token claire.",
+        "metrics": "40+ composants"
+      },
+      {
+        "title": "Dashboard analytique fintech & trading",
+        "categoryLabel": "Application web",
+        "description": "Graphes riches, widgets candlestick, tables de transactions et navigation interactive.",
+        "metrics": "Prototype interactif"
+      },
+      {
+        "title": "Identité visuelle Aura Technology",
+        "categoryLabel": "Identité de marque",
+        "description": "Brandmark géométrique, système typographique, guidelines colorées et templates de stationery.",
+        "metrics": "Pack de marque complet"
+      },
+      {
+        "title": "Système d’icônes géométriques Cyber",
+        "categoryLabel": "Iconographie vectorielle",
+        "description": "Jeu d’icônes SVG pixel-perfect avec trait cohérent sur grille 24x24.",
+        "metrics": "64 SVG vectoriels"
+      },
+      {
+        "title": "Rendu d’appareil audio spatial 3D",
+        "categoryLabel": "Modélisation & rendu 3D",
+        "description": "Shaders métalliques, éclairage studio à trois points et photoréalisme 4K Cycles.",
+        "metrics": "Rendu 4K Cycles"
+      },
+      {
+        "title": "Scène 3D Cyberpunk Workspace",
+        "categoryLabel": "Scène 3D & éclairage",
+        "description": "Émission néon volumétrique, textures procédurales et assets architecturaux spatiaux.",
+        "metrics": "Realtime Eevee"
+      },
+      {
+        "title": "Reel motion typographie cinétique & marque",
+        "categoryLabel": "Motion Graphics",
+        "description": "Animation typographique dynamique, easing synchronisé et compositing lumineux.",
+        "metrics": "Reel 4K 60 FPS"
+      },
+      {
+        "title": "Affiche visuelle cinématique & retouche",
+        "categoryLabel": "Composite digital",
+        "description": "Compositing photo multicouches, color grading, séparation fréquentielle et mélange de lumières.",
+        "metrics": "PSD multicouche"
+      }
+    ]
+  },
+  "colorSwatches": [
+    { "name": "Magenta vibrant", "role": "Accent primaire & action" },
+    { "name": "Azure électrique", "role": "Liens interactifs & focus" },
+    { "name": "Émeraude cyber", "role": "Badges réussite & pulse" },
+    { "name": "Violet nébuleuse", "role": "Accents secondaires" },
+    { "name": "Ambre lumineux", "role": "Surbrillance & alertes" },
+    { "name": "Ardoise profonde", "role": "Surface de fond" }
+  ],
+  "tools": {
+    "figma": {
+      "name": "Figma",
+      "role": "Design UI/UX, prototypage interactif & design systems",
+      "tags": ["Auto Layout", "Variables", "Composants", "Prototypes"]
+    },
+    "illustrator": {
+      "name": "Adobe Illustrator",
+      "role": "Illustration vectorielle, identité de marque & iconographie",
+      "tags": ["Chemins vectoriels", "Design logo", "Optimisation SVG", "Systèmes print"]
+    },
+    "photoshop": {
+      "name": "Adobe Photoshop",
+      "role": "Compositing numérique, manipulation photo & retouche",
+      "tags": ["Retouche photo", "Masques", "Color grading", "Smart Objects"]
+    },
+    "aftereffects": {
+      "name": "After Effects & Premiere",
+      "role": "Motion Graphics, typographie cinétique & montage vidéo",
+      "tags": ["Motion Graphics", "Courbes easing", "Keyframing", "Reels vidéo"]
+    },
+    "blender": {
+      "name": "Blender 3D",
+      "role": "Modélisation 3D, ombrage photoréaliste & rendu Cycles",
+      "tags": ["Modélisation 3D", "Shaders procéduraux", "Cycles 4K", "Éclairage"]
+    }
+  },
+  "workflow": {
+    "stages": [
+      {
+        "title": "Découvrir & moodboard",
+        "desc": "Personas, recherche comparative, moodboards & direction artistique."
+      },
+      {
+        "title": "Wireframing low-fi",
+        "desc": "Architecture de l’information, cartographie des parcours et grilles de mise en page structurales."
+      },
+      {
+        "title": "Design System & Tokens",
+        "desc": "Variables Figma auto-layout, palettes, typographie et atomes de composants."
+      },
+      {
+        "title": "Prototypage hi-fi",
+        "desc": "Animations intelligentes, courbes de transition et tests d’utilisabilité."
+      },
+      {
+        "title": "Cession & spécifications",
+        "desc": "Exports SVG propres, spécifications CSS et alignement des composants React."
+      }
+    ]
+  }
+}

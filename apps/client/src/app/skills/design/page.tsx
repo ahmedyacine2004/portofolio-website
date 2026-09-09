@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import {
   ArrowRight,
@@ -234,6 +235,7 @@ const DESIGN_TOOLS = [
 ];
 
 export default function DesignSkillsPage() {
+  const { skillPageText, tArray } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedGalleryItem, setSelectedGalleryItem] = useState<GalleryItem | null>(null);
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
@@ -241,11 +243,142 @@ export default function DesignSkillsPage() {
     'tokens' | 'components' | 'typography'
   >('tokens');
 
+  const galleryTranslations = tArray('skillPages.design.gallery.items') as Array<{
+    title: string;
+    categoryLabel: string;
+    description: string;
+    metrics: string;
+  }>;
+
+  const translatedGallery = GALLERY_ITEMS.map((item, index) => {
+    const localeItem = galleryTranslations[index] ?? {};
+    return {
+      ...item,
+      title: localeItem.title ?? item.title,
+      categoryLabel: localeItem.categoryLabel ?? item.categoryLabel,
+      description: localeItem.description ?? item.description,
+      metrics: localeItem.metrics ?? item.metrics,
+    };
+  });
+
+  const translatedTools = DESIGN_TOOLS.map((tool) => {
+    const role = skillPageText('design', `tools.${tool.slug}.role`, tool.role);
+    const tags = tool.tags.map((tag, index) =>
+      skillPageText('design', `tools.${tool.slug}.tags.${index}`, tag),
+    );
+
+    return {
+      ...tool,
+      role,
+      tags,
+    };
+  });
+
+  const translatedSwatchRoles = COLOR_SWATCHES.map((swatch, index) => ({
+    ...swatch,
+    name: skillPageText('design', `colorSwatches.${index}.name`, swatch.name),
+    role: skillPageText('design', `colorSwatches.${index}.role`, swatch.role),
+  }));
+
+  const translatedWorkflowStages = tArray('skillPages.design.workflow.stages') as Array<{
+    title: string;
+    desc: string;
+  }>;
+
+  const componentLabText = {
+    buttonVariants: skillPageText(
+      'design',
+      'metadata.componentLab.buttonVariants',
+      'Button Component Variants',
+    ),
+    figmaComponent: skillPageText(
+      'design',
+      'metadata.componentLab.figmaComponent',
+      'Figma Component',
+    ),
+    primaryDefault: skillPageText(
+      'design',
+      'metadata.componentLab.primaryDefault',
+      'Primary Pink Solid (Default)',
+    ),
+    secondaryGhost: skillPageText(
+      'design',
+      'metadata.componentLab.secondaryGhost',
+      'Secondary Ghost Variant',
+    ),
+    neutralOutline: skillPageText(
+      'design',
+      'metadata.componentLab.neutralOutline',
+      'Neutral Outline Variant',
+    ),
+    badgesTitle: skillPageText(
+      'design',
+      'metadata.componentLab.badgesTitle',
+      'Badges & Status Chips',
+    ),
+    infoNotice: skillPageText('design', 'metadata.componentLab.infoNotice', 'Info Notice'),
+    vector100: skillPageText('design', 'metadata.componentLab.vector100', 'Vector 100%'),
+    prototyped: skillPageText('design', 'metadata.componentLab.prototyped', 'Prototyped'),
+    neutralSurface: skillPageText(
+      'design',
+      'metadata.componentLab.neutralSurface',
+      'Neutral Surface',
+    ),
+    spacingGrid: skillPageText(
+      'design',
+      'metadata.componentLab.spacingGrid',
+      'Auto Layout Spacing Grid',
+    ),
+    typographyScale: skillPageText(
+      'design',
+      'metadata.componentLab.typographyScale',
+      'Typography Scale & Specimen (Inter Google Font)',
+    ),
+    fluidScale: skillPageText('design', 'metadata.componentLab.fluidScale', 'Fluid Scale'),
+    displayHeadline: skillPageText(
+      'design',
+      'metadata.componentLab.displayHeadline',
+      'Display Headline 28px',
+    ),
+    headingTwo: skillPageText('design', 'metadata.componentLab.headingTwo', 'Heading Two 18px'),
+    bodyRegular: skillPageText(
+      'design',
+      'metadata.componentLab.bodyRegular',
+      'Body Regular 13px: Clear and accessible readability across devices.',
+    ),
+    fontMono11: skillPageText('design', 'metadata.componentLab.fontMono11', 'font-mono 11px'),
+  };
+
+  const componentLabSpacing = [
+    skillPageText('design', 'metadata.componentLab.spaceXs', 'space-xs (4px)'),
+    skillPageText('design', 'metadata.componentLab.spaceSm', 'space-sm (8px)'),
+    skillPageText('design', 'metadata.componentLab.spaceMd', 'space-md (16px)'),
+    skillPageText('design', 'metadata.componentLab.spaceLg', 'space-lg (24px)'),
+  ];
+
+  const artifactFilters = [
+    { id: 'all', label: skillPageText('design', 'metadata.artifactFilters.all', 'All Artifacts') },
+    { id: 'ui', label: skillPageText('design', 'metadata.artifactFilters.ui', 'UI / UX') },
+    {
+      id: 'branding',
+      label: skillPageText('design', 'metadata.artifactFilters.branding', 'Branding'),
+    },
+    {
+      id: 'vector',
+      label: skillPageText('design', 'metadata.artifactFilters.vector', 'Vector Art'),
+    },
+    { id: '3d', label: skillPageText('design', 'metadata.artifactFilters.3d', '3D Renders') },
+    {
+      id: 'motion',
+      label: skillPageText('design', 'metadata.artifactFilters.motion', 'Motion Reels'),
+    },
+  ];
+
   // Filtered gallery items
   const filteredGallery = useMemo(() => {
-    if (selectedCategory === 'all') return GALLERY_ITEMS;
-    return GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedCategory === 'all') return translatedGallery;
+    return translatedGallery.filter((item) => item.category === selectedCategory);
+  }, [selectedCategory, translatedGallery]);
 
   const copyToClipboard = (hex: string) => {
     navigator.clipboard.writeText(hex);
@@ -269,16 +402,19 @@ export default function DesignSkillsPage() {
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-[28px]">
-              DESIGN WORKSPACE
+              {skillPageText('design', 'pageTitle', 'DESIGN WORKSPACE')}
             </h1>
             <span className="flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-pink-500/10 px-3 py-0.5 text-[11px] font-semibold text-pink-600 dark:text-pink-400">
               <span className="size-2 rounded-full bg-pink-500 animate-pulse" />
-              Creative Studio Online
+              {skillPageText('design', 'status', 'Creative Studio Online')}
             </span>
           </div>
           <p className="mt-1 max-w-2xl font-inter text-[13px] text-muted-foreground">
-            Crafting visual identities, high-fidelity UI/UX design systems, vector art, 3D
-            renderings, and motion graphics.
+            {skillPageText(
+              'design',
+              'description',
+              'Crafting visual identities, high-fidelity UI/UX design systems, vector art, 3D renderings, and motion graphics.',
+            )}
           </p>
         </div>
 
@@ -290,7 +426,9 @@ export default function DesignSkillsPage() {
               <span className="font-inter text-[12px] font-bold leading-none">
                 Figma / Adobe / Blender
               </span>
-              <span className="text-[10px] text-muted-foreground">Creative Suite</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('design', 'creativeSuite', 'Creative Suite')}
+              </span>
             </div>
           </div>
 
@@ -298,7 +436,9 @@ export default function DesignSkillsPage() {
             <ImageIcon className="size-4 text-pink-600 dark:text-pink-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">120+ Assets</span>
-              <span className="text-[10px] text-muted-foreground">Created &amp; Delivered</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('design', 'assetCount', 'Created & Delivered')}
+              </span>
             </div>
           </div>
 
@@ -306,7 +446,9 @@ export default function DesignSkillsPage() {
             <Wand2 className="size-4 text-pink-600 dark:text-pink-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">100% Vector</span>
-              <span className="text-[10px] text-muted-foreground">Infinite Scalability</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('design', 'vectorPrecision', 'Vector Precision')}
+              </span>
             </div>
           </div>
 
@@ -314,7 +456,9 @@ export default function DesignSkillsPage() {
             <Sparkles className="size-4 text-pink-600 dark:text-pink-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">30+ Prototypes</span>
-              <span className="text-[10px] text-muted-foreground">Hi-Fi Interactions</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('design', 'prototypeCount', 'Hi-Fi Interactions')}
+              </span>
             </div>
           </div>
         </div>
@@ -330,25 +474,25 @@ export default function DesignSkillsPage() {
             <div className="flex items-center gap-2">
               <ImageIcon className="size-4 text-pink-600 dark:text-pink-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                Visual Gallery &amp; Creative Artifacts
+                {skillPageText(
+                  'design',
+                  'metadata.visualGallery',
+                  'Visual Gallery & Creative Artifacts',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Filter and explore design deliverables across user interfaces, brand marks, vector
-              artwork, motion graphics, and 3D scenes.
+              {skillPageText(
+                'design',
+                'metadata.visualGalleryDescription',
+                'Filter and explore design deliverables across user interfaces, brand marks, vector artwork, motion graphics, and 3D scenes.',
+              )}
             </p>
           </div>
 
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 rounded-[8px] bg-muted/30 p-1 border border-border/40">
-            {[
-              { id: 'all', label: 'All Artifacts' },
-              { id: 'ui', label: 'UI / UX' },
-              { id: 'branding', label: 'Branding' },
-              { id: 'vector', label: 'Vector Art' },
-              { id: '3d', label: '3D Renders' },
-              { id: 'motion', label: 'Motion Reels' },
-            ].map((cat) => (
+            {artifactFilters.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
@@ -425,12 +569,19 @@ export default function DesignSkillsPage() {
             <div className="flex items-center gap-2">
               <Boxes className="size-4 text-pink-600 dark:text-pink-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                Interactive Design System &amp; Tokens Laboratory
+                {skillPageText(
+                  'design',
+                  'metadata.designSystem',
+                  'Interactive Design System & Tokens Laboratory',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Live token playground showcasing interactive color tokens, UI component primitives,
-              and responsive typography scales.
+              {skillPageText(
+                'design',
+                'metadata.designSystemDescription',
+                'Live token playground showcasing interactive color tokens, UI component primitives, and responsive typography scales.',
+              )}
             </p>
           </div>
 
@@ -443,7 +594,7 @@ export default function DesignSkillsPage() {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Color Tokens
+              {skillPageText('design', 'metadata.designSystemTabs.tokens', 'Color Tokens')}
             </button>
             <button
               onClick={() => setActiveInteractiveTab('components')}
@@ -453,7 +604,7 @@ export default function DesignSkillsPage() {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              UI Components
+              {skillPageText('design', 'metadata.designSystemTabs.components', 'UI Components')}
             </button>
             <button
               onClick={() => setActiveInteractiveTab('typography')}
@@ -463,7 +614,7 @@ export default function DesignSkillsPage() {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Typography
+              {skillPageText('design', 'metadata.designSystemTabs.typography', 'Typography')}
             </button>
           </div>
         </div>
@@ -471,7 +622,7 @@ export default function DesignSkillsPage() {
         {/* Tab 1: Color Tokens Swatches */}
         {activeInteractiveTab === 'tokens' && (
           <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-6">
-            {COLOR_SWATCHES.map((swatch) => (
+            {translatedSwatchRoles.map((swatch) => (
               <div
                 key={swatch.hex}
                 className="flex flex-col justify-between rounded-[10px] border border-border/40 bg-muted/10 p-3.5 transition-all hover:border-border/80"
@@ -515,19 +666,21 @@ export default function DesignSkillsPage() {
             <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-inter text-[11.5px] font-bold uppercase tracking-wider text-foreground">
-                  Button Component Variants
+                  {componentLabText.buttonVariants}
                 </span>
-                <span className="font-mono text-[9px] text-muted-foreground">Figma Component</span>
+                <span className="font-mono text-[9px] text-muted-foreground">
+                  {componentLabText.figmaComponent}
+                </span>
               </div>
               <div className="space-y-2">
                 <button className="w-full rounded-[6px] bg-pink-600 px-3 py-2 text-[12px] font-semibold text-white shadow-xs hover:bg-pink-700 transition-colors">
-                  Primary Pink Solid (Default)
+                  {componentLabText.primaryDefault}
                 </button>
                 <button className="w-full rounded-[6px] border border-pink-500/50 bg-pink-500/10 px-3 py-2 text-[12px] font-semibold text-pink-600 dark:text-pink-400 hover:bg-pink-500/20 transition-colors">
-                  Secondary Ghost Variant
+                  {componentLabText.secondaryGhost}
                 </button>
                 <button className="w-full rounded-[6px] border border-border/60 bg-card px-3 py-2 text-[12px] font-semibold text-foreground hover:bg-muted/40 transition-colors">
-                  Neutral Outline Variant
+                  {componentLabText.neutralOutline}
                 </button>
               </div>
             </div>
@@ -536,7 +689,7 @@ export default function DesignSkillsPage() {
             <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-inter text-[11.5px] font-bold uppercase tracking-wider text-foreground">
-                  Badges &amp; Status Chips
+                  {componentLabText.badgesTitle}
                 </span>
                 <span className="font-mono text-[9px] text-muted-foreground">Tokens</span>
               </div>
@@ -545,16 +698,16 @@ export default function DesignSkillsPage() {
                   <span className="size-1.5 rounded-full bg-pink-500" /> Active Pulse
                 </span>
                 <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-blue-600 dark:text-blue-400">
-                  Info Notice
+                  {componentLabText.infoNotice}
                 </span>
                 <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-emerald-600 dark:text-emerald-400">
-                  Vector 100%
+                  {componentLabText.vector100}
                 </span>
                 <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-amber-600 dark:text-amber-400">
-                  Prototyped
+                  {componentLabText.prototyped}
                 </span>
                 <span className="rounded-full border border-border/50 bg-card px-3 py-1 font-mono text-[10.5px] font-medium text-foreground">
-                  Neutral Surface
+                  {componentLabText.neutralSurface}
                 </span>
               </div>
             </div>
@@ -563,7 +716,7 @@ export default function DesignSkillsPage() {
             <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-inter text-[11.5px] font-bold uppercase tracking-wider text-foreground">
-                  Auto Layout Spacing Grid
+                  {componentLabText.spacingGrid}
                 </span>
                 <span className="font-mono text-[9px] text-pink-600 dark:text-pink-400">
                   8pt Base
@@ -571,19 +724,19 @@ export default function DesignSkillsPage() {
               </div>
               <div className="space-y-1.5 font-mono text-[10px]">
                 <div className="flex items-center justify-between rounded-[4px] bg-card p-1.5 border border-border/30">
-                  <span>space-xs (4px)</span>
+                  <span>{componentLabSpacing[0]}</span>
                   <div className="h-2 w-4 rounded bg-pink-500" />
                 </div>
                 <div className="flex items-center justify-between rounded-[4px] bg-card p-1.5 border border-border/30">
-                  <span>space-sm (8px)</span>
+                  <span>{componentLabSpacing[1]}</span>
                   <div className="h-2 w-8 rounded bg-pink-500" />
                 </div>
                 <div className="flex items-center justify-between rounded-[4px] bg-card p-1.5 border border-border/30">
-                  <span>space-md (16px)</span>
+                  <span>{componentLabSpacing[2]}</span>
                   <div className="h-2 w-16 rounded bg-pink-500" />
                 </div>
                 <div className="flex items-center justify-between rounded-[4px] bg-card p-1.5 border border-border/30">
-                  <span>space-lg (24px)</span>
+                  <span>{componentLabSpacing[3]}</span>
                   <div className="h-2 w-24 rounded bg-pink-500" />
                 </div>
               </div>
@@ -596,27 +749,29 @@ export default function DesignSkillsPage() {
           <div className="space-y-3 rounded-[10px] border border-border/40 bg-muted/10 p-4">
             <div className="flex items-center justify-between border-b border-border/30 pb-2">
               <span className="font-inter text-[12px] font-bold uppercase tracking-wide text-foreground">
-                Typography Scale &amp; Specimen (Inter Google Font)
+                {componentLabText.typographyScale}
               </span>
-              <span className="font-mono text-[10px] text-muted-foreground">Fluid Scale</span>
+              <span className="font-mono text-[10px] text-muted-foreground">
+                {componentLabText.fluidScale}
+              </span>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-baseline justify-between border-b border-border/20 pb-2">
                 <span className="font-inter text-2xl font-black text-foreground">
-                  Display Headline 28px
+                  {componentLabText.displayHeadline}
                 </span>
                 <span className="font-mono text-[10px] text-muted-foreground">font-black 28px</span>
               </div>
               <div className="flex items-baseline justify-between border-b border-border/20 pb-2">
                 <span className="font-inter text-lg font-bold text-foreground">
-                  Heading Two 18px
+                  {componentLabText.headingTwo}
                 </span>
                 <span className="font-mono text-[10px] text-muted-foreground">font-bold 18px</span>
               </div>
               <div className="flex items-baseline justify-between border-b border-border/20 pb-2">
                 <span className="font-inter text-[13px] font-medium text-foreground">
-                  Body Regular 13px: Clear and accessible readability across devices.
+                  {componentLabText.bodyRegular}
                 </span>
                 <span className="font-mono text-[10px] text-muted-foreground">
                   font-medium 13px
@@ -624,9 +779,15 @@ export default function DesignSkillsPage() {
               </div>
               <div className="flex items-baseline justify-between">
                 <span className="font-mono text-[11px] text-pink-600 dark:text-pink-400">
-                  Monospace Code 11px: const designToken = {`{ fill: '#ec4899' }`};
+                  {skillPageText(
+                    'design',
+                    'metadata.componentLab.monoCode',
+                    "Monospace Code 11px: const designToken = { fill: '#ec4899' };",
+                  )}
                 </span>
-                <span className="font-mono text-[10px] text-muted-foreground">font-mono 11px</span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  {componentLabText.fontMono11}
+                </span>
               </div>
             </div>
           </div>
@@ -637,16 +798,19 @@ export default function DesignSkillsPage() {
       <motion.div variants={cardVariants} className="space-y-4">
         <div>
           <h2 className="font-inter text-[18px] font-black uppercase tracking-tight text-foreground md:text-[20px]">
-            Design Tools &amp; Creative Suite
+            {skillPageText('design', 'metadata.creativeTools', 'Design Tools & Creative Suite')}
           </h2>
           <p className="font-inter text-[12px] text-muted-foreground">
-            Specialized mastery across UI/UX prototyping, vector brand assets, photo compositing,
-            motion reels, and 3D rendering.
+            {skillPageText(
+              'design',
+              'metadata.creativeToolsDescription',
+              'Specialized mastery across UI/UX prototyping, vector brand assets, photo compositing, motion reels, and 3D rendering.',
+            )}
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
-          {DESIGN_TOOLS.map((tool) => {
+          {translatedTools.map((tool) => {
             const Icon = tool.icon;
             return (
               <div
@@ -687,7 +851,9 @@ export default function DesignSkillsPage() {
                     href={`/skills/design/${tool.slug}`}
                     className="flex items-center justify-between font-inter text-[11px] font-semibold text-pink-600 dark:text-pink-400 transition-colors hover:text-pink-700"
                   >
-                    <span>Open Workspace</span>
+                    <span>
+                      {skillPageText('design', 'metadata.openWorkspace', 'Open Workspace')}
+                    </span>
                     <ArrowRight className="size-3" />
                   </Link>
                 </div>
@@ -706,48 +872,26 @@ export default function DesignSkillsPage() {
           <div className="flex items-center gap-2">
             <Compass className="size-4 text-pink-600 dark:text-pink-400" />
             <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-              5-Stage Creative Design &amp; Handoff Workflow
+              {skillPageText(
+                'design',
+                'metadata.creativeWorkflow',
+                '5-Stage Creative Design & Handoff Workflow',
+              )}
             </h3>
           </div>
           <span className="font-mono text-[10px] text-muted-foreground">
-            From Conceptual Discovery to Developer Handoff
+            {skillPageText(
+              'design',
+              'metadata.creativeWorkflowSubtitle',
+              'From Conceptual Discovery to Developer Handoff',
+            )}
           </span>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {[
-            {
-              step: '01',
-              title: 'Discover & Moodboard',
-              desc: 'User personas, benchmark research, moodboards & art direction.',
-              icon: Search,
-            },
-            {
-              step: '02',
-              title: 'Low-Fi Wireframing',
-              desc: 'Information architecture, user flow mapping, and structural layout grids.',
-              icon: Layout,
-            },
-            {
-              step: '03',
-              title: 'Design System & Tokens',
-              desc: 'Figma auto-layout variables, color swatches, typography & component atoms.',
-              icon: Boxes,
-            },
-            {
-              step: '04',
-              title: 'Hi-Fi Prototyping',
-              desc: 'Interactive smart animations, transition curves, and usability testing.',
-              icon: Sparkles,
-            },
-            {
-              step: '05',
-              title: 'Dev Handoff & Specs',
-              desc: 'Clean SVG asset exports, CSS token specs, and React component alignment.',
-              icon: FileCode2,
-            },
-          ].map((stage, idx) => {
-            const Icon = stage.icon;
+          {translatedWorkflowStages.map((stage, idx) => {
+            const icons = [Search, Layout, Boxes, Sparkles, FileCode2];
+            const Icon = icons[idx] ?? Search;
             return (
               <div
                 key={idx}
@@ -756,7 +900,7 @@ export default function DesignSkillsPage() {
                 <div>
                   <div className="mb-2 flex items-center justify-between">
                     <span className="font-mono text-[10px] font-bold text-pink-600 dark:text-pink-400">
-                      Phase {stage.step}
+                      Phase {String(idx + 1).padStart(2, '0')}
                     </span>
                     <Icon className="size-3.5 text-muted-foreground" />
                   </div>
@@ -784,11 +928,18 @@ export default function DesignSkillsPage() {
           </div>
           <div>
             <h4 className="font-inter text-[13px] font-bold text-foreground">
-              Explore Dedicated Creative Tool Workspaces
+              {skillPageText(
+                'design',
+                'metadata.exploreTitle',
+                'Explore Dedicated Creative Tool Workspaces',
+              )}
             </h4>
             <p className="text-[11px] text-muted-foreground">
-              Inspect specialized project files, design tokens, asset galleries, and metrics for
-              Figma, Illustrator, Photoshop, After Effects, and Blender.
+              {skillPageText(
+                'design',
+                'metadata.exploreDescription',
+                'Inspect specialized project files, design tokens, asset galleries, and metrics for Figma, Illustrator, Photoshop, After Effects, and Blender.',
+              )}
             </p>
           </div>
         </div>

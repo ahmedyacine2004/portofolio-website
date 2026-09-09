@@ -1,0 +1,252 @@
+{
+  "pageTitle": "DEVOPS & TOOLS WORKSPACE",
+  "status": "Cluster Active (3 Nodes)",
+  "description": "Architecting robust CI/CD pipelines, container orchestration with Docker & Kubernetes, zero-downtime rolling updates, and cloud infrastructure.",
+  "platformTooling": "Platform Tooling",
+  "systemSLAUptime": "System SLA Uptime",
+  "p95BuildTime": "P95 Build Time",
+  "rollingRollouts": "Rolling Rollouts",
+  "metadata": {
+    "ciCdPipelineSimulator": "CI/CD Pipeline Simulator",
+    "clickToTrigger": "Click to trigger",
+    "deploymentExecutionLifecycle": "Deployment Execution Lifecycle",
+    "buildOutputLogs": "Build Output Logs",
+    "cloudInfrastructure": "Production Cloud Network & Ingress Topology",
+    "targetCluster": "Target Cluster:",
+    "deployingPods": "Deploying Pods...",
+    "stdoutLive": "STDOUT LIVE",
+    "clusterIngress": "Cluster Ingress:",
+    "clusterIngressName": "Nginx HTTP/2 SSL",
+    "trafficPath": "End-to-End Traffic Path from User to Pods",
+    "manifestInspectorTitle": "Infrastructure as Code (IaC) & Manifest Inspector",
+    "manifestInspectorDescription": "Inspect production-grade container manifests, Kubernetes deployment files, CI/CD pipeline configurations, and Nginx reverse proxy blocks.",
+    "architecturePurpose": "Architecture Purpose:",
+    "clusterTitle": "DevOps & Infrastructure Technology Clusters",
+    "clusterDescription": "Deep domain expertise across containerization, CI/CD automation, cloud hosting, and reverse proxies.",
+    "exploreTitle": "Explore Dedicated DevOps & Cloud Workspaces",
+    "exploreDescription": "Inspect specialized CI/CD workflows, Docker configs, Nginx reverse proxy setups, and Vercel edge metrics.",
+    "exploreLinks": {
+      "docker": "Docker Workspace",
+      "githubActions": "GitHub Actions",
+      "nginx": "Nginx Proxy",
+      "vercel": "Vercel Platform"
+    }
+  },
+  "pipelinePresets": [
+    {
+      "id": "prod-release",
+      "name": "Production Release (v2.4.0)",
+      "trigger": "git push origin main (tag: v2.4.0)",
+      "target": "Kubernetes Cluster (Production)",
+      "duration": "1m 42s",
+      "stages": [
+        {
+          "name": "01. Code Ingress & Lint",
+          "action": "TypeScript strict checking & ESLint rules validation",
+          "time": "12s",
+          "log": "✓ TypeScript 5.7 compiled with 0 errors. ESLint passed."
+        },
+        {
+          "name": "02. Automated Test Matrix",
+          "action": "Jest Unit & End-to-End Playwright test suites",
+          "time": "26s",
+          "log": "✓ 42 test suites passed (340 tests passed in 24.8s)."
+        },
+        {
+          "name": "03. Multi-Stage Docker Build",
+          "action": "Distroless container build with BuildKit layer cache",
+          "time": "38s",
+          "log": "✓ Exported image portfolio/client:v2.4.0 (52.4MB compressed)."
+        },
+        {
+          "name": "04. Trivy CVE Security Audit",
+          "action": "Container image vulnerability & secret scan",
+          "time": "10s",
+          "log": "✓ Scanned 120 packages: 0 Critical, 0 High vulnerabilities."
+        },
+        {
+          "name": "05. K8s Rolling Rollout",
+          "action": "Zero-downtime rolling update (maxSurge: 25%)",
+          "time": "14s",
+          "log": "✓ 3/3 pods updated successfully. Old ReplicaSet terminated."
+        },
+        {
+          "name": "06. Observability & Health Check",
+          "action": "Prometheus metric scraping & HTTP 200 verification",
+          "time": "2s",
+          "log": "✓ /healthz responded 200 OK (latency: 4ms). Deployment live!"
+        }
+      ]
+    },
+    {
+      "id": "hotfix-k8s",
+      "name": "Hotfix Pod Patch (Rolling Update)",
+      "trigger": "git push origin hotfix/auth-session",
+      "target": "Kubernetes Pod ReplicaSet",
+      "duration": "48s",
+      "stages": [
+        {
+          "name": "01. Fast Lint & Validation",
+          "action": "Targeted diff linting & syntax verification",
+          "time": "8s",
+          "log": "✓ Fast lint check complete on changed files."
+        },
+        {
+          "name": "02. Regression Smoke Tests",
+          "action": "Auth & session token unit verification",
+          "time": "12s",
+          "log": "✓ Smoke tests 100% green."
+        },
+        {
+          "name": "03. Layer Cache Re-build",
+          "action": "Re-using cached node_modules layer",
+          "time": "16s",
+          "log": "✓ Layer cache hit 92%. Image built in 15.2s."
+        },
+        {
+          "name": "04. Instant Canary Deploy",
+          "action": "Canary pod deployed with 10% traffic allocation",
+          "time": "8s",
+          "log": "✓ Canary healthy: 0 error rate detected."
+        },
+        {
+          "name": "05. Full Cluster Rollout",
+          "action": "Promoting canary to 100% production pods",
+          "time": "4s",
+          "log": "✓ All pods patched without dropped connections."
+        },
+        {
+          "name": "06. Metric Stability Verified",
+          "action": "Grafana latency dashboard steady at P95 < 12ms",
+          "time": "0s",
+          "log": "✓ Hotfix deployed with zero downtime."
+        }
+      ]
+    }
+  ],
+  "manifests": [
+    {
+      "id": "dockerfile",
+      "title": "Multi-Stage Production Dockerfile",
+      "filename": "Dockerfile",
+      "lang": "dockerfile",
+      "desc": "Optimized 3-stage build with Alpine Linux, non-root user security, and minimal layer payload."
+    },
+    {
+      "id": "k8s-deployment",
+      "title": "Kubernetes Deployment & HPA Manifest",
+      "filename": "k8s-deployment.yaml",
+      "lang": "yaml",
+      "desc": "Production deployment with 3 replicas, rolling update strategy, liveness probes, and CPU limits."
+    },
+    {
+      "id": "github-actions",
+      "title": "GitHub Actions CI/CD Pipeline",
+      "filename": ".github/workflows/deploy.yml",
+      "lang": "yaml",
+      "desc": "Automated continuous integration workflow with matrix testing, Trivy CVE scanning, and deployment."
+    },
+    {
+      "id": "nginx-conf",
+      "title": "Nginx Reverse Proxy & SSL Config",
+      "filename": "nginx.conf",
+      "lang": "nginx",
+      "desc": "High-performance reverse proxy with HTTP/2, Gzip compression, SSL TLSv1.3, and upstream balancing."
+    }
+  ],
+  "topology": {
+    "steps": [
+      {
+        "step": "01. Edge Ingress",
+        "title": "Cloudflare Edge CDN",
+        "desc": "Global Anycast DNS, DDoS mitigation & edge static asset caching."
+      },
+      {
+        "step": "02. Reverse Proxy",
+        "title": "Nginx Load Balancer",
+        "desc": "SSL/TLS termination, HTTP/2 multiplexing, rate-limiting & gzip compression."
+      },
+      {
+        "step": "03. Orchestration",
+        "title": "Kubernetes Pod Replicas",
+        "desc": "Horizontally autoscaled Node.js & Next.js microservices with health checks."
+      },
+      {
+        "step": "04. Data Tier",
+        "title": "Managed DB Clusters",
+        "desc": "PostgreSQL ACID instances, MongoDB Atlas replica sets, and Redis caching."
+      },
+      {
+        "step": "05. Observability",
+        "title": "Prometheus & Sentry",
+        "desc": "Live telemetry scraping, anomaly detection alerts, and error tracing."
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "title": "Containerization & Orchestration",
+      "description": "Immutable packaging, multi-container orchestration, and cluster scaling",
+      "items": [
+        {
+          "name": "Docker",
+          "role": "Multi-stage container builds & local compose development",
+          "tags": ["Multi-Stage", "Compose", "Distroless", "Layer Caching"]
+        },
+        {
+          "name": "Kubernetes & Pods",
+          "role": "Declarative container orchestration, ingress & service meshes",
+          "tags": ["Deployments", "HPA Scaling", "Ingress", "Rolling Updates"]
+        }
+      ]
+    },
+    {
+      "title": "CI/CD Automation & Workflows",
+      "description": "Continuous integration, automated test matrices, and delivery pipelines",
+      "items": [
+        {
+          "name": "GitHub Actions",
+          "role": "Automated CI/CD pipelines, security scanning & deployments",
+          "tags": ["Matrix Builds", "Secrets Vault", "Auto Deploy", "CVE Scan"]
+        },
+        {
+          "name": "Git & Version Control",
+          "role": "Branching strategies, atomic commits & collaborative workflows",
+          "tags": ["Gitflow", "Rebase", "Submodules", "Hooks"]
+        }
+      ]
+    },
+    {
+      "title": "Cloud Infrastructure & Hosting",
+      "description": "Serverless deployments, managed clusters, and edge networks",
+      "items": [
+        {
+          "name": "Vercel Edge Platform",
+          "role": "Serverless Next.js edge deployments & instant preview URLs",
+          "tags": ["Edge CDN", "Instant Previews", "Serverless", "Analytics"]
+        },
+        {
+          "name": "Render & Railway",
+          "role": "Containerized backend hosting & managed database instances",
+          "tags": ["Zero-Config", "Auto Scaling", "Postgres Addons", "Webhooks"]
+        }
+      ]
+    },
+    {
+      "title": "Web Servers, Reverse Proxy & Security",
+      "description": "High-throughput ingress routing, SSL termination, and Linux ops",
+      "items": [
+        {
+          "name": "Nginx",
+          "role": "High-performance reverse proxy, load balancing & SSL termination",
+          "tags": ["Reverse Proxy", "Load Balancing", "HTTP/2", "Gzip / Brotli"]
+        },
+        {
+          "name": "Postman & API QA",
+          "role": "API integration testing, automated test suites & mock servers",
+          "tags": ["Collection Runner", "Environment Vars", "Automated QA", "Docs"]
+        }
+      ]
+    }
+  ]
+}

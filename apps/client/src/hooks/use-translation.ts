@@ -18,6 +18,11 @@ import shopsphereEn from '@/locales/en/projects/shopsphere.json';
 import socialCampaign2025En from '@/locales/en/projects/social-campaign-2025.json';
 import taskflowDashboardEn from '@/locales/en/projects/taskflow-dashboard.json';
 import travelMateEn from '@/locales/en/projects/travelmate.json';
+import backendSkillEn from '@/locales/en/skills/backend.json';
+import databasesSkillEn from '@/locales/en/skills/databases.json';
+import designSkillEn from '@/locales/en/skills/design.json';
+import devopsSkillEn from '@/locales/en/skills/devops-tools.json';
+import frontendSkillEn from '@/locales/en/skills/frontend.json';
 import fr from '@/locales/fr/common.json';
 import apexBrandKitFr from '@/locales/fr/projects/apex-brand-kit.json';
 import consultifyFr from '@/locales/fr/projects/consultify.json';
@@ -37,6 +42,11 @@ import shopsphereFr from '@/locales/fr/projects/shopsphere.json';
 import socialCampaign2025Fr from '@/locales/fr/projects/social-campaign-2025.json';
 import taskflowDashboardFr from '@/locales/fr/projects/taskflow-dashboard.json';
 import travelMateFr from '@/locales/fr/projects/travelmate.json';
+import backendSkillFr from '@/locales/fr/skills/backend.json';
+import databasesSkillFr from '@/locales/fr/skills/databases.json';
+import designSkillFr from '@/locales/fr/skills/design.json';
+import devopsSkillFr from '@/locales/fr/skills/devops-tools.json';
+import frontendSkillFr from '@/locales/fr/skills/frontend.json';
 import { useLanguageStore } from '@/stores/language.store';
 
 type TranslationKeys = typeof en;
@@ -44,6 +54,13 @@ type TranslationKeys = typeof en;
 const translations = {
   en: {
     ...en,
+    skillPages: {
+      frontend: frontendSkillEn,
+      backend: backendSkillEn,
+      databases: databasesSkillEn,
+      design: designSkillEn,
+      'devops-tools': devopsSkillEn,
+    },
     projects: {
       ...en.projects,
       consultify: consultifyEn,
@@ -81,6 +98,13 @@ const translations = {
   },
   fr: {
     ...fr,
+    skillPages: {
+      frontend: frontendSkillFr,
+      backend: backendSkillFr,
+      databases: databasesSkillFr,
+      design: designSkillFr,
+      'devops-tools': devopsSkillFr,
+    },
     projects: {
       ...fr.projects,
       consultify: consultifyFr,
@@ -184,5 +208,16 @@ export function useTranslation() {
   const projectText = (project: string, value: string): string =>
     t(`projects.${project}.content.${value}`, value);
 
-  return { t, tArray, projectText, locale };
+  const skillPageText = (page: string, path: string, fallback?: string): string => {
+    const translationSet = translations[locale];
+    const value = getNestedValue(translationSet, `skillPages.${page}.${path}`);
+
+    if (typeof value !== 'string' || value === `skillPages.${page}.${path}`) {
+      return fallback || path;
+    }
+
+    return value;
+  };
+
+  return { t, tArray, projectText, skillPageText, locale };
 }

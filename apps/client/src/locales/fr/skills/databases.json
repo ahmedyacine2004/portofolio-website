@@ -1,0 +1,77 @@
+{
+  "pageTitle": "ESPACE BASES DE DONNÉES",
+  "status": "Moteurs en ligne",
+  "description": "Concevoir des architectures de données normalisées, des stratégies d'indexation performantes, des garanties transactionnelles ACID et des caches distribués.",
+  "activeEngines": "Moteurs actifs",
+  "bufferCacheHit": "Taux de cache tampon",
+  "queryTime": "Temps de requête P95",
+  "dataIntegrity": "Intégrité des données",
+  "schema": {
+    "title": "Inspecteur d'architecture de données et de schéma d'entité",
+    "description": "Inspection des schémas de tables normalisés, clés primaires (PK), clés étrangères (FK), index composites (IDX) et relations de données.",
+    "entityTab": "Sélectionner l'entité à inspecter",
+    "attribute": "Attribut",
+    "type": "Type",
+    "constraint": "Contrainte",
+    "purpose": "Objectif & stratégie d'indexation",
+    "engine": "Moteur",
+    "records": "Enregistrements",
+    "cardinality": "Cardinalité & relations",
+    "integrity": "Intégrité référentielle :",
+    "onDelete": "ON DELETE CASCADE",
+    "treeDepth": "Profondeur d'arbre B-Tree :",
+    "treeDepthLevels": "3 niveaux"
+  },
+  "query": {
+    "title": "Optimiseur d'exécution et de plan de requêtes",
+    "subtitle": "Sélectionner la requête à analyser",
+    "purpose": "Objectif :",
+    "analyzeTitle": "Analyse EXPLAIN ANALYZE",
+    "scan": "Analyse d'index...",
+    "node": "Nœud d'exécution",
+    "index": "Index utilisé",
+    "cost": "Coût optimiseur",
+    "latency": "Latence d'exécution",
+    "gain": "Gain d'optimisation"
+  },
+  "storage": {
+    "title": "Hiérarchie de stockage et persistance à 4 niveaux",
+    "subtitle": "De la mémoire tampon RAM jusqu'aux pages SSD non volatiles",
+    "tiers": {
+      "buffer": {
+        "title": "Niveau 01 : Cache tampon & mémoire partagée",
+        "desc": "Accès sous la milliseconde pour le jeu actif, réduction de la charge I/O disque.",
+        "metric": "Taux de hit 99.4%"
+      },
+      "wal": {
+        "title": "Niveau 02 : Journal WAL",
+        "desc": "Journalisation transactionnelle séquentielle assurant zéro perte de données lors d'un crash (Atomicité & Durabilité).",
+        "metric": "Flush synchrone"
+      },
+      "btree": {
+        "title": "Niveau 03 : Pages B+ Tree persistantes",
+        "desc": "Espaces segmentés, index clusterisés et compression sur stockage NVMe SSD.",
+        "metric": "4 200 IOPS"
+      },
+      "replica": {
+        "title": "Niveau 04 : Répliques & captures automatiques",
+        "desc": "Réplication primaire-secondaire avec basculement automatique et récupération ponctuelle.",
+        "metric": "Latence réplique 0ms"
+      }
+    }
+  },
+  "taxonomy": {
+    "title": "Taxonomie de technologies de bases de données",
+    "description": "Expertise approfondie sur les bases relationnelles RDBMS, les bases NoSQL documentaires et le cache clé-valeur en mémoire."
+  },
+  "explore": {
+    "title": "Explorer les espaces de travail dédiés aux bases de données",
+    "description": "Accéder aux métriques de schéma, journaux d'exécution et plans d'indexation pour MongoDB, PostgreSQL, MySQL et Redis."
+  },
+  "metadata": {
+    "interface": "Inspecteur d'architecture de données et de schéma d'entité",
+    "schema": "Inspection des schémas de tables normalisés, clés primaires, clés étrangères, index composites et relations de données.",
+    "query": "Optimiseur d'exécution et de plan de requêtes",
+    "storage": "Hiérarchie de stockage et persistance à 4 niveaux"
+  }
+}

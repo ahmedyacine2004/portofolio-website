@@ -1,0 +1,419 @@
+{
+  "pageTitle": "ESPACE FRONTEND",
+  "status": "Moteur client en ligne",
+  "description": "Créer des interfaces utilisateur fluides et performantes avec React 19, Next.js 15, TypeScript, Tailwind CSS et Framer Motion.",
+  "componentEngine": "Moteur composants",
+  "lighthouseScore": "Score Lighthouse",
+  "hardwareMotion": "Mouvement matériel",
+  "accessibilityGrade": "Niveau d'accessibilité",
+  "architecture": {
+    "title": "Plan d'architecture frontend en 5 couches",
+    "description": "Une vue structurée de la façon dont les interactions utilisateur traversent notre système de design, la hiérarchie des composants, les stores d'état, la couche de compilation et la physique du mouvement.",
+    "tiers": {
+      "presentation": {
+        "title": "Présentation & système de design",
+        "subtitle": "Tokens atomiques, CSS orienté utilité et thèmes accessibles",
+        "badge": "Système de design",
+        "components": {
+          "Tailwind CSS Engine": {
+            "name": "Moteur Tailwind CSS",
+            "role": "Tokens CSS sans runtime",
+            "tech": "Tailwind / PostCSS"
+          },
+          "shadcn/ui & Radix": {
+            "name": "shadcn/ui & Radix",
+            "role": "Primitives accessibles",
+            "tech": "Conforme WAI-ARIA"
+          },
+          "Theme Token Provider": {
+            "name": "Fournisseur de thèmes",
+            "role": "Switchs clair/sombre fluides",
+            "tech": "Variables CSS / classe"
+          },
+          "Typography Scale": {
+            "name": "Échelle typographique",
+            "role": "Typographie fluide & police Inter",
+            "tech": "next/font Google"
+          }
+        }
+      },
+      "component-arch": {
+        "title": "Architecture composants & primitives",
+        "subtitle": "Composants composés, éléments polymorphes et composition de hooks",
+        "badge": "Arbre de composants",
+        "components": {
+          "Atomic Component Library": {
+            "name": "Bibliothèque de composants atomiques",
+            "role": "Boutons, entrées, dialogues, cartes",
+            "tech": "React 19 modulaire"
+          },
+          "Custom React Hooks": {
+            "name": "Hooks React personnalisés",
+            "role": "Comportements métier encapsulés",
+            "tech": "useTranslation, useTheme"
+          },
+          "Polymorphic Primitives": {
+            "name": "Primitives polymorphes",
+            "role": "Props flexibles Slot & AsChild",
+            "tech": "Primitives Radix"
+          },
+          "Accessible Focus Trap": {
+            "name": "Focus trap accessible",
+            "role": "Navigation clavier & modales",
+            "tech": "FocusScope / ARIA"
+          }
+        }
+      },
+      "state-data": {
+        "title": "Gestion d'état & synchronisation de données",
+        "subtitle": "État client global, synchronisation API en cache et interface optimiste",
+        "badge": "État & cache",
+        "components": {
+          "Zustand Global Store": {
+            "name": "Store global Zustand",
+            "role": "Store client léger",
+            "tech": "Zero-Boilerplate"
+          },
+          "TanStack Query / SWR": {
+            "name": "TanStack Query / SWR",
+            "role": "Invalidation de state serveur & cache",
+            "tech": "Mises à jour optimistes"
+          },
+          "React Hook Form & Zod": {
+            "name": "React Hook Form & Zod",
+            "role": "Validation de formulaire typée",
+            "tech": "Parsing de schéma"
+          },
+          "Server Actions Bridge": {
+            "name": "Pont Actions serveur",
+            "role": "Invocations RPC directes",
+            "tech": "Actions Next.js"
+          }
+        }
+      },
+      "rendering-app": {
+        "title": "Routeur App Next.js & compilation",
+        "subtitle": "React Server Components (RSC), pre-rendering statique et streaming de route",
+        "badge": "App Router / RSC",
+        "components": {
+          "React Server Components (RSC)": {
+            "name": "Composants serveur React (RSC)",
+            "role": "Paquet client zéro",
+            "tech": "Exécution serveur"
+          },
+          "Streaming Suspense": {
+            "name": "Suspense streaming",
+            "role": "Hydratation progressive & fallbacks",
+            "tech": "React Suspense"
+          },
+          "Static Site Generation (SSG)": {
+            "name": "Génération statique (SSG)",
+            "role": "HTML edge pre-calculé",
+            "tech": "ISR incrémental"
+          },
+          "Turbopack Compiler": {
+            "name": "Compilateur Turbopack",
+            "role": "Remplacement de modules rapide",
+            "tech": "Rust-powered"
+          }
+        }
+      },
+      "motion-physics": {
+        "title": "Physique du mouvement & micro-interactions",
+        "subtitle": "Animations 60fps accélérées par GPU, inclinaison 3D et morphs de layout",
+        "badge": "Mouvement & UX",
+        "components": {
+          "Framer Motion Engine": {
+            "name": "Moteur Framer Motion",
+            "role": "Physique spring & transitions layout",
+            "tech": "GPU accéléré"
+          },
+          "3D Parallax Tilt Cards": {
+            "name": "Cartes inclinées 3D",
+            "role": "Profondeur interactive souris spatiale",
+            "tech": "Transforms CSS 3D"
+          },
+          "Micro-Interactions": {
+            "name": "Micro-interactions",
+            "role": "Hover haptique et feedback actif",
+            "tech": "Transform GPU"
+          },
+          "Reduced Motion Mode": {
+            "name": "Mode mouvement réduit",
+            "role": "Accessibilité motion",
+            "tech": "prefers-reduced-motion"
+          }
+        }
+      }
+    }
+  },
+  "technology": {
+    "title": "Clusters techniques frontend",
+    "description": "Expertise complète autour des bibliothèques de composants, moteurs de compilation, stores d'état et frameworks de mouvement."
+  },
+  "technologyClusters": {
+    "Core Languages & Foundations": {
+      "title": "Langages fondamentaux & bases",
+      "description": "Sécurité typée stricte, structure sémantique et fonctionnalités ECMAScript modernes",
+      "items": {
+        "TypeScript": {
+          "name": "TypeScript",
+          "role": "Vérification statique, interfaces & génériques",
+          "tags": ["Génériques", "Strict Mode", "Unions discriminées", "Types utilitaires"]
+        },
+        "HTML5 & CSS3": {
+          "name": "HTML5 & CSS3",
+          "role": "Structure DOM sémantique & CSS responsive moderne",
+          "tags": ["HTML sémantique", "Flexbox / Grid", "Variables CSS", "ARIA A11y"]
+        },
+        "JavaScript (ESNext)": {
+          "name": "JavaScript (ESNext)",
+          "role": "Paradigmes fonctionnels modernes & programmation asynchrone",
+          "tags": ["Closures", "Promises / Async", "Modules", "APIs DOM"]
+        }
+      }
+    },
+    "Frameworks & Runtimes": {
+      "title": "Frameworks & runtimes",
+      "description": "Architecture de composants, rendu serveur et systèmes React full-stack",
+      "items": {
+        "React 19": {
+          "name": "React 19",
+          "role": "Architecture declarative & hooks personnalisés",
+          "tags": ["Hooks", "Context API", "Server Components", "Mode concurrent"]
+        },
+        "Next.js 15 (App Router)": {
+          "name": "Next.js 15 (App Router)",
+          "role": "Framework React full-stack avec RSC et streaming",
+          "tags": ["App Router", "RSC Streaming", "Route Handlers", "Turbopack"]
+        },
+        "Vite": {
+          "name": "Vite",
+          "role": "Outil de build rapide & HMR",
+          "tags": ["ESM Dev Server", "Rollup Bundler", "Fast HMR", "Assets optimisés"]
+        }
+      }
+    },
+    "Styling & Design Systems": {
+      "title": "Styles & systèmes de design",
+      "description": "CSS orienté utilité, primitives accessibles et thèmes fluides",
+      "items": {
+        "Tailwind CSS": {
+          "name": "Tailwind CSS",
+          "role": "Styling orienté utility-first avec tokens de design",
+          "tags": ["Design Tokens", "JIT Engine", "Dark Mode", "Responsive Prefixes"]
+        },
+        "shadcn/ui & Radix": {
+          "name": "shadcn/ui & Radix",
+          "role": "Primitives accessibles non stylées pour systèmes UI",
+          "tags": ["WAI-ARIA", "Keyboard Navigation", "Composants composés", "Dialogs"]
+        },
+        "Lucide Icons": {
+          "name": "Lucide Icons",
+          "role": "Système d'icônes SVG propre et cohérent",
+          "tags": ["Tree-Shakeable", "Dynamic Sizing", "Stroke Weights", "SVG Primitives"]
+        }
+      }
+    },
+    "State & Data Synchronization": {
+      "title": "État & synchronisation de données",
+      "description": "État client prévisible, validation de formulaires et cache de requêtes",
+      "items": {
+        "Zustand": {
+          "name": "Zustand",
+          "role": "Gestion d'état globale minimaliste & hook-based",
+          "tags": ["Store Slices", "Middleware", "Persist Store", "Zero Boilerplate"]
+        },
+        "TanStack Query": {
+          "name": "TanStack Query",
+          "role": "Récupération de données asynchrones déclarative & cache",
+          "tags": ["Query Caching", "Optimistic Updates", "Auto Refetch", "Mutations"]
+        },
+        "React Hook Form & Zod": {
+          "name": "React Hook Form & Zod",
+          "role": "Moteur de validation performant & typé",
+          "tags": ["Schema Validation", "Dirty State", "Error Handling", "Field Arrays"]
+        }
+      }
+    },
+    "Motion Physics & Micro-Interactions": {
+      "title": "Physique du mouvement & micro-interactions",
+      "description": "Animations accélérées par hardware, cards 3D et feedback gestuel",
+      "items": {
+        "Framer Motion": {
+          "name": "Framer Motion",
+          "role": "Bibliothèque de motion prête pour la production",
+          "tags": ["Layout Animations", "Spring Physics", "Keyframes", "Exit Animations"]
+        },
+        "3D Interactive Tilt": {
+          "name": "Inclinaison 3D interactive",
+          "role": "Profondeur de mouvement souris spatial",
+          "tags": ["Preserve-3D", "TranslateZ Parallax", "Spring Damping", "Hover Physics"]
+        },
+        "Micro-Interactions": {
+          "name": "Micro-interactions",
+          "role": "Redimensionnement tactile, feedback état actif & badges",
+          "tags": ["Transform GPU", "Scale-105", "Pulse Indicator", "Smooth Easing"]
+        }
+      }
+    },
+    "Tooling, Quality & Testing": {
+      "title": "Outils, qualité & test",
+      "description": "Contrôle qualité, tests unitaires & audits performance web",
+      "items": {
+        "ESLint & Prettier": {
+          "name": "ESLint & Prettier",
+          "role": "Lint automatisé & formatage déterministe",
+          "tags": ["Règles TypeScript", "Husky Pre-commit", "Lint-Staged", "Clean Code"]
+        },
+        "Jest & React Testing Library": {
+          "name": "Jest & React Testing Library",
+          "role": "Sous suites de comportements composants & interactions",
+          "tags": ["User Events", "Snapshot Tests", "DOM Queries", "Coverage"]
+        },
+        "Lighthouse & Web Vitals": {
+          "name": "Lighthouse & Web Vitals",
+          "role": "Audits performance, accessibilité, SEO et bonnes pratiques",
+          "tags": ["100/100 Scores", "Zero CLS", "Sub-second LCP", "Fast TBT"]
+        }
+      }
+    }
+  },
+  "systems": {
+    "title": "Systèmes UI & showcases en production",
+    "nodes": "8 showcases actifs",
+    "react": {
+      "name": "Vue espace React",
+      "desc": "Design composants, pipelines états et hooks",
+      "perf": "Score 100%"
+    },
+    "nextjs": {
+      "name": "Espace Next.js App Router",
+      "desc": "Streaming RSC, génération statique & route handlers",
+      "perf": "LCP 0.8s"
+    },
+    "typescript": {
+      "name": "Espace TypeScript sécurisé",
+      "desc": "Interfaces strictes, unions discriminées & génériques",
+      "perf": "Zero Errors"
+    },
+    "tailwind": {
+      "name": "Système design Tailwind",
+      "desc": "Tokens design utility & thèmes sombres/clair",
+      "perf": "Zero Runtime"
+    },
+    "html": {
+      "name": "HTML sémantique & CSS",
+      "desc": "Markup accessible & grilles responsives fluides",
+      "perf": "A11y 100%"
+    },
+    "tilt": {
+      "name": "Cartes 3D interactives",
+      "desc": "Profils parallax spatial & moteur hover physics",
+      "perf": "60 FPS"
+    },
+    "palette": {
+      "name": "Navigation interactive & palette commande",
+      "desc": "Palette accessible clavier & recherche rapide",
+      "perf": "Entrée < 5ms"
+    },
+    "i18n": {
+      "name": "Switch de langue temps réel",
+      "desc": "i18n multilingue dynamique sans rechargement",
+      "perf": "Zero Shift"
+    }
+  },
+  "standards": {
+    "accessibility": {
+      "title": "Accessibilité stricte (WCAG 2.1 AA)",
+      "desc": "États focus navigables clavier, labels ARIA, éléments semantique landmarks, contrastes élevés."
+    },
+    "vitals": {
+      "title": "Optimisation Core Web Vitals",
+      "desc": "LCP sub-second, zero layout shift (CLS: 0.00), optimisation images responsive et INP rapide."
+    },
+    "scalability": {
+      "title": "Scalabilité composants & Atomic Design",
+      "desc": "Composants à responsabilité unique, patterns composés, découplage hooks custom et réutilisabilité."
+    },
+    "typesafe": {
+      "title": "Contracts typés & validation",
+      "desc": "Props TypeScript strictes, aucune assertion any, validations Zod & sanity runtime."
+    }
+  },
+  "explore": {
+    "title": "Explorer les espaces frontend individuels",
+    "description": "Approfondissez la télémétrie UI dédiée, les pipelines de rendu et l'architecture composants pour React, Next.js, TypeScript et Tailwind CSS."
+  },
+  "metrics": {
+    "coreWebVitals": {
+      "title": "Core Web Vitals",
+      "live": "Télémétrie live",
+      "renderFramerate": "Fréquence rendu",
+      "lcp": "Plus grand contenu visible (LCP)",
+      "cls": "Décalage cumulatif de layout (CLS)",
+      "inp": "Interaction vers prochain paint (INP)",
+      "dom": "Nœuds DOM virtuels actifs",
+      "overallHealth": "Santé UX globale",
+      "overallHealthScore": "100 / 100 (Optimal)"
+    }
+  },
+  "simulatedEvents": {
+    "page-navigation": {
+      "action": "Navigation de route & streaming RSC",
+      "target": "Router.push(\"/skills/frontend/react\")",
+      "description": "Transition instantanée client avec chargement progressif de React Suspense"
+    },
+    "theme-toggle": {
+      "action": "Changement de thème & propagation des tokens",
+      "target": "ThemeContext.setTheme(\"dark\")",
+      "description": "Échange instantané des variables CSS sans déplacement layout ni flash visuel"
+    },
+    "filter-state": {
+      "action": "Filtre dynamique & réconciliation d'état",
+      "target": "useFilterStore.setState({ category })",
+      "description": "Mise à jour Zustand déclenchant diff locale du DOM virtuel"
+    },
+    "form-validation": {
+      "action": "Validation de formulaire & UI optimiste",
+      "target": "form.handleSubmit(onSend)",
+      "description": "Validation schéma Zod, mise à jour immédiate optimiste et appel server action"
+    }
+  },
+  "pipeline": {
+    "steps": {
+      "route": {
+        "title": "01. Entrée route & streaming RSC",
+        "detail": "Flux serveur App Router Next.js sur HTTP"
+      },
+      "hydration": {
+        "title": "02. Hydratation & initialisation état",
+        "detail": "Hydratation store Zustand et liaison contexte hook React"
+      },
+      "diff": {
+        "title": "03. Diffing DOM virtuel & réconciliation",
+        "detail": "Diff de l'arbre composants avec garde useMemo/useCallback"
+      },
+      "dom": {
+        "title": "04. Commit DOM & calcul styles",
+        "detail": "Classes utilitaires Tailwind évaluées sans overhead runtime"
+      },
+      "motion": {
+        "title": "05. Physique mouvement & gestes",
+        "detail": "Accélération GPU Framer Motion sur couches transform"
+      },
+      "paint": {
+        "title": "06. UI interactive 60fps",
+        "detail": "Décalage layout nul (CLS: 0.00) et préparation instantanée input (INP: 8ms)"
+      }
+    }
+  },
+  "metadata": {
+    "clientRuntime": "Runtime client",
+    "uiEventRenderSimulator": "Simulateur d'événements UI & rendu",
+    "clickToSimulate": "Cliquez pour simuler",
+    "renderingPipelineLifecycle": "Cycle de rendu",
+    "renderingFrame": "Rendu du cadre...",
+    "eventTarget": "Cible de l'événement :"
+  }
+}

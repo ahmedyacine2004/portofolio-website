@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
@@ -204,6 +205,7 @@ interface ArchitectureTier {
   badge: string;
   icon: LucideIcon;
   components: {
+    key: string;
     name: string;
     role: string;
     protocolOrTech: string;
@@ -221,21 +223,25 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
     icon: Shield,
     components: [
       {
+        key: 'nginxReverseProxy',
         name: 'Nginx Reverse Proxy',
         role: 'Load Balancing & SSL',
         protocolOrTech: 'HTTPS / TLS 1.3',
       },
       {
+        key: 'rateLimiterHelmet',
         name: 'Rate Limiter & Helmet',
         role: 'DDoS & Header Shield',
         protocolOrTech: 'Express RateLimit',
       },
       {
+        key: 'jwtOAuthGuard',
         name: 'JWT & OAuth Guard',
         role: 'Identity Verification',
         protocolOrTech: 'Passport / JWT RS256',
       },
       {
+        key: 'corsOriginValidation',
         name: 'CORS & Origin Validation',
         role: 'Cross-Origin Filter',
         protocolOrTech: 'Strict White-list',
@@ -252,21 +258,25 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
     icon: Network,
     components: [
       {
+        key: 'restfulApiRouter',
         name: 'RESTful API Router',
         role: 'Resource Handlers',
         protocolOrTech: 'JSON / OpenAPI 3.0',
       },
       {
+        key: 'websocketGateway',
         name: 'WebSocket Gateway',
         role: 'Bi-directional Real-Time',
         protocolOrTech: 'Socket.io / WSS',
       },
       {
+        key: 'dtoValidationPipe',
         name: 'DTO Validation Pipe',
         role: 'Payload Sanitization',
         protocolOrTech: 'class-validator / Zod',
       },
       {
+        key: 'globalExceptionFilter',
         name: 'Global Exception Filter',
         role: 'Standardized Error Envelopes',
         protocolOrTech: 'RFC 7807',
@@ -283,21 +293,25 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
     icon: Workflow,
     components: [
       {
+        key: 'nestjsDependencyInjection',
         name: 'NestJS Dependency Injection',
         role: 'Inversion of Control',
         protocolOrTech: 'Singleton / Scoped',
       },
       {
+        key: 'businessRuleEngine',
         name: 'Business Rule Engine',
         role: 'Transactional Logic',
         protocolOrTech: 'TypeScript Clean Code',
       },
       {
+        key: 'eventEmittersListeners',
         name: 'Event Emitters & Listeners',
         role: 'Decoupled State Broadcast',
         protocolOrTech: 'EventEmitter2',
       },
       {
+        key: 'interceptorAuditTrail',
         name: 'Interceptor & Audit Trail',
         role: 'Execution Logging',
         protocolOrTech: 'Winston Logger',
@@ -314,21 +328,25 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
     icon: Database,
     components: [
       {
+        key: 'mongodbMongoose',
         name: 'MongoDB & Mongoose',
         role: 'Flexible Document Store',
         protocolOrTech: 'Atlas / Replica Sets',
       },
       {
+        key: 'postgresqlTypeorm',
         name: 'PostgreSQL & TypeORM',
         role: 'ACID Relational Data',
         protocolOrTech: 'Connection Pooling',
       },
       {
+        key: 'redisCacheLayer',
         name: 'Redis Cache Layer',
         role: 'Sub-millisecond Read Cache',
         protocolOrTech: 'Redis In-Memory',
       },
       {
+        key: 'databaseMigrations',
         name: 'Database Migrations',
         role: 'Schema Versioning',
         protocolOrTech: 'Automated Scripts',
@@ -370,6 +388,7 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
 
 // Backend Technology Clusters (Comprehensive Categorization)
 interface TechClusterItem {
+  key?: string;
   name: string;
   role: string;
   slug?: string;
@@ -379,6 +398,7 @@ interface TechClusterItem {
 }
 
 interface TechClusterCategory {
+  id?: string;
   title: string;
   description: string;
   icon: LucideIcon;
@@ -387,11 +407,13 @@ interface TechClusterCategory {
 
 const TECH_CLUSTERS: TechClusterCategory[] = [
   {
+    id: 'languagesRuntimes',
     title: 'Languages & Runtimes',
     description: 'Core runtime environments and strictly typed languages',
     icon: Cpu,
     items: [
       {
+        key: 'nodejs',
         name: 'Node.js',
         role: 'Non-blocking event loop runtime',
         slug: 'nodejs',
@@ -400,6 +422,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Event Loop', 'Async/Await', 'Streams', 'V8 Engine'],
       },
       {
+        key: 'typescript',
         name: 'TypeScript',
         role: 'Static type-safety & interfaces',
         level: 'Expert',
@@ -407,6 +430,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Generics', 'Strict Mode', 'Decorators', 'Utility Types'],
       },
       {
+        key: 'javaSpring',
         name: 'Java (Spring)',
         role: 'Enterprise backend & OOP',
         slug: 'spring-boot',
@@ -417,11 +441,13 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
     ],
   },
   {
+    id: 'frameworksEngines',
     title: 'Frameworks & Engines',
     description: 'Server frameworks providing modularity and enterprise structure',
     icon: ServerCog,
     items: [
       {
+        key: 'nestjs',
         name: 'NestJS',
         role: 'Enterprise architecture & DI framework',
         slug: 'nestjs',
@@ -430,6 +456,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Modules', 'Controllers', 'Guards', 'Interceptors'],
       },
       {
+        key: 'express',
         name: 'Express.js',
         role: 'Minimalist routing & middleware engine',
         slug: 'express',
@@ -438,6 +465,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Middleware Chain', 'Fast Routing', 'Custom Handlers'],
       },
       {
+        key: 'springBoot',
         name: 'Spring Boot',
         role: 'Java enterprise service engine',
         slug: 'spring-boot',
@@ -448,11 +476,13 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
     ],
   },
   {
+    id: 'databasesOrms',
     title: 'Databases & ORMs',
     description: 'Document and relational data models with optimized access patterns',
     icon: Database,
     items: [
       {
+        key: 'mongodbMongoose',
         name: 'MongoDB & Mongoose',
         role: 'NoSQL document database & ODM schema modeling',
         level: 'Expert',
@@ -460,6 +490,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Aggregation Pipeline', 'Indexes', 'Schema Validation'],
       },
       {
+        key: 'postgresql',
         name: 'PostgreSQL',
         role: 'ACID relational SQL database with complex queries',
         level: 'Advanced',
@@ -467,6 +498,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Transactions', 'Foreign Keys', 'Connection Pool'],
       },
       {
+        key: 'redis',
         name: 'Redis',
         role: 'In-memory key-value store for caching & sessions',
         level: 'Advanced',
@@ -474,6 +506,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Key Expiry', 'Pub/Sub', 'Queue Backend', 'Cache Hit'],
       },
       {
+        key: 'typeormPrisma',
         name: 'TypeORM / Prisma',
         role: 'Type-safe database abstraction & migration tooling',
         level: 'Advanced',
@@ -483,11 +516,13 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
     ],
   },
   {
+    id: 'apisProtocolsArchitecture',
     title: 'APIs, Protocols & Architecture',
     description: 'API design standards, streaming, and real-time transports',
     icon: Network,
     items: [
       {
+        key: 'restfulArchitecture',
         name: 'RESTful Architecture',
         role: 'Resource-oriented API design and status code contracts',
         level: 'Expert',
@@ -495,6 +530,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['HATEOAS', 'Idempotency', 'Clean URLs', 'JSON Schemas'],
       },
       {
+        key: 'webSocketsSocketio',
         name: 'WebSockets (Socket.io)',
         role: 'Full-duplex real-time communication channels',
         level: 'Advanced',
@@ -502,6 +538,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Rooms', 'Event Broadcasts', 'Heartbeats', 'Low Latency'],
       },
       {
+        key: 'openApiSwagger',
         name: 'OpenAPI & Swagger',
         role: 'Interactive API documentation & automated contracts',
         level: 'Expert',
@@ -509,6 +546,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Swagger UI', 'DTO Annotations', 'Endpoint Specs'],
       },
       {
+        key: 'microservicesDesign',
         name: 'Microservices Design',
         role: 'Decoupled domain services and service boundaries',
         level: 'Advanced',
@@ -518,11 +556,13 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
     ],
   },
   {
+    id: 'authenticationSecurity',
     title: 'Authentication & Security',
     description: 'Zero-trust perimeter, identity verification, and encryption',
     icon: Lock,
     items: [
       {
+        key: 'jwtTokenRotation',
         name: 'JWT & Token Rotation',
         role: 'Stateless access & refresh token authentication flow',
         slug: 'jwt',
@@ -531,6 +571,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['RS256/HS256', 'Refresh Rotation', 'Claims Payload'],
       },
       {
+        key: 'rbac',
         name: 'Role-Based Access (RBAC)',
         role: 'Fine-grained route & entity permission guards',
         level: 'Expert',
@@ -538,6 +579,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Custom Decorators', 'Role Hierarchy', 'Permission Matrix'],
       },
       {
+        key: 'bcryptDataEncryption',
         name: 'Bcrypt & Data Encryption',
         role: 'Salted password hashing and sensitive data protection',
         level: 'Expert',
@@ -545,6 +587,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Salt Rounds', 'Hash Verification', 'Env Secrets'],
       },
       {
+        key: 'securityShieldHelmetCors',
         name: 'Security Shield (Helmet & CORS)',
         role: 'Hardened HTTP headers, XSS, and clickjacking protection',
         level: 'Expert',
@@ -554,11 +597,13 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
     ],
   },
   {
+    id: 'devopsCicdTesting',
     title: 'DevOps, CI/CD & Testing',
     description: 'Containerization, automated deployment, and test coverage',
     icon: Terminal,
     items: [
       {
+        key: 'dockerContainers',
         name: 'Docker Containers',
         role: 'Multi-stage builds and isolated container environments',
         level: 'Advanced',
@@ -566,6 +611,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Dockerfile', 'Docker Compose', 'Alpine Images'],
       },
       {
+        key: 'nginxReverseProxyDevOps',
         name: 'Nginx Reverse Proxy',
         role: 'High-performance web server & SSL terminator',
         level: 'Advanced',
@@ -573,6 +619,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Gzip Compression', 'Proxy Pass', 'Custom Headers'],
       },
       {
+        key: 'jestSupertest',
         name: 'Jest & Supertest',
         role: 'Unit and end-to-end integration test suites',
         level: 'Advanced',
@@ -580,6 +627,7 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         tags: ['Mocking', 'API Integration', 'Code Coverage'],
       },
       {
+        key: 'githubActionsCicd',
         name: 'GitHub Actions CI/CD',
         role: 'Automated build, lint, test, and deploy pipelines',
         level: 'Advanced',
@@ -639,12 +687,288 @@ const SIMULATED_ROUTES = [
 ];
 
 export default function BackendSkillsPage() {
+  const { skillPageText } = useTranslation();
   const [selectedTier, setSelectedTier] = useState<string>('gateway');
   const [activeRouteIndex, setActiveRouteIndex] = useState<number>(0);
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
   const [activePipelineStep, setActivePipelineStep] = useState<number>(5);
 
-  const currentRoute = SIMULATED_ROUTES[activeRouteIndex];
+  const translatedSimulatedRoutes = SIMULATED_ROUTES.map((route) => ({
+    ...route,
+    handler: skillPageText(`backend`, `simulatedRoutes.${route.id}.handler`, route.handler),
+    description: skillPageText(
+      `backend`,
+      `simulatedRoutes.${route.id}.description`,
+      route.description,
+    ),
+  }));
+
+  const currentRoute = translatedSimulatedRoutes[activeRouteIndex] ?? translatedSimulatedRoutes[0];
+
+  const translatedPipelineSteps = [
+    {
+      title: skillPageText('backend', 'pipeline.steps.ingress.title', '01. Ingress & Rate Limiter'),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.ingress.detail',
+        'Header parsing, DDoS shield, and origin validation',
+      ),
+      time: '< 1ms',
+    },
+    {
+      title: skillPageText('backend', 'pipeline.steps.security.title', '02. Security & Auth Guard'),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.security.detail',
+        'Passport JWT verification and RBAC role permission check',
+      ),
+      time: '2ms',
+    },
+    {
+      title: skillPageText('backend', 'pipeline.steps.route.title', '03. Route Controller Match'),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.route.detail',
+        `${currentRoute.handler} execution context`,
+      ),
+      time: '1ms',
+    },
+    {
+      title: skillPageText(
+        'backend',
+        'pipeline.steps.domain.title',
+        '04. Domain Service & DTO Validation',
+      ),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.domain.detail',
+        'Business rules execution and sanitized payload schema',
+      ),
+      time: '3ms',
+    },
+    {
+      title: skillPageText(
+        'backend',
+        'pipeline.steps.persistence.title',
+        '05. Persistence & Cache Read/Write',
+      ),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.persistence.detail',
+        `MongoDB Atlas Query & ${currentRoute.cache}`,
+      ),
+      time: '12ms',
+    },
+    {
+      title: skillPageText(
+        'backend',
+        'pipeline.steps.response.title',
+        '06. Response Serializer & Egress',
+      ),
+      detail: skillPageText(
+        'backend',
+        'pipeline.steps.response.detail',
+        `Serialized JSON Envelope (${currentRoute.size})`,
+      ),
+      time: currentRoute.latency,
+    },
+  ];
+
+  const translatedArchitectureTiers = ARCHITECTURE_TIERS.map((tier) => ({
+    ...tier,
+    title: skillPageText(`backend`, `architecture.tiers.${tier.id}.title`, tier.title),
+    subtitle: skillPageText(`backend`, `architecture.tiers.${tier.id}.subtitle`, tier.subtitle),
+    badge: skillPageText(`backend`, `architecture.tiers.${tier.id}.badge`, tier.badge),
+    components: tier.components.map((component) => ({
+      ...component,
+      name: skillPageText(
+        `backend`,
+        `architecture.tiers.${tier.id}.components.${component.key}.name`,
+        component.name,
+      ),
+      role: skillPageText(
+        `backend`,
+        `architecture.tiers.${tier.id}.components.${component.key}.role`,
+        component.role,
+      ),
+      protocolOrTech: skillPageText(
+        `backend`,
+        `architecture.tiers.${tier.id}.components.${component.key}.protocolOrTech`,
+        component.protocolOrTech,
+      ),
+    })),
+  }));
+
+  const translatedTechClusters = TECH_CLUSTERS.map((cluster) => ({
+    ...cluster,
+    title: skillPageText(`backend`, `technologyClusters.${cluster.id}.title`, cluster.title),
+    description: skillPageText(
+      `backend`,
+      `technologyClusters.${cluster.id}.description`,
+      cluster.description,
+    ),
+    items: cluster.items.map((item) => ({
+      ...item,
+      name: skillPageText(
+        `backend`,
+        `technologyClusters.${cluster.id}.items.${item.key}.name`,
+        item.name,
+      ),
+      role: skillPageText(
+        `backend`,
+        `technologyClusters.${cluster.id}.items.${item.key}.role`,
+        item.role,
+      ),
+      tags: item.tags.map((tag) =>
+        skillPageText(
+          `backend`,
+          `technologyClusters.${cluster.id}.items.${item.key}.tags.${tag}`,
+          tag,
+        ),
+      ),
+    })),
+  }));
+
+  const translatedMetrics = {
+    requestsHandled: skillPageText('backend', 'metrics.requestsHandled', 'Requests Handled'),
+    p99: skillPageText('backend', 'metrics.p99', 'P99 Response Time'),
+    errorRate: skillPageText('backend', 'metrics.errorRate', 'Error Rate (5xx)'),
+    throughput: skillPageText('backend', 'metrics.throughput', 'Throughput'),
+    dataTransferred: skillPageText('backend', 'metrics.dataTransferred', 'Data Transferred'),
+    cacheHitRatio: skillPageText('backend', 'metrics.cacheHitRatio', 'Cache Hit Ratio'),
+    sample: skillPageText('backend', 'metrics.sample', '1s sample'),
+  };
+
+  const translatedServices = [
+    {
+      name: skillPageText('backend', 'services.auth.name', 'Authentication Service'),
+      path: '/api/v1/auth',
+      desc: skillPageText('backend', 'services.auth.desc', 'JWT auth, refresh tokens, role guards'),
+      latency: '42ms',
+      icon: Lock,
+    },
+    {
+      name: skillPageText('backend', 'services.projects.name', 'Projects Microservice'),
+      path: '/api/v1/projects',
+      desc: skillPageText(
+        'backend',
+        'services.projects.desc',
+        'Project catalog, tags, and media links',
+      ),
+      latency: '24ms',
+      icon: FolderGit2,
+    },
+    {
+      name: skillPageText('backend', 'services.skills.name', 'Skills Engine Service'),
+      path: '/api/v1/skills',
+      desc: skillPageText(
+        'backend',
+        'services.skills.desc',
+        'Skills workspace and metadata retrieval',
+      ),
+      latency: '18ms',
+      icon: Code2,
+    },
+    {
+      name: skillPageText('backend', 'services.experience.name', 'Experience & Milestones'),
+      path: '/api/v1/experience',
+      desc: skillPageText(
+        'backend',
+        'services.experience.desc',
+        'Timeline events and verified certificates',
+      ),
+      latency: '20ms',
+      icon: GraduationCap,
+    },
+    {
+      name: skillPageText('backend', 'services.contact.name', 'Contact & Mailer Dispatch'),
+      path: '/api/v1/contact',
+      desc: skillPageText(
+        'backend',
+        'services.contact.desc',
+        'BullMQ queue and Resend email worker',
+      ),
+      latency: '35ms',
+      icon: MessageSquare,
+    },
+    {
+      name: skillPageText('backend', 'services.ai.name', 'AI Assistant Stream'),
+      path: '/api/v1/ai',
+      desc: skillPageText('backend', 'services.ai.desc', 'Streaming OpenAI agent integrations'),
+      latency: '68ms',
+      icon: Zap,
+    },
+    {
+      name: skillPageText('backend', 'services.telemetry.name', 'Telemetry & Analytics'),
+      path: '/api/v1/analytics',
+      desc: skillPageText(
+        'backend',
+        'services.telemetry.desc',
+        'Real-time visitor logs and event stream',
+      ),
+      latency: '14ms',
+      icon: Activity,
+    },
+    {
+      name: skillPageText('backend', 'services.media.name', 'Media & File Storage'),
+      path: '/api/v1/media',
+      desc: skillPageText(
+        'backend',
+        'services.media.desc',
+        'Cloudinary CDN and asset transformations',
+      ),
+      latency: '28ms',
+      icon: HardDrive,
+    },
+  ];
+
+  const translatedEngineeringPrinciples = [
+    {
+      title: skillPageText(
+        'backend',
+        'principles.availability.title',
+        'High Availability & Resilience',
+      ),
+      desc: skillPageText(
+        'backend',
+        'principles.availability.desc',
+        'Graceful shutdown handlers, health checks, circuit breakers, and database replica recovery.',
+      ),
+    },
+    {
+      title: skillPageText('backend', 'principles.security.title', 'Zero-Trust Security Perimeter'),
+      desc: skillPageText(
+        'backend',
+        'principles.security.desc',
+        'Strict DTO validation, parameterized SQL/NoSQL queries, JWT rotation, and security headers.',
+      ),
+    },
+    {
+      title: skillPageText('backend', 'principles.data.title', 'Scalable Data Modeling'),
+      desc: skillPageText(
+        'backend',
+        'principles.data.desc',
+        'Compound index strategy, connection pooling, cache-aside Redis patterns, and normalized schemas.',
+      ),
+    },
+    {
+      title: skillPageText('backend', 'principles.architecture.title', 'Clean Architecture & DI'),
+      desc: skillPageText(
+        'backend',
+        'principles.architecture.desc',
+        'Modular boundary separation, dependency inversion, testable unit services, and single-responsibility.',
+      ),
+    },
+  ];
+
+  const translatedExplore = {
+    title: skillPageText('backend', 'explore.title', 'Explore Individual Backend Workspaces'),
+    description: skillPageText(
+      'backend',
+      'explore.description',
+      'Deep dive into dedicated runtime telemetry and architecture details for NestJS, Node.js, Express, JWT, and Spring Boot.',
+    ),
+  };
 
   // Function to simulate a live request execution
   const triggerSimulation = (index: number) => {
@@ -679,16 +1003,19 @@ export default function BackendSkillsPage() {
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-[28px]">
-              BACKEND WORKSPACE
+              {skillPageText('backend', 'pageTitle', 'BACKEND WORKSPACE')}
             </h1>
             <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-0.5 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
               <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-              Production Online
+              {skillPageText('backend', 'status', 'Production Online')}
             </span>
           </div>
           <p className="mt-1 max-w-2xl font-inter text-[13px] text-muted-foreground">
-            Architecting robust, secure, and scalable backend ecosystems. Engineered with NestJS,
-            Node.js, TypeScript, MongoDB, and Redis.
+            {skillPageText(
+              'backend',
+              'description',
+              'Architecting robust, secure, and scalable backend ecosystems. Engineered with NestJS, Node.js, TypeScript, MongoDB, and Redis.',
+            )}
           </p>
         </div>
 
@@ -700,7 +1027,9 @@ export default function BackendSkillsPage() {
               <span className="font-inter text-[12px] font-bold leading-none">
                 Node.js / NestJS
               </span>
-              <span className="text-[10px] text-muted-foreground">Runtime Engine</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('backend', 'runtimeEngine', 'Runtime Engine')}
+              </span>
             </div>
           </div>
 
@@ -708,7 +1037,9 @@ export default function BackendSkillsPage() {
             <Globe className="size-4 text-emerald-600 dark:text-emerald-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">Algeria-East</span>
-              <span className="text-[10px] text-muted-foreground">Primary Region</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('backend', 'primaryRegion', 'Primary Region')}
+              </span>
             </div>
           </div>
 
@@ -716,7 +1047,9 @@ export default function BackendSkillsPage() {
             <Clock className="size-4 text-emerald-600 dark:text-emerald-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">99.99%</span>
-              <span className="text-[10px] text-muted-foreground">System Uptime</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('backend', 'systemUptime', 'System Uptime')}
+              </span>
             </div>
           </div>
 
@@ -724,7 +1057,9 @@ export default function BackendSkillsPage() {
             <Radio className="size-4 text-emerald-600 dark:text-emerald-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[12px] font-bold leading-none">4000/TCP</span>
-              <span className="text-[10px] text-muted-foreground">Active Listener</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('backend', 'activeListener', 'Active Listener')}
+              </span>
             </div>
           </div>
         </div>
@@ -742,14 +1077,20 @@ export default function BackendSkillsPage() {
               <div className="flex items-center gap-2">
                 <Terminal className="size-4 text-emerald-600 dark:text-emerald-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  HTTP Request Simulator
+                  {skillPageText(
+                    'backend',
+                    'metadata.httpRequestSimulator',
+                    'HTTP Request Simulator',
+                  )}
                 </h2>
               </div>
-              <span className="font-mono text-[9px] text-muted-foreground">Click to dispatch</span>
+              <span className="font-mono text-[9px] text-muted-foreground">
+                {skillPageText('backend', 'metadata.clickToDispatch', 'Click to dispatch')}
+              </span>
             </div>
 
             <div className="space-y-2">
-              {SIMULATED_ROUTES.map((route, idx) => {
+              {translatedSimulatedRoutes.map((route, idx) => {
                 const isSelected = activeRouteIndex === idx;
                 return (
                   <button
@@ -806,49 +1147,19 @@ export default function BackendSkillsPage() {
             <div className="flex items-center gap-2">
               <Workflow className="size-4 text-emerald-600 dark:text-emerald-400" />
               <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                Processing Pipeline Lifecycle
+                {skillPageText('backend', 'metadata.requestPipeline', 'Request Pipeline')}
               </h2>
             </div>
             {isSimulating && (
               <span className="flex items-center gap-1 font-mono text-[10px] text-emerald-600 dark:text-emerald-400 animate-pulse">
-                <RefreshCw className="size-3 animate-spin" /> Tracing Request...
+                <RefreshCw className="size-3 animate-spin" />{' '}
+                {skillPageText('backend', 'metadata.renderingFrame', 'Processing route...')}
               </span>
             )}
           </div>
 
           <div className="relative space-y-3 pl-4 before:absolute before:left-1.5 before:top-2 before:h-[88%] before:w-0.5 before:bg-emerald-500/30">
-            {[
-              {
-                title: '01. Ingress & Rate Limiter',
-                detail: 'Header parsing, DDoS shield, and origin validation',
-                time: '< 1ms',
-              },
-              {
-                title: '02. Security & Auth Guard',
-                detail: 'Passport JWT verification and RBAC role permission check',
-                time: '2ms',
-              },
-              {
-                title: '03. Route Controller Match',
-                detail: `${currentRoute.handler} execution context`,
-                time: '1ms',
-              },
-              {
-                title: '04. Domain Service & DTO Validation',
-                detail: 'Business rules execution and sanitized payload schema',
-                time: '3ms',
-              },
-              {
-                title: '05. Persistence & Cache Read/Write',
-                detail: `MongoDB Atlas Query & ${currentRoute.cache}`,
-                time: '12ms',
-              },
-              {
-                title: '06. Response Serializer & Egress',
-                detail: `Serialized JSON Envelope (${currentRoute.size})`,
-                time: currentRoute.latency,
-              },
-            ].map((step, idx) => {
+            {translatedPipelineSteps.map((step, idx) => {
               const isPastOrCurrent = activePipelineStep >= idx;
               return (
                 <div key={idx} className="relative flex items-start justify-between">
@@ -886,17 +1197,17 @@ export default function BackendSkillsPage() {
               <div className="flex items-center gap-2">
                 <Activity className="size-4 text-emerald-600 dark:text-emerald-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  Telemetry Gauges
+                  {skillPageText('backend', 'telemetry.gauges', 'Telemetry Gauges')}
                 </h2>
               </div>
               <span className="font-mono text-[9px] text-emerald-600 dark:text-emerald-400">
-                1s sample
+                {translatedMetrics.sample}
               </span>
             </div>
 
             <div className="space-y-2">
               <LiveMetricRow
-                label="Requests Handled"
+                label={translatedMetrics.requestsHandled}
                 type="requests"
                 baseline={14}
                 variance={10}
@@ -904,7 +1215,7 @@ export default function BackendSkillsPage() {
                 color="#10b981"
               />
               <LiveMetricRow
-                label="P99 Response Time"
+                label={translatedMetrics.p99}
                 type="latency"
                 baseline={18}
                 variance={8}
@@ -912,7 +1223,7 @@ export default function BackendSkillsPage() {
                 color="#10b981"
               />
               <LiveMetricRow
-                label="Error Rate (5xx)"
+                label={translatedMetrics.errorRate}
                 type="error"
                 baseline={24}
                 variance={0}
@@ -920,7 +1231,7 @@ export default function BackendSkillsPage() {
                 color="#10b981"
               />
               <LiveMetricRow
-                label="Throughput"
+                label={translatedMetrics.throughput}
                 type="throughput"
                 baseline={12}
                 variance={12}
@@ -928,7 +1239,7 @@ export default function BackendSkillsPage() {
                 color="#10b981"
               />
               <LiveMetricRow
-                label="Data Transferred"
+                label={translatedMetrics.dataTransferred}
                 type="data"
                 baseline={16}
                 variance={8}
@@ -939,7 +1250,7 @@ export default function BackendSkillsPage() {
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded-[8px] bg-emerald-500/10 p-2.5 font-mono text-[11px] text-emerald-700 dark:text-emerald-300">
-            <span>Cache Hit Ratio</span>
+            <span>{translatedMetrics.cacheHitRatio}</span>
             <span className="font-bold">96.4% (Redis)</span>
           </div>
         </motion.div>
@@ -955,12 +1266,19 @@ export default function BackendSkillsPage() {
             <div className="flex items-center gap-2">
               <Layers className="size-4 text-emerald-600 dark:text-emerald-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                5-Tier Backend Architecture Blueprint
+                {skillPageText(
+                  'backend',
+                  'architecture.title',
+                  '5-Tier Backend Architecture Blueprint',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              A layered breakdown of how client requests flow through our security, routing, domain,
-              persistence, and background worker tiers.
+              {skillPageText(
+                'backend',
+                'architecture.description',
+                'A layered breakdown of how client requests flow through our security, routing, domain, persistence, and background worker tiers.',
+              )}
             </p>
           </div>
 
@@ -987,7 +1305,7 @@ export default function BackendSkillsPage() {
 
         {/* Layer Stack Presentation */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {ARCHITECTURE_TIERS.map((tier) => {
+          {translatedArchitectureTiers.map((tier) => {
             const isSelected = selectedTier === tier.id;
             const Icon = tier.icon;
             return (
@@ -1048,17 +1366,20 @@ export default function BackendSkillsPage() {
         <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-center">
           <div>
             <h2 className="font-inter text-[18px] font-black uppercase tracking-tight text-foreground md:text-[20px]">
-              Backend Technology Clusters
+              {skillPageText('backend', 'technology.title', 'Backend Technology Clusters')}
             </h2>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Deep expertise organized by core server competencies, data engines, and DevOps
-              tooling.
+              {skillPageText(
+                'backend',
+                'technology.description',
+                'Deep expertise organized by core server competencies, data engines, and DevOps tooling.',
+              )}
             </p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {TECH_CLUSTERS.map((cluster) => {
+          {translatedTechClusters.map((cluster) => {
             const ClusterIcon = cluster.icon;
             return (
               <div
@@ -1147,73 +1468,20 @@ export default function BackendSkillsPage() {
             <div className="flex items-center gap-2">
               <Server className="size-4 text-emerald-600 dark:text-emerald-400" />
               <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                Active Production Endpoints &amp; Microservices
+                {skillPageText(
+                  'backend',
+                  'services.title',
+                  'Active Production Endpoints & Microservices',
+                )}
               </h3>
             </div>
             <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
-              8 Online Nodes
+              {skillPageText('backend', 'services.nodes', '8 Online Nodes')}
             </span>
           </div>
 
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {[
-              {
-                name: 'Authentication Service',
-                path: '/api/v1/auth',
-                desc: 'JWT auth, refresh tokens, role guards',
-                latency: '42ms',
-                icon: Lock,
-              },
-              {
-                name: 'Projects Microservice',
-                path: '/api/v1/projects',
-                desc: 'Project catalog, tags, and media links',
-                latency: '24ms',
-                icon: FolderGit2,
-              },
-              {
-                name: 'Skills Engine Service',
-                path: '/api/v1/skills',
-                desc: 'Skills workspace and metadata retrieval',
-                latency: '18ms',
-                icon: Code2,
-              },
-              {
-                name: 'Experience & Milestones',
-                path: '/api/v1/experience',
-                desc: 'Timeline events and verified certificates',
-                latency: '20ms',
-                icon: GraduationCap,
-              },
-              {
-                name: 'Contact & Mailer Dispatch',
-                path: '/api/v1/contact',
-                desc: 'BullMQ queue and Resend email worker',
-                latency: '35ms',
-                icon: MessageSquare,
-              },
-              {
-                name: 'AI Assistant Stream',
-                path: '/api/v1/ai',
-                desc: 'Streaming OpenAI agent integrations',
-                latency: '68ms',
-                icon: Zap,
-              },
-              {
-                name: 'Telemetry & Analytics',
-                path: '/api/v1/analytics',
-                desc: 'Real-time visitor logs and event stream',
-                latency: '14ms',
-                icon: Activity,
-              },
-              {
-                name: 'Media & File Storage',
-                path: '/api/v1/media',
-                desc: 'Cloudinary CDN and asset transformations',
-                latency: '28ms',
-                icon: HardDrive,
-              },
-            ].map((service, idx) => {
+            {translatedServices.map((service, idx) => {
               const Icon = service.icon;
               return (
                 <div
@@ -1266,24 +1534,7 @@ export default function BackendSkillsPage() {
           </div>
 
           <div className="space-y-3">
-            {[
-              {
-                title: 'High Availability & Resilience',
-                desc: 'Graceful shutdown handlers, health checks, circuit breakers, and database replica recovery.',
-              },
-              {
-                title: 'Zero-Trust Security Perimeter',
-                desc: 'Strict DTO validation, parameterized SQL/NoSQL queries, JWT rotation, and security headers.',
-              },
-              {
-                title: 'Scalable Data Modeling',
-                desc: 'Compound index strategy, connection pooling, cache-aside Redis patterns, and normalized schemas.',
-              },
-              {
-                title: 'Clean Architecture & DI',
-                desc: 'Modular boundary separation, dependency inversion, testable unit services, and single-responsibility.',
-              },
-            ].map((pillar, idx) => (
+            {translatedEngineeringPrinciples.map((pillar, idx) => (
               <div key={idx} className="rounded-[8px] border border-border/30 bg-muted/20 p-3">
                 <div className="flex items-center gap-2">
                   <div className="size-1.5 rounded-full bg-emerald-500" />
@@ -1311,12 +1562,9 @@ export default function BackendSkillsPage() {
           </div>
           <div>
             <h4 className="font-inter text-[13px] font-bold text-foreground">
-              Explore Individual Backend Workspaces
+              {translatedExplore.title}
             </h4>
-            <p className="text-[11px] text-muted-foreground">
-              Deep dive into dedicated runtime telemetry and architecture details for NestJS,
-              Node.js, Express, JWT, and Spring Boot.
-            </p>
+            <p className="text-[11px] text-muted-foreground">{translatedExplore.description}</p>
           </div>
         </div>
 

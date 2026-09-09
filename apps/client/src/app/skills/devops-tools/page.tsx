@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
@@ -425,16 +426,80 @@ const DEVOPS_CLUSTERS: DevOpsClusterCategory[] = [
 ];
 
 export default function DevOpsToolsSkillsPage() {
+  const { skillPageText, tArray } = useTranslation();
   const [selectedPresetIndex, setSelectedPresetIndex] = useState<number>(0);
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
   const [activeStageStep, setActiveStageStep] = useState<number>(5);
   const [selectedManifestId, setSelectedManifestId] = useState<string>('dockerfile');
 
-  const currentPreset = PIPELINE_PRESETS[selectedPresetIndex];
+  const translatedPipelinePresets = tArray('skillPages.devops-tools.pipelinePresets') as Array<{
+    id: string;
+    name: string;
+    trigger: string;
+    target: string;
+    duration: string;
+    stages: Array<{ name: string; action: string; time: string; log: string }>;
+  }>;
+
+  const translatedManifests = tArray('skillPages.devops-tools.manifests') as Array<{
+    id: string;
+    title: string;
+    filename: string;
+    lang: string;
+    desc: string;
+  }>;
+
+  const translatedClusters = tArray('skillPages.devops-tools.clusters') as Array<{
+    title: string;
+    description: string;
+    items: Array<{ name: string; role: string; tags: string[] }>;
+  }>;
+
+  const translatedTopology = tArray('skillPages.devops-tools.topology.steps') as Array<{
+    step: string;
+    title: string;
+    desc: string;
+  }>;
+
+  const translatedPresets = PIPELINE_PRESETS.map((preset, idx) => {
+    const localePreset = translatedPipelinePresets[idx] ?? {};
+    return {
+      ...preset,
+      name: localePreset.name ?? preset.name,
+      trigger: localePreset.trigger ?? preset.trigger,
+      target: localePreset.target ?? preset.target,
+      duration: localePreset.duration ?? preset.duration,
+      stages: preset.stages.map((stage, stageIndex) => {
+        const localeStage = localePreset.stages?.[stageIndex] ?? {};
+        return {
+          ...stage,
+          name: localeStage.name ?? stage.name,
+          action: localeStage.action ?? stage.action,
+          time: localeStage.time ?? stage.time,
+          log: localeStage.log ?? stage.log,
+        };
+      }),
+    };
+  });
+
+  const translatedManifestsMap = IAC_MANIFESTS.map((manifest, idx) => {
+    const localeManifest = translatedManifests[idx] ?? {};
+    return {
+      ...manifest,
+      title: localeManifest.title ?? manifest.title,
+      filename: localeManifest.filename ?? manifest.filename,
+      lang: localeManifest.lang ?? manifest.lang,
+      desc: localeManifest.desc ?? manifest.desc,
+    };
+  });
+
   const selectedManifest = useMemo(
-    () => IAC_MANIFESTS.find((m) => m.id === selectedManifestId) || IAC_MANIFESTS[0],
-    [selectedManifestId],
+    () =>
+      translatedManifestsMap.find((m) => m.id === selectedManifestId) || translatedManifestsMap[0],
+    [selectedManifestId, translatedManifestsMap],
   );
+
+  const currentPreset = translatedPresets[selectedPresetIndex] ?? translatedPresets[0];
 
   const runPipelineSimulation = (index: number) => {
     setSelectedPresetIndex(index);
@@ -468,16 +533,19 @@ export default function DevOpsToolsSkillsPage() {
         <div>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-[28px]">
-              DEVOPS &amp; TOOLS WORKSPACE
+              {skillPageText('devops-tools', 'pageTitle', 'DEVOPS & TOOLS WORKSPACE')}
             </h1>
             <span className="flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-0.5 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
               <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
-              Cluster Active (3 Nodes)
+              {skillPageText('devops-tools', 'status', 'Cluster Active (3 Nodes)')}
             </span>
           </div>
           <p className="mt-1 max-w-2xl font-inter text-[13px] text-muted-foreground">
-            Architecting robust CI/CD pipelines, container orchestration with Docker &amp;
-            Kubernetes, zero-downtime rolling updates, and cloud infrastructure.
+            {skillPageText(
+              'devops-tools',
+              'description',
+              'Architecting robust CI/CD pipelines, container orchestration with Docker & Kubernetes, zero-downtime rolling updates, and cloud infrastructure.',
+            )}
           </p>
         </div>
 
@@ -489,7 +557,9 @@ export default function DevOpsToolsSkillsPage() {
               <span className="font-inter text-[12px] font-bold leading-none">
                 Docker / K8s / Actions
               </span>
-              <span className="text-[10px] text-muted-foreground">Platform Tooling</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('devops-tools', 'platformTooling', 'Platform Tooling')}
+              </span>
             </div>
           </div>
 
@@ -497,7 +567,9 @@ export default function DevOpsToolsSkillsPage() {
             <Activity className="size-4 text-amber-600 dark:text-amber-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[12px] font-bold leading-none">99.99%</span>
-              <span className="text-[10px] text-muted-foreground">System SLA Uptime</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('devops-tools', 'systemSLAUptime', 'System SLA Uptime')}
+              </span>
             </div>
           </div>
 
@@ -505,7 +577,9 @@ export default function DevOpsToolsSkillsPage() {
             <Clock className="size-4 text-amber-600 dark:text-amber-400" />
             <div className="flex flex-col">
               <span className="font-mono text-[12px] font-bold leading-none">1m 42s</span>
-              <span className="text-[10px] text-muted-foreground">P95 Build Time</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('devops-tools', 'p95BuildTime', 'P95 Build Time')}
+              </span>
             </div>
           </div>
 
@@ -513,7 +587,9 @@ export default function DevOpsToolsSkillsPage() {
             <ShieldCheck className="size-4 text-amber-600 dark:text-amber-400" />
             <div className="flex flex-col">
               <span className="font-inter text-[12px] font-bold leading-none">Zero Downtime</span>
-              <span className="text-[10px] text-muted-foreground">Rolling Rollouts</span>
+              <span className="text-[10px] text-muted-foreground">
+                {skillPageText('devops-tools', 'rollingRollouts', 'Rolling Rollouts')}
+              </span>
             </div>
           </div>
         </div>
@@ -531,14 +607,20 @@ export default function DevOpsToolsSkillsPage() {
               <div className="flex items-center gap-2">
                 <Terminal className="size-4 text-amber-600 dark:text-amber-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  CI/CD Pipeline Simulator
+                  {skillPageText(
+                    'devops-tools',
+                    'metadata.ciCdPipelineSimulator',
+                    'CI/CD Pipeline Simulator',
+                  )}
                 </h2>
               </div>
-              <span className="font-mono text-[9px] text-muted-foreground">Click to trigger</span>
+              <span className="font-mono text-[9px] text-muted-foreground">
+                {skillPageText('devops-tools', 'metadata.clickToTrigger', 'Click to trigger')}
+              </span>
             </div>
 
             <div className="space-y-2">
-              {PIPELINE_PRESETS.map((preset, idx) => {
+              {translatedPresets.map((preset, idx) => {
                 const isSelected = selectedPresetIndex === idx;
                 return (
                   <button
@@ -569,7 +651,9 @@ export default function DevOpsToolsSkillsPage() {
 
           <div className="mt-4 border-t border-border/40 pt-3">
             <div className="flex items-center justify-between font-mono text-[10.5px]">
-              <span className="text-muted-foreground">Target Cluster:</span>
+              <span className="text-muted-foreground">
+                {skillPageText('devops-tools', 'metadata.targetCluster', 'Target Cluster:')}
+              </span>
               <span className="font-bold text-foreground truncate max-w-[190px]">
                 {currentPreset.target}
               </span>
@@ -586,12 +670,17 @@ export default function DevOpsToolsSkillsPage() {
             <div className="flex items-center gap-2">
               <Workflow className="size-4 text-amber-600 dark:text-amber-400" />
               <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                Deployment Execution Lifecycle
+                {skillPageText(
+                  'devops-tools',
+                  'metadata.deploymentExecutionLifecycle',
+                  'Deployment Execution Lifecycle',
+                )}
               </h2>
             </div>
             {isSimulating && (
               <span className="flex items-center gap-1 font-mono text-[10px] text-amber-600 dark:text-amber-400 animate-pulse">
-                <RefreshCw className="size-3 animate-spin" /> Deploying Pods...
+                <RefreshCw className="size-3 animate-spin" />
+                {skillPageText('devops-tools', 'metadata.deployingPods', 'Deploying Pods...')}
               </span>
             )}
           </div>
@@ -635,10 +724,12 @@ export default function DevOpsToolsSkillsPage() {
               <div className="flex items-center gap-2">
                 <Terminal className="size-4 text-amber-600 dark:text-amber-400" />
                 <h2 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-                  Build Output Logs
+                  {skillPageText('devops-tools', 'metadata.buildOutputLogs', 'Build Output Logs')}
                 </h2>
               </div>
-              <span className="font-mono text-[9px] text-emerald-500">STDOUT LIVE</span>
+              <span className="font-mono text-[9px] text-emerald-500">
+                {skillPageText('devops-tools', 'metadata.stdoutLive', 'STDOUT LIVE')}
+              </span>
             </div>
 
             <div className="rounded-[8px] bg-slate-950 p-3 font-mono text-[10px] text-slate-300 border border-slate-800 space-y-2 max-h-[220px] overflow-y-auto">
@@ -657,8 +748,12 @@ export default function DevOpsToolsSkillsPage() {
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded-[8px] bg-amber-500/10 p-2.5 font-mono text-[10.5px] text-amber-700 dark:text-amber-300">
-            <span>Cluster Ingress:</span>
-            <span className="font-bold">Nginx HTTP/2 SSL</span>
+            <span>
+              {skillPageText('devops-tools', 'metadata.clusterIngress', 'Cluster Ingress:')}
+            </span>
+            <span className="font-bold">
+              {skillPageText('devops-tools', 'metadata.clusterIngressName', 'Nginx HTTP/2 SSL')}
+            </span>
           </div>
         </motion.div>
       </div>
@@ -673,18 +768,25 @@ export default function DevOpsToolsSkillsPage() {
             <div className="flex items-center gap-2">
               <FileCode2 className="size-4 text-amber-600 dark:text-amber-400" />
               <h2 className="font-inter text-[16px] font-black uppercase tracking-tight text-foreground md:text-[18px]">
-                Infrastructure as Code (IaC) &amp; Manifest Inspector
+                {skillPageText(
+                  'devops-tools',
+                  'metadata.manifestInspectorTitle',
+                  'Infrastructure as Code (IaC) & Manifest Inspector',
+                )}
               </h2>
             </div>
             <p className="font-inter text-[12px] text-muted-foreground">
-              Inspect production-grade container manifests, Kubernetes deployment files, CI/CD
-              pipeline configurations, and Nginx reverse proxy blocks.
+              {skillPageText(
+                'devops-tools',
+                'metadata.manifestInspectorDescription',
+                'Inspect production-grade container manifests, Kubernetes deployment files, CI/CD pipeline configurations, and Nginx reverse proxy blocks.',
+              )}
             </p>
           </div>
 
           {/* Manifest Tabs */}
           <div className="flex flex-wrap items-center gap-1 rounded-[8px] bg-muted/30 p-1 border border-border/40">
-            {IAC_MANIFESTS.map((manifest) => {
+            {translatedManifestsMap.map((manifest) => {
               const isSelected = selectedManifestId === manifest.id;
               return (
                 <button
@@ -712,7 +814,10 @@ export default function DevOpsToolsSkillsPage() {
           <pre className="text-slate-100 whitespace-pre-wrap">{selectedManifest.code}</pre>
         </div>
         <p className="mt-2 text-[11px] text-muted-foreground">
-          <strong>Architecture Purpose:</strong> {selectedManifest.desc}
+          <strong>
+            {skillPageText('devops-tools', 'metadata.architecturePurpose', 'Architecture Purpose:')}
+          </strong>{' '}
+          {selectedManifest.desc}
         </p>
       </motion.div>
 
@@ -725,48 +830,26 @@ export default function DevOpsToolsSkillsPage() {
           <div className="flex items-center gap-2">
             <Globe className="size-4 text-amber-600 dark:text-amber-400" />
             <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide text-foreground">
-              Production Cloud Network &amp; Ingress Topology
+              {skillPageText(
+                'devops-tools',
+                'metadata.cloudInfrastructure',
+                'Production Cloud Network & Ingress Topology',
+              )}
             </h3>
           </div>
           <span className="font-mono text-[10px] text-muted-foreground">
-            End-to-End Traffic Path from User to Pods
+            {skillPageText(
+              'devops-tools',
+              'metadata.trafficPath',
+              'End-to-End Traffic Path from User to Pods',
+            )}
           </span>
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {[
-            {
-              step: '01. Edge Ingress',
-              title: 'Cloudflare Edge CDN',
-              desc: 'Global Anycast DNS, DDoS mitigation & edge static asset caching.',
-              icon: Globe,
-            },
-            {
-              step: '02. Reverse Proxy',
-              title: 'Nginx Load Balancer',
-              desc: 'SSL/TLS termination, HTTP/2 multiplexing, rate-limiting & gzip compression.',
-              icon: ServerCog,
-            },
-            {
-              step: '03. Orchestration',
-              title: 'Kubernetes Pod Replicas',
-              desc: 'Horizontally autoscaled Node.js & Next.js microservices with health checks.',
-              icon: Package,
-            },
-            {
-              step: '04. Data Tier',
-              title: 'Managed DB Clusters',
-              desc: 'PostgreSQL ACID instances, MongoDB Atlas replica sets, and Redis caching.',
-              icon: HardDrive,
-            },
-            {
-              step: '05. Observability',
-              title: 'Prometheus & Sentry',
-              desc: 'Live telemetry scraping, anomaly detection alerts, and error tracing.',
-              icon: Activity,
-            },
-          ].map((topo, idx) => {
-            const Icon = topo.icon;
+          {translatedTopology.map((topo, idx) => {
+            const icons = [Globe, ServerCog, Package, HardDrive, Activity];
+            const Icon = icons[idx] ?? Globe;
             return (
               <div
                 key={idx}
@@ -794,17 +877,25 @@ export default function DevOpsToolsSkillsPage() {
       <motion.div variants={cardVariants} className="space-y-4">
         <div>
           <h2 className="font-inter text-[18px] font-black uppercase tracking-tight text-foreground md:text-[20px]">
-            DevOps &amp; Infrastructure Technology Clusters
+            {skillPageText(
+              'devops-tools',
+              'metadata.clusterTitle',
+              'DevOps & Infrastructure Technology Clusters',
+            )}
           </h2>
           <p className="font-inter text-[12px] text-muted-foreground">
-            Deep domain expertise across containerization, CI/CD automation, cloud hosting, and
-            reverse proxies.
+            {skillPageText(
+              'devops-tools',
+              'metadata.clusterDescription',
+              'Deep domain expertise across containerization, CI/CD automation, cloud hosting, and reverse proxies.',
+            )}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {DEVOPS_CLUSTERS.map((cluster) => {
-            const ClusterIcon = cluster.icon;
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {translatedClusters.map((cluster, index) => {
+            const clusterIconMap = [Package, Workflow, Cloud, ServerCog];
+            const ClusterIcon = clusterIconMap[index] ?? Package;
             return (
               <div
                 key={cluster.title}
@@ -826,8 +917,9 @@ export default function DevOpsToolsSkillsPage() {
                   </div>
 
                   <div className="mt-4 space-y-3">
-                    {cluster.items.map((item) => {
-                      const ItemIcon = item.icon;
+                    {cluster.items.map((item, itemIndex) => {
+                      const itemIcons = [Package, Layers, Globe, Server, ServerCog, Zap];
+                      const ItemIcon = itemIcons[itemIndex % itemIcons.length] ?? ServerCog;
                       return (
                         <div
                           key={item.name}
@@ -842,11 +934,11 @@ export default function DevOpsToolsSkillsPage() {
                             </div>
                             <div className="flex items-center gap-1.5">
                               <span className="rounded bg-amber-500/10 px-1.5 py-0.2 font-mono text-[8px] font-bold text-amber-600 dark:text-amber-400">
-                                {item.level}
+                                {DEVOPS_CLUSTERS[index].items[itemIndex].level}
                               </span>
-                              {item.slug && (
+                              {DEVOPS_CLUSTERS[index].items[itemIndex].slug && (
                                 <Link
-                                  href={`/skills/devops-tools/${item.slug}`}
+                                  href={`/skills/devops-tools/${DEVOPS_CLUSTERS[index].items[itemIndex].slug}`}
                                   className="text-muted-foreground hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
                                   title={`Open ${item.name} workspace`}
                                 >
@@ -892,11 +984,18 @@ export default function DevOpsToolsSkillsPage() {
           </div>
           <div>
             <h4 className="font-inter text-[13px] font-bold text-foreground">
-              Explore Dedicated DevOps &amp; Cloud Workspaces
+              {skillPageText(
+                'devops-tools',
+                'metadata.exploreTitle',
+                'Explore Dedicated DevOps & Cloud Workspaces',
+              )}
             </h4>
             <p className="text-[11px] text-muted-foreground">
-              Inspect specialized CI/CD workflows, Docker configs, Nginx reverse proxy setups, and
-              Vercel edge metrics.
+              {skillPageText(
+                'devops-tools',
+                'metadata.exploreDescription',
+                'Inspect specialized CI/CD workflows, Docker configs, Nginx reverse proxy setups, and Vercel edge metrics.',
+              )}
             </p>
           </div>
         </div>
@@ -906,25 +1005,26 @@ export default function DevOpsToolsSkillsPage() {
             href="/skills/devops-tools/docker"
             className="inline-flex items-center gap-1 rounded-[6px] bg-amber-600 px-3 py-1.5 font-inter text-[11px] font-semibold text-white shadow-xs transition-colors hover:bg-amber-700"
           >
-            Docker Workspace <ArrowRight className="size-3" />
+            {skillPageText('devops-tools', 'metadata.exploreLinks.docker', 'Docker Workspace')}{' '}
+            <ArrowRight className="size-3" />
           </Link>
           <Link
             href="/skills/devops-tools/github-actions"
             className="inline-flex items-center gap-1 rounded-[6px] border border-border/50 bg-card px-3 py-1.5 font-inter text-[11px] font-semibold text-foreground transition-colors hover:bg-muted/40"
           >
-            GitHub Actions
+            {skillPageText('devops-tools', 'metadata.exploreLinks.githubActions', 'GitHub Actions')}
           </Link>
           <Link
             href="/skills/devops-tools/nginx"
             className="inline-flex items-center gap-1 rounded-[6px] border border-border/50 bg-card px-3 py-1.5 font-inter text-[11px] font-semibold text-foreground transition-colors hover:bg-muted/40"
           >
-            Nginx Proxy
+            {skillPageText('devops-tools', 'metadata.exploreLinks.nginx', 'Nginx Proxy')}
           </Link>
           <Link
             href="/skills/devops-tools/vercel"
             className="inline-flex items-center gap-1 rounded-[6px] border border-border/50 bg-card px-3 py-1.5 font-inter text-[11px] font-semibold text-foreground transition-colors hover:bg-muted/40"
           >
-            Vercel Platform
+            {skillPageText('devops-tools', 'metadata.exploreLinks.vercel', 'Vercel Platform')}
           </Link>
         </div>
       </motion.div>

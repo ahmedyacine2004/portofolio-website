@@ -1,0 +1,427 @@
+{
+  "pageTitle": "ESPACE BACKEND",
+  "status": "Production en ligne",
+  "description": "Concevoir des écosystèmes backend robustes, sécurisés et évolutifs. Construit avec NestJS, Node.js, TypeScript, MongoDB et Redis.",
+  "runtimeEngine": "Moteur runtime",
+  "primaryRegion": "Région principale",
+  "systemUptime": "Disponibilité système",
+  "activeListener": "Écoute active",
+  "architecture": {
+    "title": "Plan d'architecture backend en 5 couches",
+    "description": "Une vue en couches du flux des requêtes client à travers nos couches de sécurité, routage, domaine, persistance et workers asynchrones.",
+    "tiers": {
+      "gateway": {
+        "title": "Périmètre passerelle & sécurité",
+        "subtitle": "Entrée du trafic, limites de débit, terminaison SSL et inspection des jetons",
+        "badge": "Porte de périmètre",
+        "components": {
+          "nginxReverseProxy": {
+            "name": "Proxy inverse Nginx",
+            "role": "Équilibrage de charge & SSL",
+            "protocolOrTech": "HTTPS / TLS 1.3"
+          },
+          "rateLimiterHelmet": {
+            "name": "Limiteur de débit & Helmet",
+            "role": "Bouclier DDoS & en-têtes",
+            "protocolOrTech": "Express RateLimit"
+          },
+          "jwtOAuthGuard": {
+            "name": "Garde JWT & OAuth",
+            "role": "Vérification d'identité",
+            "protocolOrTech": "Passport / JWT RS256"
+          },
+          "corsOriginValidation": {
+            "name": "Validation CORS & origine",
+            "role": "Filtre cross-origin",
+            "protocolOrTech": "Liste blanche stricte"
+          }
+        }
+      },
+      "api-layer": {
+        "title": "API & protocoles de transport",
+        "subtitle": "Routage d'endpoint, validation de schéma et multiplexage des protocoles",
+        "badge": "Couche transport",
+        "components": {
+          "restfulApiRouter": {
+            "name": "Routeur API RESTful",
+            "role": "Gestionnaires de ressources",
+            "protocolOrTech": "JSON / OpenAPI 3.0"
+          },
+          "websocketGateway": {
+            "name": "Passerelle WebSocket",
+            "role": "Temps réel bidirectionnel",
+            "protocolOrTech": "Socket.io / WSS"
+          },
+          "dtoValidationPipe": {
+            "name": "Pipe de validation DTO",
+            "role": "Nettoyage de charge utile",
+            "protocolOrTech": "class-validator / Zod"
+          },
+          "globalExceptionFilter": {
+            "name": "Filtre global d'exceptions",
+            "role": "Enveloppes d'erreurs standardisées",
+            "protocolOrTech": "RFC 7807"
+          }
+        }
+      },
+      "domain-logic": {
+        "title": "Services de domaine & application",
+        "subtitle": "Flux métier, injection de dépendance et orchestration d'événements",
+        "badge": "Moteur central",
+        "components": {
+          "nestjsDependencyInjection": {
+            "name": "Injection de dépendance NestJS",
+            "role": "Inversion de contrôle",
+            "protocolOrTech": "Singleton / Scoped"
+          },
+          "businessRuleEngine": {
+            "name": "Moteur de règles métier",
+            "role": "Logique transactionnelle",
+            "protocolOrTech": "TypeScript Clean Code"
+          },
+          "eventEmittersListeners": {
+            "name": "Émetteurs & écouteurs d'événements",
+            "role": "Diffusion d'état découplée",
+            "protocolOrTech": "EventEmitter2"
+          },
+          "interceptorAuditTrail": {
+            "name": "Intercepteur & traçabilité",
+            "role": "Journal d'exécution",
+            "protocolOrTech": "Winston Logger"
+          }
+        }
+      },
+      "persistence": {
+        "title": "Persistance de données & cache",
+        "subtitle": "Stockages relationnels & documentaires avec cache mémoire haute performance",
+        "badge": "Stockage & cache",
+        "components": {
+          "mongodbMongoose": {
+            "name": "MongoDB & Mongoose",
+            "role": "Stockage documentaire flexible",
+            "protocolOrTech": "Atlas / Replica Sets"
+          },
+          "postgresqlTypeorm": {
+            "name": "PostgreSQL & TypeORM",
+            "role": "Données relationnelles ACID",
+            "protocolOrTech": "Connection Pooling"
+          },
+          "redisCacheLayer": {
+            "name": "Couche cache Redis",
+            "role": "Cache lecture sous milliseconde",
+            "protocolOrTech": "Redis In-Memory"
+          },
+          "databaseMigrations": {
+            "name": "Migrations de base de données",
+            "role": "Versionnement de schéma",
+            "protocolOrTech": "Scripts automatisés"
+          }
+        }
+      },
+      "async-jobs": {
+        "title": "Workers de messagerie & fondus",
+        "subtitle": "Files d'attente asynchrones, planificateurs et livraison de webhooks",
+        "badge": "Pipelines asynchrones",
+        "components": {
+          "bullmqJobQueue": {
+            "name": "File BullMQ",
+            "role": "Distribution des tâches en arrière-plan",
+            "protocolOrTech": "Redis Backed"
+          },
+          "cronSchedulers": {
+            "name": "Planificateurs Cron",
+            "role": "Tâches périodiques",
+            "protocolOrTech": "Node-Cron Engine"
+          },
+          "emailNotificationWorker": {
+            "name": "Worker email & notification",
+            "role": "Mail transactionnel",
+            "protocolOrTech": "Resend API"
+          },
+          "aiWorkerStream": {
+            "name": "Flux worker IA",
+            "role": "Pipelines d'inférence asynchrones",
+            "protocolOrTech": "OpenAI API SDK"
+          }
+        }
+      }
+    }
+  },
+  "technology": {
+    "title": "Clusters technologiques backend",
+    "description": "Expertise profonde organisée autour des compétences serveurs, moteurs de données et outils DevOps."
+  },
+  "technologyClusters": {
+    "languagesRuntimes": {
+      "title": "Langages & runtimes",
+      "description": "Environnements runtime et langages fortement typés",
+      "items": {
+        "nodejs": {
+          "name": "Node.js",
+          "role": "Runtime de boucle d'événements non bloquante",
+          "tags": ["Boucle d'événements", "Async/Await", "Flux", "Moteur V8"]
+        },
+        "typescript": {
+          "name": "TypeScript",
+          "role": "Sécurité statique & interfaces",
+          "tags": ["Génériques", "Strict Mode", "Décorateurs", "Types utilitaires"]
+        },
+        "javaSpring": {
+          "name": "Java (Spring)",
+          "role": "Backend d'entreprise & POO",
+          "tags": ["Spring Boot", "JPA", "Maven", "JVM"]
+        }
+      }
+    },
+    "frameworksEngines": {
+      "title": "Frameworks & moteurs",
+      "description": "Frameworks serveur pour la modularité et la structure d'entreprise",
+      "items": {
+        "nestjs": {
+          "name": "NestJS",
+          "role": "Architecture d'entreprise & framework DI",
+          "tags": ["Modules", "Contrôleurs", "Guards", "Intercepteurs"]
+        },
+        "express": {
+          "name": "Express.js",
+          "role": "Moteur de routage & middleware minimaliste",
+          "tags": ["Chaîne middleware", "Routage rapide", "Handlers personnalisés"]
+        },
+        "springBoot": {
+          "name": "Spring Boot",
+          "role": "Moteur de services Java d'entreprise",
+          "tags": ["Conteneur IoC", "REST Controller", "Spring Security"]
+        }
+      }
+    },
+    "databasesOrms": {
+      "title": "Bases de données & ORM",
+      "description": "Modèles de données documentaires et relationnels avec accès optimisé",
+      "items": {
+        "mongodbMongoose": {
+          "name": "MongoDB & Mongoose",
+          "role": "Base documentaire NoSQL & modélisation ODM",
+          "tags": ["Pipeline d'agrégation", "Index", "Validation de schéma"]
+        },
+        "postgresql": {
+          "name": "PostgreSQL",
+          "role": "Base SQL relationnelle ACID avec requêtes complexes",
+          "tags": ["Transactions", "Clés étrangères", "Pool de connexion"]
+        },
+        "redis": {
+          "name": "Redis",
+          "role": "Stockage clé-valeur mémoire pour cache & sessions",
+          "tags": ["Expiration clé", "Pub/Sub", "Queue backend", "Hit cache"]
+        },
+        "typeormPrisma": {
+          "name": "TypeORM / Prisma",
+          "role": "Abstraction de base de données typée & outils de migration",
+          "tags": ["Entités", "Migrations", "Relations", "QueryBuilder"]
+        }
+      }
+    },
+    "apisProtocolsArchitecture": {
+      "title": "APIs, protocoles & architecture",
+      "description": "Standards API, streaming et transports en temps réel",
+      "items": {
+        "restfulArchitecture": {
+          "name": "Architecture RESTful",
+          "role": "Conception API orientée ressources et contrats de codes",
+          "tags": ["HATEOAS", "Idempotence", "URLs propres", "JSON Schemas"]
+        },
+        "webSocketsSocketio": {
+          "name": "WebSockets (Socket.io)",
+          "role": "Canaux de communication temps réel duplex",
+          "tags": ["Rooms", "Diffusion d'événements", "Heartbeats", "Faible latence"]
+        },
+        "openApiSwagger": {
+          "name": "OpenAPI & Swagger",
+          "role": "Documentation API interactive & contrats automatisés",
+          "tags": ["Swagger UI", "Annotations DTO", "Spécifications endpoints"]
+        },
+        "microservicesDesign": {
+          "name": "Conception de microservices",
+          "role": "Services de domaine découplés & frontières de services",
+          "tags": ["Isolation service", "Event Bus", "API Gateway"]
+        }
+      }
+    },
+    "authenticationSecurity": {
+      "title": "Authentification & sécurité",
+      "description": "Périmètre zero-trust, vérification d'identité et chiffrement",
+      "items": {
+        "jwtTokenRotation": {
+          "name": "JWT & rotation de jetons",
+          "role": "Flux d'authentification accès & refresh stateless",
+          "tags": ["RS256/HS256", "Rotation refresh", "Payload claims"]
+        },
+        "rbac": {
+          "name": "Accès basé sur rôle (RBAC)",
+          "role": "Guards de permission fine-grained",
+          "tags": ["Décorateurs personnalisés", "Hiérarchie de rôles", "Matrice de permissions"]
+        },
+        "bcryptDataEncryption": {
+          "name": "Bcrypt & chiffrement",
+          "role": "Hachage de mot de passe salé et protection des données sensibles",
+          "tags": ["Rounds de sel", "Vérification hash", "Secrets env"]
+        },
+        "securityShieldHelmetCors": {
+          "name": "Bouclier de sécurité (Helmet & CORS)",
+          "role": "En-têtes HTTP renforcés, XSS et protection contre le clickjacking",
+          "tags": ["Content Security", "HSTS", "Frameguard", "NoSniff"]
+        }
+      }
+    },
+    "devopsCicdTesting": {
+      "title": "DevOps, CI/CD & tests",
+      "description": "Conteneurisation, déploiement automatisé et couverture de tests",
+      "items": {
+        "dockerContainers": {
+          "name": "Conteneurs Docker",
+          "role": "Build multi-stage & environnements conteneurisés isolés",
+          "tags": ["Dockerfile", "Docker Compose", "Images Alpine"]
+        },
+        "nginxReverseProxyDevOps": {
+          "name": "Proxy inverse Nginx",
+          "role": "Serveur web haute performance & terminateur SSL",
+          "tags": ["Compression Gzip", "Proxy Pass", "En-têtes personnalisés"]
+        },
+        "jestSupertest": {
+          "name": "Jest & Supertest",
+          "role": "Suites de tests unitaires & d'intégration",
+          "tags": ["Mocking", "Intégration API", "Code Coverage"]
+        },
+        "githubActionsCicd": {
+          "name": "GitHub Actions CI/CD",
+          "role": "Pipelines automatisées de build, lint, test & déploiement",
+          "tags": ["Workflow", "Gestion secrets", "Zero-Downtime"]
+        }
+      }
+    }
+  },
+  "simulatedRoutes": {
+    "get-backend-workspace": {
+      "handler": "BackendController.getWorkspace",
+      "description": "Récupère la télémétrie structurée des compétences backend et les données d'architecture"
+    },
+    "post-auth-login": {
+      "handler": "AuthController.authenticate",
+      "description": "Valide les identifiants, la comparaison bcrypt et émet une paire JWT signée"
+    },
+    "get-projects": {
+      "handler": "ProjectsController.findWithFilters",
+      "description": "Interroge MongoDB avec index composé et remplit les services associés"
+    },
+    "post-contact-message": {
+      "handler": "ContactController.enqueueNotification",
+      "description": "Enfile une tâche mail dans BullMQ et déclenche le webhook Resend"
+    }
+  },
+  "pipeline": {
+    "steps": {
+      "ingress": {
+        "title": "01. Entrée & limiteur de débit",
+        "detail": "Analyse des en-têtes, bouclier DDoS et validation d'origine"
+      },
+      "security": {
+        "title": "02. Sécurité & garde d'authentification",
+        "detail": "Vérification JWT Passport et contrôle RBAC"
+      },
+      "route": {
+        "title": "03. Correspondance du contrôleur de route",
+        "detail": "contexte d'exécution"
+      },
+      "domain": {
+        "title": "04. Service métier & validation DTO",
+        "detail": "Exécution des règles métier et schéma brut nettoyé"
+      },
+      "persistence": {
+        "title": "05. Persistance & lecture/écriture cache",
+        "detail": "Requête MongoDB Atlas & cache"
+      },
+      "response": {
+        "title": "06. Sérialiseur de réponse & sortie",
+        "detail": "Enveloppe JSON sérialisée"
+      }
+    }
+  },
+  "telemetry": {
+    "gauges": "Jauges de télémétrie"
+  },
+  "metrics": {
+    "requestsHandled": "Requêtes traitées",
+    "p99": "Temps de réponse P99",
+    "errorRate": "Taux d'erreurs (5xx)",
+    "throughput": "Débit",
+    "dataTransferred": "Données transférées",
+    "cacheHitRatio": "Ratio cache",
+    "sample": "échantillon 1s"
+  },
+  "services": {
+    "title": "Points d'entrée actifs & microservices",
+    "nodes": "8 nœuds en ligne",
+    "auth": {
+      "name": "Service d'authentification",
+      "desc": "Auth JWT, refresh tokens, guards de rôles"
+    },
+    "projects": {
+      "name": "Microservice projets",
+      "desc": "Catalogue des projets, tags et liens médias"
+    },
+    "skills": {
+      "name": "Service moteur des compétences",
+      "desc": "Espace compétences et récupération des métadonnées"
+    },
+    "experience": {
+      "name": "Expérience & jalons",
+      "desc": "Événements timeline et certificats vérifiés"
+    },
+    "contact": { "name": "Envoi contact & mailer", "desc": "Queue BullMQ et worker Resend" },
+    "ai": { "name": "Flux assistant IA", "desc": "Intégrations streaming OpenAI" },
+    "telemetry": {
+      "name": "Télémétrie & analytics",
+      "desc": "Logs visiteurs temps réel et flux événements"
+    },
+    "media": {
+      "name": "Stockage média & fichiers",
+      "desc": "Cloudinary CDN et transformations d'assets"
+    }
+  },
+  "principles": {
+    "availability": {
+      "title": "Haute disponibilité & résilience",
+      "desc": "Gestionnaire de fermeture propre, health checks, circuit breakers, récupération de réplicas base de données."
+    },
+    "security": {
+      "title": "Périmètre sécurité zero-trust",
+      "desc": "Validation stricte DTO, requêtes SQL/NoSQL paramétrées, rotation JWT et en-têtes de sécurité."
+    },
+    "data": {
+      "title": "Modélisation des données évolutive",
+      "desc": "Stratégie d'index composé, pool de connexions, modèles cache-aside Redis et schémas normalisés."
+    },
+    "architecture": {
+      "title": "Architecture propre & DI",
+      "desc": "Séparation des modules, inversion de dépendance, services testables et responsabilité unique."
+    }
+  },
+  "explore": {
+    "title": "Explorer les espaces backend individuels",
+    "description": "Approfondissez la télémétrie runtime dédiée et les détails d'architecture pour NestJS, Node.js, Express, JWT et Spring Boot."
+  },
+  "metadata": {
+    "httpRequestSimulator": "Simulateur de requêtes HTTP",
+    "clickToDispatch": "Cliquez pour envoyer",
+    "requestPipeline": "Pipeline de requêtes",
+    "renderingFrame": "Traitement de la route...",
+    "systemUptime": "Disponibilité système",
+    "targetController": "Contrôleur cible :",
+    "statusLabel": "Statut",
+    "healthyStatus": "Sain (200 OK)",
+    "runtimeStack": "Node.js / NestJS",
+    "runtimeEngine": "Moteur runtime",
+    "primaryRegion": "Algeria-East",
+    "regionLabel": "Région principale",
+    "activeListener": "4000/TCP"
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "pageTitle": "BACKEND WORKSPACE",
+  "status": "Production Online",
+  "description": "Architecting robust, secure, and scalable backend ecosystems. Engineered with NestJS, Node.js, TypeScript, MongoDB, and Redis.",
+  "runtimeEngine": "Runtime Engine",
+  "primaryRegion": "Primary Region",
+  "systemUptime": "System Uptime",
+  "activeListener": "Active Listener",
+  "architecture": {
+    "title": "5-Tier Backend Architecture Blueprint",
+    "description": "A layered breakdown of how client requests flow through our security, routing, domain, persistence, and background worker tiers.",
+    "tiers": {
+      "gateway": {
+        "title": "Gateway & Security Perimeter",
+        "subtitle": "Traffic ingress, rate limits, SSL termination, and token inspection",
+        "badge": "Perimeter Gate",
+        "components": {
+          "nginxReverseProxy": {
+            "name": "Nginx Reverse Proxy",
+            "role": "Load Balancing & SSL",
+            "protocolOrTech": "HTTPS / TLS 1.3"
+          },
+          "rateLimiterHelmet": {
+            "name": "Rate Limiter & Helmet",
+            "role": "DDoS & Header Shield",
+            "protocolOrTech": "Express RateLimit"
+          },
+          "jwtOAuthGuard": {
+            "name": "JWT & OAuth Guard",
+            "role": "Identity Verification",
+            "protocolOrTech": "Passport / JWT RS256"
+          },
+          "corsOriginValidation": {
+            "name": "CORS & Origin Validation",
+            "role": "Cross-Origin Filter",
+            "protocolOrTech": "Strict White-list"
+          }
+        }
+      },
+      "api-layer": {
+        "title": "API & Transport Protocols",
+        "subtitle": "Endpoint routing, schema validation, and protocol multiplexing",
+        "badge": "Transport Layer",
+        "components": {
+          "restfulApiRouter": {
+            "name": "RESTful API Router",
+            "role": "Resource Handlers",
+            "protocolOrTech": "JSON / OpenAPI 3.0"
+          },
+          "websocketGateway": {
+            "name": "WebSocket Gateway",
+            "role": "Bi-directional Real-Time",
+            "protocolOrTech": "Socket.io / WSS"
+          },
+          "dtoValidationPipe": {
+            "name": "DTO Validation Pipe",
+            "role": "Payload Sanitization",
+            "protocolOrTech": "class-validator / Zod"
+          },
+          "globalExceptionFilter": {
+            "name": "Global Exception Filter",
+            "role": "Standardized Error Envelopes",
+            "protocolOrTech": "RFC 7807"
+          }
+        }
+      },
+      "domain-logic": {
+        "title": "Domain & Application Services",
+        "subtitle": "Business workflows, dependency injection, and event orchestration",
+        "badge": "Core Engine",
+        "components": {
+          "nestjsDependencyInjection": {
+            "name": "NestJS Dependency Injection",
+            "role": "Inversion of Control",
+            "protocolOrTech": "Singleton / Scoped"
+          },
+          "businessRuleEngine": {
+            "name": "Business Rule Engine",
+            "role": "Transactional Logic",
+            "protocolOrTech": "TypeScript Clean Code"
+          },
+          "eventEmittersListeners": {
+            "name": "Event Emitters & Listeners",
+            "role": "Decoupled State Broadcast",
+            "protocolOrTech": "EventEmitter2"
+          },
+          "interceptorAuditTrail": {
+            "name": "Interceptor & Audit Trail",
+            "role": "Execution Logging",
+            "protocolOrTech": "Winston Logger"
+          }
+        }
+      },
+      "persistence": {
+        "title": "Data Persistence & Caching",
+        "subtitle": "Relational & document stores with high-throughput in-memory cache",
+        "badge": "Storage & Cache",
+        "components": {
+          "mongodbMongoose": {
+            "name": "MongoDB & Mongoose",
+            "role": "Flexible Document Store",
+            "protocolOrTech": "Atlas / Replica Sets"
+          },
+          "postgresqlTypeorm": {
+            "name": "PostgreSQL & TypeORM",
+            "role": "ACID Relational Data",
+            "protocolOrTech": "Connection Pooling"
+          },
+          "redisCacheLayer": {
+            "name": "Redis Cache Layer",
+            "role": "Sub-millisecond Read Cache",
+            "protocolOrTech": "Redis In-Memory"
+          },
+          "databaseMigrations": {
+            "name": "Database Migrations",
+            "role": "Schema Versioning",
+            "protocolOrTech": "Automated Scripts"
+          }
+        }
+      },
+      "async-jobs": {
+        "title": "Messaging & Background Workers",
+        "subtitle": "Asynchronous task queues, schedulers, and webhook delivery",
+        "badge": "Async Pipelines",
+        "components": {
+          "bullmqJobQueue": {
+            "name": "BullMQ Job Queue",
+            "role": "Background Task Dispatch",
+            "protocolOrTech": "Redis Backed"
+          },
+          "cronSchedulers": {
+            "name": "Cron Schedulers",
+            "role": "Periodic Routine Tasks",
+            "protocolOrTech": "Node-Cron Engine"
+          },
+          "emailNotificationWorker": {
+            "name": "Email & Notification Worker",
+            "role": "Transactional Mail",
+            "protocolOrTech": "Resend API"
+          },
+          "aiWorkerStream": {
+            "name": "AI Worker Stream",
+            "role": "Async Inference Pipelines",
+            "protocolOrTech": "OpenAI API SDK"
+          }
+        }
+      }
+    }
+  },
+  "technology": {
+    "title": "Backend Technology Clusters",
+    "description": "Deep expertise organized by core server competencies, data engines, and DevOps tooling."
+  },
+  "technologyClusters": {
+    "languagesRuntimes": {
+      "title": "Languages & Runtimes",
+      "description": "Core runtime environments and strictly typed languages",
+      "items": {
+        "nodejs": {
+          "name": "Node.js",
+          "role": "Non-blocking event loop runtime",
+          "tags": ["Event Loop", "Async/Await", "Streams", "V8 Engine"]
+        },
+        "typescript": {
+          "name": "TypeScript",
+          "role": "Static type-safety & interfaces",
+          "tags": ["Generics", "Strict Mode", "Decorators", "Utility Types"]
+        },
+        "javaSpring": {
+          "name": "Java (Spring)",
+          "role": "Enterprise backend & OOP",
+          "tags": ["Spring Boot", "JPA", "Maven", "JVM"]
+        }
+      }
+    },
+    "frameworksEngines": {
+      "title": "Frameworks & Engines",
+      "description": "Server frameworks providing modularity and enterprise structure",
+      "items": {
+        "nestjs": {
+          "name": "NestJS",
+          "role": "Enterprise architecture & DI framework",
+          "tags": ["Modules", "Controllers", "Guards", "Interceptors"]
+        },
+        "express": {
+          "name": "Express.js",
+          "role": "Minimalist routing & middleware engine",
+          "tags": ["Middleware Chain", "Fast Routing", "Custom Handlers"]
+        },
+        "springBoot": {
+          "name": "Spring Boot",
+          "role": "Java enterprise service engine",
+          "tags": ["IoC Container", "REST Controller", "Spring Security"]
+        }
+      }
+    },
+    "databasesOrms": {
+      "title": "Databases & ORMs",
+      "description": "Document and relational data models with optimized access patterns",
+      "items": {
+        "mongodbMongoose": {
+          "name": "MongoDB & Mongoose",
+          "role": "NoSQL document database & ODM schema modeling",
+          "tags": ["Aggregation Pipeline", "Indexes", "Schema Validation"]
+        },
+        "postgresql": {
+          "name": "PostgreSQL",
+          "role": "ACID relational SQL database with complex queries",
+          "tags": ["Transactions", "Foreign Keys", "Connection Pool"]
+        },
+        "redis": {
+          "name": "Redis",
+          "role": "In-memory key-value store for caching & sessions",
+          "tags": ["Key Expiry", "Pub/Sub", "Queue Backend", "Cache Hit"]
+        },
+        "typeormPrisma": {
+          "name": "TypeORM / Prisma",
+          "role": "Type-safe database abstraction & migration tooling",
+          "tags": ["Entities", "Migrations", "Relations", "QueryBuilder"]
+        }
+      }
+    },
+    "apisProtocolsArchitecture": {
+      "title": "APIs, Protocols & Architecture",
+      "description": "API design standards, streaming, and real-time transports",
+      "items": {
+        "restfulArchitecture": {
+          "name": "RESTful Architecture",
+          "role": "Resource-oriented API design and status code contracts",
+          "tags": ["HATEOAS", "Idempotency", "Clean URLs", "JSON Schemas"]
+        },
+        "webSocketsSocketio": {
+          "name": "WebSockets (Socket.io)",
+          "role": "Full-duplex real-time communication channels",
+          "tags": ["Rooms", "Event Broadcasts", "Heartbeats", "Low Latency"]
+        },
+        "openApiSwagger": {
+          "name": "OpenAPI & Swagger",
+          "role": "Interactive API documentation & automated contracts",
+          "tags": ["Swagger UI", "DTO Annotations", "Endpoint Specs"]
+        },
+        "microservicesDesign": {
+          "name": "Microservices Design",
+          "role": "Decoupled domain services and service boundaries",
+          "tags": ["Service Isolation", "Event Bus", "API Gateway"]
+        }
+      }
+    },
+    "authenticationSecurity": {
+      "title": "Authentication & Security",
+      "description": "Zero-trust perimeter, identity verification, and encryption",
+      "items": {
+        "jwtTokenRotation": {
+          "name": "JWT & Token Rotation",
+          "role": "Stateless access & refresh token authentication flow",
+          "tags": ["RS256/HS256", "Refresh Rotation", "Claims Payload"]
+        },
+        "rbac": {
+          "name": "Role-Based Access (RBAC)",
+          "role": "Fine-grained route & entity permission guards",
+          "tags": ["Custom Decorators", "Role Hierarchy", "Permission Matrix"]
+        },
+        "bcryptDataEncryption": {
+          "name": "Bcrypt & Data Encryption",
+          "role": "Salted password hashing and sensitive data protection",
+          "tags": ["Salt Rounds", "Hash Verification", "Env Secrets"]
+        },
+        "securityShieldHelmetCors": {
+          "name": "Security Shield (Helmet & CORS)",
+          "role": "Hardened HTTP headers, XSS, and clickjacking protection",
+          "tags": ["Content Security", "HSTS", "Frameguard", "NoSniff"]
+        }
+      }
+    },
+    "devopsCicdTesting": {
+      "title": "DevOps, CI/CD & Testing",
+      "description": "Containerization, automated deployment, and test coverage",
+      "items": {
+        "dockerContainers": {
+          "name": "Docker Containers",
+          "role": "Multi-stage builds and isolated container environments",
+          "tags": ["Dockerfile", "Docker Compose", "Alpine Images"]
+        },
+        "nginxReverseProxyDevOps": {
+          "name": "Nginx Reverse Proxy",
+          "role": "High-performance web server & SSL terminator",
+          "tags": ["Gzip Compression", "Proxy Pass", "Custom Headers"]
+        },
+        "jestSupertest": {
+          "name": "Jest & Supertest",
+          "role": "Unit and end-to-end integration test suites",
+          "tags": ["Mocking", "API Integration", "Code Coverage"]
+        },
+        "githubActionsCicd": {
+          "name": "GitHub Actions CI/CD",
+          "role": "Automated build, lint, test, and deploy pipelines",
+          "tags": ["Workflows", "Secrets Management", "Zero-Downtime"]
+        }
+      }
+    }
+  },
+  "simulatedRoutes": {
+    "get-backend-workspace": {
+      "handler": "BackendController.getWorkspace",
+      "description": "Fetches structured backend skills telemetry and architecture data"
+    },
+    "post-auth-login": {
+      "handler": "AuthController.authenticate",
+      "description": "Validates credentials, bcrypt comparison, and issues signed JWT pair"
+    },
+    "get-projects": {
+      "handler": "ProjectsController.findWithFilters",
+      "description": "Queries MongoDB with compound index and populates related services"
+    },
+    "post-contact-message": {
+      "handler": "ContactController.enqueueNotification",
+      "description": "Enqueues email task in BullMQ queue and dispatches Resend webhook"
+    }
+  },
+  "pipeline": {
+    "steps": {
+      "ingress": {
+        "title": "01. Ingress & Rate Limiter",
+        "detail": "Header parsing, DDoS shield, and origin validation"
+      },
+      "security": {
+        "title": "02. Security & Auth Guard",
+        "detail": "Passport JWT verification and RBAC role permission check"
+      },
+      "route": { "title": "03. Route Controller Match", "detail": "execution context" },
+      "domain": {
+        "title": "04. Domain Service & DTO Validation",
+        "detail": "Business rules execution and sanitized payload schema"
+      },
+      "persistence": {
+        "title": "05. Persistence & Cache Read/Write",
+        "detail": "MongoDB Atlas Query & cache"
+      },
+      "response": {
+        "title": "06. Response Serializer & Egress",
+        "detail": "Serialized JSON Envelope"
+      }
+    }
+  },
+  "telemetry": {
+    "gauges": "Telemetry Gauges"
+  },
+  "metrics": {
+    "requestsHandled": "Requests Handled",
+    "p99": "P99 Response Time",
+    "errorRate": "Error Rate (5xx)",
+    "throughput": "Throughput",
+    "dataTransferred": "Data Transferred",
+    "cacheHitRatio": "Cache Hit Ratio",
+    "sample": "1s sample"
+  },
+  "services": {
+    "title": "Active Production Endpoints & Microservices",
+    "nodes": "8 Online Nodes",
+    "auth": { "name": "Authentication Service", "desc": "JWT auth, refresh tokens, role guards" },
+    "projects": {
+      "name": "Projects Microservice",
+      "desc": "Project catalog, tags, and media links"
+    },
+    "skills": {
+      "name": "Skills Engine Service",
+      "desc": "Skills workspace and metadata retrieval"
+    },
+    "experience": {
+      "name": "Experience & Milestones",
+      "desc": "Timeline events and verified certificates"
+    },
+    "contact": {
+      "name": "Contact & Mailer Dispatch",
+      "desc": "BullMQ queue and Resend email worker"
+    },
+    "ai": { "name": "AI Assistant Stream", "desc": "Streaming OpenAI agent integrations" },
+    "telemetry": {
+      "name": "Telemetry & Analytics",
+      "desc": "Real-time visitor logs and event stream"
+    },
+    "media": { "name": "Media & File Storage", "desc": "Cloudinary CDN and asset transformations" }
+  },
+  "principles": {
+    "availability": {
+      "title": "High Availability & Resilience",
+      "desc": "Graceful shutdown handlers, health checks, circuit breakers, and database replica recovery."
+    },
+    "security": {
+      "title": "Zero-Trust Security Perimeter",
+      "desc": "Strict DTO validation, parameterized SQL/NoSQL queries, JWT rotation, and security headers."
+    },
+    "data": {
+      "title": "Scalable Data Modeling",
+      "desc": "Compound index strategy, connection pooling, cache-aside Redis patterns, and normalized schemas."
+    },
+    "architecture": {
+      "title": "Clean Architecture & DI",
+      "desc": "Modular boundary separation, dependency inversion, testable unit services, and single-responsibility."
+    }
+  },
+  "explore": {
+    "title": "Explore Individual Backend Workspaces",
+    "description": "Deep dive into dedicated runtime telemetry and architecture details for NestJS, Node.js, Express, JWT, and Spring Boot."
+  },
+  "metadata": {
+    "httpRequestSimulator": "HTTP Request Simulator",
+    "clickToDispatch": "Click to dispatch",
+    "requestPipeline": "Request Pipeline",
+    "renderingFrame": "Processing route...",
+    "systemUptime": "System Uptime",
+    "targetController": "Target Controller:",
+    "statusLabel": "Status",
+    "healthyStatus": "Healthy (200 OK)",
+    "runtimeStack": "Node.js / NestJS",
+    "runtimeEngine": "Runtime Engine",
+    "primaryRegion": "Algeria-East",
+    "regionLabel": "Primary Region",
+    "activeListener": "4000/TCP"
+  }
+}
