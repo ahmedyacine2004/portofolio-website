@@ -1,0 +1,195 @@
+{
+  "metaTitle": "Espace Photoshop | Compétences",
+  "metaDescription": "Détails de l'espace de travail compositing numérique, manipulation de photos et retouche pour Photoshop",
+  "workspaceTitle": "ESPACE DESIGN -Photoshop-",
+  "workspaceSubtitle": "Compositing numérique, retouche photo, séparation de fréquences et conception d'actifs créatifs",
+  "creativeStudio": "STUDIO CRÉATIF",
+  "autoLayoutBadge": "Prêt pour Raster & RAW",
+  "vectorPrecisionBadge": "Perfection du Pixel",
+  "header": {
+    "category": "COMPOSITING NUMÉRIQUE & RETOUCHE PHOTO",
+    "title": "Photoshop",
+    "subtitle": "Compositing numérique professionnel, manipulation photo & retouche",
+    "description": "J'utilise Adobe Photoshop pour la retouche photo haut de gamme, le compositing de calques complexes, l'étalonnage colorimétrique, la séparation de fréquences et la création visuelle pour le numérique et l'impression.",
+    "metrics": [
+      { "label": "Expérience", "value": "2.5+ ans" },
+      { "label": "Projets", "value": "8+" },
+      { "label": "Niveau", "value": "Intermédiaire" },
+      { "label": "Type de Design", "value": "Raster / Photo" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise Visuelle",
+    "label": "Maîtrise"
+  },
+  "designTenets": {
+    "title": "Principes de Design",
+    "items": [
+      "Retouche photo professionnelle",
+      "Masques de fusion non destructifs",
+      "Étalonnage colorimétrique avancé",
+      "Moteur de pinceaux étendu",
+      "Workflows d'objets dynamiques"
+    ]
+  },
+  "gallery": {
+    "title": "Galerie d'Actifs Visuels & Artefacts Créatifs Photoshop",
+    "subtitle": "Explorez des composites numériques, des portraits retouchés haut de gamme, des maquettes visuelles et des créations promotionnelles conçues avec Adobe Photoshop.",
+    "readyBadge": "Prêt",
+    "designedIn": "Créé sous Photoshop",
+    "inspectDetails": "Inspecter les détails →",
+    "tabs": {
+      "gallery": "Grille Galerie",
+      "tokens": "Nuancier de Couleurs",
+      "components": "Composants UI"
+    },
+    "colorTokens": [
+      {
+        "name": "Cyan Électrique",
+        "hex": "#06b6d4",
+        "role": "Accent de Marque Photoshop / Mises en avant"
+      },
+      { "name": "Cobalt Profond", "hex": "#1e3a8a", "role": "Base Primaire / Ombres Riches" },
+      {
+        "name": "Ambre Vibrant",
+        "hex": "#f59e0b",
+        "role": "Hautes Lumières Chaudes / Contraste Tonal"
+      },
+      {
+        "name": "Lueur Émeraude",
+        "hex": "#10b981",
+        "role": "Étalonnage / Équilibre du Teint de Peau"
+      },
+      { "name": "Fusain Sombre", "hex": "#090d16", "role": "Fond du Canvas / Sombre Studio" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Variantes de Composants Bouton",
+      "primaryButton": "Cyan Plein Primaire",
+      "secondaryButton": "Variante Ghost Secondaire",
+      "outlineButton": "Contour Neutre",
+      "badgePrimitives": "Primitives Badges & Chips",
+      "activeVariant": "Variante Active",
+      "informationTag": "Tag d'Information",
+      "responsiveTag": "100% Haute Résolution",
+      "defaultToken": "Token par Défaut",
+      "typographyScale": "Échelle Typographique",
+      "displayBold": "Titre Display Gras 18px",
+      "headingSemibold": "Sous-titre Demi-gras 13px",
+      "bodyRegular": "Corps Régulier 11px Inter",
+      "monospaceCode": "Code Chassé 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "photo-editing",
+        "title": "Retouche Photo & Composite",
+        "description": "Séparation de fréquences haut de gamme et manipulation d'images",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "digital-compositing",
+        "title": "Compositing Matte Numérique",
+        "description": "Création de scènes multicouches et fusion atmosphérique",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "visual-mockups",
+        "title": "Maquettes Visuelles de Marque",
+        "description": "Maquettes de produits et éléments graphiques promotionnels",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Flux de Travail Créatif",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Ingestion Raw & Sélection",
+        "detail": "Conversion Camera RAW, corrections d'objectifs & exposition de base"
+      },
+      {
+        "step": "02",
+        "title": "Nettoyage & Séparation de Fréquences",
+        "detail": "Suppression des imperfections, préservation du grain & micro-contraste"
+      },
+      {
+        "step": "03",
+        "title": "Compositing Multicouche",
+        "detail": "Objets dynamiques, modes de fusion, profondeur atmosphérique & éclairage"
+      },
+      {
+        "step": "04",
+        "title": "Étalonnage & LUTs",
+        "detail": "Réglages par courbes, couleurs sélectives, tables de correspondance & tons"
+      },
+      {
+        "step": "05",
+        "title": "Netteté & Export Production",
+        "detail": "Accentuation passe-haut, conversion prépresse CMJN & compression WebP"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Livrables de Design",
+    "items": [
+      "Affiches",
+      "Retouche Photo",
+      "Composites",
+      "Visuels Réseaux Sociaux",
+      "Actifs Web",
+      "Maquettes Visuelles",
+      "Textures",
+      "Étalonnage",
+      "Bannières",
+      "Miniatures",
+      "Maquettes d'Impression",
+      "Art Numérique"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Chaîne d'Outils & Plugins",
+    "stats": [
+      { "label": "Photos Retouchées", "value": "150+" },
+      { "label": "Composites Numériques", "value": "45+" },
+      { "label": "Piles de Calques", "value": "100+" },
+      { "label": "Projets", "value": "8+" },
+      { "label": "Profils Colorimétriques", "value": "CMJN / RVB" },
+      { "label": "Formats d'Actifs", "value": "PSD / RAW / WebP" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à Outils Design",
+    "items": [
+      { "label": "Retouche Photo", "percentage": 85 },
+      { "label": "Compositing de Calques", "percentage": 82 },
+      { "label": "Étalonnage Colorimétrique", "percentage": 80 },
+      { "label": "Détourage & Sélections", "percentage": 84 },
+      { "label": "Textures & Pinceaux", "percentage": 78 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de Design",
+    "items": [
+      "Retoucher des photographies en très haute résolution",
+      "Créer des compositions numériques multicouches harmonieuses",
+      "Appliquer un étalonnage et une correction colorimétrique précis",
+      "Maîtriser les flux de retouche non destructifs",
+      "Préparer des actifs haute fidélité pour le web et l'impression"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur d'Exécution Créative",
+    "items": [
+      { "label": "Manipulation Photo & Retouche", "percentage": 84 },
+      { "label": "Masques de Fusion & Modes", "percentage": 82 },
+      { "label": "Calibration des Couleurs & LUTs", "percentage": 80 },
+      { "label": "Export & Optimisation Web", "percentage": 78 }
+    ]
+  }
+}

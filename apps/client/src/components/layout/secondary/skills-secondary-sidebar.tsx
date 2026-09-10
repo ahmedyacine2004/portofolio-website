@@ -212,7 +212,7 @@ export function SkillsSecondarySidebar() {
           const categorySlug = slugify(category.title);
           const isOpen = searchQuery ? true : openSection === category.id;
           const isCategoryActive = pathname === `/skills/${categorySlug}`;
-          const categoryTitle = t(`skills.${category.id}`, category.title);
+          const categoryTitle = t(`skillsSidebar.categoryNames.${category.id}`, category.title);
 
           return (
             <div

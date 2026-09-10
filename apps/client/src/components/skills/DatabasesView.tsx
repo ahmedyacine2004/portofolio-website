@@ -1,9 +1,11 @@
 'use client';
 
 import { FrontendWorkspaceData } from '@/data/skills/react-workspace';
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
+  Award,
   Boxes,
   Clock,
   Code2,
@@ -30,12 +32,12 @@ import {
   Workflow,
   Zap,
 } from 'lucide-react';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 const iconMap: Record<string, LucideIcon> = {
   Calendar: Clock,
   Folder: Folder,
-  Star: Zap,
+  Star: Award,
   BookOpen: Database,
   Home: ServerCog,
   TrendingUp: TrendingUp,
@@ -134,9 +136,10 @@ const cardVariants: Variants = {
 
 interface DatabasesViewProps {
   data: FrontendWorkspaceData;
+  skillKey?: string;
 }
 
-export default function DatabasesView({ data }: DatabasesViewProps) {
+export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
   const {
     skillName,
     header,
@@ -151,7 +154,49 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
     technicalStrengths,
   } = data;
 
-  const storageTiers = useMemo(
+  const resolvedSkillKey =
+    skillKey ||
+    (skillName.toLowerCase().includes('mongo')
+      ? 'mongodb'
+      : skillName.toLowerCase().includes('postgres')
+        ? 'postgresql'
+        : skillName.toLowerCase().includes('mysql')
+          ? 'mysql'
+          : skillName.toLowerCase().includes('firebase')
+            ? 'firebase'
+            : skillName.toLowerCase().includes('redis')
+              ? 'redis'
+              : skillName.toLowerCase().replace(/[^a-z0-9]/g, ''));
+
+  const { t, tArray, tObject, locale } = useTranslation();
+
+  useEffect(() => {
+    const metaTitle = t(
+      `skillPages.${resolvedSkillKey}.metaTitle`,
+      `${skillName} Workspace | Skills`,
+    );
+    if (metaTitle && typeof document !== 'undefined') {
+      document.title = metaTitle;
+    }
+  }, [locale, resolvedSkillKey, t, skillName]);
+
+  const translatedMetrics = tObject<Array<{ label: string; value: string }>>(
+    `skillPages.${resolvedSkillKey}.header.metrics`,
+    [],
+  );
+
+  const metrics = useMemo(() => {
+    return header.metrics.map((metric, i) => ({
+      ...metric,
+      label: translatedMetrics?.[i]?.label ?? metric.label,
+      value: translatedMetrics?.[i]?.value ?? metric.value,
+    }));
+  }, [header.metrics, translatedMetrics]);
+
+  const translatedTenets = tArray<string>(`skillPages.${resolvedSkillKey}.designTenets.items`);
+  const displayTenets = translatedTenets.length > 0 ? translatedTenets : whyILove;
+
+  const defaultStorageTiers = useMemo(
     () => [
       {
         tier: '01. Buffer Cache & Memory',
@@ -185,6 +230,96 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
     [skillName],
   );
 
+  const translatedStorageTiers = tObject<
+    Array<{ tier: string; detail: string; latency: string; badge: string }>
+  >(`skillPages.${resolvedSkillKey}.storageTiers.items`, []);
+
+  const displayStorageTiers = useMemo(() => {
+    return defaultStorageTiers.map((tier, idx) => {
+      const trans = translatedStorageTiers?.[idx];
+      return {
+        ...tier,
+        tier: trans?.tier ?? tier.tier,
+        detail: trans?.detail ?? tier.detail,
+        latency: trans?.latency ?? tier.latency,
+        badge: trans?.badge ?? tier.badge,
+      };
+    });
+  }, [defaultStorageTiers, translatedStorageTiers]);
+
+  const translatedApps = tObject<
+    Array<{ id?: string; title?: string; description?: string; status?: string; badge?: string }>
+  >(`skillPages.${resolvedSkillKey}.applications.items`, []);
+
+  const displayApplications = useMemo(() => {
+    return applications.map((app, idx) => {
+      const trans = translatedApps?.[idx];
+      return {
+        ...app,
+        title: trans?.title ?? app.title,
+        description: trans?.description ?? app.description,
+        status: trans?.status ?? app.status,
+        badge: trans?.badge ?? app.badge,
+      };
+    });
+  }, [applications, translatedApps]);
+
+  const translatedWhatIBuild = tArray<string>(
+    `skillPages.${resolvedSkillKey}.componentSystems.items`,
+  );
+
+  const displayWhatIBuild = useMemo(() => {
+    return whatIBuild.map((item, idx) => ({
+      ...item,
+      label: translatedWhatIBuild?.[idx] ?? item.label,
+    }));
+  }, [whatIBuild, translatedWhatIBuild]);
+
+  const translatedStats = tObject<Array<{ label: string; value: string }>>(
+    `skillPages.${resolvedSkillKey}.impact.stats`,
+    [],
+  );
+
+  const displayStats = useMemo(() => {
+    return impactAndStats.map((stat, idx) => ({
+      ...stat,
+      label: translatedStats?.[idx]?.label ?? stat.label,
+      value: translatedStats?.[idx]?.value ?? stat.value,
+    }));
+  }, [impactAndStats, translatedStats]);
+
+  const translatedToolkit = tObject<Array<{ label: string; percentage?: number }>>(
+    `skillPages.${resolvedSkillKey}.toolkit.items`,
+    [],
+  );
+
+  const displayToolkit = useMemo(() => {
+    return toolkit.map((tool, idx) => ({
+      ...tool,
+      label: translatedToolkit?.[idx]?.label ?? tool.label,
+      percentage: translatedToolkit?.[idx]?.percentage ?? tool.percentage,
+    }));
+  }, [toolkit, translatedToolkit]);
+
+  const translatedCoreStrengths = tArray<string>(
+    `skillPages.${resolvedSkillKey}.architecturePrinciples.items`,
+  );
+  const displayCoreStrengths =
+    translatedCoreStrengths.length > 0 ? translatedCoreStrengths : coreStrengths;
+
+  const translatedTechStrengths = tObject<Array<{ label: string; percentage?: number }>>(
+    `skillPages.${resolvedSkillKey}.technicalDepth.items`,
+    [],
+  );
+
+  const displayTechStrengths = useMemo(() => {
+    return technicalStrengths.map((tech, idx) => ({
+      ...tech,
+      label: translatedTechStrengths?.[idx]?.label ?? tech.label,
+      percentage: translatedTechStrengths?.[idx]?.percentage ?? tech.percentage,
+    }));
+  }, [technicalStrengths, translatedTechStrengths]);
+
   return (
     <motion.div
       className="w-full space-y-6 rounded-[8px]"
@@ -203,10 +338,16 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           </div>
           <div>
             <h1 className="font-inter text-xl font-black uppercase tracking-tight md:text-[22px]">
-              DATABASE WORKSPACE -{skillName}-
+              {t(
+                `skillPages.${resolvedSkillKey}.workspaceTitle`,
+                `DATABASE WORKSPACE -${skillName}-`,
+              )}
             </h1>
             <p className="text-[12px] text-muted-foreground">
-              Data architecture, schema modeling, indexing strategy, and query performance
+              {t(
+                `skillPages.${resolvedSkillKey}.workspaceSubtitle`,
+                'Data architecture, schema modeling, indexing strategy, and query performance',
+              )}
             </p>
           </div>
         </div>
@@ -214,13 +355,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-violet-600 dark:text-violet-400">
             <span className="size-2 rounded-full bg-violet-500 animate-pulse" />
-            ENGINE ACTIVE
+            {t(`skillPages.${resolvedSkillKey}.engineActive`, 'ENGINE ACTIVE')}
           </span>
           <span className="rounded-[6px] border border-border/50 bg-card px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground">
-            99.9% Buffer Hit
+            {t(`skillPages.${resolvedSkillKey}.bufferHitBadge`, '99.9% Buffer Hit')}
           </span>
           <span className="rounded-[6px] border border-border/50 bg-card px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground">
-            0ms Replica Lag
+            {t(`skillPages.${resolvedSkillKey}.replicaLagBadge`, '0ms Replica Lag')}
           </span>
         </div>
       </motion.div>
@@ -238,31 +379,49 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
               <Database className="size-6" />
             </div>
             <div>
-              <h2 className="font-inter text-[20px] font-bold text-foreground">{header.title}</h2>
+              <h2 className="font-inter text-[20px] font-bold text-foreground">
+                {t(`skillPages.${resolvedSkillKey}.header.title`, header.title)}
+              </h2>
               <p className="text-[11px] font-mono text-violet-600 dark:text-violet-400">
-                DATA PARADIGM &amp; STORAGE ENGINE
+                {t(
+                  `skillPages.${resolvedSkillKey}.header.category`,
+                  'DATA PARADIGM & STORAGE ENGINE',
+                )}
               </p>
             </div>
           </div>
-          <p className="mb-2 text-[13px] font-bold text-foreground">{header.subtitle}</p>
+          <p className="mb-2 text-[13px] font-bold text-foreground">
+            {t(`skillPages.${resolvedSkillKey}.header.subtitle`, header.subtitle)}
+          </p>
           <p className="mb-6 text-[12px] leading-relaxed text-muted-foreground">
-            {header.description}
+            {t(`skillPages.${resolvedSkillKey}.header.description`, header.description)}
           </p>
 
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-            {header.metrics.map((metric, i) => {
-              const Icon = iconMap[metric.icon] || Database;
+            {metrics.map((metric, i) => {
+              const Icon =
+                i === 0
+                  ? Clock
+                  : i === 1
+                    ? Folder
+                    : i === 2
+                      ? Award
+                      : iconMap[metric.icon] || Database;
               return (
                 <div
                   key={i}
                   className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-muted/30"
                 >
-                  <div className="text-violet-600 dark:text-violet-400">
-                    <Icon className="size-4" />
+                  <div className="flex size-6 shrink-0 items-center justify-center text-violet-600 dark:text-violet-400">
+                    <Icon className="size-4 shrink-0" />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-[12px] font-bold">{metric.value}</span>
-                    <span className="text-[10px] text-muted-foreground">{metric.label}</span>
+                  <div className="flex min-w-0 flex-col">
+                    <span className="truncate text-[12px] font-bold leading-tight">
+                      {metric.value}
+                    </span>
+                    <span className="truncate text-[10px] text-muted-foreground leading-tight">
+                      {metric.label}
+                    </span>
                   </div>
                 </div>
               );
@@ -277,12 +436,16 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="flex flex-col items-center justify-center rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex w-full items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Schema Mastery</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.mastery.title`, 'Schema Mastery')}
+            </h3>
             <Activity className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <CircularProgress percentage={proficiency} size={130} strokeWidth={10}>
             <span className="text-[24px] font-black">{proficiency}%</span>
-            <span className="text-[10px] font-medium text-muted-foreground">Proficiency</span>
+            <span className="text-[10px] font-medium text-muted-foreground">
+              {t(`skillPages.${resolvedSkillKey}.mastery.label`, 'Proficiency')}
+            </span>
           </CircularProgress>
         </motion.div>
 
@@ -293,11 +456,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Data Guarantees</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.designTenets.title`, 'Data Guarantees')}
+            </h3>
             <ShieldCheck className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <ul className="space-y-2.5">
-            {whyILove.map((reason, i) => (
+            {displayTenets.map((reason, i) => (
               <li key={i} className="flex items-center gap-2 text-[12px]">
                 <div className="size-1.5 shrink-0 rounded-full bg-violet-500" />
                 <span className="leading-snug">{reason}</span>
@@ -316,16 +481,22 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           <div className="flex items-center gap-2">
             <Layers3 className="size-4 text-violet-600 dark:text-violet-400" />
             <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide">
-              Data Storage &amp; Persistence Lifecycle
+              {t(
+                `skillPages.${resolvedSkillKey}.storageTiers.title`,
+                'Data Storage & Persistence Lifecycle',
+              )}
             </h3>
           </div>
           <span className="font-mono text-[10px] text-muted-foreground">
-            From Buffer Cache to Disk &amp; Replica Shards
+            {t(
+              `skillPages.${resolvedSkillKey}.storageTiers.subtitle`,
+              'From Buffer Cache to Disk & Replica Shards',
+            )}
           </span>
         </div>
 
         <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
-          {storageTiers.map((tier, idx) => {
+          {displayStorageTiers.map((tier, idx) => {
             const Icon = tier.icon;
             return (
               <div
@@ -347,7 +518,9 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
                   </p>
                 </div>
                 <div className="mt-3 flex items-center justify-between border-t border-border/20 pt-2 font-mono text-[9.5px]">
-                  <span className="text-muted-foreground">Latency:</span>
+                  <span className="text-muted-foreground">
+                    {t(`skillPages.${resolvedSkillKey}.storageTiers.latencyLabel`, 'Latency:')}
+                  </span>
                   <span className="font-bold text-violet-600 dark:text-violet-400">
                     {tier.latency}
                   </span>
@@ -367,11 +540,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Production Schemas</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.applications.title`, 'Production Schemas')}
+            </h3>
             <TableProperties className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <div className="space-y-4">
-            {applications.map((app) => (
+            {displayApplications.map((app) => (
               <div
                 key={app.id}
                 className="flex items-start gap-3 border-b border-border/40 pb-4 last:border-0 last:pb-0"
@@ -406,11 +581,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Schema Entities</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.componentSystems.title`, 'Schema Entities')}
+            </h3>
             <Boxes className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <div className="grid grid-cols-3 gap-2">
-            {whatIBuild.map((item, i) => {
+            {displayWhatIBuild.map((item, i) => {
               const Icon = iconMap[item.icon] || TableProperties;
               return (
                 <motion.div
@@ -433,11 +610,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Storage &amp; Benchmarks</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.impact.title`, 'Storage & Benchmarks')}
+            </h3>
             <TrendingUp className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <ul className="mb-6 space-y-2">
-            {impactAndStats.map((stat, i) => (
+            {displayStats.map((stat, i) => (
               <li key={i} className="flex justify-between text-[12px]">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <div className="size-1.5 rounded-full bg-violet-500" />
@@ -448,7 +627,9 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
             ))}
           </ul>
 
-          <h3 className="font-inter mb-4 text-[14px] font-bold">Database Ecosystem &amp; ORM</h3>
+          <h3 className="font-inter mb-4 text-[14px] font-bold">
+            {t(`skillPages.${resolvedSkillKey}.impact.ecosystemTitle`, 'Database Ecosystem & ORM')}
+          </h3>
           <div className="flex flex-wrap gap-2">
             {techStack.map((tech, i) => (
               <motion.span
@@ -472,11 +653,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Database Toolkit</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.toolkit.title`, 'Database Toolkit')}
+            </h3>
             <Zap className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <div className="flex justify-between">
-            {toolkit.map((tool, i) => (
+            {displayToolkit.map((tool, i) => (
               <div key={i} className="flex flex-col items-center gap-2">
                 <CircularProgress percentage={tool.percentage} size={48} strokeWidth={4}>
                   <span className="text-[10px] font-bold">{tool.percentage}%</span>
@@ -496,11 +679,16 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Integrity Principles</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(
+                `skillPages.${resolvedSkillKey}.architecturePrinciples.title`,
+                'Integrity Principles',
+              )}
+            </h3>
             <Shield className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <ul className="space-y-3">
-            {coreStrengths.map((strength, i) => (
+            {displayCoreStrengths.map((strength, i) => (
               <li key={i} className="flex items-start gap-2 text-[12px]">
                 <div className="mt-1.5 size-1.5 shrink-0 rounded-full bg-violet-500" />
                 <span className="leading-snug text-muted-foreground">{strength}</span>
@@ -516,11 +704,13 @@ export default function DatabasesView({ data }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Query &amp; Indexing Depth</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.technicalDepth.title`, 'Query & Indexing Depth')}
+            </h3>
             <Layers className="size-4 text-violet-600 dark:text-violet-400" />
           </div>
           <div className="space-y-4">
-            {technicalStrengths.map((tech, i) => (
+            {displayTechStrengths.map((tech, i) => (
               <div key={i} className="flex items-center justify-between gap-4 text-[12px]">
                 <div className="flex min-w-[140px] items-center gap-2">
                   <div className="size-1.5 shrink-0 rounded-full bg-violet-500" />

@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace NestJS | Compétences",
+  "metaDescription": "Détails de l'espace de travail framework backend d'entreprise pour NestJS",
+  "workspaceTitle": "ESPACE BACKEND -NestJS-",
+  "workspaceSubtitle": "Runtime côté serveur, frontières architecturales et bancs d'essai de performance",
+  "clientRuntime": "RUNTIME EN DIRECT",
+  "lighthouseBadge": "Disponibilité 99.99%",
+  "fpsBadge": "Latence < 25ms",
+  "header": {
+    "category": "ARCHITECTURE & RUNTIME",
+    "title": "NestJS",
+    "subtitle": "Framework Node.js de classe entreprise avec TypeScript",
+    "description": "NestJS est mon framework backend principal. Il fournit des modèles architecturaux, l'injection de dépendances et un excellent support TypeScript pour concevoir des applications côté serveur évolutives.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "4+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type d'app", "value": "Backend" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Moteur",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Architecture Fondamentale",
+    "items": [
+      "Injection de dépendances native",
+      "Support TypeScript de premier ordre",
+      "Architecture modulaire",
+      "Agnostique envers les bases de données",
+      "Idéal pour les architectures microservices"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline d'exécution runtime & cycle de vie",
+    "subtitle": "Traçage de requête de bout en bout",
+    "stages": [
+      {
+        "tag": "Porte 01",
+        "title": "Ingestion entrante",
+        "detail": "Gestionnaire HTTP / WebSocket"
+      },
+      {
+        "tag": "Porte 02",
+        "title": "Sécurité & Authentification",
+        "detail": "Garde JWT & limitation de débit (Rate Limiting)"
+      },
+      {
+        "tag": "Porte 03",
+        "title": "Contrôleur de route",
+        "detail": "Contexte d'exécution NestJS"
+      },
+      {
+        "tag": "Porte 04",
+        "title": "Logique métier & Domaine",
+        "detail": "Couche de services & validation d'état"
+      },
+      {
+        "tag": "Porte 05",
+        "title": "Persistance & Cache",
+        "detail": "ODM/ORM de base de données & Redis"
+      },
+      {
+        "tag": "Porte 06",
+        "title": "Réponse sérialisée",
+        "detail": "Charge utile JSON 200 OK"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Services en production",
+    "items": [
+      {
+        "id": "portfolio-api",
+        "title": "API Backend du Portfolio",
+        "description": "API RESTful alimentant le site portfolio",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "consultify-api",
+        "title": "API Consultify",
+        "description": "Système de réservation avec intégration de paiement",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "analytics-service",
+        "title": "Microservice d'Analytics",
+        "description": "Traitement d'analyses en temps réel",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Modules d'architecture",
+    "items": [
+      "APIs REST",
+      "Contrôleurs",
+      "Services",
+      "Modules",
+      "Middleware",
+      "Gardes & Intercepteurs",
+      "Intégration base de données",
+      "Authentification",
+      "APIs WebSocket",
+      "Gestion des erreurs",
+      "Validation",
+      "Tests"
+    ]
+  },
+  "impact": {
+    "title": "Impact & bancs d'essai",
+    "ecosystemTitle": "Stack runtime & bibliothèques",
+    "stats": [
+      { "label": "Points de terminaison API", "value": "50+" },
+      { "label": "Modules créés", "value": "15+" },
+      { "label": "Services", "value": "30+" },
+      { "label": "Relations en base de données", "value": "25+" },
+      { "label": "Gestionnaire de requêtes", "value": "100%" },
+      { "label": "Disponibilité", "value": "99.9%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils backend",
+    "items": [
+      { "label": "Développement d'APIs", "percentage": 88 },
+      { "label": "Conception de bases de données", "percentage": 85 },
+      { "label": "Conception d'architecture", "percentage": 82 },
+      { "label": "Authentification & Sécurité", "percentage": 85 },
+      { "label": "Tests & Débogage", "percentage": 80 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes d'architecture",
+    "items": [
+      "Concevoir des systèmes backend évolutifs",
+      "Implémenter efficacement des APIs RESTful",
+      "Créer un code modulaire et réutilisable",
+      "Intégrer plusieurs bases de données",
+      "Construire des systèmes d'authentification sécurisés"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "Contrôleurs & Routage", "percentage": 90 },
+      { "label": "Services & Injection de dépendances", "percentage": 85 },
+      { "label": "ORM/ODM de base de données", "percentage": 80 },
+      { "label": "Middleware & Gardes", "percentage": 82 }
+    ]
+  }
+}

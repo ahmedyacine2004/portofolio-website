@@ -1,0 +1,154 @@
+{
+  "metaTitle": "GitHub Actions Workspace | Skills",
+  "workspaceTitle": "DEVOPS & TOOLS WORKSPACE -GitHub Actions-",
+  "workspaceSubtitle": "Automated CI/CD pipelines, matrix builds, continuous deployment, and secrets security",
+  "clusterHealthy": "ACTIONS RUNNER ACTIVE",
+  "uptimeBadge": "99.9% Uptime",
+  "downtimeBadge": "Zero Downtime",
+  "header": {
+    "title": "GitHub Actions",
+    "category": "CI/CD AUTOMATION & WORKFLOWS",
+    "subtitle": "Workflow automation platform",
+    "description": "GitHub Actions enables me to automate testing, building, and deployment workflows. I use it extensively for CI/CD pipelines integrated with my repositories.",
+    "metrics": [
+      { "label": "Experience", "value": "1.5+ years" },
+      { "label": "Projects", "value": "8+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Platform", "value": "CI/CD" }
+    ]
+  },
+  "mastery": {
+    "title": "Ops Reliability",
+    "label": "Mastery"
+  },
+  "devopsTenets": {
+    "title": "GitHub Actions Tenets",
+    "items": [
+      "Native and frictionless GitHub integration",
+      "Generous build minutes for open source repositories",
+      "Declarative, clean YAML workflow syntax",
+      "Vast marketplace of pre-built reusable actions",
+      "First-class security, secret masking, and environment protection"
+    ]
+  },
+  "pipeline": {
+    "title": "Automated CI/CD Delivery Pipeline & Rollout Lifecycle",
+    "subtitle": "From Git Push to Production Deployment",
+    "stages": [
+      {
+        "stage": "01. Trigger",
+        "title": "Push Event & Matrix Lint",
+        "detail": "Repository push triggers, matrix setup & linting"
+      },
+      {
+        "stage": "02. Test",
+        "title": "Automated Test Matrix",
+        "detail": "Parallel unit and integration test execution"
+      },
+      {
+        "stage": "03. Build",
+        "title": "Compilation & Layer Cache",
+        "detail": "Node.js packaging, cache actions & artifact upload"
+      },
+      {
+        "stage": "04. Security",
+        "title": "CodeQL & Secret Scan",
+        "detail": "Vulnerability scanning, dependency audit & secret audit"
+      },
+      {
+        "stage": "05. Rollout",
+        "title": "Continuous Deployment",
+        "detail": "Automated environment promotion & zero-downtime release"
+      },
+      {
+        "stage": "06. Telemetry",
+        "title": "Status Checks & Webhooks",
+        "detail": "PR status badges, telemetry alerts & release summary"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production CI/CD Pipelines",
+    "items": [
+      {
+        "id": "automated-testing",
+        "title": "Automated Testing",
+        "description": "Run tests automatically across operating systems on every commit",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "build-pipeline",
+        "title": "Build Pipeline",
+        "description": "Automated multi-step build, artifact bundling, and verification process",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "deployment",
+        "title": "Automated Deployment",
+        "description": "Continuous delivery pushing tested releases straight to production",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Workflow Blueprints & Automations",
+    "items": [
+      "Workflows",
+      "Jobs",
+      "Custom Actions",
+      "Event Triggers",
+      "Environments",
+      "Encrypted Secrets",
+      "Matrix Builds",
+      "Layer Caching",
+      "Notifications",
+      "Status Checks",
+      "Build Artifacts",
+      "Release Automation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & SLA Metrics",
+    "ecosystemTitle": "GitHub & CI/CD Toolchain",
+    "stats": [
+      { "label": "Workflows", "value": "15+" },
+      { "label": "Jobs Automated", "value": "50+" },
+      { "label": "Build Success Rate", "value": "98%" },
+      { "label": "Average Build Time", "value": "5 mins" },
+      { "label": "Deployments Automated", "value": "100+" },
+      { "label": "Time Saved Monthly", "value": "40 hrs" }
+    ]
+  },
+  "toolkit": {
+    "title": "CI/CD Toolkit",
+    "items": [
+      { "label": "Workflow Configuration", "percentage": 82 },
+      { "label": "CI/CD Setup", "percentage": 80 },
+      { "label": "Testing Automation", "percentage": 78 },
+      { "label": "Deployment Pipelines", "percentage": 76 },
+      { "label": "Action Creation", "percentage": 70 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "CI/CD Engineering Principles",
+    "items": [
+      "Create modular and reusable CI/CD workflows",
+      "Automate comprehensive testing on every branch push",
+      "Configure predictable, zero-downtime deployment pipelines",
+      "Secure production secrets and environment access strictly",
+      "Integrate quality gates, linters, and third-party security scans"
+    ]
+  },
+  "automationDepth": {
+    "title": "Automation Depth",
+    "items": [
+      { "label": "Workflow YAML", "percentage": 82 },
+      { "label": "CI/CD Pipelines", "percentage": 80 },
+      { "label": "Testing Automation", "percentage": 78 },
+      { "label": "Deployment Automation", "percentage": 76 }
+    ]
+  }
+}

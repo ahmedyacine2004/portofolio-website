@@ -1,0 +1,155 @@
+{
+  "metaTitle": "NestJS Workspace | Skills",
+  "metaDescription": "Enterprise backend framework workspace details for NestJS",
+  "workspaceTitle": "BACKEND WORKSPACE -NestJS-",
+  "workspaceSubtitle": "Server-side runtime, architecture boundaries, and performance benchmarks",
+  "clientRuntime": "LIVE RUNTIME",
+  "lighthouseBadge": "99.99% Uptime",
+  "fpsBadge": "< 25ms Latency",
+  "header": {
+    "category": "ARCHITECTURE & RUNTIME",
+    "title": "NestJS",
+    "subtitle": "Enterprise-grade Node.js framework with TypeScript",
+    "description": "NestJS is my primary backend framework. It provides architectural patterns, dependency injection, and excellent TypeScript support for building scalable server-side applications.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "4+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "App Type", "value": "Backend" }
+    ]
+  },
+  "mastery": {
+    "title": "Engine Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Core Architecture",
+    "items": [
+      "Built-in dependency injection",
+      "TypeScript first-class support",
+      "Modular architecture",
+      "Database agnostic",
+      "Great for microservices"
+    ]
+  },
+  "pipeline": {
+    "title": "Runtime Execution Pipeline & Lifecycle",
+    "subtitle": "End-to-End Request Trace",
+    "stages": [
+      {
+        "tag": "Gate 01",
+        "title": "Incoming Ingestion",
+        "detail": "HTTP / WebSocket Handler"
+      },
+      {
+        "tag": "Gate 02",
+        "title": "Security & Auth",
+        "detail": "JWT Guard & Rate Limiting"
+      },
+      {
+        "tag": "Gate 03",
+        "title": "Route Controller",
+        "detail": "NestJS Execution Context"
+      },
+      {
+        "tag": "Gate 04",
+        "title": "Domain & Business Logic",
+        "detail": "Service Layer & State Validation"
+      },
+      {
+        "tag": "Gate 05",
+        "title": "Persistence & Cache",
+        "detail": "Database ODM/ORM & Redis"
+      },
+      {
+        "tag": "Gate 06",
+        "title": "Serialized Response",
+        "detail": "200 OK JSON Payload"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Services",
+    "items": [
+      {
+        "id": "portfolio-api",
+        "title": "Portfolio Backend API",
+        "description": "RESTful API powering portfolio website",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "consultify-api",
+        "title": "Consultify API",
+        "description": "Booking system with payment integration",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "analytics-service",
+        "title": "Analytics Microservice",
+        "description": "Real-time analytics processing",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Architecture Modules",
+    "items": [
+      "REST APIs",
+      "Controllers",
+      "Services",
+      "Modules",
+      "Middleware",
+      "Guards & Interceptors",
+      "Database Integration",
+      "Authentication",
+      "WebSocket APIs",
+      "Error Handling",
+      "Validation",
+      "Testing"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Runtime Stack & Libraries",
+    "stats": [
+      { "label": "API Endpoints", "value": "50+" },
+      { "label": "Modules Built", "value": "15+" },
+      { "label": "Services", "value": "30+" },
+      { "label": "Database Relations", "value": "25+" },
+      { "label": "Request Handler", "value": "100%" },
+      { "label": "Uptime", "value": "99.9%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Backend Toolkit",
+    "items": [
+      { "label": "API Development", "percentage": 88 },
+      { "label": "Database Design", "percentage": 85 },
+      { "label": "Architecture Design", "percentage": 82 },
+      { "label": "Authentication & Security", "percentage": 85 },
+      { "label": "Testing & Debugging", "percentage": 80 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Architectural Principles",
+    "items": [
+      "Design scalable backend systems",
+      "Implement RESTful APIs efficiently",
+      "Create modular and reusable code",
+      "Integrate multiple databases",
+      "Build secure authentication systems"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Technical Depth",
+    "items": [
+      { "label": "Controllers & Routing", "percentage": 90 },
+      { "label": "Services & DI", "percentage": 85 },
+      { "label": "Database ORM/ODM", "percentage": 80 },
+      { "label": "Middleware & Guards", "percentage": 82 }
+    ]
+  }
+}

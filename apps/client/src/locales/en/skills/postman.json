@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Postman Workspace | Skills",
+  "workspaceTitle": "DEVOPS & TOOLS WORKSPACE -Postman-",
+  "workspaceSubtitle": "API development, automated testing suites, mock servers, and contract documentation",
+  "clusterHealthy": "API RUNNER HEALTHY",
+  "uptimeBadge": "100% Contract Pass",
+  "downtimeBadge": "Automated QA",
+  "header": {
+    "title": "Postman",
+    "category": "API DEVELOPMENT & TESTING AUTOMATION",
+    "subtitle": "API development and testing platform",
+    "description": "Postman is my go-to tool for API development, automated testing, and documentation. I use it to design, test, debug, and monitor backend APIs efficiently.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "10+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Tool Type", "value": "API Platform" }
+    ]
+  },
+  "mastery": {
+    "title": "API Testing Reliability",
+    "label": "Mastery"
+  },
+  "devopsTenets": {
+    "title": "API Testing Tenets",
+    "items": [
+      "Rapid API design and automated request building",
+      "Structured request collections and inheritance",
+      "Dynamic multi-environment configuration and variables",
+      "Automated test suites with JavaScript assertions",
+      "Collaborative workspace and live documentation generation"
+    ]
+  },
+  "pipeline": {
+    "title": "Automated API Testing & Integration Lifecycle",
+    "subtitle": "From Endpoint Request to Continuous Integration",
+    "stages": [
+      {
+        "stage": "01. Request",
+        "title": "Request & Payload Design",
+        "detail": "RESTful HTTP verbs, headers, auth tokens & JSON body"
+      },
+      {
+        "stage": "02. Pre-Script",
+        "title": "Pre-request Scripting",
+        "detail": "Dynamic variable generation, timestamps & hash signatures"
+      },
+      {
+        "stage": "03. Execution",
+        "title": "Endpoint Dispatch",
+        "detail": "High-speed transmission, latency benchmarking & SSL check"
+      },
+      {
+        "stage": "04. Assertion",
+        "title": "Automated Test Scripts",
+        "detail": "Status code 200/201 checks, JSON schema & payload assertions"
+      },
+      {
+        "stage": "05. Mock / CI",
+        "title": "Newman CLI & CI Runner",
+        "detail": "Headless collection runner integrated into GitHub Actions CI"
+      },
+      {
+        "stage": "06. Monitor",
+        "title": "Telemetry & Uptime Monitor",
+        "detail": "Periodic health monitoring, SLA checks & failure alerting"
+      }
+    ]
+  },
+  "applications": {
+    "title": "API Workflows & Services",
+    "items": [
+      {
+        "id": "api-testing",
+        "title": "API Testing & Assertions",
+        "description": "Comprehensive request/response validation and regression testing",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "api-documentation",
+        "title": "API Documentation",
+        "description": "Auto-generated interactive API contracts and endpoint documentation",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "automation-testing",
+        "title": "Automation Testing",
+        "description": "Headless Newman collection runs inside CI/CD deployment pipelines",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "API Assets & Artifacts",
+    "items": [
+      "Collections",
+      "HTTP Requests",
+      "Test Scripts",
+      "Environments",
+      "Variables",
+      "JavaScript Snippets",
+      "Mock Servers",
+      "Monitors",
+      "API Docs",
+      "Integration Flows",
+      "Pre-request Scripts",
+      "Auth & API Keys"
+    ]
+  },
+  "impact": {
+    "title": "Impact & SLA Metrics",
+    "ecosystemTitle": "Postman & API Toolchain",
+    "stats": [
+      { "label": "Collections Maintained", "value": "15+" },
+      { "label": "Requests Created", "value": "300+" },
+      { "label": "Automated Test Cases", "value": "200+" },
+      { "label": "Environments Configured", "value": "8+" },
+      { "label": "Endpoints Covered", "value": "100+" },
+      { "label": "Automation Scripts", "value": "30+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Postman Toolkit",
+    "items": [
+      { "label": "Request Building", "percentage": 90 },
+      { "label": "Test Writing", "percentage": 86 },
+      { "label": "Environment Setup", "percentage": 88 },
+      { "label": "Script Creation", "percentage": 82 },
+      { "label": "API Documentation", "percentage": 84 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "API Testing Principles",
+    "items": [
+      "Design organized and modular API request collections",
+      "Write automated tests validating status codes, headers, and schemas",
+      "Manage multiple staging and production environment variables cleanly",
+      "Generate clear, interactive, and up-to-date API documentation",
+      "Monitor endpoint health, performance SLAs, and regression failures"
+    ]
+  },
+  "automationDepth": {
+    "title": "Testing Depth",
+    "items": [
+      { "label": "Request Design", "percentage": 90 },
+      { "label": "Test Scripting", "percentage": 86 },
+      { "label": "Environment Setup", "percentage": 88 },
+      { "label": "Automation & CI", "percentage": 82 }
+    ]
+  }
+}

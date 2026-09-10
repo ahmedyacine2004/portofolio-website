@@ -1,0 +1,150 @@
+{
+  "metaTitle": "PostgreSQL Workspace | Skills",
+  "metaDescription": "Advanced relational database workspace details for PostgreSQL",
+  "workspaceTitle": "DATABASE WORKSPACE -PostgreSQL-",
+  "workspaceSubtitle": "Data architecture, schema modeling, indexing strategy, and query performance",
+  "engineActive": "ENGINE ACTIVE",
+  "bufferHitBadge": "99.9% Buffer Hit",
+  "replicaLagBadge": "0ms Replica Lag",
+  "header": {
+    "category": "DATA PARADIGM & STORAGE ENGINE",
+    "title": "PostgreSQL",
+    "subtitle": "Advanced open-source relational database",
+    "description": "PostgreSQL is my go-to relational database for applications requiring complex relationships, ACID compliance, and robust data integrity. I use it for mission-critical systems.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "4+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Database Type", "value": "SQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Schema Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Data Guarantees",
+    "items": [
+      "ACID compliance",
+      "Complex queries",
+      "JSON support",
+      "Excellent documentation",
+      "Highly reliable"
+    ]
+  },
+  "storageTiers": {
+    "title": "Data Storage & Persistence Lifecycle",
+    "subtitle": "From Buffer Cache to Disk & Replica Shards",
+    "latencyLabel": "Latency:",
+    "items": [
+      {
+        "tier": "01. Buffer Cache & Memory",
+        "detail": "SGA / Shared Buffers & In-Memory Working Set",
+        "latency": "< 0.5ms",
+        "badge": "RAM Tier"
+      },
+      {
+        "tier": "02. WAL & Transaction Journal",
+        "detail": "Sequential Write-Ahead Log for ACID Durability",
+        "latency": "1.2ms",
+        "badge": "Durability"
+      },
+      {
+        "tier": "03. Persistent B+ Tree Pages",
+        "detail": "PostgreSQL Table Spaces & Compound Index Trees",
+        "latency": "3.4ms",
+        "badge": "NVMe Storage"
+      },
+      {
+        "tier": "04. Replica Sets & Snapshots",
+        "detail": "Read Replicas & Continuous Point-in-Time Backup",
+        "latency": "Sync / Async",
+        "badge": "HA & Backup"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Schemas",
+    "items": [
+      {
+        "id": "erp-system",
+        "title": "ERP System",
+        "description": "Enterprise resource planning database",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "financial-app",
+        "title": "Financial Application",
+        "description": "Transaction and reporting system",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "admin-portal",
+        "title": "Admin Portal",
+        "description": "Management system database",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Schema Entities",
+    "items": [
+      "Tables",
+      "Constraints",
+      "Relationships",
+      "Indexes",
+      "Views",
+      "Procedures",
+      "Triggers",
+      "Transactions",
+      "JSON Queries",
+      "Full-Text Search",
+      "Migrations",
+      "Backups"
+    ]
+  },
+  "impact": {
+    "title": "Storage & Benchmarks",
+    "ecosystemTitle": "Database Ecosystem & ORM",
+    "stats": [
+      { "label": "Tables", "value": "25+" },
+      { "label": "Relations", "value": "40+" },
+      { "label": "Stored Procedures", "value": "15+" },
+      { "label": "Query Performance", "value": "<30ms" },
+      { "label": "Data Consistency", "value": "100%" },
+      { "label": "Recovery Time", "value": "<1m" }
+    ]
+  },
+  "toolkit": {
+    "title": "Database Toolkit",
+    "items": [
+      { "label": "Schema Design", "percentage": 87 },
+      { "label": "SQL Queries", "percentage": 86 },
+      { "label": "Performance Optimization", "percentage": 85 },
+      { "label": "Constraint Management", "percentage": 84 },
+      { "label": "Backup & Recovery", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Integrity Principles",
+    "items": [
+      "Design normalized schemas",
+      "Write complex SQL queries",
+      "Optimize query performance",
+      "Implement referential integrity",
+      "Handle transactions safely"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Query & Indexing Depth",
+    "items": [
+      { "label": "Schema Design", "percentage": 87 },
+      { "label": "SQL & Queries", "percentage": 90 },
+      { "label": "Performance Tuning", "percentage": 84 },
+      { "label": "Advanced Features", "percentage": 80 }
+    ]
+  }
+}

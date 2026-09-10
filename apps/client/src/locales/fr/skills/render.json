@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Espace Render | Compétences",
+  "workspaceTitle": "ESPACE DEVOPS & OUTILS -Render-",
+  "workspaceSubtitle": "Hébergement cloud d'applications, bases de données managées, workers d'arrière-plan et pipelines de déploiement",
+  "clusterHealthy": "CLUSTER RENDER ACTIF",
+  "uptimeBadge": "99.9% Uptime",
+  "downtimeBadge": "Zéro temps d'arrêt",
+  "header": {
+    "title": "Render",
+    "category": "HÉBERGEMENT CLOUD D'APPLICATIONS & PAAS MANAGÉ",
+    "subtitle": "Hébergement cloud d'applications et services managés",
+    "description": "Render est ma plateforme de prédilection pour héberger des applications full-stack, des services backend conteneurisés, des bases PostgreSQL managées et des workers d'arrière-plan sans complexité.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "6+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Plateforme", "value": "PaaS Cloud" }
+    ]
+  },
+  "mastery": {
+    "title": "Fiabilité opérationnelle Cloud",
+    "label": "Maîtrise"
+  },
+  "devopsTenets": {
+    "title": "Principes de déploiement Cloud",
+    "items": [
+      "Déploiements git automatiques sans configuration complexe",
+      "Support natif et de premier ordre des conteneurs Docker",
+      "Bases PostgreSQL managées avec sauvegardes automatisées",
+      "Environnements de prévisualisation instantanés pour les PRs",
+      "Gestion automatique du SSL, protection DDoS et CDN mondial"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de déploiement Cloud & Livraison continue",
+    "subtitle": "Du push Git au déploiement sur le cluster de production",
+    "stages": [
+      {
+        "stage": "01. Déclenchement",
+        "title": "Push Git / Webhook",
+        "detail": "Notification webhook du dépôt et détection des modifications de branche"
+      },
+      {
+        "stage": "02. Build",
+        "title": "Build Docker & Natif",
+        "detail": "Compilation du conteneur, mise en cache des dépendances et empaquètement"
+      },
+      {
+        "stage": "03. Migration",
+        "title": "Migrations pré-déploiement",
+        "detail": "Exécution automatisée des migrations de schéma sur PostgreSQL managé"
+      },
+      {
+        "stage": "04. Sécurité",
+        "title": "Injection de secrets & SSL",
+        "detail": "Variables d'environnement, groupes de secrets et renouvellement TLS"
+      },
+      {
+        "stage": "05. Déploiement",
+        "title": "Déploiement sans coupure",
+        "detail": "Vérification des sondes de santé avant routage du trafic de production"
+      },
+      {
+        "stage": "06. Télémétrie",
+        "title": "Logs en direct & Métriques",
+        "detail": "Streaming des logs stdout/stderr et métriques Prometheus"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Services Cloud & Infrastructure",
+    "items": [
+      {
+        "id": "backend-web-services",
+        "title": "Services Web Backend",
+        "description": "Services d'API Node.js et NestJS conteneurisés avec autoscaling",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "managed-databases",
+        "title": "PostgreSQL Managé",
+        "description": "Sauvegardes automatiques et haute disponibilité de la couche de données",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "background-workers",
+        "title": "Workers d'arrière-plan",
+        "description": "Traitement asynchrone des files d'attente et jobs en tâche de fond",
+        "status": "Actif",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Modèles d'infrastructure",
+    "items": [
+      "Services Web",
+      "Bases PostgreSQL",
+      "Sites Statiques",
+      "Workers d'arrière-plan",
+      "Tâches Cron",
+      "Services Docker",
+      "Domaines personnalisés",
+      "Certificats SSL",
+      "Secrets d'environnement",
+      "Render Blueprints",
+      "Sondes de santé",
+      "Déploiements sans coupure"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Métriques SLA",
+    "ecosystemTitle": "Écosystème Cloud Render",
+    "stats": [
+      { "label": "Services déployés", "value": "6+" },
+      { "label": "Bases Postgres gérées", "value": "4+" },
+      { "label": "Disponibilité des déploiements", "value": "99.9%" },
+      { "label": "Temps moyen de build", "value": "2.5 min" },
+      { "label": "Déploiements effectués", "value": "200+" },
+      { "label": "Sécurité SSL", "value": "Grade A+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Cloud",
+    "items": [
+      { "label": "Déploiement de services", "percentage": 84 },
+      { "label": "Provisioning de bases de données", "percentage": 82 },
+      { "label": "Hébergement Docker", "percentage": 80 },
+      { "label": "Blueprints (render.yaml)", "percentage": 78 },
+      { "label": "Télémétrie & Logs", "percentage": 76 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Principes d'architecture Cloud",
+    "items": [
+      "Déployer des services backend conteneurisés sans configuration complexe",
+      "Provisionner et administrer des clusters PostgreSQL en haute disponibilité",
+      "Automatiser des stacks multi-services via les blueprints déclaratifs render.yaml",
+      "Configurer des workers d'arrière-plan asynchrones et des tâches cron planifiées",
+      "Sécuriser les environnements avec des groupes de secrets chiffrés et SSL automatique"
+    ]
+  },
+  "automationDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "Hébergement de services web", "percentage": 84 },
+      { "label": "PostgreSQL managé", "percentage": 82 },
+      { "label": "Configuration services Docker", "percentage": 80 },
+      { "label": "Infrastructure as Code", "percentage": 78 }
+    ]
+  }
+}

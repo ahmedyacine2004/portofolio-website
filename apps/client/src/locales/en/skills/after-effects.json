@@ -1,0 +1,187 @@
+{
+  "metaTitle": "After Effects & Premiere Pro Workspace | Skills",
+  "metaDescription": "Video editing, motion graphics, keyframe animation, and VFX workspace details for After Effects and Premiere Pro",
+  "workspaceTitle": "DESIGN WORKSPACE -After Effects & Premiere Pro-",
+  "workspaceSubtitle": "Motion design, keyframe animation, cinematic video editing, and visual effects",
+  "creativeStudio": "CREATIVE STUDIO",
+  "autoLayoutBadge": "60 FPS Motion Ready",
+  "vectorPrecisionBadge": "Keyframe Precision",
+  "header": {
+    "category": "MOTION GRAPHICS & VIDEO EDITING",
+    "title": "After Effects & Premiere Pro",
+    "subtitle": "Professional video editing and motion graphics",
+    "description": "I use After Effects for creating motion graphics and animations, and Premiere Pro for video editing. These tools enable me to produce professional video content and engaging animations.",
+    "metrics": [
+      { "label": "Experience", "value": "1.5+ years" },
+      { "label": "Projects", "value": "5+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Media Type", "value": "Video" }
+    ]
+  },
+  "mastery": {
+    "title": "Visual Mastery",
+    "label": "Mastery"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Professional video editing",
+      "Motion graphics capabilities",
+      "Effects library",
+      "Timeline editing",
+      "Color grading tools"
+    ]
+  },
+  "gallery": {
+    "title": "Motion Graphics & Video Production Showcase",
+    "subtitle": "Explore animated explainer videos, keyframe transitions, kinetic typography, and polished video productions created with After Effects and Premiere Pro.",
+    "readyBadge": "Ready",
+    "designedIn": "Created in After Effects & Premiere Pro",
+    "inspectDetails": "Inspect Details →",
+    "tabs": {
+      "gallery": "Gallery Grid",
+      "tokens": "Color Swatches",
+      "components": "UI Components"
+    },
+    "colorTokens": [
+      {
+        "name": "Electric Indigo",
+        "hex": "#6366f1",
+        "role": "After Effects Primary Accent / Keyframes"
+      },
+      { "name": "Deep Violet", "hex": "#1e1b4b", "role": "Timeline Canvas / Dark Composition" },
+      { "name": "Vivid Magenta", "hex": "#d946ef", "role": "Motion Accent / Visual Trails" },
+      { "name": "Warm Amber", "hex": "#f59e0b", "role": "Color Grading / Warm Highlights" },
+      { "name": "Dark Charcoal", "hex": "#0f172a", "role": "Render Viewport / Studio Contrast" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Button Component Variants",
+      "primaryButton": "Primary Indigo Solid",
+      "secondaryButton": "Secondary Ghost Variant",
+      "outlineButton": "Neutral Outline",
+      "badgePrimitives": "Badge & Chip Primitives",
+      "activeVariant": "Active Variant",
+      "informationTag": "Information Tag",
+      "responsiveTag": "60 FPS 4K Ultra-HD",
+      "defaultToken": "Default Token",
+      "typographyScale": "Typography Scale",
+      "displayBold": "Display Bold 18px",
+      "headingSemibold": "Heading Semibold 13px",
+      "bodyRegular": "Body Regular 11px Inter",
+      "monospaceCode": "Monospace Code 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "motion-graphics",
+        "title": "Motion Graphics",
+        "description": "Animated explainer videos and kinetic sequences.",
+        "status": "Online",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "video-editing",
+        "title": "Video Editing",
+        "description": "Professional multi-track video production and pacing.",
+        "status": "Online",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "animation",
+        "title": "Character Animation",
+        "description": "Animated sequences, rigging, and keyframe choreography.",
+        "status": "Online",
+        "badge": "Portfolio"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Creative Workflow",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Storyboarding & Audio Track Sync",
+        "detail": "Visual narrative script, voiceover sync & beat markers"
+      },
+      {
+        "step": "02",
+        "title": "Vector Asset Prep & Layer Rigging",
+        "detail": "Separating vector artwork, parenting layers & null controller setup"
+      },
+      {
+        "step": "03",
+        "title": "Keyframe Animation & Graph Editor",
+        "detail": "Speed curves, easy-ease tuning, spatial interpolation & motion blur"
+      },
+      {
+        "step": "04",
+        "title": "Visual Effects & Color Grading",
+        "detail": "Lumetri color, particle systems, light leaks & camera depth"
+      },
+      {
+        "step": "05",
+        "title": "Render Engine & Multi-Format Delivery",
+        "detail": "Adobe Media Encoder, ProRes master, H.264/WebM compression"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Design Output",
+    "items": [
+      "Explainer Videos",
+      "Motion Graphics",
+      "Animated Sequences",
+      "Video Editing",
+      "Color Grading",
+      "Visual Effects",
+      "Transitions",
+      "Titles & Captions",
+      "Audio Mixing",
+      "Export Profiles",
+      "Keyframe Animations",
+      "Template Creation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Toolchain & Plugins",
+    "stats": [
+      { "label": "Videos Produced", "value": "10+" },
+      { "label": "Motion Graphics", "value": "20+" },
+      { "label": "Total Video Length", "value": "2+ hrs" },
+      { "label": "Effects Used", "value": "50+" },
+      { "label": "Projects", "value": "5+" },
+      { "label": "Render Hours", "value": "100+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Toolkit",
+    "items": [
+      { "label": "Video Editing", "percentage": 75 },
+      { "label": "Motion Graphics", "percentage": 70 },
+      { "label": "Effects & Compositing", "percentage": 68 },
+      { "label": "Color Grading", "percentage": 65 },
+      { "label": "Audio Mixing", "percentage": 62 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Edit professional videos",
+      "Create motion graphics",
+      "Apply visual effects",
+      "Grade colors effectively",
+      "Produce engaging animations"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Creative Execution Depth",
+    "items": [
+      { "label": "Video Editing", "percentage": 75 },
+      { "label": "Motion Graphics", "percentage": 70 },
+      { "label": "Timeline Management", "percentage": 72 },
+      { "label": "Effects Compositing", "percentage": 68 }
+    ]
+  }
+}

@@ -23,6 +23,27 @@ import databasesSkillEn from '@/locales/en/skills/databases.json';
 import designSkillEn from '@/locales/en/skills/design.json';
 import devopsSkillEn from '@/locales/en/skills/devops-tools.json';
 import frontendSkillEn from '@/locales/en/skills/frontend.json';
+import htmlCssSkillEn from '@/locales/en/skills/html-css.json';
+import nextjsSkillEn from '@/locales/en/skills/nextjs.json';
+import reactSkillEn from '@/locales/en/skills/react.json';
+import tailwindSkillEn from '@/locales/en/skills/tailwindcss.json';
+import typescriptSkillEn from '@/locales/en/skills/typescript.json';
+import nestjsSkillEn from '@/locales/en/skills/nestjs.json';
+import nodejsSkillEn from '@/locales/en/skills/nodejs.json';
+import expressjsSkillEn from '@/locales/en/skills/expressjs.json';
+import mongodbSkillEn from '@/locales/en/skills/mongodb.json';
+import postgresqlSkillEn from '@/locales/en/skills/postgresql.json';
+import mysqlSkillEn from '@/locales/en/skills/mysql.json';
+import figmaSkillEn from '@/locales/en/skills/figma.json';
+import photoshopSkillEn from '@/locales/en/skills/photoshop.json';
+import illustratorSkillEn from '@/locales/en/skills/illustrator.json';
+import afterEffectsSkillEn from '@/locales/en/skills/after-effects.json';
+import blenderSkillEn from '@/locales/en/skills/blender.json';
+import gitSkillEn from '@/locales/en/skills/git.json';
+import githubSkillEn from '@/locales/en/skills/github.json';
+import dockerSkillEn from '@/locales/en/skills/docker.json';
+import postmanSkillEn from '@/locales/en/skills/postman.json';
+import renderSkillEn from '@/locales/en/skills/render.json';
 import fr from '@/locales/fr/common.json';
 import apexBrandKitFr from '@/locales/fr/projects/apex-brand-kit.json';
 import consultifyFr from '@/locales/fr/projects/consultify.json';
@@ -47,6 +68,27 @@ import databasesSkillFr from '@/locales/fr/skills/databases.json';
 import designSkillFr from '@/locales/fr/skills/design.json';
 import devopsSkillFr from '@/locales/fr/skills/devops-tools.json';
 import frontendSkillFr from '@/locales/fr/skills/frontend.json';
+import htmlCssSkillFr from '@/locales/fr/skills/html-css.json';
+import nextjsSkillFr from '@/locales/fr/skills/nextjs.json';
+import reactSkillFr from '@/locales/fr/skills/react.json';
+import tailwindSkillFr from '@/locales/fr/skills/tailwindcss.json';
+import typescriptSkillFr from '@/locales/fr/skills/typescript.json';
+import nestjsSkillFr from '@/locales/fr/skills/nestjs.json';
+import nodejsSkillFr from '@/locales/fr/skills/nodejs.json';
+import expressjsSkillFr from '@/locales/fr/skills/expressjs.json';
+import mongodbSkillFr from '@/locales/fr/skills/mongodb.json';
+import postgresqlSkillFr from '@/locales/fr/skills/postgresql.json';
+import mysqlSkillFr from '@/locales/fr/skills/mysql.json';
+import figmaSkillFr from '@/locales/fr/skills/figma.json';
+import photoshopSkillFr from '@/locales/fr/skills/photoshop.json';
+import illustratorSkillFr from '@/locales/fr/skills/illustrator.json';
+import afterEffectsSkillFr from '@/locales/fr/skills/after-effects.json';
+import blenderSkillFr from '@/locales/fr/skills/blender.json';
+import gitSkillFr from '@/locales/fr/skills/git.json';
+import githubSkillFr from '@/locales/fr/skills/github.json';
+import dockerSkillFr from '@/locales/fr/skills/docker.json';
+import postmanSkillFr from '@/locales/fr/skills/postman.json';
+import renderSkillFr from '@/locales/fr/skills/render.json';
 import { useLanguageStore } from '@/stores/language.store';
 
 type TranslationKeys = typeof en;
@@ -56,7 +98,37 @@ const translations = {
     ...en,
     skillPages: {
       frontend: frontendSkillEn,
+      'html-css': htmlCssSkillEn,
+      htmlcss: htmlCssSkillEn,
+      nextjs: nextjsSkillEn,
+      react: reactSkillEn,
+      typescript: typescriptSkillEn,
+      tailwindcss: tailwindSkillEn,
+      'tailwind-css': tailwindSkillEn,
       backend: backendSkillEn,
+      nestjs: nestjsSkillEn,
+      nodejs: nodejsSkillEn,
+      expressjs: expressjsSkillEn,
+      express: expressjsSkillEn,
+      mongodb: mongodbSkillEn,
+      postgresql: postgresqlSkillEn,
+      postgres: postgresqlSkillEn,
+      mysql: mysqlSkillEn,
+      figma: figmaSkillEn,
+      photoshop: photoshopSkillEn,
+      illustrator: illustratorSkillEn,
+      'after-effects': afterEffectsSkillEn,
+      aftereffects: afterEffectsSkillEn,
+      blender: blenderSkillEn,
+      git: gitSkillEn,
+      github: githubSkillEn,
+      'github-actions': githubSkillEn,
+      githubactions: githubSkillEn,
+      docker: dockerSkillEn,
+      'docker-kubernetes': dockerSkillEn,
+      dockerkubernetes: dockerSkillEn,
+      postman: postmanSkillEn,
+      render: renderSkillEn,
       databases: databasesSkillEn,
       design: designSkillEn,
       'devops-tools': devopsSkillEn,
@@ -100,7 +172,37 @@ const translations = {
     ...fr,
     skillPages: {
       frontend: frontendSkillFr,
+      'html-css': htmlCssSkillFr,
+      htmlcss: htmlCssSkillFr,
+      nextjs: nextjsSkillFr,
+      react: reactSkillFr,
+      typescript: typescriptSkillFr,
+      tailwindcss: tailwindSkillFr,
+      'tailwind-css': tailwindSkillFr,
       backend: backendSkillFr,
+      nestjs: nestjsSkillFr,
+      nodejs: nodejsSkillFr,
+      expressjs: expressjsSkillFr,
+      express: expressjsSkillFr,
+      mongodb: mongodbSkillFr,
+      postgresql: postgresqlSkillFr,
+      postgres: postgresqlSkillFr,
+      mysql: mysqlSkillFr,
+      figma: figmaSkillFr,
+      photoshop: photoshopSkillFr,
+      illustrator: illustratorSkillFr,
+      'after-effects': afterEffectsSkillFr,
+      aftereffects: afterEffectsSkillFr,
+      blender: blenderSkillFr,
+      git: gitSkillFr,
+      github: githubSkillFr,
+      'github-actions': githubSkillFr,
+      githubactions: githubSkillFr,
+      docker: dockerSkillFr,
+      'docker-kubernetes': dockerSkillFr,
+      dockerkubernetes: dockerSkillFr,
+      postman: postmanSkillFr,
+      render: renderSkillFr,
       databases: databasesSkillFr,
       design: designSkillFr,
       'devops-tools': devopsSkillFr,
@@ -154,19 +256,19 @@ const translations = {
  * @param path - The dot notation path (e.g., "navigation.home")
  * @returns The value at the path or the path itself as fallback
  */
-function getNestedValue(obj: any, path: string): any {
+function getNestedValue(obj: Record<string, unknown> | unknown, path: string): unknown {
   const keys = path.split('.');
-  let result = obj;
+  let result: unknown = obj;
 
   for (let index = 0; index < keys.length; index += 1) {
     const remainingPath = keys.slice(index).join('.');
     if (result && typeof result === 'object' && remainingPath in result) {
-      return result[remainingPath];
+      return (result as Record<string, unknown>)[remainingPath];
     }
 
     const key = keys[index];
     if (result && typeof result === 'object' && key in result) {
-      result = result[key];
+      result = (result as Record<string, unknown>)[key];
     } else {
       return path; // Return the key path as fallback
     }
@@ -194,15 +296,26 @@ export function useTranslation() {
     return value;
   };
 
-  const tArray = (key: string): any[] => {
+  const tArray = <T = unknown>(key: string): T[] => {
     const translationSet = translations[locale];
     const value = getNestedValue(translationSet, key);
 
     if (Array.isArray(value)) {
-      return value;
+      return value as T[];
     }
 
     return [];
+  };
+
+  const tObject = <T = unknown>(key: string, fallback?: T): T => {
+    const translationSet = translations[locale];
+    const value = getNestedValue(translationSet, key);
+
+    if (value && typeof value === 'object') {
+      return value as T;
+    }
+
+    return fallback as T;
   };
 
   const projectText = (project: string, value: string): string =>
@@ -219,5 +332,5 @@ export function useTranslation() {
     return value;
   };
 
-  return { t, tArray, projectText, skillPageText, locale };
+  return { t, tArray, tObject, projectText, skillPageText, locale };
 }

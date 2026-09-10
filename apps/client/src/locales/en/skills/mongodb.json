@@ -1,0 +1,150 @@
+{
+  "metaTitle": "MongoDB Workspace | Skills",
+  "metaDescription": "NoSQL document database workspace details for MongoDB",
+  "workspaceTitle": "DATABASE WORKSPACE -MongoDB-",
+  "workspaceSubtitle": "Data architecture, schema modeling, indexing strategy, and query performance",
+  "engineActive": "ENGINE ACTIVE",
+  "bufferHitBadge": "99.9% Buffer Hit",
+  "replicaLagBadge": "0ms Replica Lag",
+  "header": {
+    "category": "DATA PARADIGM & STORAGE ENGINE",
+    "title": "MongoDB",
+    "subtitle": "NoSQL document database",
+    "description": "MongoDB is my primary NoSQL database for flexible, document-based data storage. I use it extensively for applications requiring scalability and rapid iteration on data schemas.",
+    "metrics": [
+      { "label": "Experience", "value": "2.5+ years" },
+      { "label": "Projects", "value": "6+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Database Type", "value": "NoSQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Schema Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Data Guarantees",
+    "items": [
+      "Flexible schema design",
+      "JSON-like documents",
+      "Horizontal scalability",
+      "Rich query language",
+      "Great for startups"
+    ]
+  },
+  "storageTiers": {
+    "title": "Data Storage & Persistence Lifecycle",
+    "subtitle": "From Buffer Cache to Disk & Replica Shards",
+    "latencyLabel": "Latency:",
+    "items": [
+      {
+        "tier": "01. Buffer Cache & Memory",
+        "detail": "SGA / Shared Buffers & In-Memory Working Set",
+        "latency": "< 0.5ms",
+        "badge": "RAM Tier"
+      },
+      {
+        "tier": "02. WAL & Transaction Journal",
+        "detail": "Sequential Write-Ahead Log for ACID Durability",
+        "latency": "1.2ms",
+        "badge": "Durability"
+      },
+      {
+        "tier": "03. Persistent B+ Tree Pages",
+        "detail": "MongoDB Table Spaces & Compound Index Trees",
+        "latency": "3.4ms",
+        "badge": "NVMe Storage"
+      },
+      {
+        "tier": "04. Replica Sets & Snapshots",
+        "detail": "Read Replicas & Continuous Point-in-Time Backup",
+        "latency": "Sync / Async",
+        "badge": "HA & Backup"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Schemas",
+    "items": [
+      {
+        "id": "portfolio-db",
+        "title": "Portfolio Database",
+        "description": "Dynamic content storage",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "user-data",
+        "title": "User Management",
+        "description": "User profiles and preferences",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "analytics",
+        "title": "Analytics Storage",
+        "description": "Event and usage tracking",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Schema Entities",
+    "items": [
+      "Collections",
+      "Documents",
+      "Indexes",
+      "Aggregations",
+      "Schemas",
+      "Relationships",
+      "Validation",
+      "Transactions",
+      "Replication",
+      "Backups",
+      "Migrations",
+      "Performance Tuning"
+    ]
+  },
+  "impact": {
+    "title": "Storage & Benchmarks",
+    "ecosystemTitle": "Database Ecosystem & ORM",
+    "stats": [
+      { "label": "Collections", "value": "15+" },
+      { "label": "Documents", "value": "100K+" },
+      { "label": "Indexes Created", "value": "30+" },
+      { "label": "Query Performance", "value": "<50ms" },
+      { "label": "Database Size", "value": "10GB+" },
+      { "label": "Uptime", "value": "99.9%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Database Toolkit",
+    "items": [
+      { "label": "Schema Design", "percentage": 88 },
+      { "label": "Query Optimization", "percentage": 85 },
+      { "label": "Indexing Strategy", "percentage": 82 },
+      { "label": "Aggregation", "percentage": 80 },
+      { "label": "Performance Tuning", "percentage": 83 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Integrity Principles",
+    "items": [
+      "Design efficient document structures",
+      "Write optimized queries",
+      "Implement proper indexing",
+      "Handle data relationships",
+      "Scale databases horizontally"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Query & Indexing Depth",
+    "items": [
+      { "label": "BSON & Documents", "percentage": 90 },
+      { "label": "Aggregation Pipeline", "percentage": 82 },
+      { "label": "Indexing & Performance", "percentage": 85 },
+      { "label": "Replication & Sharding", "percentage": 78 }
+    ]
+  }
+}

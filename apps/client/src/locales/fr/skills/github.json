@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Espace GitHub Actions | Compétences",
+  "workspaceTitle": "ESPACE DEVOPS & OUTILS -GitHub Actions-",
+  "workspaceSubtitle": "Pipelines CI/CD automatisés, builds matriciels, déploiements continus et sécurité des secrets",
+  "clusterHealthy": "RUNNER ACTIONS ACTIF",
+  "uptimeBadge": "99.9% Uptime",
+  "downtimeBadge": "Zéro temps d'arrêt",
+  "header": {
+    "title": "GitHub Actions",
+    "category": "AUTOMATISATION CI/CD & WORKFLOWS",
+    "subtitle": "Plateforme d'automatisation des flux de travail",
+    "description": "GitHub Actions me permet d'automatiser les flux de tests, de compilation et de déploiement. Je l'utilise intensivement pour les pipelines CI/CD directement intégrés à mes dépôts.",
+    "metrics": [
+      { "label": "Expérience", "value": "1.5+ an" },
+      { "label": "Projets", "value": "8+" },
+      { "label": "Niveau", "value": "Intermédiaire" },
+      { "label": "Plateforme", "value": "CI/CD" }
+    ]
+  },
+  "mastery": {
+    "title": "Fiabilité opérationnelle",
+    "label": "Maîtrise"
+  },
+  "devopsTenets": {
+    "title": "Principes clés de GitHub Actions",
+    "items": [
+      "Intégration fluide et native avec l'écosystème GitHub",
+      "Minutes de build généreuses pour les dépôts open-source",
+      "Syntaxe déclarative YAML claire et maintenable",
+      "Vaste catalogue d'actions communautaires Marketplace",
+      "Sécurité renforcée, masquage des secrets et protection d'environnements"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline de livraison CI/CD & Cycle de déploiement",
+    "subtitle": "Du push Git au déploiement en production",
+    "stages": [
+      {
+        "stage": "01. Déclenchement",
+        "title": "Push Event & Lint Matriciel",
+        "detail": "Déclenchement sur push/PR, configuration matricielle et linting"
+      },
+      {
+        "stage": "02. Tests",
+        "title": "Matrice de tests automatisés",
+        "detail": "Exécution parallèle des tests unitaires et d'intégration"
+      },
+      {
+        "stage": "03. Build",
+        "title": "Compilation & Cache de couches",
+        "detail": "Empaquètement Node.js, actions de mise en cache et upload d'artéfacts"
+      },
+      {
+        "stage": "04. Sécurité",
+        "title": "Analyse CodeQL & Secrets",
+        "detail": "Scan des vulnérabilités, audit des dépendances et contrôle des secrets"
+      },
+      {
+        "stage": "05. Déploiement",
+        "title": "Déploiement continu",
+        "detail": "Promotion automatique d'environnement et livraison sans interruption"
+      },
+      {
+        "stage": "06. Télémétrie",
+        "title": "Status Checks & Webhooks",
+        "detail": "Badges de statut sur PR, alertes télémétriques et résumé de release"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Pipelines CI/CD en production",
+    "items": [
+      {
+        "id": "automated-testing",
+        "title": "Tests automatisés",
+        "description": "Lancement automatique des tests sur plusieurs OS à chaque commit",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "build-pipeline",
+        "title": "Pipeline de compilation",
+        "description": "Processus automatisé de build, regroupement d'artéfacts et vérification",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "deployment",
+        "title": "Déploiement automatisé",
+        "description": "Livraison continue publiant les versions testées directement en production",
+        "status": "Actif",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Modèles de workflows & Automations",
+    "items": [
+      "Workflows YAML",
+      "Jobs",
+      "Actions personnalisées",
+      "Triggers d'événements",
+      "Environnements",
+      "Secrets chiffrés",
+      "Builds matriciels",
+      "Cache de couches",
+      "Notifications",
+      "Status Checks",
+      "Artéfacts de build",
+      "Automatisation des releases"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Métriques SLA",
+    "ecosystemTitle": "Toolchain GitHub & CI/CD",
+    "stats": [
+      { "label": "Workflows créés", "value": "15+" },
+      { "label": "Jobs automatisés", "value": "50+" },
+      { "label": "Taux de succès des builds", "value": "98%" },
+      { "label": "Temps moyen de build", "value": "5 min" },
+      { "label": "Déploiements automatisés", "value": "100+" },
+      { "label": "Heures économisées / mois", "value": "40 h" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils CI/CD",
+    "items": [
+      { "label": "Configuration des workflows", "percentage": 82 },
+      { "label": "Mise en place CI/CD", "percentage": 80 },
+      { "label": "Automatisation des tests", "percentage": 78 },
+      { "label": "Pipelines de déploiement", "percentage": 76 },
+      { "label": "Création d'actions custom", "percentage": 70 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Principes d'ingénierie CI/CD",
+    "items": [
+      "Concevoir des workflows CI/CD modulaires et réutilisables",
+      "Automatiser les tests complets à chaque commit et pull request",
+      "Mettre en place des pipelines de déploiement prévisibles et sans interruption",
+      "Protéger strictement les accès aux environnements et secrets de production",
+      "Intégrer des barrières de qualité, linters et scans de sécurité automatisés"
+    ]
+  },
+  "automationDepth": {
+    "title": "Profondeur d'automatisation",
+    "items": [
+      { "label": "Syntaxe YAML & Workflows", "percentage": 82 },
+      { "label": "Pipelines CI/CD", "percentage": 80 },
+      { "label": "Automatisation des tests", "percentage": 78 },
+      { "label": "Automatisation du déploiement", "percentage": 76 }
+    ]
+  }
+}

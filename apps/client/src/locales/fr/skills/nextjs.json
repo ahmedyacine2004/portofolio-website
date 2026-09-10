@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace Next.js | Compétences",
+  "metaDescription": "Détails de l'espace de travail framework full-stack pour Next.js",
+  "workspaceTitle": "ESPACE FULL-STACK -Next.js-",
+  "workspaceSubtitle": "Rendu côté serveur, architecture App Router, pipelines d'API et télémétrie de déploiement en production",
+  "clientRuntime": "RUNTIME SERVEUR / CLIENT",
+  "lighthouseBadge": "Lighthouse 100/100",
+  "fpsBadge": "Optimisé Edge",
+  "header": {
+    "category": "FRAMEWORK D'APPLICATION FULL-STACK",
+    "title": "Next.js",
+    "subtitle": "Création d'applications full-stack avec des frameworks modernes",
+    "description": "Next.js est mon framework de référence pour développer des applications full-stack prêtes pour la production. Il associe la puissance de React au rendu côté serveur, à la génération statique et aux routes d'API.",
+    "metrics": [
+      { "label": "Expérience", "value": "2.5+ ans" },
+      { "label": "Projets", "value": "6+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Framework", "value": "Full Stack" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Framework",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Pourquoi j'utilise Next.js",
+    "items": [
+      "Système de routage basé sur les fichiers",
+      "Routes d'API intégrées pour le backend",
+      "Rendu côté serveur & génération statique",
+      "Excellentes capacités SEO",
+      "Intégration et déploiement Vercel fluides"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de vie de rendu Full-Stack & pipeline Edge",
+    "subtitle": "Du middleware Edge au rendu interactif 60 fps hydraté",
+    "stages": [
+      {
+        "tag": "Étape 01",
+        "title": "Correspondance de route & streaming RSC",
+        "detail": "Streaming des Server Components avec Next.js App Router"
+      },
+      {
+        "tag": "Étape 02",
+        "title": "Middleware Edge & Authentification",
+        "detail": "Routage des requêtes & en-têtes Edge Middleware"
+      },
+      {
+        "tag": "Étape 03",
+        "title": "SSR hybride & ISR",
+        "detail": "Rendu serveur et régénération statique incrémentielle"
+      },
+      {
+        "tag": "Étape 04",
+        "title": "Hydratation client",
+        "detail": "Réconciliation de l'arbre des composants clients React 19"
+      },
+      {
+        "tag": "Étape 05",
+        "title": "Mouvements & mise en page UI",
+        "detail": "Accélération matérielle Tailwind CSS & Framer Motion"
+      },
+      {
+        "tag": "Étape 06",
+        "title": "UI interactive prête",
+        "detail": "Core Web Vitals optimisés (LCP < 1,2s, FID < 10ms)"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications en production",
+    "items": [
+      {
+        "id": "portfolio",
+        "title": "Site web Portfolio",
+        "description": "Portfolio full-stack avec backend Next.js et fonctionnalités avancées.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "consultify",
+        "title": "Plateforme Consultify",
+        "description": "Plateforme de réservation de consultations avec intégration de paiement.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "ecommerce",
+        "title": "Boutique E-Commerce",
+        "description": "Application e-commerce complète avec tableau de bord d'administration.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Systèmes architecturaux réalisés",
+    "items": [
+      "Pages de destination",
+      "Applications Full Stack",
+      "Routes d'API",
+      "Tableaux de bord administrateur",
+      "Boutiques e-commerce",
+      "Plateformes de blog",
+      "Applications SaaS",
+      "Applications optimisées mobile",
+      "Sites optimisés pour le SEO",
+      "Fonctionnalités en temps réel",
+      "Tableaux de bord d'analyse",
+      "Gestion de contenu (CMS)"
+    ]
+  },
+  "impact": {
+    "title": "Impact & métriques Full-Stack",
+    "ecosystemTitle": "Écosystème & bibliothèques Next.js",
+    "stats": [
+      { "label": "Projets Full Stack", "value": "6+" },
+      { "label": "Routes d'API créées", "value": "40+" },
+      { "label": "Pages construites", "value": "45+" },
+      { "label": "Implémentations SSR/SSG", "value": "25+" },
+      { "label": "Score de performance", "value": "95/100" },
+      { "label": "Score SEO", "value": "100/100" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils du Framework",
+    "items": [
+      { "label": "Développement Full Stack", "percentage": 90 },
+      { "label": "Conception de routes d'API", "percentage": 85 },
+      { "label": "Composants serveur (RSC)", "percentage": 80 },
+      { "label": "Intégration de bases de données", "percentage": 85 },
+      { "label": "Déploiement & Optimisation", "percentage": 90 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Forces architecturales clés",
+    "items": [
+      "Construire efficacement des applications full-stack complètes",
+      "Concevoir des routes d'API évolutives pour la logique métier",
+      "Implémenter le rendu côté serveur et la génération statique",
+      "Optimiser les performances grâce aux fonctionnalités de Next.js",
+      "Déployer facilement et sans accroc sur Vercel"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "App Router", "percentage": 85 },
+      { "label": "Composants serveur (RSC)", "percentage": 75 },
+      { "label": "Middleware & Authentification", "percentage": 80 },
+      { "label": "Intégration de bases de données", "percentage": 85 }
+    ]
+  }
+}

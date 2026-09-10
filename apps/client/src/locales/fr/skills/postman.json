@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Espace Postman | Compétences",
+  "workspaceTitle": "ESPACE DEVOPS & OUTILS -Postman-",
+  "workspaceSubtitle": "Développement d'API, suites de tests automatisés, serveurs mock et documentation de contrats",
+  "clusterHealthy": "RUNNER D'API ACTIF",
+  "uptimeBadge": "100% Contrats validés",
+  "downtimeBadge": "QA Automatisée",
+  "header": {
+    "title": "Postman",
+    "category": "DÉVELOPPEMENT D'API & AUTOMATISATION DES TESTS",
+    "subtitle": "Plateforme de développement et de tests d'API",
+    "description": "Postman est mon outil privilégié pour le développement, le test automatisé et la documentation des API. Je l'utilise pour concevoir, tester, déboguer et surveiller les API backend avec une efficacité optimale.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "10+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type d'outil", "value": "Plateforme API" }
+    ]
+  },
+  "mastery": {
+    "title": "Fiabilité des tests d'API",
+    "label": "Maîtrise"
+  },
+  "devopsTenets": {
+    "title": "Principes de test d'API",
+    "items": [
+      "Conception rapide d'API et construction automatisée des requêtes",
+      "Collections de requêtes modulaires et héritage de configuration",
+      "Gestion dynamique multi-environnements et variables contextuelles",
+      "Suites de tests automatisées avec assertions en JavaScript",
+      "Espace collaboratif et génération de documentation interactive"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de tests d'API & Validation d'intégration",
+    "subtitle": "De la requête d'endpoint à l'intégration continue",
+    "stages": [
+      {
+        "stage": "01. Requête",
+        "title": "Conception de la requête",
+        "detail": "Verbes HTTP RESTful, en-têtes, tokens d'authentification & corps JSON"
+      },
+      {
+        "stage": "02. Pré-script",
+        "title": "Scripts de pré-requête",
+        "detail": "Génération dynamique de variables, timestamps et signatures HMAC"
+      },
+      {
+        "stage": "03. Exécution",
+        "title": "Envoi de la requête",
+        "detail": "Transmission réseau, mesure de latence et vérification SSL"
+      },
+      {
+        "stage": "04. Assertion",
+        "title": "Scripts d'assertions",
+        "detail": "Validation des statuts 200/201, schéma JSON et payloads"
+      },
+      {
+        "stage": "05. CI / Mock",
+        "title": "Runner Newman en CI",
+        "detail": "Exécution headless des collections via Newman dans GitHub Actions"
+      },
+      {
+        "stage": "06. Monitoring",
+        "title": "Télémétrie & Uptime",
+        "detail": "Surveillance périodique de santé, contrôles SLA et alertes"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Workflows & Services d'API",
+    "items": [
+      {
+        "id": "api-testing",
+        "title": "Tests d'API & Assertions",
+        "description": "Validation exhaustive des requêtes/réponses et tests de non-régression",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "api-documentation",
+        "title": "Documentation d'API",
+        "description": "Contrats d'API interactifs et documentation des endpoints auto-générée",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "automation-testing",
+        "title": "Automatisation des tests",
+        "description": "Exécution headless de collections Newman dans les pipelines CI/CD",
+        "status": "Actif",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Artefacts & Composants d'API",
+    "items": [
+      "Collections d'API",
+      "Requêtes HTTP",
+      "Scripts de test",
+      "Environnements",
+      "Variables dynamiques",
+      "Scripts JavaScript",
+      "Serveurs Mock",
+      "Moniteurs d'API",
+      "Documentation interactive",
+      "Flux d'intégration",
+      "Scripts de pré-requête",
+      "Authentification & Clés API"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Métriques SLA",
+    "ecosystemTitle": "Écosystème Postman & Outils d'API",
+    "stats": [
+      { "label": "Collections gérées", "value": "15+" },
+      { "label": "Requêtes créées", "value": "300+" },
+      { "label": "Cas de tests automatisés", "value": "200+" },
+      { "label": "Environnements configurés", "value": "8+" },
+      { "label": "Endpoints couverts", "value": "100+" },
+      { "label": "Scripts d'automatisation", "value": "30+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Postman",
+    "items": [
+      { "label": "Conception de requêtes", "percentage": 90 },
+      { "label": "Rédaction de tests", "percentage": 86 },
+      { "label": "Gestion des environnements", "percentage": 88 },
+      { "label": "Scripts d'automatisation", "percentage": 82 },
+      { "label": "Documentation d'API", "percentage": 84 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Principes de test et qualité d'API",
+    "items": [
+      "Concevoir des collections de requêtes d'API organisées et modulaires",
+      "Rédiger des tests automatisés validant codes de statut, en-têtes et schémas JSON",
+      "Gérer proprement les variables d'environnement de dev, staging et production",
+      "Générer une documentation d'API claire, interactive et constamment à jour",
+      "Surveiller la disponibilité des endpoints, les SLAs de latence et les régressions"
+    ]
+  },
+  "automationDepth": {
+    "title": "Niveau d'expertise technique",
+    "items": [
+      { "label": "Conception de requêtes", "percentage": 90 },
+      { "label": "Scripts de test JS", "percentage": 86 },
+      { "label": "Configuration d'environnements", "percentage": 88 },
+      { "label": "Automatisation & CI", "percentage": 82 }
+    ]
+  }
+}

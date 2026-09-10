@@ -1,0 +1,203 @@
+{
+  "metaTitle": "Espace de travail After Effects & Premiere Pro | Compétences",
+  "metaDescription": "Montage vidéo, motion design, animation d'images clés et effets visuels pour After Effects et Premiere Pro",
+  "workspaceTitle": "ESPACE DESIGN -After Effects & Premiere Pro-",
+  "workspaceSubtitle": "Motion design, animation d'images clés, montage vidéo cinématographique et effets visuels",
+  "creativeStudio": "STUDIO CRÉATIF",
+  "autoLayoutBadge": "Prêt pour Motion 60 FPS",
+  "vectorPrecisionBadge": "Précision des Images Clés",
+  "header": {
+    "category": "MOTION DESIGN & MONTAGE VIDÉO",
+    "title": "After Effects & Premiere Pro",
+    "subtitle": "Montage vidéo professionnel et motion design",
+    "description": "J'utilise After Effects pour créer du motion design et des animations, et Premiere Pro pour le montage vidéo. Ces outils me permettent de réaliser du contenu vidéo professionnel et des animations captivantes.",
+    "metrics": [
+      { "label": "Expérience", "value": "1.5+ an" },
+      { "label": "Projets", "value": "5+" },
+      { "label": "Niveau", "value": "Intermédiaire" },
+      { "label": "Type de média", "value": "Vidéo" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise Visuelle",
+    "label": "Maîtrise"
+  },
+  "designTenets": {
+    "title": "Principes de Conception",
+    "items": [
+      "Montage vidéo professionnel",
+      "Capacités poussées en motion design",
+      "Bibliothèque d'effets visuels",
+      "Montage précis sur la timeline",
+      "Outils d'étalonnage colorimétrique"
+    ]
+  },
+  "gallery": {
+    "title": "Vitrine Motion Design & Production Vidéo",
+    "subtitle": "Découvrez des vidéos explicatives animées, des transitions par images clés, de la typographie cinétique et des productions vidéo soignées créées avec After Effects et Premiere Pro.",
+    "readyBadge": "Prêt",
+    "designedIn": "Créé avec After Effects & Premiere Pro",
+    "inspectDetails": "Inspecter les Détails →",
+    "tabs": {
+      "gallery": "Grille de Galerie",
+      "tokens": "Nuancier de Couleurs",
+      "components": "Composants d'Interface"
+    },
+    "colorTokens": [
+      {
+        "name": "Indigo Électrique",
+        "hex": "#6366f1",
+        "role": "Accent Principal After Effects / Images Clés"
+      },
+      {
+        "name": "Violet Profond",
+        "hex": "#1e1b4b",
+        "role": "Toile de la Timeline / Composition Sombre"
+      },
+      {
+        "name": "Magenta Éclatant",
+        "hex": "#d946ef",
+        "role": "Accent de Mouvement / Traînées Visuelles"
+      },
+      {
+        "name": "Lueur Ambrée",
+        "hex": "#f59e0b",
+        "role": "Étalonnage Colorimétrique / Tons Chauds"
+      },
+      {
+        "name": "Anthracite Studio",
+        "hex": "#0f172a",
+        "role": "Fenêtre de Prévisualisation / Contraste Studio"
+      }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Variantes de Composants Bouton",
+      "primaryButton": "Indigo Plein Primaire",
+      "secondaryButton": "Variante Fantôme Secondaire",
+      "outlineButton": "Bordure Neutre",
+      "badgePrimitives": "Primitives de Badges & Puces",
+      "activeVariant": "Variante Active",
+      "informationTag": "Balise d'Information",
+      "responsiveTag": "60 FPS 4K Ultra-HD",
+      "defaultToken": "Jeton par Défaut",
+      "typographyScale": "Échelle Typographique",
+      "displayBold": "Gras d'Affichage 18px",
+      "headingSemibold": "Titre Semi-Gras 13px",
+      "bodyRegular": "Texte Courant Régulier 11px Inter",
+      "monospaceCode": "Code Monospace 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "motion-graphics",
+        "title": "Motion Design",
+        "description": "Vidéos explicatives animées et séquences cinétiques.",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "video-editing",
+        "title": "Montage Vidéo",
+        "description": "Production et découpage vidéo multi-pistes professionnels.",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "animation",
+        "title": "Animation de Personnages",
+        "description": "Séquences animées, rigging et chorégraphie d'images clés.",
+        "status": "En ligne",
+        "badge": "Portfolio"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Flux de Travail Créatif",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Storyboard & Synchronisation Audio",
+        "detail": "Script narratif visuel, synchronisation voix-off et marqueurs de rythme"
+      },
+      {
+        "step": "02",
+        "title": "Préparation des Actifs & Rigging de Calques",
+        "detail": "Séparation des calques vectoriels, parentage et contrôleurs nuls"
+      },
+      {
+        "step": "03",
+        "title": "Animation par Images Clés & Éditeur Graphique",
+        "detail": "Courbes de vitesse, lissage de mouvement et interpolation spatiale"
+      },
+      {
+        "step": "04",
+        "title": "Effets Visuels & Étalonnage Couleur",
+        "detail": "Couleur Lumetri, systèmes de particules, reflets et profondeur de champ"
+      },
+      {
+        "step": "05",
+        "title": "Moteur de Rendu & Livraison Multi-Format",
+        "detail": "Adobe Media Encoder, master ProRes, compression H.264 et WebM"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Livrables Graphiques",
+    "items": [
+      "Vidéos Explicatives",
+      "Motion Design",
+      "Séquences Animées",
+      "Montage Vidéo",
+      "Étalonnage des Couleurs",
+      "Effets Visuels",
+      "Transitions",
+      "Titres & Sous-titres",
+      "Mixage Audio",
+      "Profils d'Exportation",
+      "Animations par Images Clés",
+      "Création de Modèles"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Indicateurs Clés",
+    "ecosystemTitle": "Outils & Plugins",
+    "stats": [
+      { "label": "Vidéos Réalisées", "value": "10+" },
+      { "label": "Animations Motion", "value": "20+" },
+      { "label": "Durée Totale Vidéo", "value": "2+ h" },
+      { "label": "Effets Appliqués", "value": "50+" },
+      { "label": "Projets", "value": "5+" },
+      { "label": "Heures de Rendu", "value": "100+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à Outils Créative",
+    "items": [
+      { "label": "Montage Vidéo", "percentage": 75 },
+      { "label": "Motion Design", "percentage": 70 },
+      { "label": "Effets & Compositing", "percentage": 68 },
+      { "label": "Étalonnage Couleur", "percentage": 65 },
+      { "label": "Mixage Audio", "percentage": 62 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de Conception",
+    "items": [
+      "Monter des vidéos de niveau professionnel",
+      "Créer du motion design dynamique et percutant",
+      "Appliquer des effets visuels cinématographiques",
+      "Étalonner les couleurs de manière harmonieuse",
+      "Produire des animations rythmées et engageantes"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur d'Exécution Créative",
+    "items": [
+      { "label": "Montage Vidéo", "percentage": 75 },
+      { "label": "Motion Design", "percentage": 70 },
+      { "label": "Gestion de la Timeline", "percentage": 72 },
+      { "label": "Compositing d'Effets", "percentage": 68 }
+    ]
+  }
+}

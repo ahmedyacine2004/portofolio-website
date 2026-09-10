@@ -1,0 +1,195 @@
+{
+  "metaTitle": "Espace de travail Blender | Compétences",
+  "metaDescription": "Modélisation 3D, rendu photoréaliste, animation et simulation — détails de l'espace de travail Blender",
+  "workspaceTitle": "ESPACE DESIGN -Blender-",
+  "workspaceSubtitle": "Modélisation 3D open-source, rendu photoréaliste, rigging et animation",
+  "creativeStudio": "STUDIO CRÉATIF",
+  "autoLayoutBadge": "Prêt pour Cycles & EEVEE",
+  "vectorPrecisionBadge": "Rendu Photoréaliste",
+  "header": {
+    "category": "MODÉLISATION 3D & ANIMATION",
+    "title": "Blender",
+    "subtitle": "Modélisation 3D et animation open-source",
+    "description": "J'utilise Blender pour la modélisation 3D, le rendu et l'animation. Cet outil me permet de créer des actifs 3D, des visualisations et des animations 3D complexes pour mes projets portfolio et de conception.",
+    "metrics": [
+      { "label": "Expérience", "value": "1+ an" },
+      { "label": "Projets", "value": "3+" },
+      { "label": "Niveau", "value": "Débutant" },
+      { "label": "Médium", "value": "Graphisme 3D" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise Visuelle",
+    "label": "Maîtrise"
+  },
+  "designTenets": {
+    "title": "Principes de Conception",
+    "items": [
+      "Gratuit et open-source",
+      "Outils 3D puissants",
+      "Rendu photoréaliste excellent",
+      "Communauté active et bienveillante",
+      "Ressources pédagogiques de qualité"
+    ]
+  },
+  "gallery": {
+    "title": "Galerie d'Actifs 3D Blender & Vitrine de Rendus",
+    "subtitle": "Découvrez des modèles 3D, des rendus photoréalistes, des scènes shaderisées et des animations créés avec Blender.",
+    "readyBadge": "Prêt",
+    "designedIn": "Créé dans Blender",
+    "inspectDetails": "Inspecter les Détails →",
+    "tabs": {
+      "gallery": "Grille de Galerie",
+      "tokens": "Nuancier de Couleurs",
+      "components": "Composants d'Interface"
+    },
+    "colorTokens": [
+      {
+        "name": "Orange Blender",
+        "hex": "#e87d0d",
+        "role": "Accent de Marque Blender / Surbrillances d'Interface"
+      },
+      {
+        "name": "Ardoise Profonde",
+        "hex": "#1e293b",
+        "role": "Arrière-plan Viewport / Studio Sombre"
+      },
+      { "name": "Cyan Céleste", "hex": "#06b6d4", "role": "HDRI Ciel / Environnement Monde" },
+      { "name": "Braise Chaude", "hex": "#f97316", "role": "Matériaux Émissifs / Éclairage Chaud" },
+      {
+        "name": "Anthracite Studio",
+        "hex": "#0f172a",
+        "role": "Toile de Rendu / Base de Contraste"
+      }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Variantes de Composants Bouton",
+      "primaryButton": "Orange Plein Primaire",
+      "secondaryButton": "Variante Fantôme Secondaire",
+      "outlineButton": "Bordure Neutre",
+      "badgePrimitives": "Primitives de Badges & Puces",
+      "activeVariant": "Variante Active",
+      "informationTag": "Balise d'Information",
+      "responsiveTag": "Rendu Photoréaliste 4K",
+      "defaultToken": "Jeton par Défaut",
+      "typographyScale": "Échelle Typographique",
+      "displayBold": "Gras d'Affichage 18px",
+      "headingSemibold": "Titre Semi-Gras 13px",
+      "bodyRegular": "Texte Courant Régulier 11px Inter",
+      "monospaceCode": "Code Monospace 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "3d-models",
+        "title": "Modèles 3D",
+        "description": "Création d'actifs 3D sur mesure pour des projets de design et portfolio.",
+        "status": "En ligne",
+        "badge": "Apprentissage"
+      },
+      {
+        "id": "rendering",
+        "title": "Rendu 3D",
+        "description": "Rendus photoréalistes avec les moteurs Cycles et EEVEE.",
+        "status": "En ligne",
+        "badge": "Apprentissage"
+      },
+      {
+        "id": "3d-animation",
+        "title": "Animation 3D",
+        "description": "Animation d'objets et de personnages par images clés et rigging.",
+        "status": "En ligne",
+        "badge": "Apprentissage"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Flux de Travail Créatif",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Références & Planification de la Scène",
+        "detail": "Collecte des références, échelle de scène et disposition du viewport"
+      },
+      {
+        "step": "02",
+        "title": "Modélisation Mesh & Topologie",
+        "detail": "Box modeling, loop cuts, subdivision surface et topologie propre"
+      },
+      {
+        "step": "03",
+        "title": "Matériaux, Shading & UV Unwrapping",
+        "detail": "Shaders PBR, textures procédurales et optimisation des îles UV"
+      },
+      {
+        "step": "04",
+        "title": "Éclairage & Configuration HDRI",
+        "detail": "Éclairage trois points, lumières de surface et environnement monde HDRI"
+      },
+      {
+        "step": "05",
+        "title": "Rendu & Post-Traitement",
+        "detail": "Paramètres de rendu Cycles, débruitage, compositing et export PNG/EXR"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Livrables Graphiques",
+    "items": [
+      "Modèles 3D",
+      "Scènes",
+      "Matériaux",
+      "Éclairage",
+      "Rendu",
+      "Animation",
+      "Rigging",
+      "Modificateurs",
+      "Textures",
+      "Compositing",
+      "Particules",
+      "Simulation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Indicateurs Clés",
+    "ecosystemTitle": "Outils & Plugins",
+    "stats": [
+      { "label": "Modèles 3D", "value": "5+" },
+      { "label": "Rendus", "value": "30+" },
+      { "label": "Images d'Animation", "value": "1000+" },
+      { "label": "Textures Créées", "value": "20+" },
+      { "label": "Heures d'Apprentissage", "value": "50+" },
+      { "label": "Projets", "value": "3+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à Outils Créative",
+    "items": [
+      { "label": "Modélisation 3D", "percentage": 68 },
+      { "label": "Création de Matériaux", "percentage": 65 },
+      { "label": "Éclairage & Rendu", "percentage": 62 },
+      { "label": "Animation", "percentage": 58 },
+      { "label": "Compositing", "percentage": 55 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de Conception",
+    "items": [
+      "Créer des modèles 3D précis et détaillés",
+      "Concevoir des matériaux et des textures immersifs",
+      "Configurer un éclairage réaliste et atmosphérique",
+      "Générer des rendus de haute qualité",
+      "Animer des scènes 3D fluides et expressives"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur d'Exécution Créative",
+    "items": [
+      { "label": "Techniques de Modélisation", "percentage": 68 },
+      { "label": "Matériaux & Shading", "percentage": 65 },
+      { "label": "Rendu & Cycles", "percentage": 62 },
+      { "label": "Bases de l'Animation", "percentage": 58 }
+    ]
+  }
+}

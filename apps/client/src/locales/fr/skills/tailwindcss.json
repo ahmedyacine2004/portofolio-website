@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace Tailwind CSS | Compétences",
+  "metaDescription": "Détails de l'espace de travail stylisation utility-first pour Tailwind CSS",
+  "workspaceTitle": "ESPACE SYSTÈME DE DESIGN -Tailwind CSS-",
+  "workspaceSubtitle": "Design tokens utility-first, points de rupture adaptatifs, matrice mode sombre et télémétrie du compilateur JIT",
+  "clientRuntime": "MOTEUR TAILWIND JIT",
+  "lighthouseBadge": "100% Adaptatif",
+  "fpsBadge": "Zéro CSS à l'exécution",
+  "header": {
+    "category": "SYSTÈME DE DESIGN UTILITY-FIRST & STYLISATION JIT",
+    "title": "Tailwind CSS",
+    "subtitle": "Développement UI rapide avec stylisation utility-first",
+    "description": "Tailwind CSS est ma solution de style de prédilection. Il permet un développement rapide avec un CSS minimal, garantit une cohérence grâce aux design tokens et s'intègre parfaitement avec mes projets React et Next.js.",
+    "metrics": [
+      { "label": "Expérience", "value": "2.5+ ans" },
+      { "label": "Projets", "value": "10+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Designs créés", "value": "100+" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Stylisme",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Pourquoi j'utilise Tailwind CSS",
+    "items": [
+      "Approche CSS utility-first moderne",
+      "Taille de bundle CSS ultra-réduite",
+      "Cohérence de design entre tous les projets",
+      "Capacités de prototypage rapide",
+      "Support natif du mode sombre"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de vie de style & pipeline compilateur JIT",
+    "subtitle": "De l'analyse des classes utilitaires au CSS de production optimisé",
+    "stages": [
+      {
+        "tag": "Étape 01",
+        "title": "Balayage des jetons de classe",
+        "detail": "Le scanner JIT détecte les classes utilitaires dans le code source"
+      },
+      {
+        "tag": "Étape 02",
+        "title": "Résolution des Design Tokens",
+        "detail": "Mappage des couleurs, espacements, typographies et breakpoints"
+      },
+      {
+        "tag": "Étape 03",
+        "title": "Valeurs arbitraires & variantes",
+        "detail": "Calcul des modificateurs hover, focus, group, peer et dynamiques"
+      },
+      {
+        "tag": "Étape 04",
+        "title": "Mode sombre & changement de thème",
+        "detail": "Propagation des thèmes par variables CSS et stratégies de classes"
+      },
+      {
+        "tag": "Étape 05",
+        "title": "Optimisation PostCSS & Autopréfixes",
+        "detail": "Gestion des préfixes navigateurs, déduplication et minification CSS"
+      },
+      {
+        "tag": "Étape 06",
+        "title": "Styles zéro surcoût injectés",
+        "detail": "Faisceau CSS ultra-léger et purgé (< 15 Ko en production)"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications en production",
+    "items": [
+      {
+        "id": "portfolio",
+        "title": "Système de Design du Portfolio",
+        "description": "Système de design complet avec Tailwind et composants personnalisés.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "ui-library",
+        "title": "Composants shadcn/ui",
+        "description": "Composants React personnalisables conçus avec Tailwind CSS.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "responsive-design",
+        "title": "Mises en page réactives",
+        "description": "Designs adaptatifs orientés mobile-first pour toutes les tailles d'écran.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Systèmes de styles & éléments UI",
+    "items": [
+      "Mises en page réactives",
+      "Composants sur mesure",
+      "Design Tokens",
+      "Systèmes de couleurs",
+      "Thèmes mode sombre",
+      "Classes d'animation",
+      "Styles de formulaires",
+      "Variantes de boutons",
+      "Mises en page de cartes",
+      "Systèmes de navigation",
+      "Grilles et espacements",
+      "Échelles typographiques"
+    ]
+  },
+  "impact": {
+    "title": "Impact & performance CSS",
+    "ecosystemTitle": "Écosystème & plugins Tailwind CSS",
+    "stats": [
+      { "label": "Composants UI", "value": "100+" },
+      { "label": "Design Tokens", "value": "50+" },
+      { "label": "Palettes de couleurs", "value": "8" },
+      { "label": "Points de rupture (Breakpoints)", "value": "6+" },
+      { "label": "Réduction du CSS", "value": "80%" },
+      { "label": "Gain de temps de build", "value": "60%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils de conception graphique",
+    "items": [
+      { "label": "Design Utility-First", "percentage": 90 },
+      { "label": "Design Adaptatif (Responsive)", "percentage": 88 },
+      { "label": "Architecture de composants", "percentage": 85 },
+      { "label": "Personnalisation des thèmes", "percentage": 90 },
+      { "label": "Optimisation des performances", "percentage": 85 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de conception",
+    "items": [
+      "Créer des designs adaptatifs rapidement",
+      "Établir des systèmes de design cohérents",
+      "Implémenter des mises en page complexes efficacement",
+      "Optimiser les performances CSS",
+      "Maintenir un balisage propre et lisible"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "Configuration personnalisée", "percentage": 85 },
+      { "label": "Développement de plugins", "percentage": 70 },
+      { "label": "Intégration du mode sombre", "percentage": 90 },
+      { "label": "Réglage fin des performances", "percentage": 80 }
+    ]
+  }
+}

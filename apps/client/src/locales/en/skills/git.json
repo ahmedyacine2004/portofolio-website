@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Git Workspace | Skills",
+  "workspaceTitle": "DEVOPS & TOOLS WORKSPACE -Git-",
+  "workspaceSubtitle": "Version control, distributed workflows, branching strategies, and collaboration governance",
+  "clusterHealthy": "VCS REPOSITORY ACTIVE",
+  "uptimeBadge": "100% Integrity",
+  "downtimeBadge": "Distributed Sync",
+  "header": {
+    "title": "Git",
+    "category": "VERSION CONTROL & COLLABORATION",
+    "subtitle": "Version control system",
+    "description": "Git is essential for my development workflow. I use it for version control, collaboration, and managing code repositories across all my projects.",
+    "metrics": [
+      { "label": "Experience", "value": "3+ years" },
+      { "label": "Projects", "value": "20+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Tool Type", "value": "VCS" }
+    ]
+  },
+  "mastery": {
+    "title": "Version Control Mastery",
+    "label": "Mastery"
+  },
+  "devopsTenets": {
+    "title": "Git Core Tenets",
+    "items": [
+      "Powerful branching and merging",
+      "Distributed and offline workflows",
+      "Cryptographic integrity and speed",
+      "Vibrant global developer community",
+      "Industry standard across modern software engineering"
+    ]
+  },
+  "pipeline": {
+    "title": "Git Delivery & Release Lifecycle",
+    "subtitle": "From Feature Branch to Production Rollout",
+    "stages": [
+      {
+        "stage": "01. Branching",
+        "title": "Feature Branch & Commits",
+        "detail": "Atomic commits, clear messages & conventional commits"
+      },
+      {
+        "stage": "02. Review",
+        "title": "Pull Request & Review",
+        "detail": "Peer review, automated checks & discussion resolution"
+      },
+      {
+        "stage": "03. Validation",
+        "title": "Pre-Merge CI Checks",
+        "detail": "Unit testing, linting and build validation pass"
+      },
+      {
+        "stage": "04. Integration",
+        "title": "Merge & Rebase",
+        "detail": "Fast-forward or squash merge with clean history"
+      },
+      {
+        "stage": "05. Tagging",
+        "title": "Semantic Release & Tags",
+        "detail": "Semver versioning, automated changelog & release"
+      },
+      {
+        "stage": "06. Sync",
+        "title": "Remote Upstream Sync",
+        "detail": "Continuous synchronization and production deployment trigger"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Version Control Applications",
+    "items": [
+      {
+        "id": "version-control",
+        "title": "Version Control",
+        "description": "Code repository management and comprehensive history tracking",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "collaboration",
+        "title": "Collaboration",
+        "description": "Team development workflows and pull request governance",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "release-management",
+        "title": "Release Management",
+        "description": "Version releases, semantic tags, and release artifact delivery",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Git Blueprints & Operations",
+    "items": [
+      "Repositories",
+      "Branches",
+      "Commits",
+      "Merge Requests",
+      "Rebase Operations",
+      "Stashing",
+      "Tagging",
+      "Git Hooks",
+      "Workflows",
+      "Conflict Resolution",
+      "Cherry Pick",
+      "History Rewriting"
+    ]
+  },
+  "impact": {
+    "title": "Impact & SLA Metrics",
+    "ecosystemTitle": "Git & Collaboration Ecosystem",
+    "stats": [
+      { "label": "Repositories", "value": "20+" },
+      { "label": "Commits", "value": "1000+" },
+      { "label": "Branches Created", "value": "500+" },
+      { "label": "Code Review PRs", "value": "300+" },
+      { "label": "Team Size Managed", "value": "5+" },
+      { "label": "Conflict Resolution", "value": "50+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Git Toolkit",
+    "items": [
+      { "label": "Repository Management", "percentage": 94 },
+      { "label": "Branching Strategies", "percentage": 92 },
+      { "label": "Merge & Rebase", "percentage": 90 },
+      { "label": "History Manipulation", "percentage": 88 },
+      { "label": "Advanced Workflows", "percentage": 85 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Git Engineering Principles",
+    "items": [
+      "Manage repositories and codebases effectively",
+      "Implement structured branching strategies (Git Flow, Trunk-based)",
+      "Resolve complex merge conflicts with precision",
+      "Maintain a clean, linear, and intelligible commit history",
+      "Lead team collaboration and rigorous code review workflows"
+    ]
+  },
+  "automationDepth": {
+    "title": "Git Proficiency Depth",
+    "items": [
+      { "label": "Command Line Proficiency", "percentage": 94 },
+      { "label": "Branching Strategies", "percentage": 92 },
+      { "label": "Conflict Resolution", "percentage": 90 },
+      { "label": "Advanced Git", "percentage": 88 }
+    ]
+  }
+}

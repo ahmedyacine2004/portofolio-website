@@ -1,0 +1,150 @@
+{
+  "metaTitle": "MySQL Workspace | Skills",
+  "metaDescription": "Relational database workspace details for MySQL",
+  "workspaceTitle": "DATABASE WORKSPACE -MySQL-",
+  "workspaceSubtitle": "Data architecture, schema modeling, indexing strategy, and query performance",
+  "engineActive": "ENGINE ACTIVE",
+  "bufferHitBadge": "99.9% Buffer Hit",
+  "replicaLagBadge": "0ms Replica Lag",
+  "header": {
+    "category": "DATA PARADIGM & STORAGE ENGINE",
+    "title": "MySQL",
+    "subtitle": "Popular open-source relational database",
+    "description": "MySQL is a reliable relational database I use for web applications. It offers good performance, is easy to manage, and integrates well with web stacks.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "3+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Database Type", "value": "SQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Schema Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Data Guarantees",
+    "items": [
+      "Simple and straightforward",
+      "Good performance",
+      "Easy deployment",
+      "Wide hosting support",
+      "Proven reliability"
+    ]
+  },
+  "storageTiers": {
+    "title": "Data Storage & Persistence Lifecycle",
+    "subtitle": "From Buffer Cache to Disk & Replica Shards",
+    "latencyLabel": "Latency:",
+    "items": [
+      {
+        "tier": "01. Buffer Cache & Memory",
+        "detail": "InnoDB Buffer Pool & In-Memory Working Set",
+        "latency": "< 0.5ms",
+        "badge": "RAM Tier"
+      },
+      {
+        "tier": "02. Redo Log & Undo Tablespaces",
+        "detail": "Sequential Doublewrite Buffer for ACID Durability",
+        "latency": "1.2ms",
+        "badge": "Durability"
+      },
+      {
+        "tier": "03. Persistent B+ Tree Pages",
+        "detail": "MySQL InnoDB Tablespaces & Clustered Index Trees",
+        "latency": "3.4ms",
+        "badge": "NVMe Storage"
+      },
+      {
+        "tier": "04. Replica Sets & Binary Logs",
+        "detail": "Binlog Replicas & Continuous Point-in-Time Backup",
+        "latency": "Sync / Async",
+        "badge": "HA & Backup"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Schemas",
+    "items": [
+      {
+        "id": "wordpress-db",
+        "title": "WordPress Database",
+        "description": "Content management system",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "web-app",
+        "title": "Web Application",
+        "description": "Standard web app database",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "ecommerce",
+        "title": "E-Commerce Store",
+        "description": "Product and order database",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Schema Entities",
+    "items": [
+      "Tables",
+      "Queries",
+      "Indexes",
+      "Relationships",
+      "Views",
+      "Triggers",
+      "Stored Procedures",
+      "Joins",
+      "Constraints",
+      "Partitioning",
+      "Replication",
+      "Backups"
+    ]
+  },
+  "impact": {
+    "title": "Storage & Benchmarks",
+    "ecosystemTitle": "Database Ecosystem & ORM",
+    "stats": [
+      { "label": "Databases", "value": "5+" },
+      { "label": "Tables", "value": "50+" },
+      { "label": "Queries Optimized", "value": "100+" },
+      { "label": "Average Query Time", "value": "<50ms" },
+      { "label": "Data Stored", "value": "5GB+" },
+      { "label": "Availability", "value": "99.8%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Database Toolkit",
+    "items": [
+      { "label": "Schema Design", "percentage": 82 },
+      { "label": "SQL Query Writing", "percentage": 84 },
+      { "label": "Index Optimization", "percentage": 80 },
+      { "label": "Backup Strategy", "percentage": 78 },
+      { "label": "Performance Tuning", "percentage": 79 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Integrity Principles",
+    "items": [
+      "Design effective database schemas",
+      "Write efficient queries",
+      "Implement proper indexing",
+      "Manage database backups",
+      "Troubleshoot performance issues"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Query & Indexing Depth",
+    "items": [
+      { "label": "SQL & Queries", "percentage": 84 },
+      { "label": "Indexing Strategies", "percentage": 80 },
+      { "label": "Performance Optimization", "percentage": 78 },
+      { "label": "Administration", "percentage": 75 }
+    ]
+  }
+}

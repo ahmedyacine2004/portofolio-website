@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace ReactJS | Compétences",
+  "metaDescription": "Détails de l'espace de travail frontend pour ReactJS",
+  "workspaceTitle": "ESPACE FRONTEND -ReactJS-",
+  "workspaceSubtitle": "Architecture de composants, mises en page réactives, physique de mouvement et télémétrie de l'expérience utilisateur",
+  "clientRuntime": "RUNTIME CLIENT",
+  "lighthouseBadge": "Lighthouse 100/100",
+  "fpsBadge": "Mouvement 60 FPS",
+  "header": {
+    "category": "ARCHITECTURE DE COMPOSANTS & SYSTÈME DE DESIGN",
+    "title": "ReactJS",
+    "subtitle": "Création d'interfaces utilisateur interactives pour des expériences numériques percutantes",
+    "description": "J'utilise React pour transformer des idées en interfaces élégantes, évolutives et centrées sur l'utilisateur. C'est le cœur de la plupart de mes réalisations frontend.",
+    "metrics": [
+      { "label": "Expérience", "value": "3+ ans" },
+      { "label": "Projets", "value": "12+" },
+      { "label": "Niveau", "value": "Expert" },
+      { "label": "Bibliothèque frontend", "value": "Principale" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise de l'UI",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Principes de conception",
+    "items": [
+      "Architecture basée sur les composants",
+      "Blocs de construction UI hautement réutilisables",
+      "Écosystème riche et communauté dynamique",
+      "Excellente expérience de développement",
+      "Idéal pour des portfolios évolutifs"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de vie du rendu client et pipeline d'état",
+    "subtitle": "Du flux serveur au rendu interactif 60 fps",
+    "stages": [
+      {
+        "tag": "Étape 01",
+        "title": "Correspondance de route & flux RSC",
+        "detail": "Streaming des Server Components avec Next.js App Router"
+      },
+      {
+        "tag": "Étape 02",
+        "title": "Hydratation & initialisation d'état",
+        "detail": "Initialisation du store Zustand et des contextes React Hook"
+      },
+      {
+        "tag": "Étape 03",
+        "title": "Diffing du DOM virtuel",
+        "detail": "Réconciliation des composants ReactJS"
+      },
+      {
+        "tag": "Étape 04",
+        "title": "Validation du DOM et rendu visuel",
+        "detail": "Calculs des styles utilitaires Tailwind CSS"
+      },
+      {
+        "tag": "Étape 05",
+        "title": "Animations & interactions gestuelles",
+        "detail": "Accélération matérielle 60 fps avec Framer Motion"
+      },
+      {
+        "tag": "Étape 06",
+        "title": "UI interactive prête",
+        "detail": "Zéro décalage de mise en page cumulatif (FID < 10ms)"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications en production",
+    "items": [
+      {
+        "id": "consultify",
+        "title": "CONSULTIFY",
+        "description": "Plateforme de consultation assistée par IA avec réservation, paiement et tableau de bord administrateur.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "portfolio",
+        "title": "Espace Portfolio",
+        "description": "Portfolio de développeur avec expérience interactive et animations sur mesure.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "taskflow",
+        "title": "TaskFlow",
+        "description": "Application de productivité pour la gestion de tâches avec analyses et collaboration d'équipe.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Systèmes de composants",
+    "items": [
+      "Pages d'accueil",
+      "Tableaux de bord",
+      "Authentification",
+      "Profils utilisateurs",
+      "Flux de réservation",
+      "Flux de paiement",
+      "Panneaux d'administration",
+      "Pages de paramètres",
+      "Blog / CMS",
+      "Vitrines de portfolio",
+      "Pages de destination",
+      "Pages d'erreur / 404"
+    ]
+  },
+  "impact": {
+    "title": "Impact et métriques Web Vitals",
+    "ecosystemTitle": "Écosystème frontend et bibliothèques",
+    "stats": [
+      { "label": "Composants UI créés", "value": "240+" },
+      { "label": "Composants réutilisables", "value": "85+" },
+      { "label": "Pages construites", "value": "60+" },
+      { "label": "Fonctionnalités interactives", "value": "110+" },
+      { "label": "Score de performance", "value": "98/100" },
+      { "label": "Score d'accessibilité", "value": "100/100" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils frontend",
+    "items": [
+      { "label": "Conception de composants", "percentage": 95 },
+      { "label": "Optimisation des performances", "percentage": 90 },
+      { "label": "Architecture réutilisable", "percentage": 86 },
+      { "label": "Design adaptatif (Responsive)", "percentage": 70 },
+      { "label": "Gestion de l'état", "percentage": 65 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes d'architecture",
+    "items": [
+      "Créer des systèmes de composants évolutifs et maintenables",
+      "Rédiger des composants propres, réutilisables et testables",
+      "Optimiser les performances et la taille du bundle",
+      "Construire des interfaces utilisateur accessibles et inclusives",
+      "Résoudre des problèmes concrets avec des solutions d'interface élégantes"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "Composants serveur React (RSC)", "percentage": 60 },
+      { "label": "Animations avancées", "percentage": 40 },
+      { "label": "TanStack Router", "percentage": 55 },
+      { "label": "Intégration de l'IA dans l'UI", "percentage": 75 }
+    ]
+  }
+}

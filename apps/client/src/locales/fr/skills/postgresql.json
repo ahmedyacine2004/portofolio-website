@@ -1,0 +1,150 @@
+{
+  "metaTitle": "Espace PostgreSQL | Compétences",
+  "metaDescription": "Détails de l'espace de travail base de données relationnelle avancée pour PostgreSQL",
+  "workspaceTitle": "ESPACE BASE DE DONNÉES -PostgreSQL-",
+  "workspaceSubtitle": "Architecture de données, modélisation de schéma, stratégie d'indexation et performance des requêtes",
+  "engineActive": "MOTEUR ACTIF",
+  "bufferHitBadge": "Taux de buffer hit 99.9%",
+  "replicaLagBadge": "Réplica lag 0ms",
+  "header": {
+    "category": "PARADIGME DE DONNÉES & MOTEUR DE STOCKAGE",
+    "title": "PostgreSQL",
+    "subtitle": "Base de données relationnelle open-source avancée",
+    "description": "PostgreSQL est ma base de données relationnelle de référence pour les applications nécessitant des relations complexes, la conformité ACID et une intégrité robuste des données. Je l'utilise pour les systèmes critiques.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "4+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type de BDD", "value": "SQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise des Schémas",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Garanties de Données",
+    "items": [
+      "Conformité ACID",
+      "Requêtes complexes",
+      "Support JSON",
+      "Excellente documentation",
+      "Hautement fiable"
+    ]
+  },
+  "storageTiers": {
+    "title": "Cycle de vie du stockage & de la persistance des données",
+    "subtitle": "Du cache mémoire au disque & aux fragments répliqués",
+    "latencyLabel": "Latence :",
+    "items": [
+      {
+        "tier": "01. Cache tampon & Mémoire",
+        "detail": "SGA / Tampons partagés & Ensemble de travail en mémoire",
+        "latency": "< 0.5ms",
+        "badge": "Tier RAM"
+      },
+      {
+        "tier": "02. WAL & Journal de transactions",
+        "detail": "Journal WAL séquentiel pour la durabilité ACID",
+        "latency": "1.2ms",
+        "badge": "Durability"
+      },
+      {
+        "tier": "03. Pages B+ Tree persistantes",
+        "detail": "Espaces de table PostgreSQL & arborescences d'index composés",
+        "latency": "3.4ms",
+        "badge": "Stockage NVMe"
+      },
+      {
+        "tier": "04. Jeux de réplicas & Snapshots",
+        "detail": "Réplicas en lecture & sauvegarde continue point-in-time",
+        "latency": "Sync / Async",
+        "badge": "HA & Sauvegarde"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Schémas en Production",
+    "items": [
+      {
+        "id": "erp-system",
+        "title": "Système ERP",
+        "description": "Base de données de planification des ressources de l'entreprise",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "financial-app",
+        "title": "Application Financière",
+        "description": "Système de transactions et de rapports financiers",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "admin-portal",
+        "title": "Portail d'Administration",
+        "description": "Base de données du système de gestion",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Entités de Schéma",
+    "items": [
+      "Tables",
+      "Contraintes",
+      "Relations",
+      "Index",
+      "Vues",
+      "Procédures",
+      "Déclencheurs",
+      "Transactions",
+      "Requêtes JSON",
+      "Recherche Full-Text",
+      "Migrations",
+      "Sauvegardes"
+    ]
+  },
+  "impact": {
+    "title": "Stockage & Benchmarks",
+    "ecosystemTitle": "Écosystème BDD & ORM",
+    "stats": [
+      { "label": "Tables", "value": "25+" },
+      { "label": "Relations", "value": "40+" },
+      { "label": "Procédures Stockées", "value": "15+" },
+      { "label": "Performance des Requêtes", "value": "<30ms" },
+      { "label": "Cohérence des Données", "value": "100%" },
+      { "label": "Temps de Récupération", "value": "<1m" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils BDD",
+    "items": [
+      { "label": "Conception de schéma", "percentage": 87 },
+      { "label": "Requêtes SQL", "percentage": 86 },
+      { "label": "Optimisation des performances", "percentage": 85 },
+      { "label": "Gestion des contraintes", "percentage": 84 },
+      { "label": "Sauvegarde & Restauration", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes d'Intégrité",
+    "items": [
+      "Concevoir des schémas normalisés",
+      "Écrire des requêtes SQL complexes",
+      "Optimiser les performances des requêtes",
+      "Implémenter l'intégrité référentielle",
+      "Gérer les transactions en toute sécurité"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur des requêtes & index",
+    "items": [
+      { "label": "Conception de schéma", "percentage": 87 },
+      { "label": "SQL & Requêtes", "percentage": 90 },
+      { "label": "Optimisation des perf.", "percentage": 84 },
+      { "label": "Fonctionnalités avancées", "percentage": 80 }
+    ]
+  }
+}

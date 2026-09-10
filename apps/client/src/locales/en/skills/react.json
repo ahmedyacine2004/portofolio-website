@@ -1,0 +1,155 @@
+{
+  "metaTitle": "ReactJS Workspace | Skills",
+  "metaDescription": "Frontend workspace details for ReactJS",
+  "workspaceTitle": "FRONTEND WORKSPACE -ReactJS-",
+  "workspaceSubtitle": "Component architecture, responsive layouts, motion physics, and user experience telemetry",
+  "clientRuntime": "CLIENT RUNTIME",
+  "lighthouseBadge": "Lighthouse 100/100",
+  "fpsBadge": "60 FPS Motion",
+  "header": {
+    "category": "COMPONENT ARCHITECTURE & DESIGN SYSTEM",
+    "title": "ReactJS",
+    "subtitle": "Building interactive UIs for impactful digital experiences",
+    "description": "I use React to turn ideas into elegant, scalable and user-focused interfaces. It is the core of most of my frontend work.",
+    "metrics": [
+      { "label": "Experience", "value": "3+ years" },
+      { "label": "Projects", "value": "12+" },
+      { "label": "Level", "value": "Expert" },
+      { "label": "Frontend library", "value": "Primary" }
+    ]
+  },
+  "mastery": {
+    "title": "UI Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Component-based architecture",
+      "Highly reusable UI building blocks",
+      "Rich ecosystem & community",
+      "Great developer experience",
+      "Perfect for scalable portfolios"
+    ]
+  },
+  "pipeline": {
+    "title": "Client Rendering Lifecycle & State Pipeline",
+    "subtitle": "From Server Stream to 60fps Interactive Paint",
+    "stages": [
+      {
+        "tag": "Stage 01",
+        "title": "Route Match & RSC Stream",
+        "detail": "Next.js App Router Server Component Streaming"
+      },
+      {
+        "tag": "Stage 02",
+        "title": "Hydration & State Init",
+        "detail": "Zustand Store & React Hook Context Initialization"
+      },
+      {
+        "tag": "Stage 03",
+        "title": "Virtual DOM Diffing",
+        "detail": "ReactJS Component Reconciliation"
+      },
+      {
+        "tag": "Stage 04",
+        "title": "DOM Commit & Layout Paint",
+        "detail": "Tailwind CSS Utility Style Computations"
+      },
+      {
+        "tag": "Stage 05",
+        "title": "Animation & Gestures",
+        "detail": "Framer Motion Hardware-Accelerated 60fps"
+      },
+      {
+        "tag": "Stage 06",
+        "title": "Interactive UI Ready",
+        "detail": "Zero Cumulative Layout Shift (FID < 10ms)"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Applications",
+    "items": [
+      {
+        "id": "consultify",
+        "title": "CONSULTIFY",
+        "description": "AI powered consultation platform with booking payment & admin dashboard.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "portfolio",
+        "title": "Portfolio Workspace",
+        "description": "Developer portfolio with interactive experience and custom animations.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "taskflow",
+        "title": "TaskFlow",
+        "description": "Productivity app for task management with analytics and team collaboration.",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Component Systems",
+    "items": [
+      "Home Pages",
+      "Dashboards",
+      "Authentication",
+      "User Profiles",
+      "Booking Flow",
+      "Payment Flow",
+      "Admin Panels",
+      "Settings Pages",
+      "Blog / CMS",
+      "Portfolio Showcases",
+      "Landing Pages",
+      "Error / 404 Pages"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Web Vitals",
+    "ecosystemTitle": "Frontend Ecosystem & Libraries",
+    "stats": [
+      { "label": "UI Components Created", "value": "240+" },
+      { "label": "Reusable Components", "value": "85+" },
+      { "label": "Pages Built", "value": "60+" },
+      { "label": "Interactive Features", "value": "110+" },
+      { "label": "Performance Score", "value": "98/100" },
+      { "label": "Accessibility Score", "value": "100/100" }
+    ]
+  },
+  "toolkit": {
+    "title": "Frontend Toolkit",
+    "items": [
+      { "label": "Component Design", "percentage": 95 },
+      { "label": "Performance Optimization", "percentage": 90 },
+      { "label": "Reusable Architecture", "percentage": 86 },
+      { "label": "Responsive Design", "percentage": 70 },
+      { "label": "State Management", "percentage": 65 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Architectural Principles",
+    "items": [
+      "Create scalable and maintainable component systems",
+      "Write clean, reusable and testable components",
+      "Optimize performance and bundle size",
+      "Build accessible and inclusive user interfaces",
+      "Solve real-world problems with elegant UI solutions"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Technical Depth",
+    "items": [
+      { "label": "React Server Components", "percentage": 60 },
+      { "label": "Advanced Animations", "percentage": 40 },
+      { "label": "TanStack Router", "percentage": 55 },
+      { "label": "AI Integration in UI", "percentage": 75 }
+    ]
+  }
+}

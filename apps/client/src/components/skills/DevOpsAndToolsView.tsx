@@ -1,11 +1,15 @@
 'use client';
 
 import { FrontendWorkspaceData } from '@/data/skills/react-workspace';
+import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
+  Award,
   Boxes,
+  Clock,
   Cloud,
+  Folder,
   GitBranch,
   Layers,
   Lock,
@@ -20,7 +24,7 @@ import {
   Workflow,
   Zap,
 } from 'lucide-react';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 function CircularProgress({
   percentage,
@@ -94,9 +98,10 @@ const cardVariants: Variants = {
 
 interface DevOpsAndToolsViewProps {
   data: FrontendWorkspaceData;
+  skillKey?: string;
 }
 
-export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
+export default function DevOpsAndToolsView({ data, skillKey }: DevOpsAndToolsViewProps) {
   const {
     skillName,
     header,
@@ -111,7 +116,118 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
     technicalStrengths,
   } = data;
 
-  const pipelineStages = useMemo(
+  const resolvedSkillKey =
+    skillKey ||
+    (skillName.toLowerCase().includes('git') && !skillName.toLowerCase().includes('github')
+      ? 'git'
+      : skillName.toLowerCase().includes('github')
+        ? 'github'
+        : skillName.toLowerCase().includes('docker')
+          ? 'docker'
+          : skillName.toLowerCase().includes('nginx')
+            ? 'nginx'
+            : skillName.toLowerCase().includes('vercel')
+              ? 'vercel'
+              : skillName.toLowerCase().replace(/[^a-z0-9]/g, ''));
+
+  const { t, tArray, tObject, locale } = useTranslation();
+
+  useEffect(() => {
+    const metaTitle = t(
+      `skillPages.${resolvedSkillKey}.metaTitle`,
+      `${skillName} Workspace | Skills`,
+    );
+    if (metaTitle && typeof document !== 'undefined') {
+      document.title = metaTitle;
+    }
+  }, [locale, resolvedSkillKey, t, skillName]);
+
+  // Translated data-driven arrays
+  const translatedMetrics = tObject<Array<{ label: string; value: string }>>(
+    `skillPages.${resolvedSkillKey}.header.metrics`,
+    [],
+  );
+  const metrics = useMemo(() => {
+    return header.metrics.map((m, i) => ({
+      ...m,
+      label: translatedMetrics?.[i]?.label ?? m.label,
+      value: translatedMetrics?.[i]?.value ?? m.value,
+    }));
+  }, [header.metrics, translatedMetrics]);
+
+  const translatedTenets = tArray<string>(`skillPages.${resolvedSkillKey}.devopsTenets.items`);
+  const displayTenets = translatedTenets.length > 0 ? translatedTenets : whyILove;
+
+  const translatedApps = tObject<
+    Array<{ id?: string; title?: string; description?: string; status?: string; badge?: string }>
+  >(`skillPages.${resolvedSkillKey}.applications.items`, []);
+  const displayApplications = useMemo(() => {
+    return applications.map((app, idx) => {
+      const trans = translatedApps?.[idx];
+      return {
+        ...app,
+        title: trans?.title ?? app.title,
+        description: trans?.description ?? app.description,
+        status: trans?.status ?? app.status,
+        badge: trans?.badge ?? app.badge,
+      };
+    });
+  }, [applications, translatedApps]);
+
+  const translatedWhatIBuild = tArray<string>(
+    `skillPages.${resolvedSkillKey}.infrastructureBlueprints.items`,
+  );
+  const displayWhatIBuild = useMemo(() => {
+    return whatIBuild.map((item, idx) => ({
+      ...item,
+      label: translatedWhatIBuild?.[idx] ?? item.label,
+    }));
+  }, [whatIBuild, translatedWhatIBuild]);
+
+  const translatedStats = tObject<Array<{ label: string; value: string }>>(
+    `skillPages.${resolvedSkillKey}.impact.stats`,
+    [],
+  );
+  const displayStats = useMemo(() => {
+    return impactAndStats.map((stat, idx) => ({
+      ...stat,
+      label: translatedStats?.[idx]?.label ?? stat.label,
+      value: translatedStats?.[idx]?.value ?? stat.value,
+    }));
+  }, [impactAndStats, translatedStats]);
+
+  const translatedToolkit = tObject<Array<{ label: string; percentage?: number }>>(
+    `skillPages.${resolvedSkillKey}.toolkit.items`,
+    [],
+  );
+  const displayToolkit = useMemo(() => {
+    return toolkit.map((tool, idx) => ({
+      ...tool,
+      label: translatedToolkit?.[idx]?.label ?? tool.label,
+      percentage: translatedToolkit?.[idx]?.percentage ?? tool.percentage,
+    }));
+  }, [toolkit, translatedToolkit]);
+
+  const translatedCoreStrengths = tArray<string>(
+    `skillPages.${resolvedSkillKey}.infrastructurePrinciples.items`,
+  );
+  const displayCoreStrengths =
+    translatedCoreStrengths.length > 0 ? translatedCoreStrengths : coreStrengths;
+
+  const translatedTechStrengths = tObject<Array<{ label: string; percentage?: number }>>(
+    `skillPages.${resolvedSkillKey}.automationDepth.items`,
+    [],
+  );
+  const displayTechStrengths = useMemo(() => {
+    return technicalStrengths.map((tech, idx) => ({
+      ...tech,
+      label: translatedTechStrengths?.[idx]?.label ?? tech.label,
+      percentage: translatedTechStrengths?.[idx]?.percentage ?? tech.percentage,
+    }));
+  }, [technicalStrengths, translatedTechStrengths]);
+
+  // Pipeline stages with translation support
+  const defaultPipelineStages = useMemo(
     () => [
       {
         stage: '01. Ingress',
@@ -159,6 +275,24 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
     [skillName],
   );
 
+  const translatedPipeline = tObject<Array<{ stage?: string; title?: string; detail?: string }>>(
+    `skillPages.${resolvedSkillKey}.pipeline.stages`,
+    [],
+  );
+  const pipelineStages = useMemo(() => {
+    const icons = [GitBranch, ShieldCheck, Package, Lock, Rocket, Activity];
+    return defaultPipelineStages.map((item, idx) => {
+      const trans = translatedPipeline?.[idx];
+      return {
+        ...item,
+        stage: trans?.stage ?? item.stage,
+        title: trans?.title ?? item.title,
+        detail: trans?.detail ?? item.detail,
+        icon: icons[idx],
+      };
+    });
+  }, [defaultPipelineStages, translatedPipeline]);
+
   return (
     <motion.div
       className="w-full space-y-6 rounded-[8px]"
@@ -177,11 +311,16 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           </div>
           <div>
             <h1 className="font-inter text-xl font-black uppercase tracking-tight md:text-[22px]">
-              DEVOPS &amp; TOOLS WORKSPACE -{skillName}-
+              {t(
+                `skillPages.${resolvedSkillKey}.workspaceTitle`,
+                `DEVOPS & TOOLS WORKSPACE -${skillName}-`,
+              )}
             </h1>
             <p className="text-[12px] text-muted-foreground">
-              Automated CI/CD pipelines, container orchestration, zero-downtime deployments, and
-              infrastructure telemetry
+              {t(
+                `skillPages.${resolvedSkillKey}.workspaceSubtitle`,
+                'Automated CI/CD pipelines, container orchestration, zero-downtime deployments, and infrastructure telemetry',
+              )}
             </p>
           </div>
         </div>
@@ -189,13 +328,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
         <div className="flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-amber-600 dark:text-amber-400">
             <span className="size-2 rounded-full bg-amber-500 animate-pulse" />
-            CLUSTER HEALTHY
+            {t(`skillPages.${resolvedSkillKey}.clusterHealthy`, 'CLUSTER HEALTHY')}
           </span>
           <span className="rounded-[6px] border border-border/50 bg-card px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground">
-            99.99% Uptime
+            {t(`skillPages.${resolvedSkillKey}.uptimeBadge`, '99.99% Uptime')}
           </span>
           <span className="rounded-[6px] border border-border/50 bg-card px-2.5 py-1 font-mono text-[11px] font-medium text-muted-foreground">
-            Zero Downtime
+            {t(`skillPages.${resolvedSkillKey}.downtimeBadge`, 'Zero Downtime')}
           </span>
         </div>
       </motion.div>
@@ -213,32 +352,46 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
               <Rocket className="size-6" />
             </div>
             <div>
-              <h2 className="font-inter text-[20px] font-bold text-foreground">{header.title}</h2>
+              <h2 className="font-inter text-[20px] font-bold text-foreground">
+                {t(`skillPages.${resolvedSkillKey}.header.title`, header.title)}
+              </h2>
               <p className="text-[11px] font-mono text-amber-600 dark:text-amber-400">
-                AUTOMATION &amp; INFRASTRUCTURE OPS
+                {t(
+                  `skillPages.${resolvedSkillKey}.header.category`,
+                  'AUTOMATION & INFRASTRUCTURE OPS',
+                )}
               </p>
             </div>
           </div>
-          <p className="mb-2 text-[13px] font-bold text-foreground">{header.subtitle}</p>
+          <p className="mb-2 text-[13px] font-bold text-foreground">
+            {t(`skillPages.${resolvedSkillKey}.header.subtitle`, header.subtitle)}
+          </p>
           <p className="mb-6 text-[12px] leading-relaxed text-muted-foreground">
-            {header.description}
+            {t(`skillPages.${resolvedSkillKey}.header.description`, header.description)}
           </p>
 
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-            {header.metrics.map((metric, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-muted/30"
-              >
-                <div className="text-amber-600 dark:text-amber-400">
-                  <Workflow className="size-4" />
+            {metrics.map((metric, i) => {
+              const Icon = i === 0 ? Clock : i === 1 ? Folder : i === 2 ? Award : Workflow;
+              return (
+                <div
+                  key={i}
+                  className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-muted/30"
+                >
+                  <div className="flex size-6 shrink-0 items-center justify-center text-amber-600 dark:text-amber-400">
+                    <Icon className="size-4 shrink-0" />
+                  </div>
+                  <div className="flex min-w-0 flex-col">
+                    <span className="truncate text-[12px] font-bold leading-tight">
+                      {metric.value}
+                    </span>
+                    <span className="truncate text-[10px] text-muted-foreground leading-tight">
+                      {metric.label}
+                    </span>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[12px] font-bold">{metric.value}</span>
-                  <span className="text-[10px] text-muted-foreground">{metric.label}</span>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 
@@ -249,12 +402,16 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="flex flex-col items-center justify-center rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex w-full items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Ops Reliability</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.mastery.title`, 'Ops Reliability')}
+            </h3>
             <Activity className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <CircularProgress percentage={proficiency} size={130} strokeWidth={10}>
             <span className="text-[24px] font-black">{proficiency}%</span>
-            <span className="text-[10px] font-medium text-muted-foreground">Mastery</span>
+            <span className="text-[10px] font-medium text-muted-foreground">
+              {t(`skillPages.${resolvedSkillKey}.mastery.label`, 'Mastery')}
+            </span>
           </CircularProgress>
         </motion.div>
 
@@ -265,11 +422,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">DevOps Tenets</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.devopsTenets.title`, 'DevOps Tenets')}
+            </h3>
             <ShieldCheck className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <ul className="space-y-2.5">
-            {whyILove.map((reason, i) => (
+            {displayTenets.map((reason, i) => (
               <li key={i} className="flex items-center gap-2 text-[12px]">
                 <div className="size-1.5 shrink-0 rounded-full bg-amber-500" />
                 <span className="leading-snug">{reason}</span>
@@ -288,11 +447,14 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           <div className="flex items-center gap-2">
             <Radio className="size-4 text-amber-600 dark:text-amber-400" />
             <h3 className="font-inter text-[13px] font-bold uppercase tracking-wide">
-              Automated CI/CD Delivery Pipeline &amp; Rollout Lifecycle
+              {t(
+                `skillPages.${resolvedSkillKey}.pipeline.title`,
+                'Automated CI/CD Delivery Pipeline & Rollout Lifecycle',
+              )}
             </h3>
           </div>
           <span className="font-mono text-[10px] text-muted-foreground">
-            From Git Push to Kubernetes Production Pod
+            {t(`skillPages.${resolvedSkillKey}.pipeline.subtitle`, 'From Git Push to Production')}
           </span>
         </div>
 
@@ -338,11 +500,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Production Deployments</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.applications.title`, 'Production Deployments')}
+            </h3>
             <Cloud className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="space-y-4">
-            {applications.map((app) => (
+            {displayApplications.map((app) => (
               <div
                 key={app.id}
                 className="flex items-start gap-3 border-b border-border/40 pb-4 last:border-0 last:pb-0"
@@ -377,11 +541,16 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Infrastructure Blueprints</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(
+                `skillPages.${resolvedSkillKey}.infrastructureBlueprints.title`,
+                'Infrastructure Blueprints',
+              )}
+            </h3>
             <Boxes className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="grid grid-cols-3 gap-2">
-            {whatIBuild.map((item, i) => (
+            {displayWhatIBuild.map((item, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.04 }}
@@ -401,11 +570,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Impact &amp; SLA Metrics</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.impact.title`, 'Impact & SLA Metrics')}
+            </h3>
             <TrendingUp className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <ul className="mb-6 space-y-2">
-            {impactAndStats.map((stat, i) => (
+            {displayStats.map((stat, i) => (
               <li key={i} className="flex justify-between text-[12px]">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <div className="size-1.5 rounded-full bg-amber-500" />
@@ -416,7 +587,9 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
             ))}
           </ul>
 
-          <h3 className="font-inter mb-4 text-[14px] font-bold">DevOps &amp; Cloud Toolchain</h3>
+          <h3 className="font-inter mb-4 text-[14px] font-bold">
+            {t(`skillPages.${resolvedSkillKey}.impact.ecosystemTitle`, 'DevOps & Cloud Toolchain')}
+          </h3>
           <div className="flex flex-wrap gap-2">
             {techStack.map((tech, i) => (
               <motion.span
@@ -440,11 +613,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">DevOps Toolkit</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.toolkit.title`, 'DevOps Toolkit')}
+            </h3>
             <Zap className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="flex justify-between">
-            {toolkit.map((tool, i) => (
+            {displayToolkit.map((tool, i) => (
               <div key={i} className="flex flex-col items-center gap-2">
                 <CircularProgress percentage={tool.percentage} size={48} strokeWidth={4}>
                   <span className="text-[10px] font-bold">{tool.percentage}%</span>
@@ -464,11 +639,16 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Infrastructure Principles</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(
+                `skillPages.${resolvedSkillKey}.infrastructurePrinciples.title`,
+                'Infrastructure Principles',
+              )}
+            </h3>
             <Shield className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <ul className="space-y-3">
-            {coreStrengths.map((strength, i) => (
+            {displayCoreStrengths.map((strength, i) => (
               <li key={i} className="flex items-start gap-2 text-[12px]">
                 <div className="mt-1.5 size-1.5 shrink-0 rounded-full bg-amber-500" />
                 <span className="leading-snug text-muted-foreground">{strength}</span>
@@ -484,11 +664,13 @@ export default function DevOpsAndToolsView({ data }: DevOpsAndToolsViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
         >
           <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-inter text-[14px] font-bold">Automation Depth</h3>
+            <h3 className="font-inter text-[14px] font-bold">
+              {t(`skillPages.${resolvedSkillKey}.automationDepth.title`, 'Automation Depth')}
+            </h3>
             <Layers className="size-4 text-amber-600 dark:text-amber-400" />
           </div>
           <div className="space-y-4">
-            {technicalStrengths.map((tech, i) => (
+            {displayTechStrengths.map((tech, i) => (
               <div key={i} className="flex items-center justify-between gap-4 text-[12px]">
                 <div className="flex min-w-[140px] items-center gap-2">
                   <div className="size-1.5 shrink-0 rounded-full bg-amber-500" />

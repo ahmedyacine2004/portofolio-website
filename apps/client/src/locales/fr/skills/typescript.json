@@ -1,0 +1,156 @@
+{
+  "metaTitle": "Espace TypeScript | Compétences",
+  "metaDescription": "Détails de l'espace de travail développement sécurisé pour TypeScript",
+  "workspaceTitle": "ESPACE SYSTÈME DE TYPES -TypeScript-",
+  "workspaceSubtitle": "Analyse statique, métaprogrammation de types génériques, contrats de sécurité à l'exécution et télémétrie du compilateur",
+  "clientRuntime": "MOTEUR DE COMPILATION",
+  "lighthouseBadge": "Mode Strict 100%",
+  "fpsBadge": "Politique Zéro Any",
+  "header": {
+    "category": "ANALYSE DE TYPE STATIQUE & SYSTÈME DE COMPILATION",
+    "title": "TypeScript",
+    "subtitle": "Développement sécurisé par les types pour des applications robustes",
+    "description": "TypeScript est indispensable à mon flux de travail. Il apporte la sécurité des types, un outillage supérieur et permet de détecter les erreurs dès la compilation, rendant mon code plus maintenable et évolutif.",
+    "metrics": [
+      { "label": "Expérience", "value": "3+ ans" },
+      { "label": "Projets", "value": "14+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Couverture de types", "value": "99%" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Système de Types",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Pourquoi j'apprécie TypeScript",
+    "items": [
+      "Système de typage statique robuste",
+      "Meilleur support IDE et autocomplétion intelligente",
+      "Détection des erreurs au moment de la compilation",
+      "Excellente documentation intégrée au code",
+      "Évolutivité optimale pour les projets d'envergure"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de vie d'analyse statique & pipeline du compilateur",
+    "subtitle": "De l'analyse syntaxique AST au code JavaScript sans erreur",
+    "stages": [
+      {
+        "tag": "Étape 01",
+        "title": "Grammaire lexicale & analyse AST",
+        "detail": "Tokenisation du scanner TypeScript et construction de l'arbre syntaxique"
+      },
+      {
+        "tag": "Étape 02",
+        "title": "Liaison de symboles & analyse de portée",
+        "detail": "Résolution des identifiants et mappage des déclarations de types"
+      },
+      {
+        "tag": "Étape 03",
+        "title": "Vérification sémantique des types",
+        "detail": "Inférence de génériques, raffinement d'unions et validation stricte"
+      },
+      {
+        "tag": "Étape 04",
+        "title": "Gardes de types & flux de contrôle",
+        "detail": "Vérification d'exhaustivité et validation des unions discriminées"
+      },
+      {
+        "tag": "Étape 05",
+        "title": "Émission des déclarations (.d.ts)",
+        "detail": "Génération automatisée des signatures de types et interfaces"
+      },
+      {
+        "tag": "Étape 06",
+        "title": "Transpilation JavaScript propre",
+        "detail": "Génération de code sans surcoût d'abstraction pour Node et le navigateur"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications en production",
+    "items": [
+      {
+        "id": "portfolio",
+        "title": "Backend du Portfolio",
+        "description": "Backend NestJS sécurisé par les types avec typage exhaustif.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "frontend-apps",
+        "title": "Applications React",
+        "description": "Applications React entièrement typées avec vérification stricte.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "cli-tools",
+        "title": "Outils CLI",
+        "description": "Outils en ligne de commande développés en TypeScript.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Constructions architecturales typées",
+    "items": [
+      "Définitions de types",
+      "Interfaces",
+      "Types génériques",
+      "Types utilitaires",
+      "Gardes de types",
+      "Énumérations (Enums)",
+      "Décorateurs",
+      "Définitions de modules",
+      "Contrats d'API",
+      "Formulaires typés",
+      "Configurations strictes",
+      "Modèles avancés"
+    ]
+  },
+  "impact": {
+    "title": "Impact & intégrité des types",
+    "ecosystemTitle": "Outillage & compilateurs TypeScript",
+    "stats": [
+      { "label": "Définitions de types", "value": "500+" },
+      { "label": "Projets stricts", "value": "14+" },
+      { "label": "Types personnalisés", "value": "200+" },
+      { "label": "Utilitaires génériques", "value": "35+" },
+      { "label": "Couverture de types", "value": "99%" },
+      { "label": "Zéro erreur de type", "value": "100%" }
+    ]
+  },
+
+  "toolkit": {
+    "title": "Boîte à outils d'ingénierie des types",
+    "items": [
+      { "label": "Système de types avancé", "percentage": 92 },
+      { "label": "Programmation générique", "percentage": 88 },
+      { "label": "Architecture de typage sécurisé", "percentage": 90 },
+      { "label": "Prévention des erreurs", "percentage": 95 },
+      { "label": "Documentation du code", "percentage": 85 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes du système de types",
+    "items": [
+      "Concevoir des systèmes de types complets",
+      "Écrire des types génériques et réutilisables",
+      "Implémenter des modèles de conception sécurisés par les types",
+      "Prévenir les erreurs à l'exécution avec un typage strict",
+      "Créer un code auto-documenté grâce aux types"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "Génériques & types avancés", "percentage": 88 },
+      { "label": "Types mappés & conditionnels", "percentage": 85 },
+      { "label": "Gardes de types & rétrécissement", "percentage": 90 },
+      { "label": "Fichiers de déclaration (.d.ts)", "percentage": 80 }
+    ]
+  }
+}

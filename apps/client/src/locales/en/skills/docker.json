@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Docker & Kubernetes Workspace | Skills",
+  "workspaceTitle": "DEVOPS & TOOLS WORKSPACE -Docker & Kubernetes-",
+  "workspaceSubtitle": "Automated CI/CD pipelines, container orchestration, zero-downtime deployments, and infrastructure telemetry",
+  "clusterHealthy": "DOCKER ENGINE & K8S READY",
+  "uptimeBadge": "99.99% Uptime",
+  "downtimeBadge": "Zero Downtime",
+  "header": {
+    "title": "Docker & Kubernetes",
+    "category": "CONTAINERIZATION & CLUSTER ORCHESTRATION",
+    "subtitle": "Containerization platform and cluster orchestration",
+    "description": "Docker and Kubernetes enable me to package applications and dependencies into immutable containers and orchestrate scalable, resilient clusters with rolling updates.",
+    "metrics": [
+      { "label": "Experience", "value": "1.5+ years" },
+      { "label": "Projects", "value": "5+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Runtime", "value": "Docker & OCI" }
+    ]
+  },
+  "mastery": {
+    "title": "Container Ops Reliability",
+    "label": "Mastery"
+  },
+  "devopsTenets": {
+    "title": "Container & Cluster Tenets",
+    "items": [
+      "Consistent development and production environment parity",
+      "Lightweight, immutable, and isolated process runtimes",
+      "Multi-container microservices coordination with Docker Compose",
+      "Declarative cluster orchestration with zero-downtime rolling updates",
+      "Optimized multi-stage builds with minimal container attack surface"
+    ]
+  },
+  "pipeline": {
+    "title": "Automated Container Delivery & Rollout Pipeline",
+    "subtitle": "From Dockerfile Build to Kubernetes Cluster",
+    "stages": [
+      {
+        "stage": "01. Lint",
+        "title": "Hadolint & Dockerfile Check",
+        "detail": "Linting Dockerfile syntax and best practice enforcement"
+      },
+      {
+        "stage": "02. Build",
+        "title": "Multi-Stage Image Build",
+        "detail": "Layer caching, BuildKit acceleration & distroless base"
+      },
+      {
+        "stage": "03. Security",
+        "title": "Trivy CVE Vulnerability Scan",
+        "detail": "Container security audit and secret leak prevention"
+      },
+      {
+        "stage": "04. Push",
+        "title": "Registry Push & Signing",
+        "detail": "Pushing image to Docker Hub / GitHub Container Registry"
+      },
+      {
+        "stage": "05. Orchestrate",
+        "title": "Rolling Cluster Update",
+        "detail": "Zero-downtime rolling update across Kubernetes pods"
+      },
+      {
+        "stage": "06. Monitor",
+        "title": "Container Telemetry",
+        "detail": "Health checks, resource limits & Prometheus scraping"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Containerized Environments",
+    "items": [
+      {
+        "id": "app-containerization",
+        "title": "Application Containerization",
+        "description": "Multi-stage distroless images for NestJS and Next.js services",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "dev-environment",
+        "title": "Local Dev Stack",
+        "description": "Docker Compose multi-service environment with hot reloading",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "ci-cd-pipeline",
+        "title": "Automated Deployment",
+        "description": "Containerized deployments integrated with automated CI/CD pipelines",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Infrastructure Blueprints",
+    "items": [
+      "Dockerfiles",
+      "Container Images",
+      "Pod Containers",
+      "Persistent Volumes",
+      "Bridge Networks",
+      "Docker Compose",
+      "Container Registries",
+      "K8s Orchestration",
+      "Environment Configs",
+      "Structured Logging",
+      "Health Checks & Probes",
+      "Multi-Stage Builds"
+    ]
+  },
+  "impact": {
+    "title": "Impact & SLA Metrics",
+    "ecosystemTitle": "Container & Cloud Ecosystem",
+    "stats": [
+      { "label": "Docker Images Built", "value": "10+" },
+      { "label": "Containers Running", "value": "20+" },
+      { "label": "Docker Compose Stacks", "value": "5+" },
+      { "label": "Build Time Reduction", "value": "60%" },
+      { "label": "Deployment Speed", "value": "5x Faster" },
+      { "label": "Environment Parity", "value": "100%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Container Toolkit",
+    "items": [
+      { "label": "Dockerfile Creation", "percentage": 80 },
+      { "label": "Container Management", "percentage": 75 },
+      { "label": "Docker Compose", "percentage": 77 },
+      { "label": "Image Optimization", "percentage": 72 },
+      { "label": "Networking & Volumes", "percentage": 70 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Container Engineering Principles",
+    "items": [
+      "Create lightweight, optimized, and secure multi-stage Docker images",
+      "Configure multi-container environments reliably with Docker Compose",
+      "Implement isolated bridge networking and persistent storage volumes",
+      "Manage complete container lifecycles, health probes, and restarts",
+      "Deploy immutable container artifacts through automated CI/CD pipelines"
+    ]
+  },
+  "automationDepth": {
+    "title": "Technical Competency Depth",
+    "items": [
+      { "label": "Dockerfile Optimization", "percentage": 80 },
+      { "label": "Container Networking", "percentage": 75 },
+      { "label": "Docker Compose", "percentage": 77 },
+      { "label": "Container Orchestration", "percentage": 68 }
+    ]
+  }
+}

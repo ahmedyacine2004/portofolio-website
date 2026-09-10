@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Espace Git | Compétences",
+  "workspaceTitle": "ESPACE DEVOPS & OUTILS -Git-",
+  "workspaceSubtitle": "Contrôle de version, flux distribués, stratégies de branches et gouvernance collaborative",
+  "clusterHealthy": "DÉPÔT VCS ACTIF",
+  "uptimeBadge": "100% Intégrité",
+  "downtimeBadge": "Sync Distribuée",
+  "header": {
+    "title": "Git",
+    "category": "CONTRÔLE DE VERSION & COLLABORATION",
+    "subtitle": "Système de contrôle de version",
+    "description": "Git est essentiel à mon flux de développement. Je l'utilise pour le contrôle de version, la collaboration et la gestion des dépôts de code sur l'ensemble de mes projets.",
+    "metrics": [
+      { "label": "Expérience", "value": "3+ ans" },
+      { "label": "Projets", "value": "20+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type d'outil", "value": "VCS" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du contrôle de version",
+    "label": "Maîtrise"
+  },
+  "devopsTenets": {
+    "title": "Principes fondamentaux de Git",
+    "items": [
+      "Gestion puissante des branches et fusions",
+      "Flux distribués et opérations hors-ligne",
+      "Intégrité cryptographique et rapidité d'exécution",
+      "Communauté mondiale active et bien établie",
+      "Standard incontournable de l'ingénierie logicielle"
+    ]
+  },
+  "pipeline": {
+    "title": "Cycle de livraison & Déploiement Git",
+    "subtitle": "De la branche de fonctionnalité au déploiement en production",
+    "stages": [
+      {
+        "stage": "01. Branche",
+        "title": "Branche & Commits",
+        "detail": "Commits atomiques, messages clairs & commits conventionnels"
+      },
+      {
+        "stage": "02. Revue",
+        "title": "Pull Request & Revue",
+        "detail": "Revue par les pairs, vérifications automatisées et résolutions"
+      },
+      {
+        "stage": "03. Validation",
+        "title": "Vérifications CI pré-fusion",
+        "detail": "Tests unitaires, analyse de style (lint) et validation du build"
+      },
+      {
+        "stage": "04. Intégration",
+        "title": "Fusion & Rebase",
+        "detail": "Fast-forward ou squash merge avec un historique propre"
+      },
+      {
+        "stage": "05. Étiquetage",
+        "title": "Releases sémantiques & Tags",
+        "detail": "Gestion des versions Semver, changelog automatique & release"
+      },
+      {
+        "stage": "06. Synchronisation",
+        "title": "Synchronisation amont",
+        "detail": "Synchronisation continue et déclenchement du déploiement"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications du contrôle de version",
+    "items": [
+      {
+        "id": "version-control",
+        "title": "Contrôle de version",
+        "description": "Gestion des dépôts de code et suivi exhaustif de l'historique",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "collaboration",
+        "title": "Collaboration d'équipe",
+        "description": "Flux de développement collectif et gouvernance des pull requests",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "release-management",
+        "title": "Gestion des livraisons",
+        "description": "Livraisons de versions, étiquetage sémantique et distribution d'artéfacts",
+        "status": "Actif",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Composants & Opérations Git",
+    "items": [
+      "Dépôts (Repositories)",
+      "Branches",
+      "Commits",
+      "Merge Requests",
+      "Opérations de Rebase",
+      "Remisage (Stash)",
+      "Étiquetage (Tags)",
+      "Hooks Git",
+      "Flux de travail",
+      "Résolution de conflits",
+      "Cherry Pick",
+      "Réécriture d'historique"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Métriques des dépôts",
+    "ecosystemTitle": "Écosystème Git & Outils collaboratifs",
+    "stats": [
+      { "label": "Dépôts gérés", "value": "20+" },
+      { "label": "Commits effectués", "value": "1000+" },
+      { "label": "Branches créées", "value": "500+" },
+      { "label": "Revues de PRs", "value": "300+" },
+      { "label": "Taille d'équipe gérée", "value": "5+" },
+      { "label": "Conflits résolus", "value": "50+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Git",
+    "items": [
+      { "label": "Gestion des dépôts", "percentage": 94 },
+      { "label": "Stratégies de branches", "percentage": 92 },
+      { "label": "Fusion & Rebase", "percentage": 90 },
+      { "label": "Manipulation d'historique", "percentage": 88 },
+      { "label": "Workflows avancés", "percentage": 85 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Principes d'ingénierie Git",
+    "items": [
+      "Gérer efficacement les dépôts et architectures de code",
+      "Implémenter des stratégies de branches adaptées (Git Flow, Trunk-based)",
+      "Résoudre les conflits de fusion complexes avec précision",
+      "Maintenir un historique git propre, linéaire et intelligible",
+      "Guider la collaboration d'équipe et les revues de code rigoureuses"
+    ]
+  },
+  "automationDepth": {
+    "title": "Niveau d'expertise technique",
+    "items": [
+      { "label": "Maîtrise de la ligne de commande", "percentage": 94 },
+      { "label": "Stratégies de branches", "percentage": 92 },
+      { "label": "Résolution de conflits", "percentage": 90 },
+      { "label": "Fonctionnalités avancées de Git", "percentage": 88 }
+    ]
+  }
+}

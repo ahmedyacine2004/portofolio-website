@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Render Workspace | Skills",
+  "workspaceTitle": "DEVOPS & TOOLS WORKSPACE -Render-",
+  "workspaceSubtitle": "Cloud application hosting, managed databases, background workers, and automated deployment pipelines",
+  "clusterHealthy": "RENDER CLUSTER ACTIVE",
+  "uptimeBadge": "99.9% Uptime",
+  "downtimeBadge": "Zero Downtime",
+  "header": {
+    "title": "Render",
+    "category": "CLOUD APPLICATION HOSTING & MANAGED PAAS",
+    "subtitle": "Cloud application hosting and managed services",
+    "description": "Render is my platform of choice for hosting full-stack web applications, containerized backend services, PostgreSQL databases, and background workers with zero hassle.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "6+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Platform", "value": "Cloud PaaS" }
+    ]
+  },
+  "mastery": {
+    "title": "Cloud Ops Reliability",
+    "label": "Mastery"
+  },
+  "devopsTenets": {
+    "title": "Cloud Hosting Tenets",
+    "items": [
+      "Zero-configuration automated git deployments",
+      "Native first-class Docker container support",
+      "Fully managed, secure PostgreSQL databases with automated backups",
+      "Instant branch preview environments and PR testing",
+      "Automatic SSL termination, DDoS protection, and global CDN"
+    ]
+  },
+  "pipeline": {
+    "title": "Automated Cloud Deployment & Delivery Lifecycle",
+    "subtitle": "From Git Push to Production Cluster Rollout",
+    "stages": [
+      {
+        "stage": "01. Trigger",
+        "title": "Git Push / Webhook",
+        "detail": "Repository webhook notification & branch change detection"
+      },
+      {
+        "stage": "02. Build",
+        "title": "Docker & Native Build",
+        "detail": "Container build, dependency caching & runtime packaging"
+      },
+      {
+        "stage": "03. Migration",
+        "title": "Database Pre-deploy",
+        "detail": "Automated schema migrations against managed PostgreSQL"
+      },
+      {
+        "stage": "04. Security",
+        "title": "Secret Injection & SSL",
+        "detail": "Environment variables, secret groups & TLS cert renewal"
+      },
+      {
+        "stage": "05. Rollout",
+        "title": "Zero-Downtime Rollout",
+        "detail": "Health check verification before routing production traffic"
+      },
+      {
+        "stage": "06. Telemetry",
+        "title": "Live Logs & Metrics",
+        "detail": "Streaming application stdout/stderr & Prometheus metrics"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Cloud Services & Infrastructure",
+    "items": [
+      {
+        "id": "backend-web-services",
+        "title": "Backend Web Services",
+        "description": "Containerized Node.js and NestJS API services with autoscaling",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "managed-databases",
+        "title": "Managed PostgreSQL",
+        "description": "Automated backups and high-availability database tier",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "background-workers",
+        "title": "Background Workers",
+        "description": "Asynchronous jobs and queue processing workers running continuously",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Infrastructure Blueprints",
+    "items": [
+      "Web Services",
+      "PostgreSQL DBs",
+      "Static Sites",
+      "Background Workers",
+      "Cron Jobs",
+      "Docker Services",
+      "Custom Domains",
+      "SSL Certificates",
+      "Env Secrets",
+      "Render Blueprints",
+      "Health Probes",
+      "Zero-Downtime Rollouts"
+    ]
+  },
+  "impact": {
+    "title": "Impact & SLA Metrics",
+    "ecosystemTitle": "Render Cloud Ecosystem",
+    "stats": [
+      { "label": "Services Deployed", "value": "6+" },
+      { "label": "Postgres DBs Managed", "value": "4+" },
+      { "label": "Deployment Uptime", "value": "99.9%" },
+      { "label": "Avg Build Time", "value": "2.5 mins" },
+      { "label": "Deployments", "value": "200+" },
+      { "label": "SSL Security", "value": "A+ Grade" }
+    ]
+  },
+  "toolkit": {
+    "title": "Cloud Toolkit",
+    "items": [
+      { "label": "Service Deployment", "percentage": 84 },
+      { "label": "Database Provisioning", "percentage": 82 },
+      { "label": "Docker Hosting", "percentage": 80 },
+      { "label": "Blueprint (render.yaml)", "percentage": 78 },
+      { "label": "Telemetry & Logs", "percentage": 76 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Cloud Architecture Principles",
+    "items": [
+      "Deploy containerized backend services seamlessly with zero configuration",
+      "Provision and manage high-availability PostgreSQL database clusters",
+      "Automate complete multi-service stacks using render.yaml blueprints",
+      "Configure asynchronous background workers and scheduled cron tasks",
+      "Secure production environments with encrypted secret groups and automated SSL"
+    ]
+  },
+  "automationDepth": {
+    "title": "Technical Depth",
+    "items": [
+      { "label": "Web Service Hosting", "percentage": 84 },
+      { "label": "Managed PostgreSQL", "percentage": 82 },
+      { "label": "Docker Service Setup", "percentage": 80 },
+      { "label": "Infrastructure as Code", "percentage": 78 }
+    ]
+  }
+}

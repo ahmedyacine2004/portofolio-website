@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace Express.js | Compétences",
+  "metaDescription": "Détails de l'espace de travail framework web léger pour Express.js",
+  "workspaceTitle": "ESPACE BACKEND -Express.js-",
+  "workspaceSubtitle": "Runtime côté serveur, frontières architecturales et bancs d'essai de performance",
+  "clientRuntime": "RUNTIME EN DIRECT",
+  "lighthouseBadge": "Disponibilité 99.99%",
+  "fpsBadge": "Latence < 25ms",
+  "header": {
+    "category": "ARCHITECTURE & RUNTIME",
+    "title": "Express.js",
+    "subtitle": "Framework web Node.js minimal et flexible",
+    "description": "Express est le framework léger que j'utilise pour créer des serveurs web et des APIs simples à complexes. Il fournit des capacités de routage et de middleware essentielles avec une surcharge minimale.",
+    "metrics": [
+      { "label": "Expérience", "value": "2.5+ ans" },
+      { "label": "Projets", "value": "6+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Framework", "value": "Léger" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Moteur",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Architecture Fondamentale",
+    "items": [
+      "Minimal et non-opinioné",
+      "Système de routage flexible",
+      "Large écosystème de middleware",
+      "Facile à apprendre et à utiliser",
+      "Idéal pour le développement rapide"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline d'exécution runtime & cycle de vie",
+    "subtitle": "Traçage de requête de bout en bout",
+    "stages": [
+      {
+        "tag": "Porte 01",
+        "title": "Ingestion entrante",
+        "detail": "Gestionnaire HTTP / WebSocket"
+      },
+      {
+        "tag": "Porte 02",
+        "title": "Sécurité & Authentification",
+        "detail": "Garde JWT & limitation de débit"
+      },
+      {
+        "tag": "Porte 03",
+        "title": "Contrôleur de route",
+        "detail": "Contexte d'exécution Express.js"
+      },
+      {
+        "tag": "Porte 04",
+        "title": "Logique métier & Domaine",
+        "detail": "Couche de services & validation d'état"
+      },
+      {
+        "tag": "Porte 05",
+        "title": "Persistance & Cache",
+        "detail": "ODM/ORM de base de données & Redis"
+      },
+      {
+        "tag": "Porte 06",
+        "title": "Réponse sérialisée",
+        "detail": "200 OK Payload JSON"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Services en Production",
+    "items": [
+      {
+        "id": "rest-api",
+        "title": "Serveur API REST",
+        "description": "API REST simple et efficace",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "file-server",
+        "title": "Serveur de fichiers",
+        "description": "Application de téléversement et service de fichiers",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "proxy-server",
+        "title": "Serveur Proxy",
+        "description": "Transfert et routage des requêtes",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Modules d'Architecture",
+    "items": [
+      "Routes",
+      "Middleware",
+      "Contrôleurs",
+      "Gestionnaires d'erreurs",
+      "Authentification",
+      "Validation",
+      "Téléversement de fichiers",
+      "Gestion CORS",
+      "Analyse des requêtes",
+      "Formatage des réponses",
+      "Gestion de sessions",
+      "Service de fichiers statiques"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Stack Runtime & Bibliothèques",
+    "stats": [
+      { "label": "Routes implémentées", "value": "40+" },
+      { "label": "Chaînes de middleware", "value": "20+" },
+      { "label": "Gestionnaires d'erreurs", "value": "10+" },
+      { "label": "Intégrations tierces", "value": "15+" },
+      { "label": "Temps de réponse", "value": "<50ms" },
+      { "label": "Disponibilité", "value": "99.8%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Backend",
+    "items": [
+      { "label": "Définition de routes", "percentage": 90 },
+      { "label": "Intégration middleware", "percentage": 88 },
+      { "label": "Gestion des erreurs", "percentage": 85 },
+      { "label": "Traitement des requêtes", "percentage": 87 },
+      { "label": "Optimisation des perf.", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes Architecturaux",
+    "items": [
+      "Créer des APIs et serveurs flexibles",
+      "Implémenter des chaînes de middleware personnalisées",
+      "Gérer des scénarios de routage complexes",
+      "Optimiser le traitement requête/réponse",
+      "Intégrer des services tiers"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur Technique",
+    "items": [
+      { "label": "Routage & Handlers", "percentage": 90 },
+      { "label": "Architecture middleware", "percentage": 85 },
+      { "label": "Gestion des erreurs", "percentage": 88 },
+      { "label": "Optimisation perf.", "percentage": 80 }
+    ]
+  }
+}

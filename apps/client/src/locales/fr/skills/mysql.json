@@ -1,0 +1,150 @@
+{
+  "metaTitle": "Espace MySQL | Compétences",
+  "metaDescription": "Détails de l'espace de travail base de données relationnelle pour MySQL",
+  "workspaceTitle": "ESPACE BASE DE DONNÉES -MySQL-",
+  "workspaceSubtitle": "Architecture de données, modélisation de schéma, stratégie d'indexation et performance des requêtes",
+  "engineActive": "MOTEUR ACTIF",
+  "bufferHitBadge": "Taux de buffer hit 99.9%",
+  "replicaLagBadge": "Réplica lag 0ms",
+  "header": {
+    "category": "PARADIGME DE DONNÉES & MOTEUR DE STOCKAGE",
+    "title": "MySQL",
+    "subtitle": "Base de données relationnelle open-source populaire",
+    "description": "MySQL est une base de données relationnelle fiable que j'utilise pour les applications web. Elle offre de bonnes performances, est simple à gérer et s'intègre parfaitement aux stacks web.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "3+" },
+      { "label": "Niveau", "value": "Intermédiaire" },
+      { "label": "Type de BDD", "value": "SQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise des Schémas",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Garanties de Données",
+    "items": [
+      "Simple et direct",
+      "Bonnes performances",
+      "Déploiement aisé",
+      "Large support d'hébergement",
+      "Fiabilité éprouvée"
+    ]
+  },
+  "storageTiers": {
+    "title": "Cycle de vie du stockage & de la persistance des données",
+    "subtitle": "Du cache mémoire au disque & aux fragments répliqués",
+    "latencyLabel": "Latence :",
+    "items": [
+      {
+        "tier": "01. Cache tampon & Mémoire",
+        "detail": "Pool de tampons InnoDB & Ensemble de travail en mémoire",
+        "latency": "< 0.5ms",
+        "badge": "Tier RAM"
+      },
+      {
+        "tier": "02. Redo Log & Tablespaces Undo",
+        "detail": "Doublewrite Buffer séquentiel pour la durabilité ACID",
+        "latency": "1.2ms",
+        "badge": "Durability"
+      },
+      {
+        "tier": "03. Pages B+ Tree persistantes",
+        "detail": "Espaces de table MySQL InnoDB & arborescences d'index en cluster",
+        "latency": "3.4ms",
+        "badge": "Stockage NVMe"
+      },
+      {
+        "tier": "04. Jeux de réplicas & Journaux binaires",
+        "detail": "Réplicas Binlog & sauvegarde continue point-in-time",
+        "latency": "Sync / Async",
+        "badge": "HA & Sauvegarde"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Schémas en Production",
+    "items": [
+      {
+        "id": "wordpress-db",
+        "title": "Base de données WordPress",
+        "description": "Système de gestion de contenu",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "web-app",
+        "title": "Application Web",
+        "description": "Base de données d'application web standard",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "ecommerce",
+        "title": "Boutique E-Commerce",
+        "description": "Base de données de produits et commandes",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Entités de Schéma",
+    "items": [
+      "Tables",
+      "Requêtes",
+      "Index",
+      "Relations",
+      "Vues",
+      "Déclencheurs",
+      "Procédures stockées",
+      "Jointures",
+      "Contraintes",
+      "Partitionnement",
+      "Réplication",
+      "Sauvegardes"
+    ]
+  },
+  "impact": {
+    "title": "Stockage & Benchmarks",
+    "ecosystemTitle": "Écosystème BDD & ORM",
+    "stats": [
+      { "label": "Bases de données", "value": "5+" },
+      { "label": "Tables", "value": "50+" },
+      { "label": "Requêtes optimisées", "value": "100+" },
+      { "label": "Temps moyen requête", "value": "<50ms" },
+      { "label": "Données stockées", "value": "5Go+" },
+      { "label": "Disponibilité", "value": "99.8%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils BDD",
+    "items": [
+      { "label": "Conception de schéma", "percentage": 82 },
+      { "label": "Écriture de requêtes SQL", "percentage": 84 },
+      { "label": "Optimisation des index", "percentage": 80 },
+      { "label": "Stratégie de sauvegarde", "percentage": 78 },
+      { "label": "Optimisation des perf.", "percentage": 79 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes d'Intégrité",
+    "items": [
+      "Concevoir des schémas de base de données efficaces",
+      "Écrire des requêtes optimisées",
+      "Implémenter une indexation appropriée",
+      "Gérer les sauvegardes de bases de données",
+      "Résoudre les problèmes de performances"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur des requêtes & index",
+    "items": [
+      { "label": "SQL & Requêtes", "percentage": 84 },
+      { "label": "Stratégies d'indexation", "percentage": 80 },
+      { "label": "Optimisation des perf.", "percentage": 78 },
+      { "label": "Administration", "percentage": 75 }
+    ]
+  }
+}

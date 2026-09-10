@@ -1,0 +1,150 @@
+{
+  "metaTitle": "Espace MongoDB | Compétences",
+  "metaDescription": "Détails de l'espace de travail base de données NoSQL pour MongoDB",
+  "workspaceTitle": "ESPACE BASE DE DONNÉES -MongoDB-",
+  "workspaceSubtitle": "Architecture de données, modélisation de schéma, stratégie d'indexation et performance des requêtes",
+  "engineActive": "MOTEUR ACTIF",
+  "bufferHitBadge": "Taux de buffer hit 99.9%",
+  "replicaLagBadge": "Réplica lag 0ms",
+  "header": {
+    "category": "PARADIGME DE DONNÉES & MOTEUR DE STOCKAGE",
+    "title": "MongoDB",
+    "subtitle": "Base de données NoSQL orientée documents",
+    "description": "MongoDB est ma principale base de données NoSQL pour un stockage de données flexible basé sur des documents. Je l'utilise intensivement pour des applications nécessitant évolutivité et itération rapide sur les schémas de données.",
+    "metrics": [
+      { "label": "Expérience", "value": "2.5+ ans" },
+      { "label": "Projets", "value": "6+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type de BDD", "value": "NoSQL" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise des Schémas",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Garanties de Données",
+    "items": [
+      "Conception de schéma flexible",
+      "Documents de type JSON",
+      "Évolutivité horizontale",
+      "Langage de requête riche",
+      "Idéal pour les startups"
+    ]
+  },
+  "storageTiers": {
+    "title": "Cycle de vie du stockage & de la persistance des données",
+    "subtitle": "Du cache mémoire au disque & aux fragments répliqués",
+    "latencyLabel": "Latence :",
+    "items": [
+      {
+        "tier": "01. Cache tampon & Mémoire",
+        "detail": "SGA / Tampons partagés & Ensemble de travail en mémoire",
+        "latency": "< 0.5ms",
+        "badge": "Tier RAM"
+      },
+      {
+        "tier": "02. WAL & Journal de transactions",
+        "detail": "Journal WAL séquentiel pour la durabilité ACID",
+        "latency": "1.2ms",
+        "badge": "Durabilité"
+      },
+      {
+        "tier": "03. Pages B+ Tree persistantes",
+        "detail": "Espaces de table MongoDB & arborescences d'index composés",
+        "latency": "3.4ms",
+        "badge": "Stockage NVMe"
+      },
+      {
+        "tier": "04. Jeux de réplicas & Snapshots",
+        "detail": "Réplicas en lecture & sauvegarde continue point-in-time",
+        "latency": "Sync / Async",
+        "badge": "HA & Sauvegarde"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Schémas en Production",
+    "items": [
+      {
+        "id": "portfolio-db",
+        "title": "Base de données Portfolio",
+        "description": "Stockage de contenu dynamique",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "user-data",
+        "title": "Gestion des utilisateurs",
+        "description": "Profils et préférences utilisateurs",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "analytics",
+        "title": "Stockage Analytique",
+        "description": "Suivi des événements et de l'utilisation",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Entités de Schéma",
+    "items": [
+      "Collections",
+      "Documents",
+      "Index",
+      "Agrégations",
+      "Schémas",
+      "Relations",
+      "Validation",
+      "Transactions",
+      "Réplication",
+      "Sauvegardes",
+      "Migrations",
+      "Optimisation des perf."
+    ]
+  },
+  "impact": {
+    "title": "Stockage & Benchmarks",
+    "ecosystemTitle": "Écosystème BDD & ORM",
+    "stats": [
+      { "label": "Collections", "value": "15+" },
+      { "label": "Documents", "value": "100K+" },
+      { "label": "Index créés", "value": "30+" },
+      { "label": "Performance des requêtes", "value": "<50ms" },
+      { "label": "Taille de la BDD", "value": "10Go+" },
+      { "label": "Disponibilité", "value": "99.9%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils BDD",
+    "items": [
+      { "label": "Conception de schéma", "percentage": 88 },
+      { "label": "Optimisation de requêtes", "percentage": 85 },
+      { "label": "Stratégie d'indexation", "percentage": 82 },
+      { "label": "Agrégation", "percentage": 80 },
+      { "label": "Optimisation des perf.", "percentage": 83 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes d'Intégrité",
+    "items": [
+      "Concevoir des structures de documents efficaces",
+      "Écrire des requêtes optimisées",
+      "Implémenter un indexage approprié",
+      "Gérer les relations entre données",
+      "Faire évoluer les bases de données horizontalement"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur des requêtes & index",
+    "items": [
+      { "label": "BSON & Documents", "percentage": 90 },
+      { "label": "Pipeline d'agrégation", "percentage": 82 },
+      { "label": "Indexation & Performance", "percentage": 85 },
+      { "label": "Réplication & Sharding", "percentage": 78 }
+    ]
+  }
+}

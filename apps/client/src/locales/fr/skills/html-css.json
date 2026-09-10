@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace HTML & CSS | Compétences",
+  "metaDescription": "Détails de l'espace de travail balisage sémantique et mise en page responsive pour HTML & CSS",
+  "workspaceTitle": "ESPACE BALISAGE & STYLES -HTML & CSS-",
+  "workspaceSubtitle": "Hiérarchie de balisage sémantique, mises en page CSS Grid & Flexbox, systèmes de design accessibles et télémétrie de rendu",
+  "clientRuntime": "DOM SÉMANTIQUE & CSSOM",
+  "lighthouseBadge": "100% Sémantique",
+  "fpsBadge": "Conforme WCAG AAA",
+  "header": {
+    "category": "STANDARDS DU WEB SÉMANTIQUE & ARCHITECTURE RESPONSIVE",
+    "title": "HTML & CSS",
+    "subtitle": "Des fondations solides pour des interfaces sémantiques et réactives",
+    "description": "Je conçois des interfaces accessibles et maintenables dès leurs fondations grâce à un HTML sémantique et un CSS rigoureusement structuré. Cela garantit des mises en page fiables, un code propre et des performances optimales sur tous les écrans.",
+    "metrics": [
+      { "label": "Expérience", "value": "5+ ans" },
+      { "label": "Projets", "value": "18+" },
+      { "label": "Niveau", "value": "Expert" },
+      { "label": "Mises en page créées", "value": "200+" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise des Fondations",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Pourquoi j'accorde de la valeur à HTML & CSS",
+    "items": [
+      "Le balisage sémantique renforce l'accessibilité",
+      "Les mises en page réactives se comportent de manière prévisible",
+      "Une architecture CSS solide rend l'interface évolutive",
+      "Gains de performance grâce à une structure front-end épurée",
+      "Des fondations propres facilitent le travail avec n'importe quel framework"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline Document & Rendu Visuel",
+    "subtitle": "De l'analyse HTML et du CSSOM au rendu composite 60 fps",
+    "stages": [
+      {
+        "tag": "Étape 01",
+        "title": "Analyse HTML5 & construction du DOM",
+        "detail": "Tokenisation des balises sémantiques et représentation de l'arbre d'accessibilité"
+      },
+      {
+        "tag": "Étape 02",
+        "title": "Cascade CSSOM & spécificité",
+        "detail": "Correspondance des sélecteurs, calcul de spécificité et variables CSS"
+      },
+      {
+        "tag": "Étape 03",
+        "title": "Génération de l'arbre de rendu",
+        "detail": "Combinaison des nœuds visuels du DOM avec les règles de style calculées"
+      },
+      {
+        "tag": "Étape 04",
+        "title": "Calcul des boîtes Flexbox & CSS Grid",
+        "detail": "Dimensionnement du viewport, points de rupture et calcul géométrique des flux"
+      },
+      {
+        "tag": "Étape 05",
+        "title": "Rendu vectoriel & tramage typographique",
+        "detail": "Rendu du texte au sous-pixel, couleurs, dégradés et bordures"
+      },
+      {
+        "tag": "Étape 06",
+        "title": "Composition matérielle & UI interactive",
+        "detail": "Empilement des calques GPU, zéro décalage de mise en page et défilement 60 fps"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Applications en production",
+    "items": [
+      {
+        "id": "landing-pages",
+        "title": "Pages de destination marketing",
+        "description": "Pages axées sur la conversion avec espacements précis, typographie soignée et comportement adaptatif.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "portfolio",
+        "title": "Mises en page de portfolio",
+        "description": "Vitrines sur mesure avec hiérarchie claire, animations subtiles et modèles d'ergonomie.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "dashboard-ui",
+        "title": "Interfaces de tableaux de bord",
+        "description": "Vues d'administration structurées avec grilles cohérentes, cartes et approche mobile-first.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Composants web fondamentaux",
+    "items": [
+      "Pages de destination",
+      "Mises en page",
+      "Formulaires",
+      "Cartes",
+      "Navigation",
+      "Grilles",
+      "Typographie",
+      "Composants",
+      "Interfaces adaptatives",
+      "Accessibilité",
+      "Systèmes de thèmes",
+      "Styles d'animation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & qualité architecturale",
+    "ecosystemTitle": "Standards & méthodologies",
+    "stats": [
+      { "label": "Mises en page conçues", "value": "200+" },
+      { "label": "Points de rupture (Breakpoints)", "value": "6+" },
+      { "label": "Audits d'accessibilité", "value": "50+" },
+      { "label": "Composants CSS", "value": "120+" },
+      { "label": "Gains de performance", "value": "35%" },
+      { "label": "Cohérence du design", "value": "100%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils des standards Front-End",
+    "items": [
+      { "label": "Balisage sémantique", "percentage": 95 },
+      { "label": "Architecture CSS", "percentage": 92 },
+      { "label": "Mises en page réactives", "percentage": 93 },
+      { "label": "Accessibilité", "percentage": 90 },
+      { "label": "Finition visuelle", "percentage": 88 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes fondamentaux",
+    "items": [
+      "Rédiger des structures HTML sémantiques et maintenables",
+      "Concevoir des mises en page réactives et résilientes depuis zéro",
+      "Créer des interfaces accessibles sans compromettre l'esthétique",
+      "Optimiser le CSS pour la clarté, la performance et l'évolutivité",
+      "Relier les fondations UI brutes aux systèmes de composants modernes"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur technique",
+    "items": [
+      { "label": "CSS Moderne", "percentage": 92 },
+      { "label": "Systèmes de mise en page", "percentage": 95 },
+      { "label": "Stylisation de composants", "percentage": 90 },
+      { "label": "Accessibilité", "percentage": 91 }
+    ]
+  }
+}

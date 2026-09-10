@@ -1,0 +1,203 @@
+{
+  "metaTitle": "Espace de travail Illustrator | Compétences",
+  "metaDescription": "Design vectoriel, systèmes d'identité de marque, création d'icônes et détails de l'espace de travail d'illustration pour Adobe Illustrator",
+  "workspaceTitle": "ESPACE DESIGN -Illustrator-",
+  "workspaceSubtitle": "Design vectoriel pour actifs de marque, icônes, systèmes de conception évolutifs et illustration",
+  "creativeStudio": "STUDIO CRÉATIF",
+  "autoLayoutBadge": "Prêt pour Vector & SVG",
+  "vectorPrecisionBadge": "Infiniment Évolutif",
+  "header": {
+    "category": "DESIGN VECTORIEL & ACTIFS DE MARQUE",
+    "title": "Illustrator",
+    "subtitle": "Design vectoriel pour actifs de marque, icônes et illustrations",
+    "description": "J'utilise Illustrator pour concevoir des illustrations vectorielles nettes, des actifs de marque évolutifs et des composants graphiques soignés qui restent d'une clarté parfaite sur les formats numériques et imprimés.",
+    "metrics": [
+      { "label": "Expérience", "value": "3+ ans" },
+      { "label": "Projets", "value": "10+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type d'actif", "value": "Vectoriel" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise Visuelle",
+    "label": "Maîtrise"
+  },
+  "designTenets": {
+    "title": "Principes de Conception",
+    "items": [
+      "Graphismes vectoriels nets et évolutifs",
+      "Flux de travail précis pour logos et icônes",
+      "Création d'actifs de marque cohérents",
+      "Contrôles typographiques avancés",
+      "Forte flexibilité d'exportation pour le web et l'impression"
+    ]
+  },
+  "gallery": {
+    "title": "Galerie d'Actifs Vectoriels Illustrator & Artefacts Graphiques",
+    "subtitle": "Découvrez des logos, de l'iconographie vectorielle, des chartes de marque évolutives et des illustrations sur mesure créés avec Adobe Illustrator.",
+    "readyBadge": "Prêt",
+    "designedIn": "Créé dans Illustrator",
+    "inspectDetails": "Inspecter les Détails →",
+    "tabs": {
+      "gallery": "Grille de Galerie",
+      "tokens": "Nuancier de Couleurs",
+      "components": "Composants d'Interface"
+    },
+    "colorTokens": [
+      {
+        "name": "Ambre Éclatant",
+        "hex": "#f59e0b",
+        "role": "Accent de Marque Illustrator / Reflets Vectoriels"
+      },
+      {
+        "name": "Indigo Profond",
+        "hex": "#1e1b4b",
+        "role": "Fondation de Marque Principale / Contraste"
+      },
+      {
+        "name": "Violet Éclatant",
+        "hex": "#8b5cf6",
+        "role": "Accent Créatif / Harmonies de Dégradés"
+      },
+      {
+        "name": "Vert Émeraude",
+        "hex": "#10b981",
+        "role": "Points d'Ancrage Précis / Repères Actifs"
+      },
+      {
+        "name": "Toile Sombre",
+        "hex": "#0f172a",
+        "role": "Arrière-plan du Plan de Travail / Contraste Studio"
+      }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Variantes de Composants Bouton",
+      "primaryButton": "Ambre Plein Primaire",
+      "secondaryButton": "Variante Fantôme Secondaire",
+      "outlineButton": "Bordure Neutre",
+      "badgePrimitives": "Primitives de Badges & Puces",
+      "activeVariant": "Variante Active",
+      "informationTag": "Balise d'Information",
+      "responsiveTag": "100% Vectoriel Évolutif",
+      "defaultToken": "Jeton par Défaut",
+      "typographyScale": "Échelle Typographique",
+      "displayBold": "Gras d'Affichage 18px",
+      "headingSemibold": "Titre Semi-Gras 13px",
+      "bodyRegular": "Texte Courant Régulier 11px Inter",
+      "monospaceCode": "Code Monospace 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "brand-assets",
+        "title": "Actifs de Marque",
+        "description": "Logos, icônes et systèmes d'illustration pour le branding.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "icon-systems",
+        "title": "Systèmes d'Icônes",
+        "description": "Ensembles d'icônes cohérents pour les interfaces et la narration de produits.",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "digital-illustration",
+        "title": "Illustration Numérique",
+        "description": "Actifs visuels personnalisés pour le marketing, les produits et les besoins éditoriaux.",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Flux de Travail Créatif",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Idéation & Esquisse Vectorielle",
+        "detail": "Recherche d'idées, croquis au crayon et construction géométrique"
+      },
+      {
+        "step": "02",
+        "title": "Tracé de Courbes & Précision Bézier",
+        "detail": "Maîtrise de la plume, optimisation des points d'ancrage et courbure"
+      },
+      {
+        "step": "03",
+        "title": "Harmonies de Couleurs & Dégradés",
+        "detail": "Nuanciers globaux, correspondances CMJN/Pantone et dégradés libres"
+      },
+      {
+        "step": "04",
+        "title": "Typographie & Identité de Marque",
+        "detail": "Lettrage sur mesure, appariement de polices, crénage et titrage"
+      },
+      {
+        "step": "05",
+        "title": "Exportation Vectorielle & Livraison",
+        "detail": "Optimisation SVG, préparation prépresse EPS/PDF et packs multi-formats"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Livrables Graphiques",
+    "items": [
+      "Logos",
+      "Icônes",
+      "Illustrations",
+      "Kits de Marque",
+      "Contenus Réseaux Sociaux",
+      "Packaging",
+      "Infographies",
+      "Graphiques Éditoriaux",
+      "Maquettes Vectorielles",
+      "Motifs",
+      "Systèmes Typographiques",
+      "Packs d'Exportation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Indicateurs Clés",
+    "ecosystemTitle": "Outils & Plugins",
+    "stats": [
+      { "label": "Actifs Créés", "value": "120+" },
+      { "label": "Jeux d'Icônes", "value": "12+" },
+      { "label": "Systèmes de Marque", "value": "8+" },
+      { "label": "Projets", "value": "15+" },
+      { "label": "Actifs Vectoriels", "value": "500+" },
+      { "label": "Évolutivité", "value": "100%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à Outils Créative",
+    "items": [
+      { "label": "Design Vectoriel", "percentage": 90 },
+      { "label": "Systèmes de Marque", "percentage": 86 },
+      { "label": "Iconographie", "percentage": 88 },
+      { "label": "Typographie", "percentage": 82 },
+      { "label": "Exportation & Mise à l'Échelle", "percentage": 85 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de Conception",
+    "items": [
+      "Créer des graphismes vectoriels évolutifs et précis",
+      "Concevoir des actifs de marque parfaitement cohérents",
+      "Créer des systèmes d'icônes propres et prêts pour la production",
+      "Préparer des actifs pour l'impression et les supports numériques",
+      "Maintenir une netteté visuelle irréprochable sur tous les formats"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur d'Exécution Créative",
+    "items": [
+      { "label": "Illustration Vectorielle", "percentage": 90 },
+      { "label": "Design d'Actifs de Marque", "percentage": 88 },
+      { "label": "Systèmes Typographiques", "percentage": 84 },
+      { "label": "Flux d'Exportation", "percentage": 87 }
+    ]
+  }
+}

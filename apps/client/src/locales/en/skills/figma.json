@@ -1,0 +1,183 @@
+{
+  "metaTitle": "Figma Workspace | Skills",
+  "metaDescription": "Modern UI/UX design collaboration tool workspace details for Figma",
+  "workspaceTitle": "DESIGN WORKSPACE -Figma-",
+  "workspaceSubtitle": "UI/UX design systems, vector art, visual asset library, and prototype gallery",
+  "creativeStudio": "CREATIVE STUDIO",
+  "autoLayoutBadge": "Auto Layout Ready",
+  "vectorPrecisionBadge": "Vector Precision",
+  "header": {
+    "category": "CREATIVE SUITE & DESIGN SYSTEM",
+    "title": "Figma",
+    "subtitle": "Modern UI/UX design collaboration tool",
+    "description": "Figma is my primary design tool for creating UI mockups, prototypes, and design systems. I use it for designing interfaces, creating design specifications, and collaborating with teams.",
+    "metrics": [
+      { "label": "Experience", "value": "2+ years" },
+      { "label": "Projects", "value": "10+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Design Type", "value": "UI/UX" }
+    ]
+  },
+  "mastery": {
+    "title": "Visual Mastery",
+    "label": "Mastery"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Cloud-based collaboration",
+      "Powerful prototyping",
+      "Component system",
+      "Design tokens",
+      "Easy sharing"
+    ]
+  },
+  "gallery": {
+    "title": "Figma Visual Asset Gallery & Design Artifacts",
+    "subtitle": "Explore user interfaces, brand identities, custom vector assets, and design system components created with Figma.",
+    "readyBadge": "Ready",
+    "designedIn": "Designed in Figma",
+    "inspectDetails": "Inspect Details →",
+    "tabs": {
+      "gallery": "Gallery Grid",
+      "tokens": "Color Tokens",
+      "components": "UI Components"
+    },
+    "colorTokens": [
+      { "name": "Electric Pink", "hex": "#ec4899", "role": "Brand Accent / Highlights" },
+      { "name": "Cyber Blue", "hex": "#2563eb", "role": "Primary Action / Interactive" },
+      { "name": "Deep Indigo", "hex": "#6366f1", "role": "Secondary Accents" },
+      { "name": "Emerald Glow", "hex": "#10b981", "role": "Success / Active Badges" },
+      { "name": "Dark Surface", "hex": "#0f172a", "role": "Background Canvas / Contrast" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Button Component Variants",
+      "primaryButton": "Primary Pink Solid",
+      "secondaryButton": "Secondary Ghost Variant",
+      "outlineButton": "Neutral Outline",
+      "badgePrimitives": "Badge & Chip Primitives",
+      "activeVariant": "Active Variant",
+      "informationTag": "Information Tag",
+      "responsiveTag": "100% Responsive",
+      "defaultToken": "Default Token",
+      "typographyScale": "Typography Scale",
+      "displayBold": "Display Bold 18px",
+      "headingSemibold": "Heading Semibold 13px",
+      "bodyRegular": "Body Regular 11px Inter",
+      "monospaceCode": "Monospace Code 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "portfolio-design",
+        "title": "Portfolio Design System",
+        "description": "Complete design system for portfolio",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "mobile-designs",
+        "title": "Mobile App Designs",
+        "description": "iOS and Android UI designs",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "web-interfaces",
+        "title": "Web Interface Designs",
+        "description": "Responsive web application designs",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Creative Workflow",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Research & Moodboard",
+        "detail": "Visual references, typography & palette curation"
+      },
+      {
+        "step": "02",
+        "title": "Component Wireframing",
+        "detail": "Layout grids, hierarchy & low-fidelity wireframes"
+      },
+      {
+        "step": "03",
+        "title": "Design System & Tokens",
+        "detail": "Auto layout, variants, and scalable style guides"
+      },
+      {
+        "step": "04",
+        "title": "Hi-Fi Prototyping",
+        "detail": "Micro-interactions, animation physics & testing"
+      },
+      {
+        "step": "05",
+        "title": "Production Delivery",
+        "detail": "SVG optimization, vector exports & design handoff"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Design Output",
+    "items": [
+      "Wireframes",
+      "Mockups",
+      "Prototypes",
+      "Components",
+      "Design Tokens",
+      "Style Guides",
+      "User Flows",
+      "Interactions",
+      "Animations",
+      "Responsive Designs",
+      "High-Fidelity Designs",
+      "Documentation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Toolchain & Plugins",
+    "stats": [
+      { "label": "Design Files", "value": "15+" },
+      { "label": "Components", "value": "100+" },
+      { "label": "Design Tokens", "value": "50+" },
+      { "label": "Prototypes", "value": "20+" },
+      { "label": "Collaborative Projects", "value": "8+" },
+      { "label": "Design Handoffs", "value": "30+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Toolkit",
+    "items": [
+      { "label": "UI Design", "percentage": 87 },
+      { "label": "Prototyping", "percentage": 84 },
+      { "label": "Component Systems", "percentage": 85 },
+      { "label": "Collaboration", "percentage": 88 },
+      { "label": "Design Documentation", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Design intuitive user interfaces",
+      "Create interactive prototypes",
+      "Build design systems",
+      "Collaborate effectively",
+      "Specify designs for developers"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Creative Execution Depth",
+    "items": [
+      { "label": "UI Design Principles", "percentage": 87 },
+      { "label": "Component Architecture", "percentage": 85 },
+      { "label": "Prototyping & Interactions", "percentage": 84 },
+      { "label": "Design Systems", "percentage": 85 }
+    ]
+  }
+}

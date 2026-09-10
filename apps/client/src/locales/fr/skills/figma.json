@@ -1,0 +1,183 @@
+{
+  "metaTitle": "Espace Figma | Compétences",
+  "metaDescription": "Détails de l'espace de travail outil de collaboration UI/UX moderne pour Figma",
+  "workspaceTitle": "ESPACE DESIGN -Figma-",
+  "workspaceSubtitle": "Systèmes de design UI/UX, art vectoriel, bibliothèque d'actifs visuels et galerie de prototypes",
+  "creativeStudio": "STUDIO CRÉATIF",
+  "autoLayoutBadge": "Auto Layout Prêt",
+  "vectorPrecisionBadge": "Précision Vectorielle",
+  "header": {
+    "category": "SUITE CRÉATIVE & SYSTÈME DE DESIGN",
+    "title": "Figma",
+    "subtitle": "Outil moderne de collaboration pour le design UI/UX",
+    "description": "Figma est mon outil de conception principal pour créer des maquettes UI, des prototypes et des systèmes de design. Je l'utilise pour concevoir des interfaces, établir des spécifications et collaborer en équipe.",
+    "metrics": [
+      { "label": "Expérience", "value": "2+ ans" },
+      { "label": "Projets", "value": "10+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Type de Design", "value": "UI/UX" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise Visuelle",
+    "label": "Maîtrise"
+  },
+  "designTenets": {
+    "title": "Principes de Design",
+    "items": [
+      "Collaboration sur le cloud",
+      "Prototypage puissant",
+      "Système de composants",
+      "Tokens de design",
+      "Partage fluide"
+    ]
+  },
+  "gallery": {
+    "title": "Galerie d'Actifs Visuels & Artefacts de Design Figma",
+    "subtitle": "Explorez les interfaces utilisateur, identités de marque, actifs vectoriels sur mesure et composants créés avec Figma.",
+    "readyBadge": "Prêt",
+    "designedIn": "Conçu sous Figma",
+    "inspectDetails": "Inspecter les détails →",
+    "tabs": {
+      "gallery": "Grille Galerie",
+      "tokens": "Tokens de Couleur",
+      "components": "Composants UI"
+    },
+    "colorTokens": [
+      { "name": "Rose Électrique", "hex": "#ec4899", "role": "Accent de Marque / Mises en avant" },
+      { "name": "Bleu Cyber", "hex": "#2563eb", "role": "Action Principale / Interactif" },
+      { "name": "Indigo Profond", "hex": "#6366f1", "role": "Accents Secondaires" },
+      { "name": "Lueur Émeraude", "hex": "#10b981", "role": "Succès / Badges Actifs" },
+      { "name": "Surface Sombre", "hex": "#0f172a", "role": "Fond du Canvas / Contraste" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Variantes de Composants Bouton",
+      "primaryButton": "Rose Plein Primaire",
+      "secondaryButton": "Variante Ghost Secondaire",
+      "outlineButton": "Contour Neutre",
+      "badgePrimitives": "Primitives Badges & Chips",
+      "activeVariant": "Variante Active",
+      "informationTag": "Tag d'Information",
+      "responsiveTag": "100% Réactif",
+      "defaultToken": "Token par Défaut",
+      "typographyScale": "Échelle Typographique",
+      "displayBold": "Titre Display Gras 18px",
+      "headingSemibold": "Sous-titre Demi-gras 13px",
+      "bodyRegular": "Corps Régulier 11px Inter",
+      "monospaceCode": "Code Chassé 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "portfolio-design",
+        "title": "Système de Design Portfolio",
+        "description": "Système de design complet pour le portfolio",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "mobile-designs",
+        "title": "Designs d'Applications Mobiles",
+        "description": "Designs d'interfaces iOS et Android",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "web-interfaces",
+        "title": "Designs d'Interfaces Web",
+        "description": "Designs d'applications web réactives",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Flux de Travail Créatif",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Recherche & Moodboard",
+        "detail": "Références visuelles, typographie & sélection de palettes"
+      },
+      {
+        "step": "02",
+        "title": "Wireframing de Composants",
+        "detail": "Grilles de mise en page, hiérarchie & wireframes basse-fidélité"
+      },
+      {
+        "step": "03",
+        "title": "Système de Design & Tokens",
+        "detail": "Auto layout, variantes et guides de style évolutifs"
+      },
+      {
+        "step": "04",
+        "title": "Prototypage Haute-Fidélité",
+        "detail": "Micro-interactions, physique d'animation & tests"
+      },
+      {
+        "step": "05",
+        "title": "Livraison en Production",
+        "detail": "Optimisation SVG, exports vectoriels & transmission aux dev"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Livrables de Design",
+    "items": [
+      "Wireframes",
+      "Maquettes",
+      "Prototypes",
+      "Composants",
+      "Tokens de Design",
+      "Guides de Style",
+      "Flux Utilisateurs",
+      "Interactions",
+      "Animations",
+      "Designs Réactifs",
+      "Designs Haute Fidélité",
+      "Documentation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Chaîne d'Outils & Plugins",
+    "stats": [
+      { "label": "Fichiers de Design", "value": "15+" },
+      { "label": "Composants", "value": "100+" },
+      { "label": "Tokens de Design", "value": "50+" },
+      { "label": "Prototypes", "value": "20+" },
+      { "label": "Projets Collaboratifs", "value": "8+" },
+      { "label": "Transmissions Design", "value": "30+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à Outils Design",
+    "items": [
+      { "label": "Design d'Interface UI", "percentage": 87 },
+      { "label": "Prototypage", "percentage": 84 },
+      { "label": "Systèmes de Composants", "percentage": 85 },
+      { "label": "Collaboration", "percentage": 88 },
+      { "label": "Documentation de Design", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes de Design",
+    "items": [
+      "Concevoir des interfaces utilisateur intuitives",
+      "Créer des prototypes interactifs",
+      "Bâtir des systèmes de design",
+      "Collaborer efficacement",
+      "Spécifier les conceptions pour les développeurs"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur d'Exécution Créative",
+    "items": [
+      { "label": "Principes de Design UI", "percentage": 87 },
+      { "label": "Architecture des Composants", "percentage": 85 },
+      { "label": "Prototypage & Interactions", "percentage": 84 },
+      { "label": "Systèmes de Design", "percentage": 85 }
+    ]
+  }
+}

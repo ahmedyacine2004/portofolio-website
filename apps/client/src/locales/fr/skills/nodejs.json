@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Espace Node.js | Compétences",
+  "metaDescription": "Détails de l'espace de travail runtime JavaScript pour Node.js",
+  "workspaceTitle": "ESPACE BACKEND -Node.js-",
+  "workspaceSubtitle": "Runtime côté serveur, frontières architecturales et bancs d'essai de performance",
+  "clientRuntime": "RUNTIME EN DIRECT",
+  "lighthouseBadge": "Disponibilité 99.99%",
+  "fpsBadge": "Latence < 25ms",
+  "header": {
+    "category": "ARCHITECTURE & RUNTIME",
+    "title": "Node.js",
+    "subtitle": "Runtime JavaScript pour le développement côté serveur",
+    "description": "Node.js est la fondation de mon stack backend. Je l'utilise avec divers frameworks et bibliothèques pour créer des applications serveur rapides, évolutives et efficaces.",
+    "metrics": [
+      { "label": "Expérience", "value": "3+ ans" },
+      { "label": "Projets", "value": "8+" },
+      { "label": "Niveau", "value": "Avancé" },
+      { "label": "Runtime", "value": "Principal" }
+    ]
+  },
+  "mastery": {
+    "title": "Maîtrise du Moteur",
+    "label": "Compétence"
+  },
+  "designTenets": {
+    "title": "Architecture Fondamentale",
+    "items": [
+      "Modèle I/O non bloquant",
+      "Architecture orientée événements",
+      "Même langage sur toute la stack",
+      "Large écosystème (npm)",
+      "Idéal pour les applications temps réel"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline d'exécution runtime & cycle de vie",
+    "subtitle": "Traçage de requête de bout en bout",
+    "stages": [
+      {
+        "tag": "Porte 01",
+        "title": "Ingestion entrante",
+        "detail": "Gestionnaire HTTP / WebSocket"
+      },
+      {
+        "tag": "Porte 02",
+        "title": "Sécurité & Authentification",
+        "detail": "Garde JWT & limitation de débit"
+      },
+      {
+        "tag": "Porte 03",
+        "title": "Contrôleur de route",
+        "detail": "Contexte d'exécution Node.js"
+      },
+      {
+        "tag": "Porte 04",
+        "title": "Logique métier & Domaine",
+        "detail": "Couche de services & validation d'état"
+      },
+      {
+        "tag": "Porte 05",
+        "title": "Persistance & Cache",
+        "detail": "ODM/ORM de base de données & Redis"
+      },
+      {
+        "tag": "Porte 06",
+        "title": "Réponse sérialisée",
+        "detail": "200 OK Payload JSON"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Services en Production",
+    "items": [
+      {
+        "id": "api-servers",
+        "title": "Serveurs API",
+        "description": "Plusieurs APIs de production développées avec Node.js",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "real-time-apps",
+        "title": "Applications Temps Réel",
+        "description": "Fonctionnalités temps réel basées sur WebSocket",
+        "status": "En ligne",
+        "badge": "Production"
+      },
+      {
+        "id": "cli-tools",
+        "title": "Outils CLI",
+        "description": "Utilitaires en ligne de commande et scripts",
+        "status": "En ligne",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Modules d'Architecture",
+    "items": [
+      "Serveurs Express",
+      "Routes API",
+      "Gestionnaires d'événements",
+      "Opérations fichiers",
+      "Traitement de flux",
+      "Logique Async/Await",
+      "Gestion de modules",
+      "Gestionnaires d'erreurs",
+      "Gestion de processus",
+      "Config d'environnement",
+      "Systèmes de journalisation",
+      "Tâches en arrière-plan"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Stack Runtime & Bibliothèques",
+    "stats": [
+      { "label": "Serveurs créés", "value": "8+" },
+      { "label": "Requêtes traitées", "value": "1M+" },
+      { "label": "Lignes de code", "value": "50K+" },
+      { "label": "Dépendances", "value": "100+" },
+      { "label": "Réponse moyenne", "value": "<100ms" },
+      { "label": "Taux d'erreur", "value": "<0.1%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Backend",
+    "items": [
+      { "label": "APIs Core Node.js", "percentage": 90 },
+      { "label": "Programmation Async", "percentage": 88 },
+      { "label": "Gestion de paquets", "percentage": 85 },
+      { "label": "Process & Clustering", "percentage": 80 },
+      { "label": "Optimisation perf.", "percentage": 82 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Principes Architecturaux",
+    "items": [
+      "Créer des serveurs haute performance",
+      "Gérer efficacement les connexions simultanées",
+      "Implémenter des modèles asynchrones",
+      "Administrer les processus serveur",
+      "Optimiser pour l'évolutivité"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Profondeur Technique",
+    "items": [
+      { "label": "Event Loop & Async", "percentage": 88 },
+      { "label": "Traitement de flux", "percentage": 82 },
+      { "label": "Cluster & Processus", "percentage": 78 },
+      { "label": "Optimisation perf.", "percentage": 80 }
+    ]
+  }
+}

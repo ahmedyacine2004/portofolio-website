@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Spring Boot Workspace | Skills",
+  "metaDescription": "Enterprise Java backend workspace details for Spring Boot",
+  "workspaceTitle": "BACKEND WORKSPACE -Spring Boot-",
+  "workspaceSubtitle": "Server-side runtime, architecture boundaries, and performance benchmarks",
+  "clientRuntime": "LIVE RUNTIME",
+  "lighthouseBadge": "99.99% Uptime",
+  "fpsBadge": "< 25ms Latency",
+  "header": {
+    "category": "ARCHITECTURE & RUNTIME",
+    "title": "Spring Boot",
+    "subtitle": "Production-ready Java applications with clean architecture",
+    "description": "Spring Boot lets me build scalable backend services quickly with strong conventions, reliable configuration, and Java-first enterprise patterns.",
+    "metrics": [
+      { "label": "Experience", "value": "1.5+ years" },
+      { "label": "Projects", "value": "3+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Platform", "value": "Enterprise" }
+    ]
+  },
+  "mastery": {
+    "title": "Engine Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Core Architecture",
+    "items": [
+      "Strong conventions for enterprise apps",
+      "Fast setup with production-ready defaults",
+      "Excellent dependency injection and modularity",
+      "Great fit for secure API services",
+      "Easy integration with database and cloud tooling"
+    ]
+  },
+  "pipeline": {
+    "title": "Runtime Execution Pipeline & Lifecycle",
+    "subtitle": "End-to-End Request Trace",
+    "stages": [
+      {
+        "tag": "Gate 01",
+        "title": "Incoming Ingestion",
+        "detail": "HTTP / WebSocket Handler"
+      },
+      {
+        "tag": "Gate 02",
+        "title": "Security & Auth",
+        "detail": "Spring Security & JWT Filter"
+      },
+      {
+        "tag": "Gate 03",
+        "title": "Route Controller",
+        "detail": "Spring Boot Execution Context"
+      },
+      {
+        "tag": "Gate 04",
+        "title": "Domain & Business Logic",
+        "detail": "Service Layer & State Validation"
+      },
+      {
+        "tag": "Gate 05",
+        "title": "Persistence & Cache",
+        "detail": "Spring Data JPA & Hibernate"
+      },
+      {
+        "tag": "Gate 06",
+        "title": "Serialized Response",
+        "detail": "200 OK JSON Payload"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Services",
+    "items": [
+      {
+        "id": "core-api",
+        "title": "Core Business API",
+        "description": "Secure REST services for enterprise workflows and internal tools.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "auth-service",
+        "title": "Authentication Service",
+        "description": "JWT-driven authentication and access control for business apps.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "reporting-api",
+        "title": "Reporting API",
+        "description": "Backend service for structured reports, scheduling, and integration events.",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Architecture Modules",
+    "items": [
+      "REST APIs",
+      "Controllers",
+      "Services",
+      "Security",
+      "Validation",
+      "Data Access",
+      "Scheduling",
+      "Monitoring",
+      "Integrations",
+      "Admin APIs",
+      "Auth Flow",
+      "Testing"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Runtime Stack & Libraries",
+    "stats": [
+      { "label": "Endpoints", "value": "30+" },
+      { "label": "Services", "value": "12+" },
+      { "label": "Security Rules", "value": "20+" },
+      { "label": "Integrations", "value": "8+" },
+      { "label": "Response Time", "value": "<80ms" },
+      { "label": "Availability", "value": "99.7%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Backend Toolkit",
+    "items": [
+      { "label": "API Design", "percentage": 84 },
+      { "label": "Security", "percentage": 86 },
+      { "label": "Service Layer", "percentage": 82 },
+      { "label": "Data Access", "percentage": 80 },
+      { "label": "Deployment", "percentage": 78 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Architectural Principles",
+    "items": [
+      "Build secure, scalable business APIs",
+      "Implement clean layered service architecture",
+      "Create enterprise-ready backend patterns",
+      "Integrate databases and access control effectively",
+      "Keep complex backend logic maintainable and testable"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Technical Depth",
+    "items": [
+      { "label": "Spring MVC", "percentage": 85 },
+      { "label": "Security & Auth", "percentage": 88 },
+      { "label": "ORM & Data Layer", "percentage": 82 },
+      { "label": "Production Setup", "percentage": 80 }
+    ]
+  }
+}

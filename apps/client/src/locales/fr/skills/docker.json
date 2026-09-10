@@ -1,0 +1,154 @@
+{
+  "metaTitle": "Espace Docker & Kubernetes | Compétences",
+  "workspaceTitle": "ESPACE DEVOPS & OUTILS -Docker & Kubernetes-",
+  "workspaceSubtitle": "Pipelines CI/CD automatisés, orchestration de conteneurs, déploiements sans interruption et télémétrie",
+  "clusterHealthy": "MOTEUR DOCKER & K8S PRÊT",
+  "uptimeBadge": "99.99% Uptime",
+  "downtimeBadge": "Zéro temps d'arrêt",
+  "header": {
+    "title": "Docker & Kubernetes",
+    "category": "CONTENEURISATION & ORCHESTRATION DE CLUSTERS",
+    "subtitle": "Plateforme de conteneurisation & orchestration de clusters",
+    "description": "Docker et Kubernetes me permettent d'empaqueter les applications et leurs dépendances dans des conteneurs immuables et d'orchestrer des clusters résilients et scalables avec déploiements continus.",
+    "metrics": [
+      { "label": "Expérience", "value": "1.5+ an" },
+      { "label": "Projets", "value": "5+" },
+      { "label": "Niveau", "value": "Intermédiaire" },
+      { "label": "Runtime", "value": "Docker & OCI" }
+    ]
+  },
+  "mastery": {
+    "title": "Fiabilité des opérations conteneurisées",
+    "label": "Maîtrise"
+  },
+  "devopsTenets": {
+    "title": "Principes de conteneurisation",
+    "items": [
+      "Parité stricte entre environnements de développement et de production",
+      "Processus isolés, runtimes légers et images immuables",
+      "Coordination de microservices multi-conteneurs avec Docker Compose",
+      "Orchestration déclarative avec mises à jour progressives sans coupure",
+      "Builds multi-étapes optimisés réduisant drastiquement la surface d'attaque"
+    ]
+  },
+  "pipeline": {
+    "title": "Pipeline de livraison de conteneurs & Déploiement continu",
+    "subtitle": "Du build Dockerfile au cluster Kubernetes",
+    "stages": [
+      {
+        "stage": "01. Lint",
+        "title": "Hadolint & Audit Dockerfile",
+        "detail": "Validation syntaxique et respect des bonnes pratiques de build"
+      },
+      {
+        "stage": "02. Build",
+        "title": "Build d'image multi-étapes",
+        "detail": "Mise en cache par couche, BuildKit et image de base distroless"
+      },
+      {
+        "stage": "03. Sécurité",
+        "title": "Scan de vulnérabilités Trivy",
+        "detail": "Audit de sécurité du conteneur et détection de fuites de secrets"
+      },
+      {
+        "stage": "04. Registre",
+        "title": "Push de registre & Signature",
+        "detail": "Publication sur Docker Hub / GHCR avec signature cryptographique"
+      },
+      {
+        "stage": "05. Déploiement",
+        "title": "Mise à jour progressive K8s",
+        "detail": "Déploiement rolling update sans coupure sur les pods du cluster"
+      },
+      {
+        "stage": "06. Monitoring",
+        "title": "Télémétrie des conteneurs",
+        "detail": "Sondes de santé, limites de ressources et métriques Prometheus"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Environnements conteneurisés",
+    "items": [
+      {
+        "id": "app-containerization",
+        "title": "Conteneurisation d'applications",
+        "description": "Images distroless multi-étapes pour les services NestJS et Next.js",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "dev-environment",
+        "title": "Stack locale de développement",
+        "description": "Environnement multi-services Docker Compose avec rechargement à chaud",
+        "status": "Actif",
+        "badge": "Production"
+      },
+      {
+        "id": "ci-cd-pipeline",
+        "title": "Déploiement automatisé",
+        "description": "Déploiements conteneurisés intégrés aux pipelines d'intégration continue",
+        "status": "Actif",
+        "badge": "Production"
+      }
+    ]
+  },
+  "infrastructureBlueprints": {
+    "title": "Modèles d'infrastructure",
+    "items": [
+      "Dockerfiles",
+      "Images de conteneurs",
+      "Conteneurs & Pods",
+      "Volumes persistants",
+      "Réseaux virtuels",
+      "Docker Compose",
+      "Registres de conteneurs",
+      "Orchestration K8s",
+      "Variables d'environnement",
+      "Logs structurés",
+      "Health Checks & Sondes",
+      "Builds multi-étapes"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Métriques SLA",
+    "ecosystemTitle": "Écosystème Conteneurs & Cloud",
+    "stats": [
+      { "label": "Images Docker créées", "value": "10+" },
+      { "label": "Conteneurs en exécution", "value": "20+" },
+      { "label": "Stacks Docker Compose", "value": "5+" },
+      { "label": "Réduction du temps de build", "value": "60%" },
+      { "label": "Vitesse de déploiement", "value": "5x plus rapide" },
+      { "label": "Parité des environnements", "value": "100%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Boîte à outils Conteneurs",
+    "items": [
+      { "label": "Création de Dockerfile", "percentage": 80 },
+      { "label": "Gestion des conteneurs", "percentage": 75 },
+      { "label": "Docker Compose", "percentage": 77 },
+      { "label": "Optimisation d'images", "percentage": 72 },
+      { "label": "Réseaux & Volumes", "percentage": 70 }
+    ]
+  },
+  "infrastructurePrinciples": {
+    "title": "Principes d'ingénierie conteneurisée",
+    "items": [
+      "Créer des images Docker multi-étapes légères, optimisées et sécurisées",
+      "Configurer des environnements multi-conteneurs fiables avec Docker Compose",
+      "Mettre en œuvre des réseaux isolés et des volumes de stockage persistants",
+      "Gérer le cycle de vie complet des conteneurs, les sondes de santé et redémarrages",
+      "Déployer des artéfacts de conteneurs immuables via pipelines CI/CD automatisés"
+    ]
+  },
+  "automationDepth": {
+    "title": "Niveau de maîtrise technique",
+    "items": [
+      { "label": "Optimisation de Dockerfile", "percentage": 80 },
+      { "label": "Réseaux de conteneurs", "percentage": 75 },
+      { "label": "Docker Compose", "percentage": 77 },
+      { "label": "Orchestration de conteneurs", "percentage": 68 }
+    ]
+  }
+}

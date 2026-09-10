@@ -1,0 +1,187 @@
+{
+  "metaTitle": "Blender Workspace | Skills",
+  "metaDescription": "3D modeling, rendering, animation, and simulation workspace details for Blender",
+  "workspaceTitle": "DESIGN WORKSPACE -Blender-",
+  "workspaceSubtitle": "Open-source 3D modeling, photorealistic rendering, rigging, and animation",
+  "creativeStudio": "CREATIVE STUDIO",
+  "autoLayoutBadge": "Cycles & EEVEE Ready",
+  "vectorPrecisionBadge": "Photorealistic Output",
+  "header": {
+    "category": "3D MODELING & ANIMATION",
+    "title": "Blender",
+    "subtitle": "Open-source 3D modeling and animation",
+    "description": "I use Blender for 3D modeling, rendering, and animation. It enables me to create 3D assets, visualizations, and complex 3D animations for portfolio and design projects.",
+    "metrics": [
+      { "label": "Experience", "value": "1+ year" },
+      { "label": "Projects", "value": "3+" },
+      { "label": "Level", "value": "Beginner" },
+      { "label": "Medium", "value": "3D Graphics" }
+    ]
+  },
+  "mastery": {
+    "title": "Visual Mastery",
+    "label": "Mastery"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Free and open-source",
+      "Powerful 3D tools",
+      "Excellent rendering",
+      "Active community",
+      "Great learning resources"
+    ]
+  },
+  "gallery": {
+    "title": "Blender 3D Asset Gallery & Render Showcase",
+    "subtitle": "Explore 3D models, photorealistic renders, shaded scenes, and animated sequences created with Blender.",
+    "readyBadge": "Ready",
+    "designedIn": "Created in Blender",
+    "inspectDetails": "Inspect Details →",
+    "tabs": {
+      "gallery": "Gallery Grid",
+      "tokens": "Color Swatches",
+      "components": "UI Components"
+    },
+    "colorTokens": [
+      {
+        "name": "Blender Orange",
+        "hex": "#e87d0d",
+        "role": "Blender Brand Accent / Interface Highlights"
+      },
+      { "name": "Deep Slate", "hex": "#1e293b", "role": "Viewport Background / Dark Studio" },
+      { "name": "Sky Cyan", "hex": "#06b6d4", "role": "HDRI Sky / World Environment" },
+      { "name": "Warm Ember", "hex": "#f97316", "role": "Emission Materials / Warm Lighting" },
+      { "name": "Dark Charcoal", "hex": "#0f172a", "role": "Render Canvas / Contrast Base" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Button Component Variants",
+      "primaryButton": "Primary Orange Solid",
+      "secondaryButton": "Secondary Ghost Variant",
+      "outlineButton": "Neutral Outline",
+      "badgePrimitives": "Badge & Chip Primitives",
+      "activeVariant": "Active Variant",
+      "informationTag": "Information Tag",
+      "responsiveTag": "4K Photorealistic Render",
+      "defaultToken": "Default Token",
+      "typographyScale": "Typography Scale",
+      "displayBold": "Display Bold 18px",
+      "headingSemibold": "Heading Semibold 13px",
+      "bodyRegular": "Body Regular 11px Inter",
+      "monospaceCode": "Monospace Code 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "3d-models",
+        "title": "3D Models",
+        "description": "Custom 3D asset creation for design and portfolio projects.",
+        "status": "Online",
+        "badge": "Learning"
+      },
+      {
+        "id": "rendering",
+        "title": "3D Rendering",
+        "description": "Photorealistic renders using Cycles and EEVEE engines.",
+        "status": "Online",
+        "badge": "Learning"
+      },
+      {
+        "id": "3d-animation",
+        "title": "3D Animation",
+        "description": "Object and character animation with keyframes and rigging.",
+        "status": "Online",
+        "badge": "Learning"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Creative Workflow",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Reference & Scene Planning",
+        "detail": "Gathering references, setting up scene scale & viewport layout"
+      },
+      {
+        "step": "02",
+        "title": "Mesh Modeling & Topology",
+        "detail": "Box modeling, loop cuts, subdivision surface & clean topology"
+      },
+      {
+        "step": "03",
+        "title": "Materials, Shading & UV Unwrapping",
+        "detail": "PBR shaders, procedural textures & UV island optimization"
+      },
+      {
+        "step": "04",
+        "title": "Lighting & HDRI Setup",
+        "detail": "Three-point lighting, area lights & HDRI world environment"
+      },
+      {
+        "step": "05",
+        "title": "Rendering & Post-Processing",
+        "detail": "Cycles render settings, denoising, compositing & PNG/EXR export"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Design Output",
+    "items": [
+      "3D Models",
+      "Scenes",
+      "Materials",
+      "Lighting",
+      "Rendering",
+      "Animation",
+      "Rigging",
+      "Modifiers",
+      "Textures",
+      "Compositing",
+      "Particles",
+      "Simulation"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Toolchain & Plugins",
+    "stats": [
+      { "label": "3D Models", "value": "5+" },
+      { "label": "Renders", "value": "30+" },
+      { "label": "Animation Frames", "value": "1000+" },
+      { "label": "Textures Created", "value": "20+" },
+      { "label": "Learning Hours", "value": "50+" },
+      { "label": "Projects", "value": "3+" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Toolkit",
+    "items": [
+      { "label": "3D Modeling", "percentage": 68 },
+      { "label": "Material Creation", "percentage": 65 },
+      { "label": "Lighting & Rendering", "percentage": 62 },
+      { "label": "Animation", "percentage": 58 },
+      { "label": "Compositing", "percentage": 55 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Create 3D models",
+      "Design materials and textures",
+      "Set up lighting",
+      "Render high-quality images",
+      "Animate 3D scenes"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Creative Execution Depth",
+    "items": [
+      { "label": "Modeling Techniques", "percentage": 68 },
+      { "label": "Material & Shading", "percentage": 65 },
+      { "label": "Rendering & Cycles", "percentage": 62 },
+      { "label": "Animation Basics", "percentage": 58 }
+    ]
+  }
+}

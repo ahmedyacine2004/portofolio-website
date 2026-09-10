@@ -1,0 +1,187 @@
+{
+  "metaTitle": "Illustrator Workspace | Skills",
+  "metaDescription": "Vector design, brand identity systems, icon creation, and illustration workspace details for Adobe Illustrator",
+  "workspaceTitle": "DESIGN WORKSPACE -Illustrator-",
+  "workspaceSubtitle": "Vector design for brand assets, icons, scalable design systems, and illustration",
+  "creativeStudio": "CREATIVE STUDIO",
+  "autoLayoutBadge": "Vector & SVG Ready",
+  "vectorPrecisionBadge": "Infinitely Scalable",
+  "header": {
+    "category": "VECTOR DESIGN & BRAND ASSETS",
+    "title": "Illustrator",
+    "subtitle": "Vector design for brand assets, icons, and illustrations",
+    "description": "I use Illustrator to create clean vector artwork, scalable branding assets, and polished design components that remain sharp across digital and print formats.",
+    "metrics": [
+      { "label": "Experience", "value": "3+ years" },
+      { "label": "Projects", "value": "10+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Asset Type", "value": "Vector" }
+    ]
+  },
+  "mastery": {
+    "title": "Visual Mastery",
+    "label": "Mastery"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Sharp scalable vector artwork",
+      "Precise logo and icon workflows",
+      "Consistent brand asset creation",
+      "Excellent typography controls",
+      "Strong export flexibility for web and print"
+    ]
+  },
+  "gallery": {
+    "title": "Illustrator Vector Asset Gallery & Design Artifacts",
+    "subtitle": "Explore logos, vector iconography, scalable brand systems, and custom illustrations created with Adobe Illustrator.",
+    "readyBadge": "Ready",
+    "designedIn": "Created in Illustrator",
+    "inspectDetails": "Inspect Details →",
+    "tabs": {
+      "gallery": "Gallery Grid",
+      "tokens": "Color Swatches",
+      "components": "UI Components"
+    },
+    "colorTokens": [
+      {
+        "name": "Vibrant Amber",
+        "hex": "#f59e0b",
+        "role": "Illustrator Brand Accent / Vector Highlights"
+      },
+      { "name": "Deep Indigo", "hex": "#1e1b4b", "role": "Primary Brand Foundation / Contrast" },
+      { "name": "Vivid Violet", "hex": "#8b5cf6", "role": "Creative Accent / Gradient Harmonies" },
+      { "name": "Emerald Green", "hex": "#10b981", "role": "Precision Anchors / Active Guides" },
+      { "name": "Dark Charcoal", "hex": "#0f172a", "role": "Artboard Background / Studio Contrast" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Button Component Variants",
+      "primaryButton": "Primary Amber Solid",
+      "secondaryButton": "Secondary Ghost Variant",
+      "outlineButton": "Neutral Outline",
+      "badgePrimitives": "Badge & Chip Primitives",
+      "activeVariant": "Active Variant",
+      "informationTag": "Information Tag",
+      "responsiveTag": "100% Scalable Vector",
+      "defaultToken": "Default Token",
+      "typographyScale": "Typography Scale",
+      "displayBold": "Display Bold 18px",
+      "headingSemibold": "Heading Semibold 13px",
+      "bodyRegular": "Body Regular 11px Inter",
+      "monospaceCode": "Monospace Code 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "brand-assets",
+        "title": "Brand Assets",
+        "description": "Logos, icons, and illustration systems for brand work.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "icon-systems",
+        "title": "Icon Systems",
+        "description": "Consistent icon sets for interfaces and product storytelling.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "digital-illustration",
+        "title": "Digital Illustration",
+        "description": "Custom visual assets for marketing, product, and editorial needs.",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Creative Workflow",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Concept & Vector Sketching",
+        "detail": "Thumbnail ideation, pencil sketching & geometry construction"
+      },
+      {
+        "step": "02",
+        "title": "Path Tracing & Bezier Precision",
+        "detail": "Pen tool control, anchor point optimization & curve curvature"
+      },
+      {
+        "step": "03",
+        "title": "Color Harmonies & Gradients",
+        "detail": "Global color palettes, CMYK/Pantone matching & freeform gradients"
+      },
+      {
+        "step": "04",
+        "title": "Typography & Brand Identity",
+        "detail": "Custom lettering, font pairing, kerning & brand lockups"
+      },
+      {
+        "step": "05",
+        "title": "Scalable Asset Export & Delivery",
+        "detail": "SVG optimization, EPS/PDF print prep & multi-resolution asset packaging"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Design Output",
+    "items": [
+      "Logos",
+      "Icons",
+      "Illustrations",
+      "Brand Kits",
+      "Social Assets",
+      "Packaging",
+      "Infographics",
+      "Editorial Graphics",
+      "Vector Mockups",
+      "Patterns",
+      "Typography Systems",
+      "Export Packs"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Toolchain & Plugins",
+    "stats": [
+      { "label": "Assets Created", "value": "120+" },
+      { "label": "Icon Sets", "value": "12+" },
+      { "label": "Brand Systems", "value": "8+" },
+      { "label": "Projects", "value": "15+" },
+      { "label": "Vector Assets", "value": "500+" },
+      { "label": "Scalability", "value": "100%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Toolkit",
+    "items": [
+      { "label": "Vector Design", "percentage": 90 },
+      { "label": "Brand Systems", "percentage": 86 },
+      { "label": "Iconography", "percentage": 88 },
+      { "label": "Typography", "percentage": 82 },
+      { "label": "Export & Scaling", "percentage": 85 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Create scalable vector graphics",
+      "Build brand-consistent design assets",
+      "Design clean, production-ready icon systems",
+      "Prepare print and digital assets for delivery",
+      "Maintain visual clarity across formats"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Creative Execution Depth",
+    "items": [
+      { "label": "Vector Illustration", "percentage": 90 },
+      { "label": "Brand Asset Design", "percentage": 88 },
+      { "label": "Typography Systems", "percentage": 84 },
+      { "label": "Export Workflow", "percentage": 87 }
+    ]
+  }
+}

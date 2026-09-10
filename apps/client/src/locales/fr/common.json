@@ -1219,6 +1219,13 @@
     "searchPlaceholder": "Rechercher des technologies ...",
     "recentlyUsed": "Récemment utilisé",
     "categories": "Catégories",
+    "categoryNames": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de données",
+      "design": "Design",
+      "devops": "DevOps & Outils"
+    },
     "levels": {
       "Expert": "Expert",
       "Advanced": "Avancé",

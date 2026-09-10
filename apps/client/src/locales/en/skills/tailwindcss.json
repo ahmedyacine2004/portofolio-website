@@ -1,0 +1,155 @@
+{
+  "metaTitle": "Tailwind CSS Workspace | Skills",
+  "metaDescription": "Utility-first styling workspace details for Tailwind CSS",
+  "workspaceTitle": "DESIGN SYSTEM WORKSPACE -Tailwind CSS-",
+  "workspaceSubtitle": "Utility-first design tokens, responsive breakpoints, dark mode matrix, and JIT compiler telemetry",
+  "clientRuntime": "TAILWIND JIT ENGINE",
+  "lighthouseBadge": "100% Responsive",
+  "fpsBadge": "Zero Runtime CSS",
+  "header": {
+    "category": "UTILITY-FIRST DESIGN SYSTEM & JIT STYLING",
+    "title": "Tailwind CSS",
+    "subtitle": "Rapid UI development with utility-first styling",
+    "description": "Tailwind CSS is my preferred styling solution. It enables rapid development with minimal CSS, provides consistency through design tokens, and integrates seamlessly with my React and Next.js projects.",
+    "metrics": [
+      { "label": "Experience", "value": "2.5+ years" },
+      { "label": "Projects", "value": "10+" },
+      { "label": "Level", "value": "Advanced" },
+      { "label": "Designs Built", "value": "100+" }
+    ]
+  },
+  "mastery": {
+    "title": "Styling Mastery",
+    "label": "Proficiency"
+  },
+  "designTenets": {
+    "title": "Why I Build With Tailwind CSS",
+    "items": [
+      "Utility-first CSS approach",
+      "Minimal CSS bundle size",
+      "Design consistency across projects",
+      "Rapid prototyping capabilities",
+      "Dark mode support built-in"
+    ]
+  },
+  "pipeline": {
+    "title": "Styling Lifecycle & JIT Compiler Pipeline",
+    "subtitle": "From Utility Class Tokenization to Zero-Purge Production CSS",
+    "stages": [
+      {
+        "tag": "Stage 01",
+        "title": "Class Token Scanning",
+        "detail": "JIT Scanner Detects Utility Classes in Source Files"
+      },
+      {
+        "tag": "Stage 02",
+        "title": "Design Token Resolution",
+        "detail": "Colors, Spacing, Typography & Breakpoint Mapping"
+      },
+      {
+        "tag": "Stage 03",
+        "title": "Arbitrary Values & Variant Parsing",
+        "detail": "Hover, Focus, Group, Peer & Dynamic Modifier Computation"
+      },
+      {
+        "tag": "Stage 04",
+        "title": "Dark Mode & Theme Switching",
+        "detail": "CSS Variables & Class Strategy Theme Propagation"
+      },
+      {
+        "tag": "Stage 05",
+        "title": "PostCSS Optimization & Autoprefixing",
+        "detail": "Vendor Prefixes, Deduplication & Minified CSS Generation"
+      },
+      {
+        "tag": "Stage 06",
+        "title": "Zero-Runtime Styles Injected",
+        "detail": "Ultra-Lightweight CSS Bundle (< 15KB Purged)"
+      }
+    ]
+  },
+  "applications": {
+    "title": "Production Applications",
+    "items": [
+      {
+        "id": "portfolio",
+        "title": "Portfolio Design System",
+        "description": "Complete design system with Tailwind and custom components.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "ui-library",
+        "title": "shadcn/ui Components",
+        "description": "Customizable React components built with Tailwind CSS.",
+        "status": "Online",
+        "badge": "Production"
+      },
+      {
+        "id": "responsive-design",
+        "title": "Responsive Layouts",
+        "description": "Mobile-first responsive designs for all screen sizes.",
+        "status": "Online",
+        "badge": "Production"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Styling Systems & UI Elements",
+    "items": [
+      "Responsive Layouts",
+      "Custom Components",
+      "Design Tokens",
+      "Color Systems",
+      "Dark Mode Themes",
+      "Animation Classes",
+      "Form Styles",
+      "Button Variants",
+      "Card Layouts",
+      "Navigation Systems",
+      "Spacing Systems",
+      "Typography Scales"
+    ]
+  },
+  "impact": {
+    "title": "Impact & CSS Performance",
+    "ecosystemTitle": "Tailwind CSS Ecosystem & Plugins",
+    "stats": [
+      { "label": "UI Components", "value": "100+" },
+      { "label": "Design Tokens", "value": "50+" },
+      { "label": "Color Schemes", "value": "8" },
+      { "label": "Responsive Breakpoints", "value": "6+" },
+      { "label": "CSS Reduction", "value": "80%" },
+      { "label": "Build Time Savings", "value": "60%" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Engineering Toolkit",
+    "items": [
+      { "label": "Utility-First Design", "percentage": 90 },
+      { "label": "Responsive Design", "percentage": 88 },
+      { "label": "Component Architecture", "percentage": 85 },
+      { "label": "Theme Customization", "percentage": 90 },
+      { "label": "Performance Optimization", "percentage": 85 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Build responsive designs rapidly",
+      "Create consistent design systems",
+      "Implement complex layouts efficiently",
+      "Optimize CSS performance",
+      "Maintain clean, readable markup"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Technical Depth",
+    "items": [
+      { "label": "Custom Configuration", "percentage": 85 },
+      { "label": "Plugin Development", "percentage": 70 },
+      { "label": "Dark Mode Implementation", "percentage": 90 },
+      { "label": "Performance Tuning", "percentage": 80 }
+    ]
+  }
+}

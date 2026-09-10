@@ -1,0 +1,183 @@
+{
+  "metaTitle": "Photoshop Workspace | Skills",
+  "metaDescription": "Digital compositing, photo manipulation, and visual editing workspace details for Photoshop",
+  "workspaceTitle": "DESIGN WORKSPACE -Photoshop-",
+  "workspaceSubtitle": "Digital compositing, photo manipulation, frequency separation, and creative asset design",
+  "creativeStudio": "CREATIVE STUDIO",
+  "autoLayoutBadge": "Raster & RAW Ready",
+  "vectorPrecisionBadge": "Pixel Perfection",
+  "header": {
+    "category": "DIGITAL COMPOSITING & PHOTO MANIPULATION",
+    "title": "Photoshop",
+    "subtitle": "Professional digital compositing, photo manipulation & retouching",
+    "description": "I use Adobe Photoshop for high-end photo editing, complex layer compositing, color grading, frequency separation, and creative visual artwork for digital and print media.",
+    "metrics": [
+      { "label": "Experience", "value": "2.5+ years" },
+      { "label": "Projects", "value": "8+" },
+      { "label": "Level", "value": "Intermediate" },
+      { "label": "Design Type", "value": "Raster / Photo" }
+    ]
+  },
+  "mastery": {
+    "title": "Visual Mastery",
+    "label": "Mastery"
+  },
+  "designTenets": {
+    "title": "Design Tenets",
+    "items": [
+      "Professional image editing",
+      "Non-destructive layer masks",
+      "Advanced color grading",
+      "Extensive brush engine",
+      "Smart object workflows"
+    ]
+  },
+  "gallery": {
+    "title": "Photoshop Visual Asset Gallery & Creative Artifacts",
+    "subtitle": "Explore digital composites, high-end retouched portraits, visual mockups, and promotional graphics created with Adobe Photoshop.",
+    "readyBadge": "Ready",
+    "designedIn": "Created in Photoshop",
+    "inspectDetails": "Inspect Details →",
+    "tabs": {
+      "gallery": "Gallery Grid",
+      "tokens": "Color Swatches",
+      "components": "UI Components"
+    },
+    "colorTokens": [
+      { "name": "Electric Cyan", "hex": "#06b6d4", "role": "Photoshop Brand Accent / Highlights" },
+      { "name": "Deep Cobalt", "hex": "#1e3a8a", "role": "Primary Base / Rich Shadows" },
+      { "name": "Vibrant Amber", "hex": "#f59e0b", "role": "Warm Highlights / Tonal Contrast" },
+      { "name": "Emerald Glow", "hex": "#10b981", "role": "Color Grading / Skin Tone Balancing" },
+      { "name": "Dark Charcoal", "hex": "#090d16", "role": "Background Canvas / Studio Dark" }
+    ],
+    "uiComponents": {
+      "buttonVariants": "Button Component Variants",
+      "primaryButton": "Primary Cyan Solid",
+      "secondaryButton": "Secondary Ghost Variant",
+      "outlineButton": "Neutral Outline",
+      "badgePrimitives": "Badge & Chip Primitives",
+      "activeVariant": "Active Variant",
+      "informationTag": "Information Tag",
+      "responsiveTag": "100% High-Resolution",
+      "defaultToken": "Default Token",
+      "typographyScale": "Typography Scale",
+      "displayBold": "Display Bold 18px",
+      "headingSemibold": "Heading Semibold 13px",
+      "bodyRegular": "Body Regular 11px Inter",
+      "monospaceCode": "Monospace Code 10px"
+    }
+  },
+  "applications": {
+    "items": [
+      {
+        "id": "photo-editing",
+        "title": "Photo Retouching & Composite",
+        "description": "High-end frequency separation and image manipulation",
+        "status": "Online",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "digital-compositing",
+        "title": "Digital Matte Compositing",
+        "description": "Multi-layer scene creation and atmospheric blending",
+        "status": "Online",
+        "badge": "Portfolio"
+      },
+      {
+        "id": "visual-mockups",
+        "title": "Visual Branding Mockups",
+        "description": "Product mockups and promotional graphics",
+        "status": "Online",
+        "badge": "Portfolio"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Creative Workflow",
+    "stages": [
+      {
+        "step": "01",
+        "title": "Raw Ingestion & Curation",
+        "detail": "Camera RAW conversion, lens corrections & base color exposure"
+      },
+      {
+        "step": "02",
+        "title": "Clean-up & Frequency Separation",
+        "detail": "Blemish removal, texture preservation & micro-contrast tuning"
+      },
+      {
+        "step": "03",
+        "title": "Multi-Layer Compositing",
+        "detail": "Smart objects, blending modes, atmospheric depth & lighting match"
+      },
+      {
+        "step": "04",
+        "title": "Color Grading & LUTs",
+        "detail": "Curves adjustments, selective color, gradient maps & tone curves"
+      },
+      {
+        "step": "05",
+        "title": "Sharpening & Production Export",
+        "detail": "High-pass sharpening, CMYK prepress conversion & WebP compression"
+      }
+    ]
+  },
+  "componentSystems": {
+    "title": "Design Output",
+    "items": [
+      "Posters",
+      "Photo Retouching",
+      "Composites",
+      "Social Media Graphics",
+      "Web Assets",
+      "Visual Mockups",
+      "Textures",
+      "Color Grading",
+      "Banners",
+      "Thumbnails",
+      "Print Mockups",
+      "Digital Artwork"
+    ]
+  },
+  "impact": {
+    "title": "Impact & Benchmarks",
+    "ecosystemTitle": "Toolchain & Plugins",
+    "stats": [
+      { "label": "Photos Retouched", "value": "150+" },
+      { "label": "Digital Composites", "value": "45+" },
+      { "label": "Layer Stacks", "value": "100+" },
+      { "label": "Projects", "value": "8+" },
+      { "label": "Color Profiles", "value": "CMYK / RGB" },
+      { "label": "Asset Formats", "value": "PSD / RAW / WebP" }
+    ]
+  },
+  "toolkit": {
+    "title": "Design Toolkit",
+    "items": [
+      { "label": "Photo Retouching", "percentage": 85 },
+      { "label": "Layer Compositing", "percentage": 82 },
+      { "label": "Color Grading", "percentage": 80 },
+      { "label": "Masking & Selections", "percentage": 84 },
+      { "label": "Texture & Brush Work", "percentage": 78 }
+    ]
+  },
+  "architecturePrinciples": {
+    "title": "Design Principles",
+    "items": [
+      "Edit and retouch high-resolution photographs",
+      "Create seamless multi-layer digital composites",
+      "Apply professional color grading and correction",
+      "Master non-destructive adjustment workflows",
+      "Prepare high-fidelity assets for web and print"
+    ]
+  },
+  "technicalDepth": {
+    "title": "Creative Execution Depth",
+    "items": [
+      { "label": "Photo Manipulation & Retouch", "percentage": 84 },
+      { "label": "Layer Masks & Blending", "percentage": 82 },
+      { "label": "Color Calibration & LUTs", "percentage": 80 },
+      { "label": "Export & Web Optimization", "percentage": 78 }
+    ]
+  }
+}
