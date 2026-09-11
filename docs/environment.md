@@ -9,8 +9,9 @@ The client expects values such as:
 - `NEXT_PUBLIC_APP_NAME`
 - `NEXT_PUBLIC_APP_URL`
 - `NEXT_PUBLIC_API_URL`
+- `NEXT_PUBLIC_SITE_URL`
 
-These values should be defined in the frontend environment file and should match the deployment target.
+These values should be defined in the frontend environment file and should match the deployment target. `NEXT_PUBLIC_SITE_URL` is used for canonical URLs, Open Graph metadata, JSON-LD, robots.txt, and the generated sitemap. Set it to the public portfolio origin, for example `https://portfolio.example.com`, before deploying.
 
 ## Server variables
 

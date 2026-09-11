@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { AppShell } from '@/components/layout/app-shell';
+import { siteName, siteUrl } from '@/lib/site';
 import { QueryProvider } from '@/providers/query-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
 
@@ -11,7 +12,7 @@ import { beni, geistMono, inter } from '@/styles/fonts';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-domain.com'),
+  metadataBase: siteUrl,
 
   title: {
     default: 'Ahmed Yassine Abbane — Full-Stack Developer',
@@ -19,9 +20,12 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Full-stack developer portfolio showcasing projects, services, experience, certifications, and technical expertise.',
+    'Ahmed Yassine Abbane is a full-stack developer building thoughtful web products with Next.js, React, TypeScript, NestJS, and MongoDB.',
 
   keywords: [
+    'Ahmed Yassine Abbane',
+    'Ahmed Yassine Abbane portfolio',
+    'Ahmed Abbane',
     'Full-Stack Developer',
     'Frontend Developer',
     'Backend Developer',
@@ -41,21 +45,35 @@ export const metadata: Metadata = {
   ],
 
   creator: 'Ahmed Yassine Abbane',
+  applicationName: siteName,
+  category: 'technology',
+
+  alternates: {
+    canonical: '/',
+  },
 
   openGraph: {
     type: 'website',
     locale: 'en_US',
     title: 'Ahmed Yassine Abbane — Full-Stack Developer',
     description:
-      'Full-stack developer portfolio showcasing projects, services, experience, certifications, and technical expertise.',
-    siteName: 'Ahmed Yassine Abbane Portfolio',
+      'Explore the portfolio, projects, experience, certifications, and technical work of Ahmed Yassine Abbane.',
+    siteName: `${siteName} Portfolio`,
+    url: '/',
+    images: [
+      {
+        url: '/branding/logo.png',
+        alt: 'Ahmed Yassine Abbane portfolio logo',
+      },
+    ],
   },
 
   twitter: {
     card: 'summary_large_image',
     title: 'Ahmed Yassine Abbane — Full-Stack Developer',
     description:
-      'Full-stack developer portfolio showcasing projects, services, experience, certifications, and technical expertise.',
+      'Explore the portfolio, projects, experience, certifications, and technical work of Ahmed Yassine Abbane.',
+    images: ['/branding/logo.png'],
   },
 
   robots: {
@@ -88,6 +106,44 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Person',
+                name: 'Ahmed Yassine Abbane',
+                url: siteUrl.toString(),
+                jobTitle: 'Full-Stack Developer',
+                image: new URL('/branding/logo.png', siteUrl).toString(),
+                knowsAbout: [
+                  'Web development',
+                  'Next.js',
+                  'React',
+                  'TypeScript',
+                  'NestJS',
+                  'MongoDB',
+                ],
+                mainEntityOfPage: {
+                  '@type': 'WebPage',
+                  '@id': siteUrl.toString(),
+                },
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: `${siteName} Portfolio`,
+                url: siteUrl.toString(),
+                inLanguage: 'en-US',
+                about: {
+                  '@type': 'Person',
+                  name: 'Ahmed Yassine Abbane',
+                },
+              },
+            ]),
+          }}
+        />
         {/* Apply stored accent color before React hydrates to prevent flash of wrong color */}
         <script
           dangerouslySetInnerHTML={{
