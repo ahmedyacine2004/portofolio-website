@@ -434,14 +434,26 @@ export function ContactScene() {
         <hemisphereLight
           args={[
             isDark ? '#DCC7FF' : '#FFFFFF',
-            isDark ? '#180D28' : '#6E587D',
-            isDark ? 1.1 : 1.5,
+            isDark ? '#180D28' : '#CBD5E1',
+            isDark ? 1.1 : 0.95,
           ]}
         />
-        <ambientLight intensity={isDark ? 0.85 : 1.1} color="#E8D5FF" />
-        <directionalLight position={[4, 6, 5]} intensity={isDark ? 2.2 : 2.6} color="#FFFFFF" />
-        <directionalLight position={[-4, 3, 1]} intensity={isDark ? 1 : 1.2} color="#C49BFF" />
-        <pointLight position={[0, 1, 3]} intensity={isDark ? 0.8 : 1} color="#DDAAFF" />
+        <ambientLight intensity={isDark ? 0.85 : 0.7} color={isDark ? '#E8D5FF' : '#FFFFFF'} />
+        <directionalLight
+          position={[4, 6, 5]}
+          intensity={isDark ? 2.2 : 2.4}
+          color={isDark ? '#FFFFFF' : '#FFF8ED'}
+        />
+        <directionalLight
+          position={[-4, 3, 1]}
+          intensity={isDark ? 1 : 0.7}
+          color={isDark ? '#C49BFF' : '#B9D7FF'}
+        />
+        <pointLight
+          position={[0, 1, 3]}
+          intensity={isDark ? 0.8 : 0.35}
+          color={isDark ? '#DDAAFF' : '#C4B5FD'}
+        />
 
         <SceneContent />
       </Canvas>
