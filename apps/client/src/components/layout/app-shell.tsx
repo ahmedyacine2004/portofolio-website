@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { useEffect, useRef, useState } from 'react';
 
+import { applyPreferenceStyles, readStoredPreferences } from '@/lib/preferences';
 import { useLanguageStore } from '@/stores/language.store';
 
 import { ImageViewerModal } from '../about/image-viewer-modal';
@@ -47,6 +48,21 @@ export function AppShell({ children }: AppShellProps) {
   useEffect(() => {
     hydrateLocale();
   }, [hydrateLocale]);
+
+  useEffect(() => {
+    const syncPreferences = () => {
+      const prefs = readStoredPreferences();
+      applyPreferenceStyles(prefs);
+    };
+
+    syncPreferences();
+
+    window.addEventListener('storage', syncPreferences);
+
+    return () => {
+      window.removeEventListener('storage', syncPreferences);
+    };
+  }, []);
 
   useEffect(() => {
     // Timer for initial website load (4.5s)

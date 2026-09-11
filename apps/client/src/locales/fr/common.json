@@ -2138,5 +2138,184 @@
         }
       }
     }
+  },
+  "aiAssistantPage": {
+    "badge": "Assistant IA",
+    "title": "WSUP BROSKI",
+    "subtitle": "Je suis votre assistant IA de portfolio. Posez-moi n'importe quelle question sur vos compétences, expériences, projets ou réalisations.",
+    "statusOnline": "En ligne",
+    "statusReady": "Prêt",
+    "attachFileTitle": "Joindre un fichier",
+    "attachFileDesc": "Sélectionnez un fichier à envoyer avec votre message.",
+    "cancel": "Annuler",
+    "sendWithFile": "Envoyer avec fichier",
+    "thinking": "Réflexion en cours...",
+    "inputPlaceholder": "Posez-moi n'importe quelle question sur le portfolio d'Ahmed Yassine Abbane...",
+    "portfolioContext": "Contexte Portfolio",
+    "webSearch": "Recherche Web",
+    "codeInsights": "Analyse Code",
+    "assistantCapabilities": "Capacités de l'assistant",
+    "quickActions": "Actions rapides",
+    "contextBoxTitle": "Contexte Portfolio",
+    "contextBoxLive": "En direct",
+    "contextBoxDesc": "J'ai accès aux données de votre profil incluant projets, compétences, expérience et réalisations.",
+    "refreshContext": "Actualiser le contexte",
+    "refreshing": "Actualisation...",
+    "disabledMessage": "L'assistant IA est actuellement désactivé dans les paramètres.",
+    "unavailableMessage": "L'assistant est temporairement indisponible. Veuillez réessayer dans un moment.",
+    "noAnswerMessage": "Je n'ai pas pu générer une réponse pour le moment.",
+    "suggestions": {
+      "summarize": { "title": "Résumer", "subtitle": "Son expérience" },
+      "tellMe": { "title": "Parlez-moi de", "subtitle": "Ses projets" },
+      "generate": { "title": "Générer", "subtitle": "Lettre de motivation" }
+    },
+    "capabilities": {
+      "portfolioQA": {
+        "title": "Q&R Portfolio",
+        "description": "Posez toute question sur son parcours"
+      },
+      "projectExplainer": {
+        "title": "Explication de projets",
+        "description": "Informations détaillées sur ses projets"
+      },
+      "skillsAnalyzer": {
+        "title": "Analyseur de compétences",
+        "description": "Analyser et présenter sa stack"
+      },
+      "resumeReviewer": {
+        "title": "Examinateur de CV",
+        "description": "Obtenir des retours sur son CV"
+      },
+      "careerGuidance": {
+        "title": "Orientation de carrière",
+        "description": "Conseils de carrière personnalisés"
+      }
+    },
+    "quickActionsList": {
+      "summarizeBackground": "Résumer son parcours",
+      "listSkills": "Lister ses compétences techniques",
+      "showAchievements": "Afficher ses réalisations",
+      "generateCoverLetter": "Générer une lettre de motivation"
+    },
+    "ariaLike": "J'aime cette réponse",
+    "ariaDislike": "Je n'aime pas cette réponse"
+  },
+  "settingsPage": {
+    "title": "Préférences de l'espace de travail",
+    "subtitle": "Personnalisez votre expérience en explorant mon portfolio.",
+    "searchPlaceholder": "Rechercher des préférences (Ctrl+K)...",
+    "resetToDefault": "Réinitialiser par défaut",
+    "workspacePreview": "Aperçu de l'espace de travail",
+    "workspacePreviewDesc": "Voici à quoi ressemble votre espace de travail avec les préférences actuelles.",
+    "welcomeTag": "Bienvenue dans l'environnement développeur",
+    "deviceDesktop": "Bureau",
+    "deviceTablet": "Tablette",
+    "deviceMobile": "Mobile",
+    "quickInfo": "INFOS RAPIDES",
+    "quickInfoTheme": "Thème",
+    "quickInfoAnimations": "Animations",
+    "quickInfoPerformance": "Performance",
+    "quickInfoAI": "Assistant IA",
+    "quickInfoSearch": "Index de recherche",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "ready": "Prêt",
+    "upToDate": "À jour",
+    "themeDark": "Sombre Moderne",
+    "themeLight": "Clair Moderne",
+    "actions": "ACTIONS",
+    "resetAllPreferences": "Réinitialiser toutes les préférences",
+    "resetAllPreferencesDesc": "Restaurer les paramètres par défaut",
+    "exportPreferences": "Exporter les préférences",
+    "exportPreferencesDesc": "Télécharger vos préférences d'espace de travail",
+    "categories": {
+      "appearance": {
+        "title": "APPARENCE",
+        "theme": {
+          "title": "Thème",
+          "description": "Choisir le thème général de l'espace de travail"
+        },
+        "accent": {
+          "title": "Couleur d'accentuation",
+          "description": "Couleur d'accent principale utilisée dans tout le portfolio"
+        },
+        "animations": {
+          "title": "Animations",
+          "description": "Activer les transitions fluides et les micro-interactions"
+        },
+        "font": {
+          "title": "Famille de polices",
+          "description": "Sélectionner la typographie principale"
+        },
+        "compact": {
+          "title": "Mode compact",
+          "description": "Réduire l'espacement pour une vue plus dense"
+        }
+      },
+      "3d-elements": {
+        "title": "ÉLÉMENTS 3D",
+        "3d-hero": {
+          "title": "Héro 3D sur l'accueil",
+          "description": "Activer le rendu 3D sur la page d'accueil"
+        },
+        "interactive-3d": {
+          "title": "3D interactif",
+          "description": "Activer la rotation souris & tactile des éléments 3D"
+        },
+        "perf-mode": {
+          "title": "Mode de performance",
+          "description": "Réduire la qualité 3D sur les appareils moins puissants"
+        }
+      },
+      "accessibility": {
+        "title": "ACCESSIBILITÉ",
+        "reduce-motion": {
+          "title": "Réduire les animations",
+          "description": "Minimiser les animations dans l'espace de travail"
+        },
+        "high-contrast": {
+          "title": "Contraste élevé",
+          "description": "Augmenter le rapport de contraste pour une meilleure lisibilité"
+        },
+        "focus-indicators": {
+          "title": "Indicateurs de focus",
+          "description": "Surligner les éléments interactifs focalisés"
+        },
+        "text-scaling": {
+          "title": "Échelle de texte",
+          "description": "Ajuster la taille de base du texte"
+        }
+      },
+      "performance": {
+        "title": "PERFORMANCE",
+        "lazy-load": {
+          "title": "Chargement différé des images",
+          "description": "Charger les images au défilement"
+        },
+        "smooth-scroll": {
+          "title": "Défilement fluide",
+          "description": "Activer le défilement fluide dans l'espace de travail"
+        },
+        "preload": {
+          "title": "Précharger les ressources critiques",
+          "description": "Précharger les ressources importantes pour une navigation plus rapide"
+        }
+      },
+      "ai-assistant": {
+        "title": "ASSISTANT IA",
+        "ai-enable": {
+          "title": "Assistant IA",
+          "description": "Activer votre assistant IA de portfolio"
+        },
+        "auto-suggest": {
+          "title": "Suggestions automatiques",
+          "description": "Afficher des invites suggérées contextuelles"
+        },
+        "context-aware": {
+          "title": "Conscience du contexte",
+          "description": "Permettre à l'assistant d'utiliser le contenu du portfolio"
+        }
+      }
+    }
   }
 }

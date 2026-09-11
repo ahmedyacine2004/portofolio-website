@@ -25,7 +25,7 @@ export function ThemeToggle() {
       className="
         flex size-8 items-center justify-center
         rounded-sm
-        bg-brand-dark text-primary-foreground
+        bg-primary text-primary-foreground
         shadow-sm
         transition-all duration-200
         hover:bg-primary/80

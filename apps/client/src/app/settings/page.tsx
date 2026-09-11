@@ -19,147 +19,15 @@ import {
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import { KeyboardScene } from '@/components/3d/KeyboardScene';
-import { useTranslation } from '@/hooks/use-translation';
 import { useTheme } from '@/hooks/use-theme';
-import type { Theme } from '@/lib/theme';
-
-const SETTINGS_STORAGE_KEY = 'portfolio-preferences';
-
-type PreferenceState = {
-  theme: Theme;
-  colorAccent: string;
-  animationsEnabled: boolean;
-  fontFamily: string;
-  compactMode: boolean;
-  hero3dEnabled: boolean;
-  interactive3d: boolean;
-  performanceMode: string;
-  reduceMotion: boolean;
-  highContrast: boolean;
-  focusIndicators: boolean;
-  textScaling: string;
-  imageLazyLoading: boolean;
-  smoothScrolling: boolean;
-  preloadCritical: boolean;
-  aiAssistantEnabled: boolean;
-  autoSuggest: boolean;
-  contextAwareness: boolean;
-};
-
-const defaultPreferences: PreferenceState = {
-  theme: 'dark',
-  colorAccent: 'Indigo',
-  animationsEnabled: true,
-  fontFamily: 'Inter',
-  compactMode: false,
-  hero3dEnabled: true,
-  interactive3d: true,
-  performanceMode: 'Auto Detect',
-  reduceMotion: false,
-  highContrast: false,
-  focusIndicators: true,
-  textScaling: '100%',
-  imageLazyLoading: true,
-  smoothScrolling: true,
-  preloadCritical: true,
-  aiAssistantEnabled: true,
-  autoSuggest: true,
-  contextAwareness: true,
-};
-
-const parseScale = (value: string) => {
-  const numericValue = Number.parseFloat(value.replace('%', '')) || 100;
-  return numericValue / 100;
-};
-
-const readStoredPreferences = () => {
-  if (typeof window === 'undefined') {
-    return defaultPreferences;
-  }
-
-  try {
-    const stored = window.localStorage.getItem(SETTINGS_STORAGE_KEY);
-
-    if (!stored) {
-      return defaultPreferences;
-    }
-
-    return { ...defaultPreferences, ...JSON.parse(stored) };
-  } catch {
-    return defaultPreferences;
-  }
-};
-
-const applyPreferenceStyles = (preferences: typeof defaultPreferences) => {
-  if (typeof document === 'undefined') {
-    return;
-  }
-
-  const root = document.documentElement;
-  const accentMap: Record<string, Record<string, string>> = {
-    Indigo: {
-      '--primary': 'oklch(0.55 0.22 263.2)',
-      '--primary-foreground': 'oklch(0.985 0 0)',
-      '--ring': 'oklch(0.65 0.18 263.2)',
-    },
-    Emerald: {
-      '--primary': 'oklch(0.6 0.18 155)',
-      '--primary-foreground': 'oklch(0.985 0 0)',
-      '--ring': 'oklch(0.7 0.16 155)',
-    },
-    Violet: {
-      '--primary': 'oklch(0.62 0.2 305)',
-      '--primary-foreground': 'oklch(0.985 0 0)',
-      '--ring': 'oklch(0.7 0.18 305)',
-    },
-    Cyan: {
-      '--primary': 'oklch(0.64 0.14 205)',
-      '--primary-foreground': 'oklch(0.985 0 0)',
-      '--ring': 'oklch(0.72 0.14 205)',
-    },
-    Rose: {
-      '--primary': 'oklch(0.65 0.18 15)',
-      '--primary-foreground': 'oklch(0.985 0 0)',
-      '--ring': 'oklch(0.73 0.16 15)',
-    },
-  };
-
-  const accent = accentMap[preferences.colorAccent] ?? accentMap.Indigo;
-
-  root.dataset.theme = preferences.theme;
-  root.dataset.compact = String(preferences.compactMode);
-  root.dataset.highContrast = String(preferences.highContrast);
-  root.dataset.reduceMotion = String(preferences.reduceMotion);
-  root.dataset.performanceMode = preferences.performanceMode.toLowerCase().replace(/\s+/g, '-');
-  root.dataset.hero3d = String(preferences.hero3dEnabled);
-  root.dataset.interactive3d = String(preferences.interactive3d);
-  root.dataset.imageLazyLoading = String(preferences.imageLazyLoading);
-  root.dataset.smoothScrolling = String(preferences.smoothScrolling);
-  root.dataset.preloadCritical = String(preferences.preloadCritical);
-  root.dataset.aiAssistantEnabled = String(preferences.aiAssistantEnabled);
-  root.dataset.autoSuggest = String(preferences.autoSuggest);
-  root.dataset.contextAwareness = String(preferences.contextAwareness);
-  root.dataset.focusIndicators = String(preferences.focusIndicators);
-  root.style.setProperty('scroll-behavior', preferences.smoothScrolling ? 'smooth' : 'auto');
-  root.style.setProperty('--font-sans', `${preferences.fontFamily}, sans-serif`);
-  root.style.setProperty('--portfolio-font-scale', String(parseScale(preferences.textScaling)));
-
-  Object.entries(accent).forEach(([key, value]) => {
-    root.style.setProperty(key, value);
-  });
-
-  root.style.setProperty('--background', preferences.highContrast ? 'oklch(0.99 0 0)' : '');
-  root.style.setProperty('--foreground', preferences.highContrast ? 'oklch(0.12 0 0)' : '');
-  root.style.setProperty('--border', preferences.highContrast ? 'oklch(0.18 0 0)' : '');
-  root.style.setProperty('--muted', preferences.highContrast ? 'oklch(0.96 0 0)' : '');
-  root.style.setProperty('--muted-foreground', preferences.highContrast ? 'oklch(0.28 0 0)' : '');
-
-  if (!preferences.animationsEnabled || preferences.reduceMotion) {
-    root.dataset.motionReduced = 'true';
-  } else {
-    root.dataset.motionReduced = 'false';
-  }
-};
+import { useTranslation } from '@/hooks/use-translation';
+import {
+  ACCENT_OPTIONS,
+  applyPreferenceStyles,
+  defaultPreferences,
+  readStoredPreferences,
+  SETTINGS_STORAGE_KEY,
+} from '@/lib/preferences';
 
 type CategoryId = 'appearance' | '3d-elements' | 'accessibility' | 'performance' | 'ai-assistant';
 
@@ -306,18 +174,13 @@ export default function SettingsPage() {
     contextAwareness,
   ]);
 
-  useEffect(() => {
-    const savedPreferences = readStoredPreferences();
-    setTheme(savedPreferences.theme);
-  }, [setTheme]);
-
   const toggleCategory = (id: CategoryId) => {
     setOpenCategories((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const handleResetDefaults = () => {
     setTheme('dark');
-    setColorAccent('Indigo');
+    setColorAccent(defaultPreferences.colorAccent);
     setAnimationsEnabled(true);
     setFontFamily('Inter');
     setCompactMode(false);
@@ -385,7 +248,7 @@ export default function SettingsPage() {
           title: t('settingsPage.categories.appearance.accent.title'),
           description: t('settingsPage.categories.appearance.accent.description'),
           type: 'select',
-          options: ['Indigo', 'Emerald', 'Violet', 'Cyan', 'Rose'],
+          options: ACCENT_OPTIONS,
           value: colorAccent,
         },
         {
@@ -590,6 +453,7 @@ export default function SettingsPage() {
           <div className="relative flex-1 sm:flex-initial">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
             <input
+              suppressHydrationWarning
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -600,6 +464,7 @@ export default function SettingsPage() {
 
           {/* Reset button */}
           <button
+            suppressHydrationWarning
             onClick={handleResetDefaults}
             className="font-inter inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-muted/40 hover:bg-muted text-[11px] font-bold text-foreground transition-colors cursor-pointer shrink-0 shadow-xs"
           >
@@ -624,6 +489,7 @@ export default function SettingsPage() {
               >
                 {/* Category Header */}
                 <button
+                  suppressHydrationWarning
                   onClick={() => toggleCategory(cat.id)}
                   className="w-full flex items-center justify-between text-left cursor-pointer group"
                 >
@@ -663,6 +529,7 @@ export default function SettingsPage() {
                         <div className="shrink-0">
                           {item.id === 'theme' ? (
                             <select
+                              suppressHydrationWarning
                               value={
                                 theme === 'dark'
                                   ? t('settingsPage.themeDark')
@@ -684,6 +551,7 @@ export default function SettingsPage() {
                             </select>
                           ) : item.id === 'accent' ? (
                             <select
+                              suppressHydrationWarning
                               value={colorAccent}
                               onChange={(e) => setColorAccent(e.target.value)}
                               className="font-inter bg-background text-[10px] font-bold text-foreground border border-border/40 px-2 py-1 rounded-xs focus:outline-none cursor-pointer"
@@ -696,6 +564,7 @@ export default function SettingsPage() {
                             </select>
                           ) : item.id === 'font' ? (
                             <select
+                              suppressHydrationWarning
                               value={fontFamily}
                               onChange={(e) => setFontFamily(e.target.value)}
                               className="font-inter bg-background text-[10px] font-bold text-foreground border border-border/40 px-2 py-1 rounded-xs focus:outline-none cursor-pointer"
@@ -708,6 +577,7 @@ export default function SettingsPage() {
                             </select>
                           ) : item.id === 'perf-mode' ? (
                             <select
+                              suppressHydrationWarning
                               value={performanceMode}
                               onChange={(e) => setPerformanceMode(e.target.value)}
                               className="font-inter bg-background text-[10px] font-bold text-foreground border border-border/40 px-2 py-1 rounded-xs focus:outline-none cursor-pointer"
@@ -720,6 +590,7 @@ export default function SettingsPage() {
                             </select>
                           ) : item.id === 'text-scaling' ? (
                             <select
+                              suppressHydrationWarning
                               value={textScaling}
                               onChange={(e) => setTextScaling(e.target.value)}
                               className="font-inter bg-background text-[10px] font-bold text-foreground border border-border/40 px-2 py-1 rounded-xs focus:outline-none cursor-pointer"
@@ -733,6 +604,7 @@ export default function SettingsPage() {
                           ) : (
                             /* Toggle Switch */
                             <button
+                              suppressHydrationWarning
                               type="button"
                               onClick={() => {
                                 if (item.id === 'animations')

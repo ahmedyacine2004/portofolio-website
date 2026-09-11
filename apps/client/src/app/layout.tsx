@@ -95,18 +95,57 @@ export default function RootLayout({ children }: RootLayoutProps) {
 (function() {
   try {
     var stored = localStorage.getItem('portfolio-preferences');
-    if (!stored) return;
-    var prefs = JSON.parse(stored);
+    var themeStored = localStorage.getItem('portfolio-theme');
+    var prefs = stored ? JSON.parse(stored) : {};
+    var currentTheme = (prefs.theme || themeStored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'light' ? 'light' : 'dark';
     var root = document.documentElement;
-    var accentMap = {
-      Indigo: { '--primary': 'oklch(0.55 0.22 263.2)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.65 0.18 263.2)' },
-      Emerald: { '--primary': 'oklch(0.6 0.18 155)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.7 0.16 155)' },
-      Violet: { '--primary': 'oklch(0.62 0.2 305)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.7 0.18 305)' },
-      Cyan: { '--primary': 'oklch(0.64 0.14 205)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.72 0.14 205)' },
-      Rose: { '--primary': 'oklch(0.65 0.18 15)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.73 0.16 15)' }
+
+    var palettes = {
+      Blue: {
+        dark: { brand: '#6ea8ff', light: '#8fc2ff', dark: '#5b94ff', darkest: '#4285f4', surface: 'rgba(110, 168, 255, 0.15)', fg: '#09090b' },
+        light: { brand: '#3469ea', light: '#4285f4', dark: '#00358b', darkest: '#001e36', surface: '#ebdffd', fg: '#ffffff' }
+      },
+      Indigo: {
+        dark: { brand: '#818cf8', light: '#a5b4fc', dark: '#6366f1', darkest: '#4f46e5', surface: 'rgba(129, 140, 248, 0.15)', fg: '#09090b' },
+        light: { brand: '#4f46e5', light: '#6366f1', dark: '#3730a3', darkest: '#1e1b4b', surface: 'rgba(79, 70, 229, 0.12)', fg: '#ffffff' }
+      },
+      Emerald: {
+        dark: { brand: '#34d399', light: '#6ee7b7', dark: '#10b981', darkest: '#059669', surface: 'rgba(52, 211, 153, 0.15)', fg: '#09090b' },
+        light: { brand: '#059669', light: '#10b981', dark: '#065f46', darkest: '#022c22', surface: 'rgba(5, 150, 105, 0.12)', fg: '#ffffff' }
+      },
+      Violet: {
+        dark: { brand: '#a78bfa', light: '#c4b5fd', dark: '#8b5cf6', darkest: '#7c3aed', surface: 'rgba(167, 139, 250, 0.15)', fg: '#09090b' },
+        light: { brand: '#7c3aed', light: '#8b5cf6', dark: '#5b21b6', darkest: '#2e1065', surface: 'rgba(124, 58, 237, 0.12)', fg: '#ffffff' }
+      },
+      Cyan: {
+        dark: { brand: '#22d3ee', light: '#67e8f9', dark: '#06b6d4', darkest: '#0891b2', surface: 'rgba(34, 211, 238, 0.15)', fg: '#09090b' },
+        light: { brand: '#0891b2', light: '#06b6d4', dark: '#155e75', darkest: '#083344', surface: 'rgba(8, 145, 178, 0.12)', fg: '#ffffff' }
+      },
+      Rose: {
+        dark: { brand: '#fb7185', light: '#fda4af', dark: '#f43f5e', darkest: '#e11d48', surface: 'rgba(251, 113, 133, 0.15)', fg: '#09090b' },
+        light: { brand: '#e11d48', light: '#f43f5e', dark: '#9f1239', darkest: '#4c0519', surface: 'rgba(225, 29, 72, 0.12)', fg: '#ffffff' }
+      },
+      Amber: {
+        dark: { brand: '#fbbf24', light: '#fcd34d', dark: '#f59e0b', darkest: '#d97706', surface: 'rgba(251, 191, 36, 0.15)', fg: '#09090b' },
+        light: { brand: '#d97706', light: '#f59e0b', dark: '#92400e', darkest: '#451a03', surface: 'rgba(217, 119, 6, 0.12)', fg: '#ffffff' }
+      }
     };
-    var accent = accentMap[prefs.colorAccent] || accentMap.Indigo;
-    Object.keys(accent).forEach(function(key) { root.style.setProperty(key, accent[key]); });
+
+    var pal = (palettes[prefs.colorAccent] || palettes.Blue)[currentTheme];
+    root.style.setProperty('--color-brand', pal.brand);
+    root.style.setProperty('--color-brand-light', pal.light);
+    root.style.setProperty('--color-brand-dark', pal.dark);
+    root.style.setProperty('--color-brand-darkest', pal.darkest);
+    root.style.setProperty('--color-surface-brand', pal.surface);
+    root.style.setProperty('--color-primary', pal.brand);
+    root.style.setProperty('--color-primary-foreground', pal.fg);
+    root.style.setProperty('--color-ring', pal.brand);
+    root.style.setProperty('--color-accent', pal.surface);
+    root.style.setProperty('--color-accent-foreground', pal.brand);
+    root.style.setProperty('--primary', pal.brand);
+    root.style.setProperty('--primary-foreground', pal.fg);
+    root.style.setProperty('--ring', pal.brand);
+
     if (prefs.theme) root.dataset.theme = prefs.theme;
     if (prefs.compactMode !== undefined) root.dataset.compact = String(prefs.compactMode);
     if (prefs.reduceMotion !== undefined) root.dataset.reduceMotion = String(prefs.reduceMotion);

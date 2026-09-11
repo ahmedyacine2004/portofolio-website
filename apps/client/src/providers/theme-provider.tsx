@@ -2,6 +2,7 @@
 
 import { createContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
+import { applyPreferenceStyles, readStoredPreferences } from '@/lib/preferences';
 import { applyTheme, getStoredTheme, getSystemTheme, type Theme } from '@/lib/theme';
 
 type ThemeContextType = {
@@ -24,9 +25,9 @@ export function ThemeProvider({ children }: Props) {
 
     return getStoredTheme() ?? getSystemTheme();
   });
-
   useEffect(() => {
     applyTheme(theme);
+    applyPreferenceStyles({ ...readStoredPreferences(), theme });
   }, [theme]);
 
   const setTheme = (newTheme: Theme): void => {

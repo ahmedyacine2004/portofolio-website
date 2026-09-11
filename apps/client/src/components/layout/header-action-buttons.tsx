@@ -24,7 +24,7 @@ const getPreferenceValue = (key: string, fallback: boolean) => {
 };
 
 const actionButtonClass =
-  'relative flex size-8 items-center justify-center rounded-sm bg-brand-dark text-primary-foreground transition-colors hover:bg-primary/80 cursor-pointer';
+  'relative flex size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground transition-colors hover:bg-primary/80 cursor-pointer';
 
 type HeaderActionButtonProps = {
   label: string;
