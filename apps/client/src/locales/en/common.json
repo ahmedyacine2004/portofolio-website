@@ -2130,5 +2130,172 @@
         }
       }
     }
+  },
+  "aiAssistantPage": {
+    "badge": "AI assistant",
+    "title": "WSUP BROSKI",
+    "subtitle": "I'm your AI portfolio assistant. Ask me anything about your skills, experience, projects, or achievements.",
+    "statusOnline": "Online",
+    "statusReady": "Ready",
+    "attachFileTitle": "Attach file",
+    "attachFileDesc": "Select a file to send with your message.",
+    "cancel": "Cancel",
+    "sendWithFile": "Send with file",
+    "thinking": "Thinking...",
+    "inputPlaceholder": "Ask me anything about Ahmed Yassine Abbane's portfolio...",
+    "portfolioContext": "Portfolio Context",
+    "webSearch": "Web Search",
+    "codeInsights": "Code Insights",
+    "assistantCapabilities": "Assistant Capabilities",
+    "quickActions": "Quick Actions",
+    "contextBoxTitle": "Portfolio Context",
+    "contextBoxLive": "Live",
+    "contextBoxDesc": "I have access to your profile data including projects, skills, experience, and achievements.",
+    "refreshContext": "Refresh Context",
+    "refreshing": "Refreshing...",
+    "disabledMessage": "The AI assistant is currently disabled in settings.",
+    "unavailableMessage": "The assistant is temporarily unavailable. Please try again in a moment.",
+    "noAnswerMessage": "I could not generate an answer right now.",
+    "suggestions": {
+      "summarize": { "title": "Summarize", "subtitle": "His experience" },
+      "tellMe": { "title": "Tell me about", "subtitle": "His projects" },
+      "generate": { "title": "Generate", "subtitle": "Cover letter" }
+    },
+    "capabilities": {
+      "portfolioQA": {
+        "title": "Portfolio Q&A",
+        "description": "Ask anything about his background"
+      },
+      "projectExplainer": {
+        "title": "Project Explainer",
+        "description": "Detailed insights about his projects"
+      },
+      "skillsAnalyzer": {
+        "title": "Skills Analyzer",
+        "description": "Analyze and showcase his stack"
+      },
+      "resumeReviewer": { "title": "Resume Reviewer", "description": "Get feedback on his resume" },
+      "careerGuidance": { "title": "Career Guidance", "description": "Personalized career advice" }
+    },
+    "quickActionsList": {
+      "summarizeBackground": "Summarize His Background",
+      "listSkills": "List His Technical Skills",
+      "showAchievements": "Show His Achievements",
+      "generateCoverLetter": "Generate Cover Letter"
+    },
+    "ariaLike": "Like this response",
+    "ariaDislike": "Dislike this response"
+  },
+  "settingsPage": {
+    "title": "Workspace Preferences",
+    "subtitle": "Fine-tune your experience while exploring my portfolio.",
+    "searchPlaceholder": "Search preferences (Ctrl+K)...",
+    "resetToDefault": "Reset To Default",
+    "workspacePreview": "Workspace Preview",
+    "workspacePreviewDesc": "This is how your portfolio workspace looks with current preferences.",
+    "welcomeTag": "Welcome to the Developer Environment",
+    "deviceDesktop": "Desktop",
+    "deviceTablet": "Tablet",
+    "deviceMobile": "Mobile",
+    "quickInfo": "QUICK INFO",
+    "quickInfoTheme": "Theme",
+    "quickInfoAnimations": "Animations",
+    "quickInfoPerformance": "Performance",
+    "quickInfoAI": "AI Assistant",
+    "quickInfoSearch": "Search Index",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "ready": "Ready",
+    "upToDate": "Up to date",
+    "themeDark": "Dark Modern",
+    "themeLight": "Light Modern",
+    "actions": "ACTIONS",
+    "resetAllPreferences": "Reset All Preferences",
+    "resetAllPreferencesDesc": "Restore default workspace settings",
+    "exportPreferences": "Export Preferences",
+    "exportPreferencesDesc": "Download your workspace preferences",
+    "categories": {
+      "appearance": {
+        "title": "APPEARANCE",
+        "theme": { "title": "Theme", "description": "Choose overall theme of the workspace" },
+        "accent": {
+          "title": "Color Accents",
+          "description": "Primary accent color used across the portfolio"
+        },
+        "animations": {
+          "title": "Animations",
+          "description": "Enable smooth transitions and micro-interactions"
+        },
+        "font": { "title": "Font Family", "description": "Select primary typography" },
+        "compact": {
+          "title": "Compact Mode",
+          "description": "Reduce spacing for a more dense grid view"
+        }
+      },
+      "3d-elements": {
+        "title": "3D ELEMENTS",
+        "3d-hero": {
+          "title": "3D Hero on Home",
+          "description": "Enable 3D rendering on the landing page"
+        },
+        "interactive-3d": {
+          "title": "Interactive 3D",
+          "description": "Enable mouse & touch rotation for 3D elements"
+        },
+        "perf-mode": {
+          "title": "Performance Mode",
+          "description": "Lower 3D quality on low-end devices"
+        }
+      },
+      "accessibility": {
+        "title": "ACCESSIBILITY",
+        "reduce-motion": {
+          "title": "Reduce Motion",
+          "description": "Minimize animations across the workspace"
+        },
+        "high-contrast": {
+          "title": "High Contrast",
+          "description": "Increase contrast ratio for better readability"
+        },
+        "focus-indicators": {
+          "title": "Focus Indicators",
+          "description": "Outline focused interactive elements"
+        },
+        "text-scaling": {
+          "title": "Text Scaling",
+          "description": "Adjust base text size for the workspace"
+        }
+      },
+      "performance": {
+        "title": "PERFORMANCE",
+        "lazy-load": {
+          "title": "Image Lazy Loading",
+          "description": "Load images as they scroll into view"
+        },
+        "smooth-scroll": {
+          "title": "Smooth Scrolling",
+          "description": "Enable smooth scrolling across the workspace"
+        },
+        "preload": {
+          "title": "Preload Critical Assets",
+          "description": "Preload important resources for faster navigation"
+        }
+      },
+      "ai-assistant": {
+        "title": "AI ASSISTANT",
+        "ai-enable": {
+          "title": "AI Assistant",
+          "description": "Enable your portfolio AI assistant"
+        },
+        "auto-suggest": {
+          "title": "Auto Suggest",
+          "description": "Show context-sensitive suggested prompts"
+        },
+        "context-aware": {
+          "title": "Context Awareness",
+          "description": "Allow assistant to use portfolio content"
+        }
+      }
+    }
   }
 }

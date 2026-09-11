@@ -24,6 +24,7 @@ import Image from 'next/image';
 import { useMemo, useState } from 'react';
 
 import RobotImage from '@/assets/images/robot.png';
+import { useTranslation } from '@/hooks/use-translation';
 import { askAssistant, type AssistantAttachment } from '@/services/ai-assistant.service';
 
 interface ChatMessage {
@@ -49,6 +50,7 @@ const getStoredPreference = (key: string, fallback: boolean) => {
 };
 
 export default function AIAssistantPage() {
+  const { t } = useTranslation();
   const aiAssistantEnabled = getStoredPreference('aiAssistantEnabled', true);
   const autoSuggest = getStoredPreference('autoSuggest', true);
   const contextAwareness = getStoredPreference('contextAwareness', true);
@@ -61,7 +63,7 @@ export default function AIAssistantPage() {
   const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [messageFeedback, setMessageFeedback] = useState<Record<string, MessageFeedback>>({});
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
     {
       id: 'welcome',
       role: 'assistant',
@@ -76,61 +78,61 @@ export default function AIAssistantPage() {
         ? [
             {
               id: 'summarize',
-              title: 'Summarize',
-              subtitle: 'His experience',
+              title: t('aiAssistantPage.suggestions.summarize.title'),
+              subtitle: t('aiAssistantPage.suggestions.summarize.subtitle'),
               icon: MessageSquare,
             },
             {
               id: 'tell-me',
-              title: 'Tell me about',
-              subtitle: 'His projects',
+              title: t('aiAssistantPage.suggestions.tellMe.title'),
+              subtitle: t('aiAssistantPage.suggestions.tellMe.subtitle'),
               icon: MessageSquare,
             },
             {
               id: 'generate',
-              title: 'Generate',
-              subtitle: 'Cover letter',
+              title: t('aiAssistantPage.suggestions.generate.title'),
+              subtitle: t('aiAssistantPage.suggestions.generate.subtitle'),
               icon: MessageSquare,
             },
           ]
         : [],
-    [autoSuggest],
+    [autoSuggest, t],
   );
 
   const capabilities = useMemo(
     () => [
       {
-        title: 'Portfolio Q&A',
-        description: 'Ask anything about his background',
+        title: t('aiAssistantPage.capabilities.portfolioQA.title'),
+        description: t('aiAssistantPage.capabilities.portfolioQA.description'),
         icon: Brain,
         prompt: "Tell me about Ahmed Yassine Abbane's portfolio, his projects, and his background.",
       },
       {
-        title: 'Project Explainer',
-        description: 'Detailed insights about his projects',
+        title: t('aiAssistantPage.capabilities.projectExplainer.title'),
+        description: t('aiAssistantPage.capabilities.projectExplainer.description'),
         icon: Code2,
         prompt: 'Explain his projects in detail and highlight the value behind each one.',
       },
       {
-        title: 'Skills Analyzer',
-        description: 'Analyze and showcase his stack',
+        title: t('aiAssistantPage.capabilities.skillsAnalyzer.title'),
+        description: t('aiAssistantPage.capabilities.skillsAnalyzer.description'),
         icon: Sparkles,
         prompt: 'Analyze his stack and tell me what his strongest technical skills are.',
       },
       {
-        title: 'Resume Reviewer',
-        description: 'Get feedback on his resume',
+        title: t('aiAssistantPage.capabilities.resumeReviewer.title'),
+        description: t('aiAssistantPage.capabilities.resumeReviewer.description'),
         icon: FileText,
         prompt: 'Review his resume and tell me what stands out most.',
       },
       {
-        title: 'Career Guidance',
-        description: 'Personalized career advice',
+        title: t('aiAssistantPage.capabilities.careerGuidance.title'),
+        description: t('aiAssistantPage.capabilities.careerGuidance.description'),
         icon: UserCheck,
         prompt: 'Give me personalized career guidance based on his profile and goals.',
       },
     ],
-    [],
+    [t],
   );
 
   const quickActions = useMemo(
@@ -138,28 +140,28 @@ export default function AIAssistantPage() {
       autoSuggest
         ? [
             {
-              label: 'Summarize His Background',
+              label: t('aiAssistantPage.quickActionsList.summarizeBackground'),
               icon: Briefcase,
               prompt: 'Summarize his background and experience.',
             },
             {
-              label: 'List His Technical Skills',
+              label: t('aiAssistantPage.quickActionsList.listSkills'),
               icon: Code2,
               prompt: 'What are his main technical skills?',
             },
             {
-              label: 'Show His Achievements',
+              label: t('aiAssistantPage.quickActionsList.showAchievements'),
               icon: Award,
               prompt: 'What are his biggest achievements?',
             },
             {
-              label: 'Generate Cover Letter',
+              label: t('aiAssistantPage.quickActionsList.generateCoverLetter'),
               icon: FileText,
               prompt: 'Can you help draft a cover letter for him?',
             },
           ]
         : [],
-    [autoSuggest],
+    [autoSuggest, t],
   );
 
   const sendPrompt = async (prompt?: string, attachmentsToSend: AssistantAttachment[] = []) => {
@@ -169,7 +171,7 @@ export default function AIAssistantPage() {
         {
           id: crypto.randomUUID(),
           role: 'assistant',
-          text: 'The AI assistant is currently disabled in settings.',
+          text: t('aiAssistantPage.disabledMessage'),
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -203,7 +205,7 @@ export default function AIAssistantPage() {
           : `Answer generally without relying on portfolio context: ${finalPrompt || 'Please review the attached file.'}`,
         attachmentsToSend,
       );
-      const reply = response?.data?.reply ?? 'I could not generate an answer right now.';
+      const reply = response?.data?.reply ?? t('aiAssistantPage.noAnswerMessage');
       setMessages((prev) => [
         ...prev,
         {
@@ -219,7 +221,7 @@ export default function AIAssistantPage() {
         {
           id: crypto.randomUUID(),
           role: 'assistant',
-          text: 'The assistant is temporarily unavailable. Please try again in a moment.',
+          text: t('aiAssistantPage.unavailableMessage'),
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -292,7 +294,9 @@ export default function AIAssistantPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="w-full max-w-md rounded-xs border border-border bg-background p-4 shadow-2xl">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-inter text-sm font-bold text-foreground">Attach file</h3>
+              <h3 className="font-inter text-sm font-bold text-foreground">
+                {t('aiAssistantPage.attachFileTitle')}
+              </h3>
               <button
                 type="button"
                 onClick={() => {
@@ -308,7 +312,7 @@ export default function AIAssistantPage() {
             <div className="rounded-xs border border-dashed border-border bg-muted/30 p-4 text-center">
               <Paperclip className="mx-auto mb-2 size-6 text-primary" />
               <p className="font-inter text-xs text-muted-foreground">
-                Select a file to send with your message.
+                {t('aiAssistantPage.attachFileDesc')}
               </p>
             </div>
 
@@ -340,7 +344,7 @@ export default function AIAssistantPage() {
                 }}
                 className="rounded-xs border border-border px-3 py-1.5 text-xs font-medium text-foreground"
               >
-                Cancel
+                {t('aiAssistantPage.cancel')}
               </button>
               <button
                 type="button"
@@ -357,7 +361,7 @@ export default function AIAssistantPage() {
                 className="rounded-xs bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={selectedFiles.length === 0 || isLoading}
               >
-                Send with file
+                {t('aiAssistantPage.sendWithFile')}
               </button>
             </div>
           </div>
@@ -376,23 +380,22 @@ export default function AIAssistantPage() {
           >
             <div className="space-y-1 max-w-md">
               <span className="font-inter text-[10px] font-bold text-primary uppercase tracking-wider">
-                AI assistant
+                {t('aiAssistantPage.badge')}
               </span>
               <h1 className="font-inter text-2xl sm:text-3xl font-black text-foreground tracking-tight uppercase leading-none">
-                WSUP BROSKI
+                {t('aiAssistantPage.title')}
               </h1>
               <p className="font-inter text-[11px] font-normal leading-tight text-muted-foreground line-clamp-2">
-                I&apos;m your AI portfolio assistant. Ask me anything about your skills, experience,
-                projects, or achievements.
+                {t('aiAssistantPage.subtitle')}
               </p>
 
               <div className="flex items-center gap-1.5 pt-0.5">
                 <span className="font-inter inline-flex items-center gap-1 px-2 py-0.5 rounded-xs bg-emerald-500/10 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
                   <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Online
+                  {t('aiAssistantPage.statusOnline')}
                 </span>
                 <span className="font-inter inline-flex items-center gap-1 px-2 py-0.5 rounded-xs bg-violet-500/10 text-[10px] font-semibold text-violet-600 dark:text-violet-400">
-                  Ready
+                  {t('aiAssistantPage.statusReady')}
                 </span>
               </div>
             </div>
@@ -483,9 +486,9 @@ export default function AIAssistantPage() {
                           <button
                             type="button"
                             suppressHydrationWarning
-                            aria-label="Like this response"
+                            aria-label={t('aiAssistantPage.ariaLike')}
                             aria-pressed={messageFeedback[message.id] === 'like'}
-                            title="Like this response"
+                            title={t('aiAssistantPage.ariaLike')}
                             onClick={() => handleMessageFeedback(message.id, 'like')}
                             className={`cursor-pointer transition-colors hover:text-foreground ${
                               messageFeedback[message.id] === 'like'
@@ -503,9 +506,9 @@ export default function AIAssistantPage() {
                           <button
                             type="button"
                             suppressHydrationWarning
-                            aria-label="Dislike this response"
+                            aria-label={t('aiAssistantPage.ariaDislike')}
                             aria-pressed={messageFeedback[message.id] === 'dislike'}
-                            title="Dislike this response"
+                            title={t('aiAssistantPage.ariaDislike')}
                             onClick={() => handleMessageFeedback(message.id, 'dislike')}
                             className={`cursor-pointer transition-colors hover:text-foreground ${
                               messageFeedback[message.id] === 'dislike'
@@ -533,7 +536,7 @@ export default function AIAssistantPage() {
                     <Zap className="size-3.5 fill-current" />
                   </div>
                   <div className="rounded-xs bg-muted/40 px-3 py-2 text-[11px] text-muted-foreground">
-                    Thinking...
+                    {t('aiAssistantPage.thinking')}
                   </div>
                 </div>
               )}
@@ -553,7 +556,7 @@ export default function AIAssistantPage() {
                       void sendPrompt();
                     }
                   }}
-                  placeholder="Ask me anything about Ahmed Yassine Abbane's portfolio..."
+                  placeholder={t('aiAssistantPage.inputPlaceholder')}
                   className="font-inter w-full bg-transparent text-[11px] text-foreground placeholder:text-muted-foreground focus:outline-none px-1"
                 />
 
@@ -571,7 +574,7 @@ export default function AIAssistantPage() {
                         activeContext === 'portfolio' ? 'ring-1 ring-primary/80' : ''
                       }`}
                     >
-                      Portfolio Context
+                      {t('aiAssistantPage.portfolioContext')}
                     </button>
                     <button
                       suppressHydrationWarning
@@ -588,7 +591,7 @@ export default function AIAssistantPage() {
                       }`}
                     >
                       <Globe className="size-2.5 text-muted-foreground" />
-                      <span>Web Search</span>
+                      <span>{t('aiAssistantPage.webSearch')}</span>
                     </button>
                     <button
                       suppressHydrationWarning
@@ -605,7 +608,7 @@ export default function AIAssistantPage() {
                       }`}
                     >
                       <Code2 className="size-2.5 text-muted-foreground" />
-                      <span>Code Insights</span>
+                      <span>{t('aiAssistantPage.codeInsights')}</span>
                     </button>
                   </div>
 
@@ -644,7 +647,7 @@ export default function AIAssistantPage() {
           {/* Assistant Capabilities */}
           <div className="space-y-1.5 p-0.5">
             <h2 className="font-inter text-[10px] font-bold text-foreground uppercase tracking-wider">
-              Assistant Capabilities
+              {t('aiAssistantPage.assistantCapabilities')}
             </h2>
 
             <div className="space-y-1.5">
@@ -680,7 +683,7 @@ export default function AIAssistantPage() {
           {/* Quick Actions */}
           <div className="space-y-1.5 p-0.5">
             <h2 className="font-inter text-[10px] font-bold text-foreground uppercase tracking-wider">
-              Quick Actions
+              {t('aiAssistantPage.quickActions')}
             </h2>
 
             <div className="space-y-1.5">
@@ -711,15 +714,16 @@ export default function AIAssistantPage() {
           {/* Portfolio Context Box */}
           <div className="rounded-xs bg-primary text-primary-foreground p-3 space-y-2 shadow-xs shrink-0">
             <div className="flex items-center justify-between">
-              <h3 className="font-inter text-[11px] font-bold tracking-tight">Portfolio Context</h3>
+              <h3 className="font-inter text-[11px] font-bold tracking-tight">
+                {t('aiAssistantPage.contextBoxTitle')}
+              </h3>
               <span className="font-inter px-1.5 py-0.5 rounded-xs bg-primary-foreground/20 text-[9px] font-bold tracking-wide uppercase">
-                Live
+                {t('aiAssistantPage.contextBoxLive')}
               </span>
             </div>
 
             <p className="font-inter text-[10px] opacity-90 leading-relaxed">
-              I have access to your profile data including projects, skills, experience, and
-              achievements.
+              {t('aiAssistantPage.contextBoxDesc')}
             </p>
 
             <button
@@ -732,7 +736,9 @@ export default function AIAssistantPage() {
                 className={`size-3 text-primary ${isRefreshingContext ? 'animate-spin' : ''}`}
               />
               <span className="font-inter">
-                {isRefreshingContext ? 'Refreshing...' : 'Refresh Context'}
+                {isRefreshingContext
+                  ? t('aiAssistantPage.refreshing')
+                  : t('aiAssistantPage.refreshContext')}
               </span>
             </button>
           </div>

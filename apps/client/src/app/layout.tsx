@@ -87,6 +87,37 @@ export default function RootLayout({ children }: RootLayoutProps) {
       className={cn(inter.variable, beni.variable, geistMono.variable, 'font-sans')}
       suppressHydrationWarning
     >
+      <head>
+        {/* Apply stored accent color before React hydrates to prevent flash of wrong color */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  try {
+    var stored = localStorage.getItem('portfolio-preferences');
+    if (!stored) return;
+    var prefs = JSON.parse(stored);
+    var root = document.documentElement;
+    var accentMap = {
+      Indigo: { '--primary': 'oklch(0.55 0.22 263.2)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.65 0.18 263.2)' },
+      Emerald: { '--primary': 'oklch(0.6 0.18 155)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.7 0.16 155)' },
+      Violet: { '--primary': 'oklch(0.62 0.2 305)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.7 0.18 305)' },
+      Cyan: { '--primary': 'oklch(0.64 0.14 205)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.72 0.14 205)' },
+      Rose: { '--primary': 'oklch(0.65 0.18 15)', '--primary-foreground': 'oklch(0.985 0 0)', '--ring': 'oklch(0.73 0.16 15)' }
+    };
+    var accent = accentMap[prefs.colorAccent] || accentMap.Indigo;
+    Object.keys(accent).forEach(function(key) { root.style.setProperty(key, accent[key]); });
+    if (prefs.theme) root.dataset.theme = prefs.theme;
+    if (prefs.compactMode !== undefined) root.dataset.compact = String(prefs.compactMode);
+    if (prefs.reduceMotion !== undefined) root.dataset.reduceMotion = String(prefs.reduceMotion);
+    if (prefs.highContrast !== undefined) root.dataset.highContrast = String(prefs.highContrast);
+    if (prefs.fontFamily) root.style.setProperty('--font-sans', prefs.fontFamily + ', sans-serif');
+  } catch(e) {}
+})();
+            `,
+          }}
+        />
+      </head>
       <body>
         <ThemeProvider>
           <QueryProvider>

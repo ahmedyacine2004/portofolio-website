@@ -16,9 +16,10 @@ import {
   Tablet,
   Zap,
 } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 
 import { KeyboardScene } from '@/components/3d/KeyboardScene';
+import { useTranslation } from '@/hooks/use-translation';
 import { useTheme } from '@/hooks/use-theme';
 import type { Theme } from '@/lib/theme';
 
@@ -179,6 +180,7 @@ type Category = {
 };
 
 export default function SettingsPage() {
+  const { t } = useTranslation();
   const { theme, setTheme } = useTheme();
   const savedPreferences = readStoredPreferences();
 
@@ -216,6 +218,51 @@ export default function SettingsPage() {
 
   const [previewDevice, setPreviewDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
+  // Apply CSS variables synchronously before first paint to prevent flash of wrong accent
+  useLayoutEffect(() => {
+    const preferences = {
+      theme,
+      colorAccent,
+      animationsEnabled,
+      fontFamily,
+      compactMode,
+      hero3dEnabled,
+      interactive3d,
+      performanceMode,
+      reduceMotion,
+      highContrast,
+      focusIndicators,
+      textScaling,
+      imageLazyLoading,
+      smoothScrolling,
+      preloadCritical,
+      aiAssistantEnabled,
+      autoSuggest,
+      contextAwareness,
+    };
+    applyPreferenceStyles(preferences);
+  }, [
+    theme,
+    colorAccent,
+    animationsEnabled,
+    fontFamily,
+    compactMode,
+    hero3dEnabled,
+    interactive3d,
+    performanceMode,
+    reduceMotion,
+    highContrast,
+    focusIndicators,
+    textScaling,
+    imageLazyLoading,
+    smoothScrolling,
+    preloadCritical,
+    aiAssistantEnabled,
+    autoSuggest,
+    contextAwareness,
+  ]);
+
+  // Persist settings to localStorage (async is fine here)
   useEffect(() => {
     const preferences = {
       theme,
@@ -237,8 +284,6 @@ export default function SettingsPage() {
       autoSuggest,
       contextAwareness,
     };
-
-    applyPreferenceStyles(preferences);
     window.localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(preferences));
   }, [
     theme,
@@ -324,44 +369,44 @@ export default function SettingsPage() {
   const categories: Category[] = [
     {
       id: 'appearance',
-      title: 'APPEARANCE',
+      title: t('settingsPage.categories.appearance.title'),
       icon: Palette,
       items: [
         {
           id: 'theme',
-          title: 'Theme',
-          description: 'Choose overall theme of the workspace',
+          title: t('settingsPage.categories.appearance.theme.title'),
+          description: t('settingsPage.categories.appearance.theme.description'),
           type: 'select',
-          options: ['Dark Modern', 'Light Modern'],
-          value: theme === 'dark' ? 'Dark Modern' : 'Light Modern',
+          options: [t('settingsPage.themeDark'), t('settingsPage.themeLight')],
+          value: theme === 'dark' ? t('settingsPage.themeDark') : t('settingsPage.themeLight'),
         },
         {
           id: 'accent',
-          title: 'Color Accents',
-          description: 'Primary accent color used across the portfolio',
+          title: t('settingsPage.categories.appearance.accent.title'),
+          description: t('settingsPage.categories.appearance.accent.description'),
           type: 'select',
           options: ['Indigo', 'Emerald', 'Violet', 'Cyan', 'Rose'],
           value: colorAccent,
         },
         {
           id: 'animations',
-          title: 'Animations',
-          description: 'Enable smooth transitions and micro-interactions',
+          title: t('settingsPage.categories.appearance.animations.title'),
+          description: t('settingsPage.categories.appearance.animations.description'),
           type: 'toggle',
           value: animationsEnabled,
         },
         {
           id: 'font',
-          title: 'Font Family',
-          description: 'Select primary typography',
+          title: t('settingsPage.categories.appearance.font.title'),
+          description: t('settingsPage.categories.appearance.font.description'),
           type: 'select',
           options: ['Inter', 'Roboto', 'Outfit', 'Fira Code'],
           value: fontFamily,
         },
         {
           id: 'compact',
-          title: 'Compact Mode',
-          description: 'Reduce spacing for a more dense grid view',
+          title: t('settingsPage.categories.appearance.compact.title'),
+          description: t('settingsPage.categories.appearance.compact.description'),
           type: 'toggle',
           value: compactMode,
         },
@@ -369,27 +414,27 @@ export default function SettingsPage() {
     },
     {
       id: '3d-elements',
-      title: '3D ELEMENTS',
+      title: t('settingsPage.categories.3d-elements.title'),
       icon: Box,
       items: [
         {
           id: '3d-hero',
-          title: '3D Hero on Home',
-          description: 'Enable 3D rendering on the landing page',
+          title: t('settingsPage.categories.3d-elements.3d-hero.title'),
+          description: t('settingsPage.categories.3d-elements.3d-hero.description'),
           type: 'toggle',
           value: hero3dEnabled,
         },
         {
           id: 'interactive-3d',
-          title: 'Interactive 3D',
-          description: 'Enable mouse & touch rotation for 3D elements',
+          title: t('settingsPage.categories.3d-elements.interactive-3d.title'),
+          description: t('settingsPage.categories.3d-elements.interactive-3d.description'),
           type: 'toggle',
           value: interactive3d,
         },
         {
           id: 'perf-mode',
-          title: 'Performance Mode',
-          description: 'Lower 3D quality on low-end devices',
+          title: t('settingsPage.categories.3d-elements.perf-mode.title'),
+          description: t('settingsPage.categories.3d-elements.perf-mode.description'),
           type: 'select',
           options: ['Auto Detect', 'High Quality', 'Low Latency'],
           value: performanceMode,
@@ -398,34 +443,34 @@ export default function SettingsPage() {
     },
     {
       id: 'accessibility',
-      title: 'ACCESSIBILITY',
+      title: t('settingsPage.categories.accessibility.title'),
       icon: Eye,
       items: [
         {
           id: 'reduce-motion',
-          title: 'Reduce Motion',
-          description: 'Minimize animations across the workspace',
+          title: t('settingsPage.categories.accessibility.reduce-motion.title'),
+          description: t('settingsPage.categories.accessibility.reduce-motion.description'),
           type: 'toggle',
           value: reduceMotion,
         },
         {
           id: 'high-contrast',
-          title: 'High Contrast',
-          description: 'Increase contrast ratio for better readability',
+          title: t('settingsPage.categories.accessibility.high-contrast.title'),
+          description: t('settingsPage.categories.accessibility.high-contrast.description'),
           type: 'toggle',
           value: highContrast,
         },
         {
           id: 'focus-indicators',
-          title: 'Focus Indicators',
-          description: 'Outline focused interactive elements',
+          title: t('settingsPage.categories.accessibility.focus-indicators.title'),
+          description: t('settingsPage.categories.accessibility.focus-indicators.description'),
           type: 'toggle',
           value: focusIndicators,
         },
         {
           id: 'text-scaling',
-          title: 'Text Scaling',
-          description: 'Adjust base text size for the workspace',
+          title: t('settingsPage.categories.accessibility.text-scaling.title'),
+          description: t('settingsPage.categories.accessibility.text-scaling.description'),
           type: 'select',
           options: ['100%', '110%', '125%'],
           value: textScaling,
@@ -434,27 +479,27 @@ export default function SettingsPage() {
     },
     {
       id: 'performance',
-      title: 'PERFORMANCE',
+      title: t('settingsPage.categories.performance.title'),
       icon: Zap,
       items: [
         {
           id: 'lazy-load',
-          title: 'Image Lazy Loading',
-          description: 'Load images as they scroll into view',
+          title: t('settingsPage.categories.performance.lazy-load.title'),
+          description: t('settingsPage.categories.performance.lazy-load.description'),
           type: 'toggle',
           value: imageLazyLoading,
         },
         {
           id: 'smooth-scroll',
-          title: 'Smooth Scrolling',
-          description: 'Enable smooth scrolling across the workspace',
+          title: t('settingsPage.categories.performance.smooth-scroll.title'),
+          description: t('settingsPage.categories.performance.smooth-scroll.description'),
           type: 'toggle',
           value: smoothScrolling,
         },
         {
           id: 'preload',
-          title: 'Preload Critical Assets',
-          description: 'Preload important resources for faster navigation',
+          title: t('settingsPage.categories.performance.preload.title'),
+          description: t('settingsPage.categories.performance.preload.description'),
           type: 'toggle',
           value: preloadCritical,
         },
@@ -462,27 +507,27 @@ export default function SettingsPage() {
     },
     {
       id: 'ai-assistant',
-      title: 'AI ASSISTANT',
+      title: t('settingsPage.categories.ai-assistant.title'),
       icon: Bot,
       items: [
         {
           id: 'ai-enable',
-          title: 'AI Assistant',
-          description: 'Enable your portfolio AI assistant',
+          title: t('settingsPage.categories.ai-assistant.ai-enable.title'),
+          description: t('settingsPage.categories.ai-assistant.ai-enable.description'),
           type: 'toggle',
           value: aiAssistantEnabled,
         },
         {
           id: 'auto-suggest',
-          title: 'Auto Suggest',
-          description: 'Show context-sensitive suggested prompts',
+          title: t('settingsPage.categories.ai-assistant.auto-suggest.title'),
+          description: t('settingsPage.categories.ai-assistant.auto-suggest.description'),
           type: 'toggle',
           value: autoSuggest,
         },
         {
           id: 'context-aware',
-          title: 'Context Awareness',
-          description: 'Allow assistant to use portfolio content',
+          title: t('settingsPage.categories.ai-assistant.context-aware.title'),
+          description: t('settingsPage.categories.ai-assistant.context-aware.description'),
           type: 'toggle',
           value: contextAwareness,
         },
@@ -533,10 +578,10 @@ export default function SettingsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0 pb-3 border-b border-border/40">
         <div>
           <h1 className="font-inter text-xl sm:text-2xl font-black text-foreground tracking-tight uppercase leading-none">
-            Workspace Preferences
+            {t('settingsPage.title')}
           </h1>
           <p className="font-inter text-[11px] font-normal text-muted-foreground mt-1">
-            Fine-tune your experience while exploring my portfolio.
+            {t('settingsPage.subtitle')}
           </p>
         </div>
 
@@ -548,7 +593,7 @@ export default function SettingsPage() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search preferences (Ctrl+K)..."
+              placeholder={t('settingsPage.searchPlaceholder')}
               className="font-inter w-full sm:w-56 pl-8 pr-3 py-1.5 rounded-xs bg-muted/40 text-[11px] text-foreground placeholder:text-muted-foreground border border-transparent focus:border-primary focus:outline-none transition-colors"
             />
           </div>
@@ -559,7 +604,7 @@ export default function SettingsPage() {
             className="font-inter inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs bg-muted/40 hover:bg-muted text-[11px] font-bold text-foreground transition-colors cursor-pointer shrink-0 shadow-xs"
           >
             <RotateCcw className="size-3 text-muted-foreground" />
-            <span>Reset To Default</span>
+            <span>{t('settingsPage.resetToDefault')}</span>
           </button>
         </div>
       </div>
@@ -618,14 +663,24 @@ export default function SettingsPage() {
                         <div className="shrink-0">
                           {item.id === 'theme' ? (
                             <select
-                              value={theme === 'dark' ? 'Dark Modern' : 'Light Modern'}
+                              value={
+                                theme === 'dark'
+                                  ? t('settingsPage.themeDark')
+                                  : t('settingsPage.themeLight')
+                              }
                               onChange={(e) =>
-                                setTheme(e.target.value === 'Dark Modern' ? 'dark' : 'light')
+                                setTheme(
+                                  e.target.value === t('settingsPage.themeDark') ? 'dark' : 'light',
+                                )
                               }
                               className="font-inter bg-background text-[10px] font-bold text-foreground border border-border/40 px-2 py-1 rounded-xs focus:outline-none cursor-pointer"
                             >
-                              <option value="Dark Modern">Dark Modern</option>
-                              <option value="Light Modern">Light Modern</option>
+                              <option value={t('settingsPage.themeDark')}>
+                                {t('settingsPage.themeDark')}
+                              </option>
+                              <option value={t('settingsPage.themeLight')}>
+                                {t('settingsPage.themeLight')}
+                              </option>
                             </select>
                           ) : item.id === 'accent' ? (
                             <select
@@ -732,11 +787,11 @@ export default function SettingsPage() {
             <div className="flex items-center gap-1.5">
               <Eye className="size-4 text-primary" />
               <h2 className="font-inter text-[12px] font-bold text-foreground">
-                Workspace Preview
+                {t('settingsPage.workspacePreview')}
               </h2>
             </div>
             <p className="font-inter text-[10px] text-muted-foreground leading-tight">
-              This is how your portfolio workspace looks with current preferences.
+              {t('settingsPage.workspacePreviewDesc')}
             </p>
 
             {/* Interactive Preview Canvas Box (Live Micro View of Home / Page) */}
@@ -819,7 +874,7 @@ export default function SettingsPage() {
                 {/* Floating Welcome Tag */}
                 {previewDevice === 'desktop' && (
                   <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 bg-background/90 backdrop-blur-xs px-1.5 py-0.5 rounded-xs border border-border/40 shadow-xs text-[5.5px] font-bold text-foreground flex items-center gap-1 z-10 whitespace-nowrap">
-                    <span>Welcome to the Developer Environment</span>
+                    <span>{t('settingsPage.welcomeTag')}</span>
                   </div>
                 )}
               </div>
@@ -836,7 +891,7 @@ export default function SettingsPage() {
                   }`}
                 >
                   <Laptop className="size-2.5" />
-                  <span>Desktop</span>
+                  <span>{t('settingsPage.deviceDesktop')}</span>
                 </button>
                 <button
                   type="button"
@@ -848,7 +903,7 @@ export default function SettingsPage() {
                   }`}
                 >
                   <Tablet className="size-2.5" />
-                  <span>Tablet</span>
+                  <span>{t('settingsPage.deviceTablet')}</span>
                 </button>
                 <button
                   type="button"
@@ -860,7 +915,7 @@ export default function SettingsPage() {
                   }`}
                 >
                   <Smartphone className="size-2.5" />
-                  <span>Mobile</span>
+                  <span>{t('settingsPage.deviceMobile')}</span>
                 </button>
               </div>
             </div>
@@ -869,45 +924,48 @@ export default function SettingsPage() {
           {/* Quick Info Box */}
           <div className="space-y-1.5 pt-2 border-t border-border/20">
             <h3 className="font-inter text-[10px] font-bold text-foreground uppercase tracking-wider">
-              QUICK INFO
+              {t('settingsPage.quickInfo')}
             </h3>
 
             <div className="space-y-1 text-[10px]">
               <div className="flex items-center justify-between py-0.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Palette className="size-3 text-primary" /> Theme
+                  <Palette className="size-3 text-primary" /> {t('settingsPage.quickInfoTheme')}
                 </span>
                 <span className="font-bold text-foreground">
-                  {theme === 'dark' ? 'Dark Modern' : 'Light Modern'}
+                  {theme === 'dark' ? t('settingsPage.themeDark') : t('settingsPage.themeLight')}
                 </span>
               </div>
               <div className="flex items-center justify-between py-0.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Sparkles className="size-3 text-primary" /> Animations
+                  <Sparkles className="size-3 text-primary" />{' '}
+                  {t('settingsPage.quickInfoAnimations')}
                 </span>
                 <span className="font-bold text-foreground">
-                  {animationsEnabled ? 'Enabled' : 'Disabled'}
+                  {animationsEnabled ? t('settingsPage.enabled') : t('settingsPage.disabled')}
                 </span>
               </div>
               <div className="flex items-center justify-between py-0.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Zap className="size-3 text-primary" /> Performance
+                  <Zap className="size-3 text-primary" /> {t('settingsPage.quickInfoPerformance')}
                 </span>
                 <span className="font-bold text-foreground">{performanceMode}</span>
               </div>
               <div className="flex items-center justify-between py-0.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Bot className="size-3 text-primary" /> AI Assistant
+                  <Bot className="size-3 text-primary" /> {t('settingsPage.quickInfoAI')}
                 </span>
                 <span className="font-bold text-foreground">
-                  {aiAssistantEnabled ? 'Ready' : 'Disabled'}
+                  {aiAssistantEnabled ? t('settingsPage.ready') : t('settingsPage.disabled')}
                 </span>
               </div>
               <div className="flex items-center justify-between py-0.5">
                 <span className="text-muted-foreground flex items-center gap-1.5">
-                  <Search className="size-3 text-primary" /> Search Index
+                  <Search className="size-3 text-primary" /> {t('settingsPage.quickInfoSearch')}
                 </span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">Up to date</span>
+                <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                  {t('settingsPage.upToDate')}
+                </span>
               </div>
             </div>
           </div>
@@ -915,7 +973,7 @@ export default function SettingsPage() {
           {/* Action Buttons */}
           <div className="space-y-1.5 pt-2 border-t border-border/20 shrink-0">
             <h3 className="font-inter text-[10px] font-bold text-foreground uppercase tracking-wider">
-              ACTIONS
+              {t('settingsPage.actions')}
             </h3>
 
             <button
@@ -927,10 +985,10 @@ export default function SettingsPage() {
               </div>
               <div>
                 <h4 className="font-inter text-[11px] font-bold leading-tight">
-                  Reset All Preferences
+                  {t('settingsPage.resetAllPreferences')}
                 </h4>
                 <p className="font-inter text-[9px] text-muted-foreground">
-                  Restore default workspace settings
+                  {t('settingsPage.resetAllPreferencesDesc')}
                 </p>
               </div>
             </button>
@@ -944,10 +1002,10 @@ export default function SettingsPage() {
               </div>
               <div>
                 <h4 className="font-inter text-[11px] font-bold leading-tight">
-                  Export Preferences
+                  {t('settingsPage.exportPreferences')}
                 </h4>
                 <p className="font-inter text-[9px] text-muted-foreground">
-                  Download your workspace preferences
+                  {t('settingsPage.exportPreferencesDesc')}
                 </p>
               </div>
             </button>
