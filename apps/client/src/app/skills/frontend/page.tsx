@@ -1031,22 +1031,34 @@ export default function FrontendSkillsPage() {
                     onClick={() => triggerSimulation(idx)}
                     className={`group w-full rounded-[8px] border p-2.5 text-left transition-all ${
                       isSelected
-                        ? 'border-blue-500/50 bg-blue-500/10 dark:bg-blue-950/30'
+                        ? 'border-blue-500/70 bg-[#0b1633] text-blue-100'
                         : 'border-border/30 bg-muted/20 hover:bg-muted/40'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-inter text-[11px] font-bold text-foreground">
+                      <span
+                        className={`font-inter text-[11px] font-bold ${
+                          isSelected ? 'text-blue-100' : 'text-foreground'
+                        }`}
+                      >
                         {event.action}
                       </span>
                       <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
                         {event.latency}
                       </span>
                     </div>
-                    <p className="mt-1 font-mono text-[10.5px] text-muted-foreground truncate">
+                    <p
+                      className={`mt-1 truncate font-mono text-[10.5px] ${
+                        isSelected ? 'text-blue-200/90' : 'text-muted-foreground'
+                      }`}
+                    >
                       {event.target}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-muted-foreground/80 line-clamp-1">
+                    <p
+                      className={`mt-0.5 line-clamp-1 text-[10px] ${
+                        isSelected ? 'text-blue-200/75' : 'text-muted-foreground/80'
+                      }`}
+                    >
                       {event.description}
                     </p>
                   </button>

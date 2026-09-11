@@ -1098,7 +1098,7 @@ export default function BackendSkillsPage() {
                     onClick={() => triggerSimulation(idx)}
                     className={`group w-full rounded-[8px] border p-2.5 text-left transition-all ${
                       isSelected
-                        ? 'border-emerald-500/50 bg-emerald-500/10 dark:bg-emerald-950/30'
+                        ? 'border-emerald-500/70 bg-[#0b1633] text-emerald-100'
                         : 'border-border/30 bg-muted/20 hover:bg-muted/40'
                     }`}
                   >
@@ -1112,14 +1112,26 @@ export default function BackendSkillsPage() {
                       >
                         {route.method}
                       </span>
-                      <span className="font-mono text-[10px] text-muted-foreground">
+                      <span
+                        className={`font-mono text-[10px] ${
+                          isSelected ? 'text-emerald-200/90' : 'text-muted-foreground'
+                        }`}
+                      >
                         {route.latency}
                       </span>
                     </div>
-                    <p className="mt-1 font-mono text-[11px] font-semibold text-foreground truncate">
+                    <p
+                      className={`mt-1 truncate font-mono text-[11px] font-semibold ${
+                        isSelected ? 'text-emerald-100' : 'text-foreground'
+                      }`}
+                    >
                       {route.path}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-muted-foreground line-clamp-1">
+                    <p
+                      className={`mt-0.5 line-clamp-1 text-[10px] ${
+                        isSelected ? 'text-emerald-200/75' : 'text-muted-foreground'
+                      }`}
+                    >
                       {route.description}
                     </p>
                   </button>

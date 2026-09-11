@@ -333,7 +333,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
         className="flex flex-col justify-between gap-3 border-b border-border/40 pb-4 sm:flex-row sm:items-center"
       >
         <div className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-[8px] bg-violet-500/10 text-violet-600 dark:text-violet-400 border border-violet-500/20">
+          <div className="flex size-9 items-center justify-center rounded-[8px] bg-[#0b1633] text-violet-400 border border-violet-900/80">
             <DatabaseZap className="size-5" />
           </div>
           <div>
@@ -353,7 +353,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-violet-600 dark:text-violet-400">
+          <span className="flex items-center gap-1.5 rounded-full border border-violet-900/80 bg-[#0b1633] px-3 py-1 font-mono text-[11px] font-semibold text-violet-300">
             <span className="size-2 rounded-full bg-violet-500 animate-pulse" />
             {t(`skillPages.${resolvedSkillKey}.engineActive`, 'ENGINE ACTIVE')}
           </span>
@@ -375,7 +375,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md md:col-span-2"
         >
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-[8px] bg-violet-50 text-violet-600 dark:bg-violet-950/50 dark:text-violet-400 border border-violet-500/20">
+            <div className="flex size-10 items-center justify-center rounded-[8px] bg-[#0b1633] text-violet-400 border border-violet-900/80">
               <Database className="size-6" />
             </div>
             <div>
@@ -410,7 +410,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
               return (
                 <div
                   key={i}
-                  className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-muted/30"
+                  className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-white dark:hover:bg-muted/30"
                 >
                   <div className="flex size-6 shrink-0 items-center justify-center text-violet-600 dark:text-violet-400">
                     <Icon className="size-4 shrink-0" />
@@ -501,7 +501,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
             return (
               <div
                 key={idx}
-                className="font-inter relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-muted/20 p-3.5 transition-colors hover:bg-muted/40"
+                className="font-inter relative flex flex-col justify-between rounded-[8px] border border-border/40 bg-white p-3.5 transition-colors hover:bg-white dark:bg-muted/20 dark:hover:bg-muted/40"
               >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="rounded bg-violet-500/10 px-1.5 py-0.5 font-mono text-[9px] font-bold text-violet-600 dark:text-violet-400">
@@ -551,7 +551,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
                 key={app.id}
                 className="flex items-start gap-3 border-b border-border/40 pb-4 last:border-0 last:pb-0"
               >
-                <div className="flex size-10 shrink-0 items-center justify-center rounded-[8px] bg-muted text-foreground/70">
+                <div className="flex size-10 shrink-0 items-center justify-center rounded-[8px] bg-[#0b1633] text-violet-400 border border-violet-900/80">
                   <Database className="size-5" />
                 </div>
                 <div className="flex-1">
@@ -565,7 +565,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
                   <p className="mb-2 line-clamp-2 text-[11px] text-muted-foreground">
                     {app.description}
                   </p>
-                  <span className="rounded bg-violet-50 px-2 py-0.5 font-mono text-[9px] font-semibold text-violet-700 dark:bg-violet-950/60 dark:text-violet-300">
+                  <span className="rounded bg-[#0b1633] px-2 py-0.5 font-mono text-[9px] font-semibold text-violet-300 border border-violet-900/80">
                     {app.badge}
                   </span>
                 </div>
@@ -593,7 +593,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.04 }}
-                  className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-border/40 bg-muted/20 p-3 text-center transition-colors hover:bg-muted/40"
+                  className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-border/40 bg-white p-3 text-center transition-colors hover:bg-white dark:bg-muted/20 dark:hover:bg-muted/40"
                 >
                   <Icon className="size-5 text-foreground/70" />
                   <span className="text-[10px] font-medium leading-tight">{item.label}</span>
@@ -635,7 +635,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
               <motion.span
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="rounded-[4px] border border-border/50 bg-muted/30 px-2.5 py-1 text-[11px] font-medium"
+                className="rounded-[4px] border border-border/50 bg-white px-2.5 py-1 text-[11px] font-medium dark:bg-muted/30"
               >
                 {tech}
               </motion.span>
@@ -717,7 +717,7 @@ export default function DatabasesView({ data, skillKey }: DatabasesViewProps) {
                   <span className="font-medium">{tech.label}</span>
                 </div>
                 <span className="font-mono font-bold">{tech.percentage}%</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-blue-100 dark:bg-blue-950">
                   <motion.div
                     className="h-full rounded-full bg-violet-600 dark:bg-violet-500"
                     initial={{ width: 0 }}

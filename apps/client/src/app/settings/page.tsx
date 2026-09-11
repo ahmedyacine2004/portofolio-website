@@ -436,7 +436,7 @@ export default function SettingsPage() {
   }[previewDevice];
 
   return (
-    <div className="font-inter flex h-full w-full lg:max-h-[620px] flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
+    <div className="font-inter flex h-full w-full flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
       {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0 pb-3 border-b border-border/40">
         <div>

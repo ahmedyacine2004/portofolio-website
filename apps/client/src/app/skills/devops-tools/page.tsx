@@ -628,19 +628,31 @@ export default function DevOpsToolsSkillsPage() {
                     onClick={() => runPipelineSimulation(idx)}
                     className={`group w-full rounded-[8px] border p-2.5 text-left transition-all ${
                       isSelected
-                        ? 'border-amber-500/50 bg-amber-500/10 dark:bg-amber-950/30'
+                        ? 'border-amber-500/70 bg-[#0b1633] text-amber-100'
                         : 'border-border/30 bg-muted/20 hover:bg-muted/40'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-inter text-[11.5px] font-bold text-foreground">
+                      <span
+                        className={`font-inter text-[11.5px] font-bold ${
+                          isSelected ? 'text-amber-100' : 'text-foreground'
+                        }`}
+                      >
                         {preset.name}
                       </span>
-                      <span className="font-mono text-[10px] text-amber-600 dark:text-amber-400">
+                      <span
+                        className={`font-mono text-[10px] ${
+                          isSelected ? 'text-amber-200/90' : 'text-amber-600 dark:text-amber-400'
+                        }`}
+                      >
                         {preset.duration}
                       </span>
                     </div>
-                    <p className="mt-1 font-mono text-[10px] text-muted-foreground truncate">
+                    <p
+                      className={`mt-1 truncate font-mono text-[10px] ${
+                        isSelected ? 'text-amber-200/75' : 'text-muted-foreground'
+                      }`}
+                    >
                       {preset.trigger}
                     </p>
                   </button>

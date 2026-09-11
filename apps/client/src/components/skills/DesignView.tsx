@@ -5,40 +5,20 @@ import { useTranslation } from '@/hooks/use-translation';
 import { motion, Variants } from 'framer-motion';
 import {
   Activity,
-  ArrowRight,
   Award,
   Boxes,
   Check,
-  CheckCircle2,
   Clock,
   Compass,
   Copy,
-  Eye,
-  FileCode2,
   Folder,
-  FolderCheck,
-  Grid,
-  Heart,
   Image as ImageIcon,
   Layers,
-  Layers3,
-  Layout,
-  LucideIcon,
-  Maximize2,
-  Monitor,
-  MousePointerClick,
-  Move,
   Palette,
-  Play,
-  RotateCw,
   Shield,
-  Sliders,
   Sparkles,
   TrendingUp,
-  Type,
-  Video,
   Wand2,
-  Wrench,
   Zap,
 } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -344,7 +324,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
         className="flex flex-col justify-between gap-3 border-b border-border/40 pb-4 sm:flex-row sm:items-center"
       >
         <div className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-[8px] bg-pink-500/10 text-pink-600 dark:text-pink-400 border border-pink-500/20">
+          <div className="flex size-9 items-center justify-center rounded-[8px] bg-[#0b1633] text-pink-400 border border-pink-900/80">
             <Palette className="size-5" />
           </div>
           <div>
@@ -364,7 +344,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-pink-500/10 px-3 py-1 font-mono text-[11px] font-semibold text-pink-600 dark:text-pink-400">
+          <span className="flex items-center gap-1.5 rounded-full border border-pink-900/80 bg-[#0b1633] px-3 py-1 font-mono text-[11px] font-semibold text-pink-300">
             <span className="size-2 rounded-full bg-pink-500 animate-pulse" />
             {t(`skillPages.${resolvedSkillKey}.creativeStudio`, 'CREATIVE STUDIO')}
           </span>
@@ -386,7 +366,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
           className="rounded-[12px] border border-border/40 bg-card p-6 shadow-sm transition-shadow duration-300 hover:shadow-md md:col-span-2"
         >
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-[8px] bg-pink-50 text-pink-600 dark:bg-pink-950/50 dark:text-pink-400 border border-pink-500/20">
+            <div className="flex size-10 items-center justify-center rounded-[8px] bg-[#0b1633] text-pink-400 border border-pink-900/80">
               <Wand2 className="size-6" />
             </div>
             <div>
@@ -414,7 +394,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
               return (
                 <div
                   key={i}
-                  className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-muted/30"
+                  className="flex items-center gap-2.5 rounded-[8px] border border-border/40 p-2 transition-colors hover:bg-white dark:hover:bg-muted/30"
                 >
                   <div className="flex size-6 shrink-0 items-center justify-center text-pink-600 dark:text-pink-400">
                     <Icon className="size-4 shrink-0" />
@@ -500,7 +480,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
             </p>
           </div>
 
-          <div className="flex items-center gap-1 rounded-[8px] bg-muted/30 p-1 border border-border/40">
+          <div className="flex items-center gap-1 rounded-[8px] bg-white p-1 border border-border/40 dark:bg-muted/30">
             <button
               onClick={() => setActiveTab('gallery')}
               className={`rounded-[6px] px-2.5 py-1 text-[11px] font-semibold transition-all ${
@@ -552,7 +532,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
                 <motion.div
                   key={app.id}
                   whileHover={{ y: -4 }}
-                  className="group flex flex-col justify-between overflow-hidden rounded-[10px] border border-border/40 bg-muted/10 p-3.5 shadow-2xs transition-all hover:border-pink-500/40 hover:shadow-md"
+                  className="group flex flex-col justify-between overflow-hidden rounded-[10px] border border-border/40 bg-white p-3.5 shadow-2xs transition-all hover:border-pink-500/40 hover:shadow-md dark:bg-muted/10"
                 >
                   <div>
                     <div className="relative mb-3 h-40 w-full overflow-hidden rounded-[8px] bg-slate-950">
@@ -607,7 +587,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
             {displayTokens.map((token) => (
               <div
                 key={token.hex}
-                className="flex flex-col justify-between rounded-[10px] border border-border/40 bg-muted/10 p-3.5"
+                className="flex flex-col justify-between rounded-[10px] border border-border/40 bg-white p-3.5 dark:bg-muted/10"
               >
                 <div>
                   <div
@@ -620,7 +600,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
 
                 <button
                   onClick={() => copyHex(token.hex)}
-                  className="mt-3 flex items-center justify-between rounded-[6px] bg-card p-2 border border-border/40 font-mono text-[10.5px] text-foreground hover:bg-muted/40 transition-colors"
+                  className="mt-3 flex items-center justify-between rounded-[6px] bg-card p-2 border border-border/40 font-mono text-[10.5px] text-foreground hover:bg-white dark:hover:bg-muted/40 transition-colors"
                 >
                   <span>{token.hex}</span>
                   {copiedToken === token.hex ? (
@@ -637,7 +617,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
         {/* Tab 3: Interactive UI Component Sandbox */}
         {activeTab === 'components' && (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
+            <div className="rounded-[10px] border border-border/40 bg-white p-4 space-y-3 dark:bg-muted/10">
               <span className="font-inter text-[11px] font-bold uppercase tracking-wider text-foreground">
                 {t(
                   `skillPages.${resolvedSkillKey}.gallery.uiComponents.buttonVariants`,
@@ -645,19 +625,19 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
                 )}
               </span>
               <div className="flex flex-col gap-2">
-                <button className="w-full rounded-[6px] bg-pink-600 px-3 py-2 text-[12px] font-semibold text-white shadow-xs hover:bg-pink-700 transition-colors">
+                <button className="w-full rounded-[6px] border border-pink-900/80 bg-[#0b1633] px-3 py-2 text-[12px] font-semibold text-pink-300 shadow-xs transition-colors hover:bg-pink-950/60">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.primaryButton`,
                     'Primary Pink Solid',
                   )}
                 </button>
-                <button className="w-full rounded-[6px] border border-pink-500/50 bg-pink-500/10 px-3 py-2 text-[12px] font-semibold text-pink-600 dark:text-pink-400 hover:bg-pink-500/20 transition-colors">
+                <button className="w-full rounded-[6px] border border-pink-500/50 bg-[#0b1633] px-3 py-2 text-[12px] font-semibold text-pink-300 hover:bg-pink-950/60 transition-colors">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.secondaryButton`,
                     'Secondary Ghost Variant',
                   )}
                 </button>
-                <button className="w-full rounded-[6px] border border-border/60 bg-card px-3 py-2 text-[12px] font-semibold text-foreground hover:bg-muted/40 transition-colors">
+                <button className="w-full rounded-[6px] border border-border/60 bg-card px-3 py-2 text-[12px] font-semibold text-foreground hover:bg-white dark:hover:bg-muted/40 transition-colors">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.outlineButton`,
                     'Neutral Outline',
@@ -666,7 +646,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
               </div>
             </div>
 
-            <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
+            <div className="rounded-[10px] border border-border/40 bg-white p-4 space-y-3 dark:bg-muted/10">
               <span className="font-inter text-[11px] font-bold uppercase tracking-wider text-foreground">
                 {t(
                   `skillPages.${resolvedSkillKey}.gallery.uiComponents.badgePrimitives`,
@@ -674,19 +654,19 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
                 )}
               </span>
               <div className="flex flex-wrap gap-2">
-                <span className="rounded-full border border-pink-500/30 bg-pink-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-pink-600 dark:text-pink-400">
+                <span className="rounded-full border border-pink-900/80 bg-[#0b1633] px-3 py-1 font-mono text-[10.5px] font-bold text-pink-300">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.activeVariant`,
                     'Active Variant',
                   )}
                 </span>
-                <span className="rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-blue-600 dark:text-blue-400">
+                <span className="rounded-full border border-blue-900/80 bg-[#0b1633] px-3 py-1 font-mono text-[10.5px] font-bold text-blue-300">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.informationTag`,
                     'Information Tag',
                   )}
                 </span>
-                <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-[10.5px] font-bold text-emerald-600 dark:text-emerald-400">
+                <span className="rounded-full border border-emerald-900/80 bg-[#0b1633] px-3 py-1 font-mono text-[10.5px] font-bold text-emerald-300">
                   {t(
                     `skillPages.${resolvedSkillKey}.gallery.uiComponents.responsiveTag`,
                     '100% Responsive',
@@ -701,7 +681,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
               </div>
             </div>
 
-            <div className="rounded-[10px] border border-border/40 bg-muted/10 p-4 space-y-3">
+            <div className="rounded-[10px] border border-border/40 bg-white p-4 space-y-3 dark:bg-muted/10">
               <span className="font-inter text-[11px] font-bold uppercase tracking-wider text-foreground">
                 {t(
                   `skillPages.${resolvedSkillKey}.gallery.uiComponents.typographyScale`,
@@ -781,7 +761,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.04 }}
-                className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-border/40 bg-muted/20 p-3 text-center transition-colors hover:bg-muted/40"
+                className="flex flex-col items-center justify-center gap-2 rounded-[8px] border border-border/40 bg-white p-3 text-center transition-colors hover:bg-white dark:bg-muted/20 dark:hover:bg-muted/40"
               >
                 <Palette className="size-5 text-foreground/70" />
                 <span className="text-[10px] font-medium leading-tight">{item.label}</span>
@@ -822,7 +802,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
               <motion.span
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="rounded-[4px] border border-border/50 bg-muted/30 px-2.5 py-1 text-[11px] font-medium"
+                className="rounded-[4px] border border-border/50 bg-white px-2.5 py-1 text-[11px] font-medium dark:bg-muted/30"
               >
                 {tech}
               </motion.span>
@@ -904,7 +884,7 @@ export default function DesignView({ data, skillKey }: DesignViewProps) {
                   <span className="font-medium">{tech.label}</span>
                 </div>
                 <span className="font-mono font-bold">{tech.percentage}%</span>
-                <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
+                <div className="h-2 flex-1 overflow-hidden rounded-full bg-blue-100 dark:bg-blue-950">
                   <motion.div
                     className="h-full rounded-full bg-pink-600 dark:bg-pink-500"
                     initial={{ width: 0 }}

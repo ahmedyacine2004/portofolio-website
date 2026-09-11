@@ -289,7 +289,7 @@ export default function AIAssistantPage() {
   };
 
   return (
-    <div className="font-inter flex h-full w-full flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:max-h-[620px] lg:overflow-hidden scrollbar-none sm:p-3.5">
+    <div className="font-inter flex h-full w-full flex-col overflow-y-auto select-none rounded-sm bg-background p-2.5 text-foreground shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:overflow-hidden scrollbar-none sm:p-3.5">
       {isAttachmentModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
           <div className="w-full max-w-md rounded-xs border border-border bg-background p-4 shadow-2xl">
