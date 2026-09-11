@@ -9,6 +9,14 @@ const keyboardModelUrl = '/3d/keyboard.glb';
 
 useGLTF.preload(keyboardModelUrl);
 
+function isKeycapMaterial(material: THREE.Material): boolean {
+  return (
+    material.name.startsWith('keycaps') ||
+    material.name.startsWith('switch.') ||
+    material.name.startsWith('switch_bottom')
+  );
+}
+
 /**
  * Deep-clone a scene and fix all MeshStandardMaterial properties so the model
  * looks correct from the very first frame — no need for a post-render useEffect.
@@ -58,6 +66,7 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
       ? document.documentElement.dataset.interactive3d !== 'false'
       : true;
 
+  const originalZPositionsRef = useRef(new WeakMap<THREE.Object3D, number>());
   const dragStateRef = useRef({
     active: false,
     startX: 0,
@@ -108,7 +117,7 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerup', handlePointerUp);
     };
-  }, [gl]);
+  }, [gl, isInteractiveEnabled]);
 
   useFrame(() => {
     if (!groupRef.current) return;
@@ -146,6 +155,8 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
 
   const resetKeyMaterial = (object: THREE.Object3D | null) => {
     if (!object || !(object instanceof THREE.Mesh)) return;
+    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    if (!materials.some(isKeycapMaterial)) return;
     const material = Array.isArray(object.material) ? object.material[0] : object.material;
     if (material && 'emissive' in material) {
       const stdMat = material as THREE.MeshStandardMaterial;
@@ -156,17 +167,21 @@ export default function KeyboardModel({ scaleMultiplier = 1 }: { scaleMultiplier
 
   const handleKeyInteraction = (object: THREE.Object3D | null, isHoveredKey = false) => {
     if (!object || !(object instanceof THREE.Mesh)) return;
+    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    if (!materials.some(isKeycapMaterial)) return;
     const material = Array.isArray(object.material) ? object.material[0] : object.material;
     if (!material || !('emissive' in material)) return;
 
     const stdMat = material as THREE.MeshStandardMaterial;
+    const originalZ = originalZPositionsRef.current.get(object) ?? object.position.z;
+    originalZPositionsRef.current.set(object, originalZ);
 
     if (isHoveredKey) {
-      object.position.z = -0.006;
+      object.position.z = originalZ - 0.006;
       stdMat.emissive.setHex(0x3b82f6);
       stdMat.emissiveIntensity = 0.45;
     } else {
-      object.position.z = 0;
+      object.position.z = originalZ;
       stdMat.emissive.setHex(0x000000);
       stdMat.emissiveIntensity = 0;
     }

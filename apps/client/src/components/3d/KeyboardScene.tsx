@@ -293,13 +293,26 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             {/* Fog fades the floor edge into the background so plane boundary is invisible */}
             <fog attach="fog" args={[isDark ? '#000000' : '#ffffff', 22, 65]} />
 
-            <ambientLight intensity={isDark ? 0.45 : 0.65} />
+            <ambientLight intensity={isDark ? 0.45 : 0.9} color={isDark ? '#ffffff' : '#fffaf2'} />
 
-            <directionalLight position={[4, 4, 4]} intensity={isDark ? 1.5 : 1.4} castShadow />
+            <directionalLight
+              position={[4, 6, 5]}
+              intensity={isDark ? 1.5 : 2.1}
+              color={isDark ? '#ffffff' : '#fff8ed'}
+              castShadow
+            />
 
-            <directionalLight position={[-3, 2, 2]} intensity={isDark ? 0.6 : 0.7} />
+            <directionalLight
+              position={[-3, 3, 2]}
+              intensity={isDark ? 0.6 : 0.95}
+              color={isDark ? '#ffffff' : '#dbeafe'}
+            />
 
-            <pointLight position={[0, 1.5, 2]} intensity={isDark ? 0.8 : 0.6} />
+            <pointLight
+              position={[0, 1.5, 2]}
+              intensity={isDark ? 0.8 : 0.45}
+              color={isDark ? '#ffffff' : '#ffffff'}
+            />
 
             {isDark && (
               <Stars
@@ -341,7 +354,7 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
                 minDepthThreshold={0.4}
                 maxDepthThreshold={1}
                 metalness={0.05}
-                color={isDark ? '#080808' : '#6ea8ff'}
+                color={isDark ? '#080808' : '#dbe4ef'}
               />
             </mesh>
           </Canvas>
