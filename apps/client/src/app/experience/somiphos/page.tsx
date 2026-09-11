@@ -21,47 +21,87 @@ import Link from 'next/link';
 
 import somiphosImage from '@/assets/images/internships/somiphos.jpg';
 import somiphosLogo from '@/assets/images/internships/somiphos-logo.png';
-
-const AT_A_GLANCE = [
-  { icon: Briefcase, label: 'Type', value: 'Integration Internship' },
-  { icon: Building2, label: 'Company', value: 'SOMIPHOS' },
-  { icon: MapPin, label: 'Location', value: 'Algeria' },
-  { icon: Calendar, label: 'Period', value: 'Jun 2025 – Jul 2025' },
-  { icon: Clock, label: 'Duration', value: '2 months' },
-  { icon: Code2, label: 'Domain', value: 'Mining & Phosphates' },
-  { icon: ShieldCheck, label: 'Status', value: 'Completed' },
-];
-
-const RESPONSIBILITIES = [
-  'Observed and studied enterprise IT infrastructure in a mining environment',
-  'Analyzed existing internal systems and data management workflows',
-  'Assisted in documenting technical processes and system architecture',
-  'Collaborated with IT staff to understand network topology and security',
-  'Participated in team meetings and technical planning sessions',
-];
-
-const KEY_LEARNINGS = [
-  'Understanding of enterprise-level IT operations in industrial sectors',
-  'Exposure to industrial-scale data management and reporting systems',
-  'Practical insight into how tech teams operate within large corporations',
-  'Professional communication skills within a formal workplace environment',
-  'Ability to adapt quickly to unfamiliar technical environments',
-];
-
-const SKILLS_GAINED = [
-  { name: 'System Analysis', level: 80 },
-  { name: 'Technical Documentation', level: 85 },
-  { name: 'Team Collaboration', level: 90 },
-  { name: 'Problem Solving', level: 82 },
-  { name: 'Professional Communication', level: 88 },
-];
-
-const DOCUMENTS = [
-  { name: 'Internship Certificate', type: 'PDF' },
-  { name: 'Completion Letter', type: 'PDF' },
-];
+import { useTranslation } from '@/hooks/use-translation';
 
 export default function SomiphosInternshipPage() {
+  const { t, tArray } = useTranslation();
+
+  const atAGlance = [
+    {
+      icon: Briefcase,
+      label: t('somiphosMilestone.type', 'Type'),
+      value: t('somiphosMilestone.typeValue', 'Integration Internship'),
+    },
+    {
+      icon: Building2,
+      label: t('somiphosMilestone.company', 'Company'),
+      value: t('somiphosMilestone.companyValue', 'SOMIPHOS'),
+    },
+    {
+      icon: MapPin,
+      label: t('somiphosMilestone.location', 'Location'),
+      value: t('somiphosMilestone.locationValue', 'Algeria'),
+    },
+    {
+      icon: Calendar,
+      label: t('somiphosMilestone.period', 'Period'),
+      value: t('somiphosMilestone.periodValue', 'Jun 2025 – Jul 2025'),
+    },
+    {
+      icon: Clock,
+      label: t('somiphosMilestone.duration', 'Duration'),
+      value: t('somiphosMilestone.durationValue', '2 months'),
+    },
+    {
+      icon: Code2,
+      label: t('somiphosMilestone.domain', 'Domain'),
+      value: t('somiphosMilestone.domainValue', 'Mining & Phosphates'),
+    },
+    {
+      icon: ShieldCheck,
+      label: t('somiphosMilestone.status', 'Status'),
+      value: t('somiphosMilestone.statusValue', 'Completed'),
+    },
+  ];
+
+  const responsibilitiesArray = tArray<string>('somiphosMilestone.responsibilitiesList');
+  const fallbackResponsibilities = [
+    'Observed and studied enterprise IT infrastructure in a mining environment',
+    'Analyzed existing internal systems and data management workflows',
+    'Assisted in documenting technical processes and system architecture',
+    'Collaborated with IT staff to understand network topology and security',
+    'Participated in team meetings and technical planning sessions',
+  ];
+  const renderedResponsibilities =
+    responsibilitiesArray.length > 0 ? responsibilitiesArray : fallbackResponsibilities;
+
+  const keyLearningsArray = tArray<string>('somiphosMilestone.keyLearningsList');
+  const fallbackKeyLearnings = [
+    'Understanding of enterprise-level IT operations in industrial sectors',
+    'Exposure to industrial-scale data management and reporting systems',
+    'Practical insight into how tech teams operate within large corporations',
+    'Professional communication skills within a formal workplace environment',
+    'Ability to adapt quickly to unfamiliar technical environments',
+  ];
+  const renderedKeyLearnings =
+    keyLearningsArray.length > 0 ? keyLearningsArray : fallbackKeyLearnings;
+
+  const skillsGained = [
+    { name: t('somiphosMilestone.skills.systemAnalysis', 'System Analysis'), level: 80 },
+    { name: t('somiphosMilestone.skills.technicalDoc', 'Technical Documentation'), level: 85 },
+    { name: t('somiphosMilestone.skills.teamCollab', 'Team Collaboration'), level: 90 },
+    { name: t('somiphosMilestone.skills.problemSolving', 'Problem Solving'), level: 82 },
+    {
+      name: t('somiphosMilestone.skills.professionalComm', 'Professional Communication'),
+      level: 88,
+    },
+  ];
+
+  const documents = [
+    { name: t('somiphosMilestone.docCertificate', 'Internship Certificate'), type: 'PDF' },
+    { name: t('somiphosMilestone.docCompletion', 'Completion Letter'), type: 'PDF' },
+  ];
+
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter border border-border/60 shadow-xs select-none">
       {/* 1. BREADCRUMB HEADER */}
@@ -73,8 +113,10 @@ export default function SomiphosInternshipPage() {
           <ChevronLeft className="size-3" />
         </Link>
         <span>
-          Experience / Milestone Details{' '}
-          <span className="text-foreground">— SOMIPHOS Internship</span>
+          {t('somiphosMilestone.breadcrumb', 'Experience / Milestone Details')}{' '}
+          <span className="text-foreground">
+            {t('somiphosMilestone.breadcrumbHighlight', '— SOMIPHOS Internship')}
+          </span>
         </span>
       </div>
 
@@ -89,8 +131,7 @@ export default function SomiphosInternshipPage() {
             {/* Title & Info */}
             <div className="md:col-span-7 space-y-2">
               <div className="flex items-center gap-3">
-                {/* Company logo placeholder — styled with SOMIPHOS brand */}
-                <div className="relative flex size-11 items-center justify-center rounded-[8px] border border-orange-500/30 bg-white p-1 shrink-0 overflow-hidden">
+                <div className="relative flex size-11 items-center justify-center rounded-[8px] border border-orange-500/30 bg-white p-1 shrink-0 overflow-hidden shadow-2xs">
                   <Image
                     src={somiphosLogo}
                     alt="SOMIPHOS Logo"
@@ -101,15 +142,17 @@ export default function SomiphosInternshipPage() {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-xl font-black tracking-tight text-foreground uppercase font-inter">
-                      SOMIPHOS
+                      {t('somiphosMilestone.title', 'SOMIPHOS')}
                     </h1>
                     <span className="rounded-[4px] bg-orange-500/10 px-1.5 py-0.5 text-[8.5px] font-bold text-orange-600 dark:text-orange-400 border border-orange-500/20">
-                      Integration Internship
+                      {t('somiphosMilestone.badge', 'Integration Internship')}
                     </span>
-                    <span className="text-[9px] font-medium text-muted-foreground">2025</span>
+                    <span className="text-[9px] font-medium text-muted-foreground">
+                      {t('somiphosMilestone.year', '2025')}
+                    </span>
                   </div>
                   <p className="text-[10px] font-medium text-muted-foreground mt-0.5">
-                    Société des Mines de Phosphates — Algeria
+                    {t('somiphosMilestone.subtitle', 'Société des Mines de Phosphates — Algeria')}
                   </p>
                 </div>
               </div>
@@ -117,28 +160,36 @@ export default function SomiphosInternshipPage() {
               <div className="space-y-1 pt-1">
                 <div className="flex items-center gap-1.5 text-orange-500 font-bold text-[10px] uppercase tracking-wider">
                   <Zap className="size-3 fill-orange-500/30" />
-                  <span>ABOUT THE COMPANY</span>
+                  <span>{t('somiphosMilestone.aboutCompany', 'ABOUT THE COMPANY')}</span>
                 </div>
                 <p className="text-[9.5px] font-medium leading-relaxed text-muted-foreground max-w-sm">
-                  SOMIPHOS (Société des Mines de Phosphates) is a major Algerian state-owned mining
-                  company specializing in phosphate extraction and processing. This integration
-                  internship provided hands-on exposure to IT operations within an industrial
-                  enterprise environment.
+                  {t(
+                    'somiphosMilestone.aboutCompanyDesc',
+                    'SOMIPHOS (Société des Mines de Phosphates) is a major Algerian state-owned mining company specializing in phosphate extraction and processing. This integration internship provided hands-on exposure to IT operations within an industrial enterprise environment.',
+                  )}
                 </p>
               </div>
 
               <div className="grid grid-cols-3 gap-2 pt-1">
                 <div className="rounded-[6px] border border-border/50 bg-[var(--color-bg-primary)] p-2 text-center">
                   <p className="text-[11px] font-black text-orange-500">2</p>
-                  <p className="text-[7.5px] text-muted-foreground">Months</p>
+                  <p className="text-[7.5px] text-muted-foreground">
+                    {t('somiphosMilestone.statMonths', 'Months')}
+                  </p>
                 </div>
                 <div className="rounded-[6px] border border-border/50 bg-[var(--color-bg-primary)] p-2 text-center">
                   <p className="text-[11px] font-black text-foreground">IT</p>
-                  <p className="text-[7.5px] text-muted-foreground">Domain</p>
+                  <p className="text-[7.5px] text-muted-foreground">
+                    {t('somiphosMilestone.statDomain', 'Domain')}
+                  </p>
                 </div>
                 <div className="rounded-[6px] border border-border/50 bg-[var(--color-bg-primary)] p-2 text-center">
-                  <p className="text-[11px] font-black text-emerald-500">Done</p>
-                  <p className="text-[7.5px] text-muted-foreground">Status</p>
+                  <p className="text-[11px] font-black text-emerald-500">
+                    {t('somiphosMilestone.statStatusDone', 'Done')}
+                  </p>
+                  <p className="text-[7.5px] text-muted-foreground">
+                    {t('somiphosMilestone.statStatus', 'Status')}
+                  </p>
                 </div>
               </div>
             </div>
@@ -155,7 +206,7 @@ export default function SomiphosInternshipPage() {
                 />
                 <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-black/40 to-transparent flex items-end justify-center pb-1">
                   <span className="text-[7px] font-semibold text-white/80 uppercase tracking-wider">
-                    Internship Certificate
+                    {t('somiphosMilestone.certificateCaption', 'Internship Certificate')}
                   </span>
                 </div>
               </div>
@@ -167,9 +218,9 @@ export default function SomiphosInternshipPage() {
           {/* Skills progress bars */}
           <div className="space-y-2 relative">
             <p className="text-[10px] font-bold uppercase tracking-wide text-foreground">
-              SKILLS DEVELOPED
+              {t('somiphosMilestone.skillsDeveloped', 'SKILLS DEVELOPED')}
             </p>
-            {SKILLS_GAINED.map((skill) => (
+            {skillsGained.map((skill) => (
               <div key={skill.name} className="space-y-0.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[8.5px] font-semibold text-foreground">{skill.name}</span>
@@ -189,11 +240,11 @@ export default function SomiphosInternshipPage() {
         {/* Right — At a Glance */}
         <div className="lg:col-span-4 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-3">
           <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-            AT A GLANCE
+            {t('somiphosMilestone.atAGlance', 'AT A GLANCE')}
           </h2>
 
           <div className="space-y-1.5 text-[8.5px]">
-            {AT_A_GLANCE.map((info) => {
+            {atAGlance.map((info) => {
               const Icon = info.icon;
               return (
                 <div
@@ -216,7 +267,7 @@ export default function SomiphosInternshipPage() {
           <div className="rounded-[6px] border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 flex items-center gap-2">
             <span className="size-2 rounded-full bg-emerald-500 shrink-0" />
             <span className="text-[8.5px] font-bold text-emerald-600 dark:text-emerald-400">
-              Successfully Completed — Jun–Jul 2025
+              {t('somiphosMilestone.completedBadge', 'Successfully Completed — Jun–Jul 2025')}
             </span>
           </div>
         </div>
@@ -228,10 +279,10 @@ export default function SomiphosInternshipPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <Briefcase className="size-3.5 text-orange-500" />
-            <span>RESPONSIBILITIES</span>
+            <span>{t('somiphosMilestone.responsibilities', 'RESPONSIBILITIES')}</span>
           </div>
           <ul className="space-y-1.5 text-[8.5px] font-medium text-foreground">
-            {RESPONSIBILITIES.map((item) => (
+            {renderedResponsibilities.map((item) => (
               <li key={item} className="flex items-start gap-1.5">
                 <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">{item}</span>
@@ -244,10 +295,10 @@ export default function SomiphosInternshipPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <Layers className="size-3.5 text-amber-500" />
-            <span>KEY LEARNINGS</span>
+            <span>{t('somiphosMilestone.keyLearnings', 'KEY LEARNINGS')}</span>
           </div>
           <ul className="space-y-1.5 text-[8.5px] font-medium text-foreground">
-            {KEY_LEARNINGS.map((item) => (
+            {renderedKeyLearnings.map((item) => (
               <li key={item} className="flex items-start gap-1.5">
                 <Award className="size-3 text-amber-500 shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">{item}</span>
@@ -260,10 +311,10 @@ export default function SomiphosInternshipPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <FileText className="size-3.5 text-violet-500" />
-            <span>DOCUMENTS</span>
+            <span>{t('somiphosMilestone.documents', 'DOCUMENTS')}</span>
           </div>
           <div className="space-y-1.5">
-            {DOCUMENTS.map((doc) => (
+            {documents.map((doc) => (
               <div
                 key={doc.name}
                 className="flex items-center justify-between rounded-[6px] border border-border/40 bg-[var(--color-bg-primary)] px-2.5 py-1.5 transition-colors hover:border-border"
@@ -289,12 +340,13 @@ export default function SomiphosInternshipPage() {
 
           <div className="pt-2 border-t border-border/30 space-y-1">
             <p className="text-[9px] font-bold uppercase tracking-wide text-foreground">
-              OVERALL EXPERIENCE
+              {t('somiphosMilestone.overallExperience', 'OVERALL EXPERIENCE')}
             </p>
             <p className="text-[8.5px] font-medium leading-relaxed text-muted-foreground">
-              This integration internship at SOMIPHOS gave me my first taste of professional IT work
-              in a large-scale industrial enterprise, reinforcing the importance of structured
-              systems and collaborative problem solving.
+              {t(
+                'somiphosMilestone.overallExperienceDesc',
+                'This integration internship at SOMIPHOS gave me my first taste of professional IT work in a large-scale industrial enterprise, reinforcing the importance of structured systems and collaborative problem solving.',
+              )}
             </p>
           </div>
         </div>
@@ -306,8 +358,11 @@ export default function SomiphosInternshipPage() {
           <Zap className="size-2.5 fill-orange-500" />
         </div>
         <p className="font-inter">
-          <span className="font-bold text-foreground">Tip</span> Select a section from the sidebar
-          to explore more details about my experience.
+          <span className="font-bold text-foreground">{t('somiphosMilestone.tip', 'Tip')}</span>{' '}
+          {t(
+            'somiphosMilestone.tipText',
+            'Select a section from the sidebar to explore more details about my experience.',
+          )}
         </p>
       </footer>
     </div>

@@ -23,69 +23,141 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import certificateImage from '@/assets/images/certificate.png';
-
-const MILESTONE_INFO = [
-  { icon: GraduationCap, label: 'Degree', value: "Bachelor's Degree" },
-  { icon: Layers, label: 'Field', value: 'Computer Science' },
-  { icon: Sparkles, label: 'Specialization', value: 'Web Dev & Computer Graphics' },
-  { icon: Building2, label: 'Institution', value: "M'Hamed Bougara University" },
-  { icon: MapPin, label: 'Location', value: 'Boumerdes, Algeria' },
-  { icon: ShieldCheck, label: 'Status', value: 'Completed' },
-  { icon: Calendar, label: 'Credits Earned', value: '180 ECTS' },
-  { icon: Clock, label: 'Duration', value: '2021 – 2025' },
-];
-
-const CORE_SUBJECTS = [
-  { name: 'Web Development', grade: '16/20', color: 'bg-blue-500' },
-  { name: 'Computer Graphics', grade: '15/20', color: 'bg-purple-500' },
-  { name: 'Data Structures', grade: '14/20', color: 'bg-emerald-500' },
-  { name: 'Algorithms', grade: '13/20', color: 'bg-amber-500' },
-  { name: 'Operating Systems', grade: '14/20', color: 'bg-rose-500' },
-  { name: 'Databases', grade: '15/20', color: 'bg-cyan-500' },
-];
-
-const HIGHLIGHTS = [
-  'Strong academic performance across core computer science subjects',
-  'Completed multiple practical projects and real-world applications',
-  'Specialized in Web Development and Computer Graphics',
-  'Built a solid foundation in full-stack development and system design',
-  'Graduated with a GPA of 14.31/20 — Good Honours',
-];
-
-const DOCUMENTS = [
-  { name: 'Degree Certificate.pdf', type: 'PDF' },
-  { name: 'Academic Transcript.pdf', type: 'PDF' },
-  { name: 'Completion Letter.pdf', type: 'PDF' },
-];
-
-const STATS = [
-  {
-    icon: Award,
-    value: '14.31/20',
-    label: 'Final GPA',
-    color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
-  },
-  {
-    icon: Clock,
-    value: '4 Years',
-    label: 'Duration',
-    color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
-  },
-  {
-    icon: BookOpen,
-    value: '180',
-    label: 'ECTS Credits',
-    color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
-  },
-  {
-    icon: Star,
-    value: 'Good',
-    label: 'Honours',
-    color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
-  },
-];
+import { useTranslation } from '@/hooks/use-translation';
 
 export default function BachelorDegreePage() {
+  const { t, tArray } = useTranslation();
+
+  const milestoneInfo = [
+    {
+      icon: GraduationCap,
+      label: t('bachelorMilestone.degree', 'Degree'),
+      value: t('bachelorMilestone.degreeValue', "Bachelor's Degree"),
+    },
+    {
+      icon: Layers,
+      label: t('bachelorMilestone.field', 'Field'),
+      value: t('bachelorMilestone.fieldValue', 'Computer Science'),
+    },
+    {
+      icon: Sparkles,
+      label: t('bachelorMilestone.specialization', 'Specialization'),
+      value: t('bachelorMilestone.specializationValue', 'Web Dev & Computer Graphics'),
+    },
+    {
+      icon: Building2,
+      label: t('bachelorMilestone.institution', 'Institution'),
+      value: t('bachelorMilestone.institutionValue', "M'Hamed Bougara University"),
+    },
+    {
+      icon: MapPin,
+      label: t('bachelorMilestone.location', 'Location'),
+      value: t('bachelorMilestone.locationValue', 'Boumerdes, Algeria'),
+    },
+    {
+      icon: ShieldCheck,
+      label: t('bachelorMilestone.status', 'Status'),
+      value: t('bachelorMilestone.statusCompleted', 'Completed'),
+    },
+    {
+      icon: Calendar,
+      label: t('bachelorMilestone.creditsEarned', 'Credits Earned'),
+      value: t('bachelorMilestone.creditsValue', '180 ECTS'),
+    },
+    {
+      icon: Clock,
+      label: t('bachelorMilestone.duration', 'Duration'),
+      value: t('bachelorMilestone.durationValue', '2021 – 2025'),
+    },
+  ];
+
+  const coreSubjects = [
+    {
+      name: t('bachelorMilestone.subjects.webDev', 'Web Development'),
+      grade: '16/20',
+      color: 'bg-blue-500',
+    },
+    {
+      name: t('bachelorMilestone.subjects.computerGraphics', 'Computer Graphics'),
+      grade: '15/20',
+      color: 'bg-purple-500',
+    },
+    {
+      name: t('bachelorMilestone.subjects.dataStructures', 'Data Structures'),
+      grade: '14/20',
+      color: 'bg-emerald-500',
+    },
+    {
+      name: t('bachelorMilestone.subjects.algorithms', 'Algorithms'),
+      grade: '13/20',
+      color: 'bg-amber-500',
+    },
+    {
+      name: t('bachelorMilestone.subjects.operatingSystems', 'Operating Systems'),
+      grade: '14/20',
+      color: 'bg-rose-500',
+    },
+    {
+      name: t('bachelorMilestone.subjects.databases', 'Databases'),
+      grade: '15/20',
+      color: 'bg-cyan-500',
+    },
+  ];
+
+  const highlightsArray = tArray<string>('bachelorMilestone.highlightsList');
+  const fallbackHighlights = [
+    'Strong academic performance across core computer science subjects',
+    'Completed multiple practical projects and real-world applications',
+    'Specialized in Web Development and Computer Graphics',
+    'Built a solid foundation in full-stack development and system design',
+    'Graduated with a GPA of 14.31/20 — Good Honours',
+  ];
+  const renderedHighlights = highlightsArray.length > 0 ? highlightsArray : fallbackHighlights;
+
+  const documents = [
+    { name: t('bachelorMilestone.docDegree', 'Degree Certificate.pdf'), type: 'PDF' },
+    { name: t('bachelorMilestone.docTranscript', 'Academic Transcript.pdf'), type: 'PDF' },
+    { name: t('bachelorMilestone.docCompletion', 'Completion Letter.pdf'), type: 'PDF' },
+  ];
+
+  const stats = [
+    {
+      icon: Award,
+      value: '14.31/20',
+      label: t('bachelorMilestone.statGpaLabel', 'Final GPA'),
+      color: 'bg-purple-500/10 text-purple-600 dark:text-purple-400',
+    },
+    {
+      icon: Clock,
+      value: t('bachelorMilestone.statDurationValue', '4 Years'),
+      label: t('bachelorMilestone.statDurationLabel', 'Duration'),
+      color: 'bg-sky-500/10 text-sky-600 dark:text-sky-400',
+    },
+    {
+      icon: BookOpen,
+      value: t('bachelorMilestone.statCreditsValue', '180'),
+      label: t('bachelorMilestone.statCreditsLabel', 'ECTS Credits'),
+      color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+    },
+    {
+      icon: Star,
+      value: t('bachelorMilestone.statHonoursValue', 'Good'),
+      label: t('bachelorMilestone.statHonoursLabel', 'Honours'),
+      color: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+    },
+  ];
+
+  const tagsArray = tArray<string>('bachelorMilestone.tags');
+  const fallbackTags = [
+    'Web Dev',
+    'Computer Graphics',
+    'OOP',
+    'Databases',
+    'Algorithms',
+    'Networks',
+  ];
+  const renderedTags = tagsArray.length > 0 ? tagsArray : fallbackTags;
+
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter border border-border/60 shadow-xs select-none">
       {/* 1. BREADCRUMB HEADER */}
@@ -97,8 +169,10 @@ export default function BachelorDegreePage() {
           <ChevronLeft className="size-3" />
         </Link>
         <span>
-          Experience / Milestone Details{' '}
-          <span className="text-foreground">— Bachelor&apos;s Degree</span>
+          {t('bachelorMilestone.breadcrumb', 'Experience / Milestone Details')}{' '}
+          <span className="text-foreground">
+            {t('bachelorMilestone.breadcrumbHighlight', "— Bachelor's Degree")}
+          </span>
         </span>
       </div>
 
@@ -119,15 +193,20 @@ export default function BachelorDegreePage() {
                 <div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-xl font-black tracking-tight text-foreground uppercase font-inter">
-                      Bachelor&apos;s Degree
+                      {t('bachelorMilestone.title', "Bachelor's Degree")}
                     </h1>
                     <span className="rounded-[4px] bg-emerald-500/10 px-1.5 py-0.5 text-[8.5px] font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                      Completed
+                      {t('bachelorMilestone.statusCompleted', 'Completed')}
                     </span>
-                    <span className="text-[9px] font-medium text-muted-foreground">2025</span>
+                    <span className="text-[9px] font-medium text-muted-foreground">
+                      {t('bachelorMilestone.year', '2025')}
+                    </span>
                   </div>
                   <p className="text-[10px] font-medium text-muted-foreground mt-0.5">
-                    M&apos;Hamed Bougara University — Boumerdes, Algeria
+                    {t(
+                      'bachelorMilestone.university',
+                      "M'Hamed Bougara University — Boumerdes, Algeria",
+                    )}
                   </p>
                 </div>
               </div>
@@ -135,26 +214,26 @@ export default function BachelorDegreePage() {
               <div className="space-y-1 pt-1">
                 <div className="flex items-center gap-1.5 text-blue-500 font-bold text-[10px] uppercase tracking-wider">
                   <Compass className="size-3 fill-blue-500/20" />
-                  <span>SPECIALTY</span>
+                  <span>{t('bachelorMilestone.specialty', 'SPECIALTY')}</span>
                 </div>
                 <p className="text-[9.5px] font-medium leading-relaxed text-muted-foreground max-w-sm">
-                  Web Development and Computer Graphics — a blend of software engineering and visual
-                  computing that shaped my full-stack mindset and creative problem-solving approach.
+                  {t(
+                    'bachelorMilestone.specialtyDesc',
+                    'Web Development and Computer Graphics — a blend of software engineering and visual computing that shaped my full-stack mindset and creative problem-solving approach.',
+                  )}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-1.5 pt-1">
-                {['Web Dev', 'Computer Graphics', 'OOP', 'Databases', 'Algorithms', 'Networks'].map(
-                  (tag) => (
-                    <span
-                      key={tag}
-                      className="flex items-center gap-1 rounded-full bg-[var(--color-bg-primary)] px-2 py-0.5 text-[7.5px] font-bold text-foreground border border-border/50"
-                    >
-                      <span className="size-1 rounded-full bg-blue-500" />
-                      {tag}
-                    </span>
-                  ),
-                )}
+                {renderedTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="flex items-center gap-1 rounded-full bg-[var(--color-bg-primary)] px-2 py-0.5 text-[7.5px] font-bold text-foreground border border-border/50"
+                  >
+                    <span className="size-1 rounded-full bg-blue-500" />
+                    {tag}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -170,7 +249,7 @@ export default function BachelorDegreePage() {
                 />
                 <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-black/30 to-transparent flex items-end justify-center pb-1">
                   <span className="text-[7px] font-semibold text-white/80 uppercase tracking-wider">
-                    Official Certificate
+                    {t('bachelorMilestone.officialCertificate', 'Official Certificate')}
                   </span>
                 </div>
               </div>
@@ -181,7 +260,7 @@ export default function BachelorDegreePage() {
 
           {/* GPA + Stats row */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 relative">
-            {STATS.map((stat) => {
+            {stats.map((stat) => {
               const Icon = stat.icon;
               return (
                 <div
@@ -206,11 +285,11 @@ export default function BachelorDegreePage() {
         {/* Right — Milestone Info Card */}
         <div className="lg:col-span-4 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-3">
           <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-            AT A GLANCE
+            {t('bachelorMilestone.atAGlance', 'AT A GLANCE')}
           </h2>
 
           <div className="space-y-1.5 text-[8.5px]">
-            {MILESTONE_INFO.map((info) => {
+            {milestoneInfo.map((info) => {
               const Icon = info.icon;
               return (
                 <div
@@ -237,10 +316,10 @@ export default function BachelorDegreePage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <BookOpen className="size-3.5 text-blue-500" />
-            <span>CORE SUBJECTS</span>
+            <span>{t('bachelorMilestone.coreSubjects', 'CORE SUBJECTS')}</span>
           </div>
           <div className="space-y-2">
-            {CORE_SUBJECTS.map((subject) => (
+            {coreSubjects.map((subject) => (
               <div key={subject.name} className="space-y-0.5">
                 <div className="flex items-center justify-between">
                   <span className="text-[8.5px] font-semibold text-foreground">{subject.name}</span>
@@ -265,10 +344,10 @@ export default function BachelorDegreePage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <Star className="size-3.5 text-amber-500" />
-            <span>HIGHLIGHTS</span>
+            <span>{t('bachelorMilestone.highlights', 'HIGHLIGHTS')}</span>
           </div>
           <ul className="space-y-1.5 text-[8.5px] font-medium text-foreground">
-            {HIGHLIGHTS.map((highlight) => (
+            {renderedHighlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-1.5">
                 <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">{highlight}</span>
@@ -281,10 +360,10 @@ export default function BachelorDegreePage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <FileText className="size-3.5 text-violet-500" />
-            <span>DOCUMENTS</span>
+            <span>{t('bachelorMilestone.documents', 'DOCUMENTS')}</span>
           </div>
           <div className="space-y-1.5">
-            {DOCUMENTS.map((doc) => (
+            {documents.map((doc) => (
               <div
                 key={doc.name}
                 className="flex items-center justify-between rounded-[6px] border border-border/40 bg-[var(--color-bg-primary)] px-2.5 py-1.5 transition-colors hover:border-border"
@@ -310,11 +389,14 @@ export default function BachelorDegreePage() {
 
           {/* About section */}
           <div className="pt-2 border-t border-border/30 space-y-1">
-            <p className="text-[9px] font-bold uppercase tracking-wide text-foreground">ABOUT</p>
+            <p className="text-[9px] font-bold uppercase tracking-wide text-foreground">
+              {t('bachelorMilestone.about', 'ABOUT')}
+            </p>
             <p className="text-[8.5px] font-medium leading-relaxed text-muted-foreground">
-              Completed my Bachelor&apos;s degree in Computer Science with a strong foundation in
-              software development, problem solving and system design. This journey shaped my
-              technical skills and passion for building impactful digital solutions.
+              {t(
+                'bachelorMilestone.aboutDesc',
+                "Completed my Bachelor's degree in Computer Science with a strong foundation in software development, problem solving and system design. This journey shaped my technical skills and passion for building impactful digital solutions.",
+              )}
             </p>
           </div>
         </div>
@@ -326,8 +408,11 @@ export default function BachelorDegreePage() {
           <Zap className="size-2.5 fill-blue-500" />
         </div>
         <p className="font-inter">
-          <span className="font-bold text-foreground">Tip</span> Select a section from the sidebar
-          to explore more details about my experience.
+          <span className="font-bold text-foreground">{t('bachelorMilestone.tip', 'Tip')}</span>{' '}
+          {t(
+            'bachelorMilestone.tipText',
+            'Select a section from the sidebar to explore more details about my experience.',
+          )}
         </p>
       </footer>
     </div>

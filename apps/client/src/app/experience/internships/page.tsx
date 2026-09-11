@@ -37,6 +37,7 @@ import reactIcon from '@/assets/icons/react.svg';
 import reduxIcon from '@/assets/icons/redux.svg';
 import tailwindIcon from '@/assets/icons/tailwindcss.svg';
 import typescriptIcon from '@/assets/icons/typescript.svg';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface Internship {
   id: string;
@@ -208,36 +209,53 @@ const INTERNSHIPS: Internship[] = [
 ];
 
 export default function InternshipsPage() {
+  const { t, tArray } = useTranslation();
   const [selectedId, setSelectedId] = useState<string>('codsoft');
 
   const selectedInternship = INTERNSHIPS.find((item) => item.id === selectedId) || INTERNSHIPS[0];
 
+  const selPrefix = `internshipsPage.items.${selectedInternship.id}`;
+  const selTitle = t(`${selPrefix}.title`, selectedInternship.title);
+  const selCompany = t(`${selPrefix}.company`, selectedInternship.company);
+  const selPeriod = t(`${selPrefix}.period`, selectedInternship.period);
+  const selLocation = t(`${selPrefix}.locationMode`, selectedInternship.locationMode);
+  const selStatus = t(`${selPrefix}.status`, selectedInternship.status);
+  const selOverview = t(`${selPrefix}.overview`, selectedInternship.overview);
+
+  const transResp = tArray<string>(`${selPrefix}.responsibilities`);
+  const responsibilities = transResp.length > 0 ? transResp : selectedInternship.responsibilities;
+
+  const transAch = tArray<string>(`${selPrefix}.achievements`);
+  const achievements = transAch.length > 0 ? transAch : selectedInternship.achievements;
+
   return (
-    <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter border border-border/60 shadow-xs select-none">
+    <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter font-sans [--font-display:var(--font-sans)] [--font-beni:var(--font-sans)] border border-border/60 shadow-xs select-none">
       {/* 1. HEADER SECTION */}
       <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-muted-foreground mb-1">
+          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-muted-foreground mb-1 font-inter font-sans">
             <Link
               href="/experience"
               className="flex size-4 items-center justify-center rounded-[3px] border border-border/60 bg-[var(--color-bg-secondary)] hover:text-foreground transition-colors"
             >
               <ChevronLeft className="size-2.5" />
             </Link>
-            <span>Experience / Internships</span>
+            <span>{t('internshipsPage.breadcrumb', 'Experience / Internships')}</span>
           </div>
-          <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-            INTERNSHIPS
+          <h1 className="font-inter font-sans text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
+            {t('internshipsPage.title', 'INTERNSHIPS')}
           </h1>
-          <p className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 mt-0.5 font-inter">
-            Practical Experience. Real World Exposure
+          <p className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 mt-0.5 font-inter font-sans">
+            {t('internshipsPage.subtitle', 'Practical Experience. Real World Exposure')}
           </p>
         </div>
 
         {/* Top Right Counter Badge */}
-        <div className="flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-[10px] font-bold text-blue-600 dark:text-blue-400">
+        <div className="flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-[10px] font-bold text-blue-600 dark:text-blue-400 font-inter font-sans">
           <span className="size-1.5 rounded-full bg-blue-500" />
-          <span>{INTERNSHIPS.length} internships</span>
+          <span>
+            {INTERNSHIPS.length} {t('internshipsPage.counterBadge', 'internships')}
+          </span>
         </div>
       </header>
 
@@ -246,13 +264,19 @@ export default function InternshipsPage() {
         {/* LEFT COLUMN: INTERNSHIP TIMELINE */}
         <div className="lg:col-span-3 space-y-2">
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-3">
-            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              INTERNSHIP TIMELINE
+            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter font-sans">
+              {t('internshipsPage.timelineTitle', 'INTERNSHIP TIMELINE')}
             </h2>
 
             <div className="space-y-2.5">
               {INTERNSHIPS.map((item) => {
                 const isSelected = selectedId === item.id;
+                const ik = `internshipsPage.items.${item.id}`;
+                const companyName = t(`${ik}.company`, item.company);
+                const jobTitle = t(`${ik}.title`, item.title);
+                const jobPeriod = t(`${ik}.period`, item.period);
+                const jobStatus = t(`${ik}.status`, item.status);
+
                 return (
                   <button
                     key={item.id}
@@ -264,31 +288,31 @@ export default function InternshipsPage() {
                     }`}
                   >
                     <div className="flex items-center gap-2.5 mb-2">
-                      <div className="relative flex size-10 shrink-0 items-center justify-center rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-1 overflow-hidden">
+                      <div className="relative flex size-10 shrink-0 items-center justify-center rounded-[8px] border border-slate-200/80 dark:border-white/20 bg-white p-1.5 overflow-hidden shadow-2xs">
                         <Image
                           src={item.logo}
-                          alt={item.company}
-                          className="object-contain"
+                          alt={companyName}
+                          className="object-contain p-0.5"
                           fill
                           sizes="40px"
                         />
                       </div>
                       <div className="min-w-0">
-                        <h3 className="text-[11px] font-bold text-foreground leading-tight truncate">
-                          {item.company}
+                        <h3 className="text-[11px] font-bold text-foreground leading-tight truncate font-inter font-sans">
+                          {companyName}
                         </h3>
-                        <p className="text-[8.5px] font-medium text-muted-foreground truncate">
-                          {item.title}
+                        <p className="text-[8.5px] font-medium text-muted-foreground truncate font-inter font-sans">
+                          {jobTitle}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-[8px] font-medium text-muted-foreground mb-1.5">
-                      {item.period}
+                    <p className="text-[8px] font-medium text-muted-foreground mb-1.5 font-inter font-sans">
+                      {jobPeriod}
                     </p>
 
-                    <span className="inline-block text-[7.5px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-[4px]">
-                      ● {item.status}
+                    <span className="inline-block text-[7.5px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-[4px] font-inter font-sans">
+                      ● {jobStatus}
                     </span>
                   </button>
                 );
@@ -299,58 +323,58 @@ export default function InternshipsPage() {
 
         {/* MIDDLE COLUMN: SELECTED MILESTONE */}
         <div className="lg:col-span-5 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3.5 shadow-2xs space-y-3.5">
-          <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-            SELECTED MILESTONE
+          <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter font-sans">
+            {t('educationPage.selectedMilestone', 'SELECTED MILESTONE')}
           </h2>
 
           {/* Internship Banner Box */}
           <div className="rounded-[8px] border border-border/50 bg-[var(--color-bg-primary)] p-3.5 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="relative flex size-12 shrink-0 items-center justify-center rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-1.5 overflow-hidden">
+              <div className="relative flex size-12 shrink-0 items-center justify-center rounded-[8px] border border-slate-200/80 dark:border-white/20 bg-white p-2 overflow-hidden shadow-2xs">
                 <Image
                   src={selectedInternship.logo}
-                  alt={selectedInternship.company}
-                  className="object-contain"
+                  alt={selCompany}
+                  className="object-contain p-0.5"
                   fill
                   sizes="48px"
                 />
               </div>
               <div className="min-w-0">
-                <h3 className="text-sm font-extrabold text-foreground leading-tight truncate">
-                  {selectedInternship.title}
+                <h3 className="text-sm font-extrabold text-foreground leading-tight truncate font-inter font-sans">
+                  {selTitle}
                 </h3>
-                <p className="text-[10px] font-bold text-foreground/80 truncate">
-                  {selectedInternship.company}
+                <p className="text-[10px] font-bold text-foreground/80 truncate font-inter font-sans">
+                  {selCompany}
                 </p>
-                <p className="text-[8px] font-medium text-muted-foreground mt-0.5">
-                  {selectedInternship.period} . {selectedInternship.locationMode}
+                <p className="text-[8px] font-medium text-muted-foreground mt-0.5 font-inter font-sans">
+                  {selPeriod} . {selLocation}
                 </p>
               </div>
             </div>
 
-            <span className="shrink-0 text-[8px] font-bold text-purple-600 dark:text-purple-300 bg-purple-500/15 border border-purple-500/20 px-2.5 py-1 rounded-[4px]">
-              {selectedInternship.status}
+            <span className="shrink-0 text-[8px] font-bold text-purple-600 dark:text-purple-300 bg-purple-500/15 border border-purple-500/20 px-2.5 py-1 rounded-[4px] font-inter font-sans">
+              {selStatus}
             </span>
           </div>
 
           {/* Overview */}
           <div className="space-y-1">
-            <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground">
-              OVERVIEW
+            <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter font-sans">
+              {t('internshipsPage.overviewTitle', 'OVERVIEW')}
             </h3>
-            <p className="text-[9px] font-medium leading-relaxed text-muted-foreground">
-              {selectedInternship.overview}
+            <p className="text-[9px] font-medium leading-relaxed text-muted-foreground font-inter font-sans">
+              {selOverview}
             </p>
           </div>
 
           <div className="border-t border-border/40 pt-2 space-y-2.5">
             {/* Key Responsibilities */}
             <div className="space-y-1.5">
-              <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground">
-                KEY RESPONSIBILITIES
+              <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter font-sans">
+                {t('internshipsPage.responsibilitiesTitle', 'KEY RESPONSIBILITIES')}
               </h3>
-              <ul className="space-y-1 text-[8.5px] font-medium text-foreground">
-                {selectedInternship.responsibilities.map((resp, idx) => (
+              <ul className="space-y-1 text-[8.5px] font-medium text-foreground font-inter font-sans">
+                {responsibilities.map((resp, idx) => (
                   <li key={idx} className="flex items-start gap-1.5">
                     <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                     <span>{resp}</span>
@@ -361,11 +385,11 @@ export default function InternshipsPage() {
 
             {/* Key Achievements */}
             <div className="space-y-1.5">
-              <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground">
-                KEY ACHIEVEMENTS
+              <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter font-sans">
+                {t('internshipsPage.achievementsTitle', 'KEY ACHIEVEMENTS')}
               </h3>
-              <ul className="space-y-1 text-[8.5px] font-medium text-foreground">
-                {selectedInternship.achievements.map((ach, idx) => (
+              <ul className="space-y-1 text-[8.5px] font-medium text-foreground font-inter font-sans">
+                {achievements.map((ach, idx) => (
                   <li key={idx} className="flex items-start gap-1.5">
                     <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                     <span>{ach}</span>
@@ -380,15 +404,15 @@ export default function InternshipsPage() {
         <div className="lg:col-span-4 space-y-3">
           {/* Milestone Info */}
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
-            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              MILESTONE INFO
+            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter font-sans">
+              {t('internshipsPage.milestoneInfo', 'MILESTONE INFO')}
             </h2>
 
             <div className="space-y-2">
               {selectedInternship.skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="rounded-[6px] border border-border/40 bg-[var(--color-bg-primary)] px-2.5 py-1.5 flex items-center justify-between gap-2 shadow-2xs"
+                  className="rounded-[6px] border border-border/40 bg-[var(--color-bg-primary)] px-2.5 py-1.5 flex items-center justify-between gap-2 shadow-2xs font-inter font-sans"
                 >
                   <span className="text-[8.5px] font-bold text-foreground min-w-[80px]">
                     {skill.name}
@@ -409,8 +433,8 @@ export default function InternshipsPage() {
 
           {/* Technologies Used */}
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2">
-            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              TECHNOLOGIES USED
+            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter font-sans">
+              {t('internshipsPage.technologiesUsed', 'TECHNOLOGIES USED')}
             </h2>
 
             <div className="grid grid-cols-5 gap-2">
@@ -429,7 +453,7 @@ export default function InternshipsPage() {
                       className="size-5.5 object-contain group-hover:scale-110 transition-transform duration-200"
                     />
                   ) : (
-                    <div className="size-5.5 rounded-[4px] bg-muted/50 flex items-center justify-center text-[8px] font-bold text-foreground">
+                    <div className="size-5.5 rounded-[4px] bg-muted/50 flex items-center justify-center text-[8px] font-bold text-foreground font-inter font-sans">
                       {tech.name.substring(0, 2)}
                     </div>
                   )}
@@ -440,8 +464,8 @@ export default function InternshipsPage() {
 
           {/* Documents */}
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2">
-            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              DOCUMENTS
+            <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter font-sans">
+              {t('internshipsPage.documentsTitle', 'DOCUMENTS')}
             </h2>
 
             <div className="space-y-1.5">
@@ -473,16 +497,18 @@ export default function InternshipsPage() {
       </div>
 
       {/* 3. BOTTOM SUMMARY STATS ROW */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1 font-inter font-sans">
         {/* Stat 1 */}
         <div className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-[6px] bg-purple-500/10 text-purple-600 dark:text-purple-400">
             <Award className="size-4" />
           </div>
           <div>
-            <span className="text-base font-black text-foreground leading-none">3</span>
-            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight">
-              Internships
+            <span className="text-base font-black text-foreground leading-none font-inter font-sans">
+              3
+            </span>
+            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight font-inter font-sans">
+              {t('internshipsPage.stats.internshipsDone', 'Internships Completed')}
             </p>
           </div>
         </div>
@@ -493,9 +519,11 @@ export default function InternshipsPage() {
             <Clock className="size-4" />
           </div>
           <div>
-            <span className="text-base font-black text-foreground leading-none">12</span>
-            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight">
-              Months Experience
+            <span className="text-base font-black text-foreground leading-none font-inter font-sans">
+              12
+            </span>
+            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight font-inter font-sans">
+              {t('internshipsPage.stats.monthsExperience', 'Months Experience')}
             </p>
           </div>
         </div>
@@ -506,9 +534,11 @@ export default function InternshipsPage() {
             <Layers className="size-4" />
           </div>
           <div>
-            <span className="text-base font-black text-foreground leading-none">15+</span>
-            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight">
-              Projects Worked On
+            <span className="text-base font-black text-foreground leading-none font-inter font-sans">
+              15+
+            </span>
+            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight font-inter font-sans">
+              {t('internshipsPage.stats.skillsApplied', 'Technologies Applied')}
             </p>
           </div>
         </div>
@@ -519,9 +549,11 @@ export default function InternshipsPage() {
             <Check className="size-4" />
           </div>
           <div>
-            <span className="text-base font-black text-foreground leading-none">100%</span>
-            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight">
-              Completed
+            <span className="text-base font-black text-foreground leading-none font-inter font-sans">
+              100%
+            </span>
+            <p className="text-[8.5px] font-semibold text-muted-foreground leading-tight font-inter font-sans">
+              {t('internshipsPage.stats.successRate', 'Success Rate')}
             </p>
           </div>
         </div>

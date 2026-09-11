@@ -17,9 +17,60 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import consultifyIcon from '@/assets/icons/consultify.svg';
+import nestjsIcon from '@/assets/icons/nestjs.svg';
+import nextjsIcon from '@/assets/icons/nextjs.svg';
+import reactIcon from '@/assets/icons/react.svg';
+import tailwindIcon from '@/assets/icons/tailwindcss.svg';
+import typescriptIcon from '@/assets/icons/typescript.svg';
 import consultifyImage from '@/assets/images/consultify.png';
+import { useTranslation } from '@/hooks/use-translation';
+
+const TECH_STACK = [
+  { name: 'React', icon: reactIcon },
+  { name: 'Next.js', icon: nextjsIcon, isNext: true },
+  { name: 'Tailwind CSS', icon: tailwindIcon },
+  { name: 'TypeScript', icon: typescriptIcon },
+  { name: 'NestJS', icon: nestjsIcon },
+];
 
 export default function ConsultifyDetailPage() {
+  const { t, tArray } = useTranslation();
+
+  const builtItems = tArray<string>('consultifyMilestone.builtItems');
+  const fallbackBuiltItems = [
+    'Complete Product Vision',
+    'UI / UX Design System',
+    'Full-Stack Architecture',
+    'Authentication System',
+    'AI Recommendation Engine',
+    'Expert Dashboard',
+    'Booking Workflow',
+  ];
+  const renderedBuiltItems = builtItems.length > 0 ? builtItems : fallbackBuiltItems;
+
+  const challengeItems = tArray<string>('consultifyMilestone.challengeItems');
+  const fallbackChallengeItems = [
+    'Market validation',
+    'Product positioning',
+    'Time management',
+    'User decision making',
+    'Data acquisition',
+    'Scaling with limited resources',
+  ];
+  const renderedChallengeItems =
+    challengeItems.length > 0 ? challengeItems : fallbackChallengeItems;
+
+  const takeawayItems = tArray<string>('consultifyMilestone.takeawayItems');
+  const fallbackTakeawayItems = [
+    'Building is only half the journey',
+    'Validate ideas before scaling',
+    'Communication is as important as code',
+    'Failure is valuable',
+    'Mentor input > experience',
+    'Product thinking changed my perspective',
+  ];
+  const renderedTakeawayItems = takeawayItems.length > 0 ? takeawayItems : fallbackTakeawayItems;
+
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter border border-border/60 shadow-xs select-none">
       {/* 1. BREADCRUMB HEADER */}
@@ -31,7 +82,10 @@ export default function ConsultifyDetailPage() {
           <ChevronLeft className="size-3" />
         </Link>
         <span>
-          Experience / Milestone Details <span className="text-foreground">-CONSULTIFY-</span>
+          {t('consultifyMilestone.breadcrumb', 'Experience / Milestone Details')}{' '}
+          <span className="text-foreground">
+            {t('consultifyMilestone.breadcrumbHighlight', '-CONSULTIFY-')}
+          </span>
         </span>
       </div>
 
@@ -55,15 +109,20 @@ export default function ConsultifyDetailPage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <h1 className="text-xl font-black tracking-tight text-foreground uppercase font-inter">
-                      CONSULTIFY
+                      {t('consultifyMilestone.title', 'CONSULTIFY')}
                     </h1>
                     <span className="rounded-[4px] bg-purple-500/10 px-1.5 py-0.5 text-[8.5px] font-bold text-purple-600 dark:text-purple-400 border border-purple-500/20">
-                      Startup founder
+                      {t('consultifyMilestone.founderBadge', 'Startup founder')}
                     </span>
-                    <span className="text-[9px] font-medium text-muted-foreground">2025</span>
+                    <span className="text-[9px] font-medium text-muted-foreground">
+                      {t('consultifyMilestone.year', '2025')}
+                    </span>
                   </div>
                   <p className="text-[10px] font-medium text-muted-foreground mt-0.5">
-                    Making expert knowledge universally accessible.
+                    {t(
+                      'consultifyMilestone.tagline',
+                      'Making expert knowledge universally accessible.',
+                    )}
                   </p>
                 </div>
               </div>
@@ -90,12 +149,13 @@ export default function ConsultifyDetailPage() {
           <div className="space-y-1">
             <div className="flex items-center gap-1.5 text-blue-500 font-bold text-[10px] uppercase tracking-wider">
               <Zap className="size-3 fill-blue-500" />
-              <span>MISSION</span>
+              <span>{t('consultifyMilestone.mission', 'MISSION')}</span>
             </div>
             <p className="text-[10px] font-medium leading-relaxed text-muted-foreground max-w-xl">
-              CONSULTIFY was created to simplify access to professional guidance by combining expert
-              booking, intelligent recommendations and a modern digital experience into a single
-              platform.
+              {t(
+                'consultifyMilestone.missionText',
+                'CONSULTIFY was created to simplify access to professional guidance by combining expert booking, intelligent recommendations and a modern digital experience into a single platform.',
+              )}
             </p>
           </div>
         </div>
@@ -103,7 +163,7 @@ export default function ConsultifyDetailPage() {
         {/* Right At a Glance Card */}
         <div className="lg:col-span-4 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-3">
           <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-            AT A GLANCE
+            {t('consultifyMilestone.atAGlance', 'AT A GLANCE')}
           </h2>
 
           <div className="space-y-2 text-[9.5px]">
@@ -111,11 +171,11 @@ export default function ConsultifyDetailPage() {
             <div className="flex items-center justify-between py-1 border-b border-border/30">
               <div className="flex items-center gap-2 text-muted-foreground font-medium">
                 <RotateCcw className="size-3 shrink-0" />
-                <span>Status</span>
+                <span>{t('consultifyMilestone.status', 'Status')}</span>
               </div>
               <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[8px] font-bold text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                 <span className="size-1 rounded-full bg-emerald-500" />
-                Archived
+                {t('consultifyMilestone.statusArchived', 'Archived')}
               </span>
             </div>
 
@@ -123,11 +183,15 @@ export default function ConsultifyDetailPage() {
             <div className="flex items-center justify-between py-1 border-b border-border/30">
               <div className="flex items-center gap-2 text-muted-foreground font-medium">
                 <Clock className="size-3 shrink-0" />
-                <span>Duration</span>
+                <span>{t('consultifyMilestone.duration', 'Duration')}</span>
               </div>
               <div className="text-right">
-                <p className="font-bold text-foreground leading-tight">8 Months</p>
-                <p className="text-[8px] text-muted-foreground">Jan 2025 - Aug 2025</p>
+                <p className="font-bold text-foreground leading-tight">
+                  {t('consultifyMilestone.durationValue', '8 Months')}
+                </p>
+                <p className="text-[8px] text-muted-foreground">
+                  {t('consultifyMilestone.durationRange', 'Jan 2025 - Aug 2025')}
+                </p>
               </div>
             </div>
 
@@ -135,39 +199,48 @@ export default function ConsultifyDetailPage() {
             <div className="flex items-center justify-between py-1 border-b border-border/30">
               <div className="flex items-center gap-2 text-muted-foreground font-medium">
                 <User className="size-3 shrink-0" />
-                <span>Role</span>
+                <span>{t('consultifyMilestone.role', 'Role')}</span>
               </div>
-              <span className="font-bold text-foreground">Founder & Full-Stack Developer</span>
+              <span className="font-bold text-foreground">
+                {t('consultifyMilestone.roleValue', 'Founder & Full-Stack Developer')}
+              </span>
             </div>
 
             {/* Industry */}
             <div className="flex items-center justify-between py-1 border-b border-border/30">
               <div className="flex items-center gap-2 text-muted-foreground font-medium">
                 <Building2 className="size-3 shrink-0" />
-                <span>Industry</span>
+                <span>{t('consultifyMilestone.industry', 'Industry')}</span>
               </div>
-              <span className="font-bold text-foreground">EdTech . AI . Consultation</span>
+              <span className="font-bold text-foreground">
+                {t('consultifyMilestone.industryValue', 'EdTech · AI · Consultation')}
+              </span>
             </div>
 
             {/* Tech Stack */}
             <div className="flex items-center justify-between pt-1">
               <div className="flex items-center gap-2 text-muted-foreground font-medium">
                 <Layers className="size-3 shrink-0" />
-                <span>Tech Stack</span>
+                <span>{t('consultifyMilestone.techStack', 'Tech Stack')}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="size-3.5 rounded bg-blue-500/10 text-blue-500 text-[8px] font-bold flex items-center justify-center">
-                  ⚛
-                </span>
-                <span className="size-3.5 rounded bg-emerald-500/10 text-emerald-500 text-[8px] font-bold flex items-center justify-center">
-                  ▲
-                </span>
-                <span className="size-3.5 rounded bg-cyan-500/10 text-cyan-500 text-[8px] font-bold flex items-center justify-center">
-                  ≈
-                </span>
-                <span className="size-3.5 rounded bg-blue-600/10 text-blue-600 text-[8px] font-bold flex items-center justify-center">
-                  TS
-                </span>
+                {TECH_STACK.map((tech) => (
+                  <div
+                    key={tech.name}
+                    title={tech.name}
+                    className="flex size-6 items-center justify-center rounded-[5px] border border-border/60 bg-[var(--color-bg-primary)] p-1 hover:border-blue-500/50 hover:bg-[var(--color-bg-secondary)] hover:scale-110 transition-all shadow-2xs group cursor-default"
+                  >
+                    <Image
+                      src={tech.icon}
+                      alt={tech.name}
+                      width={16}
+                      height={16}
+                      className={`size-4 object-contain transition-transform ${
+                        tech.isNext ? 'dark:invert' : ''
+                      }`}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -180,18 +253,10 @@ export default function ConsultifyDetailPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <BookOpen className="size-3.5 text-emerald-500" />
-            <span>WHAT I BUILT</span>
+            <span>{t('consultifyMilestone.whatIBuilt', 'WHAT I BUILT')}</span>
           </div>
           <ul className="space-y-1.5 text-[9px] font-medium text-foreground">
-            {[
-              'Complete Product Vision',
-              'UI / UX Design System',
-              'Full-Stack Architecture',
-              'Authentication System',
-              'AI Recommendation Engine',
-              'Expert Dashboard',
-              'Booking Workflow',
-            ].map((item) => (
+            {renderedBuiltItems.map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <span className="size-1.5 rounded-full bg-emerald-500 shrink-0" />
                 <span>{item}</span>
@@ -204,17 +269,10 @@ export default function ConsultifyDetailPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <Compass className="size-3.5 text-amber-500" />
-            <span>BIGGEST CHALLENGES</span>
+            <span>{t('consultifyMilestone.biggestChallenges', 'BIGGEST CHALLENGES')}</span>
           </div>
           <ul className="space-y-1.5 text-[9px] font-medium text-foreground">
-            {[
-              'Market validation',
-              'Product positioning',
-              'Time management',
-              'User decision making',
-              'Data acquisition',
-              'Scaling with limited resources',
-            ].map((item) => (
+            {renderedChallengeItems.map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <span className="size-1.5 rounded-full bg-amber-500 shrink-0" />
                 <span>{item}</span>
@@ -227,17 +285,10 @@ export default function ConsultifyDetailPage() {
         <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5">
           <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
             <Flag className="size-3.5 text-blue-500" />
-            <span>KEY TAKEAWAYS</span>
+            <span>{t('consultifyMilestone.keyTakeaways', 'KEY TAKEAWAYS')}</span>
           </div>
           <ul className="space-y-1.5 text-[9px] font-medium text-foreground">
-            {[
-              'Building is only half the journey',
-              'Validate ideas before scaling',
-              'Communication is as important as code',
-              'Failure is valuable',
-              'Mentor input > experience',
-              'Product thinking changed my perspective',
-            ].map((item) => (
+            {renderedTakeawayItems.map((item) => (
               <li key={item} className="flex items-center gap-2">
                 <span className="size-1.5 rounded-full bg-blue-500 shrink-0" />
                 <span>{item}</span>
@@ -254,13 +305,13 @@ export default function ConsultifyDetailPage() {
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2">
             <div className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-wide text-foreground">
               <TrendingUp className="size-3.5 text-blue-500" />
-              <span>IMPACT</span>
+              <span>{t('consultifyMilestone.impact', 'IMPACT')}</span>
             </div>
             <p className="text-[9.5px] font-medium text-muted-foreground leading-relaxed">
-              Although CONSULTIFY did not reach commercial success, it became the project that
-              transformed me from someone who could build applications into someone who understands
-              product design, software architecture, user experience, business strategy and
-              entrepreneurship.
+              {t(
+                'consultifyMilestone.impactText',
+                'Although CONSULTIFY did not reach commercial success, it became the project that transformed me from someone who could build applications into someone who understands product design, software architecture, user experience, business strategy and entrepreneurship.',
+              )}
             </p>
           </div>
 
@@ -270,8 +321,13 @@ export default function ConsultifyDetailPage() {
               <Zap className="size-2.5 fill-blue-500" />
             </div>
             <p className="font-inter">
-              <span className="font-bold text-foreground">Tip</span> Select a section from the
-              sidebar to explore more details about my experience.
+              <span className="font-bold text-foreground">
+                {t('consultifyMilestone.tip', 'Tip')}
+              </span>{' '}
+              {t(
+                'consultifyMilestone.tipText',
+                'Select a section from the sidebar to explore more details about my experience.',
+              )}
             </p>
           </footer>
         </div>
@@ -289,7 +345,9 @@ export default function ConsultifyDetailPage() {
                   height={12}
                   className="size-3 object-contain"
                 />
-                <span className="text-[7px] font-bold text-white tracking-widest">CONSULTIFY</span>
+                <span className="text-[7px] font-bold text-white tracking-widest">
+                  {t('consultifyMilestone.title', 'CONSULTIFY')}
+                </span>
               </div>
               <div className="flex items-center gap-1 text-[6px] text-purple-300 font-mono">
                 <span>●</span>
@@ -312,7 +370,7 @@ export default function ConsultifyDetailPage() {
             {/* Mock Footer Badge */}
             <div className="rounded bg-purple-900/60 p-1 text-center">
               <span className="text-[6px] font-semibold text-purple-200 uppercase tracking-tight">
-                Where Knowledge Meets Opportunity
+                {t('consultifyMilestone.previewTagline', 'Where Knowledge Meets Opportunity')}
               </span>
             </div>
           </div>

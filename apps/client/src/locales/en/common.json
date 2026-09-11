@@ -578,6 +578,732 @@
     "milestonesReached": "Milestones Reached",
     "milestonesValue": "12"
   },
+  "consultifyMilestone": {
+    "breadcrumb": "Experience / Milestone Details",
+    "breadcrumbHighlight": "-CONSULTIFY-",
+    "title": "CONSULTIFY",
+    "founderBadge": "Startup founder",
+    "year": "2025",
+    "tagline": "Making expert knowledge universally accessible.",
+    "mission": "MISSION",
+    "missionText": "CONSULTIFY was created to simplify access to professional guidance by combining expert booking, intelligent recommendations and a modern digital experience into a single platform.",
+    "atAGlance": "AT A GLANCE",
+    "status": "Status",
+    "statusArchived": "Archived",
+    "duration": "Duration",
+    "durationValue": "8 Months",
+    "durationRange": "Jan 2025 - Aug 2025",
+    "role": "Role",
+    "roleValue": "Founder & Full-Stack Developer",
+    "industry": "Industry",
+    "industryValue": "EdTech · AI · Consultation",
+    "techStack": "Tech Stack",
+    "whatIBuilt": "WHAT I BUILT",
+    "builtItems": [
+      "Complete Product Vision",
+      "UI / UX Design System",
+      "Full-Stack Architecture",
+      "Authentication System",
+      "AI Recommendation Engine",
+      "Expert Dashboard",
+      "Booking Workflow"
+    ],
+    "biggestChallenges": "BIGGEST CHALLENGES",
+    "challengeItems": [
+      "Market validation",
+      "Product positioning",
+      "Time management",
+      "User decision making",
+      "Data acquisition",
+      "Scaling with limited resources"
+    ],
+    "keyTakeaways": "KEY TAKEAWAYS",
+    "takeawayItems": [
+      "Building is only half the journey",
+      "Validate ideas before scaling",
+      "Communication is as important as code",
+      "Failure is valuable",
+      "Mentor input > experience",
+      "Product thinking changed my perspective"
+    ],
+    "impact": "IMPACT",
+    "impactText": "Although CONSULTIFY did not reach commercial success, it became the project that transformed me from someone who could build applications into someone who understands product design, software architecture, user experience, business strategy and entrepreneurship.",
+    "tip": "Tip",
+    "tipText": "Select a section from the sidebar to explore more details about my experience.",
+    "previewTagline": "Where Knowledge Meets Opportunity"
+  },
+  "bachelorMilestone": {
+    "breadcrumb": "Experience / Milestone Details",
+    "breadcrumbHighlight": "— Bachelor's Degree",
+    "title": "Bachelor's Degree",
+    "statusCompleted": "Completed",
+    "year": "2025",
+    "university": "M'Hamed Bougara University — Boumerdes, Algeria",
+    "specialty": "SPECIALTY",
+    "specialtyDesc": "Web Development and Computer Graphics — a blend of software engineering and visual computing that shaped my full-stack mindset and creative problem-solving approach.",
+    "tags": ["Web Dev", "Computer Graphics", "OOP", "Databases", "Algorithms", "Networks"],
+    "officialCertificate": "Official Certificate",
+    "atAGlance": "AT A GLANCE",
+    "degree": "Degree",
+    "degreeValue": "Bachelor's Degree",
+    "field": "Field",
+    "fieldValue": "Computer Science",
+    "specialization": "Specialization",
+    "specializationValue": "Web Dev & Computer Graphics",
+    "institution": "Institution",
+    "institutionValue": "M'Hamed Bougara University",
+    "location": "Location",
+    "locationValue": "Boumerdes, Algeria",
+    "status": "Status",
+    "creditsEarned": "Credits Earned",
+    "creditsValue": "180 ECTS",
+    "duration": "Duration",
+    "durationValue": "2021 – 2025",
+    "statGpaLabel": "Final GPA",
+    "statDurationLabel": "Duration",
+    "statDurationValue": "4 Years",
+    "statCreditsLabel": "ECTS Credits",
+    "statCreditsValue": "180",
+    "statHonoursLabel": "Honours",
+    "statHonoursValue": "Good",
+    "coreSubjects": "CORE SUBJECTS",
+    "subjects": {
+      "webDev": "Web Development",
+      "computerGraphics": "Computer Graphics",
+      "dataStructures": "Data Structures",
+      "algorithms": "Algorithms",
+      "operatingSystems": "Operating Systems",
+      "databases": "Databases"
+    },
+    "highlights": "HIGHLIGHTS",
+    "highlightsList": [
+      "Strong academic performance across core computer science subjects",
+      "Completed multiple practical projects and real-world applications",
+      "Specialized in Web Development and Computer Graphics",
+      "Built a solid foundation in full-stack development and system design",
+      "Graduated with a GPA of 14.31/20 — Good Honours"
+    ],
+    "documents": "DOCUMENTS",
+    "docDegree": "Degree Certificate.pdf",
+    "docTranscript": "Academic Transcript.pdf",
+    "docCompletion": "Completion Letter.pdf",
+    "about": "ABOUT",
+    "aboutDesc": "Completed my Bachelor's degree in Computer Science with a strong foundation in software development, problem solving and system design. This journey shaped my technical skills and passion for building impactful digital solutions.",
+    "tip": "Tip",
+    "tipText": "Select a section from the sidebar to explore more details about my experience."
+  },
+  "somiphosMilestone": {
+    "breadcrumb": "Experience / Milestone Details",
+    "breadcrumbHighlight": "— SOMIPHOS Internship",
+    "title": "SOMIPHOS",
+    "badge": "Integration Internship",
+    "year": "2025",
+    "subtitle": "Société des Mines de Phosphates — Algeria",
+    "aboutCompany": "ABOUT THE COMPANY",
+    "aboutCompanyDesc": "SOMIPHOS (Société des Mines de Phosphates) is a major Algerian state-owned mining company specializing in phosphate extraction and processing. This integration internship provided hands-on exposure to IT operations within an industrial enterprise environment.",
+    "statMonths": "Months",
+    "statDomain": "Domain",
+    "statStatus": "Status",
+    "statStatusDone": "Done",
+    "certificateCaption": "Internship Certificate",
+    "skillsDeveloped": "SKILLS DEVELOPED",
+    "skills": {
+      "systemAnalysis": "System Analysis",
+      "technicalDoc": "Technical Documentation",
+      "teamCollab": "Team Collaboration",
+      "problemSolving": "Problem Solving",
+      "professionalComm": "Professional Communication"
+    },
+    "atAGlance": "AT A GLANCE",
+    "type": "Type",
+    "typeValue": "Integration Internship",
+    "company": "Company",
+    "companyValue": "SOMIPHOS",
+    "location": "Location",
+    "locationValue": "Algeria",
+    "period": "Period",
+    "periodValue": "Jun 2025 – Jul 2025",
+    "duration": "Duration",
+    "durationValue": "2 months",
+    "domain": "Domain",
+    "domainValue": "Mining & Phosphates",
+    "status": "Status",
+    "statusValue": "Completed",
+    "completedBadge": "Successfully Completed — Jun–Jul 2025",
+    "responsibilities": "RESPONSIBILITIES",
+    "responsibilitiesList": [
+      "Observed and studied enterprise IT infrastructure in a mining environment",
+      "Analyzed existing internal systems and data management workflows",
+      "Assisted in documenting technical processes and system architecture",
+      "Collaborated with IT staff to understand network topology and security",
+      "Participated in team meetings and technical planning sessions"
+    ],
+    "keyLearnings": "KEY LEARNINGS",
+    "keyLearningsList": [
+      "Understanding of enterprise-level IT operations in industrial sectors",
+      "Exposure to industrial-scale data management and reporting systems",
+      "Practical insight into how tech teams operate within large corporations",
+      "Professional communication skills within a formal workplace environment",
+      "Ability to adapt quickly to unfamiliar technical environments"
+    ],
+    "documents": "DOCUMENTS",
+    "docCertificate": "Internship Certificate",
+    "docCompletion": "Completion Letter",
+    "overallExperience": "OVERALL EXPERIENCE",
+    "overallExperienceDesc": "This integration internship at SOMIPHOS gave me my first taste of professional IT work in a large-scale industrial enterprise, reinforcing the importance of structured systems and collaborative problem solving.",
+    "tip": "Tip",
+    "tipText": "Select a section from the sidebar to explore more details about my experience."
+  },
+  "algerieTelecomMilestone": {
+    "breadcrumb": "Experience / Milestone Details",
+    "breadcrumbHighlight": "— Algérie Télécom Internship",
+    "title": "Algérie Télécom",
+    "badge": "Early Level Internship",
+    "year": "2024",
+    "subtitle": "Algérie Télécom — National Telecommunications Provider, Algeria",
+    "aboutCompany": "ABOUT THE COMPANY",
+    "aboutCompanyDesc": "Algérie Télécom is the national state-owned telecommunications operator of Algeria, providing internet, telephony, and data services across the country. This early-level internship provided my first exposure to professional IT operations in a major national infrastructure company.",
+    "statMonth": "Month",
+    "statDomain": "Domain",
+    "statStatus": "Status",
+    "statStatusDone": "Done",
+    "certificateCaption": "Internship Certificate",
+    "skillsDeveloped": "SKILLS DEVELOPED",
+    "skills": {
+      "networkFundamentals": "Network Fundamentals",
+      "technicalObservation": "Technical Observation",
+      "documentation": "Documentation",
+      "professionalDiscipline": "Professional Discipline",
+      "teamCollaboration": "Team Collaboration"
+    },
+    "atAGlance": "AT A GLANCE",
+    "type": "Type",
+    "typeValue": "Early Level Internship",
+    "company": "Company",
+    "companyValue": "Algérie Télécom",
+    "location": "Location",
+    "locationValue": "Algeria",
+    "period": "Period",
+    "periodValue": "Jul 2024 – Jul 2024",
+    "duration": "Duration",
+    "durationValue": "1 month",
+    "domain": "Domain",
+    "domainValue": "Telecommunications",
+    "status": "Status",
+    "statusValue": "Completed",
+    "completedBadge": "Successfully Completed — July 2024",
+    "firstInternshipBadge": "My First Professional Internship",
+    "responsibilities": "RESPONSIBILITIES",
+    "responsibilitiesList": [
+      "Observed operations within a national telecommunications infrastructure",
+      "Learned about fiber-optic and copper network maintenance procedures",
+      "Assisted in documenting network topology and infrastructure maps",
+      "Attended technical briefings on ADSL and fiber internet services",
+      "Gained exposure to ISP-level network configuration and monitoring"
+    ],
+    "keyLearnings": "KEY LEARNINGS",
+    "keyLearningsList": [
+      "Understanding of large-scale national telecommunications networks",
+      "Exposure to enterprise network administration and monitoring tools",
+      "Real-world understanding of ISP operations and infrastructure",
+      "Professional discipline and work ethic in a technical environment",
+      "First professional experience in a structured corporate setting"
+    ],
+    "documents": "DOCUMENTS",
+    "docCertificate": "Internship Certificate",
+    "docCompletion": "Completion Letter",
+    "overallExperience": "OVERALL EXPERIENCE",
+    "overallExperienceDesc": "My first professional internship at Algérie Télécom gave me invaluable insight into large-scale national IT infrastructure and telecommunications operations, setting the foundation for my professional career in tech.",
+    "tip": "Tip",
+    "tipText": "Select a section from the sidebar to explore more details about my experience."
+  },
+  "educationPage": {
+    "breadcrumb": "Experience / Education timeline",
+    "title": "Education timeline",
+    "subtitle": "My academic journey from first year to engineering school.",
+    "quote": "\"The quieter you become, the more you are able to hear.\"",
+    "journeyTitle": "ACADEMIC JOURNEY",
+    "viewAll": "View All",
+    "selectedMilestone": "SELECTED MILESTONE",
+    "tabOverview": "Overview",
+    "tabHighlights": "Highlights",
+    "tabSkills": "Skills",
+    "tabDocuments": "Documents",
+    "aboutThisMilestone": "ABOUT THIS MILESTONE",
+    "highlightsTitle": "HIGHLIGHTS",
+    "skillsGainedTitle": "SKILLS GAINED",
+    "documentsTitle": "DOCUMENTS",
+    "noDocuments": "No documents available for this milestone.",
+    "noDocumentsYet": "No documents yet.",
+    "milestoneInfo": "MILESTONE INFO",
+    "tip": "Tip",
+    "tipText": "Click any milestone in the Academic Journey panel to explore its details, skills and documents.",
+    "stats": {
+      "degreesEarned": "Degrees Earned",
+      "yearsJourney": "Years of Academic Journey",
+      "projectsCompleted": "Projects Completed",
+      "milestonesCompleted": "Milestones Completed"
+    },
+    "items": {
+      "estin": {
+        "timelineYear": "Currently",
+        "timelineTitle": "Student at ESTIN",
+        "timelineSubtitle": "Second Year preparatory class",
+        "bannerTitle": "Student at ESTIN",
+        "bannerBadge": "In Progress — 2025 →",
+        "bannerQuote": "\"Engineering begins where comfort ends.\"",
+        "about": "Currently enrolled in the second year of the preparatory cycle at ESTIN (École Supérieure en Technologies de l'Information et du Numérique), one of Algeria's premier engineering schools. The curriculum is intensive, covering advanced mathematics, physics, and computer science fundamentals as a foundation for the engineering cycle.",
+        "metrics": {
+          "institution": "Institution",
+          "institutionValue": "ESTIN",
+          "institutionSub": "Engineering School",
+          "cycle": "Cycle",
+          "cycleValue": "2nd Year",
+          "cycleSub": "Preparatory",
+          "started": "Started",
+          "startedValue": "2025",
+          "startedSub": "Ongoing",
+          "goal": "Goal",
+          "goalValue": "Engineer",
+          "goalSub": "Diploma"
+        },
+        "highlights": [
+          "Admitted to one of Algeria's top engineering schools after competitive selection",
+          "Intensive curriculum in advanced mathematics, physics and CS fundamentals",
+          "Building deep theoretical foundations for engineering specialization",
+          "Adapting to a highly demanding academic environment with strong performance"
+        ],
+        "info": {
+          "levelLabel": "Level",
+          "levelValue": "Preparatory Cycle",
+          "schoolLabel": "School",
+          "schoolValue": "ESTIN Bejaia",
+          "locationLabel": "Location",
+          "locationValue": "Bejaia, Algeria",
+          "focusLabel": "Focus",
+          "focusValue": "Maths · Physics · CS",
+          "statusLabel": "Status",
+          "statusValue": "In Progress",
+          "yearLabel": "Year",
+          "yearValue": "2nd Year Prep",
+          "sinceLabel": "Since",
+          "sinceValue": "2025"
+        },
+        "docs": ["Enrollment Certificate"]
+      },
+      "bachelor": {
+        "timelineYear": "2025",
+        "timelineTitle": "Bachelor's Degree",
+        "timelineSubtitle": "Completed",
+        "bannerTitle": "Bachelor's Degree",
+        "bannerBadge": "Completed in 2025",
+        "bannerQuote": "\"The end of one journey, the beginning of infinite possibilities.\"",
+        "about": "Completed my Bachelor's degree in Computer Science at M'Hamed Bougara University with a specialization in Web Development and Computer Graphics. This 4-year journey built a strong foundation in software engineering, problem solving and system design, and shaped my passion for building impactful digital solutions.",
+        "metrics": {
+          "institution": "University",
+          "institutionValue": "M'Hamed Bougara",
+          "institutionSub": "Boumerdes",
+          "cycle": "Field",
+          "cycleValue": "Computer",
+          "cycleSub": "Science",
+          "started": "Duration",
+          "startedValue": "2021–2025",
+          "startedSub": "4 Years",
+          "goal": "GPA",
+          "goalValue": "14.31 / 20",
+          "goalSub": "Good Honours"
+        },
+        "highlights": [
+          "Strong academic performance across core computer science subjects",
+          "Completed multiple practical projects and real-world applications",
+          "Specialized in Web Development and Computer Graphics",
+          "Built a solid foundation in full-stack development and system design"
+        ],
+        "info": {
+          "levelLabel": "Degree",
+          "levelValue": "Bachelor's",
+          "focusLabel": "Field",
+          "focusValue": "Computer Science",
+          "specializationLabel": "Specialization",
+          "specializationValue": "Web Dev & Graphics",
+          "schoolLabel": "Institution",
+          "schoolValue": "M'Hamed Bougara",
+          "locationLabel": "Location",
+          "locationValue": "Boumerdes, Algeria",
+          "statusLabel": "Status",
+          "statusValue": "Completed",
+          "creditsLabel": "Credits",
+          "creditsValue": "180 ECTS",
+          "graduatedLabel": "Graduated",
+          "graduatedValue": "2025"
+        },
+        "docs": ["Degree Certificate.pdf", "Academic Transcript.pdf", "Completion Letter.pdf"]
+      },
+      "fullstack-2024": {
+        "timelineYear": "2024",
+        "timelineTitle": "Full Stack Engineering Specialization",
+        "timelineSubtitle": "4th Year Final",
+        "bannerTitle": "Full Stack Engineering",
+        "bannerBadge": "Specialization — 2024",
+        "bannerQuote": "\"Ship fast, learn faster.\"",
+        "about": "The final year of university focused on full-stack engineering specialization. I dived deep into modern web technologies, building complete end-to-end applications using React, Next.js, Node.js, NestJS and databases. This was the year I transitioned from academic learner to practitioner — shipping real projects and internship work.",
+        "metrics": {
+          "institution": "Stack",
+          "institutionValue": "Full Stack",
+          "institutionSub": "Web Dev",
+          "cycle": "Projects",
+          "cycleValue": "8+",
+          "cycleSub": "Built",
+          "started": "Year",
+          "startedValue": "2024",
+          "startedSub": "4th Year",
+          "goal": "Focus",
+          "goalValue": "React + NestJS",
+          "goalSub": "TypeScript"
+        },
+        "highlights": [
+          "Mastered the full-stack ecosystem: React, Next.js, NestJS, MongoDB, PostgreSQL",
+          "Built and shipped multiple complete web applications end-to-end",
+          "First internship experience applying skills in a real company context",
+          "Developed deep understanding of TypeScript, REST APIs and clean architecture"
+        ],
+        "info": {
+          "levelLabel": "Year",
+          "levelValue": "4th Year (Final)",
+          "focusLabel": "Specialization",
+          "focusValue": "Full Stack Web",
+          "stackLabel": "Primary Stack",
+          "stackValue": "React · NestJS",
+          "schoolLabel": "Institution",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Status",
+          "statusValue": "Completed",
+          "periodLabel": "Period",
+          "periodValue": "Sep 2024 – Jun 2025"
+        },
+        "docs": ["Year 4 Transcript.pdf", "Project Reports.pdf"]
+      },
+      "major-2023": {
+        "timelineYear": "2023",
+        "timelineTitle": "Software Engineering Major Courses",
+        "timelineSubtitle": "3rd Year",
+        "bannerTitle": "Software Engineering Major",
+        "bannerBadge": "Major Courses — 2023",
+        "bannerQuote": "\"Design before you code. Think before you type.\"",
+        "about": "The third year introduced the core software engineering major curriculum — Design Patterns, Software Architecture, Advanced Algorithms, and formal methods. This was when I truly began thinking like a software engineer rather than just a programmer, learning to design scalable and maintainable systems.",
+        "metrics": {
+          "institution": "Focus",
+          "institutionValue": "Architecture",
+          "institutionSub": "Design Patterns",
+          "cycle": "Languages",
+          "cycleValue": "Java · C++",
+          "cycleSub": "Python",
+          "started": "Year",
+          "startedValue": "2023",
+          "startedSub": "3rd Year",
+          "goal": "Modules",
+          "goalValue": "12+",
+          "goalSub": "Core Units"
+        },
+        "highlights": [
+          "Studied classical design patterns: Factory, Observer, Strategy, Singleton and more",
+          "Learned software architecture principles and UML modeling",
+          "Advanced algorithms and complexity analysis (dynamic programming, graphs)",
+          "Completed a full team software project applying agile principles"
+        ],
+        "info": {
+          "levelLabel": "Year",
+          "levelValue": "3rd Year",
+          "focusLabel": "Focus",
+          "focusValue": "Software Engineering",
+          "languagesLabel": "Languages",
+          "languagesValue": "Java · C++ · Python",
+          "schoolLabel": "Institution",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Status",
+          "statusValue": "Completed",
+          "periodLabel": "Period",
+          "periodValue": "Sep 2023 – Jun 2024"
+        },
+        "docs": ["Year 3 Transcript.pdf", "Software Project Report.pdf"]
+      },
+      "year2-2022": {
+        "timelineYear": "2022",
+        "timelineTitle": "University Journey Second Year",
+        "timelineSubtitle": "2nd Year",
+        "bannerTitle": "University Second Year",
+        "bannerBadge": "Core Modules — 2022",
+        "bannerQuote": "\"Every system you study adds a new lens to see the world.\"",
+        "about": "The second year deepened core computer science theory — Operating Systems, Computer Networks, Database Systems, and advanced C programming. This was a pivotal year for understanding how computers truly work at a systems level, from memory management to network protocols and relational database design.",
+        "metrics": {
+          "institution": "Focus",
+          "institutionValue": "Systems",
+          "institutionSub": "CS Theory",
+          "cycle": "Language",
+          "cycleValue": "C / C++",
+          "cycleSub": "SQL",
+          "started": "Year",
+          "startedValue": "2022",
+          "startedSub": "2nd Year",
+          "goal": "Modules",
+          "goalValue": "10+",
+          "goalSub": "Core Units"
+        },
+        "highlights": [
+          "Mastered operating system concepts: processes, threads, memory, scheduling",
+          "Studied computer networks from the ground up (TCP/IP, OSI model, routing)",
+          "Learned relational databases and SQL fundamentals with PostgreSQL",
+          "Built foundational systems-level thinking in C and C++"
+        ],
+        "info": {
+          "levelLabel": "Year",
+          "levelValue": "2nd Year",
+          "focusLabel": "Focus",
+          "focusValue": "OS · Networks · DB",
+          "languagesLabel": "Languages",
+          "languagesValue": "C · C++ · SQL",
+          "schoolLabel": "Institution",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Status",
+          "statusValue": "Completed",
+          "periodLabel": "Period",
+          "periodValue": "Sep 2022 – Jun 2023"
+        },
+        "docs": ["Year 2 Transcript.pdf"]
+      },
+      "year1-2021": {
+        "timelineYear": "2021",
+        "timelineTitle": "Started University First Year",
+        "timelineSubtitle": "1st Year",
+        "bannerTitle": "University First Year",
+        "bannerBadge": "Foundations — 2021",
+        "bannerQuote": "\"Every expert was once a beginner.\"",
+        "about": "The first year at M'Hamed Bougara University marked the true beginning of my Computer Science journey. Starting from the fundamentals — Introduction to Programming in C, Discrete Mathematics, Logic, and Computer Architecture — this year laid the building blocks that everything else would rest on.",
+        "metrics": {
+          "institution": "Stage",
+          "institutionValue": "1st Year",
+          "institutionSub": "Foundation",
+          "cycle": "First Language",
+          "cycleValue": "C",
+          "cycleSub": "Programming",
+          "started": "Year",
+          "startedValue": "2021",
+          "startedSub": "1st Year",
+          "goal": "Modules",
+          "goalValue": "8+",
+          "goalSub": "Core Units"
+        },
+        "highlights": [
+          "Took my first steps into programming with C — loops, functions, pointers and arrays",
+          "Built a strong mathematical base in discrete math and propositional logic",
+          "Understood how computers work at the hardware level through architecture",
+          "Finished first year with passing grades and confirmed my passion for CS"
+        ],
+        "info": {
+          "levelLabel": "Year",
+          "levelValue": "1st Year",
+          "focusLabel": "Focus",
+          "focusValue": "Intro to CS",
+          "languagesLabel": "Language",
+          "languagesValue": "C Programming",
+          "schoolLabel": "Institution",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Status",
+          "statusValue": "Completed",
+          "periodLabel": "Period",
+          "periodValue": "Sep 2021 – Jun 2022"
+        },
+        "docs": ["Year 1 Transcript.pdf"]
+      }
+    }
+  },
+  "internshipsPage": {
+    "breadcrumb": "Experience / Internships",
+    "title": "INTERNSHIPS",
+    "subtitle": "Practical Experience. Real World Exposure",
+    "counterBadge": "internships",
+    "timelineTitle": "INTERNSHIP TIMELINE",
+    "overviewTitle": "OVERVIEW",
+    "responsibilitiesTitle": "KEY RESPONSIBILITIES",
+    "achievementsTitle": "KEY ACHIEVEMENTS",
+    "milestoneInfo": "MILESTONE INFO",
+    "technologiesUsed": "TECHNOLOGIES USED",
+    "documentsTitle": "DOCUMENTS",
+    "stats": {
+      "internshipsDone": "Internships Completed",
+      "monthsExperience": "Months of Experience",
+      "skillsApplied": "Technologies Applied",
+      "successRate": "Success Rate"
+    },
+    "tip": "Tip",
+    "tipText": "Select an internship from the timeline panel to explore key responsibilities, achievements and technologies used.",
+    "items": {
+      "codsoft": {
+        "company": "CodSoft",
+        "title": "Web Development Intern",
+        "period": "Jan 2025 - Mar 2025",
+        "locationMode": "Remote",
+        "status": "Completed",
+        "overview": "Worked as a Web Development Intern where I contributed to building responsive web applications and improving user experience. Collaborated with the team to deliver clean, efficient and maintainable code.",
+        "responsibilities": [
+          "Developed and maintained responsive web pages using HTML, CSS, JavaScript",
+          "Built reusable UI components with React.js",
+          "Integrated RESTful APIs and handled data on the frontend",
+          "Collaborated with designers to implement modern UI/UX",
+          "Debugged and optimized existing features"
+        ],
+        "achievements": [
+          "Improved page load performance by 30%",
+          "Implemented dark mode feature",
+          "Received positive feedback for code quality and problem solving"
+        ],
+        "documents": ["Internship Certificate", "Experience Letter", "Completion Certificate"]
+      },
+      "techverse": {
+        "company": "TechVerse Solutions",
+        "title": "Frontend Developer Intern",
+        "period": "Aug 2024 - Oct 2024",
+        "locationMode": "Hybrid",
+        "status": "Completed",
+        "overview": "Focused on crafting pixel-perfect frontend interfaces and integrating complex client-side state logic. Assisted senior engineers in migrating legacy dashboards to Next.js.",
+        "responsibilities": [
+          "Migrated legacy dashboard pages to Next.js App Router",
+          "Created interactive data tables and real-time chart visualizations",
+          "Ensured cross-browser compatibility and mobile responsiveness",
+          "Participated in daily agile standups and code reviews"
+        ],
+        "achievements": [
+          "Successfully converted 12 core dashboard views",
+          "Reduced initial bundle size by 22% through dynamic imports",
+          "Nominated for top intern contributor of the quarter"
+        ],
+        "documents": ["Internship Certificate", "Recommendation Letter"]
+      },
+      "devbridge": {
+        "company": "DevBridge",
+        "title": "Software Development Intern",
+        "period": "May 2024 - Jul 2024",
+        "locationMode": "On-site",
+        "status": "Completed",
+        "overview": "Engaged in full lifecycle software development with a heavy emphasis on backend API design, database schemas, and unit testing practices.",
+        "responsibilities": [
+          "Designed and documented REST APIs for client projects",
+          "Wrote unit and integration tests for core API endpoints",
+          "Managed relational database migrations and queries",
+          "Assisted in setting up CI/CD GitHub Actions pipelines"
+        ],
+        "achievements": [
+          "Increased backend test coverage from 60% to 85%",
+          "Optimized database queries resulting in 40% faster response times"
+        ],
+        "documents": ["Internship Certificate", "Evaluation Form"]
+      }
+    }
+  },
+  "achievementsPage": {
+    "breadcrumb": "Experience / Key Achievements",
+    "title": "KEY ACHIEVEMENTS",
+    "subtitle": "Milestones. Recognized Accomplishments",
+    "counterBadge": "achievements",
+    "listTitle": "ACHIEVEMENTS LIST",
+    "viewAll": "View All Achievements",
+    "selectedTitle": "SELECTED MILESTONE",
+    "tabOverview": "Overview",
+    "tabAchievements": "Key Achievements",
+    "tabImpact": "Impact & Growth",
+    "tabGallery": "Gallery",
+    "aboutTitle": "ABOUT THIS ACHIEVEMENT",
+    "keyHighlightsTitle": "KEY HIGHLIGHTS",
+    "impactTitle": "IMPACT & LEARNINGS",
+    "galleryTitle": "GALLERY & EVIDENCE",
+    "techUsedTitle": "TECHNOLOGIES USED",
+    "skillsGainedTitle": "SKILLS GAINED",
+    "documentsTitle": "DOCUMENTS",
+    "badgeSystemTitle": "BADGE SYSTEM",
+    "badgeSystemSubtitle": "Recognized Competencies & Badges",
+    "noDocuments": "No documents uploaded for this achievement.",
+    "stats": {
+      "total": "Total Achievements",
+      "projects": "Key Projects Launched",
+      "awards": "Awards & Honors",
+      "rate": "Completion Rate"
+    },
+    "tip": "Tip",
+    "tipText": "Click any achievement card from the list to view its breakdown, impact and evidence.",
+    "items": {
+      "consultify": {
+        "title": "CONSULTIFY Founder",
+        "subtitle": "Startup Journey",
+        "date": "Jan 2025 - Mar 2025",
+        "duration": "5 Months",
+        "role": "Founder & Developer",
+        "badgeText": "Key Milestone",
+        "overview": "Founded and built CONSULTIFY, an AI-powered consultation platform connecting users with verified experts. Led the product vision, development, and strategy from scratch.",
+        "achievementsList": [
+          "Built the complete platform from idea to MVP",
+          "Designed and developed scalable architecture",
+          "Integrated AI recommendations and booking system",
+          "Managed product, branding and user experience",
+          "Gained real-world entrepreneurial experience"
+        ],
+        "impactList": [
+          "While the startup didn't reach the expected outcome, it shaped my product thinking, problem-solving skills and resilience",
+          "Every lesson became a building block for my growth."
+        ]
+      },
+      "fullstack-dev": {
+        "title": "Full Stack Developer",
+        "subtitle": "Personal Project",
+        "date": "Dec 2024",
+        "badgeText": "Achievement",
+        "overview": "Architected and deployed a multi-tenant web application incorporating Next.js App Router, Tailwind CSS, and serverless PostgreSQL.",
+        "achievementsList": [
+          "Designed high-performance RESTful APIs",
+          "Implemented robust OAuth authentication flow",
+          "Deployed on Vercel with automated CI/CD pipeline"
+        ],
+        "impactList": [
+          "Expanded hands-on expertise in full-stack architecture and automated deployments."
+        ]
+      },
+      "academic-performer": {
+        "title": "Top Academic Performer",
+        "subtitle": "University Recognition",
+        "date": "2024",
+        "badgeText": "Achievement",
+        "overview": "Awarded top honors for exceptional academic performance and contributions to student tech forums.",
+        "achievementsList": [
+          "Ranked among top percentile of computer science students",
+          "Maintained consistent high marks across major courses"
+        ],
+        "impactList": ["Recognized for academic dedication and problem-solving excellence."]
+      },
+      "hackathon": {
+        "title": "Hackathon Participant",
+        "subtitle": "Innovation Challenge",
+        "date": "Nov 2024",
+        "badgeText": "Completed",
+        "overview": "Participated in an intense 48-hour innovation hackathon building smart accessibility solutions.",
+        "achievementsList": [
+          "Delivered a working prototype within tight time constraints",
+          "Presented live pitch to industry judges"
+        ],
+        "impactList": ["Sharpened rapid prototyping skills under tight deadlines."]
+      },
+      "certification": {
+        "title": "Certification Achiever",
+        "subtitle": "Continuous Learning",
+        "date": "Oct 2024",
+        "badgeText": "Achievement",
+        "overview": "Earned professional cloud and full stack certifications to validate technical mastery.",
+        "achievementsList": [
+          "Completed rigorous specialization courses",
+          "Passed practical hands-on assessments"
+        ],
+        "impactList": ["Strengthened core technical expertise in cloud platforms."]
+      }
+    }
+  },
   "contactPage": {
     "heading": "CONTACT ME",
     "tagline": "// Let's build something amazing together",
@@ -1287,6 +2013,122 @@
     "relatedProjects": "Related Projects",
     "viewAllProjects": "View all projects",
     "issued": "Issued",
-    "expires": "Expires"
+    "expires": "Expires",
+    "filterTitle": "Filter Certificates",
+    "status": "Status",
+    "level": "Level",
+    "allStatuses": "All Statuses",
+    "verified": "Verified",
+    "completed": "Completed",
+    "allLevels": "All Levels",
+    "associate": "Associate Level",
+    "professional": "Professional Level",
+    "allProviders": "All Providers",
+    "allSkills": "All Skills",
+    "resetFilters": "Reset Filters",
+    "noCertificatesFound": "No certificates found matching your filters.",
+    "active": "Active",
+    "expired": "Expired",
+    "levels": {
+      "associateLevel": "Associate Level",
+      "professionalLevel": "Professional Level",
+      "professionalCertificate": "Professional Certificate"
+    },
+    "credentialTypes": {
+      "certification": "Certification",
+      "professionalCertificate": "Professional Certificate"
+    },
+    "items": {
+      "aws-dev-assoc": {
+        "title": "AWS Certified Developer - Associate",
+        "issuedDate": "May 15, 2024",
+        "expiryDate": "May 15, 2027",
+        "about": "This certification validates my ability to develop, deploy and debug secure and scalable applications on AWS. It demonstrates hands-on experience with AWS core services, SDKs, and best practices.",
+        "keyTopics": {
+          "developing": {
+            "title": "Developing on AWS",
+            "subtitle": "Building and deploying cloud applications"
+          },
+          "security": {
+            "title": "Security Best Practices",
+            "subtitle": "Implementing secure applications on AWS"
+          },
+          "deployment": {
+            "title": "Deployment & Debugging",
+            "subtitle": "Managing, monitoring and debugging applications"
+          },
+          "coreServices": {
+            "title": "AWS Core Services",
+            "subtitle": "Working with compute, storage and databases"
+          }
+        },
+        "projects": {
+          "cloudPlatform": "Cloud Deployment Platform",
+          "serverlessApi": "Serverless API System"
+        }
+      },
+      "oracle-java-17": {
+        "title": "Oracle Certified Professional, Java SE 17 Developer",
+        "issuedDate": "Feb 2024",
+        "expiryDate": "Feb 2027",
+        "about": "Validates deep knowledge of Java object-oriented programming, concurrency, stream APIs, memory management, and modern language features up to Java 17.",
+        "keyTopics": {
+          "coreJava": {
+            "title": "Core Java & Concurrency",
+            "subtitle": "Multithreading and functional programming"
+          },
+          "modular": {
+            "title": "Modular Architecture",
+            "subtitle": "Building modular Java applications"
+          }
+        },
+        "projects": {
+          "enterpriseBanking": "Enterprise Banking Core API"
+        }
+      },
+      "mongodb-dev-assoc": {
+        "title": "MongoDB Certified Developer Associate",
+        "issuedDate": "Dec 2023",
+        "expiryDate": "Dec 2026",
+        "about": "Demonstrates mastery in data modeling, aggregation pipelines, indexing, transactions, and integration with modern web technologies.",
+        "keyTopics": {
+          "aggregation": {
+            "title": "Aggregation Framework",
+            "subtitle": "Complex data processing pipelines"
+          }
+        },
+        "projects": {
+          "realtimeAnalytics": "Realtime Analytics Platform"
+        }
+      },
+      "meta-frontend": {
+        "title": "Meta Front-End Developer Professional Certificate",
+        "issuedDate": "Oct 2023",
+        "about": "Comprehensive program covering HTML5, CSS3, React, modern JavaScript, UX design principles, and frontend testing practices.",
+        "keyTopics": {
+          "reactArchitecture": {
+            "title": "React Architecture",
+            "subtitle": "State management and reusable component design"
+          }
+        },
+        "projects": {
+          "ecommerce": "E-Commerce Marketplace"
+        }
+      },
+      "google-it-automation": {
+        "title": "Google IT Automation with Python Professional Certificate",
+        "issuedDate": "Aug 2023",
+        "about": "Covers Python programming, Git/GitHub, operating system management, configuration management, and automation in cloud environments.",
+        "keyTopics": {
+          "scripting": {
+            "title": "Scripting & Automation",
+            "subtitle": "Automating system administration tasks"
+          }
+        },
+        "projects": {
+          "cicdPipeline": "Automated CI/CD Pipeline"
+        }
+      }
+    }
   }
 }

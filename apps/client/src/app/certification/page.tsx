@@ -14,9 +14,11 @@ import {
   Filter,
   Layers,
   Lock,
+  RotateCcw,
   Search,
   ShieldCheck,
   User,
+  X,
 } from 'lucide-react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
@@ -322,27 +324,183 @@ const CERTIFICATIONS: Certification[] = [
   },
 ];
 
+const PROVIDERS = ['All', 'Amazon Web Services', 'Oracle', 'MongoDB University', 'Meta', 'Google'];
+
+const SKILLS = [
+  'All',
+  'AWS Lambda',
+  'Java 17',
+  'MongoDB',
+  'React',
+  'Python',
+  'CloudFormation',
+  'Concurrency',
+  'Indexing',
+  'UI/UX',
+  'Automation',
+];
+
 export default function CertificationsPage() {
   const { t } = useTranslation();
   const [selectedId, setSelectedId] = useState<string>('aws-dev-assoc');
   const [activeTab, setActiveTab] = useState<'All' | 'Provider' | 'Skill'>('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedProvider, setSelectedProvider] = useState<string>('All');
+  const [selectedSkill, setSelectedSkill] = useState<string>('All');
+  const [statusFilter, setStatusFilter] = useState<'All' | 'Verified' | 'Completed'>('All');
+  const [levelFilter, setLevelFilter] = useState<'All' | 'Associate' | 'Professional'>('All');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const selectedCert = CERTIFICATIONS.find((c) => c.id === selectedId) || CERTIFICATIONS[0];
+  const KEY_TOPIC_MAP: Record<string, string> = {
+    'Developing on AWS': 'developing',
+    'Security Best Practices': 'security',
+    'Deployment & Debugging': 'deployment',
+    'AWS Core Services': 'coreServices',
+    'Core Java & Concurrency': 'coreJava',
+    'Modular Architecture': 'modular',
+    'Aggregation Framework': 'aggregation',
+    'React Architecture': 'reactArchitecture',
+    'Scripting & Automation': 'scripting',
+  };
+
+  const PROJECT_MAP: Record<string, string> = {
+    'Cloud Deployment Platform': 'cloudPlatform',
+    'Serverless API System': 'serverlessApi',
+    'Enterprise Banking Core API': 'enterpriseBanking',
+    'Realtime Analytics Platform': 'realtimeAnalytics',
+    'E-Commerce Marketplace': 'ecommerce',
+    'Automated CI/CD Pipeline': 'cicdPipeline',
+  };
+
+  const getTranslatedCert = (cert: Certification) => {
+    const itemKey = `certificationsPage.items.${cert.id}`;
+    const title = t(`${itemKey}.title`, { defaultValue: cert.title });
+    const issuedDate = t(`${itemKey}.issuedDate`, { defaultValue: cert.issuedDate });
+    const expiryDate = cert.expiryDate
+      ? t(`${itemKey}.expiryDate`, { defaultValue: cert.expiryDate })
+      : undefined;
+    const about = t(`${itemKey}.about`, { defaultValue: cert.about });
+    const statusText =
+      cert.status === 'Verified'
+        ? t('certificationsPage.verified')
+        : t('certificationsPage.completed');
+    const activeStatusText =
+      cert.activeStatus === 'Active'
+        ? t('certificationsPage.active')
+        : t('certificationsPage.expired');
+
+    const levelText =
+      cert.level === 'Associate Level'
+        ? t('certificationsPage.levels.associateLevel')
+        : cert.level === 'Professional Level'
+          ? t('certificationsPage.levels.professionalLevel')
+          : cert.level === 'Professional Certificate'
+            ? t('certificationsPage.levels.professionalCertificate')
+            : cert.level;
+
+    const credentialTypeText =
+      cert.credentialType === 'Certification'
+        ? t('certificationsPage.credentialTypes.certification')
+        : cert.credentialType === 'Professional Certificate'
+          ? t('certificationsPage.credentialTypes.professionalCertificate')
+          : cert.credentialType;
+
+    const keyTopics = cert.keyTopics.map((topic) => {
+      const topicKey = KEY_TOPIC_MAP[topic.title];
+      if (!topicKey) return topic;
+      return {
+        ...topic,
+        title: t(`${itemKey}.keyTopics.${topicKey}.title`, { defaultValue: topic.title }),
+        subtitle: t(`${itemKey}.keyTopics.${topicKey}.subtitle`, { defaultValue: topic.subtitle }),
+      };
+    });
+
+    const relatedProjects = cert.relatedProjects.map((proj) => {
+      const projKey = PROJECT_MAP[proj.title];
+      if (!projKey) return proj;
+      return {
+        ...proj,
+        title: t(`${itemKey}.projects.${projKey}`, { defaultValue: proj.title }),
+      };
+    });
+
+    return {
+      ...cert,
+      title,
+      issuedDate,
+      expiryDate,
+      about,
+      statusText,
+      activeStatusText,
+      levelText,
+      credentialTypeText,
+      keyTopics,
+      relatedProjects,
+    };
+  };
+
+  const handleTabChange = (tab: 'All' | 'Provider' | 'Skill') => {
+    setActiveTab(tab);
+    if (tab === 'All') {
+      setSelectedProvider('All');
+      setSelectedSkill('All');
+    }
+  };
+
+  const handleResetFilters = () => {
+    setActiveTab('All');
+    setSearchQuery('');
+    setSelectedProvider('All');
+    setSelectedSkill('All');
+    setStatusFilter('All');
+    setLevelFilter('All');
+    setIsFilterOpen(false);
+  };
 
   const filteredCertifications = CERTIFICATIONS.filter((item) => {
+    const query = searchQuery.trim().toLowerCase();
     const matchesSearch =
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.skills.some((s) => s.name.toLowerCase().includes(searchQuery.toLowerCase()));
+      !query ||
+      item.title.toLowerCase().includes(query) ||
+      item.provider.toLowerCase().includes(query) ||
+      item.credentialId.toLowerCase().includes(query) ||
+      item.level.toLowerCase().includes(query) ||
+      item.skills.some((s) => s.name.toLowerCase().includes(query));
 
-    return matchesSearch;
+    const matchesProvider =
+      activeTab !== 'Provider' || selectedProvider === 'All' || item.provider === selectedProvider;
+
+    const matchesSkill =
+      activeTab !== 'Skill' ||
+      selectedSkill === 'All' ||
+      item.skills.some((s) => s.name.toLowerCase() === selectedSkill.toLowerCase());
+
+    const matchesStatus = statusFilter === 'All' || item.status === statusFilter;
+
+    const matchesLevel =
+      levelFilter === 'All' ||
+      (levelFilter === 'Associate' && item.level.toLowerCase().includes('associate')) ||
+      (levelFilter === 'Professional' && item.level.toLowerCase().includes('professional'));
+
+    return matchesSearch && matchesProvider && matchesSkill && matchesStatus && matchesLevel;
   });
+
+  const activeFilterCount =
+    (selectedProvider !== 'All' ? 1 : 0) +
+    (selectedSkill !== 'All' ? 1 : 0) +
+    (statusFilter !== 'All' ? 1 : 0) +
+    (levelFilter !== 'All' ? 1 : 0) +
+    (searchQuery.trim() !== '' ? 1 : 0);
+
+  const selectedCert =
+    filteredCertifications.find((c) => c.id === selectedId) || filteredCertifications[0] || null;
+
+  const translatedSelectedCert = selectedCert ? getTranslatedCert(selectedCert) : null;
 
   return (
     <div
       suppressHydrationWarning
-      className="flex w-full flex-col gap-3 p-3 lg:h-full lg:overflow-y-auto lg:gap-3 lg:p-3"
+      className="flex w-full flex-col gap-3 p-3 lg:h-full lg:overflow-y-auto lg:gap-3 lg:p-3 font-inter font-sans [--font-display:var(--font-sans)] [--font-beni:var(--font-sans)]"
     >
       {/* HEADER SECTION */}
       <header className="flex flex-col gap-2 border-b border-border/40 pb-3 sm:flex-row sm:items-center sm:justify-between lg:gap-2 lg:pb-2.5">
@@ -364,7 +522,8 @@ export default function CertificationsPage() {
         <div className="flex w-fit items-center gap-1.5 rounded-full bg-[var(--color-bg-secondary)] px-2 py-0.5 text-[9px] font-semibold text-[var(--color-text-secondary)] shadow-xs shadow-gray-300 dark:shadow-none lg:px-2.5 lg:text-[10px]">
           <span className="size-1.5 rounded-full bg-blue-500 animate-pulse" />
           <span>
-            {CERTIFICATIONS.length} {t('certificationsPage.achievementsCount')}
+            {filteredCertifications.length} / {CERTIFICATIONS.length}{' '}
+            {t('certificationsPage.achievementsCount')}
           </span>
         </div>
       </header>
@@ -379,7 +538,7 @@ export default function CertificationsPage() {
               <button
                 suppressHydrationWarning
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => handleTabChange(tab)}
                 className={`rounded-[4px] py-1 transition-colors text-center ${
                   activeTab === tab
                     ? 'bg-background text-[var(--color-text-primary)] shadow-xs shadow-gray-300 dark:shadow-none'
@@ -395,7 +554,44 @@ export default function CertificationsPage() {
             ))}
           </div>
 
-          {/* Search Input */}
+          {/* Sub-pills for Provider / Skill */}
+          {activeTab === 'Provider' && (
+            <div className="flex items-center gap-1 overflow-x-auto pb-1 text-[8.5px] scrollbar-none">
+              {PROVIDERS.map((prov) => (
+                <button
+                  key={prov}
+                  onClick={() => setSelectedProvider(prov)}
+                  className={`shrink-0 rounded-full px-2 py-0.5 font-semibold transition-colors ${
+                    selectedProvider === prov
+                      ? 'bg-blue-500 text-white shadow-xs'
+                      : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                  }`}
+                >
+                  {prov === 'All' ? t('certificationsPage.allProviders') : prov}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'Skill' && (
+            <div className="flex items-center gap-1 overflow-x-auto pb-1 text-[8.5px] scrollbar-none">
+              {SKILLS.map((sk) => (
+                <button
+                  key={sk}
+                  onClick={() => setSelectedSkill(sk)}
+                  className={`shrink-0 rounded-full px-2 py-0.5 font-semibold transition-colors ${
+                    selectedSkill === sk
+                      ? 'bg-blue-500 text-white shadow-xs'
+                      : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                  }`}
+                >
+                  {sk === 'All' ? t('certificationsPage.allSkills') : sk}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Search Input & Filter Toggle */}
           <div className="relative flex items-center gap-1.5">
             <div className="relative flex-1">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3 text-[var(--color-text-tertiary)]" />
@@ -405,300 +601,420 @@ export default function CertificationsPage() {
                 placeholder={t('certificationsPage.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-[6px] bg-[var(--color-bg-secondary)] pl-7 pr-2.5 py-1.5 text-[9.5px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none focus:outline-none focus:ring-1 focus:ring-blue-500/50 lg:py-1 lg:text-[10.5px]"
+                className="w-full rounded-[6px] bg-[var(--color-bg-secondary)] pl-7 pr-7 py-1.5 text-[9.5px] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none focus:outline-none focus:ring-1 focus:ring-blue-500/50 lg:py-1 lg:text-[10.5px]"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]"
+                >
+                  <X className="size-3" />
+                </button>
+              )}
             </div>
-            <button
-              aria-label="Filter"
-              className="flex size-7 shrink-0 items-center justify-center rounded-[6px] bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none"
-            >
-              <Filter className="size-3" />
-            </button>
+
+            <div className="relative">
+              <button
+                aria-label="Filter"
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`relative flex size-7 shrink-0 items-center justify-center rounded-[6px] transition-colors shadow-xs shadow-gray-300 dark:shadow-none ${
+                  isFilterOpen || activeFilterCount > 0
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                }`}
+              >
+                <Filter className="size-3" />
+                {activeFilterCount > 0 && (
+                  <span className="absolute -top-1 -right-1 flex size-3.5 items-center justify-center rounded-full bg-red-500 text-[7.5px] font-bold text-white shadow-xs">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </button>
+
+              {/* Filter Popover */}
+              {isFilterOpen && (
+                <div className="absolute right-0 top-full mt-1.5 z-40 w-56 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-xl space-y-3">
+                  <div className="flex items-center justify-between border-b border-border/40 pb-2">
+                    <span className="text-[10.5px] font-bold text-[var(--color-text-primary)]">
+                      {t('certificationsPage.filterTitle')}
+                    </span>
+                    <button
+                      onClick={() => setIsFilterOpen(false)}
+                      className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)]"
+                    >
+                      <X className="size-3.5" />
+                    </button>
+                  </div>
+
+                  {/* Status Filter */}
+                  <div className="space-y-1">
+                    <label className="text-[8.5px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)]">
+                      {t('certificationsPage.status')}
+                    </label>
+                    <div className="flex flex-wrap gap-1 text-[8.5px]">
+                      {(['All', 'Verified', 'Completed'] as const).map((st) => (
+                        <button
+                          key={st}
+                          onClick={() => setStatusFilter(st)}
+                          className={`rounded-[4px] px-2 py-0.5 font-semibold transition-colors ${
+                            statusFilter === st
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-background text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                          }`}
+                        >
+                          {st === 'All'
+                            ? t('certificationsPage.allStatuses')
+                            : st === 'Verified'
+                              ? t('certificationsPage.verified')
+                              : t('certificationsPage.completed')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Level Filter */}
+                  <div className="space-y-1">
+                    <label className="text-[8.5px] font-bold uppercase tracking-wider text-[var(--color-text-secondary)]">
+                      {t('certificationsPage.level')}
+                    </label>
+                    <div className="flex flex-wrap gap-1 text-[8.5px]">
+                      {(['All', 'Associate', 'Professional'] as const).map((lvl) => (
+                        <button
+                          key={lvl}
+                          onClick={() => setLevelFilter(lvl)}
+                          className={`rounded-[4px] px-2 py-0.5 font-semibold transition-colors ${
+                            levelFilter === lvl
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-background text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-tertiary)]'
+                          }`}
+                        >
+                          {lvl === 'All'
+                            ? t('certificationsPage.allLevels')
+                            : lvl === 'Associate'
+                              ? t('certificationsPage.associate')
+                              : t('certificationsPage.professional')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Reset Filters Action */}
+                  {activeFilterCount > 0 && (
+                    <button
+                      onClick={handleResetFilters}
+                      className="flex w-full items-center justify-center gap-1 rounded-[4px] bg-red-500/10 py-1 text-[8.5px] font-bold text-red-500 hover:bg-red-500/20 transition-colors"
+                    >
+                      <RotateCcw className="size-3" />
+                      <span>{t('certificationsPage.resetFilters')}</span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Certificates List */}
           <div className="space-y-2 overflow-visible lg:flex-1 lg:overflow-y-auto lg:px-1 lg:py-1">
-            {filteredCertifications.map((item) => {
-              const isSelected = selectedId === item.id;
-
-              return (
+            {filteredCertifications.length === 0 ? (
+              <div className="flex flex-col items-center justify-center rounded-[6px] bg-[var(--color-bg-secondary)] p-6 text-center space-y-2.5 shadow-xs">
+                <Award className="size-7 text-[var(--color-text-tertiary)]" />
+                <p className="text-[9.5px] font-semibold text-[var(--color-text-secondary)] leading-normal">
+                  {t('certificationsPage.noCertificatesFound')}
+                </p>
                 <button
-                  suppressHydrationWarning
-                  key={item.id}
-                  onClick={() => setSelectedId(item.id)}
-                  className={`relative flex w-full items-start gap-2 rounded-[6px] p-2 text-left transition-all lg:gap-2.5 lg:p-2.5 ${
-                    isSelected
-                      ? 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] shadow-[0_0_3px_var(--color-brand)] dark:shadow-none dark:[filter:drop-shadow(0_0_3px_var(--color-brand))]'
-                      : 'bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none'
-                  }`}
+                  onClick={handleResetFilters}
+                  className="flex items-center gap-1 rounded-[4px] bg-blue-500 px-2.5 py-1 text-[9px] font-bold text-white hover:bg-blue-600 transition-colors shadow-xs"
                 >
-                  <div className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-white p-1 shadow-xs shadow-gray-300 dark:shadow-none lg:size-8">
-                    <Image
-                      src={item.logo}
-                      alt={item.provider}
-                      width={24}
-                      height={24}
-                      className="size-full object-contain"
-                    />
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <h2 className="font-inter truncate text-[9px] font-bold leading-tight text-[var(--color-text-secondary)] lg:text-[10px]">
-                      {item.provider}
-                    </h2>
-                    <p className="truncate text-[10px] font-semibold leading-snug text-[var(--color-text-primary)] lg:text-[11px]">
-                      {item.title}
-                    </p>
-                    <div className="mt-1 flex items-center justify-between gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
-                      <span>{item.issuedDate}</span>
-                      <span
-                        className={`rounded px-1.5 py-0.2 text-[7px] font-bold lg:text-[8px] ${
-                          item.status === 'Verified'
-                            ? 'bg-emerald-500/10 text-emerald-500'
-                            : 'bg-purple-500/10 text-purple-500'
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </div>
-                  </div>
+                  <RotateCcw className="size-3" />
+                  <span>{t('certificationsPage.resetFilters')}</span>
                 </button>
-              );
-            })}
-          </div>
+              </div>
+            ) : (
+              filteredCertifications.map((item) => {
+                const translatedItem = getTranslatedCert(item);
+                const isSelected = translatedSelectedCert?.id === item.id;
 
-          {/* Load More Button */}
-          <button
-            suppressHydrationWarning
-            className="w-full shrink-0 rounded-[6px] bg-[var(--color-bg-secondary)] py-1.5 text-[9px] font-semibold text-blue-500 transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]"
-          >
-            <span>{t('certificationsPage.loadMore')}</span>
-            <ChevronDown className="ml-1 inline size-3" />
-          </button>
+                return (
+                  <button
+                    suppressHydrationWarning
+                    key={item.id}
+                    onClick={() => setSelectedId(item.id)}
+                    className={`relative flex w-full items-start gap-2 rounded-[6px] p-2 text-left transition-all lg:gap-2.5 lg:p-2.5 ${
+                      isSelected
+                        ? 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] shadow-[0_0_3px_var(--color-brand)] dark:shadow-none dark:[filter:drop-shadow(0_0_3px_var(--color-brand))]'
+                        : 'bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none'
+                    }`}
+                  >
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-[4px] bg-white p-1 shadow-xs shadow-gray-300 dark:shadow-none lg:size-8">
+                      <Image
+                        src={item.logo}
+                        alt={item.provider}
+                        width={24}
+                        height={24}
+                        className="size-full object-contain"
+                      />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <h2 className="font-inter truncate text-[9px] font-bold leading-tight text-[var(--color-text-secondary)] lg:text-[10px]">
+                        {translatedItem.provider}
+                      </h2>
+                      <p className="truncate text-[10px] font-semibold leading-snug text-[var(--color-text-primary)] lg:text-[11px]">
+                        {translatedItem.title}
+                      </p>
+                      <div className="mt-1 flex items-center justify-between gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
+                        <span>{translatedItem.issuedDate}</span>
+                        <span
+                          className={`rounded px-1.5 py-0.2 text-[7px] font-bold lg:text-[8px] ${
+                            item.status === 'Verified'
+                              ? 'bg-emerald-500/10 text-emerald-500'
+                              : 'bg-purple-500/10 text-purple-500'
+                          }`}
+                        >
+                          {translatedItem.statusText}
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })
+            )}
+          </div>
         </div>
 
         {/* ================= MIDDLE COLUMN: DETAILS ================= */}
-        <div className="order-1 flex flex-col gap-3 overflow-visible rounded-[6px] bg-[var(--color-bg-secondary)] p-3 shadow-md shadow-gray-300 dark:shadow-none lg:order-none lg:col-span-5 lg:gap-3 lg:overflow-y-auto lg:p-3.5">
-          {/* Header Status & ID */}
-          <div className="flex flex-col gap-1 text-[9px] lg:flex-row lg:items-center lg:justify-between lg:text-[10px]">
-            <span className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 font-bold text-emerald-500 shadow-xs shadow-emerald-500/10">
-              <CheckCircle2 className="size-3" />
-              <span>{t('certificationsPage.verifiedCertificate')}</span>
-            </span>
-            <span className="font-medium text-[var(--color-text-tertiary)]">
-              ID:{' '}
-              <span className="font-mono text-[var(--color-text-secondary)]">
-                {selectedCert.credentialId}
+        {translatedSelectedCert ? (
+          <div className="order-1 flex flex-col gap-3 overflow-visible rounded-[6px] bg-[var(--color-bg-secondary)] p-3 shadow-md shadow-gray-300 dark:shadow-none lg:order-none lg:col-span-5 lg:gap-3 lg:overflow-y-auto lg:p-3.5">
+            {/* Header Status & ID */}
+            <div className="flex flex-col gap-1 text-[9px] lg:flex-row lg:items-center lg:justify-between lg:text-[10px]">
+              <span className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 font-bold text-emerald-500 shadow-xs shadow-emerald-500/10">
+                <CheckCircle2 className="size-3" />
+                <span>{t('certificationsPage.verifiedCertificate')}</span>
               </span>
-            </span>
-          </div>
-
-          {/* Banner */}
-          <div className="flex items-start gap-2.5 pb-2 lg:gap-3 lg:pb-3">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-[6px] bg-white p-1.5 shadow-xs shadow-gray-300 dark:shadow-none lg:size-11">
-              <Image
-                src={selectedCert.logo}
-                alt={selectedCert.provider}
-                width={32}
-                height={32}
-                className="size-full object-contain"
-              />
+              <span className="font-medium text-[var(--color-text-tertiary)]">
+                ID:{' '}
+                <span className="font-mono text-[var(--color-text-secondary)]">
+                  {translatedSelectedCert.credentialId}
+                </span>
+              </span>
             </div>
-            <div className="min-w-0 flex-1">
-              <h2 className="font-inter text-xs font-bold leading-tight text-[var(--color-text-primary)] lg:text-sm">
-                {selectedCert.title}
-              </h2>
-              <p className="mt-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] lg:text-[11px]">
-                {selectedCert.provider}
-              </p>
-              <div className="mt-1.5 flex flex-wrap items-center gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:gap-1.5 lg:text-[9px]">
-                <span>
-                  {t('certificationsPage.issued')} {selectedCert.issuedDate}
-                </span>
-                {selectedCert.expiryDate && (
-                  <>
-                    <span>•</span>
-                    <span>
-                      {t('certificationsPage.expires')} {selectedCert.expiryDate}
-                    </span>
-                  </>
-                )}
-                <span>•</span>
-                <span className="font-semibold text-[var(--color-text-secondary)]">
-                  {selectedCert.level}
-                </span>
+
+            {/* Banner */}
+            <div className="flex items-start gap-2.5 pb-2 lg:gap-3 lg:pb-3">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-[6px] bg-white p-1.5 shadow-xs shadow-gray-300 dark:shadow-none lg:size-11">
+                <Image
+                  src={translatedSelectedCert.logo}
+                  alt={translatedSelectedCert.provider}
+                  width={32}
+                  height={32}
+                  className="size-full object-contain"
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h2 className="font-inter text-xs font-bold leading-tight text-[var(--color-text-primary)] lg:text-sm">
+                  {translatedSelectedCert.title}
+                </h2>
+                <p className="mt-0.5 text-[10px] font-medium text-[var(--color-text-secondary)] lg:text-[11px]">
+                  {translatedSelectedCert.provider}
+                </p>
+                <div className="mt-1.5 flex flex-wrap items-center gap-1 text-[8px] text-[var(--color-text-tertiary)] lg:gap-1.5 lg:text-[9px]">
+                  <span>
+                    {t('certificationsPage.issued')} {translatedSelectedCert.issuedDate}
+                  </span>
+                  {translatedSelectedCert.expiryDate && (
+                    <>
+                      <span>•</span>
+                      <span>
+                        {t('certificationsPage.expires')} {translatedSelectedCert.expiryDate}
+                      </span>
+                    </>
+                  )}
+                  <span>•</span>
+                  <span className="font-semibold text-[var(--color-text-secondary)]">
+                    {translatedSelectedCert.levelText}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* About */}
-          <div className="space-y-1">
-            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-              {t('certificationsPage.aboutHeading')}
-            </h3>
-            <p className="text-[10px] font-normal leading-relaxed text-[var(--color-text-secondary)] lg:text-[11px]">
-              {selectedCert.about}
-            </p>
-          </div>
-
-          {/* Skills */}
-          <div className="space-y-1.5">
-            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-              {t('certificationsPage.skillsValidated')}
-            </h3>
-            <div className="flex flex-wrap gap-1">
-              {selectedCert.skills.map((skill) => (
-                <span
-                  key={skill.name}
-                  className={`rounded-[4px] px-1.5 py-0.5 text-[8px] font-bold shadow-xs shadow-gray-300 dark:shadow-none lg:px-2 lg:text-[9px] ${skill.color}`}
-                >
-                  {skill.name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Key Topics */}
-          <div className="space-y-2 pt-1 lg:pt-2">
-            <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-              {t('certificationsPage.keyTopics')}
-            </h3>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {selectedCert.keyTopics.map((topic) => {
-                const TopicIcon = topic.icon;
-                return (
-                  <div
-                    key={topic.title}
-                    className="flex items-center gap-2 rounded-[6px] bg-background p-2 shadow-xs shadow-gray-300 dark:shadow-none"
-                  >
-                    <div
-                      className={`flex size-6 shrink-0 items-center justify-center rounded-[4px] ${topic.iconBg} lg:size-7`}
-                    >
-                      <TopicIcon className="size-3 lg:size-3.5" />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="truncate text-[9.5px] font-semibold text-[var(--color-text-primary)] lg:text-[10.5px]">
-                        {topic.title}
-                      </h4>
-                      <p className="mt-0.5 truncate text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
-                        {topic.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* ================= RIGHT COLUMN: CREDENTIAL & PROJECTS ================= */}
-        <div className="order-3 flex flex-col gap-3 overflow-visible lg:order-none lg:col-span-3 lg:gap-3 lg:overflow-y-auto">
-          {/* Certificate Image Card */}
-          <div className="space-y-2.5 rounded-[6px] bg-[var(--color-bg-secondary)] p-2.5 shadow-md shadow-gray-300 dark:shadow-none lg:space-y-3 lg:p-3">
-            <div className="overflow-hidden rounded-[6px] bg-background shadow-sm shadow-gray-300 dark:shadow-none">
-              <Image
-                src={selectedCert.certImage}
-                alt={selectedCert.title}
-                width={360}
-                height={240}
-                className="h-auto w-full object-cover"
-                priority
-              />
+            {/* About */}
+            <div className="space-y-1">
+              <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+                {t('certificationsPage.aboutHeading')}
+              </h3>
+              <p className="text-[10px] font-normal leading-relaxed text-[var(--color-text-secondary)] lg:text-[11px]">
+                {translatedSelectedCert.about}
+              </p>
             </div>
 
-            {/* Credential Info */}
+            {/* Skills */}
             <div className="space-y-1.5">
               <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-                {t('certificationsPage.credentialInfo')}
+                {t('certificationsPage.skillsValidated')}
               </h3>
-
-              <div className="space-y-1 text-[9px] lg:space-y-1.5 lg:text-[10px]">
-                <div className="flex items-center justify-between py-0.5">
-                  <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
-                    <User className="size-3" /> ID
-                  </span>
-                  <span className="font-mono text-[8.5px] font-bold text-[var(--color-text-primary)] lg:text-[9.5px]">
-                    {selectedCert.credentialId}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between py-0.5">
-                  <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
-                    <CheckCircle2 className="size-3 text-blue-500" /> Link
-                  </span>
-                  <a
-                    href={selectedCert.verificationUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-0.5 text-[8.5px] font-semibold text-blue-500 hover:underline lg:text-[9.5px]"
+              <div className="flex flex-wrap gap-1">
+                {translatedSelectedCert.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className={`rounded-[4px] px-1.5 py-0.5 text-[8px] font-bold shadow-xs shadow-gray-300 dark:shadow-none lg:px-2 lg:text-[9px] ${skill.color}`}
                   >
-                    <span>{t('certificationsPage.verify')}</span>
-                    <ArrowUpRight className="size-2.5" />
-                  </a>
-                </div>
-
-                <div className="flex items-center justify-between py-0.5">
-                  <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
-                    <Building2 className="size-3" /> Provider
+                    {skill.name}
                   </span>
-                  <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
-                    {selectedCert.provider}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between py-0.5">
-                  <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
-                    <FileBadge className="size-3" /> Type
-                  </span>
-                  <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
-                    {selectedCert.credentialType}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between py-0.5">
-                  <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
-                    <ShieldCheck className="size-3" /> Status
-                  </span>
-                  <span className="rounded bg-emerald-500/10 px-1.5 py-0.2 text-[7px] font-bold text-emerald-500 lg:text-[8px]">
-                    {selectedCert.activeStatus}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Related Projects */}
-            <div className="space-y-1.5 pt-1 lg:pt-2">
-              <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-                {t('certificationsPage.relatedProjects')}
-              </h3>
-
-              <div className="space-y-1">
-                {selectedCert.relatedProjects.map((proj) => (
-                  <div
-                    key={proj.title}
-                    className="flex items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-xs shadow-gray-300 dark:shadow-none"
-                  >
-                    <span className="truncate text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
-                      {proj.title}
-                    </span>
-                    <span className="rounded bg-[var(--color-bg-tertiary)] px-1 py-0.2 text-[7px] font-semibold text-[var(--color-text-tertiary)] lg:text-[8px]">
-                      {proj.tech}
-                    </span>
-                  </div>
                 ))}
               </div>
             </div>
 
-            {/* View All Projects Button */}
-            <Link
-              href="/projects"
-              className="flex w-full items-center justify-center gap-1 rounded-[6px] bg-background py-1.5 text-[9px] font-semibold text-blue-500 transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]"
-            >
-              <span>{t('certificationsPage.viewAllProjects')}</span>
-              <ChevronDown className="size-3" />
-            </Link>
+            {/* Key Topics */}
+            <div className="space-y-2 pt-1 lg:pt-2">
+              <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+                {t('certificationsPage.keyTopics')}
+              </h3>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {translatedSelectedCert.keyTopics.map((topic) => {
+                  const TopicIcon = topic.icon;
+                  return (
+                    <div
+                      key={topic.title}
+                      className="flex items-center gap-2 rounded-[6px] bg-background p-2 shadow-xs shadow-gray-300 dark:shadow-none"
+                    >
+                      <div
+                        className={`flex size-6 shrink-0 items-center justify-center rounded-[4px] ${topic.iconBg} lg:size-7`}
+                      >
+                        <TopicIcon className="size-3 lg:size-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="truncate text-[9.5px] font-semibold text-[var(--color-text-primary)] lg:text-[10.5px]">
+                          {topic.title}
+                        </h4>
+                        <p className="mt-0.5 truncate text-[8px] text-[var(--color-text-tertiary)] lg:text-[9px]">
+                          {topic.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="order-1 flex flex-col items-center justify-center gap-2 rounded-[6px] bg-[var(--color-bg-secondary)] p-6 text-center lg:order-none lg:col-span-5">
+            <Award className="size-8 text-[var(--color-text-tertiary)]" />
+            <p className="text-[11px] font-semibold text-[var(--color-text-secondary)]">
+              {t('certificationsPage.noCertificatesFound')}
+            </p>
+          </div>
+        )}
+
+        {/* ================= RIGHT COLUMN: CREDENTIAL & PROJECTS ================= */}
+        {translatedSelectedCert ? (
+          <div className="order-3 flex flex-col gap-3 overflow-visible lg:order-none lg:col-span-3 lg:gap-3 lg:overflow-y-auto">
+            {/* Certificate Image Card */}
+            <div className="space-y-2.5 rounded-[6px] bg-[var(--color-bg-secondary)] p-2.5 shadow-md shadow-gray-300 dark:shadow-none lg:space-y-3 lg:p-3">
+              <div className="overflow-hidden rounded-[6px] bg-background shadow-sm shadow-gray-300 dark:shadow-none">
+                <Image
+                  src={translatedSelectedCert.certImage}
+                  alt={translatedSelectedCert.title}
+                  width={360}
+                  height={240}
+                  className="h-auto w-full object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Credential Info */}
+              <div className="space-y-1.5">
+                <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+                  {t('certificationsPage.credentialInfo')}
+                </h3>
+
+                <div className="space-y-1 text-[9px] lg:space-y-1.5 lg:text-[10px]">
+                  <div className="flex items-center justify-between py-0.5">
+                    <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
+                      <User className="size-3" /> ID
+                    </span>
+                    <span className="font-mono text-[8.5px] font-bold text-[var(--color-text-primary)] lg:text-[9.5px]">
+                      {translatedSelectedCert.credentialId}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-0.5">
+                    <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
+                      <CheckCircle2 className="size-3 text-blue-500" /> Link
+                    </span>
+                    <a
+                      href={translatedSelectedCert.verificationUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-0.5 text-[8.5px] font-semibold text-blue-500 hover:underline lg:text-[9.5px]"
+                    >
+                      <span>{t('certificationsPage.verify')}</span>
+                      <ArrowUpRight className="size-2.5" />
+                    </a>
+                  </div>
+
+                  <div className="flex items-center justify-between py-0.5">
+                    <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
+                      <Building2 className="size-3" /> Provider
+                    </span>
+                    <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
+                      {translatedSelectedCert.provider}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-0.5">
+                    <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
+                      <FileBadge className="size-3" /> Type
+                    </span>
+                    <span className="text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
+                      {translatedSelectedCert.credentialTypeText}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-0.5">
+                    <span className="flex items-center gap-1 text-[var(--color-text-tertiary)]">
+                      <ShieldCheck className="size-3" /> Status
+                    </span>
+                    <span className="rounded bg-emerald-500/10 px-1.5 py-0.2 text-[7px] font-bold text-emerald-500 lg:text-[8px]">
+                      {translatedSelectedCert.activeStatusText}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Related Projects */}
+              <div className="space-y-1.5 pt-1 lg:pt-2">
+                <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+                  {t('certificationsPage.relatedProjects')}
+                </h3>
+
+                <div className="space-y-1">
+                  {translatedSelectedCert.relatedProjects.map((proj) => (
+                    <div
+                      key={proj.title}
+                      className="flex items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-xs shadow-gray-300 dark:shadow-none"
+                    >
+                      <span className="truncate text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
+                        {proj.title}
+                      </span>
+                      <span className="rounded bg-[var(--color-bg-tertiary)] px-1 py-0.2 text-[7px] font-semibold text-[var(--color-text-tertiary)] lg:text-[8px]">
+                        {proj.tech}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* View All Projects Button */}
+              <Link
+                href="/projects"
+                className="flex w-full items-center justify-center gap-1 rounded-[6px] bg-background py-1.5 text-[9px] font-semibold text-blue-500 transition-colors hover:bg-[var(--color-bg-tertiary)] shadow-xs shadow-gray-300 dark:shadow-none lg:text-[10px]"
+              >
+                <span>{t('certificationsPage.viewAllProjects')}</span>
+                <ChevronDown className="size-3" />
+              </Link>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

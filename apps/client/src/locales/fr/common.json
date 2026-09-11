@@ -578,6 +578,736 @@
     "milestonesReached": "Jalons atteints",
     "milestonesValue": "12"
   },
+  "consultifyMilestone": {
+    "breadcrumb": "Expérience / Détails du jalon",
+    "breadcrumbHighlight": "-CONSULTIFY-",
+    "title": "CONSULTIFY",
+    "founderBadge": "Fondateur de startup",
+    "year": "2025",
+    "tagline": "Rendre l'expertise universellement accessible.",
+    "mission": "MISSION",
+    "missionText": "CONSULTIFY a été créé pour simplifier l'accès aux conseils professionnels en combinant la réservation d'experts, des recommandations intelligentes et une expérience numérique moderne sur une seule plateforme.",
+    "atAGlance": "EN UN COUP D'ŒIL",
+    "status": "Statut",
+    "statusArchived": "Archivé",
+    "duration": "Durée",
+    "durationValue": "8 Mois",
+    "durationRange": "Jan 2025 - Août 2025",
+    "role": "Rôle",
+    "roleValue": "Fondateur & Développeur Full-Stack",
+    "industry": "Industrie",
+    "industryValue": "EdTech · IA · Consultation",
+    "techStack": "Stack Technique",
+    "whatIBuilt": "CE QUE J'AI CONSTRUIT",
+    "builtItems": [
+      "Vision complète du produit",
+      "Design System UI / UX",
+      "Architecture Full-Stack",
+      "Système d'authentification",
+      "Moteur de recommandation IA",
+      "Tableau de bord expert",
+      "Flux de réservation"
+    ],
+    "biggestChallenges": "PLUS GRANDS DÉFIS",
+    "challengeItems": [
+      "Validation du marché",
+      "Positionnement du produit",
+      "Gestion du temps",
+      "Prise de décision utilisateur",
+      "Acquisition de données",
+      "Évolution avec des ressources limitées"
+    ],
+    "keyTakeaways": "ENSEIGNEMENTS CLÉS",
+    "takeawayItems": [
+      "Construire n'est que la moitié du chemin",
+      "Valider les idées avant de passer à l'échelle",
+      "La communication est aussi importante que le code",
+      "L'échec est formateur",
+      "Les conseils d'un mentor > l'expérience seule",
+      "La pensée produit a transformé ma perspective"
+    ],
+    "impact": "IMPACT",
+    "impactText": "Bien que CONSULTIFY n'ait pas atteint le succès commercial, ce projet m'a transformé : je suis passé de simple créateur d'applications à quelqu'un qui maîtrise la conception produit, l'architecture logicielle, l'expérience utilisateur, la stratégie d'entreprise et l'entrepreneuriat.",
+    "tip": "Astuce",
+    "tipText": "Sélectionnez une section dans la barre latérale pour découvrir plus de détails sur mon expérience.",
+    "previewTagline": "Là où le savoir rencontre l'opportunité"
+  },
+  "bachelorMilestone": {
+    "breadcrumb": "Expérience / Détails du jalon",
+    "breadcrumbHighlight": "— Licence Universitaire",
+    "title": "Licence en Informatique",
+    "statusCompleted": "Complété",
+    "year": "2025",
+    "university": "Université M'Hamed Bougara — Boumerdès, Algérie",
+    "specialty": "SPÉCIALITÉ",
+    "specialtyDesc": "Développement Web et Imagerie Numérique — une alliance entre génie logiciel et calcul visuel qui a forgé mon esprit full-stack et mon approche créative de résolution de problèmes.",
+    "tags": ["Dév Web", "Infographie", "POO", "Bases de données", "Algorithmes", "Réseaux"],
+    "officialCertificate": "Certificat Officiel",
+    "atAGlance": "EN UN COUP D'ŒIL",
+    "degree": "Diplôme",
+    "degreeValue": "Licence (Bac+3)",
+    "field": "Domaine",
+    "fieldValue": "Informatique",
+    "specialization": "Spécialisation",
+    "specializationValue": "Dév Web & Infographie",
+    "institution": "Établissement",
+    "institutionValue": "Université M'Hamed Bougara",
+    "location": "Localisation",
+    "locationValue": "Boumerdès, Algérie",
+    "status": "Statut",
+    "creditsEarned": "Crédits Obtenus",
+    "creditsValue": "180 ECTS",
+    "duration": "Durée",
+    "durationValue": "2021 – 2025",
+    "statGpaLabel": "Moyenne Finale",
+    "statDurationLabel": "Durée",
+    "statDurationValue": "4 Ans",
+    "statCreditsLabel": "Crédits ECTS",
+    "statCreditsValue": "180",
+    "statHonoursLabel": "Mention",
+    "statHonoursValue": "Bien",
+    "coreSubjects": "MATIÈRES PRINCIPALES",
+    "subjects": {
+      "webDev": "Développement Web",
+      "computerGraphics": "Infographie & 3D",
+      "dataStructures": "Structures de Données",
+      "algorithms": "Algorithmique",
+      "operatingSystems": "Systèmes d'Exploitation",
+      "databases": "Bases de Données"
+    },
+    "highlights": "POINTS FORTS",
+    "highlightsList": [
+      "Excellentes performances académiques dans les matières fondamentales de l'informatique",
+      "Réalisation de multiples projets pratiques et applications du monde réel",
+      "Spécialisation poussée en Développement Web et Infographie",
+      "Acquisition d'une solide base en développement full-stack et conception logicielle",
+      "Diplômé avec une moyenne de 14,31/20 — Mention Bien"
+    ],
+    "documents": "DOCUMENTS",
+    "docDegree": "Attestation de Diplôme.pdf",
+    "docTranscript": "Relevé de Notes.pdf",
+    "docCompletion": "Certificat de Réussite.pdf",
+    "about": "À PROPOS",
+    "aboutDesc": "Diplômé d'une Licence en Informatique avec de solides compétences en développement logiciel, résolution de problèmes et architecture système. Ce parcours a développé ma passion pour la création de solutions numériques à fort impact.",
+    "tip": "Astuce",
+    "tipText": "Sélectionnez une section dans la barre latérale pour découvrir plus de détails sur mon expérience."
+  },
+  "somiphosMilestone": {
+    "breadcrumb": "Expérience / Détails du jalon",
+    "breadcrumbHighlight": "— Stage SOMIPHOS",
+    "title": "SOMIPHOS",
+    "badge": "Stage d'Intégration",
+    "year": "2025",
+    "subtitle": "Société des Mines de Phosphates — Algérie",
+    "aboutCompany": "À PROPOS DE L'ENTREPRISE",
+    "aboutCompanyDesc": "SOMIPHOS (Société des Mines de Phosphates) est une grande entreprise minière publique algérienne spécialisée dans l'extraction et le traitement des phosphates. Ce stage d'intégration m'a offert une immersion pratique dans les opérations informatiques au sein d'un environnement industriel de grande envergure.",
+    "statMonths": "Mois",
+    "statDomain": "Domaine",
+    "statStatus": "Statut",
+    "statStatusDone": "Terminé",
+    "certificateCaption": "Attestation de Stage",
+    "skillsDeveloped": "COMPÉTENCES DÉVELOPPÉES",
+    "skills": {
+      "systemAnalysis": "Analyse Système",
+      "technicalDoc": "Documentation Technique",
+      "teamCollab": "Travail en Équipe",
+      "problemSolving": "Résolution de Problèmes",
+      "professionalComm": "Communication Professionnelle"
+    },
+    "atAGlance": "EN UN COUP D'ŒIL",
+    "type": "Type",
+    "typeValue": "Stage d'Intégration",
+    "company": "Entreprise",
+    "companyValue": "SOMIPHOS",
+    "location": "Localisation",
+    "locationValue": "Algérie",
+    "period": "Période",
+    "periodValue": "Juin 2025 – Juil 2025",
+    "duration": "Durée",
+    "durationValue": "2 mois",
+    "domain": "Domaine",
+    "domainValue": "Mines & Phosphates",
+    "status": "Statut",
+    "statusValue": "Complété",
+    "completedBadge": "Terminé avec succès — Juin–Juil 2025",
+    "responsibilities": "RESPONSABILITÉS",
+    "responsibilitiesList": [
+      "Observation et étude de l'infrastructure informatique d'entreprise en milieu minier",
+      "Analyse des systèmes internes existants et des flux de gestion des données",
+      "Contribution à la documentation des processus techniques et de l'architecture système",
+      "Collaboration avec l'équipe IT pour comprendre la topologie réseau et la sécurité",
+      "Participation aux réunions d'équipe et aux sessions de planification technique"
+    ],
+    "keyLearnings": "ENSEIGNEMENTS CLÉS",
+    "keyLearningsList": [
+      "Compréhension des opérations informatiques d'entreprise dans le secteur industriel",
+      "Découverte des systèmes de gestion de données et de reporting à l'échelle industrielle",
+      "Aperçu concret du fonctionnement des équipes techniques au sein des grandes entreprises",
+      "Compétences en communication professionnelle en environnement corporatif formel",
+      "Capacité d'adaptation rapide à des environnements techniques inconnus"
+    ],
+    "documents": "DOCUMENTS",
+    "docCertificate": "Attestation de Stage",
+    "docCompletion": "Lettre de Fin de Stage",
+    "overallExperience": "EXPÉRIENCE GLOBALE",
+    "overallExperienceDesc": "Ce stage d'intégration chez SOMIPHOS m'a donné un premier aperçu du travail informatique en milieu industriel à grande échelle, renforçant l'importance des systèmes structurés et du travail d'équipe.",
+    "tip": "Astuce",
+    "tipText": "Sélectionnez une section dans la barre latérale pour découvrir plus de détails sur mon expérience."
+  },
+  "algerieTelecomMilestone": {
+    "breadcrumb": "Expérience / Détails du jalon",
+    "breadcrumbHighlight": "— Stage Algérie Télécom",
+    "title": "Algérie Télécom",
+    "badge": "Stage de Premier Niveau",
+    "year": "2024",
+    "subtitle": "Algérie Télécom — Opérateur National des Télécommunications, Algérie",
+    "aboutCompany": "À PROPOS DE L'ENTREPRISE",
+    "aboutCompanyDesc": "Algérie Télécom est l'opérateur public national de télécommunications en Algérie, fournissant des services internet, de téléphonie et de données à travers tout le pays. Ce stage de premier niveau a marqué ma première immersion professionnelle dans les opérations IT d'une infrastructure nationale majeure.",
+    "statMonth": "Mois",
+    "statDomain": "Domaine",
+    "statStatus": "Statut",
+    "statStatusDone": "Terminé",
+    "certificateCaption": "Attestation de Stage",
+    "skillsDeveloped": "COMPÉTENCES DÉVELOPPÉES",
+    "skills": {
+      "networkFundamentals": "Fondamentaux des Réseaux",
+      "technicalObservation": "Observation Technique",
+      "documentation": "Documentation",
+      "professionalDiscipline": "Discipline Professionnelle",
+      "teamCollaboration": "Travail en Équipe"
+    },
+    "atAGlance": "EN UN COUP D'ŒIL",
+    "type": "Type",
+    "typeValue": "Stage de Premier Niveau",
+    "company": "Entreprise",
+    "companyValue": "Algérie Télécom",
+    "location": "Localisation",
+    "locationValue": "Algérie",
+    "period": "Période",
+    "periodValue": "Juil 2024 – Juil 2024",
+    "duration": "Durée",
+    "durationValue": "1 mois",
+    "domain": "Domaine",
+    "domainValue": "Télécommunications",
+    "status": "Statut",
+    "statusValue": "Complété",
+    "completedBadge": "Terminé avec succès — Juillet 2024",
+    "firstInternshipBadge": "Mon Premier Stage Professionnel",
+    "responsibilities": "RESPONSABILITÉS",
+    "responsibilitiesList": [
+      "Observation des opérations au sein d'une infrastructure nationale de télécommunications",
+      "Apprentissage des procédures de maintenance des réseaux cuivre et fibre optique",
+      "Contribution à la cartographie et à la documentation de la topologie réseau",
+      "Participation aux présentations techniques sur les services internet ADSL et fibre",
+      "Découverte de la configuration et de la surveillance des réseaux au niveau FAI"
+    ],
+    "keyLearnings": "ENSEIGNEMENTS CLÉS",
+    "keyLearningsList": [
+      "Compréhension des réseaux de télécommunications à grande échelle",
+      "Utilisation des outils d'administration et de supervision réseau d'entreprise",
+      "Aperçu pratique des opérations et infrastructures de fournisseurs d'accès internet",
+      "Discipline professionnelle et rigueur de travail en environnement technique",
+      "Première expérience professionnelle dans un cadre d'entreprise structuré"
+    ],
+    "documents": "DOCUMENTS",
+    "docCertificate": "Attestation de Stage",
+    "docCompletion": "Lettre de Fin de Stage",
+    "overallExperience": "EXPÉRIENCE GLOBALE",
+    "overallExperienceDesc": "Mon premier stage professionnel chez Algérie Télécom m'a apporté un éclairage inestimable sur les infrastructures IT et les réseaux de télécommunications nationaux, posant les bases de mon parcours dans la tech.",
+    "tip": "Astuce",
+    "tipText": "Sélectionnez une section dans la barre latérale pour découvrir plus de détails sur mon expérience."
+  },
+  "educationPage": {
+    "breadcrumb": "Expérience / Chronologie de la formation",
+    "title": "Chronologie de la formation",
+    "subtitle": "Mon parcours académique de la première année jusqu'à l'école d'ingénieurs.",
+    "quote": "\"Plus vous devenez silencieux, plus vous êtes capable d'entendre.\"",
+    "journeyTitle": "PARCOURS ACADÉMIQUE",
+    "viewAll": "Voir tout",
+    "selectedMilestone": "ÉTAPE SÉLECTIONNÉE",
+    "tabOverview": "Aperçu",
+    "tabHighlights": "Points forts",
+    "tabSkills": "Compétences",
+    "tabDocuments": "Documents",
+    "aboutThisMilestone": "À PROPOS DE CETTE ÉTAPE",
+    "highlightsTitle": "POINTS FORTS",
+    "skillsGainedTitle": "COMPÉTENCES ACQUISES",
+    "documentsTitle": "DOCUMENTS",
+    "noDocuments": "Aucun document disponible pour cette étape.",
+    "noDocumentsYet": "Pas encore de documents.",
+    "milestoneInfo": "INFOS DE L'ÉTAPE",
+    "tip": "Conseil",
+    "tipText": "Cliquez sur une étape dans le panneau Parcours Académique pour explorer ses détails, compétences et documents.",
+    "stats": {
+      "degreesEarned": "Diplômes obtenus",
+      "yearsJourney": "Années de parcours académique",
+      "projectsCompleted": "Projets réalisés",
+      "milestonesCompleted": "Étapes franchies"
+    },
+    "items": {
+      "estin": {
+        "timelineYear": "Actuellement",
+        "timelineTitle": "Étudiant à l'ESTIN",
+        "timelineSubtitle": "Deuxième année classe préparatoire",
+        "bannerTitle": "Étudiant à l'ESTIN",
+        "bannerBadge": "En cours — 2025 →",
+        "bannerQuote": "\"L'ingénierie commence là où s'arrête le confort.\"",
+        "about": "Actuellement inscrit en deuxième année du cycle préparatoire à l'ESTIN (École Supérieure en Technologies de l'Information et du Numérique), l'une des meilleures écoles d'ingénieurs d'Algérie. Le programme est intensif et couvre les mathématiques avancées, la physique et les fondamentaux de l'informatique.",
+        "metrics": {
+          "institution": "Établissement",
+          "institutionValue": "ESTIN",
+          "institutionSub": "École d'ingénieurs",
+          "cycle": "Cycle",
+          "cycleValue": "2ème Année",
+          "cycleSub": "Préparatoire",
+          "started": "Début",
+          "startedValue": "2025",
+          "startedSub": "En cours",
+          "goal": "Objectif",
+          "goalValue": "Ingénieur",
+          "goalSub": "Diplôme"
+        },
+        "highlights": [
+          "Admis dans l'une des meilleures écoles d'ingénieurs d'Algérie après sélection rigoureuse",
+          "Programme intensif en mathématiques avancées, physique et fondamentaux informatiques",
+          "Solides bases théoriques pour la spécialisation en ingénierie",
+          "Adaptation réussie à un environnement académique très exigeant"
+        ],
+        "info": {
+          "levelLabel": "Niveau",
+          "levelValue": "Cycle Préparatoire",
+          "schoolLabel": "École",
+          "schoolValue": "ESTIN Béjaïa",
+          "locationLabel": "Lieu",
+          "locationValue": "Béjaïa, Algérie",
+          "focusLabel": "Focus",
+          "focusValue": "Maths · Physique · Info",
+          "statusLabel": "Statut",
+          "statusValue": "En cours",
+          "yearLabel": "Année",
+          "yearValue": "2ème Année Prépa",
+          "sinceLabel": "Depuis",
+          "sinceValue": "2025"
+        },
+        "docs": ["Certificat de scolarité"]
+      },
+      "bachelor": {
+        "timelineYear": "2025",
+        "timelineTitle": "Diplôme de Licence",
+        "timelineSubtitle": "Obtenu",
+        "bannerTitle": "Diplôme de Licence",
+        "bannerBadge": "Obtenu en 2025",
+        "bannerQuote": "\"La fin d'un voyage, le début de possibilités infinies.\"",
+        "about": "Obtention de ma Licence en Informatique à l'Université M'Hamed Bougara avec spécialisation en Développement Web et Infographie. Ce parcours de 4 ans a renforcé mes compétences en génie logiciel et conception de systèmes.",
+        "metrics": {
+          "institution": "Université",
+          "institutionValue": "M'Hamed Bougara",
+          "institutionSub": "Boumerdès",
+          "cycle": "Domaine",
+          "cycleValue": "Informatique",
+          "cycleSub": "Sciences",
+          "started": "Durée",
+          "startedValue": "2021–2025",
+          "startedSub": "4 Ans",
+          "goal": "Moyenne",
+          "goalValue": "14.31 / 20",
+          "goalSub": "Mention Bien"
+        },
+        "highlights": [
+          "Excellents résultats académiques dans les matières principales d'informatique",
+          "Réalisation de multiples projets pratiques et applications réelles",
+          "Spécialisation en Développement Web et Infographie",
+          "Solide expertise en développement full-stack et architecture système"
+        ],
+        "info": {
+          "levelLabel": "Diplôme",
+          "levelValue": "Licence",
+          "focusLabel": "Domaine",
+          "focusValue": "Informatique",
+          "specializationLabel": "Spécialisation",
+          "specializationValue": "Dev Web & Graphique",
+          "schoolLabel": "Établissement",
+          "schoolValue": "M'Hamed Bougara",
+          "locationLabel": "Lieu",
+          "locationValue": "Boumerdès, Algérie",
+          "statusLabel": "Statut",
+          "statusValue": "Obtenu",
+          "creditsLabel": "Crédits",
+          "creditsValue": "180 ECTS",
+          "graduatedLabel": "Diplômé",
+          "graduatedValue": "2025"
+        },
+        "docs": ["Attestation de réussite.pdf", "Relevé de notes.pdf", "Lettre de fin d'études.pdf"]
+      },
+      "fullstack-2024": {
+        "timelineYear": "2024",
+        "timelineTitle": "Spécialisation Génie Full Stack",
+        "timelineSubtitle": "4ème Année Finale",
+        "bannerTitle": "Ingénierie Full Stack",
+        "bannerBadge": "Spécialisation — 2024",
+        "bannerQuote": "\"Livre rapidement, apprends encore plus vite.\"",
+        "about": "Dernière année universitaire axée sur la spécialisation en ingénierie full-stack. Approfondissement des technologies web modernes : React, Next.js, Node.js, NestJS et bases de données.",
+        "metrics": {
+          "institution": "Stack",
+          "institutionValue": "Full Stack",
+          "institutionSub": "Dev Web",
+          "cycle": "Projets",
+          "cycleValue": "8+",
+          "cycleSub": "Réalisés",
+          "started": "Année",
+          "startedValue": "2024",
+          "startedSub": "4ème Année",
+          "goal": "Focus",
+          "goalValue": "React + NestJS",
+          "goalSub": "TypeScript"
+        },
+        "highlights": [
+          "Maîtrise de l'écosystème full-stack : React, Next.js, NestJS, MongoDB, PostgreSQL",
+          "Conception et déploiement de plusieurs applications web complètes",
+          "Première expérience de stage appliquant des compétences en entreprise",
+          "Compréhension approfondie de TypeScript, des API REST et de l'architecture propre"
+        ],
+        "info": {
+          "levelLabel": "Année",
+          "levelValue": "4ème Année (Finale)",
+          "focusLabel": "Spécialisation",
+          "focusValue": "Web Full Stack",
+          "stackLabel": "Stack Principale",
+          "stackValue": "React · NestJS",
+          "schoolLabel": "Établissement",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Statut",
+          "statusValue": "Terminé",
+          "periodLabel": "Période",
+          "periodValue": "Sep 2024 – Juin 2025"
+        },
+        "docs": ["Relevé 4ème Année.pdf", "Rapports de projets.pdf"]
+      },
+      "major-2023": {
+        "timelineYear": "2023",
+        "timelineTitle": "Cours Majeurs de Génie Logiciel",
+        "timelineSubtitle": "3ème Année",
+        "bannerTitle": "Majeure Génie Logiciel",
+        "bannerBadge": "Cours Majeurs — 2023",
+        "bannerQuote": "\"Conçois avant de coder. Réfléchis avant de taper.\"",
+        "about": "La troisième année a introduit le programme principal de génie logiciel — Design Patterns, Architecture Logicielle, Algorithmes Avancés et méthodes formelles.",
+        "metrics": {
+          "institution": "Focus",
+          "institutionValue": "Architecture",
+          "institutionSub": "Design Patterns",
+          "cycle": "Langages",
+          "cycleValue": "Java · C++",
+          "cycleSub": "Python",
+          "started": "Année",
+          "startedValue": "2023",
+          "startedSub": "3ème Année",
+          "goal": "Modules",
+          "goalValue": "12+",
+          "goalSub": "Unités Majeures"
+        },
+        "highlights": [
+          "Étude des design patterns classiques : Factory, Observer, Strategy, Singleton",
+          "Apprentissage des principes d'architecture logicielle et modélisation UML",
+          "Algorithmes avancés et analyse de complexité (programmation dynamique, graphes)",
+          "Réalisation d'un projet logiciel en équipe selon la méthode agile"
+        ],
+        "info": {
+          "levelLabel": "Année",
+          "levelValue": "3rd Year",
+          "focusLabel": "Focus",
+          "focusValue": "Génie Logiciel",
+          "languagesLabel": "Langages",
+          "languagesValue": "Java · C++ · Python",
+          "schoolLabel": "Établissement",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Statut",
+          "statusValue": "Terminé",
+          "periodLabel": "Période",
+          "periodValue": "Sep 2023 – Juin 2024"
+        },
+        "docs": ["Relevé 3ème Année.pdf", "Rapport de projet logiciel.pdf"]
+      },
+      "year2-2022": {
+        "timelineYear": "2022",
+        "timelineTitle": "Deuxième Année Universitaire",
+        "timelineSubtitle": "2ème Année",
+        "bannerTitle": "Deuxième Année Universitaire",
+        "bannerBadge": "Modules Fondamentaux — 2022",
+        "bannerQuote": "\"Chaque système étudié ajoute un nouvel objectif pour voir le monde.\"",
+        "about": "La deuxième année a approfondi la théorie informatique : Systèmes d'exploitation, Réseaux, Bases de données et programmation C avancée.",
+        "metrics": {
+          "institution": "Focus",
+          "institutionValue": "Systèmes",
+          "institutionSub": "Théorie Info",
+          "cycle": "Langages",
+          "cycleValue": "C / C++",
+          "cycleSub": "SQL",
+          "started": "Année",
+          "startedValue": "2022",
+          "startedSub": "2ème Année",
+          "goal": "Modules",
+          "goalValue": "10+",
+          "goalSub": "Unités Clés"
+        },
+        "highlights": [
+          "Maîtrise des concepts de systèmes d'exploitation : processus, threads, mémoire",
+          "Étude approfondie des réseaux informatiques (modèle TCP/IP, OSI, routage)",
+          "Apprentissage des bases de données relationnelles et du langage SQL",
+          "Développement d'une réflexion orientée systèmes en C et C++"
+        ],
+        "info": {
+          "levelLabel": "Année",
+          "levelValue": "2ème Année",
+          "focusLabel": "Focus",
+          "focusValue": "SE · Réseaux · BDD",
+          "languagesLabel": "Langages",
+          "languagesValue": "C · C++ · SQL",
+          "schoolLabel": "Établissement",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Statut",
+          "statusValue": "Terminé",
+          "periodLabel": "Période",
+          "periodValue": "Sep 2022 – Juin 2023"
+        },
+        "docs": ["Relevé 2ème Année.pdf"]
+      },
+      "year1-2021": {
+        "timelineYear": "2021",
+        "timelineTitle": "Début de Première Année",
+        "timelineSubtitle": "1ère Année",
+        "bannerTitle": "Première Année Universitaire",
+        "bannerBadge": "Fondations — 2021",
+        "bannerQuote": "\"Chaque expert a un jour été un débutant.\"",
+        "about": "La première année à l'Université M'Hamed Bougara a marqué le véritable début de mon parcours en Informatique. Introduction à la programmation en C, Mathématiques discrètes, Logique et Architecture des ordinateurs.",
+        "metrics": {
+          "institution": "Étape",
+          "institutionValue": "1ère Année",
+          "institutionSub": "Fondation",
+          "cycle": "Premier Langage",
+          "cycleValue": "C",
+          "cycleSub": "Programmation",
+          "started": "Année",
+          "startedValue": "2021",
+          "startedSub": "1ère Année",
+          "goal": "Modules",
+          "goalValue": "8+",
+          "goalSub": "Unités Clés"
+        },
+        "highlights": [
+          "Premiers pas en programmation avec le langage C — boucles, fonctions, pointeurs, tableaux",
+          "Bases mathématiques solides en mathématiques discrètes et logique formelle",
+          "Compréhension du fonctionnement matériel des ordinateurs via l'architecture",
+          "Première année validée avec succès, confirmant ma passion pour l'informatique"
+        ],
+        "info": {
+          "levelLabel": "Année",
+          "levelValue": "1ère Année",
+          "focusLabel": "Focus",
+          "focusValue": "Intro à l'Info",
+          "languagesLabel": "Langage",
+          "languagesValue": "Programmation C",
+          "schoolLabel": "Établissement",
+          "schoolValue": "M'Hamed Bougara",
+          "statusLabel": "Statut",
+          "statusValue": "Terminé",
+          "periodLabel": "Période",
+          "periodValue": "Sep 2021 – Juin 2022"
+        },
+        "docs": ["Relevé 1ère Année.pdf"]
+      }
+    }
+  },
+  "internshipsPage": {
+    "breadcrumb": "Expérience / Stages",
+    "title": "STAGES",
+    "subtitle": "Expérience Pratique. Immersion Professionnelle",
+    "counterBadge": "stages",
+    "timelineTitle": "CHRONOLOGIE DES STAGES",
+    "overviewTitle": "APERÇU",
+    "responsibilitiesTitle": "RESPONSABILITÉS CLÉS",
+    "achievementsTitle": "RÉALISATIONS CLÉS",
+    "milestoneInfo": "INFOS DE L'ÉTAPE",
+    "technologiesUsed": "TECHNOLOGIES UTILISÉES",
+    "documentsTitle": "DOCUMENTS",
+    "stats": {
+      "internshipsDone": "Stages effectués",
+      "monthsExperience": "Mois d'expérience",
+      "skillsApplied": "Technologies appliquées",
+      "successRate": "Taux de réussite"
+    },
+    "tip": "Conseil",
+    "tipText": "Sélectionnez un stage dans la chronologie pour explorer ses responsabilités, réalisations et technologies utilisées.",
+    "items": {
+      "codsoft": {
+        "company": "CodSoft",
+        "title": "Stagiaire Développeur Web",
+        "period": "Jan 2025 - Mar 2025",
+        "locationMode": "À distance",
+        "status": "Terminé",
+        "overview": "Travail en tant que stagiaire en développement web pour la création d'applications réactives et l'amélioration de l'expérience utilisateur.",
+        "responsibilities": [
+          "Développement et maintenance de pages web réactives avec HTML, CSS, JavaScript",
+          "Création de composants UI réutilisables avec React.js",
+          "Intégration d'API RESTful et gestion des données côté front-end",
+          "Collaboration avec les designers pour implémenter une UI/UX moderne",
+          "Débogage et optimisation des fonctionnalités existantes"
+        ],
+        "achievements": [
+          "Amélioration des performances de chargement de 30%",
+          "Implémentation de la fonctionnalité mode sombre",
+          "Retours très positifs sur la qualité du code et la résolution de problèmes"
+        ],
+        "documents": ["Attestation de stage", "Lettre d'expérience", "Certificat de fin de stage"]
+      },
+      "techverse": {
+        "company": "TechVerse Solutions",
+        "title": "Stagiaire Développeur Frontend",
+        "period": "Août 2024 - Oct 2024",
+        "locationMode": "Hybride",
+        "status": "Terminé",
+        "overview": "Focus sur la création d'interfaces frontend soignées et l'intégration d'états complexes côté client. Migration de tableaux de bord vers Next.js.",
+        "responsibilities": [
+          "Migration de tableaux de bord vers Next.js App Router",
+          "Création de tableaux de données interactifs et visualisations graphiques",
+          "Garantie de la compatibilité multi-navigateurs et du responsive",
+          "Participation aux réunions agiles quotidiennes et revues de code"
+        ],
+        "achievements": [
+          "Conversion réussie de 12 vues principales du tableau de bord",
+          "Réduction de 22% de la taille du bundle grâce à l'import dynamique",
+          "Nommé stagiaire le plus méritant du trimestre"
+        ],
+        "documents": ["Attestation de stage", "Lettre de recommandation"]
+      },
+      "devbridge": {
+        "company": "DevBridge",
+        "title": "Stagiaire Développeur Logiciel",
+        "period": "Mai 2024 - Juil 2024",
+        "locationMode": "Sur site",
+        "status": "Terminé",
+        "overview": "Développement logiciel complet avec accent sur la conception d'API backend, schémas de bases de données et tests unitaires.",
+        "responsibilities": [
+          "Conception et documentation d'API REST pour projets clients",
+          "Écriture de tests unitaires et d'intégration pour les API principales",
+          "Gestion des migrations et requêtes de bases de données relationnelles",
+          "Assistance à la mise en place de pipelines CI/CD GitHub Actions"
+        ],
+        "achievements": [
+          "Augmentation de la couverture de tests backend de 60% à 85%",
+          "Optimisation des requêtes SQL réduisant les temps de réponse de 40%"
+        ],
+        "documents": ["Attestation de stage", "Fiche d'évaluation"]
+      }
+    }
+  },
+  "achievementsPage": {
+    "breadcrumb": "Expérience / Principales Réalisations",
+    "title": "PRINCIPALES RÉALISATIONS",
+    "subtitle": "Étapes Importantes. Succès Reconnus",
+    "counterBadge": "réalisations",
+    "listTitle": "LISTE DES RÉALISATIONS",
+    "viewAll": "Voir toutes les réalisations",
+    "selectedTitle": "ÉTAPE SÉLECTIONNÉE",
+    "tabOverview": "Aperçu",
+    "tabAchievements": "Réalisations Clés",
+    "tabImpact": "Impact & Croissance",
+    "tabGallery": "Galerie",
+    "aboutTitle": "À PROPOS DE CETTE RÉALISATION",
+    "keyHighlightsTitle": "POINTS FORTS CLÉS",
+    "impactTitle": "IMPACT & APPRENTISSAGES",
+    "galleryTitle": "GALERIE & PREUVES",
+    "techUsedTitle": "TECHNOLOGIES UTILISÉES",
+    "skillsGainedTitle": "COMPÉTENCES ACQUISES",
+    "documentsTitle": "DOCUMENTS",
+    "badgeSystemTitle": "SYSTÈME DE BADGES",
+    "badgeSystemSubtitle": "Compétences Reconnaissables & Badges",
+    "noDocuments": "Aucun document associé à cette réalisation.",
+    "stats": {
+      "total": "Total Réalisations",
+      "projects": "Projets Majeurs Lancés",
+      "awards": "Prix & Honneurs",
+      "rate": "Taux de Réussite"
+    },
+    "tip": "Conseil",
+    "tipText": "Cliquez sur n'importe quelle carte de réalisation dans la liste pour voir sa description, son impact et ses preuves.",
+    "items": {
+      "consultify": {
+        "title": "Fondateur CONSULTIFY",
+        "subtitle": "Parcours Startup",
+        "date": "Jan 2025 - Mar 2025",
+        "duration": "5 Mois",
+        "role": "Fondateur & Développeur",
+        "badgeText": "Étape Majeure",
+        "overview": "Fondation et création de CONSULTIFY, une plateforme de consultation propulsée par l'IA connectant les utilisateurs à des experts vérifiés.",
+        "achievementsList": [
+          "Conception complète de la plateforme, de l'idée au MVP",
+          "Architecture évolutive et développement d'interfaces modernes",
+          "Intégration d'un système de recommandation par IA et de réservation",
+          "Gestion du produit, du branding et de l'expérience utilisateur",
+          "Acquisition d'une expérience entrepreneuriale concrète"
+        ],
+        "impactList": [
+          "Même si la startup n'a pas atteint tous ses objectifs commerciaux, elle a façonné ma vision produit et ma résilience.",
+          "Chaque leçon apprise est devenue un pilier de ma croissance."
+        ]
+      },
+      "fullstack-dev": {
+        "title": "Développeur Full Stack",
+        "subtitle": "Projet Personnel",
+        "date": "Déc 2024",
+        "badgeText": "Réalisation",
+        "overview": "Architecture et déploiement d'une application web multi-tenant utilisant Next.js App Router, Tailwind CSS et PostgreSQL.",
+        "achievementsList": [
+          "Conception d'API RESTful haute performance",
+          "Implémentation d'un flux d'authentification OAuth robuste",
+          "Déploiement sur Vercel avec pipeline CI/CD automatisé"
+        ],
+        "impactList": [
+          "Enrichissement de l'expertise pratique en architecture full-stack et déploiements automatisés."
+        ]
+      },
+      "academic-performer": {
+        "title": "Excellence Académique",
+        "subtitle": "Reconnaissance Universitaire",
+        "date": "2024",
+        "badgeText": "Réalisation",
+        "overview": "Récompensé pour des performances académiques exceptionnelles et des contributions aux forums technologiques étudiants.",
+        "achievementsList": [
+          "Classé parmi le meilleur percentile des étudiants en informatique",
+          "Maintien de notes élevées constante sur l'ensemble des modules majeurs"
+        ],
+        "impactList": [
+          "Reconnu pour le dévouement académique et la maîtrise de la résolution de problèmes."
+        ]
+      },
+      "hackathon": {
+        "title": "Participant Hackathon",
+        "subtitle": "Défi Innovation",
+        "date": "Nov 2024",
+        "badgeText": "Terminé",
+        "overview": "Participation à un hackathon d'innovation de 48 heures pour créer des solutions intelligentes d'accessibilité.",
+        "achievementsList": [
+          "Livraison d'un prototype fonctionnel dans des délais très courts",
+          "Présentation en direct devant un jury de professionnels"
+        ],
+        "impactList": [
+          "Perfectionnement des compétences de prototypage rapide sous forte contrainte de temps."
+        ]
+      },
+      "certification": {
+        "title": "Certifications Professionnelles",
+        "subtitle": "Apprentissage Continu",
+        "date": "Oct 2024",
+        "badgeText": "Réalisation",
+        "overview": "Obtention de certifications professionnelles cloud et full stack pour valider la maîtrise technique.",
+        "achievementsList": [
+          "Réussite de formations spécialisées rigoureuses",
+          "Validation des évaluations pratiques"
+        ],
+        "impactList": ["Renforcement de l'expertise technique sur les plateformes cloud."]
+      }
+    }
+  },
   "contactPage": {
     "heading": "ME CONTACTER",
     "tagline": "// Créons quelque chose d'extraordinaire ensemble",
@@ -1291,6 +2021,122 @@
     "relatedProjects": "Projets associés",
     "viewAllProjects": "Voir tous les projets",
     "issued": "Délivré le",
-    "expires": "Expire le"
+    "expires": "Expire le",
+    "filterTitle": "Filtrer les certificats",
+    "status": "Statut",
+    "level": "Niveau",
+    "allStatuses": "Tous les statuts",
+    "verified": "Vérifié",
+    "completed": "Terminé",
+    "allLevels": "Tous les niveaux",
+    "associate": "Niveau Associé",
+    "professional": "Niveau Professionnel",
+    "allProviders": "Tous les organismes",
+    "allSkills": "Toutes les compétences",
+    "resetFilters": "Réinitialiser les filtres",
+    "noCertificatesFound": "Aucun certificat trouvé avec ces filtres.",
+    "active": "Actif",
+    "expired": "Expiré",
+    "levels": {
+      "associateLevel": "Niveau Associé",
+      "professionalLevel": "Niveau Professionnel",
+      "professionalCertificate": "Certificat Professionnel"
+    },
+    "credentialTypes": {
+      "certification": "Certification",
+      "professionalCertificate": "Certificat Professionnel"
+    },
+    "items": {
+      "aws-dev-assoc": {
+        "title": "AWS Certified Developer - Associate",
+        "issuedDate": "15 mai 2024",
+        "expiryDate": "15 mai 2027",
+        "about": "Cette certification valide ma capacité à développer, déployer et déboguer des applications sécurisées et évolutives sur AWS. Elle démontre une expérience pratique avec les services fondamentaux d'AWS, les SDK et les meilleures pratiques.",
+        "keyTopics": {
+          "developing": {
+            "title": "Développement sur AWS",
+            "subtitle": "Création et déploiement d'applications cloud"
+          },
+          "security": {
+            "title": "Meilleures Pratiques de Sécurité",
+            "subtitle": "Mise en œuvre d'applications sécurisées sur AWS"
+          },
+          "deployment": {
+            "title": "Déploiement & Débogage",
+            "subtitle": "Gestion, surveillance et débogage d'applications"
+          },
+          "coreServices": {
+            "title": "Services Fondamentaux AWS",
+            "subtitle": "Utilisation du calcul, du stockage et des bases de données"
+          }
+        },
+        "projects": {
+          "cloudPlatform": "Plateforme de Déploiement Cloud",
+          "serverlessApi": "Système API Serverless"
+        }
+      },
+      "oracle-java-17": {
+        "title": "Oracle Certified Professional, Java SE 17 Developer",
+        "issuedDate": "Fév 2024",
+        "expiryDate": "Fév 2027",
+        "about": "Valide une connaissance approfondie de la programmation orientée objet en Java, de la concurrence, des API Stream, de la gestion de la mémoire et des fonctionnalités modernes jusqu'à Java 17.",
+        "keyTopics": {
+          "coreJava": {
+            "title": "Java Core & Concurrence",
+            "subtitle": "Programmation multithread et fonctionnelle"
+          },
+          "modular": {
+            "title": "Architecture Modulaire",
+            "subtitle": "Création d'applications Java modulaires"
+          }
+        },
+        "projects": {
+          "enterpriseBanking": "API Bancaire d'Entreprise"
+        }
+      },
+      "mongodb-dev-assoc": {
+        "title": "MongoDB Certified Developer Associate",
+        "issuedDate": "Déc 2023",
+        "expiryDate": "Déc 2026",
+        "about": "Démontre une maîtrise de la modélisation des données, des pipelines d'agrégation, de l'indexation, des transactions et de l'intégration avec les technologies web modernes.",
+        "keyTopics": {
+          "aggregation": {
+            "title": "Framework d'Agrégation",
+            "subtitle": "Pipelines de traitement de données complexes"
+          }
+        },
+        "projects": {
+          "realtimeAnalytics": "Plateforme d'Analyse en Temps Réel"
+        }
+      },
+      "meta-frontend": {
+        "title": "Meta Front-End Developer Professional Certificate",
+        "issuedDate": "Oct 2023",
+        "about": "Programme complet couvrant HTML5, CSS3, React, le JavaScript moderne, les principes de design UX et les pratiques de test front-end.",
+        "keyTopics": {
+          "reactArchitecture": {
+            "title": "Architecture React",
+            "subtitle": "Gestion d'état et conception de composants réutilisables"
+          }
+        },
+        "projects": {
+          "ecommerce": "Marketplace E-Commerce"
+        }
+      },
+      "google-it-automation": {
+        "title": "Google IT Automation with Python Professional Certificate",
+        "issuedDate": "Août 2023",
+        "about": "Couvre la programmation Python, Git/GitHub, la gestion des systèmes d'exploitation, la gestion de configuration et l'automatisation dans les environnements cloud.",
+        "keyTopics": {
+          "scripting": {
+            "title": "Scripting & Automatisation",
+            "subtitle": "Automatisation des tâches d'administration système"
+          }
+        },
+        "projects": {
+          "cicdPipeline": "Pipeline CI/CD Automatisé"
+        }
+      }
+    }
   }
 }

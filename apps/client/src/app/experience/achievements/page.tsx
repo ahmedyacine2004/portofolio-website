@@ -35,6 +35,7 @@ import postgresqlIcon from '@/assets/icons/postgresql.svg';
 import reactIcon from '@/assets/icons/react.svg';
 import tailwindIcon from '@/assets/icons/tailwindcss.svg';
 import typescriptIcon from '@/assets/icons/typescript.svg';
+import { useTranslation } from '@/hooks/use-translation';
 
 interface Achievement {
   id: string;
@@ -183,11 +184,31 @@ const DOCUMENTS = [
 ];
 
 export default function AchievementsPage() {
+  const { t, tArray } = useTranslation();
   const [selectedId, setSelectedId] = useState<string>('consultify');
   const [activeTab, setActiveTab] = useState<string>('Overview');
 
   const selectedAchievement =
     ACHIEVEMENTS.find((item) => item.id === selectedId) || ACHIEVEMENTS[0];
+
+  const selPrefix = `achievementsPage.items.${selectedAchievement.id}`;
+  const selTitle = t(`${selPrefix}.title`, selectedAchievement.title);
+  const selSubtitle = t(`${selPrefix}.subtitle`, selectedAchievement.subtitle);
+  const selDate = t(`${selPrefix}.date`, selectedAchievement.date);
+  const selBadgeText = t(`${selPrefix}.badgeText`, selectedAchievement.badgeText);
+  const selOverview = t(`${selPrefix}.overview`, selectedAchievement.overview);
+  const selDuration = selectedAchievement.duration
+    ? t(`${selPrefix}.duration`, selectedAchievement.duration)
+    : undefined;
+  const selRole = selectedAchievement.role
+    ? t(`${selPrefix}.role`, selectedAchievement.role)
+    : undefined;
+
+  const transAch = tArray<string>(`${selPrefix}.achievementsList`);
+  const achievementsList = transAch.length > 0 ? transAch : selectedAchievement.achievementsList;
+
+  const transImp = tArray<string>(`${selPrefix}.impactList`);
+  const impactList = transImp.length > 0 ? transImp : selectedAchievement.impactList;
 
   return (
     <div className="h-full w-full overflow-y-auto rounded-[8px] bg-[var(--color-bg-primary)] p-4 space-y-4 text-[var(--color-text-primary)] font-inter border border-border/60 shadow-xs select-none">
@@ -201,20 +222,24 @@ export default function AchievementsPage() {
             >
               <ChevronLeft className="size-2.5" />
             </Link>
-            <span className="font-inter">Experience / Achievements</span>
+            <span className="font-inter">
+              {t('achievementsPage.breadcrumb', 'Experience / Key Achievements')}
+            </span>
           </div>
           <h1 className="font-inter text-2xl font-black uppercase tracking-tight text-foreground md:text-3xl">
-            ACHIEVEMENTS
+            {t('achievementsPage.title', 'KEY ACHIEVEMENTS')}
           </h1>
           <p className="text-[10px] font-semibold text-blue-600 dark:text-blue-400 mt-0.5 font-inter">
-            Key Wins. Recognitions. Milestones.
+            {t('achievementsPage.subtitle', 'Milestones. Recognized Accomplishments')}
           </p>
         </div>
 
         {/* Top Right Counter Badge */}
         <div className="flex items-center gap-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-[10px] font-bold text-blue-600 dark:text-blue-400 font-inter">
           <span className="size-1.5 rounded-full bg-blue-500" />
-          <span className="font-inter">12 Achievements</span>
+          <span className="font-inter">
+            {ACHIEVEMENTS.length} {t('achievementsPage.counterBadge', 'achievements')}
+          </span>
         </div>
       </header>
 
@@ -224,12 +249,17 @@ export default function AchievementsPage() {
         <div className="lg:col-span-3 font-inter">
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-3 font-inter">
             <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              ACHIEVEMENTS LIST
+              {t('achievementsPage.listTitle', 'ACHIEVEMENTS LIST')}
             </h2>
 
             <div className="space-y-2 font-inter">
               {ACHIEVEMENTS.map((item) => {
                 const isSelected = selectedId === item.id;
+                const ik = `achievementsPage.items.${item.id}`;
+                const itemTitle = t(`${ik}.title`, item.title);
+                const itemSubtitle = t(`${ik}.subtitle`, item.subtitle);
+                const itemDate = t(`${ik}.date`, item.date);
+                const itemBadge = t(`${ik}.badgeText`, item.badgeText);
 
                 if (isSelected) {
                   return (
@@ -244,20 +274,20 @@ export default function AchievementsPage() {
                         </div>
                         <div className="min-w-0 font-inter">
                           <h3 className="text-[11px] font-black text-white leading-tight truncate font-inter">
-                            {item.title}
+                            {itemTitle}
                           </h3>
                           <p className="text-[8px] font-medium text-blue-200 truncate font-inter">
-                            {item.subtitle}
+                            {itemSubtitle}
                           </p>
                           <p className="text-[7.5px] font-medium text-blue-300 mt-0.5 font-inter">
-                            {item.date}
+                            {itemDate}
                           </p>
                         </div>
                       </div>
 
                       <div className="mt-2 font-inter">
                         <span className="inline-block text-[7px] font-bold text-blue-100 bg-blue-800/80 border border-blue-600/60 px-2 py-0.5 rounded-[3px] font-inter">
-                          {item.badgeText}
+                          {itemBadge}
                         </span>
                       </div>
                     </button>
@@ -276,13 +306,13 @@ export default function AchievementsPage() {
                       </div>
                       <div className="min-w-0 font-inter">
                         <h3 className="text-[10px] font-bold text-foreground leading-tight truncate font-inter">
-                          {item.title}
+                          {itemTitle}
                         </h3>
                         <p className="text-[8px] font-medium text-muted-foreground truncate font-inter">
-                          {item.subtitle}
+                          {itemSubtitle}
                         </p>
                         <p className="text-[7.5px] text-muted-foreground/80 font-inter">
-                          {item.date}
+                          {itemDate}
                         </p>
                       </div>
                     </div>
@@ -294,16 +324,18 @@ export default function AchievementsPage() {
                           : 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20'
                       }`}
                     >
-                      {item.badgeText}
+                      {itemBadge}
                     </span>
                   </button>
                 );
               })}
             </div>
 
-            {/* View All Achievements Button - Directly following the list */}
+            {/* View All Achievements Button */}
             <button className="w-full rounded-[6px] bg-[#003366] hover:bg-[#002244] text-white py-2.5 text-[10px] font-bold flex items-center justify-center gap-1 transition-all shadow-[0_4px_12px_rgba(0,51,102,0.35)] pt-2 font-inter">
-              <span className="font-inter">View All Achievements</span>
+              <span className="font-inter">
+                {t('achievementsPage.viewAll', 'View All Achievements')}
+              </span>
             </button>
           </div>
         </div>
@@ -311,7 +343,7 @@ export default function AchievementsPage() {
         {/* MIDDLE COLUMN: SELECTED MILESTONE */}
         <div className="lg:col-span-5 rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3.5 shadow-2xs space-y-3.5 font-inter">
           <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-            SELECTED MILESTONE
+            {t('educationPage.selectedMilestone', 'SELECTED MILESTONE')}
           </h2>
 
           {/* Banner Box */}
@@ -322,21 +354,21 @@ export default function AchievementsPage() {
               </div>
               <div className="min-w-0 font-inter">
                 <h3 className="text-sm font-extrabold text-foreground leading-tight truncate font-inter">
-                  {selectedAchievement.title}
+                  {selTitle}
                 </h3>
                 <p className="text-[10px] font-bold text-foreground/80 truncate font-inter">
-                  {selectedAchievement.subtitle}
+                  {selSubtitle}
                 </p>
                 <p className="text-[8px] font-medium text-muted-foreground mt-0.5 font-inter">
-                  {selectedAchievement.date}
-                  {selectedAchievement.duration && ` · ${selectedAchievement.duration}`}
-                  {selectedAchievement.role && ` · ${selectedAchievement.role}`}
+                  {selDate}
+                  {selDuration && ` · ${selDuration}`}
+                  {selRole && ` · ${selRole}`}
                 </p>
               </div>
             </div>
 
             <span className="shrink-0 text-[8px] font-bold text-purple-600 dark:text-purple-300 bg-purple-500/15 border border-purple-500/20 px-2.5 py-1 rounded-[4px] font-inter">
-              {selectedAchievement.badgeText}
+              {selBadgeText}
             </span>
           </div>
 
@@ -352,7 +384,13 @@ export default function AchievementsPage() {
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {tab}
+                {tab === 'Overview'
+                  ? t('achievementsPage.tabOverview', 'Overview')
+                  : tab === 'What I Achieved'
+                    ? t('achievementsPage.tabAchievements', 'Key Achievements')
+                    : tab === 'Impact'
+                      ? t('achievementsPage.tabImpact', 'Impact & Growth')
+                      : tab}
               </button>
             ))}
           </div>
@@ -360,10 +398,10 @@ export default function AchievementsPage() {
           {/* Overview */}
           <div className="space-y-1 font-inter">
             <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter">
-              OVERVIEW
+              {t('achievementsPage.aboutTitle', 'ABOUT THIS ACHIEVEMENT')}
             </h3>
             <p className="text-[9px] font-medium leading-relaxed text-muted-foreground font-inter">
-              {selectedAchievement.overview}
+              {selOverview}
             </p>
           </div>
 
@@ -372,10 +410,10 @@ export default function AchievementsPage() {
             {/* What I Achieved */}
             <div className="space-y-1.5 font-inter">
               <h3 className="text-[9.5px] font-bold uppercase tracking-wide text-foreground font-inter">
-                WHAT I ACHIEVED
+                {t('achievementsPage.keyHighlightsTitle', 'KEY HIGHLIGHTS')}
               </h3>
               <ul className="space-y-1 text-[8.5px] font-medium text-foreground font-inter">
-                {selectedAchievement.achievementsList.map((item, idx) => (
+                {achievementsList.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-1.5 font-inter">
                     <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                     <span className="leading-tight font-inter">{item}</span>
@@ -387,10 +425,10 @@ export default function AchievementsPage() {
             {/* Impact */}
             <div className="space-y-1.5 font-inter">
               <h3 className="text-[9.5px] font-bold uppercase tracking-wide text-foreground font-inter">
-                IMPACT
+                {t('achievementsPage.impactTitle', 'IMPACT & LEARNINGS')}
               </h3>
               <ul className="space-y-1.5 text-[8.5px] font-medium text-foreground font-inter">
-                {selectedAchievement.impactList.map((item, idx) => (
+                {impactList.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-1.5 font-inter">
                     <CheckCircle2 className="size-3 text-emerald-500 shrink-0 mt-0.5" />
                     <span className="leading-tight text-muted-foreground font-inter">{item}</span>
@@ -403,7 +441,7 @@ export default function AchievementsPage() {
           {/* Technologies Used */}
           <div className="space-y-2 pt-1 border-t border-border/40 font-inter">
             <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter">
-              TECHNOLOGIES USED
+              {t('achievementsPage.techUsedTitle', 'TECHNOLOGIES USED')}
             </h3>
 
             <div className="flex flex-wrap gap-1.5 font-inter">
@@ -431,7 +469,7 @@ export default function AchievementsPage() {
           <div className="space-y-1.5 pt-1 border-t border-border/40 font-inter">
             <div className="flex items-center justify-between font-inter">
               <h3 className="text-[10px] font-bold uppercase tracking-wide text-foreground font-inter">
-                GALLERY
+                {t('achievementsPage.galleryTitle', 'GALLERY & EVIDENCE')}
               </h3>
               <div className="flex items-center gap-1 text-muted-foreground font-inter">
                 <button className="flex size-4 items-center justify-center rounded border border-border/60 hover:text-foreground font-inter">
@@ -469,10 +507,10 @@ export default function AchievementsPage() {
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2.5 font-inter">
             <div className="flex items-center justify-between font-inter">
               <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-                MILESTONE INFO
+                {t('achievementsPage.badgeSystemSubtitle', 'Recognized Competencies & Badges')}
               </h2>
               <span className="text-[8px] font-bold text-white bg-[#002244] px-2 py-0.5 rounded-[4px] font-inter">
-                Total - 12
+                Total - {ACHIEVEMENTS.length}
               </span>
             </div>
 
@@ -484,7 +522,7 @@ export default function AchievementsPage() {
                     5
                   </span>
                   <span className="text-[8px] font-medium text-muted-foreground font-inter">
-                    Milestones
+                    {t('achievementsPage.stats.total', 'Total Achievements')}
                   </span>
                 </div>
               </div>
@@ -496,7 +534,7 @@ export default function AchievementsPage() {
                     4
                   </span>
                   <span className="text-[8px] font-medium text-muted-foreground font-inter">
-                    Recognitions
+                    {t('achievementsPage.stats.awards', 'Awards & Honors')}
                   </span>
                 </div>
               </div>
@@ -508,7 +546,7 @@ export default function AchievementsPage() {
                     3
                   </span>
                   <span className="text-[8px] font-medium text-muted-foreground font-inter">
-                    Certificates
+                    {t('achievementsPage.documentsTitle', 'DOCUMENTS')}
                   </span>
                 </div>
               </div>
@@ -518,7 +556,7 @@ export default function AchievementsPage() {
           {/* Achievement Badges */}
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2 font-inter">
             <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              ACHIEVEMENT BADGES
+              {t('achievementsPage.badgeSystemTitle', 'BADGE SYSTEM')}
             </h2>
 
             <div className="grid grid-cols-3 gap-2 font-inter">
@@ -540,7 +578,7 @@ export default function AchievementsPage() {
           {/* Documents */}
           <div className="rounded-[8px] border border-border/60 bg-[var(--color-bg-secondary)] p-3 shadow-2xs space-y-2 font-inter">
             <h2 className="text-[11px] font-bold uppercase tracking-wider text-foreground font-inter">
-              DOCUMENTS
+              {t('achievementsPage.documentsTitle', 'DOCUMENTS')}
             </h2>
 
             <div className="space-y-1.5 font-inter">
