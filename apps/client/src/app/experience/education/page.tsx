@@ -3,7 +3,6 @@
 import {
   Award,
   BookOpen,
-  Briefcase,
   Building2,
   Calendar,
   Check,
@@ -25,13 +24,13 @@ import {
   Star,
   Zap,
 } from 'lucide-react';
-import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
 import type { ElementType } from 'react';
+import React, { useState } from 'react';
 
-import certificateImage from '@/assets/images/certificate.png';
+import certificateImage from '@/assets/images/experience/education/certificate.png';
 import { useTranslation } from '@/hooks/use-translation';
 
 /* ─────────────────────────────────────────────

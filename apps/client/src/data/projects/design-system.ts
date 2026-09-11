@@ -1,4 +1,4 @@
-import projectMark from '@/assets/images/design-system-mark.svg';
+import projectMark from '@/assets/icons/design-system-mark.svg';
 
 import type {
   UIUXProjectOverviewData,

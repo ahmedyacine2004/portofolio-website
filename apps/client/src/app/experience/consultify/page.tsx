@@ -22,7 +22,7 @@ import nextjsIcon from '@/assets/icons/nextjs.svg';
 import reactIcon from '@/assets/icons/react.svg';
 import tailwindIcon from '@/assets/icons/tailwindcss.svg';
 import typescriptIcon from '@/assets/icons/typescript.svg';
-import consultifyImage from '@/assets/images/consultify.png';
+import consultifyImage from '@/assets/images/projects/consultify/consultify.png';
 import { useTranslation } from '@/hooks/use-translation';
 
 const TECH_STACK = [

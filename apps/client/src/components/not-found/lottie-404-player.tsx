@@ -16,7 +16,7 @@ export function Lottie404Player({ className }: Lottie404PlayerProps) {
   useEffect(() => {
     let isMounted = true;
 
-    fetch('/lottie/404.json')
+    fetch('/animations/404.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch Lottie JSON');
         return res.json();

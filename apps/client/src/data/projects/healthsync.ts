@@ -1,4 +1,4 @@
-import projectMark from '@/assets/images/healthsync-mark.svg';
+import projectMark from '@/assets/icons/healthsync-mark.svg';
 
 export type {
   ColorSwatch,

@@ -7,7 +7,7 @@ export function AudioPlayer() {
   const { setAudioRef } = useAudioStore();
 
   useEffect(() => {
-    const audio = new Audio('/music/Interstellar.mp3');
+    const audio = new Audio('/audio/Interstellar.mp3');
     audio.loop = true;
     audio.volume = 0.3; // Set volume to 30%
 

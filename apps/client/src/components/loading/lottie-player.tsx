@@ -21,7 +21,8 @@ export function LottiePlayer({ className }: LottiePlayerProps) {
     setHasError(false);
 
     // Use dark variant (white text) in dark mode, original (black text) in light mode
-    const file = theme === 'dark' ? '/lottie/loading-page-dark.json' : '/lottie/loading-page.json';
+    const file =
+      theme === 'dark' ? '/animations/loading-page-dark.json' : '/animations/loading-page.json';
 
     fetch(file)
       .then((res) => {

@@ -8,7 +8,7 @@ import * as THREE from 'three';
 
 import { useTheme } from '@/hooks/use-theme';
 
-const keyboardModelUrl = '/3d/keyboard.glb';
+const keyboardModelUrl = '/models/keyboard.glb';
 
 // Preload GLB model at module evaluation time so network fetch starts immediately
 useGLTF.preload(keyboardModelUrl);

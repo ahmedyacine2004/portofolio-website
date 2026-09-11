@@ -23,7 +23,7 @@ import {
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 
-import RobotImage from '@/assets/images/robot.png';
+import RobotImage from '@/assets/images/ai-assistant/robot.png';
 import { useTranslation } from '@/hooks/use-translation';
 import { askAssistant, type AssistantAttachment } from '@/services/ai-assistant.service';
 

@@ -1,4 +1,4 @@
-import projectMark from '@/assets/images/travelmate-mark.svg';
+import projectMark from '@/assets/icons/travelmate-mark.svg';
 
 import type {
   UIUXProjectOverviewData,

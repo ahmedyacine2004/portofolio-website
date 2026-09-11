@@ -1,11 +1,11 @@
 import type { GalleryItem } from '@/components/3d/Carousel3D';
 import { StaticImageData } from 'next/image';
 
-import taskflowBoard from '@/assets/images/taskflow/board.jpg';
-import taskflowCalendar from '@/assets/images/taskflow/calendar.jpg';
-import taskflowDashboard from '@/assets/images/taskflow/dashboard.jpg';
-import taskflowLogo from '@/assets/images/taskflow/taskflow-mark.png';
-import taskflowTeam from '@/assets/images/taskflow/team.jpg';
+import taskflowBoard from '@/assets/images/projects/taskflow/board.jpg';
+import taskflowCalendar from '@/assets/images/projects/taskflow/calendar.jpg';
+import taskflowDashboard from '@/assets/images/projects/taskflow/dashboard.jpg';
+import taskflowLogo from '@/assets/images/projects/taskflow/taskflow-mark.png';
+import taskflowTeam from '@/assets/images/projects/taskflow/team.jpg';
 
 export interface WebProjectDetails {
   projectName: string;

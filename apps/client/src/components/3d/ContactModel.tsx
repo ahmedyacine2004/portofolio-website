@@ -8,7 +8,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-const contactModelUrl = '/3d/contact.glb';
+const contactModelUrl = '/models/contact.glb';
 
 export default function ContactModel() {
   const groupRef = useRef<THREE.Group>(null);

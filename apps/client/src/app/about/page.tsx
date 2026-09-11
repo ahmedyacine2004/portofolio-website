@@ -1,6 +1,6 @@
 'use client';
 
-import avatar from '@/assets/images/avatar.jpg';
+import avatar from '@/assets/images/profile/avatar.jpg';
 import { AboutTabBar } from '@/components/about/about-tab-bar';
 import { AboutSecondarySidebar } from '@/components/layout/secondary/about-secondary-sidebar';
 import { useTranslation } from '@/hooks/use-translation';

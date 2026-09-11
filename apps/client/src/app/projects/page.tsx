@@ -25,7 +25,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import Image from 'next/image';
-import folderImg from '../../assets/images/folder.png';
+import folderImg from '../../assets/images/ui/folder.png';
 
 export default function ProjectsPage() {
   const { t } = useTranslation();

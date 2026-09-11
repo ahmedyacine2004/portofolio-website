@@ -2,18 +2,18 @@ import type { GalleryItem } from '@/components/3d/Carousel3D';
 
 // Import local images from src/assets/images
 // Adjust filenames and extensions (.png, .jpg, .webp, etc.) to match your exact assets
-import ahmedAvatarImg from '@/assets/images/avatar.jpg';
-import screen1 from '@/assets/images/carousel/screen-1.png';
-import screen2 from '@/assets/images/carousel/screen-2.png';
-import screen3 from '@/assets/images/carousel/screen-3.png';
-import screen4 from '@/assets/images/carousel/screen-4.png';
-import screen5 from '@/assets/images/carousel/screen-5.png';
-import screen6 from '@/assets/images/carousel/screen-6.png';
+import ahmedAvatarImg from '@/assets/images/profile/avatar.jpg';
+import screen1 from '@/assets/images/projects/consultify/carousel/screen-1.png';
+import screen2 from '@/assets/images/projects/consultify/carousel/screen-2.png';
+import screen3 from '@/assets/images/projects/consultify/carousel/screen-3.png';
+import screen4 from '@/assets/images/projects/consultify/carousel/screen-4.png';
+import screen5 from '@/assets/images/projects/consultify/carousel/screen-5.png';
+import screen6 from '@/assets/images/projects/consultify/carousel/screen-6.png';
 import {
   default as consultifyHeroImg,
   default as consultifyImage,
   default as heroGraphicImage,
-} from '@/assets/images/consultify.png';
+} from '@/assets/images/projects/consultify/consultify.png';
 import { StaticImageData } from 'next/image';
 
 export interface SystemModule {

@@ -11,7 +11,7 @@ import { useTheme } from '@/hooks/use-theme';
 // Preload the GLB immediately when this module loads (before ContactModel is
 // even imported), so the network request is already in-flight or cached by
 // the time the Canvas + Suspense resolves the component.
-useGLTF.preload('/3d/contact.glb');
+useGLTF.preload('/models/contact.glb');
 
 // Use React.lazy instead of next/dynamic so Suspense inside <Canvas> works
 // correctly with @react-three/fiber's own suspense handling.

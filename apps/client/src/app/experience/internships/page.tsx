@@ -16,9 +16,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 // Company Logo Images
-import codeSoftLogo from '@/assets/images/code-soft.png';
-import devBridgeLogo from '@/assets/images/dev-bridge.png';
-import techVerseLogo from '@/assets/images/Tech-verse.png';
+import codeSoftLogo from '@/assets/images/experience/internships/code-soft.png';
+import devBridgeLogo from '@/assets/images/experience/internships/dev-bridge.png';
+import techVerseLogo from '@/assets/images/experience/internships/Tech-verse.png';
 
 // Tech SVG Icon Imports from src/assets/icons
 import chartjsIcon from '@/assets/icons/chartjs.svg';

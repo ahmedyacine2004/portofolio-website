@@ -1,4 +1,4 @@
-import projectMark from '@/assets/images/learnhub-mark.svg';
+import projectMark from '@/assets/icons/learnhub-mark.svg';
 
 import type {
   UIUXProjectOverviewData,

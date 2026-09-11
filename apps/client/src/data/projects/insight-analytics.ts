@@ -1,5 +1,5 @@
-import insightDashboard from '@/assets/images/insight-analytics/dashboard.jpg';
-import insightMark from '@/assets/images/insight-analytics/mixpanel-mark.svg';
+import insightMark from '@/assets/icons/mixpanel-mark.svg';
+import insightDashboard from '@/assets/images/projects/insight-analytics/dashboard.jpg';
 import type { StaticImageData } from 'next/image';
 
 // --- UI / UX PROJECT DATA TYPES ---

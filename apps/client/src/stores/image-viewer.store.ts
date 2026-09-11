@@ -1,8 +1,8 @@
-import Image01 from '@/assets/images/avatarV2.png';
-import Image02 from '@/assets/images/image02.jpg';
-import Image03 from '@/assets/images/image03.jpg';
-import Image04 from '@/assets/images/image04.jpg';
-import Image05 from '@/assets/images/image05.jpg';
+import Image02 from '@/assets/images/gallery/image02.jpg';
+import Image03 from '@/assets/images/gallery/image03.jpg';
+import Image04 from '@/assets/images/gallery/image04.jpg';
+import Image05 from '@/assets/images/gallery/image05.jpg';
+import Image01 from '@/assets/images/profile/avatarV2.png';
 import type { StaticImageData } from 'next/image';
 import { create } from 'zustand';
 

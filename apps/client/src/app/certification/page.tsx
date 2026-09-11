@@ -34,9 +34,11 @@ import mongodbIcon from '@/assets/icons/mongodb.svg';
 import oracleIcon from '@/assets/icons/oracle.svg';
 
 // Import Certificate Images from src/assets/images
-import awsCertImage from '@/assets/images/aws-certificate.png';
-import mongodbCertImage from '@/assets/images/mongodb-certificate.png';
-import oracleCertImage from '@/assets/images/oracle-certificate.png';
+import awsCertImage from '@/assets/images/certificates/aws-certificate.png';
+import googleItCertImage from '@/assets/images/certificates/google-it-certificate.png';
+import metaCertImage from '@/assets/images/certificates/meta-certificate.png';
+import mongodbCertImage from '@/assets/images/certificates/mongodb-certificate.png';
+import oracleCertImage from '@/assets/images/certificates/oracle-certificate.png';
 
 interface SkillPill {
   name: string;
@@ -259,7 +261,7 @@ const CERTIFICATIONS: Certification[] = [
     activeStatus: 'Active',
     credentialType: 'Professional Certificate',
     logo: metaIcon,
-    certImage: awsCertImage,
+    certImage: metaCertImage,
     about:
       'Comprehensive program covering HTML5, CSS3, React, modern JavaScript, UX design principles, and frontend testing practices.',
     skills: [
@@ -295,7 +297,7 @@ const CERTIFICATIONS: Certification[] = [
     activeStatus: 'Active',
     credentialType: 'Professional Certificate',
     logo: googleIcon,
-    certImage: awsCertImage,
+    certImage: googleItCertImage,
     about:
       'Covers Python programming, Git/GitHub, operating system management, configuration management, and automation in cloud environments.',
     skills: [

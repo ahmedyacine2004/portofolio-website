@@ -1,12 +1,12 @@
-import portfolioGallery1 from '@/assets/images/portfolio-gallery/1.png';
-import portfolioGallery2 from '@/assets/images/portfolio-gallery/2.png';
-import portfolioGallery3 from '@/assets/images/portfolio-gallery/3.png';
-import portfolioGallery4 from '@/assets/images/portfolio-gallery/4.png';
-import portfolioGallery5 from '@/assets/images/portfolio-gallery/5.png';
-import portfolioGallery6 from '@/assets/images/portfolio-gallery/6.png';
-import portfolioGallery7 from '@/assets/images/portfolio-gallery/7.png';
-import portfolioGallery8 from '@/assets/images/portfolio-gallery/8.png';
-import portfolioGallery9 from '@/assets/images/portfolio-gallery/9.png';
+import portfolioGallery1 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/1.png';
+import portfolioGallery2 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/2.png';
+import portfolioGallery3 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/3.png';
+import portfolioGallery4 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/4.png';
+import portfolioGallery5 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/5.png';
+import portfolioGallery6 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/6.png';
+import portfolioGallery7 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/7.png';
+import portfolioGallery8 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/8.png';
+import portfolioGallery9 from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/9.png';
 import type { GalleryItem } from '@/components/3d/Carousel3D';
 import { StaticImageData } from 'next/image';
 
@@ -174,7 +174,7 @@ export const PORTFOLIO_WORKSPACE_DETAILS: WebProjectDetails = {
   tagline: 'Full-stack portfolio platform with Next.js, React, TypeScript, and MongoDB.',
   liveDemoUrl: '/',
   repositoryUrl: 'https://github.com/ahmedyacine2004/portofolio-website',
-  imageUrl: '/logo.png',
+  imageUrl: '/branding/logo.png',
   coreObjective: 'Showcase creative work with a modern, interactive portfolio platform',
   targetAudience: ['Designers', 'Developers', 'Creative Professionals'],
   currentPhase: ['Production', 'API Complete', 'UI Polished'],
@@ -227,7 +227,7 @@ export const PORTFOLIO_WORKSPACE_GALLERY_DATA: WebProjectGalleryData = {
   projectName: 'Portfolio Workspace',
   tagline: 'Explore the portfolio workspace interface and project showcase screens.',
   liveDemoUrl: '/',
-  heroGraphicUrl: '/logo.png',
+  heroGraphicUrl: '/branding/logo.png',
   items: [
     {
       id: 'screen-1',

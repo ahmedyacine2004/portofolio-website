@@ -99,7 +99,7 @@ export function Header() {
             className="flex h-[19px] shrink-0 items-center"
           >
             <Image
-              src="/logo.png"
+              src="/branding/logo.png"
               alt="Portfolio"
               width={25}
               height={25}
@@ -183,7 +183,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" aria-label="Portfolio home" className="flex h-[16px] shrink-0 items-center">
           <Image
-            src="/logo.png"
+            src="/branding/logo.png"
             alt="Portfolio"
             width={20}
             height={20}
@@ -237,7 +237,7 @@ export function Header() {
         {/* Logo */}
         <Link href="/" aria-label="Portfolio home" className="flex h-[14px] shrink-0 items-center">
           <Image
-            src="/logo.png"
+            src="/branding/logo.png"
             alt="Portfolio"
             width={18}
             height={18}

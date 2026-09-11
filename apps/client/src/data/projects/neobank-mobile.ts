@@ -1,4 +1,4 @@
-import neobankHeroImg from '@/assets/images/neobank-mobile-hero.png';
+import neobankHeroImg from '@/assets/images/projects/neobank-mobile/neobank-mobile-hero.png';
 import type { StaticImageData } from 'next/image';
 
 // --- UI / UX PROJECT DATA TYPES ---

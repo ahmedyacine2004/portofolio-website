@@ -22,7 +22,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-import certificateImage from '@/assets/images/certificate.png';
+import certificateImage from '@/assets/images/experience/education/certificate.png';
 import { useTranslation } from '@/hooks/use-translation';
 
 export default function BachelorDegreePage() {

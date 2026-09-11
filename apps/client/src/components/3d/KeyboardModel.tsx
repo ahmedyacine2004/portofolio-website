@@ -5,7 +5,7 @@ import { useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
-const keyboardModelUrl = '/3d/keyboard.glb';
+const keyboardModelUrl = '/models/keyboard.glb';
 
 useGLTF.preload(keyboardModelUrl);
 

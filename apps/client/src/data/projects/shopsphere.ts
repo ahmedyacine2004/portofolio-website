@@ -1,11 +1,11 @@
 import type { GalleryItem } from '@/components/3d/Carousel3D';
 import { StaticImageData } from 'next/image';
 
-import shopsphereCoffee from '@/assets/images/shopsphere/product-coffee.jpg';
-import shopsphereShoe from '@/assets/images/shopsphere/product-shoe.jpg';
-import shopsphereWatch from '@/assets/images/shopsphere/product-watch.jpg';
-import shopsphereMark from '@/assets/images/shopsphere/shopsphere-mark.png';
-import shopsphereStorefront from '@/assets/images/shopsphere/storefront.jpg';
+import shopsphereCoffee from '@/assets/images/projects/shopsphere/product-coffee.jpg';
+import shopsphereShoe from '@/assets/images/projects/shopsphere/product-shoe.jpg';
+import shopsphereWatch from '@/assets/images/projects/shopsphere/product-watch.jpg';
+import shopsphereMark from '@/assets/images/projects/shopsphere/shopsphere-mark.png';
+import shopsphereStorefront from '@/assets/images/projects/shopsphere/storefront.jpg';
 
 export interface WebProjectDetails {
   projectName: string;
