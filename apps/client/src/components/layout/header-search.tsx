@@ -450,6 +450,7 @@ export function HeaderSearch() {
     <div ref={containerRef} className="relative w-[300px]">
       {/* ── Search bar ── */}
       <div
+        data-tour-target="header-search"
         className={`flex h-8 w-full items-center rounded-sm px-2.5 shadow-sm transition-all duration-200 ${
           open ? 'bg-card ring-1 ring-border' : 'bg-card hover:ring-1 hover:ring-border/50'
         }`}

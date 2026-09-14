@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 
 import { useTheme } from '@/hooks/use-theme';
 
-export function ThemeToggle() {
+export function ThemeToggle({
+  'data-tour-target': dataTourTarget,
+}: {
+  'data-tour-target'?: string;
+}) {
   const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -19,6 +23,7 @@ export function ThemeToggle() {
 
   return (
     <button
+      data-tour-target={dataTourTarget}
       type="button"
       onClick={toggleTheme}
       aria-label="Toggle theme"

@@ -103,6 +103,7 @@ export function Sidebar() {
     <>
       {/* DESKTOP SIDEBAR */}
       <motion.aside
+        data-tour-target="sidebar-navigation"
         initial={{ opacity: 0, x: -24 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{

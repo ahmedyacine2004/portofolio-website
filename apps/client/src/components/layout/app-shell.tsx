@@ -12,6 +12,7 @@ import { useLanguageStore } from '@/stores/language.store';
 import { ImageViewerModal } from '../about/image-viewer-modal';
 import { CommandPaletteModal } from '../command-palette/command-palette-modal';
 import { LoadingPage } from '../loading/loading-page';
+import { OnboardingTour } from '../onboarding/onboarding-tour';
 import { TerminalModal } from '../terminal/terminal-modal';
 import { AudioPlayer } from './audio-player';
 import { DownloadManager } from './download-manager';
@@ -151,6 +152,8 @@ export function AppShell({ children }: AppShellProps) {
       <div className="md:hidden">
         <Sidebar />
       </div>
+
+      <OnboardingTour enabled={!isLoading && pathname === '/'} />
 
       <AnimatePresence>
         {showMobileWarning && (

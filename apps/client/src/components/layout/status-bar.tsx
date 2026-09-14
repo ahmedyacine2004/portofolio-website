@@ -124,6 +124,7 @@ export function StatusBar() {
     <>
       {/* DESKTOP STATUS BAR */}
       <motion.div
+        data-tour-target="status-bar"
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{

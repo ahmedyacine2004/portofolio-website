@@ -109,7 +109,7 @@ export function Header() {
           </Link>
 
           {/* Navigation + arrows */}
-          <div className="flex min-w-0 items-center gap-2">
+          <div data-tour-target="header-navigation" className="flex min-w-0 items-center gap-2">
             {/* Main navigation */}
             <nav className="flex items-center gap-2" aria-label="Main navigation">
               {navigation.map((item) => {
@@ -166,7 +166,7 @@ export function Header() {
 
         <div className="flex shrink-0 items-center gap-1.5">
           <HeaderActionButtons />
-          <ThemeToggle />
+          <ThemeToggle data-tour-target="theme-toggle" />
         </div>
       </motion.header>
 
@@ -220,7 +220,7 @@ export function Header() {
 
         {/* Right side - minimal */}
         <div className="flex shrink-0 items-center gap-1">
-          <ThemeToggle />
+          <ThemeToggle data-tour-target="theme-toggle" />
         </div>
       </motion.header>
 

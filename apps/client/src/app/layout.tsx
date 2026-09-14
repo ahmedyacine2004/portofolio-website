@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 
 import { AppShell } from '@/components/layout/app-shell';
 import { siteName, siteUrl } from '@/lib/site';
@@ -145,7 +146,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           }}
         />
         {/* Apply stored accent color before React hydrates to prevent flash of wrong color */}
-        <script
+        <Script
+          id="portfolio-theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
 (function() {
