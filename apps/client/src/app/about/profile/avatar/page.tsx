@@ -1,5 +1,5 @@
 import { ImageEditor } from '@/components/about/image-editor';
-import Avatar from '../../../../assets/images/avatarV2.png';
+import Avatar from '../../../../assets/images/profile/avatarV2.png';
 
 export default function AvatarPage() {
   return (
