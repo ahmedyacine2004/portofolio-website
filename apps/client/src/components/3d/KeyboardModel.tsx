@@ -32,6 +32,9 @@ function cloneSceneWithFixedMaterials(source: THREE.Group): THREE.Group {
   clone.traverse((child) => {
     if (!(child instanceof THREE.Mesh)) return;
 
+    child.castShadow = true;
+    child.receiveShadow = true;
+
     const fixMat = (mat: THREE.Material): THREE.Material => {
       const m = mat.clone() as THREE.MeshStandardMaterial;
       if (m instanceof THREE.MeshStandardMaterial) {

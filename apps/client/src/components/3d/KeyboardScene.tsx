@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { MeshReflectorMaterial, Stars, useGLTF } from '@react-three/drei';
+import { MeshReflectorMaterial, Sparkles, Stars, useGLTF } from '@react-three/drei';
 import { Canvas, type RootState, useFrame, useThree } from '@react-three/fiber';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -284,6 +284,7 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
               antialias: false,
               failIfMajorPerformanceCaveat: false,
             }}
+            shadows
             onCreated={handleCreated}
           >
             <ResizeCanvasToParent />
@@ -308,6 +309,16 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
               color={isDark ? '#ffffff' : '#dbeafe'}
             />
 
+            <spotLight
+              position={[2.5, 5, 4]}
+              angle={0.55}
+              penumbra={0.8}
+              intensity={isDark ? 24 : 12}
+              distance={18}
+              color={isDark ? '#9fc5ff' : '#ffffff'}
+              castShadow
+            />
+
             <pointLight
               position={[0, 1.5, 2]}
               intensity={isDark ? 0.8 : 0.45}
@@ -326,13 +337,46 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
               />
             )}
 
+            {!isDark && (
+              <>
+                <Sparkles
+                  count={150}
+                  scale={[12, 8, 10]}
+                  size={2.2}
+                  speed={0.12}
+                  noise={1.2}
+                  color="#5279a8"
+                  opacity={0.58}
+                />
+                <Sparkles
+                  count={28}
+                  scale={[10, 5, 8]}
+                  size={2.6}
+                  speed={0.1}
+                  noise={1.5}
+                  color="#c58b3c"
+                  opacity={0.42}
+                />
+              </>
+            )}
+
             {/* Ground light under the keyboard — dark mode only */}
             {isDark && (
               <pointLight
                 position={[0, -0.6, 0.35]}
                 color="#7bb8ff"
-                intensity={35}
+                intensity={48}
                 distance={24}
+                decay={2}
+              />
+            )}
+
+            {isDark && (
+              <pointLight
+                position={[-2, -1.2, 2.5]}
+                color="#3f7dcc"
+                intensity={26}
+                distance={14}
                 decay={2}
               />
             )}
@@ -341,20 +385,20 @@ export function KeyboardScene({ mobile = false }: { mobile?: boolean }) {
             <SceneContent mobile={mobile} />
 
             {/* Keep the old camera framing and make the floor fill the full viewport corners */}
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3.2, 0]}>
+            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.95, 0]} receiveShadow>
               <planeGeometry args={[5000, 5000]} />
               <MeshReflectorMaterial
-                blur={[400, 100]}
+                blur={isDark ? [95, 28] : [240, 70]}
                 resolution={512}
-                mirror={0.35}
+                mirror={isDark ? 0.9 : 0.58}
                 mixBlur={1}
-                mixStrength={0.6}
-                roughness={0}
+                mixStrength={isDark ? 1 : 0.82}
+                roughness={isDark ? 0.04 : 0}
                 depthScale={1}
                 minDepthThreshold={0.4}
                 maxDepthThreshold={1}
-                metalness={0.05}
-                color={isDark ? '#080808' : '#dbe4ef'}
+                metalness={0.12}
+                color={isDark ? '#263e60' : '#cbd8e8'}
               />
             </mesh>
           </Canvas>
