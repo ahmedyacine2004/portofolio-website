@@ -19,8 +19,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-import somiphosImage from '@/assets/images/internships/somiphos.jpg';
-import somiphosLogo from '@/assets/images/internships/somiphos-logo.png';
+import somiphosLogo from '@/assets/images/experience/internships/somiphos-logo.png';
+import somiphosImage from '@/assets/images/experience/internships/somiphos.jpg';
 import { useTranslation } from '@/hooks/use-translation';
 
 export default function SomiphosInternshipPage() {

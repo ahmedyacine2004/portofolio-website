@@ -18,32 +18,32 @@ import shopsphereEn from '@/locales/en/projects/shopsphere.json';
 import socialCampaign2025En from '@/locales/en/projects/social-campaign-2025.json';
 import taskflowDashboardEn from '@/locales/en/projects/taskflow-dashboard.json';
 import travelMateEn from '@/locales/en/projects/travelmate.json';
+import afterEffectsSkillEn from '@/locales/en/skills/after-effects.json';
 import backendSkillEn from '@/locales/en/skills/backend.json';
+import blenderSkillEn from '@/locales/en/skills/blender.json';
 import databasesSkillEn from '@/locales/en/skills/databases.json';
 import designSkillEn from '@/locales/en/skills/design.json';
 import devopsSkillEn from '@/locales/en/skills/devops-tools.json';
-import frontendSkillEn from '@/locales/en/skills/frontend.json';
-import htmlCssSkillEn from '@/locales/en/skills/html-css.json';
-import nextjsSkillEn from '@/locales/en/skills/nextjs.json';
-import reactSkillEn from '@/locales/en/skills/react.json';
-import tailwindSkillEn from '@/locales/en/skills/tailwindcss.json';
-import typescriptSkillEn from '@/locales/en/skills/typescript.json';
-import nestjsSkillEn from '@/locales/en/skills/nestjs.json';
-import nodejsSkillEn from '@/locales/en/skills/nodejs.json';
+import dockerSkillEn from '@/locales/en/skills/docker.json';
 import expressjsSkillEn from '@/locales/en/skills/expressjs.json';
-import mongodbSkillEn from '@/locales/en/skills/mongodb.json';
-import postgresqlSkillEn from '@/locales/en/skills/postgresql.json';
-import mysqlSkillEn from '@/locales/en/skills/mysql.json';
 import figmaSkillEn from '@/locales/en/skills/figma.json';
-import photoshopSkillEn from '@/locales/en/skills/photoshop.json';
-import illustratorSkillEn from '@/locales/en/skills/illustrator.json';
-import afterEffectsSkillEn from '@/locales/en/skills/after-effects.json';
-import blenderSkillEn from '@/locales/en/skills/blender.json';
+import frontendSkillEn from '@/locales/en/skills/frontend.json';
 import gitSkillEn from '@/locales/en/skills/git.json';
 import githubSkillEn from '@/locales/en/skills/github.json';
-import dockerSkillEn from '@/locales/en/skills/docker.json';
+import htmlCssSkillEn from '@/locales/en/skills/html-css.json';
+import illustratorSkillEn from '@/locales/en/skills/illustrator.json';
+import mongodbSkillEn from '@/locales/en/skills/mongodb.json';
+import mysqlSkillEn from '@/locales/en/skills/mysql.json';
+import nestjsSkillEn from '@/locales/en/skills/nestjs.json';
+import nextjsSkillEn from '@/locales/en/skills/nextjs.json';
+import nodejsSkillEn from '@/locales/en/skills/nodejs.json';
+import photoshopSkillEn from '@/locales/en/skills/photoshop.json';
+import postgresqlSkillEn from '@/locales/en/skills/postgresql.json';
 import postmanSkillEn from '@/locales/en/skills/postman.json';
+import reactSkillEn from '@/locales/en/skills/react.json';
 import renderSkillEn from '@/locales/en/skills/render.json';
+import tailwindSkillEn from '@/locales/en/skills/tailwindcss.json';
+import typescriptSkillEn from '@/locales/en/skills/typescript.json';
 import fr from '@/locales/fr/common.json';
 import apexBrandKitFr from '@/locales/fr/projects/apex-brand-kit.json';
 import consultifyFr from '@/locales/fr/projects/consultify.json';
@@ -63,32 +63,32 @@ import shopsphereFr from '@/locales/fr/projects/shopsphere.json';
 import socialCampaign2025Fr from '@/locales/fr/projects/social-campaign-2025.json';
 import taskflowDashboardFr from '@/locales/fr/projects/taskflow-dashboard.json';
 import travelMateFr from '@/locales/fr/projects/travelmate.json';
+import afterEffectsSkillFr from '@/locales/fr/skills/after-effects.json';
 import backendSkillFr from '@/locales/fr/skills/backend.json';
+import blenderSkillFr from '@/locales/fr/skills/blender.json';
 import databasesSkillFr from '@/locales/fr/skills/databases.json';
 import designSkillFr from '@/locales/fr/skills/design.json';
 import devopsSkillFr from '@/locales/fr/skills/devops-tools.json';
-import frontendSkillFr from '@/locales/fr/skills/frontend.json';
-import htmlCssSkillFr from '@/locales/fr/skills/html-css.json';
-import nextjsSkillFr from '@/locales/fr/skills/nextjs.json';
-import reactSkillFr from '@/locales/fr/skills/react.json';
-import tailwindSkillFr from '@/locales/fr/skills/tailwindcss.json';
-import typescriptSkillFr from '@/locales/fr/skills/typescript.json';
-import nestjsSkillFr from '@/locales/fr/skills/nestjs.json';
-import nodejsSkillFr from '@/locales/fr/skills/nodejs.json';
+import dockerSkillFr from '@/locales/fr/skills/docker.json';
 import expressjsSkillFr from '@/locales/fr/skills/expressjs.json';
-import mongodbSkillFr from '@/locales/fr/skills/mongodb.json';
-import postgresqlSkillFr from '@/locales/fr/skills/postgresql.json';
-import mysqlSkillFr from '@/locales/fr/skills/mysql.json';
 import figmaSkillFr from '@/locales/fr/skills/figma.json';
-import photoshopSkillFr from '@/locales/fr/skills/photoshop.json';
-import illustratorSkillFr from '@/locales/fr/skills/illustrator.json';
-import afterEffectsSkillFr from '@/locales/fr/skills/after-effects.json';
-import blenderSkillFr from '@/locales/fr/skills/blender.json';
+import frontendSkillFr from '@/locales/fr/skills/frontend.json';
 import gitSkillFr from '@/locales/fr/skills/git.json';
 import githubSkillFr from '@/locales/fr/skills/github.json';
-import dockerSkillFr from '@/locales/fr/skills/docker.json';
+import htmlCssSkillFr from '@/locales/fr/skills/html-css.json';
+import illustratorSkillFr from '@/locales/fr/skills/illustrator.json';
+import mongodbSkillFr from '@/locales/fr/skills/mongodb.json';
+import mysqlSkillFr from '@/locales/fr/skills/mysql.json';
+import nestjsSkillFr from '@/locales/fr/skills/nestjs.json';
+import nextjsSkillFr from '@/locales/fr/skills/nextjs.json';
+import nodejsSkillFr from '@/locales/fr/skills/nodejs.json';
+import photoshopSkillFr from '@/locales/fr/skills/photoshop.json';
+import postgresqlSkillFr from '@/locales/fr/skills/postgresql.json';
 import postmanSkillFr from '@/locales/fr/skills/postman.json';
+import reactSkillFr from '@/locales/fr/skills/react.json';
 import renderSkillFr from '@/locales/fr/skills/render.json';
+import tailwindSkillFr from '@/locales/fr/skills/tailwindcss.json';
+import typescriptSkillFr from '@/locales/fr/skills/typescript.json';
 import { useLanguageStore } from '@/stores/language.store';
 
 type TranslationKeys = typeof en;
@@ -284,13 +284,19 @@ function getNestedValue(obj: Record<string, unknown> | unknown, path: string): u
 export function useTranslation() {
   const locale = useLanguageStore((s) => s.locale);
 
-  const t = (key: string, fallback?: string): string => {
+  const t = (key: string, fallback?: string | { defaultValue?: string }): string => {
     const translationSet = translations[locale];
     const value = getNestedValue(translationSet, key);
+    const defaultValue =
+      typeof fallback === 'string'
+        ? fallback
+        : fallback && typeof fallback === 'object'
+          ? fallback.defaultValue
+          : undefined;
 
     // If value is the key path (fallback from getNestedValue), return fallback or key
     if (typeof value !== 'string' || value === key) {
-      return fallback || key;
+      return defaultValue || fallback?.toString?.() || key;
     }
 
     return value;

@@ -25,7 +25,7 @@ export interface DesignProcessStep {
 export interface UIUXKeyFeature {
   title: string;
   description: string;
-  icon: string;
+  icon?: string;
 }
 
 export interface ColorSwatch {
@@ -62,12 +62,29 @@ export interface UserFlow {
   steps: UserFlowStep[];
 }
 
+export type FlowNodeType = 'screen' | 'decision' | 'action' | 'outcome';
+
+export interface WireframeAnnotation {
+  id: string;
+  number: number;
+  title: string;
+  description: string;
+  xPercentage: number;
+  yPercentage: number;
+}
+
 export interface UserFlowStep {
   id: string;
   stepNumber: string;
   screenName: string;
   userAction: string;
   systemResponse: string;
+  nodeType?: FlowNodeType;
+  isKeyMilestone?: boolean;
+  decisionOptions?: {
+    label: string;
+    targetStep: string;
+  }[];
 }
 
 export interface UIUXUserFlowData {
@@ -89,6 +106,7 @@ export interface WireframeScreen {
   imageUrl?: string;
   layoutGrid: string;
   componentsUsed: string[];
+  annotations?: WireframeAnnotation[];
 }
 
 export interface UIUXWireframesData {
@@ -106,19 +124,32 @@ export interface UIUXWireframesData {
   screens: WireframeScreen[];
 }
 
+export interface MicroInteraction {
+  trigger: string;
+  effect: string;
+  duration: string;
+}
+
 export interface PrototypeScreen {
   id: string;
   name: string;
-  type: string;
+  type: 'Home' | 'Analytics' | 'Cards' | 'Transfer' | 'Success' | string;
   description: string;
   hotspots: InteractiveHotspot[];
+  microInteractions?: MicroInteraction[];
 }
 
 export interface InteractiveHotspot {
   id: string;
   label: string;
-  actionType: string;
+  actionType: 'Tap' | 'Swipe' | 'Long Press' | 'Biometric' | 'Click';
   targetScreenId: string;
+  position?: {
+    xPercentage: number;
+    yPercentage: number;
+    widthPercentage: number;
+    heightPercentage: number;
+  };
 }
 
 export interface UIUXPrototypeData {

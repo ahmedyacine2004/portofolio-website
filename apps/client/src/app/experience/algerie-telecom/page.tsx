@@ -20,8 +20,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-import algerietelecomImage from '@/assets/images/internships/algerie-telecom.jpg';
-import algerietelecomLogo from '@/assets/images/internships/Logo_Algérie_Télécom.png';
+import algerietelecomImage from '@/assets/images/experience/internships/algerie-telecom.jpg';
+import algerietelecomLogo from '@/assets/images/experience/internships/Logo_Algérie_Télécom.png';
 import { useTranslation } from '@/hooks/use-translation';
 
 export default function AlgerieTelecomInternshipPage() {

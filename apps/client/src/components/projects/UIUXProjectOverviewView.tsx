@@ -227,7 +227,9 @@ export function UIUXProjectOverviewView({ data }: UIUXProjectOverviewViewProps) 
 
           <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
             {data.keyFeatures.map((feature) => {
-              const IconComp = FEATURE_ICON_MAP[feature.icon] || CheckCircle2;
+              const IconComp = feature.icon
+                ? FEATURE_ICON_MAP[feature.icon] || CheckCircle2
+                : CheckCircle2;
               return (
                 <div
                   key={feature.title}

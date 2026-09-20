@@ -82,12 +82,12 @@ export const LEARNHUB_LMS_OVERVIEW_DATA: UIUXProjectOverviewData = {
     {
       title: 'Actionable Progress',
       description: 'See the next step as a learner and the support signal as an educator.',
+      icon: 'Progress',
     },
     {
       title: 'Feedback Workspace',
       description: 'Review submissions, leave useful feedback, and keep the learner moving.',
       icon: 'MessageSquare',
-      icon: 'CheckCircle',
     },
   ],
   colorPalette: [

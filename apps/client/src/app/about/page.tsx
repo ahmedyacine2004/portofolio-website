@@ -111,7 +111,7 @@ export default function AboutPage() {
 
   const interests = useMemo(
     () =>
-      tArray('about.interests').map((label: string, index: number) => {
+      tArray<string>('about.interests').map((label: string, index: number) => {
         const iconList = [Palette, PenTool, Camera, Gamepad2, BookOpen, Laptop];
         const iconMap: { [key: string]: typeof Palette } = {
           'UI/UX design': Palette,

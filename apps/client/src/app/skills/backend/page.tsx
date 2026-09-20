@@ -363,21 +363,25 @@ const ARCHITECTURE_TIERS: ArchitectureTier[] = [
     icon: Zap,
     components: [
       {
+        key: 'bullMqJobQueue',
         name: 'BullMQ Job Queue',
         role: 'Background Task Dispatch',
         protocolOrTech: 'Redis Backed',
       },
       {
+        key: 'cronSchedulers',
         name: 'Cron Schedulers',
         role: 'Periodic Routine Tasks',
         protocolOrTech: 'Node-Cron Engine',
       },
       {
+        key: 'emailNotificationWorker',
         name: 'Email & Notification Worker',
         role: 'Transactional Mail',
         protocolOrTech: 'Resend API',
       },
       {
+        key: 'aiWorkerStream',
         name: 'AI Worker Stream',
         role: 'Async Inference Pipelines',
         protocolOrTech: 'OpenAI API SDK',

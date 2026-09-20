@@ -82,12 +82,12 @@ export const TRAVELMATE_OVERVIEW_DATA: UIUXProjectOverviewData = {
     {
       title: 'Booking Timeline',
       description: 'Keep confirmations, deadlines, and essential trip details together.',
+      icon: 'CalendarCheck2',
     },
     {
       title: 'Offline Trip View',
       description: 'Access addresses, tickets, and the next stop when connectivity is limited.',
       icon: 'Smartphone',
-      icon: 'CreditCard',
     },
   ],
   colorPalette: [

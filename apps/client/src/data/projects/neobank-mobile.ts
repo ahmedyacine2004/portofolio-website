@@ -24,7 +24,7 @@ export interface DesignProcessStep {
 export interface UIUXKeyFeature {
   title: string;
   description: string;
-  icon: string;
+  icon?: string;
 }
 
 export interface ColorSwatch {
@@ -109,7 +109,7 @@ export interface WireframeScreen {
   imageUrl?: string;
   layoutGrid: string;
   componentsUsed: string[];
-  annotations: WireframeAnnotation[];
+  annotations?: WireframeAnnotation[];
 }
 
 export interface UIUXWireframesData {
@@ -132,9 +132,9 @@ export interface UIUXWireframesData {
 export interface InteractiveHotspot {
   id: string;
   label: string;
-  actionType: 'Tap' | 'Swipe' | 'Long Press' | 'Biometric';
+  actionType: 'Tap' | 'Swipe' | 'Long Press' | 'Biometric' | 'Click';
   targetScreenId: string;
-  position: {
+  position?: {
     xPercentage: number;
     yPercentage: number;
     widthPercentage: number;
@@ -151,10 +151,10 @@ export interface MicroInteraction {
 export interface PrototypeScreen {
   id: string;
   name: string;
-  type: 'Home' | 'Analytics' | 'Cards' | 'Transfer' | 'Success';
+  type: string;
   description: string;
   hotspots: InteractiveHotspot[];
-  microInteractions: MicroInteraction[];
+  microInteractions?: MicroInteraction[];
 }
 
 export interface UIUXPrototypeData {
