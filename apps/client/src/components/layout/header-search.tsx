@@ -230,7 +230,7 @@ const SECONDARY_PAGE_ITEMS: SearchResultItem[] = [
     shortcut: '⌘H',
     category: 'Commands',
     tab: 'Commands',
-    action: (router) => router.push('/'),
+    action: (router) => router.push('/studio'),
   },
   {
     id: 'page-experience-education',

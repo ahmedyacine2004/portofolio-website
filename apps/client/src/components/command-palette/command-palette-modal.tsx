@@ -146,7 +146,7 @@ const getCommandItems = (t: any): CommandItem[] => [
     shortcut: '↵',
     badge: 'Page',
     action: ({ router, close }) => {
-      router.push('/');
+      router.push('/studio');
       close();
     },
   },

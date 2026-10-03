@@ -22,6 +22,11 @@ import { AboutTabBar } from './about-tab-bar';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
+
 type PdfReaderProps = {
   fileName: string;
   breadcrumb: string;
@@ -46,10 +51,6 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
   const [loadError, setLoadError] = useState<string | null>(null);
 
   const documentContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
-  }, []);
 
   useEffect(() => {
     let cancelled = false;

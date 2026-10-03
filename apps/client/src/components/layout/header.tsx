@@ -94,7 +94,7 @@ export function Header() {
         <div className="flex min-w-0 shrink-0 items-center gap-8">
           {/* Logo */}
           <Link
-            href="/"
+            href="/studio"
             aria-label="Portfolio home"
             className="flex h-[19px] shrink-0 items-center"
           >
@@ -181,7 +181,11 @@ export function Header() {
         className="hidden md:flex lg:hidden items-center justify-between rounded-sm bg-background px-3 py-1.5 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] gap-2"
       >
         {/* Logo */}
-        <Link href="/" aria-label="Portfolio home" className="flex h-[16px] shrink-0 items-center">
+        <Link
+          href="/studio"
+          aria-label="Portfolio home"
+          className="flex h-[16px] shrink-0 items-center"
+        >
           <Image
             src="/branding/logo.png"
             alt="Portfolio"
@@ -235,7 +239,11 @@ export function Header() {
         className="md:hidden flex w-full items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]"
       >
         {/* Logo */}
-        <Link href="/" aria-label="Portfolio home" className="flex h-[14px] shrink-0 items-center">
+        <Link
+          href="/studio"
+          aria-label="Portfolio home"
+          className="flex h-[14px] shrink-0 items-center"
+        >
           <Image
             src="/branding/logo.png"
             alt="Portfolio"

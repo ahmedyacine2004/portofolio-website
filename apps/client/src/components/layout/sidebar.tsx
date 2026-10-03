@@ -22,7 +22,7 @@ import { useAdminAuthStore } from '@/stores/admin-auth.store';
 const mainNavigation = [
   {
     label: 'Home',
-    href: '/',
+    href: '/studio',
     icon: House,
   },
   {
@@ -80,8 +80,8 @@ function isRouteActive(pathname: string | null, href: string) {
     return false;
   }
 
-  if (href === '/') {
-    return pathname === '/';
+  if (href === '/studio') {
+    return pathname === '/studio';
   }
 
   return pathname === href || pathname.startsWith(`${href}/`);

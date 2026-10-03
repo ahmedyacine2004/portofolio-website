@@ -37,7 +37,7 @@ export function AppShell({ children }: AppShellProps) {
   useEffect(() => {
     if (
       !isLoading &&
-      pathname === '/' &&
+      pathname === '/studio' &&
       !hasShownMobileWarning.current &&
       window.matchMedia('(max-width: 1023px)').matches
     ) {
@@ -75,6 +75,7 @@ export function AppShell({ children }: AppShellProps) {
   }, []);
 
   const showLoading = isLoading && pathname !== '/loading';
+  const isStandalonePage = pathname === '/' || pathname === '/simple';
   const hasSecondarySidebar =
     pathname.startsWith('/about') ||
     pathname.startsWith('/projects') ||
@@ -98,62 +99,68 @@ export function AppShell({ children }: AppShellProps) {
         )}
       </AnimatePresence>
 
-      <div className="flex h-dvh bg-transparent flex-col px-2 py-1 md:h-screen md:px-4 md:py-1">
-        {/* Header */}
-        <Header />
+      {isStandalonePage ? (
+        <div className="min-h-dvh w-full">{children}</div>
+      ) : (
+        <>
+          <div className="flex h-dvh bg-transparent flex-col px-2 py-1 md:h-screen md:px-4 md:py-1">
+            {/* Header */}
+            <Header />
 
-        {/* Main workspace */}
-        <div className="flex min-h-0 flex-1 gap-[6px] py-[6px] pb-14 md:pb-[6px]">
-          {/* Main navigation */}
-          <aside className="hidden md:flex flex-row gap-[6px] shrink-0">
-            <Sidebar />
+            {/* Main workspace */}
+            <div className="flex min-h-0 flex-1 gap-[6px] py-[6px] pb-14 md:pb-[6px]">
+              {/* Main navigation */}
+              <aside className="hidden md:flex flex-row gap-[6px] shrink-0">
+                <Sidebar />
 
-            {hasSecondarySidebar && (
-              <AnimatePresence mode="wait">
+                {hasSecondarySidebar && (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={pathname}
+                      initial={{ width: 0, opacity: 0 }}
+                      animate={{ width: 'auto', opacity: 1 }}
+                      exit={{ width: 0, opacity: 0 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 320,
+                        damping: 32,
+                        opacity: { duration: 0.2 },
+                      }}
+                      className="hidden shrink-0 lg:flex"
+                    >
+                      <SecondarySidebar />
+                    </motion.div>
+                  </AnimatePresence>
+                )}
+              </aside>
+
+              {/* Page Area */}
+              <main className="relative h-full min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:rounded-[8px] lg:overflow-hidden">
                 <motion.div
                   key={pathname}
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 'auto', opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 320,
-                    damping: 32,
-                    opacity: { duration: 0.2 },
-                  }}
-                  className="hidden shrink-0 lg:flex"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                  className="h-full min-h-0 w-full"
                 >
-                  <SecondarySidebar />
+                  {children}
                 </motion.div>
-              </AnimatePresence>
-            )}
-          </aside>
+              </main>
+            </div>
 
-          {/* Page Area */}
-          <main className="relative h-full min-h-0 min-w-0 flex-1 overflow-x-hidden overflow-y-auto rounded-[4px] bg-background shadow-gray-400 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:rounded-[8px] lg:overflow-hidden">
-            <motion.div
-              key={pathname}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="h-full min-h-0 w-full"
-            >
-              {children}
-            </motion.div>
-          </main>
-        </div>
+            {/* Status bar */}
+            <footer className="shrink-0">
+              <StatusBar />
+            </footer>
+          </div>
 
-        {/* Status bar */}
-        <footer className="shrink-0">
-          <StatusBar />
-        </footer>
-      </div>
+          <div className="md:hidden">
+            <Sidebar />
+          </div>
+        </>
+      )}
 
-      <div className="md:hidden">
-        <Sidebar />
-      </div>
-
-      <OnboardingTour enabled={!isLoading && pathname === '/'} />
+      {!isStandalonePage && <OnboardingTour enabled={!isLoading && pathname === '/studio'} />}
 
       <AnimatePresence>
         {showMobileWarning && (
@@ -200,26 +207,17 @@ export function AppShell({ children }: AppShellProps) {
         )}
       </AnimatePresence>
 
-      {/* Terminal Modal */}
-      <TerminalModal />
-
-      {/* Command Palette Modal */}
-      <CommandPaletteModal />
-
-      {/* Download Manager Floating Panel */}
-      <DownloadManager />
-
-      {/* Notifications Panel Popover */}
-      <NotificationsPanel />
-
-      {/* Visitor info panel */}
-      <VisitorInfoPanel />
-
-      {/* Image Preview Viewer Modal */}
-      <ImageViewerModal />
-
-      {/* Background Audio Player */}
-      <AudioPlayer />
+      {!isStandalonePage && (
+        <>
+          <TerminalModal />
+          <CommandPaletteModal />
+          <DownloadManager />
+          <NotificationsPanel />
+          <VisitorInfoPanel />
+          <ImageViewerModal />
+          <AudioPlayer />
+        </>
+      )}
     </>
   );
 }

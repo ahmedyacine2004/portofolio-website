@@ -16,7 +16,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The home page is an experience selector: `/simple` opens the classic portfolio and `/studio` opens
+the interactive developer workspace.
+
+The simple portfolio includes selected projects, skills, internship experience, education,
+certifications, and a contact form that submits through the existing Web3Forms service. Its
+sections have scroll-triggered parallax motion, and project, experience, education, and credential
+details open in dialogs without navigating into the interactive workspace.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
