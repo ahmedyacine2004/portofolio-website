@@ -69,7 +69,7 @@ export function DetailsDialog({ triggerLabel, title, children }: DetailsDialogPr
         onClick={(event) => {
           if (event.target === event.currentTarget) setIsOpen(false);
         }}
-        className="m-auto max-h-[min(85dvh,48rem)] w-[min(92vw,42rem)] overflow-y-auto rounded-2xl border border-border bg-card p-0 text-foreground shadow-2xl backdrop:bg-black/70"
+        className="m-auto max-h-[min(85dvh,48rem)] w-[min(92vw,42rem)] overflow-y-auto rounded-[8px] border border-border bg-card p-0 text-foreground shadow-2xl backdrop:bg-black/70"
       >
         <div className="p-5 sm:p-7">
           <div className="mb-5 flex items-start justify-between gap-4 border-b border-border pb-4">
@@ -81,7 +81,7 @@ export function DetailsDialog({ triggerLabel, title, children }: DetailsDialogPr
               autoFocus
               onClick={() => dialogRef.current?.close()}
               aria-label="Close details"
-              className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border text-lg text-foreground-secondary transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="flex size-8 shrink-0 items-center justify-center rounded-[8px] border border-border text-lg text-foreground-secondary transition-colors hover:border-primary hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               ×
             </button>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
+
 import {
   ArrowDown,
   Award,
@@ -13,15 +14,18 @@ import {
 
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { SimpleContactForm } from '@/components/home/simple-contact-form';
+import { SimpleBackToTop } from '@/components/home/simple-back-to-top';
+import { SimpleAvatarCard } from '@/components/home/simple-avatar-card';
+import { SimpleSelectedWork } from '@/components/home/simple-selected-work';
 import { DetailsDialog, ParallaxSection } from '@/components/home/simple-portfolio-motion';
-import { CONSULTIFY_DETAILS } from '@/data/projects/consultify';
-import { PORTFOLIO_WORKSPACE_DETAILS } from '@/data/projects/portfolio-workspace';
-import { SHOPSPHERE_DETAILS, type WebProjectDetails } from '@/data/projects/shopsphere';
-import profileImage from '@/assets/images/profile/avatar.jpg';
-import consultifyImage from '@/assets/images/projects/consultify/consultify.png';
-import portfolioImage from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/1.png';
-import shopsphereImage from '@/assets/images/projects/shopsphere/storefront.jpg';
 import bachelorCertificate from '@/assets/images/experience/education/certificate.png';
+import somiphosCertificate from '@/assets/images/experience/internships/somiphos.jpg';
+import algerieTelecomCertificate from '@/assets/images/experience/internships/algerie-telecom.jpg';
+import algerieTelecomLogo from '@/assets/images/experience/internships/Logo_Algérie_Télécom.png';
+import codsoftLogo from '@/assets/images/experience/internships/code-soft.png';
+import devBridgeLogo from '@/assets/images/experience/internships/dev-bridge.png';
+import somiphosLogo from '@/assets/images/experience/internships/somiphos-logo.png';
+import techVerseLogo from '@/assets/images/experience/internships/Tech-verse.png';
 import awsCertificate from '@/assets/images/certificates/aws-certificate.png';
 import googleCertificate from '@/assets/images/certificates/google-it-certificate.png';
 import metaCertificate from '@/assets/images/certificates/meta-certificate.png';
@@ -33,40 +37,6 @@ export const metadata: Metadata = {
   description:
     'Ahmed Yassine Abbane — full-stack web developer and graphic designer building digital experiences through code and design.',
 };
-
-const projects: {
-  number: string;
-  title: string;
-  category: string;
-  description: string;
-  image: StaticImageData;
-  details: WebProjectDetails;
-}[] = [
-  {
-    number: '01',
-    title: CONSULTIFY_DETAILS.projectName,
-    category: 'Full-stack · AI',
-    description: CONSULTIFY_DETAILS.tagline,
-    image: consultifyImage,
-    details: CONSULTIFY_DETAILS,
-  },
-  {
-    number: '02',
-    title: PORTFOLIO_WORKSPACE_DETAILS.projectName,
-    category: 'Full-stack · Next.js',
-    description: PORTFOLIO_WORKSPACE_DETAILS.tagline,
-    image: portfolioImage,
-    details: PORTFOLIO_WORKSPACE_DETAILS,
-  },
-  {
-    number: '03',
-    title: SHOPSPHERE_DETAILS.projectName,
-    category: 'E-commerce · AI',
-    description: SHOPSPHERE_DETAILS.tagline,
-    image: shopsphereImage,
-    details: SHOPSPHERE_DETAILS,
-  },
-];
 
 const skills = [
   'React',
@@ -81,55 +51,227 @@ const skills = [
   'Docker',
 ];
 
-const education = [
+const education: {
+  period: string;
+  title: string;
+  institution: string;
+  detail: string;
+  summary: string;
+  status: string;
+  focus: string;
+  highlights: string[];
+  skills: string[];
+  image?: StaticImageData;
+}[] = [
   {
     period: '2025 — Present',
-    title: 'Engineering Preparatory Cycle',
+    title: 'Engineering Preparatory Cycle · Year 2',
     institution: 'ESTIN · Bejaia, Algeria',
     detail:
-      'Second-year preparatory student. Focused on mathematics, physics, and computer science fundamentals.',
-    summary: 'Building strong foundations in mathematics, physics, and computer science.',
+      "Currently in the second year of ESTIN's preparatory cycle, studying advanced mathematics, physics, and computer science as a foundation for the engineering cycle.",
+    summary:
+      'An intensive preparatory curriculum building theoretical foundations for engineering studies.',
     status: 'In progress',
+    focus: 'Advanced mathematics · Physics · Computer science fundamentals',
+    highlights: [
+      'Currently completing the second year of the preparatory cycle.',
+      'Building theoretical foundations for future engineering specialization.',
+    ],
+    skills: ['Mathematics', 'Physics', 'Algorithms', 'CS fundamentals'],
   },
   {
-    period: '2021 — 2025',
+    period: '2021 — 2025 · Graduated 2025',
     title: "Bachelor's Degree in Computer Science",
     institution: 'M’Hamed Bougara University · Boumerdes, Algeria',
     detail:
-      'Specialization in Web Development and Computer Graphics · GPA 14.31/20 · Good Honours.',
-    summary: 'Specialized in Web Development and Computer Graphics, graduating with Good Honours.',
+      "Completed a four-year Bachelor's degree in Computer Science, specializing in Web Development and Computer Graphics. Graduated with a GPA of 14.31/20 and Good Honours.",
+    summary:
+      'Four years of computer science study, from core theory through a full-stack engineering specialization.',
     status: 'Completed',
+    focus: 'Computer Science · Web Development · Computer Graphics',
+    highlights: [
+      'Graduated with a GPA of 14.31/20 and Good Honours.',
+      'Completed practical projects across web development and computer graphics.',
+    ],
+    skills: ['Software engineering', 'Web development', 'Computer graphics', 'System design'],
     image: bachelorCertificate,
+  },
+  {
+    period: 'Sep 2024 — Jun 2025',
+    title: 'Full-Stack Engineering Specialization · Year 4',
+    institution: 'M’Hamed Bougara University · Boumerdes, Algeria',
+    detail:
+      'Focused on end-to-end application development with React, Next.js, Node.js, NestJS, and databases, applying the coursework to complete projects and internship work.',
+    summary:
+      'Applied modern frontend and backend technologies to complete applications and practical work.',
+    status: 'Completed',
+    focus: 'React · Next.js · NestJS · TypeScript',
+    highlights: [
+      'Built and shipped complete web applications end to end.',
+      'Applied REST APIs, databases, and clean architecture in practical projects.',
+    ],
+    skills: ['React', 'Next.js', 'NestJS', 'TypeScript', 'MongoDB', 'PostgreSQL'],
+  },
+  {
+    period: 'Sep 2023 — Jun 2024',
+    title: 'Software Engineering Major · Year 3',
+    institution: 'M’Hamed Bougara University · Boumerdes, Algeria',
+    detail:
+      'Studied design patterns, software architecture, advanced algorithms, and formal methods, shifting focus toward designing scalable, maintainable systems.',
+    summary:
+      'Moved from programming fundamentals toward architecture, design, and maintainable software.',
+    status: 'Completed',
+    focus: 'Software architecture · Design patterns · Advanced algorithms',
+    highlights: [
+      'Studied classical design patterns and UML modeling.',
+      'Applied agile principles in a full team software project.',
+    ],
+    skills: ['Java', 'C++', 'Python', 'UML', 'Algorithms', 'Agile'],
+  },
+  {
+    period: 'Sep 2022 — Jun 2023',
+    title: 'Computer Science Core · Year 2',
+    institution: 'M’Hamed Bougara University · Boumerdes, Algeria',
+    detail:
+      'Deepened computer science theory through operating systems, computer networks, database systems, and advanced C programming.',
+    summary:
+      'Explored how computer systems work, from processes and memory to networks and databases.',
+    status: 'Completed',
+    focus: 'Operating systems · Networks · Databases',
+    highlights: [
+      'Studied processes, threads, memory management, and scheduling.',
+      'Learned TCP/IP, network protocols, relational databases, and SQL.',
+    ],
+    skills: ['C', 'C++', 'SQL', 'TCP/IP', 'Operating systems', 'PostgreSQL'],
+  },
+  {
+    period: 'Sep 2021 — Jun 2022',
+    title: 'Computer Science Foundations · Year 1',
+    institution: 'M’Hamed Bougara University · Boumerdes, Algeria',
+    detail:
+      'Started the Computer Science degree with programming in C, discrete mathematics, logic, and computer architecture.',
+    summary:
+      'Built the foundational programming, mathematical, and computer architecture knowledge for the degree.',
+    status: 'Completed',
+    focus: 'Programming in C · Discrete mathematics · Computer architecture',
+    highlights: [
+      'Learned programming fundamentals including loops, functions, pointers, and arrays.',
+      'Built a foundation in logic, discrete mathematics, and computer architecture.',
+    ],
+    skills: ['C programming', 'Discrete mathematics', 'Logic', 'Algorithms'],
   },
 ];
 
-const experience = [
+const experience: {
+  period: string;
+  company: string;
+  logo: StaticImageData;
+  role: string;
+  summary: string;
+  detail: string;
+  responsibilities: string[];
+  achievements: string[];
+  technologies: string[];
+  certificate?: StaticImageData;
+  certificateAlt?: string;
+}[] = [
+  {
+    period: 'Jun 2025 — Jul 2025',
+    company: 'SOMIPHOS',
+    logo: somiphosLogo,
+    certificate: somiphosCertificate,
+    certificateAlt: 'SOMIPHOS internship certificate',
+    role: 'Integration Intern · Algeria',
+    summary:
+      'Explored enterprise IT systems and data workflows within a large-scale mining and phosphate operation.',
+    detail:
+      'An integration internship focused on understanding enterprise IT in an industrial environment, including internal systems, technical processes, and the infrastructure that supports mining operations.',
+    responsibilities: [
+      'Observed enterprise IT infrastructure in a mining environment.',
+      'Analyzed internal systems and data management workflows.',
+      'Documented technical processes and learned about network topology and security.',
+    ],
+    achievements: [
+      'Developed a clearer understanding of industrial IT operations.',
+      'Gained practical exposure to enterprise systems and technical collaboration.',
+    ],
+    technologies: ['System analysis', 'Technical documentation', 'IT infrastructure'],
+  },
   {
     period: 'Jan 2025 — Mar 2025',
     company: 'CodSoft',
+    logo: codsoftLogo,
     role: 'Web Development Intern · Remote',
     summary: 'Built responsive React interfaces, integrated APIs, and improved page performance.',
     detail:
       'Built responsive web pages and reusable React components, integrated REST APIs, and contributed to a maintainable user experience. Improved page load performance by 30% and implemented dark mode.',
+    responsibilities: [
+      'Developed and maintained responsive pages with HTML, CSS, and JavaScript.',
+      'Built reusable React components and integrated REST APIs.',
+      'Worked with design requirements to deliver consistent UI/UX.',
+    ],
+    achievements: ['Improved page load performance by 30%.', 'Implemented a dark mode feature.'],
     technologies: ['React', 'JavaScript', 'HTML/CSS'],
   },
   {
     period: 'Aug 2024 — Oct 2024',
     company: 'TechVerse Solutions',
+    logo: techVerseLogo,
     role: 'Frontend Developer Intern · Hybrid',
     summary: 'Modernized dashboards and built interactive data tables and visualizations.',
     detail:
       'Migrated legacy dashboards to Next.js and built interactive data tables and chart visualizations. Converted 12 core views and reduced initial bundle size by 22%.',
+    responsibilities: [
+      'Migrated dashboard pages to the Next.js App Router.',
+      'Created interactive data tables and chart visualizations.',
+      'Improved cross-browser behavior and mobile responsiveness.',
+    ],
+    achievements: [
+      'Converted 12 core dashboard views.',
+      'Reduced initial bundle size by 22% with dynamic imports.',
+    ],
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
   },
   {
     period: 'May 2024 — Jul 2024',
     company: 'DevBridge',
+    logo: devBridgeLogo,
     role: 'Software Development Intern · On-site',
     summary: 'Contributed to API design, database schemas, and backend test coverage.',
     detail:
       'Worked across API design, database schemas, and testing. Raised backend test coverage from 60% to 85% and optimized database queries for faster response times.',
+    responsibilities: [
+      'Designed and documented REST APIs for application features.',
+      'Wrote unit and integration tests for core endpoints.',
+      'Worked with relational database migrations and query performance.',
+    ],
+    achievements: [
+      'Raised backend test coverage from 60% to 85%.',
+      'Optimized database queries for faster response times.',
+    ],
     technologies: ['Node.js', 'Express', 'PostgreSQL'],
+  },
+  {
+    period: 'Jul 2024',
+    company: 'Algérie Télécom',
+    logo: algerieTelecomLogo,
+    certificate: algerieTelecomCertificate,
+    certificateAlt: 'Algérie Télécom internship certificate',
+    role: 'Early-Level Intern · Algeria',
+    summary:
+      'Gained an introduction to telecommunications infrastructure and the systems behind national internet services.',
+    detail:
+      'An early-level internship introducing telecommunications operations, network infrastructure, and the technical processes that support internet and data services.',
+    responsibilities: [
+      'Observed operations within a national telecommunications infrastructure.',
+      'Learned about fiber-optic and copper network maintenance procedures.',
+      'Attended technical briefings on ADSL and fiber internet services.',
+    ],
+    achievements: [
+      'Built foundational knowledge of telecommunications networks and ISP operations.',
+      'Gained a first professional perspective on technical work in a structured organization.',
+    ],
+    technologies: ['Network fundamentals', 'Technical observation', 'Documentation'],
   },
 ];
 
@@ -173,7 +315,7 @@ const certifications: {
 
 export default function SimplePortfolioPage() {
   return (
-    <div className="min-h-dvh bg-background text-foreground">
+    <div id="top" className="min-h-dvh bg-background text-foreground">
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/85 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
           <Link
@@ -298,119 +440,12 @@ export default function SimplePortfolioPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto w-full max-w-[340px] md:max-w-[370px]">
-              <div className="absolute -inset-3 rounded-[2rem] border border-primary/20 rotate-3" />
-              <div className="absolute -inset-3 rounded-[2rem] border border-border/70 -rotate-3" />
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-xl">
-                <Image
-                  src={profileImage}
-                  alt="Portrait of Ahmed Yassine Abbane"
-                  priority
-                  className="aspect-[4/5] w-full object-cover object-center"
-                  sizes="(max-width: 768px) 80vw, 370px"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-5 pt-16 text-white">
-                  <p className="text-lg font-bold uppercase leading-none sm:text-xl">
-                    Code meets creativity
-                  </p>
-                  <p className="mt-2 text-[10px] tracking-wide text-white/75">
-                    Web development · UI/UX · Visual design
-                  </p>
-                </div>
-              </div>
-              <div className="absolute -bottom-4 -left-4 flex size-12 items-center justify-center rounded-xl border border-border bg-card text-primary shadow-lg">
-                <Code2 className="size-5" />
-              </div>
-            </div>
+            <SimpleAvatarCard />
           </div>
         </ParallaxSection>
 
-        <ParallaxSection
-          id="work"
-          className="scroll-mt-20 border-y border-border/70 bg-background-secondary/35"
-        >
-          <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
-            <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                  A few things I’ve made
-                </p>
-                <h2 className="font-beni text-4xl uppercase leading-none sm:text-5xl">
-                  Selected work
-                </h2>
-              </div>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {projects.map((project) => (
-                <article
-                  key={project.number}
-                  className="group overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
-                >
-                  <div className="relative aspect-[16/10] overflow-hidden bg-background-secondary">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} project preview`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <span className="absolute left-3 top-3 rounded-md border border-white/15 bg-black/55 px-2 py-1 font-mono text-[9px] text-white backdrop-blur">
-                      {project.number}
-                    </span>
-                    <span className="absolute bottom-3 right-3 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[9px] font-medium text-white backdrop-blur">
-                      {project.category}
-                    </span>
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-sans text-base font-bold uppercase leading-tight tracking-wide">
-                        {project.title}
-                      </h3>
-                      <DetailsDialog triggerLabel="Project details" title={project.title}>
-                        <p>{project.details.coreObjective}</p>
-                        <div>
-                          <h3 className="font-sans mb-2 text-xs font-semibold uppercase tracking-wider text-foreground">
-                            Project modules
-                          </h3>
-                          <ul className="grid gap-2 sm:grid-cols-2">
-                            {project.details.systemModules.map((module) => (
-                              <li
-                                key={module.id}
-                                className="rounded-lg border border-border bg-background p-3"
-                              >
-                                <p className="text-xs font-semibold text-foreground">
-                                  {module.title}
-                                </p>
-                                <p className="mt-1 text-xs leading-5">{module.description}</p>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h3 className="font-sans mb-2 text-xs font-semibold uppercase tracking-wider text-foreground">
-                            Engineering highlights
-                          </h3>
-                          <ul className="list-inside list-disc space-y-1">
-                            {project.details.engineeringHighlights.map((highlight) => (
-                              <li key={highlight}>{highlight}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <p>
-                          <span className="font-semibold text-foreground">For:</span>{' '}
-                          {project.details.targetAudience.join(', ')}
-                        </p>
-                      </DetailsDialog>
-                    </div>
-                    <p className="mt-2 text-xs leading-5 text-foreground-secondary">
-                      {project.description}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
+        <ParallaxSection>
+          <SimpleSelectedWork />
         </ParallaxSection>
 
         <ParallaxSection
@@ -420,7 +455,7 @@ export default function SimplePortfolioPage() {
           <div className="mb-7 flex items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                Where I’ve learned by doing
+                Five internships · software development and industrial IT
               </p>
               <h2 className="font-beni text-4xl uppercase leading-none sm:text-5xl">Experience</h2>
             </div>
@@ -429,33 +464,78 @@ export default function SimplePortfolioPage() {
             {experience.map((item, index) => (
               <article
                 key={item.company}
-                className="relative rounded-xl border border-border bg-card p-4 sm:p-5"
+                className="relative rounded-[8px] border border-border bg-card p-4 sm:p-5"
               >
                 <span className="absolute -left-[31px] top-5 flex size-2.5 items-center justify-center rounded-full border-2 border-background bg-primary ring-4 ring-primary/10" />
                 <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-wider text-primary">
-                      {item.period}
-                    </p>
-                    <h3 className="mt-1 font-sans text-base font-bold uppercase leading-tight tracking-wide">
-                      {item.company}
-                    </h3>
-                    <p className="mt-1 text-xs font-medium text-foreground-secondary">
-                      {item.role}
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <div className="relative flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-[8px] border border-border bg-white p-1.5 dark:bg-white">
+                      <Image
+                        src={item.logo}
+                        alt={`${item.company} logo`}
+                        fill
+                        sizes="44px"
+                        className="object-contain p-1"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[9px] font-semibold uppercase tracking-wider text-primary">
+                        {item.period}
+                      </p>
+                      <h3 className="mt-1 font-sans text-base font-bold uppercase leading-tight tracking-wide">
+                        {item.company}
+                      </h3>
+                      <p className="mt-1 text-xs font-medium text-foreground-secondary">
+                        {item.role}
+                      </p>
+                    </div>
                   </div>
-                  <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[9px] text-foreground-tertiary">
+                  <span className="rounded-[8px] border border-border px-2.5 py-1 font-mono text-[9px] text-foreground-tertiary">
                     0{index + 1}
                   </span>
                 </div>
                 <p className="mt-3 max-w-3xl text-xs leading-5 text-foreground-secondary">
                   {item.summary}
                 </p>
+                <div className="mt-4 grid gap-4 border-t border-border pt-4 md:grid-cols-2">
+                  <div>
+                    <h4 className="font-sans text-[9px] font-semibold uppercase tracking-wider text-foreground-tertiary">
+                      Contributions
+                    </h4>
+                    <ul className="mt-2 space-y-1.5">
+                      {item.responsibilities.map((responsibility) => (
+                        <li
+                          key={responsibility}
+                          className="flex gap-2 text-[11px] leading-5 text-foreground-secondary"
+                        >
+                          <span className="mt-[7px] size-1 shrink-0 rounded-full bg-primary/70" />
+                          {responsibility}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-sans text-[9px] font-semibold uppercase tracking-wider text-foreground-tertiary">
+                      Outcomes
+                    </h4>
+                    <ul className="mt-2 space-y-1.5">
+                      {item.achievements.map((achievement) => (
+                        <li
+                          key={achievement}
+                          className="flex gap-2 text-[11px] leading-5 text-foreground-secondary"
+                        >
+                          <span className="mt-[7px] size-1 shrink-0 rounded-full bg-success" />
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {item.technologies.map((technology) => (
                     <span
                       key={technology}
-                      className="rounded-md bg-background-secondary px-2 py-1 text-[9px] text-foreground-tertiary"
+                      className="rounded-[8px] bg-background-secondary px-2 py-1 text-[9px] text-foreground-tertiary"
                     >
                       {technology}
                     </span>
@@ -470,16 +550,49 @@ export default function SimplePortfolioPage() {
                     <p>
                       <span className="font-semibold text-foreground">Period:</span> {item.period}
                     </p>
+                    <div>
+                      <h3 className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                        Responsibilities
+                      </h3>
+                      <ul className="list-inside list-disc space-y-1">
+                        {item.responsibilities.map((responsibility) => (
+                          <li key={responsibility}>{responsibility}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                        Achievements
+                      </h3>
+                      <ul className="list-inside list-disc space-y-1">
+                        {item.achievements.map((achievement) => (
+                          <li key={achievement}>{achievement}</li>
+                        ))}
+                      </ul>
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {item.technologies.map((technology) => (
                         <span
                           key={technology}
-                          className="rounded-full border border-border bg-background px-3 py-1 text-xs"
+                          className="rounded-[8px] border border-border bg-background px-3 py-1 text-xs"
                         >
                           {technology}
                         </span>
                       ))}
                     </div>
+                    {item.certificate && (
+                      <figure className="max-w-sm">
+                        <Image
+                          src={item.certificate}
+                          alt={item.certificateAlt ?? `${item.company} internship certificate`}
+                          className="max-h-96 w-full rounded-[8px] border border-border bg-background object-contain"
+                          sizes="(max-width: 672px) 90vw, 384px"
+                        />
+                        <figcaption className="mt-2 font-sans text-[10px] text-foreground-tertiary">
+                          Internship certificate
+                        </figcaption>
+                      </figure>
+                    )}
                   </DetailsDialog>
                 </div>
               </article>
@@ -495,21 +608,21 @@ export default function SimplePortfolioPage() {
             <div className="mb-7 flex items-end justify-between gap-4">
               <div>
                 <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                  The foundations
+                  Six milestones · from computer science foundations to engineering studies
                 </p>
                 <h2 className="font-beni text-4xl uppercase leading-none sm:text-5xl">Education</h2>
               </div>
               <GraduationCap className="size-7 text-primary" />
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
               {education.map((item) => (
                 <article
                   key={item.title}
-                  className="relative overflow-hidden rounded-xl border border-border bg-card p-5 sm:p-6"
+                  className="relative overflow-hidden rounded-[8px] border border-border bg-card p-5 sm:p-6"
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-mono text-[10px] text-primary">{item.period}</span>
-                    <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[9px] font-semibold text-primary">
+                    <span className="rounded-[8px] bg-primary/10 px-2.5 py-1 text-[9px] font-semibold text-primary">
                       {item.status}
                     </span>
                   </div>
@@ -519,7 +632,9 @@ export default function SimplePortfolioPage() {
                   <p className="mt-2 text-xs font-semibold text-foreground-secondary">
                     {item.institution}
                   </p>
-                  <p className="mt-3 text-xs leading-5 text-foreground-tertiary">{item.summary}</p>
+                  <p className="mt-3 line-clamp-2 text-xs leading-5 text-foreground-tertiary">
+                    {item.summary}
+                  </p>
                   <div className="mt-4">
                     <DetailsDialog triggerLabel="Education details" title={item.title}>
                       <p className="font-semibold text-foreground">{item.institution}</p>
@@ -527,6 +642,37 @@ export default function SimplePortfolioPage() {
                         <span className="font-semibold text-foreground">Period:</span> {item.period}
                       </p>
                       <p>{item.detail}</p>
+                      <section>
+                        <h3 className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                          Academic focus
+                        </h3>
+                        <p>{item.focus}</p>
+                      </section>
+                      <section>
+                        <h3 className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                          Highlights
+                        </h3>
+                        <ul className="list-inside list-disc space-y-1">
+                          {item.highlights.map((highlight) => (
+                            <li key={highlight}>{highlight}</li>
+                          ))}
+                        </ul>
+                      </section>
+                      <section>
+                        <h3 className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-wider text-primary">
+                          Skills developed
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {item.skills.map((skill) => (
+                            <span
+                              key={skill}
+                              className="rounded-[8px] border border-border bg-background px-3 py-1 text-xs"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </section>
                       <p>
                         <span className="font-semibold text-foreground">Status:</span> {item.status}
                       </p>
@@ -534,7 +680,7 @@ export default function SimplePortfolioPage() {
                         <Image
                           src={item.image}
                           alt="Bachelor degree certificate"
-                          className="mt-2 max-h-72 w-full rounded-lg border border-border object-contain"
+                          className="mt-2 max-h-72 w-full rounded-[8px] border border-border object-contain"
                           sizes="(max-width: 672px) 90vw, 600px"
                         />
                       )}
@@ -542,12 +688,12 @@ export default function SimplePortfolioPage() {
                   </div>
                   {item.image && (
                     <div className="mt-4 flex items-center gap-3 border-t border-border pt-3">
-                      <div className="relative h-10 w-16 overflow-hidden rounded border border-border">
+                      <div className="relative h-10 w-16 overflow-hidden rounded-[2px] border border-border bg-white p-0.5">
                         <Image
                           src={item.image}
                           alt="Bachelor degree certificate preview"
                           fill
-                          className="object-cover"
+                          className="object-contain p-0.5"
                           sizes="64px"
                         />
                       </div>
@@ -580,9 +726,9 @@ export default function SimplePortfolioPage() {
             {certifications.map((certificate) => (
               <article
                 key={certificate.title}
-                className="group flex gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:border-primary/40"
+                className="group flex gap-3 rounded-[8px] border border-border bg-card p-3 transition-colors hover:border-primary/40"
               >
-                <div className="relative h-[76px] w-[104px] shrink-0 overflow-hidden rounded-md border border-border bg-background">
+                <div className="relative h-[76px] w-[104px] shrink-0 overflow-hidden rounded-[8px] border border-border bg-background">
                   <Image
                     src={certificate.image}
                     alt={`${certificate.title} certificate`}
@@ -606,7 +752,7 @@ export default function SimplePortfolioPage() {
                       <Image
                         src={certificate.image}
                         alt={`${certificate.title} certificate`}
-                        className="mt-2 max-h-80 w-full rounded-lg border border-border object-contain"
+                        className="mt-2 max-h-80 w-full rounded-[8px] border border-border object-contain"
                         sizes="(max-width: 672px) 90vw, 600px"
                       />
                     </DetailsDialog>
@@ -674,20 +820,20 @@ export default function SimplePortfolioPage() {
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium text-foreground-secondary transition-colors hover:border-primary/50 hover:text-primary"
+                  className="rounded-[8px] border border-border bg-card px-3 py-1.5 text-[11px] font-medium text-foreground-secondary transition-colors hover:border-primary/50 hover:text-primary"
                 >
                   {skill}
                 </span>
               ))}
             </div>
             <div className="mt-6 grid grid-cols-2 gap-3">
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-[8px] border border-border bg-card p-3">
                 <p className="text-[9px] uppercase tracking-wider text-foreground-tertiary">
                   Current focus
                 </p>
                 <p className="mt-1 text-xs font-semibold">CONSULTIFY &amp; AI workspaces</p>
               </div>
-              <div className="rounded-lg border border-border bg-card p-3">
+              <div className="rounded-[8px] border border-border bg-card p-3">
                 <p className="text-[9px] uppercase tracking-wider text-foreground-tertiary">
                   Currently
                 </p>
@@ -712,6 +858,7 @@ export default function SimplePortfolioPage() {
           </Link>
         </div>
       </footer>
+      <SimpleBackToTop />
     </div>
   );
 }

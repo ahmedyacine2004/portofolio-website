@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { ArrowUpRight, CheckCircle2, LoaderCircle, Mail, Send } from 'lucide-react';
+import Image from 'next/image';
 
 import { env } from '@/lib/env';
 import { contactSchema, type ContactFormValues } from '@/schemas';
@@ -20,18 +21,29 @@ const fields: {
   placeholder: string;
   type: 'text' | 'email' | 'textarea';
 }[] = [
-  { name: 'name', label: 'Your name', placeholder: 'Jane Smith', type: 'text' },
-  { name: 'email', label: 'Email address', placeholder: 'jane@example.com', type: 'email' },
+  {
+    name: 'name',
+    label: 'Your name',
+    placeholder: 'The name I should know you by',
+    type: 'text',
+  },
+  {
+    name: 'email',
+    label: 'Email address',
+    placeholder: 'Where I can send a thoughtful reply',
+    type: 'email',
+  },
   {
     name: 'subject',
     label: 'Subject',
-    placeholder: 'What would you like to discuss?',
+    placeholder: 'A product to shape, a team to join, an idea to explore',
     type: 'text',
   },
   {
     name: 'message',
     label: 'Message',
-    placeholder: 'Tell me a little about your idea…',
+    placeholder:
+      'What are you hoping to make possible? Share the context, the ambition, and where you would like my experience to fit.',
     type: 'textarea',
   },
 ];
@@ -111,17 +123,22 @@ export function SimpleContactForm() {
           </p>
         </div>
 
-        <div className="grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-[0.78fr_1.22fr]">
+        <div className="grid overflow-hidden rounded-[8px] border border-border bg-card md:grid-cols-[0.78fr_1.22fr]">
           <aside className="relative flex flex-col justify-between overflow-hidden bg-primary p-6 text-primary-foreground sm:p-8">
-            <div
+            <span
               aria-hidden="true"
-              className="pointer-events-none absolute -bottom-20 -right-20 size-64 rounded-full border border-white/15"
+              className="pointer-events-none absolute bottom-5 right-5 h-24 w-32 opacity-75 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] sm:h-28 sm:w-36"
             >
-              <div className="absolute inset-6 rounded-full border border-white/10" />
-              <div className="absolute inset-12 rounded-full border border-white/10" />
-            </div>
+              <Image
+                src="/branding/logo.png"
+                alt=""
+                width={180}
+                height={140}
+                className="h-full w-full object-contain"
+              />
+            </span>
             <div className="relative">
-              <span className="inline-flex size-10 items-center justify-center rounded-xl bg-white/15">
+              <span className="inline-flex size-10 items-center justify-center rounded-[8px] bg-white/15">
                 <Mail className="size-5" />
               </span>
               <h3 className="mt-5 font-sans text-3xl font-bold uppercase leading-none">
@@ -162,7 +179,7 @@ export function SimpleContactForm() {
                     aria-describedby={
                       errors[field.name] ? `simple-contact-${field.name}-error` : undefined
                     }
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
+                    className="w-full rounded-[8px] border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
                     placeholder={field.placeholder}
                     disabled={isSubmitting}
                   />
@@ -199,7 +216,7 @@ export function SimpleContactForm() {
                     aria-describedby={
                       errors[field.name] ? `simple-contact-${field.name}-error` : undefined
                     }
-                    className="w-full resize-y rounded-lg border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
+                    className="w-full resize-y rounded-[8px] border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
                     placeholder={field.placeholder}
                     disabled={isSubmitting}
                   />
@@ -216,7 +233,7 @@ export function SimpleContactForm() {
                     aria-describedby={
                       errors[field.name] ? `simple-contact-${field.name}-error` : undefined
                     }
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
+                    className="w-full rounded-[8px] border border-border bg-background px-3 py-2.5 text-xs outline-none transition-colors placeholder:text-foreground-tertiary focus:border-primary focus:ring-2 focus:ring-primary/15 aria-[invalid=true]:border-danger"
                     placeholder={field.placeholder}
                     disabled={isSubmitting}
                   />
@@ -235,7 +252,7 @@ export function SimpleContactForm() {
             {status && (
               <p
                 role={status.type === 'error' ? 'alert' : 'status'}
-                className={`rounded-lg border px-3 py-2.5 text-xs ${
+                className={`rounded-[8px] border px-3 py-2.5 text-xs ${
                   status.type === 'success'
                     ? 'border-success/30 bg-success/10 text-success-dark dark:text-success'
                     : 'border-danger/30 bg-danger/10 text-danger'
@@ -253,7 +270,7 @@ export function SimpleContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
