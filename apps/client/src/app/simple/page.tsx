@@ -15,6 +15,7 @@ import {
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { SimpleContactForm } from '@/components/home/simple-contact-form';
 import { SimpleBackToTop } from '@/components/home/simple-back-to-top';
+import { SimpleMobileNav } from '@/components/home/simple-mobile-nav';
 import { SimpleAvatarCard } from '@/components/home/simple-avatar-card';
 import { SimpleSelectedWork } from '@/components/home/simple-selected-work';
 import { DetailsDialog, ParallaxSection } from '@/components/home/simple-portfolio-motion';
@@ -376,6 +377,7 @@ export default function SimplePortfolioPage() {
           </nav>
 
           <div className="flex items-center gap-2.5">
+            <SimpleMobileNav />
             <Link
               href="/studio"
               className="rounded-full border border-border px-3 py-2 text-[11px] font-semibold text-foreground-secondary transition-colors hover:border-primary hover:text-primary sm:px-4 sm:text-xs"

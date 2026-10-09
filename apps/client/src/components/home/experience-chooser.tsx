@@ -33,7 +33,7 @@ export function ExperienceChooser() {
     <main
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
-      className="relative isolate grid h-dvh max-h-dvh grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden bg-background px-2 py-2 text-foreground sm:px-4 sm:py-4"
+      className="relative isolate grid min-h-dvh grid-rows-[auto_1fr_auto] overflow-x-clip bg-background px-2 py-2 text-foreground sm:px-4 sm:py-4"
     >
       <div
         aria-hidden="true"
@@ -42,7 +42,7 @@ export function ExperienceChooser() {
       <motion.div
         aria-hidden="true"
         style={{ left: glowX, top: glowY }}
-        className="pointer-events-none absolute -left-[4%] -top-[4%] -z-10 size-[40rem] rounded-full bg-primary/10 blur-[130px]"
+        className="pointer-events-none absolute -left-[4%] -top-[4%] -z-10 size-[20rem] rounded-full bg-primary/10 blur-[100px] sm:size-[32rem] sm:blur-[130px] lg:size-[40rem]"
       />
       <motion.div
         aria-hidden="true"
@@ -82,34 +82,34 @@ export function ExperienceChooser() {
         </div>
       </header>
 
-      <div className="mx-auto grid min-h-0 w-full max-w-7xl grid-rows-[auto_minmax(0,1fr)] gap-2 px-5 py-2 sm:gap-4 sm:px-8 sm:py-4 lg:px-12 [@media(max-height:560px)]:gap-1 [@media(max-height:560px)]:py-1">
+      <div className="mx-auto grid min-h-0 w-full max-w-7xl grid-rows-[auto_minmax(26.5rem,1fr)] gap-2 px-5 py-2 sm:gap-4 sm:px-8 sm:py-4 md:grid-rows-[auto_minmax(0,1fr)] md:py-4 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl [@media(max-height:560px)]:self-center"
+          className="max-w-3xl"
         >
-          <p className="mb-1.5 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[10px] [@media(max-height:560px)]:hidden">
+          <p className="mb-1.5 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[10px]">
             <Sparkles className="size-3" /> FIND YOUR WAY IN
           </p>
-          <h1 className="font-beni text-[clamp(2.15rem,5vw,4.25rem)] uppercase leading-[0.84] tracking-tight [@media(max-height:560px)]:text-[clamp(1.5rem,4vw,2.5rem)]">
+          <h1 className="font-beni text-[clamp(2.15rem,5vw,4.25rem)] uppercase leading-[0.84] tracking-tight">
             Choose your <span className="text-primary">experience.</span>
           </h1>
-          <p className="mt-2 max-w-xl text-[11px] leading-4 text-foreground-secondary sm:text-xs sm:leading-5 [@media(max-height:560px)]:hidden">
+          <p className="mt-2 max-w-xl text-[11px] leading-4 text-foreground-secondary sm:text-xs sm:leading-5">
             A clear portfolio, or a deeper interactive world. You can switch any time.
           </p>
         </motion.div>
 
-        <div className="grid min-h-0 grid-rows-2 gap-2.5 md:grid-cols-2 md:grid-rows-1 md:gap-4 md:self-center md:h-[clamp(15rem,44vh,24rem)] [@media(max-height:560px)]:gap-1 [@media(max-height:560px)]:md:h-[clamp(7.5rem,34vh,12rem)]">
+        <div className="grid min-h-0 grid-rows-2 gap-2.5 self-center md:grid-cols-2 md:grid-rows-1 md:gap-4 md:h-[clamp(15rem,44vh,24rem)]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            className="min-h-0"
+            className="min-h-[13rem] md:min-h-0"
           >
             <Link
               href="/simple"
-              className="group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-border bg-card/70 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-card sm:rounded-2xl sm:p-4 lg:p-5"
+              className="group relative flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] border border-border bg-card/70 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:bg-card sm:p-4 lg:p-5"
             >
               <div className="absolute -right-10 -top-10 size-36 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/20" />
               <div className="relative flex items-center justify-between">
@@ -118,7 +118,7 @@ export function ExperienceChooser() {
                 </span>
                 <ArrowUpRight className="size-4 text-foreground-tertiary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
               </div>
-              <div className="relative flex min-h-0 flex-1 items-center justify-center py-2 [@media(max-height:560px)]:hidden">
+              <div className="relative flex min-h-0 flex-1 items-center justify-center py-2">
                 <div className="relative w-[min(78%,320px)] overflow-hidden rounded-md border border-border/80 bg-background shadow-lg transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1">
                   <div className="flex h-5 items-center gap-1 border-b border-border/70 px-2">
                     <span className="size-1.5 rounded-full bg-danger/70" />
@@ -147,7 +147,7 @@ export function ExperienceChooser() {
                   <h2 className="font-beni text-2xl uppercase leading-none sm:text-3xl">
                     The simple portfolio
                   </h2>
-                  <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px] [@media(max-height:560px)]:hidden">
+                  <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px]">
                     Straight to my work, background, and contact.
                   </p>
                 </div>
@@ -162,11 +162,11 @@ export function ExperienceChooser() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="min-h-0"
+            className="min-h-[13rem] md:min-h-0"
           >
             <Link
               href="/studio"
-              className="group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-primary/30 bg-surface-brand/40 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-surface-brand/70 sm:rounded-2xl sm:p-4 lg:p-5"
+              className="group relative flex h-full min-h-0 flex-col overflow-hidden rounded-[8px] border border-primary/30 bg-surface-brand/40 p-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-surface-brand/70 sm:p-4 lg:p-5"
             >
               <div className="absolute -bottom-16 -right-8 size-44 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/20" />
               <div className="relative flex items-center justify-between">
@@ -175,7 +175,7 @@ export function ExperienceChooser() {
                 </span>
                 <ArrowUpRight className="size-4 text-primary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
               </div>
-              <div className="relative flex min-h-0 flex-1 items-center justify-center py-2 [@media(max-height:560px)]:hidden">
+              <div className="relative flex min-h-0 flex-1 items-center justify-center py-2">
                 <div className="w-[min(78%,320px)] overflow-hidden rounded-md border border-border/80 bg-background shadow-lg transition-transform duration-500 group-hover:scale-[1.03] group-hover:rotate-1">
                   <div className="flex h-5 items-center gap-1.5 border-b border-border/70 px-2">
                     <span className="size-1.5 rounded-full bg-danger/70" />
@@ -210,7 +210,7 @@ export function ExperienceChooser() {
                   <h2 className="font-beni text-2xl uppercase leading-none sm:text-3xl">
                     The interactive studio
                   </h2>
-                  <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px] [@media(max-height:560px)]:hidden">
+                  <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px]">
                     Dive into projects, tools, and the details behind them.
                   </p>
                 </div>
@@ -223,7 +223,7 @@ export function ExperienceChooser() {
         </div>
       </div>
 
-      <footer className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-2 text-[9px] text-foreground-tertiary sm:px-8 sm:text-[10px] lg:px-12">
+      <footer className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-2 text-[9px] text-foreground-tertiary sm:px-8 sm:text-[10px] lg:px-12">
         <span>Ahmed Yassine Abbane · Full-stack developer</span>
         <span className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider">
           <ArrowDownRight className="size-3 text-primary" />

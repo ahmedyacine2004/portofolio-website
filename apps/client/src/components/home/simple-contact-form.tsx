@@ -123,11 +123,11 @@ export function SimpleContactForm() {
           </p>
         </div>
 
-        <div className="grid overflow-hidden rounded-[8px] border border-border bg-card md:grid-cols-[0.78fr_1.22fr]">
-          <aside className="relative flex flex-col justify-between overflow-hidden bg-primary p-6 text-primary-foreground sm:p-8">
+        <div className="grid overflow-hidden rounded-[8px] border border-border bg-card lg:grid-cols-[0.78fr_1.22fr]">
+          <aside className="relative flex flex-col justify-between overflow-hidden bg-primary p-6 text-primary-foreground sm:p-8 xl:justify-start xl:gap-8">
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-5 right-5 h-24 w-32 opacity-75 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] sm:h-28 sm:w-36"
+              className="pointer-events-none absolute bottom-5 right-5 hidden h-24 w-32 opacity-75 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] xl:block sm:h-28 sm:w-36"
             >
               <Image
                 src="/branding/logo.png"
@@ -150,14 +150,14 @@ export function SimpleContactForm() {
             </div>
             <a
               href="mailto:ahmedyacineabbane@gmail.com"
-              className="relative mt-8 inline-flex items-center gap-2 text-xs font-semibold hover:underline"
+              className="relative mt-8 inline-flex items-center gap-2 text-xs font-semibold hover:underline xl:mt-0"
             >
               ahmedyacineabbane@gmail.com <ArrowUpRight className="size-3.5" />
             </a>
           </aside>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4 p-5 sm:p-8">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 lg:grid-cols-2">
               {fields.slice(0, 2).map((field) => (
                 <div key={field.name}>
                   <label
