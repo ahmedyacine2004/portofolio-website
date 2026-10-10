@@ -74,6 +74,19 @@ export function Header() {
     { label: t('navigation.contact'), href: '/contact' },
   ];
 
+  const currentPageTitle =
+    pathname === '/studio'
+      ? t('navigation.home')
+      : (navigation.find(
+          (item) =>
+            'href' in item && (pathname === item.href || pathname.startsWith(`${item.href}/`)),
+        )?.label ??
+        (pathname === '/settings'
+          ? t('navigation.settings')
+          : pathname === '/ai-assistant'
+            ? t('navigation.aiAssistant')
+            : pathname.split('/')[1] || t('navigation.home')));
+
   return (
     <>
       {/* DESKTOP HEADER */}
@@ -197,7 +210,7 @@ export function Header() {
         </Link>
 
         <span className="truncate px-2 text-center text-[10px] font-bold uppercase text-foreground">
-          {pathname.split('/')[1] || 'Home'}
+          {currentPageTitle}
         </span>
 
         {/* Compact navigation - icon only */}
@@ -256,7 +269,7 @@ export function Header() {
 
         {/* Center - current page or minimal info */}
         <span className="flex-1 truncate px-2 text-center text-[10px] font-bold uppercase text-foreground">
-          {pathname.split('/')[1] || 'Home'}
+          {currentPageTitle}
         </span>
 
         {/* Right side */}
