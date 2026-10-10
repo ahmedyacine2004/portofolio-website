@@ -104,7 +104,9 @@ export function AppShell({ children }: AppShellProps) {
         <div className="min-h-dvh w-full">{children}</div>
       ) : (
         <>
-          <div className="flex h-dvh bg-transparent flex-col px-2 py-1 md:h-screen md:px-4 md:py-1">
+          <div
+            className={`${isStudioPage ? 'fixed inset-0 overflow-hidden' : ''} flex h-dvh flex-col bg-transparent px-2 py-1 md:h-screen md:px-4 md:py-1`}
+          >
             {/* Header */}
             <Header />
 
