@@ -43,7 +43,7 @@
     "launchAI": "Assistant IA",
     "openTerminal": "Ouvrir le terminal",
     "contactMe": "Prendre contact",
-    "downloadResume": "Télécharger CV",
+    "downloadResume": "Télécharger le CV",
     "techBreakdown": "Répartition de la pile technologique",
     "skillRadar": "Maîtrise par domaine",
     "systemTelemetry": "Diagnostics Backend (NestJS)",
@@ -168,15 +168,13 @@
   "homeCards": {
     "quickActions": "Actions rapides",
     "aboutMe": "À propos de moi",
-    "downloadResume": "Télécharger CV",
+    "downloadResume": "Télécharger le CV",
     "viewProjects": "Voir les projets",
     "contactMe": "Me contacter",
     "askAI": "Demander à l'IA",
     "featuredProjects": "Projets en vedette",
     "consultify": "CONSULTIFY",
     "portfolio": "Site portfolio",
-    "brandIdentity": "Identité de marque",
-    "mobileUIKit": "Kit UI Mobile",
     "viewAllProjects": "Voir tous les projets",
     "skills": "Compétences",
     "viewAllSkills": "Voir toutes les compétences",
@@ -187,10 +185,8 @@
     "buildingConsultify": "Construction de CONSULTIFY",
     "coffeePowered": "Propulsé par le café",
     "latestActivity": "Activité récente",
-    "newProjectPublished": "Nouveau projet publié",
-    "portfolioUpdated": "Portfolio mis à jour",
-    "resumeUpdated": "CV mis à jour",
-    "openForFreelance": "Ouvert aux opportunités freelance"
+    "ieltsScore": "IELTS : 6.0/9.0",
+    "designManagerSoai": "Responsable design chez SOAI"
   },
   "about": {
     "greeting": "Salut !",

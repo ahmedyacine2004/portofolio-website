@@ -11,13 +11,13 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
   const { t } = useTranslation();
   const { download } = useDownload();
 
-  const handleDownloadResume = () => {
+  const handleDownloadCV = () => {
     download({
-      fileName: 'Ahmed-Yassine-Abbane-Resume.pdf',
-      url: '/documents/estin.pdf',
+      fileName: 'Ahmed-Yassine-Abbane-CV.pdf',
+      url: '/documents/Ahmed-Yassine-Abbane-CV.pdf',
       fileType: 'pdf',
       onError: (error) => {
-        console.error('Resume download failed:', error);
+        console.error('CV download failed:', error);
       },
     });
   };
@@ -26,7 +26,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
     <div
       className={`mt-2 grid w-fit items-start gap-1 ${
         variant === 'desktop'
-          ? 'grid-cols-2'
+          ? 'studio-home-card-grid grid-cols-2'
           : variant === 'tablet'
             ? 'grid-cols-1 md:grid-cols-2 w-full'
             : 'grid-cols-1 w-full'
@@ -34,9 +34,9 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
     >
       {/* Quick Actions */}
       <div
-        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+        className={`w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
           variant === 'desktop'
-            ? 'min-w-[230px] p-2 px-4'
+            ? 'studio-home-quick-actions-card min-w-[230px] p-2 px-4'
             : variant === 'tablet'
               ? 'p-2 px-3'
               : 'p-1.5 px-2.5'
@@ -48,7 +48,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
           }`}
         >
           <div
-            className={`flex shrink-0 items-center justify-center rounded-full bg-primary text-white ${
+            className={`flex shrink-0 items-center justify-center rounded-[4px] bg-primary text-white ${
               variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
             }`}
           >
@@ -84,7 +84,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
         >
           <Link href="/about">{t('homeCards.aboutMe')}</Link>
           <button
-            onClick={handleDownloadResume}
+            onClick={handleDownloadCV}
             className="text-left hover:text-primary transition-colors"
           >
             {t('homeCards.downloadResume')}
@@ -97,9 +97,9 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
 
       {/* Featured Projects */}
       <div
-        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+        className={`w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
           variant === 'desktop'
-            ? 'min-w-[230px] p-2 px-4'
+            ? 'studio-home-featured-projects-card min-w-[230px] p-2 px-4'
             : variant === 'tablet'
               ? 'p-2 px-3'
               : 'p-1.5 px-2.5'
@@ -111,7 +111,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
           }`}
         >
           <div
-            className={`flex shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white ${
+            className={`flex shrink-0 items-center justify-center rounded-[4px] bg-emerald-500 text-white ${
               variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
             }`}
           >
@@ -147,8 +147,6 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
         >
           <span>{t('homeCards.consultify')}</span>
           <span>{t('homeCards.portfolio')}</span>
-          <span>{t('homeCards.brandIdentity')}</span>
-          <span>{t('homeCards.mobileUIKit')}</span>
         </div>
 
         <Link
@@ -167,7 +165,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
 
       {/* Skills */}
       <div
-        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+        className={`w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
           variant === 'desktop'
             ? 'min-w-[230px] p-2 px-4'
             : variant === 'tablet'
@@ -181,7 +179,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
           }`}
         >
           <div
-            className={`flex shrink-0 items-center justify-center rounded-full bg-violet-600 text-white ${
+            className={`flex shrink-0 items-center justify-center rounded-[4px] bg-violet-600 text-white ${
               variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
             }`}
           >
@@ -240,7 +238,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
 
       {/* Current Status */}
       <div
-        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+        className={`w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
           variant === 'desktop'
             ? 'min-w-[230px] p-2 px-4'
             : variant === 'tablet'
@@ -254,7 +252,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
           }`}
         >
           <div
-            className={`flex shrink-0 items-center justify-center rounded-full bg-orange-500 text-white ${
+            className={`flex shrink-0 items-center justify-center rounded-[4px] bg-orange-500 text-white ${
               variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
             }`}
           >
@@ -298,7 +296,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
 
       {/* Latest Activity */}
       <div
-        className={`h-full w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
+        className={`w-full rounded-xs bg-background shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] ${
           variant === 'desktop'
             ? 'min-w-[230px] p-2 px-4'
             : variant === 'tablet'
@@ -312,7 +310,7 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
           }`}
         >
           <div
-            className={`flex shrink-0 items-center justify-center rounded-full bg-blue-700 text-white ${
+            className={`flex shrink-0 items-center justify-center rounded-[4px] bg-blue-700 text-white ${
               variant === 'desktop' ? 'size-6' : variant === 'tablet' ? 'size-5' : 'size-4'
             }`}
           >
@@ -346,10 +344,8 @@ export function HomeCards({ variant = 'desktop' }: HomeCardsProps) {
                 : 'text-[7px]'
           } leading-tight`}
         >
-          <span>{t('homeCards.newProjectPublished')}</span>
-          <span>{t('homeCards.portfolioUpdated')}</span>
-          <span>{t('homeCards.resumeUpdated')}</span>
-          <span>{t('homeCards.openForFreelance')}</span>
+          <span>{t('homeCards.ieltsScore')}</span>
+          <span>{t('homeCards.designManagerSoai')}</span>
         </div>
       </div>
     </div>

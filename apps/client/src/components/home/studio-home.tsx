@@ -68,7 +68,7 @@ export default function StudioHome() {
                 hidden: { opacity: 0, y: 15 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
               }}
-              className="text-[9px] font-semibold leading-none text-primary bg-surface-brand inline px-4 py-1 rounded-[2px]"
+              className="studio-home-label text-[9px] font-semibold leading-none text-primary bg-surface-brand inline px-4 py-1 rounded-[2px]"
             >
               {t('homepage.salutations')}
             </motion.p>
@@ -78,7 +78,7 @@ export default function StudioHome() {
                   hidden: { opacity: 0, x: -15 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
                 }}
-                className="text-[9px] font-semibold leading-none text-primary mt-1"
+                className="studio-home-label text-[9px] font-semibold leading-none text-primary mt-1"
               >
                 {t('homepage.workspaceInitialized')}
               </motion.p>
@@ -93,7 +93,7 @@ export default function StudioHome() {
                     transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
                   },
                 }}
-                className="text-[55px] uppercase leading-[0.65]"
+                className="studio-home-name text-[55px] uppercase leading-[0.65]"
               >
                 <span className="font-beni block text-foreground">AHMED YASSINE</span>
                 <span className="font-beni block text-primary">ABBANE</span>
@@ -104,7 +104,7 @@ export default function StudioHome() {
                   hidden: { opacity: 0 },
                   visible: { opacity: 1, transition: { duration: 0.8, delay: 0.4 } },
                 }}
-                className="max-w-[400px] text-[9px] leading-[1] text-foreground"
+                className="studio-home-tagline max-w-[400px] text-[9px] leading-[1] text-foreground"
               >
                 {t('homepage.tagline')}
                 <br />
@@ -115,6 +115,7 @@ export default function StudioHome() {
 
           {/* Cards */}
           <motion.div
+            className="studio-home-cards"
             variants={{
               hidden: { opacity: 0, y: 25 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },

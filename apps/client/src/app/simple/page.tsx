@@ -419,11 +419,11 @@ export default function SimplePortfolioPage() {
                   Explore my work <ArrowDown className="size-3.5" />
                 </a>
                 <a
-                  href="/documents/estin.pdf"
-                  download="Ahmed-Yassine-Abbane-Resume.pdf"
+                  href="/documents/Ahmed-Yassine-Abbane-CV.pdf"
+                  download="Ahmed-Yassine-Abbane-CV.pdf"
                   className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-xs font-semibold transition-colors hover:border-primary hover:text-primary"
                 >
-                  Resume <Download className="size-3.5" />
+                  Download CV <Download className="size-3.5" />
                 </a>
               </div>
               <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 border-t border-border/70 pt-4 text-[11px] text-foreground-tertiary sm:text-xs">

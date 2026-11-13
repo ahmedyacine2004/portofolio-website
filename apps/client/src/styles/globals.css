@@ -146,6 +146,48 @@
   }
 }
 
+.studio-home-card-grid > .studio-home-quick-actions-card,
+.studio-home-card-grid > .studio-home-featured-projects-card {
+  align-self: stretch;
+}
+
+@media (min-width: 1024px) and (min-height: 800px) {
+  .studio-home-label {
+    font-size: clamp(0.625rem, 1.2vh, 0.75rem);
+  }
+
+  .studio-home-name {
+    font-size: clamp(3.75rem, 7vh, 4.5rem);
+    margin-top: clamp(0.75rem, 2vh, 1.5rem);
+  }
+
+  .studio-home-tagline {
+    font-size: clamp(0.625rem, 1.3vh, 0.8125rem);
+  }
+
+  .studio-home-cards {
+    margin-top: clamp(1rem, 2.5vh, 2rem);
+  }
+
+  .studio-home-card-grid {
+    column-gap: clamp(0.75rem, 2vh, 1.5rem);
+    row-gap: clamp(0.5rem, 1.5vh, 1.125rem);
+  }
+
+  .studio-home-card-grid > div {
+    padding-block: 1rem;
+  }
+
+  .studio-home-card-grid h2 {
+    font-size: clamp(0.6875rem, 1.25vh, 0.8125rem);
+  }
+
+  .studio-home-card-grid > div > div:nth-child(2),
+  .studio-home-card-grid > div a {
+    font-size: clamp(0.5625rem, 1.1vh, 0.6875rem);
+  }
+}
+
 /* ==========================================================================
    Utility Layer
    ========================================================================== */

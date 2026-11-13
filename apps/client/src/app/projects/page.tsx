@@ -71,13 +71,13 @@ export default function ProjectsPage() {
     },
   ];
 
-  const handleDownloadResume = () => {
+  const handleDownloadCV = () => {
     download({
-      fileName: 'Ahmed-Yassine-Abbane-Resume.pdf',
-      url: '/documents/estin.pdf',
+      fileName: 'Ahmed-Yassine-Abbane-CV.pdf',
+      url: '/documents/Ahmed-Yassine-Abbane-CV.pdf',
       fileType: 'pdf',
       onError: (error) => {
-        console.error('Resume download failed:', error);
+        console.error('CV download failed:', error);
       },
     });
   };
@@ -599,7 +599,7 @@ export default function ProjectsPage() {
             {t('projects.browseAllRepos')}
           </Link>
           <button
-            onClick={handleDownloadResume}
+            onClick={handleDownloadCV}
             className="flex w-full items-center justify-center gap-1.5 rounded-[4px] bg-[var(--color-brand)] py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] shadow-[var(--shadow-sm)] transition hover:opacity-90"
           >
             <Download className="size-2.5" />
