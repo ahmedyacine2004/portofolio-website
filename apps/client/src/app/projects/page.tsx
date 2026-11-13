@@ -83,7 +83,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="flex w-full flex-col gap-3 p-2 overflow-y-auto lg:gap-1.5">
+    <div className="flex w-full flex-col gap-3 p-2 overflow-y-auto max-md:h-full max-md:min-h-0 lg:gap-1.5">
       <div className="flex items-center justify-between lg:hidden">
         <span className="font-inter text-[10px] font-bold uppercase text-[var(--color-text-primary)]">
           {t('projects.projectWorkspace')}

@@ -132,7 +132,7 @@ export default function AboutPage() {
     [tArray],
   );
   return (
-    <div className="flex min-h-full min-w-0 flex-col gap-1 overflow-x-hidden p-2 lg:h-full lg:min-h-0">
+    <div className="flex min-h-full min-w-0 flex-col gap-1 overflow-x-hidden p-2 max-md:h-full max-md:min-h-0 max-md:overflow-y-auto lg:h-full lg:min-h-0">
       <AnimatePresence>
         {isFilesOpen && (
           <motion.div
