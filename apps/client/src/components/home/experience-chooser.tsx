@@ -33,7 +33,7 @@ export function ExperienceChooser() {
     <main
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPointer}
-      className="relative isolate grid min-h-dvh grid-rows-[auto_1fr_auto] overflow-x-clip bg-background px-2 py-2 text-foreground sm:px-4 sm:py-4"
+      className="relative isolate grid h-dvh grid-rows-[auto_1fr_auto] overflow-hidden bg-background px-2 py-2 text-foreground sm:px-4 sm:py-4"
     >
       <div
         aria-hidden="true"

@@ -148,7 +148,7 @@ export function AppShell({ children }: AppShellProps) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4, ease: 'easeOut' }}
-                  className="h-full min-h-0 w-full"
+                  className={`h-full min-h-0 w-full ${hasSecondarySidebar ? 'mobile-no-scroll-page' : ''}`}
                 >
                   {children}
                 </motion.div>
