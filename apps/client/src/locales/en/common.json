@@ -147,6 +147,24 @@
     "subtitle": "Building digital experiences through code & design.",
     "welcomeTitle": "Welcome to the Developer Environment"
   },
+  "experienceChooser": {
+    "homeAriaLabel": "Ahmed Yassine Abbane home",
+    "eyebrow": "FIND YOUR WAY IN",
+    "titleLead": "Choose your",
+    "titleAccent": "experience.",
+    "description": "A clear portfolio, or a deeper interactive world. You can switch any time.",
+    "essentials": "THE ESSENTIALS",
+    "simpleTitle": "The simple portfolio",
+    "simpleDescription": "Straight to my work, background, and contact.",
+    "quickTour": "QUICK TOUR",
+    "developerMode": "DEVELOPER MODE",
+    "codeComment": "open every door",
+    "studioTitle": "The interactive studio",
+    "studioDescription": "Dive into projects, tools, and the details behind them.",
+    "deepDive": "DEEP DIVE",
+    "footerRole": "Full-stack developer",
+    "socialLinksLabel": "Social links"
+  },
   "homeCards": {
     "quickActions": "Quick Actions",
     "aboutMe": "About Me",

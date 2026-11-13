@@ -147,6 +147,24 @@
     "subtitle": "Créer des expériences numériques par le code et le design.",
     "welcomeTitle": "Bienvenue dans l'environnement de développement"
   },
+  "experienceChooser": {
+    "homeAriaLabel": "Accueil d'Ahmed Yassine Abbane",
+    "eyebrow": "CHOISISSEZ VOTRE PARCOURS",
+    "titleLead": "Choisissez votre",
+    "titleAccent": "expérience.",
+    "description": "Un portfolio clair ou un univers interactif plus approfondi. Vous pouvez changer à tout moment.",
+    "essentials": "L'ESSENTIEL",
+    "simpleTitle": "Le portfolio essentiel",
+    "simpleDescription": "Accédez directement à mes projets, mon parcours et mes coordonnées.",
+    "quickTour": "APERÇU RAPIDE",
+    "developerMode": "MODE DÉVELOPPEUR",
+    "codeComment": "ouvrir toutes les portes",
+    "studioTitle": "Le studio interactif",
+    "studioDescription": "Explorez les projets, les outils et les coulisses de leur création.",
+    "deepDive": "EXPLORATION",
+    "footerRole": "Développeur full-stack",
+    "socialLinksLabel": "Réseaux sociaux"
+  },
   "homeCards": {
     "quickActions": "Actions rapides",
     "aboutMe": "À propos de moi",

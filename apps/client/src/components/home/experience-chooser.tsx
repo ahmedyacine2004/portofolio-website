@@ -1,14 +1,56 @@
 'use client';
 
-import { ArrowDownRight, ArrowUpRight, Code2, MousePointer2, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Code2, Languages, MousePointer2, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import type { PointerEvent } from 'react';
 
+import FacebookIcon from '@/assets/icons/facebook.svg';
+import GithubIcon from '@/assets/icons/GithubIcon.svg';
+import InstagramIcon from '@/assets/icons/instagram.svg';
+import LinkedinIcon from '@/assets/icons/LinkedinIcon.svg';
+import TiktokIcon from '@/assets/icons/Tiktok.svg';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useTranslation } from '@/hooks/use-translation';
+import { useLanguageStore } from '@/stores/language.store';
+
+const SOCIAL_LINKS = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/abbane-ahmed-yassine/',
+    icon: LinkedinIcon,
+    iconClassName: 'brightness-0 invert',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/ahmedyacine2004',
+    icon: GithubIcon,
+    iconClassName: 'brightness-0 invert',
+  },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/ahmed.yassine.abbane',
+    icon: FacebookIcon,
+    iconClassName: 'brightness-0 invert',
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/iam_lhamdane/',
+    icon: InstagramIcon,
+    iconClassName: 'brightness-0 invert',
+  },
+  {
+    label: 'TikTok',
+    href: 'https://www.tiktok.com/@iam_lhamdane',
+    icon: TiktokIcon,
+    iconClassName: 'mix-blend-screen',
+  },
+] as const;
 
 export function ExperienceChooser() {
+  const { locale, t } = useTranslation();
+  const setLocale = useLanguageStore((state) => state.setLocale);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
   const smoothX = useSpring(pointerX, { stiffness: 80, damping: 24 });
@@ -60,7 +102,11 @@ export function ExperienceChooser() {
       </motion.div>
 
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-2.5 sm:px-8 lg:px-12">
-        <Link href="/" aria-label="Ahmed Yassine Abbane home" className="flex items-center">
+        <Link
+          href="/"
+          aria-label={t('experienceChooser.homeAriaLabel')}
+          className="flex items-center"
+        >
           <Image
             src="/branding/logo.png"
             alt="Ahmed Yassine Abbane"
@@ -78,7 +124,18 @@ export function ExperienceChooser() {
           <span className="hidden font-mono text-[10px] text-foreground-tertiary sm:inline">
             PORTFOLIO · 2026
           </span>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              aria-label={t(locale === 'en' ? 'header.switchToFrench' : 'header.switchToEnglish')}
+              title={t(locale === 'en' ? 'header.switchToFrench' : 'header.switchToEnglish')}
+              onClick={() => setLocale(locale === 'en' ? 'fr' : 'en')}
+              className="flex size-8 items-center justify-center rounded-sm bg-primary text-primary-foreground shadow-sm transition-all duration-200 hover:bg-primary/80"
+            >
+              <Languages className="size-[18px]" strokeWidth={1.8} />
+            </button>
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
@@ -90,13 +147,14 @@ export function ExperienceChooser() {
           className="max-w-3xl"
         >
           <p className="mb-1.5 flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-[10px]">
-            <Sparkles className="size-3" /> FIND YOUR WAY IN
+            <Sparkles className="size-3" /> {t('experienceChooser.eyebrow')}
           </p>
           <h1 className="font-beni text-[clamp(2.15rem,5vw,4.25rem)] uppercase leading-[0.84] tracking-tight">
-            Choose your <span className="text-primary">experience.</span>
+            {t('experienceChooser.titleLead')}{' '}
+            <span className="text-primary">{t('experienceChooser.titleAccent')}</span>
           </h1>
           <p className="mt-2 max-w-xl text-[11px] leading-4 text-foreground-secondary sm:text-xs sm:leading-5">
-            A clear portfolio, or a deeper interactive world. You can switch any time.
+            {t('experienceChooser.description')}
           </p>
         </motion.div>
 
@@ -114,7 +172,7 @@ export function ExperienceChooser() {
               <div className="absolute -right-10 -top-10 size-36 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/20" />
               <div className="relative flex items-center justify-between">
                 <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-foreground-tertiary">
-                  01 <span className="text-primary">/</span> THE ESSENTIALS
+                  01 <span className="text-primary">/</span> {t('experienceChooser.essentials')}
                 </span>
                 <ArrowUpRight className="size-4 text-foreground-tertiary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
               </div>
@@ -145,14 +203,14 @@ export function ExperienceChooser() {
               <div className="relative flex shrink-0 items-end justify-between gap-2">
                 <div className="min-w-0">
                   <h2 className="font-beni text-2xl uppercase leading-none sm:text-3xl">
-                    The simple portfolio
+                    {t('experienceChooser.simpleTitle')}
                   </h2>
                   <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px]">
-                    Straight to my work, background, and contact.
+                    {t('experienceChooser.simpleDescription')}
                   </p>
                 </div>
                 <span className="mb-0.5 hidden shrink-0 font-mono text-[9px] uppercase tracking-wider text-foreground-tertiary sm:inline">
-                  QUICK TOUR
+                  {t('experienceChooser.quickTour')}
                 </span>
               </div>
             </Link>
@@ -171,7 +229,7 @@ export function ExperienceChooser() {
               <div className="absolute -bottom-16 -right-8 size-44 rounded-full bg-primary/10 blur-3xl transition-colors group-hover:bg-primary/20" />
               <div className="relative flex items-center justify-between">
                 <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-foreground-tertiary">
-                  02 <span className="text-primary">/</span> DEVELOPER MODE
+                  02 <span className="text-primary">/</span> {t('experienceChooser.developerMode')}
                 </span>
                 <ArrowUpRight className="size-4 text-primary transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
               </div>
@@ -193,7 +251,7 @@ export function ExperienceChooser() {
                       <span className="text-success">true</span>;
                     </span>
                     <span className="text-foreground-tertiary">02</span>
-                    <span className="text-foreground/70">{'// open every door'}</span>
+                    <span className="text-foreground/70">{`// ${t('experienceChooser.codeComment')}`}</span>
                     <span className="text-foreground-tertiary">03</span>
                     <span>
                       <span className="text-purple">explore</span>(
@@ -208,14 +266,14 @@ export function ExperienceChooser() {
               <div className="relative flex shrink-0 items-end justify-between gap-2">
                 <div className="min-w-0">
                   <h2 className="font-beni text-2xl uppercase leading-none sm:text-3xl">
-                    The interactive studio
+                    {t('experienceChooser.studioTitle')}
                   </h2>
                   <p className="mt-1 text-[10px] leading-4 text-foreground-secondary sm:text-[11px]">
-                    Dive into projects, tools, and the details behind them.
+                    {t('experienceChooser.studioDescription')}
                   </p>
                 </div>
                 <span className="mb-0.5 hidden shrink-0 font-mono text-[9px] uppercase tracking-wider text-primary sm:inline">
-                  DEEP DIVE
+                  {t('experienceChooser.deepDive')}
                 </span>
               </div>
             </Link>
@@ -224,11 +282,31 @@ export function ExperienceChooser() {
       </div>
 
       <footer className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-2 text-[9px] text-foreground-tertiary sm:px-8 sm:text-[10px] lg:px-12">
-        <span>Ahmed Yassine Abbane · Full-stack developer</span>
-        <span className="inline-flex items-center gap-1.5 font-mono uppercase tracking-wider">
-          <ArrowDownRight className="size-3 text-primary" />
-          Pick your view
-        </span>
+        <span>Ahmed Yassine Abbane · {t('experienceChooser.footerRole')}</span>
+        <nav
+          aria-label={t('experienceChooser.socialLinksLabel')}
+          className="flex items-center gap-1.5"
+        >
+          {SOCIAL_LINKS.map(({ label, href, icon, iconClassName }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              title={label}
+              className="flex size-7 aspect-square items-center justify-center rounded-sm border border-primary/40 bg-primary p-1.5 text-primary-foreground shadow-sm transition-colors hover:bg-primary/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              <Image
+                src={icon}
+                alt=""
+                width={16}
+                height={16}
+                className={`size-4 ${iconClassName}`}
+              />
+            </a>
+          ))}
+        </nav>
       </footer>
     </main>
   );
