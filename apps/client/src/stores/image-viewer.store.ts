@@ -33,6 +33,7 @@ type ImageViewerStore = {
   zoomIn: () => void;
   zoomOut: () => void;
   resetZoom: () => void;
+  fitToScreen: () => void;
   toggleFullscreen: () => void;
   toggleInfo: () => void;
 };
@@ -141,6 +142,8 @@ export const useImageViewerStore = create<ImageViewerStore>((set, get) => ({
   },
 
   resetZoom: () => set({ zoomScale: 0.62 }),
+
+  fitToScreen: () => set({ zoomScale: 1 }),
 
   toggleFullscreen: () => set((state) => ({ isFullscreen: !state.isFullscreen })),
 

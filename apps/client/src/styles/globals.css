@@ -152,6 +152,64 @@
 }
 
 @media (min-width: 1024px) and (min-height: 800px) {
+  .about-page-layout {
+    row-gap: clamp(1.25rem, 2.5vh, 2rem);
+  }
+
+  .about-stats-list,
+  .about-services-list {
+    row-gap: clamp(0.75rem, 1.3vh, 1.25rem);
+  }
+
+  .about-journey-list {
+    row-gap: clamp(1.25rem, 2vh, 1.75rem);
+  }
+
+  .about-side-panels {
+    row-gap: clamp(1rem, 1.8vh, 1.5rem);
+  }
+
+  .about-tech-grid,
+  .about-interests {
+    row-gap: clamp(0.75rem, 1.2vh, 1rem);
+  }
+
+  .about-section-heading {
+    margin-bottom: clamp(1rem, 1.8vh, 1.5rem);
+  }
+
+  .about-tab-label,
+  .about-page-greeting,
+  .about-page-subheading,
+  .about-page-action,
+  .about-service-title,
+  .about-journey-year {
+    font-size: clamp(0.625rem, 1.2vh, 0.75rem);
+  }
+
+  .about-page-title {
+    font-size: clamp(4.125rem, 6.6vh, 4.5rem);
+  }
+
+  .about-page-copy,
+  .about-service-description,
+  .about-journey-description,
+  .about-interest-label {
+    font-size: clamp(0.5625rem, 1.1vh, 0.6875rem);
+  }
+
+  .about-section-heading {
+    font-size: clamp(1rem, 1.6vh, 1.125rem);
+  }
+
+  .about-stat-label {
+    font-size: clamp(0.5rem, 0.9vh, 0.625rem);
+  }
+
+  .about-stat-value {
+    font-size: clamp(0.6875rem, 1.3vh, 0.8125rem);
+  }
+
   .studio-home-label {
     font-size: clamp(0.625rem, 1.2vh, 0.75rem);
   }

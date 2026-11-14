@@ -1,44 +1,25 @@
-export const aboutProfileIndex = `import { Identity, Workspace, Expertise, Journey, Mission } from "@portfolio/core";
-
-// Initialize developer identity
-const developer = Identity({
+export const aboutProfileIndex = `const profile = {
   name: "Ahmed Yassine Abbane",
-  alias: "Jack of All Trades",
-  role: ["Full Stack Developer", "Graphic Designer"],
-  location: "Tebessa, Algeria",
-  status: "Available"
-});
+  education: {
+    baccalaureates: [
+      { year: 2022, result: "16.00/20" },
+      { year: 2024, result: "17.80/20" }
+    ],
+    bachelorDegree: 2025,
+    currentStudies: { institution: "ESTIN", level: "2CP" }
+  },
+  currentRole: {
+    title: "Graphic Design Manager",
+    organization: "SOAI Club",
+    since: "2026+"
+  },
+  areasOfWork: [
+    "Web development",
+    "Mobile app development",
+    "Graphic design",
+    "3D and motion graphics"
+  ]
+};
 
-// Configure the current workspace
-const workspace = Workspace({
-  name: "Portfolio Workspace",
-  version: "3.0.0",
-  architecture: "Component Driven",
-  stack: ["React", "TypeScript", "NestJS", "MongoDB", "PostgreSQL", "Figma"]
-});
-
-const expertise = Expertise({
-  development: ["Frontend", "Backend", "APIs", "Databases"],
-  design: ["UI/UX", "Brand Identity", "Graphic Design"],
-  mindset: ["Problem Solving", "Scalable Architecture", "Continuous Learning"]
-});
-
-const journey = Journey({
-  started: 2022,
-  milestones: ["Frontend Development", "Graphic Design", "Full Stack Engineering", "Startup Founder"]
-});
-
-// Current mission and long-term vision
-const mission = Mission({
-  current: "CONSULTIFY",
-  objective: "Making expert knowledge universally accessible.",
-  nextGoal: "Build products that create real impact."
-});
-
-export default developer
-  .initialize(workspace)
-  .learn(journey)
-  .master(expertise)
-  .build(mission)
-  .ready();
+export default profile;
 `;

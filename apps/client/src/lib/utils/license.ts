@@ -1,27 +1,27 @@
-export const licenseContent = `Portfolio Workspace License
-Copyright (c) 2026 Ahmed Yassine Abbane
+export const licenseContent = `# Personal Profile
 
-Permission is hereby granted to explore, navigate, and learn from this
-portfolio for personal or educational purposes.
+**Name:** Ahmed Yassine Abbane
 
-You are welcome to draw inspiration from the ideas, architecture, and
-user experience presented throughout this workspace.
+## Education
 
-The following actions require explicit permission from the author:
+- First Baccalaureate, 2022: 16.00/20
+- Second Baccalaureate, 2024: 17.80/20
+- Bachelor's Degree, 2025
 
-- Republishing this portfolio as your own.
-- Copying the complete design or branding.
-- Redistributing substantial portions of the project.
-- Using the Ahmed Yassine Abbane identity or personal assets.
+## Current
 
-This workspace is built to showcase creativity, software engineering,
-and continuous learning—not to be duplicated.
+- 2CP student at ESTIN
+- Graphic Design Manager at SOAI Club
+- Professional experience: 0 years
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
-The author is not responsible for inspiration overload, sudden motivation,
-or an irresistible urge to redesign your own portfolio.
+## Languages and Work Areas
 
-By exploring this workspace, you agree to respect originality,
-embrace continuous learning, and keep building awesome things.
+- Arabic, English, and French
+- Web and mobile app development
+- Graphic design
+- 3D and motion graphics
 
-Version: 3.0.0`;
+## Personal
+
+- Hobbies: gaming, naps, talking with my loml, and push-ups
+- Favorite thing: food`;

@@ -73,7 +73,7 @@ export function AboutTabBar({ actionButton }: AboutTabBarProps) {
               />
 
               {/* Label */}
-              <span className="text-[9px] leading-none whitespace-nowrap max-lg:hidden">
+              <span className="about-tab-label text-[9px] leading-none whitespace-nowrap max-lg:hidden">
                 {tab.label}
               </span>
 

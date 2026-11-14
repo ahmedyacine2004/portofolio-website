@@ -191,50 +191,47 @@
   "about": {
     "greeting": "Salut !",
     "heading": "Je suis Ahmed Yassine Abbane",
-    "subheading": "Ou, comme j'aime le dire, un touche-à-tout",
-    "introduction": "De l'architecture d'applications web évolutives à la conception d'interfaces intuitives et à la création d'identités visuelles captivantes, j'aime transformer des idées en expériences numériques soignées. Je fais le lien entre le développement et le design, en combinant la précision technique avec la créativité pour créer des produits qui sont non seulement fonctionnels, mais mémorables.",
-    "welcomeMessage": "Bienvenue dans mon espace de travail. N'hésitez pas à explorer le référentiel et découvrez les projets, technologies et expériences qui définissent mon parcours.",
+    "subheading": "Étudiant en 2CP à l'ESTIN et responsable du design graphique au club SOAI",
+    "introduction": "Je suis actuellement étudiant en 2CP à l'ESTIN et responsable du design graphique au club SOAI. Mes domaines d'activité comprennent le développement web et mobile, le design graphique, ainsi que la 3D et le motion design.",
+    "welcomeMessage": "Bienvenue dans mon espace. Découvrez mon parcours scolaire, mes cours, mes domaines d'activité et mes coordonnées.",
     "letsConnect": "Connectons-nous",
     "timeline": {
-      "2022": "J'ai commencé mon voyage de codage",
-      "2023": "J'ai construit ma première application full stack",
-      "2024": "J'ai rejoint des stages et des projets réels",
-      "2025": "J'ai fondé CONSULTIFY et je construis des projets",
-      "2026": "Continuer à apprendre et créer de l'impact"
+      "2022": "Premier baccalauréat : 16.00/20",
+      "2024": "Deuxième baccalauréat : 17.80/20",
+      "2025": "Diplôme de bachelor",
+      "2026": "Étudiant en 2CP à l'ESTIN et responsable du design graphique au club SOAI"
     },
     "services": {
-      "webDevelopment": "Développement web",
-      "webDevelopmentDesc": "Créer des applications web réactives et performantes",
-      "uiux": "Design UI/UX",
-      "uiuxDesc": "Concevoir des interfaces intuitives et des expériences utilisateur fluides",
-      "problemSolving": "Résolution de problèmes",
-      "problemSolvingDesc": "Transformer des idées en solutions réelles avec un code propre et efficace",
+      "webDevelopment": "Développement web et mobile",
+      "webDevelopmentDesc": "Créer des applications web et mobiles réactives et performantes",
+      "uiux": "Design graphique",
+      "uiuxDesc": "Créer des identités visuelles et des visuels adaptés à différents besoins",
+      "problemSolving": "3D et motion design",
+      "problemSolvingDesc": "Créer des visuels 3D et des animations graphiques captivants",
       "continuousLearning": "Apprentissage continu",
       "continuousLearningDesc": "Toujours explorer de nouvelles technologies et améliorer mes compétences"
     },
     "stats": {
       "experience": "Expérience",
-      "experienceValue": "2+ Ans",
+      "experienceValue": "0 an",
       "projectsCompleted": "Projets Réalisés",
-      "projectsValue": "15+",
+      "projectsValue": "Non précisé",
       "education": "Formation",
-      "educationValue": "2 Diplômes",
+      "educationValue": "1 diplôme de Bachelor",
       "linesOfCode": "Lignes de code",
-      "linesValue": "50k+"
+      "linesValue": "Does not matter with AI"
     },
     "headings": {
       "whatToDo": "Ce que je fais",
       "myJourney": "Mon parcours",
       "techArsenal": "Arsenal technique",
-      "beyondCode": "Au-delà du code"
+      "beyondCode": "Domaines d'activité"
     },
     "interests": [
-      "Design UI/UX",
       "Design graphique",
-      "Photographie",
-      "Jeux vidéo",
-      "Lecture",
-      "Passionné de technologie"
+      "3D et motion design",
+      "Développement web et mobile",
+      "Apprentissage continu"
     ]
   },
   "projects": {
@@ -379,7 +376,8 @@
     "downloading": "Téléchargement en cours",
     "queued": "En attente",
     "cancelled": "Annulé",
-    "failed": "Échec"
+    "failed": "Échec",
+    "clearCompleted": "Effacer les téléchargements terminés"
   },
   "notifications": {
     "title": "Quoi de neuf",

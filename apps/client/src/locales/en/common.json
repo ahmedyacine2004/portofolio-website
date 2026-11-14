@@ -191,50 +191,47 @@
   "about": {
     "greeting": "Hey there !",
     "heading": "I'm Ahmed Yassine Abbane",
-    "subheading": "Or, as I like to put it, a Jack of All Trades",
-    "introduction": "From architecting scalable web applications and crafting intuitive user interfaces to designing compelling brand identities, I enjoy turning ideas into polished digital experiences. I bridge development and design, combining technical precision with creativity to build products that are not only functional, but memorable.",
-    "welcomeMessage": "Welcome to my workspace. Feel free to explore the repository and discover the projects, technologies, and experiences that define my journey.",
+    "subheading": "2CP student at ESTIN and Graphic Design Manager at SOAI Club",
+    "introduction": "I am currently a 2CP student at ESTIN and the Graphic Design Manager at SOAI Club. My areas of work include web and mobile app development, graphic design, and 3D and motion graphics.",
+    "welcomeMessage": "Welcome to my workspace. Explore my education, courses, work areas, and contact details.",
     "letsConnect": "Let's Connect",
     "timeline": {
-      "2022": "Just Started My coding Journey",
-      "2023": "Built my first full stack application",
-      "2024": "Joined Internships and real-world projects",
-      "2025": "Founded CONSULTIFY and building projects",
-      "2026": "Continuing To learn build an impact"
+      "2022": "First Baccalaureate: 16.00/20",
+      "2024": "Second Baccalaureate: 17.80/20",
+      "2025": "Bachelor's Degree",
+      "2026": "Currently a 2CP student at ESTIN and Graphic Design Manager at SOAI Club"
     },
     "services": {
-      "webDevelopment": "Web development",
-      "webDevelopmentDesc": "Building responsive and performant web applications",
-      "uiux": "UI/UX design",
-      "uiuxDesc": "Designing intuitive interfaces and seamless user experiences",
-      "problemSolving": "Problem Solving",
-      "problemSolvingDesc": "Turning ideas into real solutions with clean and efficient code",
+      "webDevelopment": "Web & Mobile App Development",
+      "webDevelopmentDesc": "Building responsive web and mobile applications",
+      "uiux": "Graphic Design",
+      "uiuxDesc": "Creating visual identities and graphics for a wide range of needs",
+      "problemSolving": "3D & Motion Graphics",
+      "problemSolvingDesc": "Creating engaging 3D visuals and motion graphics",
       "continuousLearning": "Continuous Learning",
       "continuousLearningDesc": "Always exploring new technologies and improving my skills"
     },
     "stats": {
       "experience": "Experience",
-      "experienceValue": "2+ Years",
+      "experienceValue": "0 Years",
       "projectsCompleted": "Projects Completed",
-      "projectsValue": "15+",
+      "projectsValue": "Not specified",
       "education": "Education",
-      "educationValue": "2 Degrees",
+      "educationValue": "1 Bachelor's Degree",
       "linesOfCode": "Lines of code",
-      "linesValue": "50k+"
+      "linesValue": "Does not matter with AI"
     },
     "headings": {
       "whatToDo": "What to Do",
       "myJourney": "My journey",
       "techArsenal": "Tech arsenal",
-      "beyondCode": "Beyond Code"
+      "beyondCode": "Areas of Focus"
     },
     "interests": [
-      "UI/UX design",
       "Graphic Design",
-      "Photography",
-      "Gaming",
-      "Reading",
-      "Tech Enthusiast"
+      "3D & Motion Graphics",
+      "Web & Mobile App Development",
+      "Continuous Learning"
     ]
   },
   "projects": {
@@ -379,7 +376,8 @@
     "downloading": "Downloading",
     "queued": "Queued",
     "cancelled": "Cancelled",
-    "failed": "Failed"
+    "failed": "Failed",
+    "clearCompleted": "Clear completed downloads"
   },
   "notifications": {
     "title": "What's New",

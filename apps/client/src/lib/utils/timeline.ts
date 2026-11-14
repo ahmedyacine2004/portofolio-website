@@ -1,45 +1,27 @@
-export const timelineYaml = `# Career Timeline Configuration
-# Portfolio Workspace v1.0.0
+export const timelineYaml = `# Education and Activities Timeline
 
 timeline:
   - year: 2022
-    title: Programming Foundations
-    category: Learning
-    highlights:
-      - C++
-      - Algorithms
-      - Problem Solving
-
-  - year: 2023
-    title: Design Journey
-    category: Creative
-    highlights:
-      - Photoshop
-      - Illustrator
-      - Brand Identity
-
-  - year: 2024
-    title: Full Stack Development
-    category: Engineering
-    highlights:
-      - SOMIPHOS Internship
-      - React
-      - NestJS
-      - MongoDB
-
-  - year: 2025
-    title: Engineering Degree
+    title: First Baccalaureate
     category: Education
     highlights:
-      - ESTIN
-      - Bachelor's Degree
+      - Result: 16.00/20
 
-  - year: 2026
-    title: Building CONSULTIFY
-    category: Startup
+  - year: 2024
+    title: Second Baccalaureate
+    category: Education
     highlights:
-      - Founder
-      - AI Integration
-      - Product Development
+      - Result: 17.80/20
+
+  - year: 2025
+    title: Bachelor's Degree
+    category: Education
+
+  - year: 2026+
+    title: Current Studies and Club Role
+    category: Education and Activities
+    highlights:
+      - 2CP student at ESTIN
+      - Graphic Design Manager at SOAI Club
 
 version: 1.0.0`;

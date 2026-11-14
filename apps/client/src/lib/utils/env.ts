@@ -1,39 +1,19 @@
-export const envExampleContent = `# Personal Environment Variables
-# Loaded on startup...
+export const envExampleContent = `# Personal profile
+NAME="Ahmed Yassine Abbane"
+CURRENT_STUDIES="2CP student at ESTIN"
+CURRENT_ROLE="Graphic Design Manager at SOAI Club"
+PROFESSIONAL_EXPERIENCE_YEARS=0
 
-APP_NAME="Portfolio Workspace"
-APP_VERSION="1.0.0"
+# Education
+FIRST_BACCALAUREATE="2022 - 16.00/20"
+SECOND_BACCALAUREATE="2024 - 17.80/20"
+BACHELORS_DEGREE_YEAR=2025
+BACHELORS_INSTITUTION="M'Hamed Bougara University"
 
-DEVELOPER="Ahmed Yassine Abbane"
-ALIAS="Jack of All Trades"
-ROLE="Full Stack Developer & Graphic Designer"
+# Languages and work areas
+LANGUAGES="Arabic, English, French"
+AREAS_OF_WORK="Web development; Mobile app development; Graphic design; 3D and motion graphics"
 
-LOCATION="Tebessa, Algeria"
-STATUS="Available"
-
-MISSION="Build products that create real impact."
-VISION="Making technology accessible through design."
-
-CURRENT_PROJECT="CONSULTIFY"
-CURRENT_GOAL="Engineering Degree"
-
-EDITOR="VS Code"
-THEME="Dark+"
-LANGUAGE="FACTS"
-
-CREATIVITY=true
-CURIOSITY=true
-DISCIPLINE=true
-CONSISTENCY=true
-
-DEBUG=false
-FAILURE_ALLOWED=true
-LEARNING_MODE=continuous
-ENERGY_SOURCE="Coffee"
-MINDSET="Growth"
-
-
-NEXT_TARGET="Cloud Architecture"
-LONG_TERM_GOAL="Technology Founder"
-
-WORKSPACE_STATUS="Compiling..."`;
+# Personal details
+HOBBIES="Gaming; Taking naps; Talking with my loml; Push-ups"
+FAVORITE_THING="Food"`;

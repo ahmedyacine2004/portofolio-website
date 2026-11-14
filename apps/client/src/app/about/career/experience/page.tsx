@@ -8,7 +8,7 @@ export default function ExperiencePage() {
     <CodeEditor
       fileName="experience.db"
       breadcrumb="about > career > experience.db"
-      language="TypeScript"
+      language="SQL"
       content={experienceDb}
       fileIcon={<Image src={DatabaseIcon} alt="Database icon" className="size-3" />}
     />

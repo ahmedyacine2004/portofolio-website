@@ -8,10 +8,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import {
   BookOpen,
   BriefcaseBusiness,
-  Camera,
   Code2,
   FolderTree,
-  Gamepad2,
   Laptop,
   Palette,
   PenTool,
@@ -58,10 +56,6 @@ export default function AboutPage() {
       {
         year: '2022',
         text: t('about.timeline.2022'),
-      },
-      {
-        year: '2023',
-        text: t('about.timeline.2023'),
       },
       {
         year: '2024',
@@ -112,27 +106,23 @@ export default function AboutPage() {
   const interests = useMemo(
     () =>
       tArray<string>('about.interests').map((label: string, index: number) => {
-        const iconList = [Palette, PenTool, Camera, Gamepad2, BookOpen, Laptop];
+        const iconList = [PenTool, Puzzle, Laptop, BookOpen];
         const iconMap: { [key: string]: typeof Palette } = {
-          'UI/UX design': Palette,
-          'Design UI/UX': Palette,
           'Graphic Design': PenTool,
           'Design graphique': PenTool,
-          Photography: Camera,
-          Photographie: Camera,
-          Gaming: Gamepad2,
-          'Jeux vidéo': Gamepad2,
-          Reading: BookOpen,
-          Lecture: BookOpen,
-          'Tech Enthusiast': Laptop,
-          'Passionné de technologie': Laptop,
+          '3D & Motion Graphics': Puzzle,
+          '3D et motion design': Puzzle,
+          'Web & Mobile App Development': Laptop,
+          'Développement web et mobile': Laptop,
+          'Continuous Learning': BookOpen,
+          'Apprentissage continu': BookOpen,
         };
         return { label, icon: iconMap[label] || iconList[index] || Palette };
       }),
     [tArray],
   );
   return (
-    <div className="flex min-h-full min-w-0 flex-col gap-1 overflow-x-hidden p-2 max-md:h-full max-md:min-h-0 max-md:overflow-y-auto lg:h-full lg:min-h-0">
+    <div className="about-page-layout flex min-h-full min-w-0 flex-col gap-1 overflow-x-hidden p-2 max-md:h-full max-md:min-h-0 max-md:overflow-y-auto lg:h-full lg:min-h-0">
       <AnimatePresence>
         {isFilesOpen && (
           <motion.div
@@ -189,24 +179,30 @@ export default function AboutPage() {
         {/* Introduction */}
         <div className="flex min-h-0 flex-col justify-between rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <div>
-            <p className="mb-1.5 text-[8px] font-semibold text-primary">{t('about.greeting')}</p>
+            <p className="about-page-greeting mb-1.5 text-[8px] font-semibold text-primary">
+              {t('about.greeting')}
+            </p>
 
-            <h1 className="text-[60px] font-bold leading-[0.7]">{t('about.heading')}</h1>
+            <h1 className="about-page-title text-[60px] font-bold leading-[0.7]">
+              {t('about.heading')}
+            </h1>
 
-            <p className="mt-0.5 text-[9px] font-semibold leading-tight">{t('about.subheading')}</p>
+            <p className="about-page-subheading mt-0.5 text-[9px] font-semibold leading-tight">
+              {t('about.subheading')}
+            </p>
 
-            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
+            <p className="about-page-copy mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               {t('about.introduction')}
             </p>
 
-            <p className="mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
+            <p className="about-page-copy mt-1 max-w-[330px] text-[7.5px] leading-[1.45] text-muted-foreground">
               {t('about.welcomeMessage')}
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="mt-2 flex h-7 items-center justify-center rounded-xs bg-primary text-[8px] font-semibold text-primary-foreground"
+            className="about-page-action mt-2 flex h-7 items-center justify-center rounded-xs bg-primary text-[8px] font-semibold text-primary-foreground"
           >
             {t('about.letsConnect')}
           </Link>
@@ -224,7 +220,7 @@ export default function AboutPage() {
         </div>
 
         {/* Stats */}
-        <div className="flex rounded sm min-h-0 flex-col gap-1 px-2 py-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
+        <div className="about-stats-list flex rounded sm min-h-0 flex-col gap-1 px-2 py-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
           <StatCard
             icon={UserRound}
             label={t('about.stats.experience')}
@@ -259,11 +255,11 @@ export default function AboutPage() {
       <section className="grid min-h-0 flex-none grid-cols-1 gap-2 lg:flex-[1.15] lg:grid-cols-[1fr_0.9fr_0.95fr]">
         {/* What to Do */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-          <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
+          <h2 className="about-section-heading font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
             {t('about.headings.whatToDo')}
           </h2>
 
-          <div className="flex flex-col gap-1.5">
+          <div className="about-services-list flex flex-col gap-1.5">
             {services.map((service) => {
               const Icon = service.icon;
 
@@ -279,11 +275,11 @@ export default function AboutPage() {
                   </div>
 
                   <div className="min-w-0">
-                    <h3 className="font-inter text-[9px] font-semibold leading-none">
+                    <h3 className="about-service-title font-inter text-[9px] font-semibold leading-none">
                       {service.title}
                     </h3>
 
-                    <p className="mt-0.5 text-[6.5px] leading-[1.25] text-muted-foreground">
+                    <p className="about-service-description mt-0.5 text-[6.5px] leading-[1.25] text-muted-foreground">
                       {service.description}
                     </p>
                   </div>
@@ -295,24 +291,26 @@ export default function AboutPage() {
 
         {/* My Journey */}
         <div className="min-h-0 rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-          <h2 className="font-inter mb-3 text-[14px] font-bold leading-none tracking-[-0.02em]">
+          <h2 className="about-section-heading font-inter mb-3 text-[14px] font-bold leading-none tracking-[-0.02em]">
             {t('about.headings.myJourney')}
           </h2>
 
           <div className="relative">
             <div className="absolute bottom-2 left-[4px] top-1 w-px bg-border" />
 
-            <div className="flex flex-col gap-2.5">
+            <div className="about-journey-list flex flex-col gap-2.5">
               {journey.map((item) => (
                 <div key={item.year} className="relative flex gap-2">
                   <div className="relative z-10 mt-0.5 size-2 shrink-0 rounded-full bg-primary ring-2 ring-background" />
 
                   <div className="min-w-0">
-                    <p className="text-[8px] font-semibold leading-none text-primary">
+                    <p className="about-journey-year text-[8px] font-semibold leading-none text-primary">
                       {item.year}
                     </p>
 
-                    <p className="mt-1 text-[7px] leading-[1.25]">{item.text}</p>
+                    <p className="about-journey-description mt-1 text-[7px] leading-[1.25]">
+                      {item.text}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -321,14 +319,14 @@ export default function AboutPage() {
         </div>
 
         {/* Right */}
-        <div className="flex min-h-0 flex-col gap-2">
+        <div className="about-side-panels flex min-h-0 flex-col gap-2">
           {/* Tech Arsenal */}
           <div className="rounded-sm bg-background p-2 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)]">
-            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
+            <h2 className="about-section-heading font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               {t('about.headings.techArsenal')}
             </h2>
 
-            <div className="grid grid-cols-5 gap-1">
+            <div className="about-tech-grid grid grid-cols-5 gap-1">
               {technologies.map((technology, index) => (
                 <div
                   key={index}
@@ -349,11 +347,11 @@ export default function AboutPage() {
 
           {/* Beyond Code */}
           <div className="min-h-0 flex-none rounded-sm bg-background p-3 shadow-gray-300 dark:shadow-[0_0_5px_rgba(255,255,255,0.015)] lg:flex-1">
-            <h2 className="font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
+            <h2 className="about-section-heading font-inter mb-2.5 text-[14px] font-bold leading-none tracking-[-0.02em]">
               {t('about.headings.beyondCode')}
             </h2>
 
-            <div className="flex flex-wrap gap-1.5">
+            <div className="about-interests flex flex-wrap gap-1.5">
               {interests.map((interest) => {
                 const Icon = interest.icon;
 
@@ -364,7 +362,9 @@ export default function AboutPage() {
                   >
                     <Icon className="size-3 text-primary" strokeWidth={1.8} />
 
-                    <span className="text-[7px] font-medium">{interest.label}</span>
+                    <span className="about-interest-label text-[7px] font-medium">
+                      {interest.label}
+                    </span>
                   </div>
                 );
               })}
@@ -393,9 +393,9 @@ function StatCard({ icon: Icon, label, value, color }: StatCardProps) {
       </div>
 
       <div>
-        <p className="text-[6.5px] leading-none text-muted-foreground">{label}</p>
+        <p className="about-stat-label text-[6.5px] leading-none text-muted-foreground">{label}</p>
 
-        <p className="mt-0.5 text-[10px] font-semibold leading-none">{value}</p>
+        <p className="about-stat-value mt-0.5 text-[10px] font-semibold leading-none">{value}</p>
       </div>
     </div>
   );

@@ -19,8 +19,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 The home page is an experience selector: `/simple` opens the classic portfolio and `/studio` opens
 the interactive developer workspace.
 
-The simple portfolio includes selected projects, skills, internship experience, education,
-certifications, and a contact form that submits through the existing Web3Forms service. Its
+The simple portfolio includes selected projects, skills, education, and a contact form that submits
+through the existing Web3Forms service. Its
 sections have scroll-triggered parallax motion, and project, experience, education, and credential
 details open in dialogs without navigating into the interactive workspace.
 

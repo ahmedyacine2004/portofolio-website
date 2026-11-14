@@ -2,38 +2,25 @@ export const milestonesJson = `{
   "milestones": [
     {
       "year": 2022,
-      "title": "Earned Baccalaureate",
+      "title": "First Baccalaureate",
       "achievement": "16.00/20",
       "status": "completed"
     },
     {
-      "year": 2023,
-      "title": "Started Graphic Design",
-      "achievement": "Professional Portfolio",
-      "status": "completed"
-    },
-    {
       "year": 2024,
-      "title": "Began Full Stack Development",
-      "achievement": "React & NestJS",
-      "status": "completed"
-    },
-    {
-      "year": 2025,
-      "title": "Bachelor's Degree",
+      "title": "Second Baccalaureate",
       "achievement": "17.80/20",
       "status": "completed"
     },
     {
       "year": 2025,
-      "title": "Joined ESTIN",
-      "achievement": "Engineering Program",
-      "status": "active"
+      "title": "Bachelor's Degree",
+      "status": "completed"
     },
     {
-      "year": 2026,
-      "title": "Building CONSULTIFY",
-      "achievement": "AI-Powered Platform",
+      "year": "2026+",
+      "title": "Current Studies and Club Role",
+      "achievement": "2CP student at ESTIN and Graphic Design Manager at SOAI Club",
       "status": "active"
     }
   ]

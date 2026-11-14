@@ -1,43 +1,42 @@
 export const metadataCode = `{
   "identity": {
     "name": "Ahmed Yassine Abbane",
-    "alias": "Jack of All Trades",
-    "title": "Full Stack Developer & Graphic Designer",
-    "location": "Tebessa, Tebessa, Algeria",
-    "status": "Available"
+    "title": "2CP Student at ESTIN and Graphic Design Manager at SOAI"
   },
 
-  "workspace": {
-    "repository": "Portfolio Workspace",
-    "version": "3.0.0",
-    "architecture": "Component Driven",
-    "theme": "VS Code",
-    "environment": "Production"
+  "education": {
+    "baccalaureates": [
+      { "year": 2022, "result": "16.00/20" },
+      { "year": 2024, "result": "17.80/20" }
+    ],
+    "bachelorDegreeYear": 2025,
+    "currentInstitution": "ESTIN",
+    "currentLevel": "2CP"
   },
 
-  "expertise": {
-    "development": ["Frontend", "Backend", "REST APIs", "Databases"],
-    "design": ["UI/UX", "Graphic Design", "Brand Identity"],
-    "engineering": ["Clean Architecture", "Scalable Systems", "Problem Solving"]
+  "currentRole": {
+    "title": "Graphic Design Manager",
+    "organization": "SOAI Club",
+    "since": "2026+"
   },
 
-  "journey": {
-    "started": 2022,
-    "currentFocus": "CONSULTIFY",
-    "experience": "3+ Years"
-  },
+  "areasOfWork": [
+    "Web development",
+    "Mobile app development",
+    "Graphic design",
+    "3D and motion graphics"
+  ],
 
-  "preferences": {
-    "language": "TypeScript",
-    "editor": "VS Code",
-    "theme": "Dark",
-    "coffeePowered": true
+  "professionalExperience": "0 Years",
+
+  "portfolio": {
+    "version": "1.0.0"
   },
 
   "statistics": {
-    "repositories": 18,
-    "technologies": 20,
-    "technicals": 20,
-    "certifications": 8
+    "repositories": 6,
+    "technologies": 5,
+    "technicals": 0,
+    "certifications": 0
   }
 }`;

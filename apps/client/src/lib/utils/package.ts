@@ -1,46 +1,35 @@
 export const packageJson = `{
-
-  "name": "@ahmed/portfolio-workspace",
-  "version": "3.0.0",
-  "description": "A developer portfolio inspired by the VS Code experience.",
+  "name": "ahmed-yassine-abbane",
+  "version": "1.0.0",
+  "description": "Personal profile of Ahmed Yassine Abbane",
   "author": "Ahmed Yassine Abbane",
-  "license": "MIT",
-  "private": true,
-
-  "scripts": {
-    "dev": "portfolio dev",
-    "start": "portfolio start",
-    "about": "portfolio about",
-    "projects": "portfolio projects",
-    "skills": "portfolio skills",
-    "experience": "portfolio experience",
-    "certifications": "portfolio certifications",
-    "contact": "portfolio contact",
-    "search": "portfolio search",
-    "chat": "portfolio chat",
-    "help": "portfolio help"
+  "professionalExperienceYears": 0,
+  "education": {
+    "baccalaureates": [
+      { "year": 2022, "result": "16.00/20" },
+      { "year": 2024, "result": "17.80/20" }
+    ],
+    "bachelorDegree": {
+      "year": 2025,
+      "institution": "M'Hamed Bougara University"
+    },
+    "currentStudies": {
+      "institution": "ESTIN",
+      "level": "2CP"
+    }
   },
-
-  "keywords": [
-    "portfolio",
-    "full-stack",
-    "typescript",
-    "ui-ux",
-    "consultify",
-    "vscode"
+  "currentRole": {
+    "title": "Graphic Design Manager",
+    "organization": "SOAI Club",
+    "since": "2026+"
+  },
+  "languages": ["Arabic", "English", "French"],
+  "areasOfWork": [
+    "Web development",
+    "Mobile app development",
+    "Graphic design",
+    "3D and motion graphics"
   ],
-
-
-  "workspace": {
-    "editor": "VS Code",
-    "theme": "Dark+",
-    "status": "Compiling...",
-    "shell": "portfolio"
-  },
-
-  "engines": {
-    "node": ">=20",
-    "npm": ">=10"
-  }
-
+  "hobbies": ["Gaming", "Taking naps", "Talking with my loml", "Push-ups"],
+  "favoriteThing": "Food"
 }`;

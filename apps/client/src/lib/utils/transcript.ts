@@ -27,18 +27,15 @@ export const transcriptXml = `<?xml version="1.0" encoding="UTF-8"?>
 
     <edu:earnedDegree>
       <edu:Bachelor>
-        <edu:institution>M'Hamed Bougara University</edu:institution>
-        <edu:duration>2022-2025</edu:duration>
-        <edu:grade>13.41/20</edu:grade>
+        <edu:year>2025</edu:year>
       </edu:Bachelor>
     </edu:earnedDegree>
 
     <edu:currentProgram>
-      <edu:Engineering>
+      <edu:Program>
         <edu:institution>ESTIN</edu:institution>
-        <edu:specialization>Computer Science Engineering</edu:specialization>
-        <edu:level>Preparatory Cycle - Year 2</edu:level>
-      </edu:Engineering>
+        <edu:level>2CP</edu:level>
+      </edu:Program>
     </edu:currentProgram>
 
   </edu:Student>

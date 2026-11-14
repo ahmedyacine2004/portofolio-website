@@ -6,11 +6,11 @@ import { useTheme } from '@/hooks/use-theme';
 import {
   AlertTriangle,
   Bell,
+  Copy,
   Download,
   GitBranch,
   Maximize2,
   Minus,
-  MoreVertical,
   Plus,
   Printer,
   X,
@@ -45,6 +45,8 @@ export function DocxReader({
 
   const [docxBuffer, setDocxBuffer] = useState<ArrayBuffer | null>(null);
   const [zoom, setZoom] = useState(100);
+  const [wordCount, setWordCount] = useState(0);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
 
@@ -58,6 +60,8 @@ export function DocxReader({
       setIsLoading(true);
       setLoadError(null);
       setDocxBuffer(null);
+      setWordCount(0);
+      setCopyStatus('idle');
 
       try {
         const response = await fetch(file, {
@@ -118,14 +122,17 @@ export function DocxReader({
     renderContainer.innerHTML = '';
 
     import('docx-preview')
-      .then(({ renderAsync }) => {
-        return renderAsync(docxBuffer, renderContainer, undefined, {
+      .then(async ({ renderAsync }) => {
+        await renderAsync(docxBuffer, renderContainer, undefined, {
           className: 'docx-preview-wrapper',
           inWrapper: true,
           ignoreWidth: false,
           ignoreHeight: false,
           experimental: true,
         });
+
+        const documentText = renderContainer.innerText.trim();
+        setWordCount(documentText ? documentText.split(/\s+/).length : 0);
       })
       .catch((error) => {
         console.error('Error rendering DOCX layout:', error);
@@ -155,6 +162,22 @@ export function DocxReader({
       },
     });
   }, [file, fileName, download]);
+
+  const handleCopyText = useCallback(async () => {
+    const documentText = docxRenderRef.current?.innerText.trim();
+    if (!documentText) {
+      setCopyStatus('error');
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(documentText);
+      setCopyStatus('copied');
+    } catch (error) {
+      console.error('Unable to copy DOCX text:', error);
+      setCopyStatus('error');
+    }
+  }, []);
 
   const handlePrint = useCallback(() => {
     window.print();
@@ -225,6 +248,9 @@ export function DocxReader({
           <span className={`text-[8px] ${isDark ? 'text-[#8f8f8f]' : 'text-[#687386]'}`}>
             Word Document
           </span>
+          <span className={`text-[8px] ${isDark ? 'text-[#8f8f8f]' : 'text-[#687386]'}`}>
+            Words: {wordCount}
+          </span>
         </div>
 
         <div className="absolute left-1/2 flex -translate-x-1/2 items-center gap-2">
@@ -267,6 +293,25 @@ export function DocxReader({
         <div className="ml-auto flex items-center gap-3">
           <button
             type="button"
+            onClick={handleCopyText}
+            className={`inline-flex items-center gap-1 text-[8px] transition-opacity hover:opacity-70 ${
+              isDark ? 'text-[#d4d4d4]' : 'text-[#172033]'
+            }`}
+            aria-label="Copy document text"
+            title="Copy document text"
+          >
+            <Copy className="size-3" strokeWidth={1.8} />
+            <span>Copy text</span>
+          </button>
+
+          {copyStatus !== 'idle' && (
+            <span className="text-[8px] text-muted-foreground" aria-live="polite">
+              {copyStatus === 'copied' ? 'Copied' : 'Copy failed'}
+            </span>
+          )}
+
+          <button
+            type="button"
             onClick={handleDownload}
             className={`transition-opacity hover:opacity-70 ${
               isDark ? 'text-[#d4d4d4]' : 'text-[#172033]'
@@ -285,16 +330,6 @@ export function DocxReader({
             aria-label="Print DOCX"
           >
             <Printer className="size-3" strokeWidth={1.8} />
-          </button>
-
-          <button
-            type="button"
-            className={`transition-opacity hover:opacity-70 ${
-              isDark ? 'text-[#d4d4d4]' : 'text-[#172033]'
-            }`}
-            aria-label="More options"
-          >
-            <MoreVertical className="size-3" strokeWidth={1.8} />
           </button>
         </div>
       </div>

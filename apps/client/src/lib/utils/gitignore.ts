@@ -1,41 +1,55 @@
-export const gitignoreContent = `# Portfolio Ignore Rules
-# Things that don't belong in this workspace
+export const gitignoreContent = `# Dependencies
+node_modules/
+.pnpm-store/
 
-# Mindset
-/negativity
-/self-doubt
-/procrastination
-/excuses
+# Build output
+dist/
+build/
+out/
+.next/
+.turbo/
+coverage/
 
-# Development
-/hardcoded-solutions
-/technical-debt
-/untested-code
-/unused-components
-/legacy-thinking
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Design
-/clutter
-/inconsistent-spacing
-/bad-contrast
-/generic-ui
-/copied-designs
+# Environment variables
+.env
+.env.*
+.env.local
+.env.development.local
+.env.production.local
+!.env.example
 
-# Career
-/missed-opportunities
-/comfort-zone
-/fear-of-failure
-/impostor-syndrome
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
 
+# Cache and temporary files
+.cache/
+.eslintcache
+.parcel-cache/
+.npm/
+tmp/
+temp/
 
-# Personal
-/perfectionism
-/overthinking
-/distractions
+# TypeScript and testing
+*.tsbuildinfo
+.nyc_output/
 
-# Always Track
-!growth
-!creativity
-!discipline
-!curiosity
-!innovation`;
+# Local services
+data/db/
+docker-data/
+
+# Miscellaneous
+*.pem
+*.pid
+*.seed
+*.pid.lock`;

@@ -10,12 +10,11 @@ import {
   GitBranch,
   Maximize2,
   Minus,
-  MoreVertical,
   Plus,
   Printer,
   X,
 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type UIEvent } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { AboutTabBar } from './about-tab-bar';
 
@@ -51,6 +50,7 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
   const [loadError, setLoadError] = useState<string | null>(null);
 
   const documentContainerRef = useRef<HTMLDivElement>(null);
+  const mainPreviewRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -121,9 +121,34 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
     (page: number) => {
       const nextPage = Math.min(Math.max(page, 1), numPages);
       setCurrentPage(nextPage);
+
+      const preview = mainPreviewRef.current;
+      const pageElement = preview?.querySelector<HTMLElement>(`[data-page-number="${nextPage}"]`);
+
+      if (preview && pageElement) {
+        const previewTop = preview.getBoundingClientRect().top;
+        const pageTop = pageElement.getBoundingClientRect().top;
+        preview.scrollTo({
+          top: preview.scrollTop + pageTop - previewTop - 24,
+          behavior: 'smooth',
+        });
+      }
     },
     [numPages],
   );
+
+  const handlePreviewScroll = useCallback((event: UIEvent<HTMLElement>) => {
+    const preview = event.currentTarget;
+    const pageMarker = preview.getBoundingClientRect().top + 24;
+    const visiblePage = Array.from(
+      preview.querySelectorAll<HTMLElement>('[data-page-number]'),
+    ).find((page) => page.getBoundingClientRect().bottom >= pageMarker);
+    const pageNumber = Number(visiblePage?.dataset.pageNumber);
+
+    if (Number.isInteger(pageNumber) && pageNumber > 0) {
+      setCurrentPage((previousPage) => (previousPage === pageNumber ? previousPage : pageNumber));
+    }
+  }, []);
 
   const zoomIn = useCallback(() => {
     setZoom((value) => Math.min(value + ZOOM_STEP, MAX_ZOOM));
@@ -288,16 +313,6 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
           >
             <Printer className="size-3" strokeWidth={1.8} />
           </button>
-
-          <button
-            type="button"
-            className={`transition-opacity hover:opacity-70 ${
-              isDark ? 'text-[#d4d4d4]' : 'text-[#172033]'
-            }`}
-            aria-label="More options"
-          >
-            <MoreVertical className="size-3" strokeWidth={1.8} />
-          </button>
         </div>
       </div>
 
@@ -366,8 +381,12 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
           </aside>
 
           {/* Main Document Display */}
-          <main className="min-w-0 flex-1 overflow-auto">
-            <div className="flex min-h-full min-w-full items-start justify-center px-8 py-8">
+          <main
+            ref={mainPreviewRef}
+            onScroll={handlePreviewScroll}
+            className="min-w-0 flex-1 overflow-auto"
+          >
+            <div className="flex min-h-full min-w-full flex-col items-center gap-8 px-8 py-8">
               {isLoading ? (
                 <div
                   className={`flex h-[520px] w-[390px] flex-col items-center justify-center rounded-[4px] border shadow-sm ${
@@ -428,30 +447,34 @@ export function PdfReader({ fileName, breadcrumb, file, language }: PdfReaderPro
                     </div>
                   }
                 >
-                  <div
-                    className={`overflow-hidden rounded-[3px] border shadow-md ${
-                      isDark ? 'border-[#444444] bg-white' : 'border-[#dce2ea] bg-white'
-                    }`}
-                  >
-                    <Page
-                      pageNumber={currentPage}
-                      width={pageWidth}
-                      canvasBackground="white"
-                      renderTextLayer
-                      renderAnnotationLayer
-                      loading={
-                        <div
-                          className="flex items-center justify-center bg-white"
-                          style={{
-                            width: pageWidth ?? 780,
-                            height: 1000,
-                          }}
-                        >
-                          <div className="size-7 animate-spin rounded-full border-2 border-primary/20 border-t-primary" />
-                        </div>
-                      }
-                    />
-                  </div>
+                  {thumbnailPages.map((page) => (
+                    <div
+                      key={page}
+                      data-page-number={page}
+                      className={`overflow-hidden rounded-[3px] border shadow-md ${
+                        isDark ? 'border-[#444444] bg-white' : 'border-[#dce2ea] bg-white'
+                      }`}
+                    >
+                      <Page
+                        pageNumber={page}
+                        width={pageWidth}
+                        canvasBackground="white"
+                        renderTextLayer
+                        renderAnnotationLayer
+                        loading={
+                          <div
+                            className="flex items-center justify-center bg-white"
+                            style={{
+                              width: pageWidth ?? 780,
+                              height: 1000,
+                            }}
+                          >
+                            <div className="size-7 animate-spin rounded-full border-2 border-primary/20 border-t-primary" />
+                          </div>
+                        }
+                      />
+                    </div>
+                  ))}
                 </Document>
               ) : null}
             </div>

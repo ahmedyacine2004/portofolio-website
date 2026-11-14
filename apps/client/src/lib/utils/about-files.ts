@@ -33,7 +33,7 @@ export type AboutFile = {
 
 export const ABOUT_ROOT_FILE: AboutFile = {
   id: 'about',
-  label: 'about.tsx',
+  label: 'about',
   href: '/about',
   icon: aboutIcon,
 };

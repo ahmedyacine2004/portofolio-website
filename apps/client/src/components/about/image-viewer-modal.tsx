@@ -33,6 +33,7 @@ export function ImageViewerModal() {
   const zoomIn = useImageViewerStore((s) => s.zoomIn);
   const zoomOut = useImageViewerStore((s) => s.zoomOut);
   const resetZoom = useImageViewerStore((s) => s.resetZoom);
+  const fitToScreen = useImageViewerStore((s) => s.fitToScreen);
   const toggleFullscreen = useImageViewerStore((s) => s.toggleFullscreen);
   const toggleInfo = useImageViewerStore((s) => s.toggleInfo);
 
@@ -180,7 +181,7 @@ export function ImageViewerModal() {
             <div className="flex items-center gap-1">
               <button
                 type="button"
-                onClick={resetZoom}
+                onClick={fitToScreen}
                 className={`flex size-7 items-center justify-center rounded transition-colors ${
                   isDark
                     ? 'text-white/70 hover:bg-white/10 hover:text-white'
@@ -319,7 +320,7 @@ export function ImageViewerModal() {
                     exit={{ opacity: 0, x: 20 }}
                     className="absolute right-4 top-4 z-20 w-64 rounded-[8px] border border-white/10 bg-slate-900/90 p-4 text-xs shadow-2xl backdrop-blur-md space-y-2"
                   >
-                    <h4 className="font-bold text-white text-sm border-b border-white/10 pb-1">
+                    <h4 className="font-inter text-sm font-bold text-white border-b border-white/10 pb-1">
                       File Information
                     </h4>
                     <div className="space-y-1 text-white/80">
@@ -381,16 +382,16 @@ export function ImageViewerModal() {
                     key={img.id}
                     type="button"
                     onClick={() => setIndex(idx)}
-                    className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-[8px] border-2 bg-muted transition-all ${
+                    className={`relative flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-[8px] border-2 bg-muted transition-all ${
                       isActive
-                        ? 'border-blue-500 ring-2 ring-blue-500/50 scale-105 shadow-lg'
-                        : 'border-transparent opacity-60 hover:opacity-100 hover:scale-102'
+                        ? 'border-blue-500 ring-2 ring-blue-500/50 shadow-lg'
+                        : 'border-transparent opacity-60 hover:opacity-100'
                     }`}
                   >
                     <img
                       src={thumbSrc}
                       alt={img.alt}
-                      className="h-full w-full rounded-[6px] object-contain p-0.5"
+                      className="max-h-full max-w-full rounded-[6px] object-contain"
                     />
                   </button>
                 );
