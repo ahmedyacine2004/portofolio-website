@@ -161,11 +161,9 @@ export default function BackendView({ data, skillKey }: BackendViewProps) {
       ? 'nestjs'
       : skillName.toLowerCase().includes('express')
         ? 'expressjs'
-        : skillName.toLowerCase().includes('spring')
-          ? 'spring-boot'
-          : skillName.toLowerCase().includes('node')
-            ? 'nodejs'
-            : skillName.toLowerCase().replace(/[^a-z0-9]/g, ''));
+        : skillName.toLowerCase().includes('node')
+          ? 'nodejs'
+          : skillName.toLowerCase().replace(/[^a-z0-9]/g, ''));
 
   const { t, tArray, tObject, locale } = useTranslation();
 

@@ -433,15 +433,6 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         icon: FileCode2,
         tags: ['Generics', 'Strict Mode', 'Decorators', 'Utility Types'],
       },
-      {
-        key: 'javaSpring',
-        name: 'Java (Spring)',
-        role: 'Enterprise backend & OOP',
-        slug: 'spring-boot',
-        level: 'Proficient',
-        icon: Boxes,
-        tags: ['Spring Boot', 'JPA', 'Maven', 'JVM'],
-      },
     ],
   },
   {
@@ -467,15 +458,6 @@ const TECH_CLUSTERS: TechClusterCategory[] = [
         level: 'Expert',
         icon: Terminal,
         tags: ['Middleware Chain', 'Fast Routing', 'Custom Handlers'],
-      },
-      {
-        key: 'springBoot',
-        name: 'Spring Boot',
-        role: 'Java enterprise service engine',
-        slug: 'spring-boot',
-        level: 'Proficient',
-        icon: Boxes,
-        tags: ['IoC Container', 'REST Controller', 'Spring Security'],
       },
     ],
   },
@@ -970,7 +952,7 @@ export default function BackendSkillsPage() {
     description: skillPageText(
       'backend',
       'explore.description',
-      'Deep dive into dedicated runtime telemetry and architecture details for NestJS, Node.js, Express, JWT, and Spring Boot.',
+      'Deep dive into dedicated runtime telemetry and architecture details for NestJS, Node.js, Express, and JWT.',
     ),
   };
 

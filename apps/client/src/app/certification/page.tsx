@@ -207,7 +207,7 @@ const CERTIFICATIONS: Certification[] = [
         icon: Layers,
       },
     ],
-    relatedProjects: [{ title: 'Enterprise Banking Core API', tech: 'Spring Boot' }],
+    relatedProjects: [],
   },
   {
     id: 'mongodb-dev-assoc',
@@ -368,7 +368,6 @@ export default function CertificationsPage() {
   const PROJECT_MAP: Record<string, string> = {
     'Cloud Deployment Platform': 'cloudPlatform',
     'Serverless API System': 'serverlessApi',
-    'Enterprise Banking Core API': 'enterpriseBanking',
     'Realtime Analytics Platform': 'realtimeAnalytics',
     'E-Commerce Marketplace': 'ecommerce',
     'Automated CI/CD Pipeline': 'cicdPipeline',
@@ -984,27 +983,29 @@ export default function CertificationsPage() {
               </div>
 
               {/* Related Projects */}
-              <div className="space-y-1.5 pt-1 lg:pt-2">
-                <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
-                  {t('certificationsPage.relatedProjects')}
-                </h3>
+              {translatedSelectedCert.relatedProjects.length > 0 && (
+                <div className="space-y-1.5 pt-1 lg:pt-2">
+                  <h3 className="font-inter text-[9px] font-bold uppercase tracking-wider text-[var(--color-text-primary)] lg:text-[10px]">
+                    {t('certificationsPage.relatedProjects')}
+                  </h3>
 
-                <div className="space-y-1">
-                  {translatedSelectedCert.relatedProjects.map((proj) => (
-                    <div
-                      key={proj.title}
-                      className="flex items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-xs shadow-gray-300 dark:shadow-none"
-                    >
-                      <span className="truncate text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
-                        {proj.title}
-                      </span>
-                      <span className="rounded bg-[var(--color-bg-tertiary)] px-1 py-0.2 text-[7px] font-semibold text-[var(--color-text-tertiary)] lg:text-[8px]">
-                        {proj.tech}
-                      </span>
-                    </div>
-                  ))}
+                  <div className="space-y-1">
+                    {translatedSelectedCert.relatedProjects.map((proj) => (
+                      <div
+                        key={proj.title}
+                        className="flex items-center justify-between rounded-[4px] bg-background px-2 py-1 shadow-xs shadow-gray-300 dark:shadow-none"
+                      >
+                        <span className="truncate text-[8.5px] font-semibold text-[var(--color-text-primary)] lg:text-[9.5px]">
+                          {proj.title}
+                        </span>
+                        <span className="rounded bg-[var(--color-bg-tertiary)] px-1 py-0.2 text-[7px] font-semibold text-[var(--color-text-tertiary)] lg:text-[8px]">
+                          {proj.tech}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* View All Projects Button */}
               <Link

@@ -59,7 +59,6 @@ const SKILL_CATEGORIES: SkillCategory[] = [
       { name: 'NestJS', level: 'Expert', icon: Server },
       { name: 'Node.js', level: 'Expert', icon: Cpu },
       { name: 'Express.js', level: 'Advanced', icon: Terminal },
-      { name: 'Spring Boot', level: 'Intermediate', icon: Boxes },
     ],
   },
   {
@@ -109,7 +108,6 @@ function slugify(text: string): string {
     'tailwind css': 'tailwind-css',
     'html & css': 'html-css',
     'express.js': 'expressjs',
-    'spring boot': 'spring-boot',
     'docker & kubernetes': 'docker-kubernetes',
     'after effects': 'after-effects',
     'git hub': 'github',

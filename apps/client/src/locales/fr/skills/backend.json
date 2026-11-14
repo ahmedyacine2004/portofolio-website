@@ -165,11 +165,6 @@
           "name": "TypeScript",
           "role": "Sécurité statique & interfaces",
           "tags": ["Génériques", "Strict Mode", "Décorateurs", "Types utilitaires"]
-        },
-        "javaSpring": {
-          "name": "Java (Spring)",
-          "role": "Backend d'entreprise & POO",
-          "tags": ["Spring Boot", "JPA", "Maven", "JVM"]
         }
       }
     },
@@ -186,11 +181,6 @@
           "name": "Express.js",
           "role": "Moteur de routage & middleware minimaliste",
           "tags": ["Chaîne middleware", "Routage rapide", "Handlers personnalisés"]
-        },
-        "springBoot": {
-          "name": "Spring Boot",
-          "role": "Moteur de services Java d'entreprise",
-          "tags": ["Conteneur IoC", "REST Controller", "Spring Security"]
         }
       }
     },
@@ -407,7 +397,7 @@
   },
   "explore": {
     "title": "Explorer les espaces backend individuels",
-    "description": "Approfondissez la télémétrie runtime dédiée et les détails d'architecture pour NestJS, Node.js, Express, JWT et Spring Boot."
+    "description": "Approfondissez la télémétrie runtime dédiée et les détails d'architecture pour NestJS, Node.js, Express et JWT."
   },
   "metadata": {
     "httpRequestSimulator": "Simulateur de requêtes HTTP",
