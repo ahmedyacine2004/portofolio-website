@@ -70,11 +70,7 @@ export function WebProjectDetailsView({ data }: WebProjectDetailsViewProps) {
   const projectTranslationKey =
     projectKey === 'portfolioWorkspace'
       ? 'projects.portfolioWorkspace'
-      : projectKey === 'taskflowDashboard'
-        ? 'projects.taskflowDashboard'
-        : projectKey === 'shopsphere'
-          ? 'projects.shopsphere'
-          : `projectsDetails.${projectKey}`;
+      : `projectsDetails.${projectKey}`;
   const getProjectText = (key: string, fallback: string) =>
     t(`${projectTranslationKey}.${key}`, fallback);
   const getProjectArray = (key: string, fallback: string[]) => {

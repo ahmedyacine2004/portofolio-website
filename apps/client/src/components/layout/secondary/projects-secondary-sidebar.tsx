@@ -15,6 +15,7 @@ import {
   Image as ImageIcon,
   Layers,
   Layout,
+  Lock,
   LucideIcon,
   Palette,
   Pencil,
@@ -73,52 +74,43 @@ const PROJECT_TYPE_PAGES: Record<string, PageConfig[]> = {
 const FEATURED_ITEM_TYPE_MAP: Record<string, string> = {
   CONSULTIFY: 'web-dev',
   'Portfolio Workspace': 'web-dev',
-  'E-commerce Website': 'web-dev',
-  ShopSphere: 'web-dev',
 };
 
 const CATEGORIES: CategoryItem[] = [
   {
     id: 'featured',
     title: 'Featured Projects',
-    count: 3,
+    count: 2,
     icon: Star,
-    items: ['CONSULTIFY', 'Portfolio Workspace', 'ShopSphere'],
+    items: ['CONSULTIFY', 'Portfolio Workspace'],
   },
   {
     id: 'web-dev',
     title: 'Web Development',
-    count: 4,
+    count: 2,
     icon: Code2,
-    items: ['CONSULTIFY', 'Portfolio Workspace', 'TaskFlow Dashboard', 'ShopSphere'],
+    items: ['CONSULTIFY', 'Portfolio Workspace'],
   },
   {
     id: 'ui-ux',
     title: 'UI/ UX',
-    count: 6,
+    count: 0,
     icon: Pencil,
-    items: [
-      'NeoBank Mobile',
-      'Insight Analytics',
-      'HealthSync',
-      'TravelMate',
-      'LearnHub LMS',
-      'Design System',
-    ],
+    items: [],
   },
   {
     id: 'graphic-design',
     title: 'Graphic Design',
-    count: 3,
+    count: 0,
     icon: Palette,
-    items: ['Apex Brand Kit', 'Social Campaign 2025', 'Event Visual Identity'],
+    items: [],
   },
   {
     id: 'branding',
     title: 'Branding',
-    count: 3,
+    count: 0,
     icon: Tag,
-    items: ['Lumina Studio', 'Nova Coffee', 'GreenLeaf Market'],
+    items: [],
   },
 ];
 
@@ -262,64 +254,92 @@ export function ProjectsSecondarySidebar() {
                     className="overflow-hidden bg-[var(--color-surface)]"
                   >
                     <div className="space-y-0.5 px-1 py-1">
-                      {category.items.map((item) => {
-                        const pages = getPagesForItem(category.id, item);
-                        const categorySlug = getCategorySlug(category.id, item);
-                        const projectSlug = slugify(item);
-
-                        const firstPageSlug = slugify(pages[0].name);
-                        const defaultHref = `/projects/${categorySlug}/${projectSlug}/${firstPageSlug}`;
-                        const isProjectActive = pathname.startsWith(
-                          `/projects/${categorySlug}/${projectSlug}`,
-                        );
-
-                        return (
+                      {category.items.length === 0 ? (
+                        <div className="space-y-1 px-0.5 py-0.5">
                           <div
-                            key={item}
-                            className={`group flex w-full items-center justify-between rounded-[3px] px-1.5 py-1 transition-colors ${
-                              isProjectActive
-                                ? 'bg-[var(--color-brand)] text-white'
-                                : 'hover:bg-[var(--color-brand)] hover:text-white'
-                            }`}
+                            role="group"
+                            aria-label={t('projectsSidebar.waitingForProjects')}
+                            className="relative overflow-hidden rounded-[3px] border border-dashed border-neutral-300 bg-neutral-100/70 p-1.5 dark:border-neutral-700 dark:bg-neutral-900/50"
                           >
-                            <Link
-                              href={defaultHref}
-                              className="truncate text-[8px] font-medium text-[var(--color-text-secondary)] group-hover:font-semibold group-hover:text-white"
+                            <div
+                              aria-hidden="true"
+                              className="flex items-center gap-1 opacity-50 grayscale blur-[1.5px]"
                             >
-                              {item}
-                            </Link>
-
-                            <div className="hidden shrink-0 items-center gap-0.5 group-hover:flex">
-                              {pages.map((page) => {
-                                const PageIcon = page.icon;
-                                const pageSlug = slugify(page.name);
-                                const href = `/projects/${categorySlug}/${projectSlug}/${pageSlug}`;
-                                const isPageActive = pathname === href;
-
-                                // Convert page name to translation key (camelCase)
-                                const pageKey = page.name
-                                  .replace(/\s+/g, '')
-                                  .replace(/^./, (c) => c.toLowerCase());
-
-                                return (
-                                  <Link
-                                    key={page.name}
-                                    href={href}
-                                    title={t(`projectsDetails.pageTypes.${pageKey}`, page.name)}
-                                    className={`flex size-3.5 items-center justify-center rounded-[2px] transition-colors ${
-                                      isPageActive
-                                        ? 'bg-white text-[var(--color-brand-dark)]'
-                                        : 'bg-white/20 hover:bg-white/40 text-white'
-                                    }`}
-                                  >
-                                    <PageIcon className="size-2.5" />
-                                  </Link>
-                                );
-                              })}
+                              <span className="size-4 rounded-[2px] bg-neutral-300 dark:bg-neutral-700" />
+                              <span className="space-y-1">
+                                <span className="block h-1 w-12 rounded bg-neutral-400 dark:bg-neutral-600" />
+                                <span className="block h-1 w-8 rounded bg-neutral-300 dark:bg-neutral-700" />
+                              </span>
                             </div>
+                            <span className="absolute inset-0 flex items-center justify-center gap-1 text-[7px] font-semibold text-neutral-600 dark:text-neutral-300">
+                              <Lock className="size-2.5" />
+                              {t('projectsSidebar.locked')}
+                            </span>
                           </div>
-                        );
-                      })}
+                          <p className="px-0.5 text-[7px] leading-tight text-neutral-500 dark:text-neutral-400">
+                            {t('projectsSidebar.waitingForProjects')}
+                          </p>
+                        </div>
+                      ) : (
+                        category.items.map((item) => {
+                          const pages = getPagesForItem(category.id, item);
+                          const categorySlug = getCategorySlug(category.id, item);
+                          const projectSlug = slugify(item);
+
+                          const firstPageSlug = slugify(pages[0].name);
+                          const defaultHref = `/projects/${categorySlug}/${projectSlug}/${firstPageSlug}`;
+                          const isProjectActive = pathname.startsWith(
+                            `/projects/${categorySlug}/${projectSlug}`,
+                          );
+
+                          return (
+                            <div
+                              key={item}
+                              className={`group flex w-full items-center justify-between rounded-[3px] px-1.5 py-1 transition-colors ${
+                                isProjectActive
+                                  ? 'bg-[var(--color-brand)] text-white'
+                                  : 'hover:bg-[var(--color-brand)] hover:text-white'
+                              }`}
+                            >
+                              <Link
+                                href={defaultHref}
+                                className="truncate text-[8px] font-medium text-[var(--color-text-secondary)] group-hover:font-semibold group-hover:text-white"
+                              >
+                                {item}
+                              </Link>
+
+                              <div className="hidden shrink-0 items-center gap-0.5 group-hover:flex">
+                                {pages.map((page) => {
+                                  const PageIcon = page.icon;
+                                  const pageSlug = slugify(page.name);
+                                  const href = `/projects/${categorySlug}/${projectSlug}/${pageSlug}`;
+                                  const isPageActive = pathname === href;
+
+                                  // Convert page name to translation key (camelCase)
+                                  const pageKey = page.name
+                                    .replace(/\s+/g, '')
+                                    .replace(/^./, (c) => c.toLowerCase());
+
+                                  return (
+                                    <Link
+                                      key={page.name}
+                                      href={href}
+                                      title={t(`projectsDetails.pageTypes.${pageKey}`, page.name)}
+                                      className={`flex size-3.5 items-center justify-center rounded-[2px] transition-colors ${
+                                        isPageActive
+                                          ? 'bg-white text-[var(--color-brand-dark)]'
+                                          : 'bg-white/20 hover:bg-white/40 text-white'
+                                      }`}
+                                    >
+                                      <PageIcon className="size-2.5" />
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })
+                      )}
                     </div>
                   </motion.div>
                 )}
@@ -346,35 +366,6 @@ export function ProjectsSecondarySidebar() {
           <span>{t('projectsSidebar.openCaseStudy')}</span>
           <ExternalLink className="size-2.5 shrink-0 text-[var(--color-brand-dark)]" />
         </Link>
-      </div>
-
-      {/* Version History Card */}
-      <div className="flex flex-col gap-1 rounded-[4px] bg-[var(--color-bg-secondary)] p-2">
-        <h3 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-          {t('projectsSidebar.versionHistory')}
-        </h3>
-
-        <div className="space-y-0.5 text-[8px] font-medium text-[var(--color-text-secondary)]">
-          <div className="flex items-center justify-between py-0.5">
-            <span>v3.2</span>
-            <div className="flex items-center gap-1">
-              <span className="rounded-[2px] bg-[var(--color-success-light)] px-1 py-0.2 text-[7px] font-semibold text-white">
-                {t('projectsSidebar.latest')}
-              </span>
-              <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between py-0.5">
-            <span>v2.5</span>
-            <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />
-          </div>
-
-          <div className="flex items-center justify-between py-0.5">
-            <span>v1.0</span>
-            <ChevronRight className="size-2.5 shrink-0 text-[var(--color-text-disabled)]" />
-          </div>
-        </div>
       </div>
     </aside>
   );

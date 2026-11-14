@@ -55,7 +55,7 @@ export const reactWorkspaceData: FrontendWorkspaceData = {
       'I use React to turn ideas into elegant, scalable and user-focused interfaces. It is the core of most of my frontend work.',
     metrics: [
       { label: 'Experience', value: '3+ years', icon: 'Calendar' },
-      { label: 'Projects', value: '12+', icon: 'Folder' },
+      { label: 'Projects', value: '2', icon: 'Folder' },
       { label: 'Level', value: 'Expert', icon: 'Star' },
       { label: 'Frontend library', value: 'Primary', icon: 'BookOpen' },
     ],
@@ -80,13 +80,6 @@ export const reactWorkspaceData: FrontendWorkspaceData = {
       id: 'portfolio',
       title: 'Portfolio Workspace',
       description: 'Developer portfolio with interactive experience and custom animations.',
-      status: 'Online',
-      badge: 'Production',
-    },
-    {
-      id: 'taskflow',
-      title: 'TaskFlow',
-      description: 'Productivity app for task management with analytics and team collaboration.',
       status: 'Online',
       badge: 'Production',
     },

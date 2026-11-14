@@ -236,22 +236,10 @@
   },
   "projects": {
     "projectWorkspace": "Project Workspace",
+    "description": "A focused collection of two real projects: Consultify and this portfolio.",
     "browseFeatured": "Browse Featured Projects",
     "workspaceStatus": "Workspace Status",
     "projects": "Projects",
-    "completed": "Completed",
-    "active": "Active",
-    "archived": "Archived",
-    "lastUpdate": "Last Update",
-    "todayTime": "Today 09:45 AM",
-    "recentActivity": "Recent Activity",
-    "consultifyUpdated": "CONSULTIFY repository updated",
-    "taskflowDocAdded": "TaskFlow documentation added",
-    "newProjectInit": "New project initialized",
-    "time15mAgo": "15m ago",
-    "time1hAgo": "1h ago",
-    "time3hAgo": "3h ago",
-    "viewAllActivity": "View All activity",
     "featuredProjects": "Featured Projects",
     "viewAllProjects": "View All Projects",
     "viewProject": "View Project",
@@ -259,11 +247,7 @@
     "openFeatured": "Open Featured Project",
     "visitLiveDemo": "Visit Live Demo",
     "browseAllRepos": "Browse All Repositories",
-    "downloadResume": "Download CV",
-    "fullStack": "Full Stack",
-    "enterprise": "Enterprise",
-    "live": "Live",
-    "inProgress": "In progress"
+    "downloadResume": "Download CV"
   },
   "skills": {
     "frontend": "Frontend",
@@ -354,8 +338,17 @@
     "exploreProjects": "Explore Projects"
   },
   "statusBar": {
-    "github": "GitHub",
-    "technologies": "Technologies"
+    "openToOpportunities": "Open to opportunities.",
+    "english": "English",
+    "french": "Français",
+    "light": "Light",
+    "dark": "Dark",
+    "sound": "Sound",
+    "soundOn": "Music On",
+    "soundOff": "Music Off",
+    "highQuality": "High Quality",
+    "performance": "Performance",
+    "available": "Available"
   },
   "header": {
     "commandPalette": "Command Palette (⌘K)",
@@ -424,7 +417,7 @@
     "goToContactDesc": "Get in touch or start a new project",
     "dev": "dev",
     "devDesc": "Run dev workspace initialization sequence",
-    "portfolioHelp": "portfolio help",
+    "portfolioHelp": "Portfolio CLI v3.0 — Available Commands:",
     "portfolioHelpDesc": "Display all available CLI commands & descriptions",
     "projectsCmd": "projects",
     "projectsCmdDesc": "Execute CLI command to index projects",
@@ -469,7 +462,6 @@
     "fullStackEngineer": "Full-Stack Software Engineer (Present)",
     "frontendIntern": "Frontend Engineer Intern",
     "openSourceContributor": "Open Source Contributor",
-    "portfolioHelp": "Portfolio CLI v3.0 — Available Commands:",
     "helpDev": "dev              Start dev environment",
     "helpProjects": "projects         Explore featured projects",
     "helpSkills": "skills           Display full tech stack",
@@ -525,19 +517,6 @@
     "indexedTechStack": "Indexed Tech Stack:",
     "skillsFrontend": "Frontend: React, Next.js, TypeScript, Tailwind CSS, Motion",
     "skillsBackend": "Backend: NestJS, Node.js, Express, REST APIs"
-  },
-  "statusBar": {
-    "openToOpportunities": "Open to opportunities.",
-    "english": "English",
-    "french": "Français",
-    "light": "Light",
-    "dark": "Dark",
-    "sound": "Sound",
-    "soundOn": "Music On",
-    "soundOff": "Music Off",
-    "highQuality": "High Quality",
-    "performance": "Performance",
-    "available": "Available"
   },
   "aiAssistant": {
     "title": "AI Assistant",
@@ -1356,16 +1335,7 @@
       "gallery": "Gallery",
       "techStack": "Tech Stack",
       "demo": "Demo",
-      "repository": "Repository",
-      "overview": "Overview",
-      "userFlow": "User Flow",
-      "wireframes": "Wireframes",
-      "prototype": "Prototype",
-      "visualAssets": "Visual Assets",
-      "brandKit": "Brand Kit",
-      "guidelines": "Guidelines",
-      "colorPalette": "Color Palette",
-      "mockups": "Mockups"
+      "repository": "Repository"
     },
     "webDev": {
       "portfolioWorkspace": {
@@ -1376,116 +1346,10 @@
         "techStack": "Tech Stack",
         "demo": "Demo",
         "repository": "Repository"
-      },
-      "taskflowDashboard": {
-        "name": "TaskFlow Dashboard",
-        "description": "Advanced task management and team collaboration",
-        "projectDetails": "Project Details",
-        "gallery": "Gallery",
-        "techStack": "Tech Stack",
-        "demo": "Demo",
-        "repository": "Repository"
-      },
-      "shopsphere": {
-        "name": "ShopSphere",
-        "description": "E-commerce platform with advanced features",
-        "projectDetails": "Project Details",
-        "gallery": "Gallery",
-        "techStack": "Tech Stack",
-        "demo": "Demo",
-        "repository": "Repository"
-      }
-    },
-    "uiUx": {
-      "insightAnalytics": {
-        "name": "Insight Analytics",
-        "description": "Data analytics dashboard design",
-        "overview": "Overview",
-        "userFlow": "User Flow",
-        "wireframes": "Wireframes",
-        "prototype": "Prototype"
-      },
-      "healthsync": {
-        "name": "HealthSync",
-        "description": "Healthcare app UI/UX design",
-        "overview": "Overview",
-        "userFlow": "User Flow",
-        "wireframes": "Wireframes",
-        "prototype": "Prototype"
-      },
-      "travelmate": {
-        "name": "TravelMate",
-        "description": "Travel companion app interface design",
-        "overview": "Overview",
-        "userFlow": "User Flow",
-        "wireframes": "Wireframes",
-        "prototype": "Prototype"
-      },
-      "learnhubLms": {
-        "name": "LearnHub LMS",
-        "description": "Learning management system design",
-        "overview": "Overview",
-        "userFlow": "User Flow",
-        "wireframes": "Wireframes",
-        "prototype": "Prototype"
-      },
-      "designSystem": {
-        "name": "Design System",
-        "description": "Comprehensive design system and component library",
-        "overview": "Overview",
-        "userFlow": "User Flow",
-        "wireframes": "Wireframes",
-        "prototype": "Prototype"
-      }
-    },
-    "graphicDesign": {
-      "socialCampaign2025": {
-        "name": "Social Campaign 2025",
-        "description": "Multi-platform social media visual campaign",
-        "overview": "Overview",
-        "visualAssets": "Visual Assets",
-        "brandKit": "Brand Kit"
-      },
-      "eventVisualIdentity": {
-        "name": "Event Visual Identity",
-        "description": "Complete event branding and visual identity",
-        "overview": "Overview",
-        "visualAssets": "Visual Assets",
-        "brandKit": "Brand Kit"
-      }
-    },
-    "branding": {
-      "novaCoffee": {
-        "name": "Nova Coffee",
-        "description": "Modern coffee brand rebrand",
-        "overview": "Overview",
-        "guidelines": "Guidelines",
-        "colorPalette": "Color Palette",
-        "mockups": "Mockups"
-      },
-      "greenleafMarket": {
-        "name": "GreenLeaf Market",
-        "description": "Organic market brand identity",
-        "overview": "Overview",
-        "guidelines": "Guidelines",
-        "colorPalette": "Color Palette",
-        "mockups": "Mockups"
       }
     },
     "commonLabels": {
-      "viewProject": "View Project",
-      "downloadPDF": "Download PDF",
-      "visitLive": "Visit Live Demo",
       "viewRepository": "View Repository",
-      "caseStudy": "Case Study",
-      "briefing": "Briefing",
-      "challenge": "Challenge",
-      "solution": "Solution",
-      "results": "Results",
-      "designProcess": "Design Process",
-      "keyFeatures": "Key Features",
-      "technologies": "Technologies",
-      "timeline": "Timeline",
       "projectIdentity": "Project Identity",
       "visitLiveDemo": "Visit Live Demo",
       "coreObjective": "Core Objective",
@@ -1493,16 +1357,7 @@
       "currentPhase": "Current Phase",
       "systemModules": "System Modules",
       "architectureSnapshot": "Architecture Snapshot",
-      "engineeringHighlights": "Engineering Highlights",
-      "overview": "Overview",
-      "userFlow": "User Flow",
-      "wireframes": "Wireframes",
-      "prototype": "Prototype",
-      "visualAssets": "Visual Assets",
-      "brandKit": "Brand Kit",
-      "guidelines": "Guidelines",
-      "colorPalette": "Color Palette",
-      "mockups": "Mockups"
+      "engineeringHighlights": "Engineering Highlights"
     },
     "projectPages": "Project pages",
     "consultify": {
@@ -1538,11 +1393,26 @@
         }
       },
       "architecture": {
-        "client": { "title": "Client", "subtitle": "Web / Mobile" },
-        "api-gateway": { "title": "API Gateway", "subtitle": "Nginx / Express" },
-        "services": { "title": "Services", "subtitle": "Microservices" },
-        "database": { "title": "Database", "subtitle": "MongoDB" },
-        "storage": { "title": "Storage", "subtitle": "Cloud Storage" }
+        "client": {
+          "title": "Client",
+          "subtitle": "Web / Mobile"
+        },
+        "api-gateway": {
+          "title": "API Gateway",
+          "subtitle": "Nginx / Express"
+        },
+        "services": {
+          "title": "Services",
+          "subtitle": "Microservices"
+        },
+        "database": {
+          "title": "Database",
+          "subtitle": "MongoDB"
+        },
+        "storage": {
+          "title": "Storage",
+          "subtitle": "Cloud Storage"
+        }
       },
       "engineeringHighlights": [
         "Modular Architecture",
@@ -1610,10 +1480,18 @@
         "runtimeServices": "Runtime Services",
         "buildStatus": "Build status",
         "environment": {
-          "frontend-env": { "title": "Frontend" },
-          "data-env": { "title": "Data Layer" },
-          "backend-env": { "title": "Backend" },
-          "ui-env": { "title": "UI/UX" }
+          "frontend-env": {
+            "title": "Frontend"
+          },
+          "data-env": {
+            "title": "Data Layer"
+          },
+          "backend-env": {
+            "title": "Backend"
+          },
+          "ui-env": {
+            "title": "UI/UX"
+          }
         },
         "statuses": {
           "Running": "Running",
@@ -1624,22 +1502,50 @@
           "Production": "Production"
         },
         "core": {
-          "react": { "role": "Frontend Framework", "tag": "Primary" },
-          "typescript": { "role": "Type Safety", "tag": "Core" },
-          "nestjs": { "role": "Backend Framework", "tag": "Core" },
-          "mongodb": { "role": "Primary Database", "tag": "Connected" }
+          "react": {
+            "role": "Frontend Framework",
+            "tag": "Primary"
+          },
+          "typescript": {
+            "role": "Type Safety",
+            "tag": "Core"
+          },
+          "nestjs": {
+            "role": "Backend Framework",
+            "tag": "Core"
+          },
+          "mongodb": {
+            "role": "Primary Database",
+            "tag": "Connected"
+          }
         },
         "runtime": {
-          "openai": { "name": "OpenAI API" },
-          "cloudinary": { "name": "Cloudinary" },
-          "stripe": { "name": "Stripe" },
-          "resend": { "name": "Resend Email" }
+          "openai": {
+            "name": "OpenAI API"
+          },
+          "cloudinary": {
+            "name": "Cloudinary"
+          },
+          "stripe": {
+            "name": "Stripe"
+          },
+          "resend": {
+            "name": "Resend Email"
+          }
         },
         "build": {
-          "build-fe": { "layer": "Frontend Layer" },
-          "build-be": { "layer": "Backend Layer" },
-          "build-db": { "layer": "Database Layer" },
-          "build-deploy": { "layer": "Deployment" }
+          "build-fe": {
+            "layer": "Frontend Layer"
+          },
+          "build-be": {
+            "layer": "Backend Layer"
+          },
+          "build-db": {
+            "layer": "Database Layer"
+          },
+          "build-deploy": {
+            "layer": "Deployment"
+          }
         }
       },
       "demo": {
@@ -1783,10 +1689,22 @@
           }
         },
         "architecture": {
-          "frontend": { "title": "Frontend", "subtitle": "Next.js / React" },
-          "backend": { "title": "Backend", "subtitle": "Node.js / Express" },
-          "database": { "title": "Database", "subtitle": "MongoDB" },
-          "storage": { "title": "Storage", "subtitle": "Cloud Storage" }
+          "frontend": {
+            "title": "Frontend",
+            "subtitle": "Next.js / React"
+          },
+          "backend": {
+            "title": "Backend",
+            "subtitle": "Node.js / Express"
+          },
+          "database": {
+            "title": "Database",
+            "subtitle": "MongoDB"
+          },
+          "storage": {
+            "title": "Storage",
+            "subtitle": "Cloud Storage"
+          }
         },
         "engineeringHighlights": [
           "SSR & Static Generation",
@@ -1869,10 +1787,18 @@
           "runtimeServices": "Runtime Services",
           "buildStatus": "Build Status",
           "environment": {
-            "frontend-runtime": { "title": "Frontend" },
-            "backend-runtime": { "title": "Backend" },
-            "data-layer": { "title": "Data Layer" },
-            "interactive-ui": { "title": "Interactive UI" }
+            "frontend-runtime": {
+              "title": "Frontend"
+            },
+            "backend-runtime": {
+              "title": "Backend"
+            },
+            "data-layer": {
+              "title": "Data Layer"
+            },
+            "interactive-ui": {
+              "title": "Interactive UI"
+            }
           },
           "statuses": {
             "Running": "Running",
@@ -1882,23 +1808,55 @@
             "Passing": "Passing"
           },
           "core": {
-            "nextjs": { "role": "App Router frontend", "tag": "v16.3" },
-            "react": { "role": "UI component runtime", "tag": "v19.2" },
-            "nestjs": { "role": "Backend application framework", "tag": "v11" },
-            "typescript": { "role": "Strict type system", "tag": "v5" },
-            "tailwind": { "role": "Utility-first styling", "tag": "v4" },
-            "mongodb": { "role": "Document database", "tag": "Connected" }
+            "nextjs": {
+              "role": "App Router frontend",
+              "tag": "v16.3"
+            },
+            "react": {
+              "role": "UI component runtime",
+              "tag": "v19.2"
+            },
+            "nestjs": {
+              "role": "Backend application framework",
+              "tag": "v11"
+            },
+            "typescript": {
+              "role": "Strict type system",
+              "tag": "v5"
+            },
+            "tailwind": {
+              "role": "Utility-first styling",
+              "tag": "v4"
+            },
+            "mongodb": {
+              "role": "Document database",
+              "tag": "Connected"
+            }
           },
           "runtime": {
-            "react-query": { "name": "TanStack Query" },
-            "zustand": { "name": "Zustand" },
-            "three": { "name": "Three.js / R3F" },
-            "rest-api": { "name": "NestJS REST API" }
+            "react-query": {
+              "name": "TanStack Query"
+            },
+            "zustand": {
+              "name": "Zustand"
+            },
+            "three": {
+              "name": "Three.js / R3F"
+            },
+            "rest-api": {
+              "name": "NestJS REST API"
+            }
           },
           "build": {
-            "client-build": { "layer": "Next.js Client" },
-            "server-build": { "layer": "NestJS Server" },
-            "database-connection": { "layer": "MongoDB Connection" }
+            "client-build": {
+              "layer": "Next.js Client"
+            },
+            "server-build": {
+              "layer": "NestJS Server"
+            },
+            "database-connection": {
+              "layer": "MongoDB Connection"
+            }
           }
         },
         "demo": {
@@ -1945,8 +1903,9 @@
     "projectOverview": "Project Overview",
     "overviewInsights": "Select a project to inspect its details",
     "openCaseStudy": "Open Case Study",
-    "versionHistory": "Version History",
-    "latest": "Latest"
+    "locked": "Locked",
+    "waitingForProjects": "Waiting for projects",
+    "lockedCategories": "Locked categories"
   },
   "skillsSidebar": {
     "toolkitTitle": "Developer Toolkit",
@@ -2169,9 +2128,18 @@
     "unavailableMessage": "The assistant is temporarily unavailable. Please try again in a moment.",
     "noAnswerMessage": "I could not generate an answer right now.",
     "suggestions": {
-      "summarize": { "title": "Summarize", "subtitle": "His experience" },
-      "tellMe": { "title": "Tell me about", "subtitle": "His projects" },
-      "generate": { "title": "Generate", "subtitle": "Cover letter" }
+      "summarize": {
+        "title": "Summarize",
+        "subtitle": "His experience"
+      },
+      "tellMe": {
+        "title": "Tell me about",
+        "subtitle": "His projects"
+      },
+      "generate": {
+        "title": "Generate",
+        "subtitle": "Cover letter"
+      }
     },
     "capabilities": {
       "portfolioQA": {
@@ -2186,8 +2154,14 @@
         "title": "Skills Analyzer",
         "description": "Analyze and showcase his stack"
       },
-      "resumeReviewer": { "title": "Resume Reviewer", "description": "Get feedback on his resume" },
-      "careerGuidance": { "title": "Career Guidance", "description": "Personalized career advice" }
+      "resumeReviewer": {
+        "title": "Resume Reviewer",
+        "description": "Get feedback on his resume"
+      },
+      "careerGuidance": {
+        "title": "Career Guidance",
+        "description": "Personalized career advice"
+      }
     },
     "quickActionsList": {
       "summarizeBackground": "Summarize His Background",
@@ -2229,7 +2203,10 @@
     "categories": {
       "appearance": {
         "title": "APPEARANCE",
-        "theme": { "title": "Theme", "description": "Choose overall theme of the workspace" },
+        "theme": {
+          "title": "Theme",
+          "description": "Choose overall theme of the workspace"
+        },
         "accent": {
           "title": "Color Accents",
           "description": "Primary accent color used across the portfolio"
@@ -2238,7 +2215,10 @@
           "title": "Animations",
           "description": "Enable smooth transitions and micro-interactions"
         },
-        "font": { "title": "Font Family", "description": "Select primary typography" },
+        "font": {
+          "title": "Font Family",
+          "description": "Select primary typography"
+        },
         "compact": {
           "title": "Compact Mode",
           "description": "Reduce spacing for a more dense grid view"

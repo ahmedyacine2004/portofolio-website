@@ -43,11 +43,7 @@ export function WebProjectGalleryView({ data, onToggleFullscreen }: WebProjectGa
   const projectTranslationKey =
     projectKey === 'portfolioWorkspace'
       ? 'projects.portfolioWorkspace'
-      : projectKey === 'taskflowDashboard'
-        ? 'projects.taskflowDashboard'
-        : projectKey === 'shopsphere'
-          ? 'projects.shopsphere'
-          : `projectsDetails.${projectKey}`;
+      : `projectsDetails.${projectKey}`;
   const getGalleryText = (key: string, fallback: string) =>
     t(`${projectTranslationKey}.gallery.${key}`, fallback);
 

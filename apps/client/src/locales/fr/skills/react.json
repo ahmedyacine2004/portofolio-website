@@ -13,7 +13,7 @@
     "description": "J'utilise React pour transformer des idées en interfaces élégantes, évolutives et centrées sur l'utilisateur. C'est le cœur de la plupart de mes réalisations frontend.",
     "metrics": [
       { "label": "Expérience", "value": "3+ ans" },
-      { "label": "Projets", "value": "12+" },
+      { "label": "Projets", "value": "2" },
       { "label": "Niveau", "value": "Expert" },
       { "label": "Bibliothèque frontend", "value": "Principale" }
     ]
@@ -82,13 +82,6 @@
         "id": "portfolio",
         "title": "Espace Portfolio",
         "description": "Portfolio de développeur avec expérience interactive et animations sur mesure.",
-        "status": "En ligne",
-        "badge": "Production"
-      },
-      {
-        "id": "taskflow",
-        "title": "TaskFlow",
-        "description": "Application de productivité pour la gestion de tâches avec analyses et collaboration d'équipe.",
         "status": "En ligne",
         "badge": "Production"
       }

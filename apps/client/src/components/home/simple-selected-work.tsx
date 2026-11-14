@@ -5,33 +5,8 @@ import { ArrowLeftRight, ArrowUpRight } from 'lucide-react';
 import { DetailsDialog } from '@/components/home/simple-portfolio-motion';
 import { CONSULTIFY_DETAILS, type WebProjectDetails } from '@/data/projects/consultify';
 import { PORTFOLIO_WORKSPACE_DETAILS } from '@/data/projects/portfolio-workspace';
-import { SHOPSPHERE_DETAILS } from '@/data/projects/shopsphere';
-import { TASKFLOW_DASHBOARD_DETAILS } from '@/data/projects/taskflow-dashboard';
-import { DESIGN_SYSTEM_OVERVIEW_DATA } from '@/data/projects/design-system';
-import { HEALTHSYNC_OVERVIEW_DATA } from '@/data/projects/healthsync';
-import {
-  INSIGHT_ANALYTICS_OVERVIEW_DATA,
-  type UIUXProjectOverviewData,
-} from '@/data/projects/insight-analytics';
-import { LEARNHUB_LMS_OVERVIEW_DATA } from '@/data/projects/learnhub-lms';
-import { NEOBANK_MOBILE_OVERVIEW_DATA } from '@/data/projects/neobank-mobile';
-import { TRAVELMATE_OVERVIEW_DATA } from '@/data/projects/travelmate';
-import {
-  APEX_BRAND_KIT_OVERVIEW_DATA,
-  type GraphicDesignOverviewData,
-} from '@/data/projects/apex-brand-kit';
-import { EVENT_VISUAL_IDENTITY_OVERVIEW_DATA } from '@/data/projects/event-visual-identity';
-import { SOCIAL_CAMPAIGN_2025_OVERVIEW_DATA } from '@/data/projects/social-campaign-2025';
-import {
-  GREENLEAF_MARKET_OVERVIEW_DATA,
-  type BrandingOverviewData,
-} from '@/data/projects/greenleaf-market';
-import { LUMINA_STUDIO_OVERVIEW_DATA } from '@/data/projects/lumina-studio';
-import { NOVA_COFFEE_OVERVIEW_DATA } from '@/data/projects/nova-coffee';
 import consultifyImage from '@/assets/images/projects/consultify/consultify.png';
 import portfolioImage from '@/assets/images/projects/portfolio-workspace/portfolio-gallery/1.png';
-import shopsphereImage from '@/assets/images/projects/shopsphere/storefront.jpg';
-import taskflowImage from '@/assets/images/projects/taskflow/dashboard.jpg';
 
 interface ProjectSection {
   title: string;
@@ -88,112 +63,6 @@ function createWebProject(
   };
 }
 
-function createUiUxProject(
-  details: UIUXProjectOverviewData,
-  workspaceHref: string,
-): SelectedProject {
-  return {
-    title: details.projectName,
-    type: 'UI/UX Design',
-    tagline: details.tagline,
-    objective: details.solutionStatement,
-    image: details.heroImageUrl,
-    workspaceHref,
-    facts: details.metadata,
-    sections: [
-      { title: 'The challenge', description: details.problemStatement },
-      {
-        title: 'Experience highlights',
-        items: details.keyFeatures.map((feature) => `${feature.title} — ${feature.description}`),
-      },
-      {
-        title: 'Design process',
-        items: details.designProcess.map(
-          (step) => `${step.step} · ${step.title} — ${step.description}`,
-        ),
-      },
-      {
-        title: 'Outcome signals',
-        items: details.metrics.map((metric) => {
-          const change = metric.change ? ` (${metric.change})` : '';
-          return `${metric.label}: ${metric.value}${change} — ${metric.description}`;
-        }),
-      },
-      { title: 'Tools', items: details.tools },
-    ],
-  };
-}
-
-function createGraphicDesignProject(
-  details: GraphicDesignOverviewData,
-  workspaceHref: string,
-): SelectedProject {
-  return {
-    title: details.projectName,
-    type: 'Graphic Design',
-    tagline: details.summary,
-    objective: details.solution,
-    workspaceHref,
-    facts: [
-      { label: 'Client', value: details.client },
-      { label: 'Role', value: details.role },
-      { label: 'Year', value: details.year },
-    ],
-    sections: [
-      { title: 'The challenge', description: details.challenge },
-      {
-        title: 'Creative direction',
-        items: details.pillars.map((pillar) => `${pillar.title} — ${pillar.description}`),
-      },
-      {
-        title: 'Deliverables',
-        items: details.deliverables,
-      },
-      {
-        title: 'Project signals',
-        items: details.metrics.map(
-          (metric) => `${metric.label}: ${metric.value} (${metric.change})`,
-        ),
-      },
-      { title: 'Tools', items: details.tools },
-    ],
-  };
-}
-
-function createBrandingProject(
-  details: BrandingOverviewData,
-  workspaceHref: string,
-): SelectedProject {
-  return {
-    title: details.projectName,
-    type: 'Branding',
-    tagline: details.tagline,
-    objective: details.executiveSummary.outcome,
-    workspaceHref,
-    facts: [
-      { label: 'Client', value: details.client },
-      { label: 'Industry', value: details.industry },
-      { label: 'Year', value: details.year },
-      { label: 'Duration', value: details.duration },
-      { label: 'Status', value: details.status },
-    ],
-    sections: [
-      { title: 'The challenge', description: details.executiveSummary.challenge },
-      { title: 'Brand strategy', description: details.executiveSummary.strategy },
-      {
-        title: 'Brand pillars',
-        items: details.brandPillars.map((pillar) => `${pillar.title} — ${pillar.description}`),
-      },
-      {
-        title: 'Deliverables',
-        items: details.deliverables.flatMap((group) =>
-          group.items.map((item) => `${group.category}: ${item}`),
-        ),
-      },
-    ],
-  };
-}
-
 const projects: SelectedProject[] = [
   createWebProject(
     CONSULTIFY_DETAILS,
@@ -207,42 +76,6 @@ const projects: SelectedProject[] = [
     portfolioImage,
     '/projects/web-dev/portfolio-workspace/project-details',
   ),
-  createWebProject(
-    TASKFLOW_DASHBOARD_DETAILS,
-    'Web Development',
-    taskflowImage,
-    '/projects/web-dev/taskflow-dashboard/project-details',
-  ),
-  createWebProject(
-    SHOPSPHERE_DETAILS,
-    'Web Development',
-    shopsphereImage,
-    '/projects/web-dev/shopsphere/project-details',
-  ),
-  createUiUxProject(NEOBANK_MOBILE_OVERVIEW_DATA, '/projects/ui-ux/neobank-mobile/overview'),
-  createUiUxProject(INSIGHT_ANALYTICS_OVERVIEW_DATA, '/projects/ui-ux/insight-analytics/overview'),
-  createUiUxProject(HEALTHSYNC_OVERVIEW_DATA, '/projects/ui-ux/healthsync/overview'),
-  createUiUxProject(TRAVELMATE_OVERVIEW_DATA, '/projects/ui-ux/travelmate/overview'),
-  createUiUxProject(LEARNHUB_LMS_OVERVIEW_DATA, '/projects/ui-ux/learnhub-lms/overview'),
-  createUiUxProject(DESIGN_SYSTEM_OVERVIEW_DATA, '/projects/ui-ux/design-system/overview'),
-  createGraphicDesignProject(
-    APEX_BRAND_KIT_OVERVIEW_DATA,
-    '/projects/graphic-design/apex-brand-kit/overview',
-  ),
-  createGraphicDesignProject(
-    SOCIAL_CAMPAIGN_2025_OVERVIEW_DATA,
-    '/projects/graphic-design/social-campaign-2025/overview',
-  ),
-  createGraphicDesignProject(
-    EVENT_VISUAL_IDENTITY_OVERVIEW_DATA,
-    '/projects/graphic-design/event-visual-identity/overview',
-  ),
-  createBrandingProject(LUMINA_STUDIO_OVERVIEW_DATA, '/projects/branding/lumina-studio/overview'),
-  createBrandingProject(NOVA_COFFEE_OVERVIEW_DATA, '/projects/branding/nova-coffee/overview'),
-  createBrandingProject(
-    GREENLEAF_MARKET_OVERVIEW_DATA,
-    '/projects/branding/greenleaf-market/overview',
-  ),
 ];
 
 export function SimpleSelectedWork() {
@@ -255,7 +88,7 @@ export function SimpleSelectedWork() {
         <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-              Projects across development, product design, and visual identity
+              Selected web development projects
             </p>
             <h2 className="font-beni text-4xl uppercase leading-none sm:text-5xl">Selected work</h2>
           </div>

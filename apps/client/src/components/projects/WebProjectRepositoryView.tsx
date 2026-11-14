@@ -49,11 +49,7 @@ export function WebProjectRepositoryView({ data }: WebProjectRepositoryViewProps
   const projectTranslationKey =
     projectKey === 'portfolioWorkspace'
       ? 'projects.portfolioWorkspace'
-      : projectKey === 'taskflowDashboard'
-        ? 'projects.taskflowDashboard'
-        : projectKey === 'shopsphere'
-          ? 'projects.shopsphere'
-          : 'projectsDetails.consultify';
+      : `projectsDetails.${projectKey}`;
   const getRepositoryText = (key: string, fallback: string) =>
     t(`${projectTranslationKey}.repository.${key}`, fallback);
 

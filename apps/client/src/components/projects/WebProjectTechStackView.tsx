@@ -57,11 +57,7 @@ export function WebProjectTechStackView({ data }: WebProjectTechStackViewProps) 
   const projectTranslationKey =
     projectKey === 'portfolioWorkspace'
       ? 'projects.portfolioWorkspace'
-      : projectKey === 'taskflowDashboard'
-        ? 'projects.taskflowDashboard'
-        : projectKey === 'shopsphere'
-          ? 'projects.shopsphere'
-          : `projectsDetails.${projectKey}`;
+      : `projectsDetails.${projectKey}`;
   const getTechText = (key: string, fallback: string) =>
     t(`${projectTranslationKey}.techStack.${key}`, fallback);
 

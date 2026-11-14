@@ -5,17 +5,14 @@ import { useDownload } from '@/hooks/use-download';
 import { useTranslation } from '@/hooks/use-translation';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  Archive,
   ArrowUpRight,
-  CheckCircle2,
-  Clock,
   Code2,
   Download,
   ExternalLink,
   Folder,
   FolderTree,
   Layers,
-  LayoutTemplate,
+  Lock,
   MoreVertical,
   Terminal,
   TrendingUp,
@@ -32,42 +29,25 @@ export default function ProjectsPage() {
   const { download } = useDownload();
   const [isProjectsSidebarOpen, setIsProjectsSidebarOpen] = useState(false);
   const [isStatusMenuOpen, setIsStatusMenuOpen] = useState(false);
-  const [isActivityModalOpen, setIsActivityModalOpen] = useState(false);
   const [isFeaturedModalOpen, setIsFeaturedModalOpen] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState(t('projects.todayTime'));
 
   const projectStats = {
-    total: 12,
-    completed: 10,
-    active: 2,
-    archived: 1,
+    total: 2,
+    lockedCategories: 3,
   };
-
-  const activityItems = [
-    { label: t('projects.consultifyUpdated'), time: t('projects.time15mAgo'), color: 'purple' },
-    { label: t('projects.consultifyUpdated'), time: t('projects.time15mAgo'), color: 'green' },
-    { label: t('projects.taskflowDocAdded'), time: t('projects.time1hAgo'), color: 'warning' },
-    { label: t('projects.newProjectInit'), time: t('projects.time3hAgo'), color: 'brand' },
-  ];
 
   const featuredProjects = [
     {
       name: 'CONSULTIFY',
-      subtitle: `${t('projects.fullStack')} / ${t('projects.enterprise')}`,
+      subtitle: t('projectsDetails.categories.web-dev'),
       link: '/projects/web-dev/consultify/project-details',
       icon: Layers,
     },
     {
       name: 'Portfolio Workspace',
-      subtitle: 'React / Next.js / Live',
+      subtitle: t('projectsDetails.categories.web-dev'),
       link: '/projects/web-dev/portfolio-workspace/project-details',
       icon: Code2,
-    },
-    {
-      name: 'ShopSphere',
-      subtitle: 'MERN STACK / In progress',
-      link: '/projects/web-dev/shopsphere/project-details',
-      icon: LayoutTemplate,
     },
   ];
 
@@ -196,19 +176,6 @@ export default function ProjectsPage() {
               </button>
               {isStatusMenuOpen && (
                 <div className="absolute right-0 top-full z-20 mt-1 min-w-[160px] rounded-[4px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1 shadow-[var(--shadow-sm)]">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setLastUpdated(
-                        new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                      );
-                      setIsStatusMenuOpen(false);
-                    }}
-                    className="flex w-full items-center gap-1 rounded-[3px] px-2 py-1 text-[8px] font-semibold text-[var(--color-text-secondary)] transition hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
-                  >
-                    <Clock className="size-2.5" />
-                    Refresh status
-                  </button>
                   <Link
                     href="/projects"
                     onClick={() => setIsStatusMenuOpen(false)}
@@ -232,82 +199,15 @@ export default function ProjectsPage() {
                 {projectStats.total}
               </span>
             </div>
-            <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
-              <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
-                <CheckCircle2 className="size-2.5 text-[var(--color-purple)]" />
-                <span>{t('projects.completed')}</span>
-              </div>
-              <span className="font-bold text-[var(--color-text-primary)]">
-                {projectStats.completed}
-              </span>
-            </div>
-            <div className="flex items-center justify-between border-b border-[var(--color-border-light)] py-1">
-              <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
-                <Clock className="size-2.5 text-[var(--color-purple)]" />
-                <span>{t('projects.active')}</span>
-              </div>
-              <span className="font-bold text-[var(--color-text-primary)]">
-                {String(projectStats.active).padStart(2, '0')}
-              </span>
-            </div>
             <div className="flex items-center justify-between py-1">
               <div className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
-                <Archive className="size-2.5 text-[var(--color-purple)]" />
-                <span>{t('projects.archived')}</span>
+                <Lock className="size-2.5 text-[var(--color-purple)]" />
+                <span>{t('projectsSidebar.lockedCategories')}</span>
               </div>
               <span className="font-bold text-[var(--color-text-primary)]">
-                {String(projectStats.archived).padStart(2, '0')}
+                {projectStats.lockedCategories}
               </span>
             </div>
-          </div>
-
-          <div className="mt-1 flex items-center gap-1 text-[7px] font-semibold text-[var(--color-text-tertiary)] border-t border-[var(--color-border-light)] pt-1">
-            <span className="text-[var(--color-text-primary)]">{t('projects.lastUpdate')}</span>
-            <span className="size-1 rounded-full bg-[var(--color-success)]"></span>
-            <span>{lastUpdated}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Recent Activity Section */}
-      <div className="flex flex-col gap-2 md:gap-2.5 lg:gap-1">
-        <h3 className="font-inter text-[10px] font-bold text-[var(--color-text-primary)]">
-          {t('projects.recentActivity')}
-        </h3>
-        <div className="rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-2 shadow-[var(--shadow-sm)]">
-          <ul className="space-y-1">
-            {activityItems.slice(0, 4).map((item, index) => (
-              <li
-                key={index}
-                className="flex items-center justify-between text-[8px] font-medium text-[var(--color-text-secondary)]"
-              >
-                <div className="flex items-center gap-1.5">
-                  <span
-                    className={`size-1 rounded-full ${
-                      item.color === 'purple'
-                        ? 'bg-[var(--color-purple)]'
-                        : item.color === 'green'
-                          ? 'bg-[var(--color-success)]'
-                          : item.color === 'warning'
-                            ? 'bg-[var(--color-warning)]'
-                            : 'bg-[var(--color-brand)]'
-                    }`}
-                  ></span>
-                  <span>{item.label}</span>
-                </div>
-                <span className="text-[var(--color-text-tertiary)]">{item.time}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-1 flex justify-end">
-            <button
-              type="button"
-              onClick={() => setIsActivityModalOpen(true)}
-              className="flex items-center gap-0.5 text-[7px] font-semibold text-[var(--color-brand)] hover:opacity-80"
-            >
-              {t('projects.viewAllActivity')}
-              <ArrowUpRight className="size-2" />
-            </button>
           </div>
         </div>
       </div>
@@ -329,164 +229,38 @@ export default function ProjectsPage() {
         </div>
 
         <div className="flex flex-col gap-2 md:gap-2.5 lg:gap-1.5">
-          {/* Project Card 1 */}
-          <div className="flex items-center justify-between rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1.5 pr-2 shadow-[var(--shadow-sm)] transition-colors hover:bg-[var(--color-bg-secondary)]">
-            <div className="flex items-center gap-2">
-              <div className="flex size-7 items-center justify-center rounded-[4px] bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-light)]">
-                <Layers className="size-3.5" />
-              </div>
-              <div>
-                <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-                  CONSULTIFY
-                </h4>
-                <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
-                  <span>{t('projects.fullStack')}</span>
-                  <span className="rounded-[2px] bg-[var(--color-purple)]/10 px-1 py-0.5 font-semibold text-[var(--color-purple)]">
-                    {t('projects.enterprise')}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <Link
-              href="/projects/web-dev/consultify/project-details"
-              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
-            >
-              {t('projects.viewProject')}
-              <ExternalLink className="size-2" />
-            </Link>
-          </div>
-
-          {/* Project Card 2 */}
-          <div className="flex items-center justify-between rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1.5 pr-2 shadow-[var(--shadow-sm)] transition-colors hover:bg-[var(--color-bg-secondary)]">
-            <div className="flex items-center gap-2">
-              <div className="flex size-7 items-center justify-center rounded-[4px] bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-light)]">
-                <Code2 className="size-3.5" />
-              </div>
-              <div>
-                <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-                  Portfolio Workspace
-                </h4>
-                <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
-                  <span>React / Next.js</span>
-                  <span className="rounded-[2px] bg-[var(--color-brand)]/10 px-1 py-0.5 font-semibold text-[var(--color-brand)]">
-                    {t('projects.live')}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <Link
-              href="/projects/web-dev/portfolio-workspace/project-details"
-              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
-            >
-              {t('projects.viewProject')}
-              <ExternalLink className="size-2" />
-            </Link>
-          </div>
-
-          {/* Project Card 3 */}
-          <div className="flex items-center justify-between rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1.5 pr-2 shadow-[var(--shadow-sm)] transition-colors hover:bg-[var(--color-bg-secondary)]">
-            <div className="flex items-center gap-2">
-              <div className="flex size-7 items-center justify-center rounded-[4px] bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border-light)]">
-                <LayoutTemplate className="size-3.5" />
-              </div>
-              <div>
-                <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
-                  ShopSphere
-                </h4>
-                <div className="mt-0.5 flex items-center gap-1 text-[7px] font-medium text-[var(--color-text-secondary)]">
-                  <span>MERN STACK</span>
-                  <span className="rounded-[2px] bg-[var(--color-warning)]/10 px-1 py-0.5 font-semibold text-[var(--color-warning)]">
-                    {t('projects.inProgress')}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <Link
-              href="/projects/web-dev/shopsphere/project-details"
-              className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
-            >
-              {t('projects.viewProject')}
-              <ExternalLink className="size-2" />
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {isActivityModalOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-[2px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsActivityModalOpen(false)}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              className="w-full max-w-[560px] rounded-[8px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-4 shadow-[var(--shadow-sm)]"
-              initial={{ scale: 0.96, opacity: 0, y: 8 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.96, opacity: 0, y: 8 }}
-              transition={{ duration: 0.2 }}
-              onClick={(event) => event.stopPropagation()}
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <div>
-                  <h3 className="font-inter text-[12px] font-bold uppercase text-[var(--color-text-primary)]">
-                    {t('projects.recentActivity')}
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  aria-label="Close activity modal"
-                  onClick={() => setIsActivityModalOpen(false)}
-                  className="flex size-7 items-center justify-center rounded-full text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-secondary)] hover:text-[var(--color-text-primary)]"
-                >
-                  <X className="size-3.5" />
-                </button>
-              </div>
-              <div className="space-y-2">
-                {activityItems.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between rounded-[4px] border border-[var(--color-border-light)] px-3 py-2"
-                  >
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`size-1.5 rounded-full ${
-                          item.color === 'purple'
-                            ? 'bg-[var(--color-purple)]'
-                            : item.color === 'green'
-                              ? 'bg-[var(--color-success)]'
-                              : item.color === 'warning'
-                                ? 'bg-[var(--color-warning)]'
-                                : 'bg-[var(--color-brand)]'
-                        }`}
-                      ></span>
-                      <span className="text-[8px] font-semibold text-[var(--color-text-secondary)]">
-                        {item.label}
-                      </span>
-                    </div>
-                    <span className="text-[7px] font-semibold text-[var(--color-text-tertiary)]">
-                      {item.time}
+          {featuredProjects.map((project) => {
+            const Icon = project.icon;
+            return (
+              <div
+                key={project.name}
+                className="flex items-center justify-between rounded-[6px] border border-[var(--color-border-light)] bg-[var(--color-bg-primary)] p-1.5 pr-2 shadow-[var(--shadow-sm)] transition-colors hover:bg-[var(--color-bg-secondary)]"
+              >
+                <div className="flex items-center gap-2">
+                  <div className="flex size-7 items-center justify-center rounded-[4px] border border-[var(--color-border-light)] bg-[var(--color-surface)] text-[var(--color-text-primary)]">
+                    <Icon className="size-3.5" />
+                  </div>
+                  <div>
+                    <h4 className="font-inter text-[9px] font-bold text-[var(--color-text-primary)]">
+                      {project.name}
+                    </h4>
+                    <span className="mt-0.5 block text-[7px] font-medium text-[var(--color-text-secondary)]">
+                      {project.subtitle}
                     </span>
                   </div>
-                ))}
-              </div>
-              <div className="mt-4 flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => setIsActivityModalOpen(false)}
-                  className="rounded-[4px] bg-[var(--color-brand)] px-3 py-1.5 text-[8px] font-semibold text-[var(--color-text-inverse)] hover:opacity-90"
+                </div>
+                <Link
+                  href={project.link}
+                  className="flex items-center gap-1 rounded-[3px] bg-[var(--color-brand)] px-2.5 py-1 text-[7px] font-semibold text-[var(--color-text-inverse)] transition hover:opacity-90"
                 >
-                  Close
-                </button>
+                  {t('projects.viewProject')}
+                  <ExternalLink className="size-2" />
+                </Link>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            );
+          })}
+        </div>
+      </div>
 
       <AnimatePresence>
         {isFeaturedModalOpen && (

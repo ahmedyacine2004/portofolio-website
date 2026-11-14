@@ -29,15 +29,9 @@ export function WebProjectDemoView({ data }: WebProjectDemoViewProps) {
     )
     .join('');
   const projectTranslationKey =
-    projectKey === 'consultify'
-      ? 'projects.consultify'
-      : projectKey === 'portfolioWorkspace'
-        ? 'projects.portfolioWorkspace'
-        : projectKey === 'taskflowDashboard'
-          ? 'projects.taskflowDashboard'
-          : projectKey === 'shopsphere'
-            ? 'projects.shopsphere'
-            : `projectsDetails.${projectKey}`;
+    projectKey === 'consultify' || projectKey === 'portfolioWorkspace'
+      ? `projects.${projectKey}`
+      : `projectsDetails.${projectKey}`;
   const getDemoText = (key: string, fallback: string) =>
     t(`${projectTranslationKey}.demo.${key}`, fallback);
   const getDemoArray = (key: string, fallback: string[]) => {
